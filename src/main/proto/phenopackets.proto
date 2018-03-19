@@ -8,7 +8,19 @@ option java_package = "org.phenopackets.api.proto";
 option java_multiple_files = true;
 //option java_outer_classname = "PhenoPacket";
 
+message Ontology {
+    //e.g. hp
+    string id = 1;
+    // e.g. The Human Phenotype Ontology
+    string name = 2;
+    // The prefix used in the CURIE e.g. HP, MP, ECO
+    string namespace_prefix = 3;
+    string url = 4;
+    string version = 5;
+}
+
 message OntologyClass {
+    // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690
     string id = 1;
     string label = 2;
 }
@@ -20,8 +32,23 @@ message Phenotype {
     OntologyClass onset = 4;
     repeated OntologyClass modifiers = 5;
     OntologyClass assay = 6;
+    Evidence evidence = 7;
     //Measurement
     //Environment
+    //Frequency? Do we want to be able to encode and HPO annotation?
+}
+
+// remodel this to use SEPIO? https://github.com/monarch-initiative/SEPIO-ontology
+message Evidence {
+    OntologyClass eco = 1;
+    Publication publication = 2;
+    //Measurement here?
+}
+
+message Publication {
+    //e.g. ISBN, PMID, DOI
+    string id = 1;
+    string title = 2;
 }
 
 message Individual {
@@ -37,7 +64,7 @@ enum Sex { //do we want to use an ontology term for this or keep it simple?
            FEMALE = 2;
 }
 
-//https://software.broadinstitute.org/gatk/documentation/article?id=11016
+// https://software.broadinstitute.org/gatk/documentation/article?id=11016
 message Pedigree {
     message Person {
         string family_id = 1;
@@ -62,3 +89,41 @@ message Disease {
     repeated Phenotype phenotypes = 5; //should this be repeated?
 }
 
+message Gene {
+    string id = 1;
+    string symbol = 2;
+    int32 ncbi_id = 3;
+}
+
+//SPDI format https://www.ncbi.nlm.nih.gov/variation/notation/
+message Variant {
+    //do we want to consider explicitly defining strand and zero/one-based coordinates?
+    string sequence = 1;
+    int32 position = 2;
+    string deletion = 3;
+    string insertion = 4;
+    //genotype of this variant using the GENO ontology
+    OntologyClass genotype = 5;
+    //do we want to capture variant consequence with SO terms? This would also require the transcript.
+}
+
+message MetaData {
+    // timestamp for when this phenopacket was created
+    google.protobuf.Timestamp created = 1;
+    // some kind of identifier for the contributor/ program
+    string created_by = 2;
+    // a listing of the ontologies referenced in the phenopacket
+    repeated Ontology ontologies = 3;
+}
+
+message PhenoPacket {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    Pedigree pedigree = 4;
+    repeated Individual individuals = 5;
+    repeated Gene genes = 6;
+    repeated Variant variants = 7;
+    repeated Disease diseases = 8;
+    MetaData metaData = 9;
+}
