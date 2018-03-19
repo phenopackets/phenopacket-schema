@@ -1,0 +1,5 @@
+language: java
+jdk:
+  - oraclejdk8
+## See: http://stackoverflow.com/questions/14825039/suppressing-gpg-signing-for-maven-based-continous-integration-builds-travis-ci
+install: mvn install -DskipTests -Dgpg.skip

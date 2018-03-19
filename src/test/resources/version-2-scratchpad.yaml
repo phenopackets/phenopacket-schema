@@ -1,0 +1,55 @@
+---
+#Single causitive variant example
+#Phenopacket version: 0.1
+#this could just be a list of yaml docs .i.e --- delimited
+individuals:
+  individual:
+    id:
+    id_namespace: #namespace from identifiers.org?
+    taxon_id: ncbi_tax_id #doing this removes the need for a 'type' and fits the biosamples use case
+    #existing stuff
+    sex:
+    age:
+    genes?
+    variants:
+      variant:
+        seq: NM_000518.4 # this should be the contig ID for the genome assembly
+        pos: 12345
+        deletion: A
+        insertion: T
+        genotype:
+          - id: GENO:0000135
+            label: heterozyous
+    phenotypes:
+      phenotype:
+          description: Bilateral ventricle anomalies (but not hypertrophy)
+          types:
+            - id: HP:0001711
+              label: Abnormality of the left ventricle
+            - id: HP:0001707
+              label: Abnormality of the right ventricle
+          negated_types:
+            - id: HP:0001714
+              label: Ventricular hypertrophy
+          onset:
+            description: "started shortly after birth"
+            start_time: "2000-01-01"
+            end_time: "2000-01-01"
+            types:
+              - id: "HP:0003623"
+                label: "Neonatal onset"
+          modifier: #using modifier subontology ontology - changed from severity
+            types:
+              - id: HP:0012829
+                label: Profound
+          environment:
+            types:
+              - id: SCTID:161080002
+                label: Passive smoking risk
+    diseases:
+      disease:
+        types:
+          - id: MONDO:000001
+            label: Micky Mouse Syndrome
+    other_data:
+      #Melanie suggested the idea of having a 'free-text' info field for users to stuff other data into. We could have our own Column 13!

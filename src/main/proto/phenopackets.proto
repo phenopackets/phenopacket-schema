@@ -1,0 +1,64 @@
+syntax = "proto3";
+package org.phenopackets;
+
+//import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+option java_package = "org.phenopackets.api.proto";
+option java_multiple_files = true;
+//option java_outer_classname = "PhenoPacket";
+
+message OntologyClass {
+    string id = 1;
+    string label = 2;
+}
+
+message Phenotype {
+    string description = 1;
+    repeated OntologyClass types = 2;
+    repeated OntologyClass negated_types = 3;
+    OntologyClass onset = 4;
+    repeated OntologyClass modifiers = 5;
+    OntologyClass assay = 6;
+    //Measurement
+    //Environment
+}
+
+message Individual {
+    string id = 1;
+    google.protobuf.Timestamp date_of_birth = 2;
+    Sex sex = 3;
+    repeated Phenotype phenotypes = 4;
+}
+
+enum Sex { //do we want to use an ontology term for this or keep it simple?
+           UNKNOWN = 0;
+           MALE = 1;
+           FEMALE = 2;
+}
+
+//https://software.broadinstitute.org/gatk/documentation/article?id=11016
+message Pedigree {
+    message Person {
+        string family_id = 1;
+        string individual_id = 2;
+        string paternal_id = 3;
+        string maternal_id = 4;
+        Sex sex = 5;
+        enum AffectedStatus {
+            MISSING = 0;
+            UNAFFECTED = 1;
+            AFFECTED = 2;
+        }
+        AffectedStatus affected_status = 6;
+    }
+    repeated Person persons = 1;
+}
+
+message Disease {
+    string id = 1;
+    string label = 2;
+    string description = 3;
+    repeated Phenotype phenotypes = 5; //should this be repeated?
+}
+
