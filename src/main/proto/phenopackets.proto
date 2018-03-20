@@ -83,7 +83,7 @@ message Individual {
     // A PATO term for the biological sex of the individual
     // http://purl.obolibrary.org/obo/PATO_0000047
     // TODO: not sure where to go with this - do we want both phenotypic and genotypic sex or both?
-    OntologyClass biological_sex = 3;
+    OntologyClass sex = 3;
     repeated Phenotype phenotypes = 4;
     repeated Disease diagnoses = 5;
 }

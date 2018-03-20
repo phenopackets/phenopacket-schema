@@ -19,6 +19,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class PhenoPacketProtobufTest {
 
+    private static final OntologyClass FEMALE = OntologyClass.newBuilder()
+            .setId("PATO:0000383")
+            .setLabel("female")
+            .build();
+
+    private static final OntologyClass MALE = OntologyClass.newBuilder()
+            .setId("PATO:0000384")
+            .setLabel("male")
+            .build();
+
     @Test
     public void testyMcTestFace() throws Exception {
 
@@ -35,7 +45,7 @@ public class PhenoPacketProtobufTest {
         Individual individual = Individual.newBuilder()
                 .setId("INDIVIDUAL:1")
                 .setDateOfBirth(dobTimestamp)
-                .setSex(Sex.FEMALE)
+                .setSex(FEMALE)
                 .addPhenotypes(phenotype)
                 .build();
 
@@ -54,7 +64,7 @@ public class PhenoPacketProtobufTest {
                 .setIndividualId("PERSON:1")
                 .setMaternalId("MOTHER:1")
                 .setPaternalId("FATHER:1")
-                .setSex(Sex.MALE)
+                .setSex(Pedigree.Person.Sex.MALE)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
                 .build();
 
@@ -63,7 +73,7 @@ public class PhenoPacketProtobufTest {
                 .setIndividualId("PERSON:2")
                 .setMaternalId("MOTHER:1")
                 .setPaternalId("FATHER:1")
-                .setSex(Sex.FEMALE)
+                .setSex(Pedigree.Person.Sex.FEMALE)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
                 .build();
 
@@ -106,7 +116,7 @@ public class PhenoPacketProtobufTest {
                 .setId("MOUSE:000001")
                 .setDateOfBirth(Timestamp.newBuilder()
                         .setSeconds(Instant.parse("1928-11-18T00:00:00.00Z").getEpochSecond()))
-                .setSex(Sex.MALE)
+                .setSex(MALE)
                 .addPhenotypes(whiteHands)
                 .addPhenotypes(happyDisposition)
                 .addPhenotypes(absentVibrisae)
@@ -116,22 +126,31 @@ public class PhenoPacketProtobufTest {
         String jsonString = JsonFormat.printer().print(mickeyMouse);
         System.out.println(jsonString);
 
-        System.out.println(asYaml(jsonString));
+        String yamlString = jsonToYaml(jsonString);
+        System.out.println(yamlString);
+
+        String backToJsonString = yamlToJson(yamlString);
+        System.out.println(backToJsonString);
 
         //test round-trip via JSON
         Individual.Builder mickeyBuilder = Individual.newBuilder();
-        JsonFormat.parser().merge(jsonString, mickeyBuilder);
+        JsonFormat.parser().merge(backToJsonString, mickeyBuilder);
         Individual roundTrippedMickey = mickeyBuilder.build();
 
         assertThat(roundTrippedMickey, equalTo(mickeyMouse));
 
     }
 
-    public String asYaml(String jsonString) throws IOException {
-        // parse JSON
+    // parse JSON to YAML
+    public String jsonToYaml(String jsonString) throws IOException {
         JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
         return new YAMLMapper().writeValueAsString(jsonNodeTree);
     }
 
+    // parse YAML to JSON
+    public String yamlToJson(String yamlString) throws IOException {
+        JsonNode jsonNodeTree = new YAMLMapper().readTree(yamlString);
+        return new ObjectMapper().writeValueAsString(jsonNodeTree);
+    }
 
 }
