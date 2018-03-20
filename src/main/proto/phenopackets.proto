@@ -45,15 +45,15 @@ message OntologyClass {
 // Rename to PhenotypicFeature?
 message Phenotype {
     string description = 1;
-    
-    // perhaps we can simplify this and have a single class and a single boolean flag?
+
+    // TODO: perhaps we can simplify this and have a single class and a single boolean flag?
     repeated OntologyClass types = 2;
     repeated OntologyClass negated_types = 3;
-    
+
     // the values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
     OntologyClass onset = 4;
-    
+
     // subclasses of HP:0012823 ! Clinical modifier 
     repeated OntologyClass modifiers = 5;
     OntologyClass assay = 6;
@@ -63,7 +63,7 @@ message Phenotype {
     //Frequency? Do we want to be able to encode and HPO annotation?
 }
 
-// remodel this to use SEPIO? https://github.com/monarch-initiative/SEPIO-ontology
+// TODO: remodel this to use SEPIO? https://github.com/monarch-initiative/SEPIO-ontology
 message Evidence {
     OntologyClass eco = 1;
     Publication publication = 2;
@@ -78,34 +78,34 @@ message Publication {
 
 message Individual {
     string id = 1;
-    
-    // is this not too precise a field?
+    // TODO: is this not too precise a field?
     google.protobuf.Timestamp date_of_birth = 2;
-    Sex sex = 3;
+    // A PATO term for the biological sex of the individual
+    // http://purl.obolibrary.org/obo/PATO_0000047
+    // TODO: not sure where to go with this - do we want both phenotypic and genotypic sex or both?
+    OntologyClass biological_sex = 3;
     repeated Phenotype phenotypes = 4;
     repeated Disease diagnoses = 5;
-}
-
-// we should use PATO here
-enum Sex { //do we want to use an ontology term for this or keep it simple?
-           UNKNOWN = 0;
-           MALE = 1;
-           FEMALE = 2;
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
 message Pedigree {
     message Person {
-        string family_id = 1;
-        string individual_id = 2;
-        string paternal_id = 3;
-        string maternal_id = 4;
-        Sex sex = 5;
+        enum Sex {
+            UNKNOWN = 0;
+            MALE = 1;
+            FEMALE = 2;
+        }
         enum AffectedStatus {
             MISSING = 0;
             UNAFFECTED = 1;
             AFFECTED = 2;
         }
+        string family_id = 1;
+        string individual_id = 2;
+        string paternal_id = 3;
+        string maternal_id = 4;
+        Sex sex = 5;
         AffectedStatus affected_status = 6;
     }
     repeated Person persons = 1;
@@ -118,7 +118,8 @@ message Disease {
     repeated Phenotype phenotypes = 5; //should this be repeated?
 }
 
-//perhaps this would be better as a GeneticFeature which would wrap 1-N variants. This would make it easier to group comp-het alleles.
+// TODO: perhaps this would be better as a GeneticFeature which would wrap 1-N variants. This would make it easier to group comp-het alleles.
+// TODO:  Alternatively create a Genotype{gene: Gene, repeated alleles: Variant}
 message Gene {
     // a CURIE with a prefix that is NCBIGene, HGNC, ENSEMBL, UCSC e.g. HGNC:347, ENSG00000120705, uc003ldc.6
     // https://www.genenames.org/cgi-bin/gene_symbol_report?q=data/hgnc_data.php&hgnc_id=HGNC:3477
