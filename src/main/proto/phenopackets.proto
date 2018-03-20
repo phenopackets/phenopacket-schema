@@ -118,10 +118,16 @@ message Disease {
     repeated Phenotype phenotypes = 5; //should this be repeated?
 }
 
+//perhaps this would be better as a GeneticFeature which would wrap 1-N variants. This would make it easier to group comp-het alleles.
 message Gene {
-    string id = 1; // a CURIE with a prefix that is NCBIGene, HGNC, ENSEMBL, ...
+    // a CURIE with a prefix that is NCBIGene, HGNC, ENSEMBL, UCSC e.g. HGNC:347, ENSG00000120705, uc003ldc.6
+    // https://www.genenames.org/cgi-bin/gene_symbol_report?q=data/hgnc_data.php&hgnc_id=HGNC:3477
+    string id = 1;
+    // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
     string symbol = 2;
-    int32 ncbi_id = 3; // what about HGNC
+    // Taxonomy id from the NCBI e.g. NCBI:txid9606
+    // https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=9606
+    int32 ncbi_taxon_id = 3;
 }
 
 //SPDI format https://www.ncbi.nlm.nih.gov/variation/notation/
