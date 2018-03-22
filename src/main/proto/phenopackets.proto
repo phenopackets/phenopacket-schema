@@ -77,14 +77,21 @@ message Publication {
 }
 
 message Individual {
+    // An identifer for the individual. This must be unique within the record.
     string id = 1;
-    // TODO: is this not too precise a field?
+    // The date of birth of the individual - rounded down to the closest known year/month/day/hour/minute
+    // e.g. "2018-03-01T00:00:00Z" for someone born on an unknown day in March 2018
+    // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
+    // or empty if unknown/ not stated.
     google.protobuf.Timestamp date_of_birth = 2;
     // A PATO term for the biological sex of the individual
     // http://purl.obolibrary.org/obo/PATO_0000047
     // TODO: not sure where to go with this - do we want both phenotypic and genotypic sex or both?
     OntologyClass sex = 3;
     repeated Phenotype phenotypes = 4;
+
+    // TODO: I'm not sure we want to add this here. Wouldn't a Diagnosis message be better? This would sit at the top
+    // along with 'Phenopacket' and possibly 'ClinicalInterpretation'
     repeated Disease diagnoses = 5;
 }
 
@@ -112,10 +119,16 @@ message Pedigree {
 }
 
 message Disease {
+    // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
     string id = 1;
+    // Textual name of the disease e.g. Pfeiffer syndrome
     string label = 2;
+    // Free-text description
     string description = 3;
-    repeated Phenotype phenotypes = 5; //should this be repeated?
+    // The mode of inheritance for this disease, in preference a sub-class of http://purl.obolibrary.org/obo/HP_0000005
+    OntologyClass modeOfInheritance = 4;
+    // The disease phenotype
+    repeated Phenotype phenotypes = 5;
 }
 
 // TODO: perhaps this would be better as a GeneticFeature which would wrap 1-N variants. This would make it easier to group comp-het alleles.
@@ -131,16 +144,41 @@ message Gene {
     int32 ncbi_taxon_id = 3;
 }
 
-//SPDI format https://www.ncbi.nlm.nih.gov/variation/notation/
+// Placeholder message in SPDI format (https://www.ncbi.nlm.nih.gov/variation/notation/)
+// Subject to change - this could be replaced with a GA4GH Variant Representation when finalised by the working group.
+// See: https://docs.google.com/document/d/1Sulg3kECnorTEAbutINOsK-lFkKAcKpl6IHgPaPQEgA
 message Variant {
-    //do we want to consider explicitly defining strand and zero/one-based coordinates?
+    // do we want to consider explicitly defining strand and zero/one-based coordinates?
+    // Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10)
     string sequence = 1;
+    // zero-based sequence position
     int32 position = 2;
+    // Deleted bases on the forward strand - equivalent to the VCF REF
     string deletion = 3;
+    // Inserted bases on the forward strand - equivalent to the VCF ALT
     string insertion = 4;
     //genotype of this variant using the GENO ontology
     OntologyClass genotype = 5;
-    //do we want to capture variant consequence with SO terms? This would also require the transcript.
+    // TODO: This might be better combined in an InterpretedVariant/ AnnotatedVariant message
+    VariantAnnotation variantAnnotation = 6;
+}
+
+// Placeholder message subject to change with outcome of GA4GH variant annotation working group.
+// See: https://docs.google.com/document/d/13sSChUB9rW7vl1ep-tZnaDzSWb_MyWIvSzEFVS32quE
+message VariantAnnotation {
+    enum AcmgClassification {
+        UNCERTAIN_SIGNIFICANCE = 0;
+        LIKELY_BENIGN = 2;
+        BENIGN = 3;
+        LIKELY_PATHOGENIC = 4;
+        PATHOGENIC = 5;
+    }
+    // Subclass of the Sequence Ontology http://purl.obolibrary.org/obo/so.owl
+    OntologyClass variantEffect = 1;
+    // Variant interpretation code from https://www.acmg.net/docs/Standards_Guidelines_for_the_Interpretation_of_Sequence_Variants.pdf
+    AcmgClassification acmg_classification = 2;
+    //  e.g. PVS1, BP7 (should make an enum for these?)
+    repeated string acmg_code = 3;
 }
 
 message MetaData {

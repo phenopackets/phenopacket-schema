@@ -19,25 +19,41 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class PhenoPacketProtobufTest {
 
-    private static final OntologyClass FEMALE = OntologyClass.newBuilder()
-            .setId("PATO:0000383")
-            .setLabel("female")
-            .build();
+    private static final OntologyClass FEMALE = ontologyClass("PATO:0000383", "female");
 
-    private static final OntologyClass MALE = OntologyClass.newBuilder()
-            .setId("PATO:0000384")
-            .setLabel("male")
-            .build();
+    private static final OntologyClass MALE = ontologyClass("PATO:0000384", "male");
+
+    private static OntologyClass ontologyClass(String id, String label) {
+        return OntologyClass.newBuilder()
+                .setId(id)
+                .setLabel(label)
+                .build();
+    }
+
+    //TODO: move these to a utility class
+    public String writeAsYaml(PhenoPacket phenoPacket) throws IOException {
+        String jsonString = JsonFormat.printer().print(phenoPacket);
+        return jsonToYaml(jsonString);
+    }
+
+    // parse JSON to YAML
+    public String jsonToYaml(String jsonString) throws IOException {
+        JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
+        return new YAMLMapper().writeValueAsString(jsonNodeTree);
+    }
+
+    // parse YAML to JSON
+    public String yamlToJson(String yamlString) throws IOException {
+        JsonNode jsonNodeTree = new YAMLMapper().readTree(yamlString);
+        return new ObjectMapper().writeValueAsString(jsonNodeTree);
+    }
 
     @Test
     public void testyMcTestFace() throws Exception {
 
         Phenotype phenotype = Phenotype.newBuilder()
-                .setOnset(OntologyClass.newBuilder().setId("HP:0003623").setLabel("Neonatal onset").build())
-                .addTypes(OntologyClass.newBuilder()
-                        .setId("HP:0001711")
-                        .setLabel("Abnormality of the left ventricle")
-                        .build())
+                .setOnset(ontologyClass("HP:0003623", "Neonatal onset"))
+                .addTypes(ontologyClass("HP:0001711", "Abnormality of the left ventricle"))
                 .build();
 
         long dateOfBirth = Instant.parse("2018-03-12T15:15:30.00Z").getEpochSecond();
@@ -89,27 +105,25 @@ public class PhenoPacketProtobufTest {
     public void testBoscExample() throws Exception {
 
         Phenotype whiteHands = Phenotype.newBuilder()
-                .addTypes(OntologyClass.newBuilder().setId("PATO:0000323").setLabel("white").build())
-                .addTypes(OntologyClass.newBuilder().setId("PATO:0000586").setLabel("increased size").build())
-                .addTypes(OntologyClass.newBuilder().setId("UBERON:0002398").setLabel("manus").build())
+                .addTypes(ontologyClass("PATO:0000323", "white"))
+                .addTypes(ontologyClass("PATO:0000586", "increased size"))
+                .addTypes(ontologyClass("HP:0001233", "2-3 finger syndactyly"))
+                .addTypes(ontologyClass("UBERON:0002398", "manus"))
                 .build();
 
         Phenotype happyDisposition = Phenotype.newBuilder()
-                .addTypes(OntologyClass.newBuilder()
-                        .setId("HP:0100024")
-                        .setLabel("Conspicuously happy disposition")
-                        .build())
+                .addTypes(ontologyClass("HP:0100024", "Conspicuously happy disposition"))
                 .setDescription("welcomes strangers with open arms")
-                .setOnset(OntologyClass.newBuilder().setId("HP:0011463").setLabel("Childhood onset").build())
+                .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
         Phenotype absentVibrisae = Phenotype.newBuilder()
-                .addTypes(OntologyClass.newBuilder().setId("MP:0001284").setLabel("absent vibrissae").build())
+                .addTypes(ontologyClass("MP:0001284", "absent vibrissae"))
                 .build();
 
         Phenotype circularEars = Phenotype.newBuilder()
-                .addTypes(OntologyClass.newBuilder().setId("PATO:0000411").setLabel("circular").build())
-                .addTypes(OntologyClass.newBuilder().setId("UBERON:0001690").setLabel("ears").build())
+                .addTypes(ontologyClass("PATO:0000411", "circular"))
+                .addTypes(ontologyClass("UBERON:0001690", "ears"))
                 .build();
 
         Individual mickeyMouse = Individual.newBuilder()
@@ -141,16 +155,100 @@ public class PhenoPacketProtobufTest {
 
     }
 
-    // parse JSON to YAML
-    public String jsonToYaml(String jsonString) throws IOException {
-        JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
-        return new YAMLMapper().writeValueAsString(jsonNodeTree);
-    }
+    @Test
+    public void testRareDiseaseDiagnosis() throws Exception {
 
-    // parse YAML to JSON
-    public String yamlToJson(String yamlString) throws IOException {
-        JsonNode jsonNodeTree = new YAMLMapper().readTree(yamlString);
-        return new ObjectMapper().writeValueAsString(jsonNodeTree);
+        Gene fgfr2Gene = Gene.newBuilder()
+                .setId("HGNC:3689")
+                .setSymbol("FGFR2")
+                .setNcbiTaxonId(9606)
+                .build();
+
+        VariantAnnotation variantAnnotation = VariantAnnotation.newBuilder()
+                .setAcmgClassification(VariantAnnotation.AcmgClassification.PATHOGENIC)
+                .setVariantEffect(ontologyClass("SO:0001583", "missense_variant"))
+                .addAcmgCode("PS1")
+                .addAcmgCode("PS2")
+                .addAcmgCode("PM2")
+                .build();
+
+        Variant pathogenicVariant = Variant.newBuilder()
+                .setSequence("NC_000010.10")
+                .setPosition(123256214)
+                .setDeletion("T")
+                .setInsertion("G")
+                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
+                .setVariantAnnotation(variantAnnotation)
+                .build();
+
+        Phenotype pfeifferPhenotype = Phenotype.newBuilder()
+                .addTypes(ontologyClass("HP:0004440", "Coronal craniosynostosis"))
+                .addTypes(ontologyClass("HP:0000327", "Maxillary hypoplasia"))
+                .addTypes(ontologyClass("HP:0000316", "Hypertelorism"))
+                .addTypes(ontologyClass("HP:0011304", "Broad thumb"))
+                .addTypes(ontologyClass("HP:0006110", "Shortening of all middle phalanges of the fingers"))
+                .addTypes(ontologyClass("HP:0010055", "Broad hallux"))
+                .addTypes(ontologyClass("HP:0001159", "Syndactyly"))
+                .addTypes(ontologyClass("HP:0001249", "Intellectual disability"))
+                .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
+                .build();
+
+
+        Disease pfeifferSyndrome = Disease.newBuilder()
+                .setId("OMIM:101600")
+                .setLabel("PFEIFFER SYNDROME")
+                .setModeOfInheritance(ontologyClass("HP:0000006", "Autosomal dominant inheritance"))
+                .addPhenotypes(pfeifferPhenotype)
+                .build();
+
+        Phenotype probandPhenotype = Phenotype.newBuilder()
+                .addTypes(ontologyClass("HP:0001156", "Brachydactyly"))
+                .addTypes(ontologyClass("HP:0001363", "Craniosynostosis"))
+                .addTypes(ontologyClass("HP:0011304", "Broad thumb"))
+                .addTypes(ontologyClass("HP:0010055", "Broad hallux"))
+                .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
+                .build();
+
+        Individual proband = Individual.newBuilder()
+                .setId("proband")
+                .addPhenotypes(probandPhenotype)
+                .build();
+
+        MetaData metaData = MetaData.newBuilder()
+                .addOntologies(Ontology.newBuilder()
+                        .setId("hp")
+                        .setName("human phenotype ontology")
+                        .setNamespacePrefix("HP")
+                        .setUrl("http://purl.obolibrary.org/obo/hp.owl")
+                        .setVersion("2018-03-08")
+                        .build())
+                .addOntologies(Ontology.newBuilder()
+                        .setId("geno")
+                        .setName("Genotype Ontology")
+                        .setNamespacePrefix("GENO")
+                        .setUrl("http://purl.obolibrary.org/obo/geno.owl")
+                        .setVersion("19-03-2018")
+                        .build())
+                .addOntologies(Ontology.newBuilder()
+                        .setId("so")
+                        .setName("Sequence types and features")
+                        .setNamespacePrefix("SO")
+                        .setUrl("http://purl.obolibrary.org/obo/so.owl")
+                        .setVersion("2015-11-24")
+                        .build())
+                .setCreatedBy("Jules J.")
+                .build();
+
+        PhenoPacket exomiserPfeifferExample = PhenoPacket.newBuilder()
+                .setDescription("Example diagnosed patient with known pathogenic variant in the FGFR2 gene causative of Pfeiffer syndrome.")
+                .addDiseases(pfeifferSyndrome)
+                .addIndividuals(proband)
+                .addVariants(pathogenicVariant)
+                .addGenes(fgfr2Gene)
+                .setMetaData(metaData)
+                .build();
+
+        System.out.println(writeAsYaml(exomiserPfeifferExample));
     }
 
 }
