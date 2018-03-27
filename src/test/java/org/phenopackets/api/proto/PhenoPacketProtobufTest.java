@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.time.Instant;
+import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -53,7 +54,7 @@ public class PhenoPacketProtobufTest {
 
         Phenotype phenotype = Phenotype.newBuilder()
                 .setOnset(ontologyClass("HP:0003623", "Neonatal onset"))
-                .addTypes(ontologyClass("HP:0001711", "Abnormality of the left ventricle"))
+                .setType(ontologyClass("HP:0001711", "Abnormality of the left ventricle"))
                 .build();
 
         long dateOfBirth = Instant.parse("2018-03-12T15:15:30.00Z").getEpochSecond();
@@ -103,55 +104,55 @@ public class PhenoPacketProtobufTest {
 
     @Test
     public void testBoscExample() throws Exception {
+        //
+//        Phenotype whiteHands = Phenotype.newBuilder()
+//                .addTypes(ontologyClass("PATO:0000323", "white"))
+//                .addTypes(ontologyClass("PATO:0000586", "increased size"))
+//                .addTypes(ontologyClass("HP:0001233", "2-3 finger syndactyly"))
+//                .addTypes(ontologyClass("UBERON:0002398", "manus"))
+//                .build();
+//
+//        Phenotype happyDisposition = Phenotype.newBuilder()
+//                .addTypes(ontologyClass("HP:0100024", "Conspicuously happy disposition"))
+//                .setDescription("welcomes strangers with open arms")
+//                .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
+//                .build();
+//
+//        Phenotype absentVibrisae = Phenotype.newBuilder()
+//                .addTypes(ontologyClass("MP:0001284", "absent vibrissae"))
+//                .build();
+//
+//        Phenotype circularEars = Phenotype.newBuilder()
+//                .addTypes(ontologyClass("PATO:0000411", "circular"))
+//                .addTypes(ontologyClass("UBERON:0001690", "ears"))
+//                .build();
+//
+//        Individual mickeyMouse = Individual.newBuilder()
+//                .setId("MOUSE:000001")
+//                .setDateOfBirth(Timestamp.newBuilder()
+//                        .setSeconds(Instant.parse("1928-11-18T00:00:00.00Z").getEpochSecond()))
+//                .setSex(MALE)
+//                .addPhenotypes(whiteHands)
+//                .addPhenotypes(happyDisposition)
+//                .addPhenotypes(absentVibrisae)
+//                .addPhenotypes(circularEars)
+//                .build();
 
-        Phenotype whiteHands = Phenotype.newBuilder()
-                .addTypes(ontologyClass("PATO:0000323", "white"))
-                .addTypes(ontologyClass("PATO:0000586", "increased size"))
-                .addTypes(ontologyClass("HP:0001233", "2-3 finger syndactyly"))
-                .addTypes(ontologyClass("UBERON:0002398", "manus"))
-                .build();
-
-        Phenotype happyDisposition = Phenotype.newBuilder()
-                .addTypes(ontologyClass("HP:0100024", "Conspicuously happy disposition"))
-                .setDescription("welcomes strangers with open arms")
-                .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
-                .build();
-
-        Phenotype absentVibrisae = Phenotype.newBuilder()
-                .addTypes(ontologyClass("MP:0001284", "absent vibrissae"))
-                .build();
-
-        Phenotype circularEars = Phenotype.newBuilder()
-                .addTypes(ontologyClass("PATO:0000411", "circular"))
-                .addTypes(ontologyClass("UBERON:0001690", "ears"))
-                .build();
-
-        Individual mickeyMouse = Individual.newBuilder()
-                .setId("MOUSE:000001")
-                .setDateOfBirth(Timestamp.newBuilder()
-                        .setSeconds(Instant.parse("1928-11-18T00:00:00.00Z").getEpochSecond()))
-                .setSex(MALE)
-                .addPhenotypes(whiteHands)
-                .addPhenotypes(happyDisposition)
-                .addPhenotypes(absentVibrisae)
-                .addPhenotypes(circularEars)
-                .build();
-
-        String jsonString = JsonFormat.printer().print(mickeyMouse);
-        System.out.println(jsonString);
-
-        String yamlString = jsonToYaml(jsonString);
-        System.out.println(yamlString);
-
-        String backToJsonString = yamlToJson(yamlString);
-        System.out.println(backToJsonString);
-
-        //test round-trip via JSON
-        Individual.Builder mickeyBuilder = Individual.newBuilder();
-        JsonFormat.parser().merge(backToJsonString, mickeyBuilder);
-        Individual roundTrippedMickey = mickeyBuilder.build();
-
-        assertThat(roundTrippedMickey, equalTo(mickeyMouse));
+//        String jsonString = JsonFormat.printer().print(mickeyMouse);
+//        System.out.println(jsonString);
+//
+//        String yamlString = jsonToYaml(jsonString);
+//        System.out.println(yamlString);
+//
+//        String backToJsonString = yamlToJson(yamlString);
+//        System.out.println(backToJsonString);
+//
+//        //test round-trip via JSON
+//        Individual.Builder mickeyBuilder = Individual.newBuilder();
+//        JsonFormat.parser().merge(backToJsonString, mickeyBuilder);
+//        Individual roundTrippedMickey = mickeyBuilder.build();
+//
+//        assertThat(roundTrippedMickey, equalTo(mickeyMouse));
 
     }
 
@@ -182,14 +183,14 @@ public class PhenoPacketProtobufTest {
                 .build();
 
         Phenotype pfeifferPhenotype = Phenotype.newBuilder()
-                .addTypes(ontologyClass("HP:0004440", "Coronal craniosynostosis"))
-                .addTypes(ontologyClass("HP:0000327", "Maxillary hypoplasia"))
-                .addTypes(ontologyClass("HP:0000316", "Hypertelorism"))
-                .addTypes(ontologyClass("HP:0011304", "Broad thumb"))
-                .addTypes(ontologyClass("HP:0006110", "Shortening of all middle phalanges of the fingers"))
-                .addTypes(ontologyClass("HP:0010055", "Broad hallux"))
-                .addTypes(ontologyClass("HP:0001159", "Syndactyly"))
-                .addTypes(ontologyClass("HP:0001249", "Intellectual disability"))
+                .setType(ontologyClass("HP:0004440", "Coronal craniosynostosis"))
+//                .addTypes(ontologyClass("HP:0000327", "Maxillary hypoplasia"))
+//                .addTypes(ontologyClass("HP:0000316", "Hypertelorism"))
+//                .addTypes(ontologyClass("HP:0011304", "Broad thumb"))
+//                .addTypes(ontologyClass("HP:0006110", "Shortening of all middle phalanges of the fingers"))
+//                .addTypes(ontologyClass("HP:0010055", "Broad hallux"))
+//                .addTypes(ontologyClass("HP:0001159", "Syndactyly"))
+//                .addTypes(ontologyClass("HP:0001249", "Intellectual disability"))
                 .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
@@ -201,17 +202,31 @@ public class PhenoPacketProtobufTest {
                 .addPhenotypes(pfeifferPhenotype)
                 .build();
 
-        Phenotype probandPhenotype = Phenotype.newBuilder()
-                .addTypes(ontologyClass("HP:0001156", "Brachydactyly"))
-                .addTypes(ontologyClass("HP:0001363", "Craniosynostosis"))
-                .addTypes(ontologyClass("HP:0011304", "Broad thumb"))
-                .addTypes(ontologyClass("HP:0010055", "Broad hallux"))
+        Phenotype brachydactyly = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0001156", "Brachydactyly"))
+                .addModifiers(ontologyClass("", ""))
+                .setOnset(ontologyClass("", ""))
+                .build();
+
+        Phenotype craniosynostosis = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0001363", "Craniosynostosis"))
+                .build();
+
+        Phenotype broadThumb = Phenotype.newBuilder()
+                .setType(ontologyClass(";HP:0011304", "Broad thumb"))
+                .build();
+
+        Phenotype broadHallux = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0010055", "Broad hallux"))
                 .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
         Individual proband = Individual.newBuilder()
                 .setId("proband")
-                .addPhenotypes(probandPhenotype)
+                .addPhenotypes(brachydactyly)
+                .addPhenotypes(craniosynostosis)
+                .addPhenotypes(broadThumb)
+                .addPhenotypes(broadHallux)
                 .build();
 
         MetaData metaData = MetaData.newBuilder()

@@ -36,19 +36,22 @@ message Ontology {
 message OntologyClass {
     // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
     // This is the primary key for the ontology class
+    // REQUIRED?
     string id = 1;
     
     // class label, aka name. E.g. "Abnormality of cardiovascular system"
     string label = 2;
 }
 
-// Rename to PhenotypicFeature?
+// Rename to PhenotypicFeature? Or maybe, seeing as we've gone full-HPO here to ClinicalPhenotype?
 message Phenotype {
+    // Free-text description of the phenotype. Note this is not a acceptable place to document/describe the phenotype -
+    // the type and onset etc... fields should be used for this purpose.
     string description = 1;
 
-    // TODO: perhaps we can simplify this and have a single class and a single boolean flag?
-    repeated OntologyClass types = 2;
-    repeated OntologyClass negated_types = 3;
+    // The primary ontology class which describes the phenotype. For example "HP:0001363"  "Craniosynostosis"
+    OntologyClass type = 2;
+    bool isNegated = 3;
 
     // the values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
@@ -118,6 +121,13 @@ message Pedigree {
     repeated Person persons = 1;
 }
 
+message File {
+    // Full system path to the file. e.g. /data/genomes/file1.vcf.gz
+    string path = 1;
+    // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
+    string uri = 2;
+}
+
 message Disease {
     // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
     string id = 1;
@@ -129,6 +139,12 @@ message Disease {
     OntologyClass modeOfInheritance = 4;
     // The disease phenotype
     repeated Phenotype phenotypes = 5;
+}
+
+message GenomicFeature {
+    Gene gene = 1;
+    repeated Variant variant = 2;
+    VariantAnnotation variantAnnotation = 3;
 }
 
 // TODO: perhaps this would be better as a GeneticFeature which would wrap 1-N variants. This would make it easier to group comp-het alleles.
@@ -160,6 +176,8 @@ message Variant {
     //genotype of this variant using the GENO ontology
     OntologyClass genotype = 5;
     // TODO: This might be better combined in an InterpretedVariant/ AnnotatedVariant message
+    // however, it's not required so its absence isn't an issue. On positive side having the annotation associated with
+    // the variant directly makes it easier to work with.
     VariantAnnotation variantAnnotation = 6;
 }
 
@@ -190,14 +208,43 @@ message MetaData {
     repeated Ontology ontologies = 3;
 }
 
+// Should be a pre-evaluated phenotype description of an individual
 message PhenoPacket {
     string id = 1;
     string title = 2;
     string description = 3;
-    Pedigree pedigree = 4;
-    repeated Individual individuals = 5;
-    repeated Gene genes = 6;
+    Individual individual = 5;
     repeated Variant variants = 7;
     repeated Disease diseases = 8;
     MetaData metaData = 9;
+}
+
+message BeaconRequest {
+    Variant variant = 1;
+}
+
+//https://github.com/ga4gh/mme-apis/blob/master/search-api.md
+message MmeMatchRequest {
+    Individual proband = 5;
+    repeated GenomicFeature genomicFeatures = 6;
+    repeated Disease diseases = 8;
+}
+
+// Genomics England InterpretationRequest
+message InterpretationRequest {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    Pedigree pedigree = 4;
+    Individual proband = 5;
+    File vcf = 6;
+    MetaData metaData = 9;
+}
+
+// Genomics England InterpretedGenome
+message InterpretedGenome {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    repeated GenomicFeature genomicFeatures = 6;
 }
