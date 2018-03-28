@@ -7,7 +7,7 @@ This is a re-defined version of the original phenopacket with a more individual-
 
 Currently this is very much work in progress and breaking changes will occur. Once we have settled on something stable we will draft a 1.0.0-RELEASE and thereafter stick to semantic versioning semantics.
 
-##Building
+## Building
 The project can be built using the awesome [Takari maven wrapper](https://github.com/takari/maven-wrapper) which requires no local maven installation.
 
 To do this ```cd``` to the project root and run the wrapper scripts:
@@ -21,14 +21,14 @@ or
 $ ./mvnw.cmd clean install
 ```
 
-##Sign artefacts for release
+## Sign artefacts for release
 There is a ```release-sign-artifacts``` profile which can be triggered with the command
 
 ```bash
 $ ./mvnw clean install -DperformRelease=true
 ```
 
-##Python and C++ artefacts
+## Java, Python and C++ artefacts
 Building the project will automatically compile Java, Python and C++ artefacts. The Java jar file can be directly used in any Java project. For Python or C++ the build artefacts can be found at
 
 ```bash
