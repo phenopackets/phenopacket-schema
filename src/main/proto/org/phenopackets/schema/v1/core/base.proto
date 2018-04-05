@@ -43,7 +43,8 @@ message OntologyClass {
     string label = 2;
 }
 
-// Rename to PhenotypicFeature? Or maybe, seeing as we've gone full-HPO here to ClinicalPhenotype?
+// An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
+// frequency
 message Phenotype {
     // Free-text description of the phenotype. Note this is not a acceptable place to document/describe the phenotype -
     // the type and onset etc... fields should be used for this purpose.
@@ -60,10 +61,13 @@ message Phenotype {
     // subclasses of HP:0012823 ! Clinical modifier 
     repeated OntologyClass modifiers = 5;
     OntologyClass assay = 6;
-    Evidence evidence = 7;
+    // subclasses of HP:0040279 ! Frequency
+    // TODO: make this a distinct message with number, count and percentage as well as general ontology class?
+    OntologyClass frequency = 7;
+
+    Evidence evidence = 11;
     //Measurement
     //Environment
-    //Frequency? Do we want to be able to encode and HPO annotation?
 }
 
 // TODO: remodel this to use SEPIO? https://github.com/monarch-initiative/SEPIO-ontology

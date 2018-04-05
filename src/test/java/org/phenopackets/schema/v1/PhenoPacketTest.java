@@ -183,30 +183,22 @@ public class PhenoPacketTest {
                 .setVariantAnnotation(variantAnnotation)
                 .build();
 
-        Phenotype pfeifferPhenotype = Phenotype.newBuilder()
+        Phenotype coronalCraniosynostosis = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0004440", "Coronal craniosynostosis"))
-//                .addTypes(ontologyClass("HP:0000327", "Maxillary hypoplasia"))
-//                .addTypes(ontologyClass("HP:0000316", "Hypertelorism"))
-//                .addTypes(ontologyClass("HP:0011304", "Broad thumb"))
-//                .addTypes(ontologyClass("HP:0006110", "Shortening of all middle phalanges of the fingers"))
-//                .addTypes(ontologyClass("HP:0010055", "Broad hallux"))
-//                .addTypes(ontologyClass("HP:0001159", "Syndactyly"))
-//                .addTypes(ontologyClass("HP:0001249", "Intellectual disability"))
                 .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
+        Phenotype maxillaryHypoplasia = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0000327", "Maxillary hypoplasia"))
+                .build();
 
-        Disease pfeifferSyndrome = Disease.newBuilder()
-                .setId("OMIM:101600")
-                .setLabel("PFEIFFER SYNDROME")
-                .setModeOfInheritance(ontologyClass("HP:0000006", "Autosomal dominant inheritance"))
-                .addPhenotypes(pfeifferPhenotype)
+        Phenotype cloverleafSkullOccasional = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0002676", "Cloverleaf skull"))
+                .setFrequency(ontologyClass("HP:0040283", "Occasional"))
                 .build();
 
         Phenotype brachydactyly = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0001156", "Brachydactyly"))
-                .addModifiers(ontologyClass("", ""))
-                .setOnset(ontologyClass("", ""))
                 .build();
 
         Phenotype craniosynostosis = Phenotype.newBuilder()
@@ -214,7 +206,7 @@ public class PhenoPacketTest {
                 .build();
 
         Phenotype broadThumb = Phenotype.newBuilder()
-                .setType(ontologyClass(";HP:0011304", "Broad thumb"))
+                .setType(ontologyClass("HP:0011304", "Broad thumb"))
                 .build();
 
         Phenotype broadHallux = Phenotype.newBuilder()
@@ -222,12 +214,43 @@ public class PhenoPacketTest {
                 .setOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
+        Phenotype proptosisCongenitalSevere = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0000520", "Proptosis"))
+                .addModifiers(ontologyClass("HP:0012828", "Severe"))
+                .setOnset(ontologyClass("HP:0003577", "Congenital onset"))
+                .build();
+
+        Phenotype proptosisCongenitalMild = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0000520", "Proptosis"))
+                .addModifiers(ontologyClass("HP:0012825", "Mild"))
+                .setOnset(ontologyClass("HP:0003577", "Congenital onset"))
+                .build();
+
+        Phenotype intellectualDisabilityOccasional = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0001249", "Intellectual disability"))
+                .setFrequency(ontologyClass("HP:0040283", "Occasional"))
+                .build();
+
+        Disease pfeifferSyndrome = Disease.newBuilder()
+                .setId("OMIM:101600")
+                .setLabel("PFEIFFER SYNDROME")
+                .setModeOfInheritance(ontologyClass("HP:0000006", "Autosomal dominant inheritance"))
+                .addPhenotypes(maxillaryHypoplasia)
+                .addPhenotypes(coronalCraniosynostosis)
+                .addPhenotypes(cloverleafSkullOccasional)
+                .addPhenotypes(proptosisCongenitalSevere)
+                .addPhenotypes(broadThumb)
+                .addPhenotypes(intellectualDisabilityOccasional)
+                .build();
+
+
         Individual proband = Individual.newBuilder()
                 .setId("proband")
                 .addPhenotypes(brachydactyly)
                 .addPhenotypes(craniosynostosis)
                 .addPhenotypes(broadThumb)
                 .addPhenotypes(broadHallux)
+                .addPhenotypes(proptosisCongenitalMild)
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
