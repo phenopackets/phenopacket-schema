@@ -97,6 +97,7 @@ message Individual {
     OntologyClass sex = 3;
 
     // Karyotypic sex
+    // (consider using ontology)
     enum KaryotypicSex {
         UNKNOWN = 0;
         XX = 1;
@@ -192,8 +193,8 @@ message Variant {
     string deletion = 3;
     // Inserted bases on the forward strand - equivalent to the VCF ALT
     string insertion = 4;
-    //genotype of this variant using the GENO ontology
-    OntologyClass genotype = 5;
+    //type of genotype of this variant, using class from GENO ontology
+    OntologyClass genotypeClass = 5;
     // TODO: This might be better combined in an InterpretedVariant/ AnnotatedVariant message
     // however, it's not required so its absence isn't an issue. On positive side having the annotation associated with
     // the variant directly makes it easier to work with.
