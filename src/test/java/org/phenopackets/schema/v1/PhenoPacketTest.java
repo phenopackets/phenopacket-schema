@@ -179,7 +179,7 @@ public class PhenoPacketTest {
                 .setPosition(123256214)
                 .setDeletion("T")
                 .setInsertion("G")
-                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
+                .setGenotypeClass(ontologyClass("GENO:0000135", "heterozygous"))
                 .setVariantAnnotation(variantAnnotation)
                 .build();
 
