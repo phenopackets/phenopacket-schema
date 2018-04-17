@@ -65,7 +65,7 @@ message Phenotype {
     // TODO: make this a distinct message with number, count and percentage as well as general ontology class?
     OntologyClass frequency = 7;
 
-    Evidence evidence = 11;
+    repeated Evidence evidence = 11;
     //Measurement
     //Environment
 }
@@ -74,7 +74,9 @@ message Phenotype {
 message Evidence {
     OntologyClass eco = 1;
     Publication publication = 2;
-    //Measurement here?
+    //TODO alternatively a map of finding or something
+    //repeated Measurement/ Observation here? this would link to FHIR
+    //e.g. https://www.hl7.org/fhir/observation.html
 }
 
 message Publication {
@@ -159,8 +161,25 @@ message Disease {
     OntologyClass modeOfInheritance = 4;
     // The disease phenotype
     repeated Phenotype phenotypes = 5;
+
+    OntologyClass onset = 6;
 }
 
+// Human genome reference assembly - major version
+enum GenomeAssembly {
+    option allow_alias = true;
+    //  defaulted to GRCh37 as this is more common than NCBI36?
+    GRCH_37 = 0;
+    HG_19 = 0;
+
+    NCBI_36 = 1;
+    HG_18 = 1;
+
+    GRCH_38 = 2;
+    HG_38 = 2;
+}
+
+// TODO: Look at how GEL do this sort of thing in their InterpretedGenome
 message GenomicFeature {
     Gene gene = 1;
     repeated Variant variant = 2;
@@ -184,21 +203,23 @@ message Gene {
 // Subject to change - this could be replaced with a GA4GH Variant Representation when finalised by the working group.
 // See: https://docs.google.com/document/d/1Sulg3kECnorTEAbutINOsK-lFkKAcKpl6IHgPaPQEgA
 message Variant {
+    // genome assmebly isn't strictly necessary if using the sequence accession as that will be unique for the assembly/sequence
+    GenomeAssembly genomeAssembly = 1;
     // do we want to consider explicitly defining strand and zero/one-based coordinates?
     // Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10)
-    string sequence = 1;
+    string sequence = 2;
     // zero-based sequence position
-    int32 position = 2;
+    int32 position = 3;
     // Deleted bases on the forward strand - equivalent to the VCF REF
-    string deletion = 3;
+    string deletion = 6;
     // Inserted bases on the forward strand - equivalent to the VCF ALT
-    string insertion = 4;
+    string insertion = 7;
     //type of genotype of this variant, using class from GENO ontology
-    OntologyClass genotypeClass = 5;
+    OntologyClass genotypeClass = 8;
     // TODO: This might be better combined in an InterpretedVariant/ AnnotatedVariant message
     // however, it's not required so its absence isn't an issue. On positive side having the annotation associated with
     // the variant directly makes it easier to work with.
-    VariantAnnotation variantAnnotation = 6;
+    VariantAnnotation variantAnnotation = 9;
 }
 
 // Placeholder message subject to change with outcome of GA4GH variant annotation working group.
@@ -242,7 +263,8 @@ message BeaconResponse {
 
 }
 
-// Genomics England InterpretationRequest
+// Genomics England InterpretationRequestRD
+// https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretationRequestRD.avdl
 message InterpretationRequest {
     string id = 1;
     string title = 2;
@@ -250,13 +272,16 @@ message InterpretationRequest {
     Pedigree pedigree = 4;
     Individual proband = 5;
     File vcf = 6;
+    GenomeAssembly genomeAssembly = 7;
     MetaData metaData = 9;
 }
 
-// Genomics England InterpretedGenome
+// Genomics England InterpretedGenomeRD
+// https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretedGenomesRD.avdl
 message InterpretedGenome {
     string id = 1;
     string title = 2;
     string description = 3;
+    GenomeAssembly genomeAssembly = 4;
     repeated GenomicFeature genomicFeatures = 6;
 }

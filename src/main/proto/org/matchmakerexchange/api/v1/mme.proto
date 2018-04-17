@@ -3,12 +3,25 @@ package org.matchmakerexchange.api.v1;
 
 import "org/phenopackets/schema/v1/core/base.proto";
 
+option java_multiple_files = true;
+option java_outer_classname = "MatchMakerExchange";
+
+service MmeMatchNode {
+    // requests a patient match
+    // https://github.com/ga4gh/mme-apis/blob/master/search-api.md#overview
+    rpc match(MmeMatchRequest) returns (MmeMatchResponse) {}
+}
+
 // https://github.com/ga4gh/mme-apis/blob/master/search-api.md#search-request
 message MmeMatchRequest {
     string disclaimer = 1;
     string terms = 2;
     MmeContact contact = 3;
-    org.phenopackets.schema.v1.core.Individual patient = 4;
+    MmePatient patient = 4;
+}
+
+message MmePatient {
+    org.phenopackets.schema.v1.core.Individual individual = 4;
     repeated org.phenopackets.schema.v1.core.GenomicFeature genomicFeatures = 5;
     repeated org.phenopackets.schema.v1.core.Disease diseases = 6;
 }
@@ -28,7 +41,7 @@ message MmeContact {
 
 message MmeMatch {
     float score = 1;
-    org.phenopackets.schema.v1.core.Individual patient = 2;
+    MmePatient patient = 2;
 }
 // https://github.com/ga4gh/mme-apis/blob/master/search-api.md#example-1
 message MmeMatchResponse {
