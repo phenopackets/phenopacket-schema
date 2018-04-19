@@ -269,10 +269,11 @@ message InterpretationRequest {
     string id = 1;
     string title = 2;
     string description = 3;
-    Pedigree pedigree = 4;
-    Individual proband = 5;
-    File vcf = 6;
-    GenomeAssembly genomeAssembly = 7;
+    string proband_id = 4;
+    Pedigree pedigree = 5;
+    repeated Individual individuals = 6;
+    File vcf = 7;
+    GenomeAssembly genomeAssembly = 8;
     MetaData metaData = 9;
 }
 
