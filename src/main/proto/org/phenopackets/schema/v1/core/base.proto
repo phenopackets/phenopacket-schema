@@ -8,6 +8,15 @@ import "google/protobuf/timestamp.proto";
 option java_multiple_files = true;
 //option java_outer_classname = "PhenoPacket";
 
+message MetaData {
+    // timestamp for when this phenopacket was created
+    google.protobuf.Timestamp created = 1;
+    // some kind of identifier for the contributor/ program
+    string created_by = 2;
+    // a listing of the ontologies referenced in the phenopacket
+    repeated Ontology ontologies = 3;
+}
+
 message Ontology {
     // for OBO Ontologies, the value of this string MUST always be the official
     // OBO ID, which is always equivalent to the ID prefix in lower case.
@@ -85,6 +94,18 @@ message Publication {
     string title = 2;
 }
 
+// Defines a relationship between two individuals as referred to by their identifiers and an ontology term defining the
+// relationship between the two entities.
+message Relationship {
+    string source_id = 1;
+    // An ontology term/class used to describe the relationship between the source and the target, for example
+    // "contained in" http://purl.obolibrary.org/obo/RO_0001018
+    OntologyClass relationship_class = 2;
+    string target_id = 3;
+}
+
+// An individual (or subject) typically corresponds to an individual
+// human or another organism.
 message Individual {
     // An identifer for the individual. This must be unique within the record.
     string id = 1;
@@ -98,26 +119,85 @@ message Individual {
     // TODO: not sure where to go with this - do we want both phenotypic and genotypic sex or both?
     OntologyClass sex = 3;
 
-    // Karyotypic sex
-    // (consider using ontology)
-    enum KaryotypicSex {
-        UNKNOWN = 0;
-        XX = 1;
-        XY = 2;
-        XO = 3;
-        XXY = 4;
-        XXX = 5;
-        XXYY = 6;
-        XXXY = 7;
-        XXXX = 8;
-        XYY = 9;
-        OTHER = 10;
-    }
     repeated Phenotype phenotypes = 4;
 
     // TODO: I'm not sure we want to add this here. Wouldn't a Diagnosis message be better? This would sit at the top
     // along with 'Phenopacket' and possibly 'ClinicalInterpretation'
     repeated Disease diagnoses = 5;
+
+    // The time at which this Individual's record was created.
+    google.protobuf.Timestamp created = 6;
+
+    // The time at which this Individual record was updated.
+    google.protobuf.Timestamp updated = 7;
+}
+
+// See https://github.com/ga4gh-metadata/metadata-schemas/blob/d4ca1b4b36a5e7b3a17db79da9ae03a2114cfcaf/schemas/biometadata.proto#L84-L138
+// A Biosample refers to a unit of biological material from which the substrate
+// molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
+// sequencing, array hybridisation, mass-spectrometry) are extracted. Examples
+// would be a tissue biopsy, a single cell from a culture for single cell genome
+// sequencing or a protein fraction from a gradient centrifugation.
+// Several instances (e.g. technical replicates) or types of experiments (e.g.
+// genomic array as well as RNA-seq experiments) may refer to the same Biosample.
+message Biosample {
+
+//TODO: should all this id, dataset_id, name... fields repeated in Individual be encapsulated in another message?
+    // The Biosample id This is unique in the
+    // context of the server instance.
+    string id = 1;
+
+    // The ID of the dataset this Biosample belongs to.
+    string dataset_id = 2;
+
+    // The Biosample's name This is a label or symbolic identifier for the biosample.
+    string name = 3;
+
+    // The biosample's description. This attribute contains human readable text.
+    // The "description" attributes should not contain any structured data.
+    string description = 4;
+
+    // characteristics object uses lists of Phenotype objects to describe
+    // diseases, phenotypes, source ... associated with this BioSample.
+    repeated Phenotype phenotypes = 5;
+
+    // The :ref:`ISO 8601<metadata_date_time>` time at which this Biosample record
+    // was created.
+    google.protobuf.Timestamp created = 6;
+
+    // The :ref:`ISO 8601<metadata_date_time>` time at which this Biosample record was
+    // updated.
+    google.protobuf.Timestamp updated = 7;
+
+    // The id of the individual this biosample was derived from.
+    string individual_id = 8;
+
+    // A map of additional information about the Biosample.
+    // Attributes attributes = 10;
+
+    // External identifiers representing this biosample. These are considered
+    // different representation of the same record, not records which are in some
+    // other relation with the record at hand.
+    // repeated ExternalIdentifier external_identifiers = 11;
+
+    // An age object describing the age of the individual this biosample was
+    // derived from at the time of collection. The Age object allows the encoding
+    // of the age either as ISO8601 duration or time interval (preferred), or
+    // as ontology term object.
+    // Example:
+    //   "individual_age_at_collection": {
+    //     "age": "P12Y0M",
+    //     "age_class": {
+    //         "term": "Juvenile onset",
+    //         "term_id": "HP:0003621"
+    //     }
+    // },
+    //TODO:
+    //    Age individual_age_at_collection = 12;
+    //TODO:
+    // The address coded as GeoLocation where the biosample was collected.
+    //    GeoLocation location = 13;
+
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
@@ -202,6 +282,8 @@ message Gene {
 // Placeholder message in SPDI format (https://www.ncbi.nlm.nih.gov/variation/notation/)
 // Subject to change - this could be replaced with a GA4GH Variant Representation when finalised by the working group.
 // See: https://docs.google.com/document/d/1Sulg3kECnorTEAbutINOsK-lFkKAcKpl6IHgPaPQEgA
+// TODO use Beacon variant representation?
+// See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
 message Variant {
     // genome assmebly isn't strictly necessary if using the sequence accession as that will be unique for the assembly/sequence
     GenomeAssembly genomeAssembly = 1;
@@ -209,7 +291,7 @@ message Variant {
     // Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10)
     string sequence = 2;
     // zero-based sequence position
-    int32 position = 3;
+    int32 position = 3; //start, end...
     // Deleted bases on the forward strand - equivalent to the VCF REF
     string deletion = 6;
     // Inserted bases on the forward strand - equivalent to the VCF ALT
@@ -240,20 +322,11 @@ message VariantAnnotation {
     repeated string acmg_code = 3;
 }
 
-message MetaData {
-    // timestamp for when this phenopacket was created
-    google.protobuf.Timestamp created = 1;
-    // some kind of identifier for the contributor/ program
-    string created_by = 2;
-    // a listing of the ontologies referenced in the phenopacket
-    repeated Ontology ontologies = 3;
-}
-
-
 // EXAMPLES - THESE ARE NOT PART OF THE SCHEMA
 // https://beacon-network.org/#/developers/api/beacon-network#bn-response
 message BeaconRequest {
     Variant variant = 1;
+    //repeated Phenotype phenotype = 2; Beacon 2.0!
 }
 
 // https://beacon-network.org/#/developers/api/beacon-network#bn-response
