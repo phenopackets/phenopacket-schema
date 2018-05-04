@@ -262,5 +262,17 @@
             <version>1.1.7</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>ca.uhn.hapi.fhir</groupId>
+            <artifactId>hapi-fhir-base</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ca.uhn.hapi.fhir</groupId>
+            <artifactId>hapi-fhir-structures-r4</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
