@@ -1,107 +1,17 @@
 package org.phenopackets.schema.v1;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-import com.google.common.collect.ImmutableList;
-import com.google.protobuf.Timestamp;
-import com.google.protobuf.util.JsonFormat;
 import org.junit.Test;
 import org.phenopackets.schema.v1.Phenopacket.PhenoPacket;
 import org.phenopackets.schema.v1.core.*;
 
-import java.io.IOException;
-import java.time.Instant;
-
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
+import static org.phenopackets.schema.v1.PhenoPacketTestUtil.toYaml;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
 public class PhenoPacketTest {
-
-    private static final OntologyClass FEMALE = ontologyClass("PATO:0000383", "female");
-
-    private static final OntologyClass MALE = ontologyClass("PATO:0000384", "male");
-
-    private static OntologyClass ontologyClass(String id, String label) {
-        return OntologyClass.newBuilder()
-                .setId(id)
-                .setLabel(label)
-                .build();
-    }
-
-    //TODO: move these to a utility class
-    public String writeAsYaml(PhenoPacket phenoPacket) throws IOException {
-        String jsonString = JsonFormat.printer().print(phenoPacket);
-        return jsonToYaml(jsonString);
-    }
-
-    // parse JSON to YAML
-    public String jsonToYaml(String jsonString) throws IOException {
-        JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
-        return new YAMLMapper().writeValueAsString(jsonNodeTree);
-    }
-
-    // parse YAML to JSON
-    public String yamlToJson(String yamlString) throws IOException {
-        JsonNode jsonNodeTree = new YAMLMapper().readTree(yamlString);
-        return new ObjectMapper().writeValueAsString(jsonNodeTree);
-    }
-
-    @Test
-    public void testyMcTestFace() throws Exception {
-
-        Phenotype phenotype = Phenotype.newBuilder()
-                .setOnset(ontologyClass("HP:0003623", "Neonatal onset"))
-                .setType(ontologyClass("HP:0001711", "Abnormality of the left ventricle"))
-                .build();
-
-        long dateOfBirth = Instant.parse("2018-03-12T15:15:30.00Z").getEpochSecond();
-        Timestamp dobTimestamp = Timestamp.newBuilder().setSeconds(dateOfBirth).build();
-        Individual individual = Individual.newBuilder()
-                .setId("INDIVIDUAL:1")
-                .setDateOfBirth(dobTimestamp)
-                .setSex(FEMALE)
-                .addPhenotypes(phenotype)
-                .build();
-
-        System.out.println(JsonFormat.printer().print(individual));
-        assertThat(individual.getDateOfBirth(), equalTo(dobTimestamp));
-        assertThat(individual.getPhenotypesList(), equalTo(ImmutableList.of(phenotype)));
-    }
-
-    @Test
-    public void testPedigree() throws Exception {
-        Pedigree defaultPedigree = Pedigree.getDefaultInstance();
-        assertThat(defaultPedigree.getPersonsCount(), equalTo(0));
-
-        Pedigree.Person person1 = Pedigree.Person.newBuilder()
-                .setFamilyId("FAMILY:1")
-                .setIndividualId("PERSON:1")
-                .setMaternalId("MOTHER:1")
-                .setPaternalId("FATHER:1")
-                .setSex(Pedigree.Person.Sex.MALE)
-                .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
-                .build();
-
-        Pedigree.Person person2 = Pedigree.Person.newBuilder()
-                .setFamilyId("FAMILY:1")
-                .setIndividualId("PERSON:2")
-                .setMaternalId("MOTHER:1")
-                .setPaternalId("FATHER:1")
-                .setSex(Pedigree.Person.Sex.FEMALE)
-                .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
-                .build();
-
-        Pedigree pedigree = Pedigree.newBuilder()
-                .addPersons(person1)
-                .addPersons(person2)
-                .build();
-
-        System.out.println(JsonFormat.printer().print(pedigree));
-    }
 
     @Test
     public void testBoscExample() throws Exception {
@@ -286,7 +196,7 @@ public class PhenoPacketTest {
                 .setMetaData(metaData)
                 .build();
 
-        System.out.println(writeAsYaml(exomiserPfeifferExample));
+        System.out.println(toYaml(exomiserPfeifferExample));
     }
 
 }

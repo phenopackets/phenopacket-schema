@@ -61,7 +61,7 @@ message Phenotype {
 
     // The primary ontology class which describes the phenotype. For example "HP:0001363"  "Craniosynostosis"
     OntologyClass type = 2;
-    bool isNegated = 3;
+    bool is_negated = 3;
 
     // the values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
@@ -116,20 +116,15 @@ message Individual {
     google.protobuf.Timestamp date_of_birth = 2;
     // A PATO term for the biological sex of the individual
     // http://purl.obolibrary.org/obo/PATO_0000047
-    // TODO: not sure where to go with this - do we want both phenotypic and genotypic sex or both?
     OntologyClass sex = 3;
 
     repeated Phenotype phenotypes = 4;
 
-    // TODO: I'm not sure we want to add this here. Wouldn't a Diagnosis message be better? This would sit at the top
-    // along with 'Phenopacket' and possibly 'ClinicalInterpretation'
-    repeated Disease diagnoses = 5;
-
     // The time at which this Individual's record was created.
-    google.protobuf.Timestamp created = 6;
+    google.protobuf.Timestamp created = 5;
 
     // The time at which this Individual record was updated.
-    google.protobuf.Timestamp updated = 7;
+    google.protobuf.Timestamp updated = 6;
 }
 
 // See https://github.com/ga4gh-metadata/metadata-schemas/blob/d4ca1b4b36a5e7b3a17db79da9ae03a2114cfcaf/schemas/biometadata.proto#L84-L138
@@ -202,17 +197,24 @@ message Biosample {
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
 message Pedigree {
+    repeated Family families = 1;
+
+    message Family {
+        string id = 1;
+        repeated Person persons = 2;
+    }
+
     message Person {
         enum Sex {
-            UNKNOWN = 0;
-            MALE = 1;
-            FEMALE = 2;
-        }
+        UNKNOWN = 0;
+        MALE = 1;
+        FEMALE = 2;
+    }
         enum AffectedStatus {
-            MISSING = 0;
-            UNAFFECTED = 1;
-            AFFECTED = 2;
-        }
+        MISSING = 0;
+        UNAFFECTED = 1;
+        AFFECTED = 2;
+    }
         string family_id = 1;
         string individual_id = 2;
         string paternal_id = 3;
@@ -220,7 +222,6 @@ message Pedigree {
         Sex sex = 5;
         AffectedStatus affected_status = 6;
     }
-    repeated Person persons = 1;
 }
 
 message File {
@@ -263,7 +264,7 @@ enum GenomeAssembly {
 message GenomicFeature {
     Gene gene = 1;
     repeated Variant variant = 2;
-    VariantAnnotation variantAnnotation = 3;
+    VariantAnnotation variant_annotation = 3;
 }
 
 // TODO: perhaps this would be better as a GeneticFeature which would wrap 1-N variants. This would make it easier to group comp-het alleles.
@@ -286,7 +287,7 @@ message Gene {
 // See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
 message Variant {
     // genome assmebly isn't strictly necessary if using the sequence accession as that will be unique for the assembly/sequence
-    GenomeAssembly genomeAssembly = 1;
+    GenomeAssembly genome_assembly = 1;
     // do we want to consider explicitly defining strand and zero/one-based coordinates?
     // Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10)
     string sequence = 2;
@@ -297,11 +298,11 @@ message Variant {
     // Inserted bases on the forward strand - equivalent to the VCF ALT
     string insertion = 7;
     //type of genotype of this variant, using class from GENO ontology
-    OntologyClass genotypeClass = 8;
+    OntologyClass genotype_class = 8;
     // TODO: This might be better combined in an InterpretedVariant/ AnnotatedVariant message
     // however, it's not required so its absence isn't an issue. On positive side having the annotation associated with
     // the variant directly makes it easier to work with.
-    VariantAnnotation variantAnnotation = 9;
+    VariantAnnotation variant_annotation = 9;
 }
 
 // Placeholder message subject to change with outcome of GA4GH variant annotation working group.
@@ -315,7 +316,7 @@ message VariantAnnotation {
         PATHOGENIC = 5;
     }
     // Subclass of the Sequence Ontology http://purl.obolibrary.org/obo/so.owl
-    OntologyClass variantEffect = 1;
+    OntologyClass variant_effect = 1;
     // Variant interpretation code from https://www.acmg.net/docs/Standards_Guidelines_for_the_Interpretation_of_Sequence_Variants.pdf
     AcmgClassification acmg_classification = 2;
     //  e.g. PVS1, BP7 (should make an enum for these?)
@@ -336,26 +337,12 @@ message BeaconResponse {
 
 }
 
-// Genomics England InterpretationRequestRD
-// https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretationRequestRD.avdl
-message InterpretationRequest {
-    string id = 1;
-    string title = 2;
-    string description = 3;
-    string proband_id = 4;
-    Pedigree pedigree = 5;
-    repeated Individual individuals = 6;
-    File vcf = 7;
-    GenomeAssembly genomeAssembly = 8;
-    MetaData metaData = 9;
-}
-
 // Genomics England InterpretedGenomeRD
 // https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretedGenomesRD.avdl
 message InterpretedGenome {
     string id = 1;
     string title = 2;
     string description = 3;
-    GenomeAssembly genomeAssembly = 4;
-    repeated GenomicFeature genomicFeatures = 6;
+    GenomeAssembly genome_assembly = 4;
+    repeated GenomicFeature genomic_features = 6;
 }
