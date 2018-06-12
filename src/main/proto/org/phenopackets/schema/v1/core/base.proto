@@ -13,11 +13,14 @@ message MetaData {
     google.protobuf.Timestamp created = 1;
     // some kind of identifier for the contributor/ program
     string created_by = 2;
-    // a listing of the ontologies referenced in the phenopacket
-    repeated Ontology ontologies = 3;
+    // a listing of the ontologies/resources referenced in the phenopacket
+    repeated Resource resources = 3;
 }
 
-message Ontology {
+// Description of an external resource used for referencing an object. For example the resource may be an ontology such
+// as the HPO or SNOMED.
+// FHIR mapping: CodeSystem (http://www.hl7.org/fhir/codesystem.html)
+message Resource {
     // for OBO Ontologies, the value of this string MUST always be the official
     // OBO ID, which is always equivalent to the ID prefix in lower case.
     // Examples: hp, go, mp, mondo
@@ -41,7 +44,9 @@ message Ontology {
     string version = 5;
 }
 
-// A class (aka term, concept) in an ontology
+// A class (aka term, concept) in an ontology.
+// FHIR mapping: CodeableConcept (http://www.hl7.org/fhir/datatypes.html#CodeableConcept)
+//   see also Coding (http://www.hl7.org/fhir/datatypes.html#Coding)
 message OntologyClass {
     // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
     // This is the primary key for the ontology class
@@ -54,44 +59,53 @@ message OntologyClass {
 
 // An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
 // frequency
+// FHIR mapping: Condition (https://www.hl7.org/fhir/condition.html) or Observation (https://www.hl7.org/fhir/observation.html)
 message Phenotype {
     // Free-text description of the phenotype. Note this is not a acceptable place to document/describe the phenotype -
     // the type and onset etc... fields should be used for this purpose.
     string description = 1;
 
     // The primary ontology class which describes the phenotype. For example "HP:0001363"  "Craniosynostosis"
+    // FHIR mapping: Condition.identifier
     OntologyClass type = 2;
-    bool is_negated = 3;
+
+    // Flag to indicate whether the phenotype was observed or not. Default is 'false', in other words the phenotype was
+    // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but not observed.
+    bool negated = 3;
 
     // the values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
-    OntologyClass onset = 4;
+    // FHIR mapping: Condition.onset
+    oneof onset {
+        Age age_of_onset = 12;
+        google.protobuf.Timestamp time_of_onset = 13;
+        Period period_of_onset = 14;
+        OntologyClass class_of_onset = 15;
+    }
 
-    // subclasses of HP:0012823 ! Clinical modifier 
+    // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
+    // FHIR mapping: Condition.severity
+    OntologyClass severity = 4;
+
+    // subclasses of HP:0012823 ! Clinical modifier apart from Severity HP:0012824 - Severity
     repeated OntologyClass modifiers = 5;
-    OntologyClass assay = 6;
-    // subclasses of HP:0040279 ! Frequency
-    // TODO: make this a distinct message with number, count and percentage as well as general ontology class?
-    OntologyClass frequency = 7;
 
+    // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 11;
-    //Measurement
-    //Environment
 }
 
-// TODO: remodel this to use SEPIO? https://github.com/monarch-initiative/SEPIO-ontology
+// FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
 message Evidence {
-    OntologyClass eco = 1;
-    Publication publication = 2;
-    //TODO alternatively a map of finding or something
-    //repeated Measurement/ Observation here? this would link to FHIR
-    //e.g. https://www.hl7.org/fhir/observation.html
+    // The encoded evidence type using, for example the Evidence & Conclusion Ontology (ECO - http://purl.obolibrary.org/obo/eco.owl)
+    OntologyClass evidence_code = 1;
+    ExternalReference reference = 2;
 }
 
-message Publication {
+// FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
+message ExternalReference {
     //e.g. ISBN, PMID:123456, DOI:...
     string id = 1;
-    string title = 2;
+    string description = 2;
 }
 
 // Defines a relationship between two individuals as referred to by their identifiers and an ontology term defining the
@@ -106,6 +120,7 @@ message Relationship {
 
 // An individual (or subject) typically corresponds to an individual
 // human or another organism.
+// FHIR mapping: Patient (https://www.hl7.org/fhir/patient.html).
 message Individual {
     // An identifer for the individual. This must be unique within the record.
     string id = 1;
@@ -135,9 +150,9 @@ message Individual {
 // sequencing or a protein fraction from a gradient centrifugation.
 // Several instances (e.g. technical replicates) or types of experiments (e.g.
 // genomic array as well as RNA-seq experiments) may refer to the same Biosample.
+// FHIR mapping: Specimen (http://www.hl7.org/fhir/specimen.html).
 message Biosample {
 
-//TODO: should all this id, dataset_id, name... fields repeated in Individual be encapsulated in another message?
     // The Biosample id This is unique in the
     // context of the server instance.
     string id = 1;
@@ -187,12 +202,43 @@ message Biosample {
     //         "term_id": "HP:0003621"
     //     }
     // },
-    //TODO:
-    //    Age individual_age_at_collection = 12;
+    //See http://build.fhir.org/datatypes
+    Age individual_age_at_collection = 12;
     //TODO:
     // The address coded as GeoLocation where the biosample was collected.
     //    GeoLocation location = 13;
 
+}
+
+// See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
+// In FHIR this is represented as a UCUM measurement - http://unitsofmeasure.org/trac/
+message Age {
+
+    // The :ref:`ISO 8601<metadata_date_time>` age of this object as ISO8601
+    // duration or time intervals. The use of time intervals makes an additional
+    // anchor unnecessary (i.e. DOB and age can be represented as start-anchored
+    // time interval, e.g. 1967-11-21/P40Y10M05D)
+    string age = 1;
+
+    // An age class, e.g. corresponding to the use of "age of onset" in HPO.
+    // HPO is recommended, for example, subclasses of "Onset":
+    // http://purl.obolibrary.org/obo/HP_0003674
+    // Example:
+    //  age_class : { term_id : "HP:0003596", term : "Middle age onset" }
+    OntologyClass age_class = 2;
+}
+
+message Period {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
+// Simple identifier name tuple to link to a concept
+message Disease {
+    // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
+    string id = 1;
+    // Textual name of the disease e.g. Pfeiffer syndrome
+    string label = 2;
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
@@ -231,19 +277,13 @@ message File {
     string uri = 2;
 }
 
-message Disease {
-    // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
+// Simple placeholder for a Gene concept
+message Gene {
+    // a CURIE with a prefix that is NCBIGene, HGNC, ENSEMBL, UCSC e.g. HGNC:347, ENSG00000120705, uc003ldc.6
+    // https://www.genenames.org/cgi-bin/gene_symbol_report?q=data/hgnc_data.php&hgnc_id=HGNC:3477
     string id = 1;
-    // Textual name of the disease e.g. Pfeiffer syndrome
-    string label = 2;
-    // Free-text description
-    string description = 3;
-    // The mode of inheritance for this disease, in preference a sub-class of http://purl.obolibrary.org/obo/HP_0000005
-    OntologyClass modeOfInheritance = 4;
-    // The disease phenotype
-    repeated Phenotype phenotypes = 5;
-
-    OntologyClass onset = 6;
+    // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
+    string symbol = 2;
 }
 
 // Human genome reference assembly - major version
@@ -260,49 +300,47 @@ enum GenomeAssembly {
     HG_38 = 2;
 }
 
+// Representation of the sequence coordinate system.
+enum CoordinateSystem {
+    ZERO_BASED = 0;
+    ONE_BASED = 1;
+}
+
+// Placeholder message in SPDI format (https://www.ncbi.nlm.nih.gov/variation/notation/)
+// SPDI format is the exchange standard used for ClinVar, dbSNP and soon the EVA
+// Tools for interconversion between SPDI, HGVS and VCF exist at https://api.ncbi.nlm.nih.gov/variation/v0/
+// Subject to change - this could be replaced with a GA4GH Variant Representation when finalised by the working group.
+// See: https://docs.google.com/document/d/1Sulg3kECnorTEAbutINOsK-lFkKAcKpl6IHgPaPQEgA
+// See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
+message Variant {
+    // genome assembly isn't strictly necessary if using the sequence accession as that will be unique for the assembly/sequence
+    GenomeAssembly genome_assembly = 1;
+    // Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10)
+    string sequence = 2;
+    // Coordinate system of the position. Defaults to ZERO_BASED. Note that SPDI and VMC mandate a ZERO_BASED system,
+    // whereas VCV and HGVS use ONE_BASED systems. This is specified here as a means of providing unambiguous positioning
+    // as opposed to it being implicit within the spec of the system.
+    CoordinateSystem coordinate_system = 3;
+    // Sequence position at which the change is located, in the specified coordinate system.
+    int32 position = 4; //start, end...
+    // Deleted bases on the forward strand - equivalent to the VCF REF
+    string deletion = 5;
+    // Inserted bases on the forward strand - equivalent to the VCF ALT
+    string insertion = 6;
+    // SPDI can't represent the full set of HGVS expressions, in which case use the HGVS string
+    string hgvs = 7;
+    // Map of sample_id to genotype of this variant with respect to the listed individuals. The genotype is described
+    // using the GENO ontology.
+    map<string, OntologyClass> sample_genotypes = 8;
+}
+
+
+// TODO move these to development branch
 // TODO: Look at how GEL do this sort of thing in their InterpretedGenome
 message GenomicFeature {
     Gene gene = 1;
     repeated Variant variant = 2;
     VariantAnnotation variant_annotation = 3;
-}
-
-// TODO: perhaps this would be better as a GeneticFeature which would wrap 1-N variants. This would make it easier to group comp-het alleles.
-// TODO:  Alternatively create a Genotype{gene: Gene, repeated alleles: Variant}
-message Gene {
-    // a CURIE with a prefix that is NCBIGene, HGNC, ENSEMBL, UCSC e.g. HGNC:347, ENSG00000120705, uc003ldc.6
-    // https://www.genenames.org/cgi-bin/gene_symbol_report?q=data/hgnc_data.php&hgnc_id=HGNC:3477
-    string id = 1;
-    // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
-    string symbol = 2;
-    // Taxonomy id from the NCBI e.g. NCBI:txid9606
-    // https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=9606
-    int32 ncbi_taxon_id = 3;
-}
-
-// Placeholder message in SPDI format (https://www.ncbi.nlm.nih.gov/variation/notation/)
-// Subject to change - this could be replaced with a GA4GH Variant Representation when finalised by the working group.
-// See: https://docs.google.com/document/d/1Sulg3kECnorTEAbutINOsK-lFkKAcKpl6IHgPaPQEgA
-// TODO use Beacon variant representation?
-// See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
-message Variant {
-    // genome assmebly isn't strictly necessary if using the sequence accession as that will be unique for the assembly/sequence
-    GenomeAssembly genome_assembly = 1;
-    // do we want to consider explicitly defining strand and zero/one-based coordinates?
-    // Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10)
-    string sequence = 2;
-    // zero-based sequence position
-    int32 position = 3; //start, end...
-    // Deleted bases on the forward strand - equivalent to the VCF REF
-    string deletion = 6;
-    // Inserted bases on the forward strand - equivalent to the VCF ALT
-    string insertion = 7;
-    //type of genotype of this variant, using class from GENO ontology
-    OntologyClass genotype_class = 8;
-    // TODO: This might be better combined in an InterpretedVariant/ AnnotatedVariant message
-    // however, it's not required so its absence isn't an issue. On positive side having the annotation associated with
-    // the variant directly makes it easier to work with.
-    VariantAnnotation variant_annotation = 9;
 }
 
 // Placeholder message subject to change with outcome of GA4GH variant annotation working group.
