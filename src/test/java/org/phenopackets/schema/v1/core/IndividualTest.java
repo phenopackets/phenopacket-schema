@@ -20,7 +20,7 @@ public class IndividualTest {
     @Test
     public void testIndividual() throws Exception {
         Phenotype phenotype = Phenotype.newBuilder()
-                .setOnset(ontologyClass("HP:0003623", "Neonatal onset"))
+                .setClassOfOnset(ontologyClass("HP:0003623", "Neonatal onset"))
                 .setType(ontologyClass("HP:0001711", "Abnormality of the left ventricle"))
                 .build();
 
