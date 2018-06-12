@@ -1,0 +1,50 @@
+syntax = "proto3";
+package org.phenopackets.schema.v1;
+
+import "org/phenopackets/schema/v1/core/base.proto";
+
+option java_multiple_files = true;
+
+// An anonymous phenotypic description of an individual or biosample with potential genes of interest and/or diagnoses.
+//
+// This is a bundle of high-level concepts with no specifically defined relational concepts. It is expected that the
+// resources sharing the phenopackets will define and enforce their own semantics and level of requirements for included
+// fields.
+message PhenoPacket {
+    // An identifier specific for this phenopacket.
+    string id = 1;
+
+    // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
+    org.phenopackets.schema.v1.core.Individual patient = 2;
+
+    // Individuals genetically related to the patient - e.g. mother, father, siblings or members of a cohort.
+    // It is expected that a pedigree be included if this and the patient fields are included.
+    repeated org.phenopackets.schema.v1.core.Individual individuals = 3;
+
+    // The pedigree defining the relations between the patient and their relatives.
+    org.phenopackets.schema.v1.core.Pedigree pedigree = 4;
+
+    // Biosample(s) derived from the patient or a collection of biosamples in isolation
+    repeated org.phenopackets.schema.v1.core.Biosample biosamples = 5;
+
+    // Placeholder for gene concepts - could be used for either describing candidate genes or causative genes. The
+    // resources using these fields should define what this represents in their context.
+    repeated org.phenopackets.schema.v1.core.Gene genes = 6;
+
+    // Placeholder for genetic variants - could be used for either describing candidate variants or diagnosed causative
+    // variants. The resources using these fields should define what this represents in their context.
+    repeated org.phenopackets.schema.v1.core.Variant variants = 7;
+
+    // Placeholder for disease concepts - could be used for either describing diagnosed or suspect conditions. The
+    // resources using these fields should define what this represents in their context.
+    repeated org.phenopackets.schema.v1.core.Disease diseases = 8;
+
+    // Reference genome assembly against which the sample was called. This is required as the VCF specification
+    // does not mandate this.
+    org.phenopackets.schema.v1.core.GenomeAssembly genome_assembly = 9;
+    // Pointer to the relevant VCF file for the patient
+    org.phenopackets.schema.v1.core.File vcf = 10;
+
+    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
+    org.phenopackets.schema.v1.core.MetaData metaData = 11;
+}
