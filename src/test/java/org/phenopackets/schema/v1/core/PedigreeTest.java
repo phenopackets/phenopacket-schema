@@ -18,7 +18,7 @@ public class PedigreeTest {
     @Test
     public void testTrioPedigree() throws Exception {
         Pedigree defaultPedigree = Pedigree.getDefaultInstance();
-        assertThat(defaultPedigree.getFamiliesCount(), equalTo(0));
+        assertThat(defaultPedigree.getPersonsCount(), equalTo(0));
 
         Pedigree.Person mother = Pedigree.Person.newBuilder()
                 .setFamilyId("FAMILY:1")
@@ -43,21 +43,15 @@ public class PedigreeTest {
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
                 .build();
 
-        Pedigree.Family trio = Pedigree.Family.newBuilder()
-                .setId("FAMILY:1")
+        Pedigree pedigree = Pedigree.newBuilder()
                 .addPersons(mother)
                 .addPersons(father)
                 .addPersons(daughter)
                 .build();
 
-        Pedigree pedigree = Pedigree.newBuilder()
-                .addFamilies(trio)
-                .build();
-
         System.out.println(toYaml(pedigree));
 
-        assertThat(trio.getId(), equalTo("FAMILY:1"));
-        assertThat(trio.getPersonsCount(), equalTo(3));
+        assertThat(pedigree.getPersonsCount(), equalTo(3));
     }
 
 }

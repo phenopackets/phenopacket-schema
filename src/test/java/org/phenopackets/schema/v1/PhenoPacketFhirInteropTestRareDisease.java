@@ -142,15 +142,10 @@ public class PhenoPacketFhirInteropTestRareDisease {
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
                 .build();
 
-        Pedigree.Family trio = Pedigree.Family.newBuilder()
-                .setId(FAMILY_ID)
+        return Pedigree.newBuilder()
                 .addPersons(mother)
                 .addPersons(father)
                 .addPersons(daughter)
-                .build();
-
-        return Pedigree.newBuilder()
-                .addFamilies(trio)
                 .build();
     }
 
@@ -348,15 +343,11 @@ public class PhenoPacketFhirInteropTestRareDisease {
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
                 .build();
 
-        Pedigree.Family family = Pedigree.Family.newBuilder()
+        Pedigree pedigree = Pedigree.newBuilder()
                 .addPersons(pedProband)
                 .addPersons(pedSister)
                 .addPersons(pedMother)
                 .addPersons(pedFather)
-                .build();
-
-        Pedigree pedigree = Pedigree.newBuilder()
-                .addFamilies(family)
                 .build();
 
 

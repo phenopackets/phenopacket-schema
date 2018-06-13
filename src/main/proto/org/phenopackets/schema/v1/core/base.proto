@@ -243,24 +243,19 @@ message Disease {
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
 message Pedigree {
-    repeated Family families = 1;
-
-    message Family {
-        string id = 1;
-        repeated Person persons = 2;
-    }
+    repeated Person persons = 1;
 
     message Person {
         enum Sex {
-        UNKNOWN = 0;
-        MALE = 1;
-        FEMALE = 2;
-    }
+            UNKNOWN = 0;
+            MALE = 1;
+            FEMALE = 2;
+        }
         enum AffectedStatus {
-        MISSING = 0;
-        UNAFFECTED = 1;
-        AFFECTED = 2;
-    }
+            MISSING = 0;
+            UNAFFECTED = 1;
+            AFFECTED = 2;
+        }
         string family_id = 1;
         string individual_id = 2;
         string paternal_id = 3;
