@@ -4,10 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import com.google.protobuf.MessageOrBuilder;
+import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.JsonFormat;
 import org.phenopackets.schema.v1.core.OntologyClass;
 
 import java.io.IOException;
+import java.time.Instant;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
@@ -22,6 +24,12 @@ public class PhenoPacketTestUtil {
         return OntologyClass.newBuilder()
                 .setId(id)
                 .setLabel(label)
+                .build();
+    }
+
+    public static Timestamp parseTimestamp(String string) {
+        return Timestamp.newBuilder()
+                .setSeconds(Instant.parse(string).getEpochSecond())
                 .build();
     }
 
