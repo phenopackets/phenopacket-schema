@@ -73,6 +73,13 @@ message Phenotype {
     // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but not observed.
     bool negated = 3;
 
+    // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
+    // FHIR mapping: Condition.severity
+    OntologyClass severity = 4;
+
+    // subclasses of HP:0012823 ! Clinical modifier apart from Severity HP:0012824 - Severity
+    repeated OntologyClass modifiers = 5;
+
     // the values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
@@ -82,13 +89,6 @@ message Phenotype {
         Period period_of_onset = 14;
         OntologyClass class_of_onset = 15;
     }
-
-    // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
-    // FHIR mapping: Condition.severity
-    OntologyClass severity = 4;
-
-    // subclasses of HP:0012823 ! Clinical modifier apart from Severity HP:0012824 - Severity
-    repeated OntologyClass modifiers = 5;
 
     // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 11;
@@ -108,16 +108,6 @@ message ExternalReference {
     string description = 2;
 }
 
-// Defines a relationship between two individuals as referred to by their identifiers and an ontology term defining the
-// relationship between the two entities.
-message Relationship {
-    string source_id = 1;
-    // An ontology term/class used to describe the relationship between the source and the target, for example
-    // "contained in" http://purl.obolibrary.org/obo/RO_0001018
-    OntologyClass relationship_class = 2;
-    string target_id = 3;
-}
-
 // An individual (or subject) typically corresponds to an individual
 // human or another organism.
 // FHIR mapping: Patient (https://www.hl7.org/fhir/patient.html).
@@ -129,11 +119,18 @@ message Individual {
     // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
     // or empty if unknown/ not stated.
     google.protobuf.Timestamp date_of_birth = 2;
+    //todo oneof age {Timestamp; Age; OntologyClass}?
+
     // A PATO term for the biological sex of the individual
     // http://purl.obolibrary.org/obo/PATO_0000047
     OntologyClass sex = 3;
 
     repeated Phenotype phenotypes = 4;
+
+    // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
+    // For resources where there may be more than one organism being studied it is advisable to indicate the taxomic
+    // identifier of that organism, to it's most specific level
+    OntologyClass taxonomy = 9;
 
     // The time at which this Individual's record was created.
     google.protobuf.Timestamp created = 5;
@@ -181,6 +178,9 @@ message Biosample {
 
     // The id of the individual this biosample was derived from.
     string individual_id = 8;
+
+    // NCBI taxonomic identifier (NCBITaxon) of the organism from which tha sample was taken e.g. NCBITaxon:9606
+    OntologyClass taxonomy = 9;
 
     // A map of additional information about the Biosample.
     // Attributes attributes = 10;
@@ -270,6 +270,16 @@ message File {
     string path = 1;
     // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
     string uri = 2;
+}
+
+// Defines a relationship between two individuals as referred to by their identifiers and an ontology term defining the
+// relationship between the two entities.
+message Relationship {
+    string source_id = 1;
+    // An ontology term/class used to describe the relationship between the source and the target, for example
+    // "contained in" http://purl.obolibrary.org/obo/RO_0001018
+    OntologyClass relationship_class = 2;
+    string target_id = 3;
 }
 
 // Simple placeholder for a Gene concept
