@@ -1,0 +1,149 @@
+{
+  "name":"THP-1 Control1",
+  "accession":"SAMN05324082",
+  "domain":"self.BiosampleImportNCBI",
+  "release":"2016-06-29T12:03:03.240Z",
+  "update":"2018-06-10T10:59:06.784Z",
+  "characteristics":{
+    "INSDC center name":[
+      {
+        "text":"UCL Institute of Child Health"
+      }
+    ],
+    "INSDC first public":[
+      {
+        "text":"2016-06-29T12:03:03.240Z"
+      }
+    ],
+    "INSDC last update":[
+      {
+        "text":"2016-06-29T12:03:03.882Z"
+      }
+    ],
+    "INSDC status":[
+      {
+        "text":"live"
+      }
+    ],
+    "NCBI submission model":[
+      {
+        "text":"Human"
+      }
+    ],
+    "NCBI submission package":[
+      {
+        "text":"Human.1.0"
+      }
+    ],
+    "age":[
+      {
+        "text":"1 year"
+      }
+    ],
+    "biomaterial provider":[
+      {
+        "text":"DSM: ACC 16"
+      }
+    ],
+    "cell line":[
+      {
+        "text":"THP-1",
+        "ontologyTerms":[
+          "http://www.ebi.ac.uk/efo/EFO_0001253"
+        ]
+      }
+    ],
+    "cell type":[
+      {
+        "text":"monocyte",
+        "ontologyTerms":[
+          "http://purl.obolibrary.org/obo/CL_0000576"
+        ]
+      }
+    ],
+    "culture collection":[
+      {
+        "text":"ATCC:TIB-202"
+      }
+    ],
+    "description title":[
+      {
+        "text":"THP-1; 6 hours; DMSO; Replicate 1"
+      }
+    ],
+    "disease":[
+      {
+        "text":"acute myeloid leukemia",
+        "ontologyTerms":[
+          "http://www.ebi.ac.uk/efo/EFO_0000222"
+        ]
+      }
+    ],
+    "isolate":[
+      {
+        "text":"Acute Monocytic Leukemia",
+        "ontologyTerms":[
+          "http://www.ebi.ac.uk/efo/EFO_0000221"
+        ]
+      }
+    ],
+    "organism":[
+      {
+        "text":"Homo sapiens",
+        "ontologyTerms":[
+          "http://purl.obolibrary.org/obo/NCBITaxon_9606"
+        ]
+      }
+    ],
+    "sample type":[
+      {
+        "text":"cell culture",
+        "ontologyTerms":[
+          "http://purl.obolibrary.org/obo/BTO_0000214"
+        ]
+      }
+    ],
+    "sex":[
+      {
+        "text":"male",
+        "ontologyTerms":[
+          "http://purl.obolibrary.org/obo/PATO_0000384"
+        ]
+      }
+    ],
+    "tissue":[
+      {
+        "text":"peripheral blood",
+        "ontologyTerms":[
+          "http://purl.obolibrary.org/obo/UBERON_0000178"
+        ]
+      }
+    ],
+    "treatment":[
+      {
+        "text":"DMSO",
+        "ontologyTerms":[
+          "http://purl.obolibrary.org/obo/CHEBI_28262"
+        ]
+      }
+    ]
+  },
+  "releaseDate":"2016-06-29",
+  "updateDate":"2018-06-10",
+  "_links":{
+    "self":{
+      "href":"https://www.ebi.ac.uk/biosamples/samples/SAMN05324082"
+    },
+    "curationDomain":{
+      "href":"https://www.ebi.ac.uk/biosamples/samples/SAMN05324082{?curationdomain}",
+      "templated":true
+    },
+    "curationLinks":{
+      "href":"https://www.ebi.ac.uk/biosamples/samples/SAMN05324082/curationlinks"
+    },
+    "curationLink":{
+      "href":"https://www.ebi.ac.uk/biosamples/samples/SAMN05324082/curationlinks/{hash}",
+      "templated":true
+    }
+  }
+}
