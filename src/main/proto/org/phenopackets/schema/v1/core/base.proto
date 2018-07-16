@@ -1,7 +1,6 @@
 syntax = "proto3";
 package org.phenopackets.schema.v1.core;
 
-//import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 //option java_package = "org.phenopackets.api.v1.core";
@@ -337,55 +336,4 @@ message Variant {
     // Map of sample_id to genotype of this variant with respect to the listed individuals. The genotype is described
     // using the GENO ontology.
     map<string, OntologyClass> sample_genotypes = 8;
-}
-
-
-// TODO move these to development branch
-// TODO: Look at how GEL do this sort of thing in their InterpretedGenome
-message GenomicFeature {
-    Gene gene = 1;
-    repeated Variant variant = 2;
-    VariantAnnotation variant_annotation = 3;
-}
-
-// Placeholder message subject to change with outcome of GA4GH variant annotation working group.
-// See: https://docs.google.com/document/d/13sSChUB9rW7vl1ep-tZnaDzSWb_MyWIvSzEFVS32quE
-message VariantAnnotation {
-    enum AcmgClassification {
-        UNCERTAIN_SIGNIFICANCE = 0;
-        LIKELY_BENIGN = 2;
-        BENIGN = 3;
-        LIKELY_PATHOGENIC = 4;
-        PATHOGENIC = 5;
-    }
-    // Subclass of the Sequence Ontology http://purl.obolibrary.org/obo/so.owl
-    OntologyClass variant_effect = 1;
-    // Variant interpretation code from https://www.acmg.net/docs/Standards_Guidelines_for_the_Interpretation_of_Sequence_Variants.pdf
-    AcmgClassification acmg_classification = 2;
-    //  e.g. PVS1, BP7 (should make an enum for these?)
-    repeated string acmg_code = 3;
-}
-
-// EXAMPLES - THESE ARE NOT PART OF THE SCHEMA
-// https://beacon-network.org/#/developers/api/beacon-network#bn-response
-message BeaconRequest {
-    Variant variant = 1;
-    //repeated Phenotype phenotype = 2; Beacon 2.0!
-}
-
-// https://beacon-network.org/#/developers/api/beacon-network#bn-response
-message BeaconResponse {
-    Variant variant = 1;
-    bool response = 2;
-
-}
-
-// Genomics England InterpretedGenomeRD
-// https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretedGenomesRD.avdl
-message InterpretedGenome {
-    string id = 1;
-    string title = 2;
-    string description = 3;
-    GenomeAssembly genome_assembly = 4;
-    repeated GenomicFeature genomic_features = 6;
 }
