@@ -182,12 +182,12 @@ message Biosample {
     OntologyClass taxonomy = 9;
 
     // A map of additional information about the Biosample.
-    // Attributes attributes = 10;
+    Attributes attributes = 10;
 
     // External identifiers representing this biosample. These are considered
     // different representation of the same record, not records which are in some
     // other relation with the record at hand.
-    // repeated ExternalIdentifier external_identifiers = 11;
+    repeated ExternalReference external_references = 11;
 
     // An age object describing the age of the individual this biosample was
     // derived from at the time of collection. The Age object allows the encoding
@@ -203,9 +203,9 @@ message Biosample {
     // },
     //See http://build.fhir.org/datatypes
     Age individual_age_at_collection = 12;
-    //TODO:
+
     // The address coded as GeoLocation where the biosample was collected.
-    //    GeoLocation location = 13;
+    GeoLocation location = 13;
 
 }
 
@@ -227,6 +227,176 @@ message Age {
     OntologyClass age_class = 2;
 }
 
+// A GeoLocation object provides information about a geographic position
+// related to a record. Examples could be:
+//  - an address, e.g. of a lab performing an analysis
+//  - provenance of an individual, obfuscated to a larger order administrative
+//    entity (Suffolk, U.K.)
+//  - a lat/long/alt position where an environmental sample was collected
+//   The geographic point object uses the default units from the DCMI point scheme
+//  http://dublincore.org/documents/dcmi-point/
+//  and avoids optional representation in non-standard units.
+message GeoLocation {
+    // a text representation, preferably using standard geographic identification
+    // elements, of the corresponding latitude,longitude(,altitude)
+    // This representation serves the purposes to
+    //  - capture standard data entry parameters
+    //  - provide a sanity check for latitude,longitude values
+    // Example:
+    //  - 34 Washington Blvd, Marina del Rey, CA  90292, United States
+    //  - Str Marasesti 5, 300077 Timisoara, Romania
+    //  - Heidelberg, Deutschland
+    string label = 1;
+
+    // an optional indication of the maximum precision to be derived from the
+    // latitude,longitude values
+    // Example:
+    // Given a street address "Winterthurerstrasse 190, 8057 Zürich, Switzerland",
+    // a privacy driven (destructive) obfuscation approach could recode this
+    // to
+    //  "latitude": 47.37, "longitude": 8.54
+    //  while providing
+    //  "precision":"city", "label": "Zürich, Switzerland"
+    // ... indicating that the original location could correspond to any
+    // latitude,longitude point value inside the administrative boundaries of
+    // the city of Zürich, Switzerland
+    string precision = 2;
+
+    // signed decimal degrees (North, relative to Equator)
+    double latitude = 3;
+
+    // signed decimal degrees (East, relative to IERS Reference Meridian)
+    double longitude = 4;
+
+    // optional, e.g. for environmental samples
+    double altitude = 5;
+}
+
+enum NullValue {
+    // Null value.
+    NULL_VALUE = 0;
+}
+
+// Type defining a collection of attributes associated with various protocol
+// records. Each attribute is a name that maps to an array of one or more
+// values. Values are chosen from both internal protobuf types and GA4GH.
+//  Values should be split into array elements instead of using a separator
+// syntax that needs to parsed.
+message AttributeValue {
+    oneof value {
+        string string_value = 1;
+        int64 int64_value = 2;
+        int32 int32_value = 3;
+        bool bool_value = 4;
+        double double_value = 5;
+        ExternalReference external_reference = 6;
+        OntologyClass ontology_class = 7;
+        Experiment experiment = 8;
+        //Program is missing a definition in the original metadaa-schemas
+        //        Program program = 9;
+        Analysis analysis = 10;
+        NullValue null_value = 11;
+        Attributes attributes = 12;
+        AttributeValueList attribute_list = 13;
+    }
+}
+
+message AttributeValueList {
+    repeated AttributeValue values = 1;
+}
+
+message Attributes {
+    map<string, AttributeValueList> attr = 1;
+}
+
+// An experimental preparation of a sample.
+message Experiment {
+    // The experiment ID
+    string id = 1;
+
+    // The name of the experiment.
+    string name = 2;
+
+    // A description of the experiment.
+    string description = 3;
+
+    // The time at which the record of this experiment was last updated.
+    // Format: ISO 8601, YYYY-MM-DDTHH:MM:SS.SSS (e.g. 2015-02-10T00:03:42.123Z)
+    string updated = 5;
+
+    // The time at which this experiment was performed.
+    // Granularity here is variable (e.g. date only).
+    // Format: ISO 8601, YYYY-MM-DDTHH:MM:SS (e.g. 2015-02-10T00:03:42)
+    string run_time = 6;
+
+    // The molecule examined in this experiment. (e.g. genomics DNA, total RNA)
+    string molecule = 7;
+
+    // The experiment technique or strategy applied to the sample.
+    // (e.g. whole genome sequencing, RNA-seq, RIP-seq)
+    string strategy = 8;
+
+    // The method used to enrich the target. (e.g. immunoprecipitation, size
+    // fractionation, MNase digestion)
+    string selection = 9;
+
+    // The name of the library used as part of this experiment.
+    string library = 10;
+
+    // The configuration of sequenced reads. (e.g. Single or Paired).
+    string library_layout = 11;
+
+    // The instrument model used as part of this experiment.
+    // This maps to sequencing technology in BAM.
+    string instrument_model = 12;
+
+    // The data file generated by the instrument.
+    // TODO: This isn't actually a file is it?
+    // Should this be `instrumentData` instead?
+    string instrument_data_file = 13;
+
+    // Name of the laboratory where this experiment was performed.
+    string sequencing_center = 14;
+
+    // The address coded as geolocation object of the laboratory.
+    GeoLocation location = 18;
+
+    // The platform unit used as part of this experiment. This is a
+    // flowcell-barcode
+    // or slide unique identifier.
+    string platform_unit = 15;
+
+    // A map of additional experiment information.
+    Attributes attributes = 17;
+}
+
+// An analysis contains an interpretation of one or several experiments. (e.g.
+// SNVs, copy number variations, methylation status) together with information
+// about the methodology used.
+message Analysis {
+    // Formats of id | name | description | accessions are described in the
+    // documentation on general attributes and formats.
+    string id = 1;
+
+    string name = 2;
+
+    string description = 3;
+
+    // The time at which this record was created, in ISO 8601 format.
+    string created = 4;
+
+    // The time at which this record was last updated, in ISO 8601 format.
+    string updated = 5;
+
+    // The type of analysis.
+    string type = 6;
+
+    // The software run to generate this analysis.
+    repeated string software = 7;
+
+    // A map of additional analysis information.
+    Attributes attributes = 9;
+}
 message Period {
     google.protobuf.Timestamp start = 1;
     google.protobuf.Timestamp end = 2;
