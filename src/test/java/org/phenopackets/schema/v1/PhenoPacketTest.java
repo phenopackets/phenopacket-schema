@@ -19,13 +19,6 @@ public class PhenoPacketTest {
                 .setSymbol("FGFR2")
                 .build();
 
-        VariantAnnotation variantAnnotation = VariantAnnotation.newBuilder()
-                .setAcmgClassification(VariantAnnotation.AcmgClassification.PATHOGENIC)
-                .setVariantEffect(ontologyClass("SO:0001583", "missense_variant"))
-                .addAcmgCode("PS1")
-                .addAcmgCode("PS2")
-                .addAcmgCode("PM2")
-                .build();
 
         Variant pathogenicVariant = Variant.newBuilder()
                 .setSequence("NC_000010.10")
