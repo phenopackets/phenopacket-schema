@@ -1,7 +1,7 @@
 # Phenopacket schema
 [![Build Status](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)
 
-Repository for the inlined phenopacket schema
+This has been produced as part of the [GA4GH](https://ga4gh.org) [Clinical Phenotype Data Capture Workstream](https://ga4gh-cp.github.io/) and it merges the existing [GA4GH metadata-schemas](https://github.com/ga4gh-metadata/metadata-schemas) work with a more focused model from the [phenopacket-reference-implementation](https://github.com/phenopackets/phenopacket-reference-implementation). 
 
 This is a re-defined version of the original phenopacket with a more individual-centric approach. This new approach was taken in order to simplify the code required to represent and manipulate the data and also better represent this sort of data as it is in day to day use.
 
