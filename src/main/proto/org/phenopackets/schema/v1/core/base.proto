@@ -178,7 +178,7 @@ message Biosample {
     // The id of the individual this biosample was derived from.
     string individual_id = 8;
 
-    // NCBI taxonomic identifier (NCBITaxon) of the organism from which tha sample was taken e.g. NCBITaxon:9606
+    // NCBI taxonomic identifier (NCBITaxon) of the organism from which the sample was taken e.g. NCBITaxon:9606
     OntologyClass taxonomy = 9;
 
     // A map of additional information about the Biosample.
