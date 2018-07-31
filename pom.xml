@@ -1,14 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>org.phenopackets</groupId>
     <artifactId>phenopacket-schema</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.7</version>
     <packaging>jar</packaging>
-    <name>${project.groupId}:${project.artifactId}</name>
-    <description>Phenopackets schema</description>
+
+    <name>phenopacket-schema</name>
+    <description>A Protobuf schema for capturing clinical phenotypes</description>
     <url>http://phenopackets.org</url>
     <inceptionYear>2018</inceptionYear>
+
     <licenses>
         <license>
             <name>The BSD 3-Clause License</name>
@@ -16,6 +19,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
     <developers>
         <developer>
             <name>Chris Mungall</name>
@@ -30,12 +34,14 @@
             <organizationUrl>http://qmul.ac.uk</organizationUrl>
         </developer>
     </developers>
+
     <scm>
         <connection>scm:git:https://github.com/phenopackets/phenopacket-schema.git</connection>
-        <developerConnection>scm:git:git@github.com:phenopackets/phenopacket-schema.git</developerConnection>
+        <developerConnection>scm:git:ssh://github.com:phenopackets/phenopacket-schema.git</developerConnection>
         <url>https://github.com/phenopackets/phenopacket-schema</url>
         <tag>HEAD</tag>
     </scm>
+
     <ciManagement>
         <system>Travis CI</system>
         <url>https://travis-ci.org/phenopackets/phenopacket-schema</url>
@@ -66,8 +72,9 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.0.0</version>
                         <configuration>
-                            <additionalparam>-Xdoclint:none</additionalparam>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
                         </configuration>
                     </plugin>
                 </plugins>
