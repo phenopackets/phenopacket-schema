@@ -6,12 +6,6 @@ import "org/phenopackets/schema/v1/core/base.proto";
 option java_multiple_files = true;
 option java_outer_classname = "MatchMakerExchange";
 
-service MmeMatchNode {
-    // requests a patient match
-    // https://github.com/ga4gh/mme-apis/blob/master/search-api.md#overview
-    rpc match(MmeMatchRequest) returns (MmeMatchResponse) {}
-}
-
 // https://github.com/ga4gh/mme-apis/blob/master/search-api.md#search-request
 message MmeMatchRequest {
     string disclaimer = 1;
