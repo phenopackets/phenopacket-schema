@@ -83,14 +83,14 @@ message Phenotype {
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
     oneof onset {
-        Age age_of_onset = 12;
-        google.protobuf.Timestamp time_of_onset = 13;
-        Period period_of_onset = 14;
-        OntologyClass class_of_onset = 15;
+        Age age_of_onset = 6;
+        google.protobuf.Timestamp time_of_onset = 7;
+        Period period_of_onset = 8;
+        OntologyClass class_of_onset = 9;
     }
 
     // Evidences for how the phenotype was determined.
-    repeated Evidence evidence = 11;
+    repeated Evidence evidence = 10;
 }
 
 // FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
@@ -129,13 +129,13 @@ message Individual {
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxomic
     // identifier of that organism, to it's most specific level
-    OntologyClass taxonomy = 9;
+    OntologyClass taxonomy = 5;
 
     // The time at which this Individual's record was created.
-    google.protobuf.Timestamp created = 5;
+    google.protobuf.Timestamp created = 6;
 
     // The time at which this Individual record was updated.
-    google.protobuf.Timestamp updated = 6;
+    google.protobuf.Timestamp updated = 7;
 }
 
 // See https://github.com/ga4gh-metadata/metadata-schemas/blob/d4ca1b4b36a5e7b3a17db79da9ae03a2114cfcaf/schemas/biometadata.proto#L84-L138
