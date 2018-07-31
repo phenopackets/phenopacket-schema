@@ -297,16 +297,16 @@ message AttributeValue {
         Analysis analysis = 10;
         NullValue null_value = 11;
         Attributes attributes = 12;
-        AttributeValueList attribute_list = 13;
+        AttributeValues attribute_values = 13;
     }
 }
 
-message AttributeValueList {
+message AttributeValues {
     repeated AttributeValue values = 1;
 }
 
 message Attributes {
-    map<string, AttributeValueList> attr = 1;
+    map<string, AttributeValues> attributes = 1;
 }
 
 // An experimental preparation of a sample.
