@@ -1,5 +1,6 @@
 # Phenopacket schema
 [![Build Status](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema)
 
 This has been produced as part of the [GA4GH](https://ga4gh.org) [Clinical Phenotype Data Capture Workstream](https://ga4gh-cp.github.io/) and it merges the existing [GA4GH metadata-schemas](https://github.com/ga4gh-metadata/metadata-schemas) work with a more focused model from the [phenopacket-reference-implementation](https://github.com/phenopackets/phenopacket-reference-implementation). 
 
@@ -16,6 +17,16 @@ Currently this is very much work in progress and breaking changes will occur. On
 
 ## Usage
 There are two ways to use this library, firstly using the ```PhenoPacket``` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
+
+Java people can incorporate phenopackets-api into their code by importing the jar using maven:
+
+```xml
+<dependency>
+    <groupId>org.phenopackets</groupId>
+    <artifactId>phenopacket-schema</artifactId>
+    <version>${project.version}</version>
+</dependency>
+```
 
 The following sections describe how to achieve these two things.
 
