@@ -3,12 +3,10 @@ package org.phenopackets.schema.v1.core;
 
 import "google/protobuf/timestamp.proto";
 
-//option java_package = "org.phenopackets.api.v1.core";
 option java_multiple_files = true;
-//option java_outer_classname = "PhenoPacket";
 
 message MetaData {
-    // timestamp for when this phenopacket was created
+    // ISO8601 UTC timestamp for when this phenopacket was created in ISO "2018-03-01T00:00:00Z"
     google.protobuf.Timestamp created = 1;
     // some kind of identifier for the contributor/ program
     string created_by = 2;
@@ -113,29 +111,62 @@ message ExternalReference {
 message Individual {
     // An identifer for the individual. This must be unique within the record.
     string id = 1;
-    // The date of birth of the individual - rounded down to the closest known year/month/day/hour/minute
+
+    // The ID of the dataset this Individual belongs to.
+    string dataset_id = 2;
+
+    // The date of birth of the individual as an ISO8601 UTC timestamp - rounded down to the closest known
+    // year/month/day/hour/minute
     // e.g. "2018-03-01T00:00:00Z" for someone born on an unknown day in March 2018
     // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
     // or empty if unknown/ not stated.
-    google.protobuf.Timestamp date_of_birth = 2;
-    //todo oneof age {Timestamp; Age; OntologyClass}?
+    google.protobuf.Timestamp date_of_birth = 3;
+
+    // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
+    // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
+    // Example:
+    //   "individual_age_at_collection": {
+    //     "age": "P12Y0M",
+    //     "age_class": {
+    //         "term": "Juvenile onset",
+    //         "term_id": "HP:0003621"
+    //     }
+    // },
+    // See http://build.fhir.org/datatypes
+    Age age_at_collection = 4;
 
     // A PATO term for the biological sex of the individual
     // http://purl.obolibrary.org/obo/PATO_0000047
-    OntologyClass sex = 3;
+    OntologyClass sex = 5;
 
-    repeated Phenotype phenotypes = 4;
+    // A set of phenotypes describing the individual.
+    repeated Phenotype phenotypes = 6;
 
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxomic
     // identifier of that organism, to it's most specific level
-    OntologyClass taxonomy = 5;
+    OntologyClass taxonomy = 7;
 
-    // The time at which this Individual's record was created.
-    google.protobuf.Timestamp created = 6;
+    // ISO8601 UTC timestamp at which this Individual's record was created, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
+    google.protobuf.Timestamp created = 8;
 
-    // The time at which this Individual record was updated.
-    google.protobuf.Timestamp updated = 7;
+    // ISO8601 UTC timestamp at which this Individual record was updated, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
+    google.protobuf.Timestamp updated = 9;
+
+    // The address coded as geolocation where this individual originated from.
+    // It is recommended that this reflects the place of birth or main place of
+    // living, not necessarily a current address.
+    GeoLocation location = 10;
+
+    // A map of additional information regarding the Individual.
+    Attributes attributes = 11;
+
+    // External identifiers representing this individual. These are considered
+    // different representation of the same record, not records which are in some
+    // other relation with the record at hand.
+    repeated ExternalReference external_identifiers = 12;
 }
 
 // See https://github.com/ga4gh-metadata/metadata-schemas/blob/d4ca1b4b36a5e7b3a17db79da9ae03a2114cfcaf/schemas/biometadata.proto#L84-L138
@@ -167,12 +198,12 @@ message Biosample {
     // diseases, phenotypes, source ... associated with this BioSample.
     repeated Phenotype phenotypes = 5;
 
-    // The :ref:`ISO 8601<metadata_date_time>` time at which this Biosample record
-    // was created.
+    // ISO8601 UTC timestamp for the time at which this Biosample record was created, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp created = 6;
 
-    // The :ref:`ISO 8601<metadata_date_time>` time at which this Biosample record was
-    // updated.
+    // ISO8601 UTC timestamp at which this Biosample record was updated, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp updated = 7;
 
     // The id of the individual this biosample was derived from.
@@ -326,7 +357,7 @@ message Experiment {
 
     // The time at which this experiment was performed.
     // Granularity here is variable (e.g. date only).
-    // Format: ISO 8601, YYYY-MM-DDTHH:MM:SS (e.g. 2015-02-10T00:03:42)
+    // Format: ISO 8601, YYYY-MM-DDTHH:MM:SS (e.g. 2015-02-10T00:03:42Z)
     string run_time = 6;
 
     // The molecule examined in this experiment. (e.g. genomics DNA, total RNA)
@@ -397,8 +428,12 @@ message Analysis {
     // A map of additional analysis information.
     Attributes attributes = 9;
 }
+
 message Period {
+    // ISO8601 UTC timestamp for the start of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp start = 1;
+
+    // ISO8601 UTC timestamp for the end of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp end = 2;
 }
 
