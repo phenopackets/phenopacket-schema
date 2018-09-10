@@ -3,7 +3,7 @@ package org.phenopackets.schema.v1.core;
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.JsonFormat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.PhenoPacketTestUtil;
 
 import java.time.Instant;

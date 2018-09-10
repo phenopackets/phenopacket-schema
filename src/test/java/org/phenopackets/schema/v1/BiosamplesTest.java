@@ -1,7 +1,7 @@
 package org.phenopackets.schema.v1;
 
 import com.google.protobuf.util.JsonFormat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.core.*;
 
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;

@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.JsonFormat;
 import org.hl7.fhir.r4.model.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.core.*;
 import org.phenopackets.schema.v1.core.Resource;
 
