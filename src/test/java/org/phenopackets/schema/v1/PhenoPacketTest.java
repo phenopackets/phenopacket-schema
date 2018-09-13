@@ -2,9 +2,12 @@ package org.phenopackets.schema.v1;
 
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.core.*;
+import org.phenopackets.schema.v1.examples.TestExamples;
 
-import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
+import java.io.IOException;
+
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.toYaml;
+import static org.phenopackets.schema.v1.converters.ConverterUtil.ontologyClass;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
@@ -18,7 +21,6 @@ public class PhenoPacketTest {
                 .setId("HGNC:3689")
                 .setSymbol("FGFR2")
                 .build();
-
 
         Variant pathogenicVariant = Variant.newBuilder()
                 .setSequence("NC_000010.10")
@@ -129,4 +131,18 @@ public class PhenoPacketTest {
         System.out.println(toYaml(pfeifferDiagnosisExample));
     }
 
+    @Test
+    void printCancer() throws IOException {
+        System.out.println(toYaml(TestExamples.cancerPhenoPacket()));
+    }
+
+    @Test
+    void printRareDisease() throws IOException {
+        System.out.println(toYaml(TestExamples.rareDiseasePhenoPacket()));
+    }
+
+    @Test
+    void printBiosamples() throws IOException {
+        System.out.println(toYaml(TestExamples.biosamplesPhenoPacket()));
+    }
 }

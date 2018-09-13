@@ -1,25 +1,26 @@
-package org.phenopackets.schema.v1;
+package org.phenopackets.schema.v1.examples;
 
-import com.google.protobuf.util.JsonFormat;
-import org.junit.jupiter.api.Test;
+import org.phenopackets.schema.v1.PhenoPacket;
 import org.phenopackets.schema.v1.core.*;
 
-import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.parseTimestamp;
+import static org.phenopackets.schema.v1.converters.ConverterUtil.ontologyClass;
 
 /**
  * Test case for assessing suitability of the phenopacket for representing data from the Biosamples database
- * https://www.ebi.ac.uk/biosamples
+ * https://www.ebi.ac.uk/biosamples.
+ *
+ * JSON sample for this can be found in src/test/resources/biosamples-SAMN05324082.json
+ *
  *
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-public class BiosamplesTest {
+class BiosamplesPhenoPacketExample {
 
     /**
      * https://www.ebi.ac.uk/biosamples/samples/SAMN05324082
      */
-    @Test
-    public void biosampleExample() throws Exception {
+    static PhenoPacket biosamplePhenoPacket() {
 
         MetaData metaData = MetaData.newBuilder()
                 .addResources(Resource.newBuilder()
@@ -80,22 +81,21 @@ public class BiosamplesTest {
                 .setDescription("THP-1; 6 hours; DMSO; Replicate 1")
                 .setIndividualAgeAtCollection(Age.newBuilder().setAge("P1Y").build())
                 .setTaxonomy(ontologyClass("NCBITaxon:9606", "Homo sapiens"))
+                .setType(ontologyClass("CL:0000576", "monocyte"))
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("EFO:0001253", "THP-1")).build())
-                .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("CL:0000576", "monocyte")).build())
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("BTO:0000214", "cell culture")).build())
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("UBERON:0000178", "peripheral blood")).build())
                 .build();
 
         Disease disease = Disease.newBuilder().setId("EFO:0000222").setLabel("acute myeloid leukemia").build();
 
-        PhenoPacket phenoPacket = PhenoPacket.newBuilder()
+        return PhenoPacket.newBuilder()
                 .setMetaData(metaData)
                 .addIndividuals(individual)
                 .addBiosamples(biosample)
                 .addDiseases(disease)
                 .build();
 
-        System.out.println(JsonFormat.printer().print(phenoPacket));
     }
 
 }
