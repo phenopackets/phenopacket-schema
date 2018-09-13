@@ -22,7 +22,7 @@ message Resource {
     // OBO ID, which is always equivalent to the ID prefix in lower case.
     // Examples: hp, go, mp, mondo
     // Consult http://obofoundry.org for a complete list
-    // For other ontologies (e.g SNOMED), use the prefix in identifiers.org
+    // For other ontologies (e.g. SNOMED), use the prefix in identifiers.org
     string id = 1;
     // e.g. The Human Phenotype Ontology
     // for OBO Ontologies, the value of this string SHOULD be the same as the title
@@ -100,7 +100,7 @@ message Evidence {
 
 // FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
 message ExternalReference {
-    //e.g. ISBN, PMID:123456, DOI:...
+    // e.g. ISBN, PMID:123456, DOI:...
     string id = 1;
     string description = 2;
 }
@@ -148,11 +148,11 @@ message Individual {
     OntologyClass taxonomy = 7;
 
     // ISO8601 UTC timestamp at which this Individual's record was created, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp created = 8;
 
     // ISO8601 UTC timestamp at which this Individual record was updated, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp updated = 9;
 
     // The address coded as geolocation where this individual originated from.
@@ -194,31 +194,35 @@ message Biosample {
     // The "description" attributes should not contain any structured data.
     string description = 4;
 
+    // Type of material forming the biosample. For example, the tissue or cell type of the sample e.g. esophagus (UBERON:0001043)
+    // or monocyte (CL:0000576). Could include molecular type, body fluids, environmental samples, bacterial cultures...
+    OntologyClass type = 5;
+
     // characteristics object uses lists of Phenotype objects to describe
     // diseases, phenotypes, source ... associated with this BioSample.
-    repeated Phenotype phenotypes = 5;
+    repeated Phenotype phenotypes = 6;
 
     // ISO8601 UTC timestamp for the time at which this Biosample record was created, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp created = 6;
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
+    google.protobuf.Timestamp created = 7;
 
     // ISO8601 UTC timestamp at which this Biosample record was updated, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp updated = 7;
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
+    google.protobuf.Timestamp updated = 8;
 
     // The id of the individual this biosample was derived from.
-    string individual_id = 8;
+    string individual_id = 9;
 
     // NCBI taxonomic identifier (NCBITaxon) of the organism from which the sample was taken e.g. NCBITaxon:9606
-    OntologyClass taxonomy = 9;
+    OntologyClass taxonomy = 10;
 
     // A map of additional information about the Biosample.
-    Attributes attributes = 10;
+    Attributes attributes = 11;
 
     // External identifiers representing this biosample. These are considered
     // different representation of the same record, not records which are in some
     // other relation with the record at hand.
-    repeated ExternalReference external_references = 11;
+    repeated ExternalReference external_references = 12;
 
     // An age object describing the age of the individual this biosample was
     // derived from at the time of collection. The Age object allows the encoding
@@ -233,10 +237,10 @@ message Biosample {
     //     }
     // },
     //See http://build.fhir.org/datatypes
-    Age individual_age_at_collection = 12;
+    Age individual_age_at_collection = 13;
 
     // The address coded as GeoLocation where the biosample was collected.
-    GeoLocation location = 13;
+    GeoLocation location = 14;
 
 }
 
@@ -430,10 +434,10 @@ message Analysis {
 }
 
 message Period {
-    // ISO8601 UTC timestamp for the start of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
+    // ISO8601 UTC timestamp for the start of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp start = 1;
 
-    // ISO8601 UTC timestamp for the end of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g 2007-12-03T10:15:30.00Z
+    // ISO8601 UTC timestamp for the end of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
     google.protobuf.Timestamp end = 2;
 }
 
