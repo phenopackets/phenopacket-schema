@@ -9,8 +9,8 @@ import java.time.Instant;
 import java.util.Collections;
 import java.util.Date;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.phenopackets.schema.v1.PhenoPacketTestUtil.FEMALE;
+import static org.phenopackets.schema.v1.converters.ConverterUtil.codeableConcept;
+import static org.phenopackets.schema.v1.converters.ConverterUtil.hpoConcept;
 
 /**
  * FHIR representation of the rare disease example from the Toronto hackathon. See
@@ -24,18 +24,39 @@ class RareDiseaseFhirExample {
      * @return
      */
     static Bundle rareDiseaseBundle() {
-//        Patient probandPatient = new Patient();
-//        probandPatient.setId(PROBAND_ID);
-//        probandPatient.setBirthDate(Date.from(Instant.parse("2018-01-01T00:00:00Z")));
-//        probandPatient.setGender(Enumerations.AdministrativeGender.MALE);
-//
-//        CodeableConcept sexConcept = codeableConcept("http://purl.obolibrary.org/obo/pato.owl", "PATO:0000384", "male");
-//        Observation probandSex = new Observation().setCode(sexConcept).setSubject(new Reference(probandPatient));
-//
-//
-//        Condition probandCondition = createPatientCondition(probandPhenotype, probandPatient);
-//        assertThat(probandCondition.getCode().getCodingFirstRep().getCode(), equalTo(probandPhenotype.getType().getId()));
-//        assertThat(probandCondition.getCode().getCodingFirstRep().getDisplay(), equalTo(probandPhenotype.getType().getLabel()));
+        Patient probandPatient = new Patient();
+        probandPatient.setId("Proband#1");
+        probandPatient.setBirthDate(Date.from(Instant.parse("1998-01-01T00:00:00Z")));
+        probandPatient.setGender(Enumerations.AdministrativeGender.MALE);
+
+        CodeableConcept sexConcept = codeableConcept("http://purl.obolibrary.org/obo/pato.owl", "PATO:0000384", "male");
+        Observation probandSex = new Observation().setCode(sexConcept).setSubject(new Reference(probandPatient));
+
+        Condition syndactylyCondition = new Condition();
+        syndactylyCondition.setCode(hpoConcept("HP:0001159", "Syndactyly"));
+        // Fhir has oneof datetime, Age, Period, String - For this example we're going to use a string
+        syndactylyCondition.setOnset(new StringType("Congenital onset"));
+        syndactylyCondition.setSubject(new Reference(probandPatient));
+
+        Condition pneumoniaCondition = new Condition();
+        pneumoniaCondition.setCode(hpoConcept("HP:0002090", "Pneumonia"));
+        // Fhir has oneof datetime, Age, Period, String - For this example we're going to use a string
+        pneumoniaCondition.setOnset(new StringType("Childhood onset"));
+        pneumoniaCondition.setSubject(new Reference(probandPatient));
+
+        Condition cryptorchidismCondition = new Condition();
+        cryptorchidismCondition.setCode(hpoConcept("HP:0000028", "Cryptorchidism"));
+        // Fhir has oneof datetime, Age, Period, String - For this example we're going to use a string
+        cryptorchidismCondition.setOnset(new StringType("Congenital onset"));
+        cryptorchidismCondition.setSubject(new Reference(probandPatient));
+
+        Condition chronicSinusitisCondition = new Condition();
+        chronicSinusitisCondition.setCode(hpoConcept("HP:0011109", "Chronic sinusitis"));
+        // Fhir has oneof datetime, Age, Period, String - For this example we're going to use a string
+        chronicSinusitisCondition.setOnset(new StringType("Adult onset"));
+        chronicSinusitisCondition.setSeverity(hpoConcept("HP:0012828", "Severe"));
+        chronicSinusitisCondition.setSubject(new Reference(probandPatient));
+
 //
 //        Phenotype motherPhenotype = abnormalPhenotype.toBuilder()
 //                .setSeverity(ontologyClass("HP:0012826", "Moderate"))
@@ -66,9 +87,12 @@ class RareDiseaseFhirExample {
         Bundle bundle = new Bundle();
         bundle.setType(Bundle.BundleType.COLLECTION);
         bundle.setId("STUDY_ID:0000123");
-//        bundle.addEntry().setResource(probandPatient);
-//        bundle.addEntry().setResource(probandSex);
-//        bundle.addEntry().setResource(probandCondition);
+        bundle.addEntry().setResource(probandPatient);
+        bundle.addEntry().setResource(probandSex);
+        bundle.addEntry().setResource(syndactylyCondition);
+        bundle.addEntry().setResource(pneumoniaCondition);
+        bundle.addEntry().setResource(cryptorchidismCondition);
+        bundle.addEntry().setResource(chronicSinusitisCondition);
 //
 //        bundle.addEntry().setResource(motherPatient);
 //        bundle.addEntry().setResource(motherSex);
