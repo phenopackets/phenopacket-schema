@@ -69,14 +69,10 @@ class CancerFhirExample {
         carcinoma.setClinicalStatus(Condition.ConditionClinicalStatus.ACTIVE);
         carcinoma.setCode(getCode(SNOMED_CT_SYSTEM, "402815007",
                 "Squamous cell carcinoma"));
-        carcinoma.setBodySite(Arrays.asList(new CodeableConcept[] {
-                getCode(SNOMED_CT_SYSTEM, "32849002", "Oesophageal structure") }));
-        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "67673008",
-                "T2 category"));
-        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "53623008",
-                "N1 category"));
-        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "30893008",
-                "M0 category"));
+        carcinoma.setBodySite(Arrays.asList(getCode(SNOMED_CT_SYSTEM, "32849002", "Oesophageal structure")));
+        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "67673008","T2 category"));
+        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "53623008","N1 category"));
+        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "30893008","M0 category"));
 
         // Represented P48Y3M in UCUM months (i.e. (48 *12) + 3)
         carcinoma.setOnset(new Age().setSystem(UCUM_SYSTEM).setCode("mo")
@@ -88,8 +84,7 @@ class CancerFhirExample {
         // this granularity
         Specimen tumourResection = new Specimen();
         tumourResection.setId("spec-1");
-        tumourResection.setType(getCode(SNOMED_CT_SYSTEM, "370612006",
-                "Excision of neoplasm"));
+        tumourResection.setType(getCode(SNOMED_CT_SYSTEM, "370612006","Excision of neoplasm"));
         tumourResection.setSubject(new Reference(patient));
 
         Observation cnvVariant = new Observation();
@@ -99,8 +94,7 @@ class CancerFhirExample {
 
         // This is TBD in the current implementation guide - following
         // suggestion from MGHA
-        cnvVariant.setCode(getCode(LOINC_SYSTEM, "69548-6",
-                " Genetic variant assessment"));
+        cnvVariant.setCode(getCode(LOINC_SYSTEM, "69548-6"," Genetic variant assessment"));
         // reference_name = 8
         cnvVariant.addComponent(getStudiedGene("8"));
 
@@ -143,8 +137,7 @@ class CancerFhirExample {
         // Biosample (lymph node biopsy) => variants, SNV (WES) & CNV (array)
         Specimen lymphNodeBiopsy = new Specimen();
         lymphNodeBiopsy.setId("spec-2");
-        lymphNodeBiopsy.setType(getCode(SNOMED_CT_SYSTEM, "309079007",
-                "Lymph node biopsy"));
+        lymphNodeBiopsy.setType(getCode(SNOMED_CT_SYSTEM, "309079007", "Lymph node biopsy"));
         lymphNodeBiopsy.setSubject(new Reference(patient));
 
         Observation snvVariant = new Observation();
@@ -197,8 +190,7 @@ class CancerFhirExample {
         Procedure radiation = new Procedure();
         radiation.setId("proc-2");
         radiation.setStatus(Procedure.ProcedureStatus.COMPLETED);
-        radiation.setCode(getCode(SNOMED_CT_SYSTEM, "108290001",
-                "Radiation oncology AND/OR radiotherapy"));
+        radiation.setCode(getCode(SNOMED_CT_SYSTEM, "108290001", "Radiation oncology AND/OR radiotherapy"));
         radiation.setSubject(new Reference(patient));
         radiation.setContext(new Reference(initialEncounter));
 
@@ -217,14 +209,10 @@ class CancerFhirExample {
         carcinoma.setClinicalStatus(Condition.ConditionClinicalStatus.RECURRENCE);
         carcinomaRecurrence.setCode(getCode(SNOMED_CT_SYSTEM, "402815007",
                 "Squamous cell carcinoma"));
-        carcinomaRecurrence.setBodySite(Arrays.asList(new CodeableConcept[] {
-                getCode(SNOMED_CT_SYSTEM, "32849002", "Oesophageal structure") }));
-        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,
-                "67673008", "T2 category"));
-        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,
-                "53623008", "N1 category"));
-        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,
-                "55440008", "M1 category"));
+        carcinomaRecurrence.setBodySite(Arrays.asList(getCode(SNOMED_CT_SYSTEM, "32849002", "Oesophageal structure")));
+        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,"67673008", "T2 category"));
+        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,"53623008", "N1 category"));
+        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,"55440008", "M1 category"));
         carcinomaRecurrence.setOnset(new Age().setSystem(UCUM_SYSTEM)
                 .setCode("mo").setValue(590));
         carcinomaRecurrence.setContext(new Reference(secondEncounter));
@@ -233,8 +221,7 @@ class CancerFhirExample {
         Condition metastasis = new Condition();
         metastasis.setId("cond-2");
         metastasis.setClinicalStatus(Condition.ConditionClinicalStatus.ACTIVE);
-        metastasis.setCode(getCode(SNOMED_CT_SYSTEM, "94391008",
-                "Secondary malignant neoplasm of lung"));
+        metastasis.setCode(getCode(SNOMED_CT_SYSTEM, "94391008", "Secondary malignant neoplasm of lung"));
         // No need for a body site because it is implicit in the code
         // No need for staging because this is a metastasis of the primary cancer
         metastasis.setOnset(new Age().setSystem(UCUM_SYSTEM)
@@ -244,10 +231,8 @@ class CancerFhirExample {
         Procedure palliativeRadiation = new Procedure();
         palliativeRadiation.setId("proc-3");
         palliativeRadiation.setStatus(Procedure.ProcedureStatus.COMPLETED);
-        palliativeRadiation.setCode(getCode(SNOMED_CT_SYSTEM, "108290001",
-                "Radiation oncology AND/OR radiotherapy"));
-        palliativeRadiation.setReasonCode(Arrays.asList(new CodeableConcept[] {
-                getCode(SNOMED_CT_SYSTEM, "362964009", "Palliative procedure") }));
+        palliativeRadiation.setCode(getCode(SNOMED_CT_SYSTEM, "108290001", "Radiation oncology AND/OR radiotherapy"));
+        palliativeRadiation.setReasonCode(Arrays.asList(getCode(SNOMED_CT_SYSTEM, "362964009", "Palliative procedure")));
         palliativeRadiation.setSubject(new Reference(patient));
         palliativeRadiation.setContext(new Reference(secondEncounter));
 
@@ -271,9 +256,11 @@ class CancerFhirExample {
         Bundle bundle = new Bundle();
         bundle.setType(Bundle.BundleType.TRANSACTION);
         bundle.addEntry().setResource(patient).getRequest()
-                .setMethod(Bundle.HTTPVerb.PUT).setUrl("/Patient/" + patient.getId());
+                .setMethod(Bundle.HTTPVerb.PUT)
+                .setUrl("/Patient/" + patient.getId());
         bundle.addEntry().setResource(initialEncounter).getRequest()
-                .setMethod(Bundle.HTTPVerb.PUT).setUrl("/Encounter/" + initialEncounter.getId());
+                .setMethod(Bundle.HTTPVerb.PUT)
+                .setUrl("/Encounter/" + initialEncounter.getId());
         bundle.addEntry().setResource(tumour).getRequest()
                 .setMethod(Bundle.HTTPVerb.PUT)
                 .setUrl("/BodyStructure/" + tumour.getId());
@@ -281,7 +268,8 @@ class CancerFhirExample {
                 .setMethod(Bundle.HTTPVerb.PUT)
                 .setUrl("/Observation/" + hpvObservation.getId());
         bundle.addEntry().setResource(carcinoma).getRequest()
-                .setMethod(Bundle.HTTPVerb.PUT).setUrl("/Condition/" + carcinoma.getId());
+                .setMethod(Bundle.HTTPVerb.PUT)
+                .setUrl("/Condition/" + carcinoma.getId());
         bundle.addEntry().setResource(tumourResection).getRequest()
                 .setMethod(Bundle.HTTPVerb.PUT)
                 .setUrl("/Specimen/" + tumourResection.getId());
@@ -301,9 +289,11 @@ class CancerFhirExample {
                 .setMethod(Bundle.HTTPVerb.PUT)
                 .setUrl("/DiagnosticReport/" + tumourReport.getId());
         bundle.addEntry().setResource(surgery).getRequest()
-                .setMethod(Bundle.HTTPVerb.PUT).setUrl("/Procedure/" + surgery.getId());
+                .setMethod(Bundle.HTTPVerb.PUT)
+                .setUrl("/Procedure/" + surgery.getId());
         bundle.addEntry().setResource(radiation).getRequest()
-                .setMethod(Bundle.HTTPVerb.PUT).setUrl("/Procedure/" + radiation.getId());
+                .setMethod(Bundle.HTTPVerb.PUT)
+                .setUrl("/Procedure/" + radiation.getId());
         bundle.addEntry().setResource(secondEncounter).getRequest()
                 .setMethod(Bundle.HTTPVerb.PUT)
                 .setUrl("/Encounter/" + secondEncounter.getId());
@@ -386,19 +376,16 @@ class CancerFhirExample {
                 ob.setValue(getCode(SNOMED_CT_SYSTEM, "248152002", "Female"));
                 break;
             case INDETERMINATE_SEX:
-                ob.setValue(getCode(SNOMED_CT_SYSTEM, "32570681000036106",
-                        "Indeterminate sex"));
+                ob.setValue(getCode(SNOMED_CT_SYSTEM, "32570681000036106", "Indeterminate sex"));
                 break;
             case INTERSEX:
-                ob.setValue(getCode(SNOMED_CT_SYSTEM, "32570691000036108",
-                        "Intersex"));
+                ob.setValue(getCode(SNOMED_CT_SYSTEM, "32570691000036108", "Intersex"));
                 break;
             case MALE:
                 ob.setValue(getCode(SNOMED_CT_SYSTEM, "248153007", "Male"));
                 break;
             case TRANSEXUAL:
-                ob.setValue(getCode(SNOMED_CT_SYSTEM, "407374003",
-                        "Transsexual"));
+                ob.setValue(getCode(SNOMED_CT_SYSTEM, "407374003", "Transsexual"));
                 break;
             default:
                 throw new RuntimeException("Unexpected sex value: " + sex);
@@ -442,8 +429,7 @@ class CancerFhirExample {
             long val) {
         Observation.ObservationComponentComponent res =
                 new Observation.ObservationComponentComponent();
-        res.setCode(getCode(LOINC_SYSTEM, "81300-6",
-                "Structural variant [Length]"));
+        res.setCode(getCode(LOINC_SYSTEM, "81300-6", "Structural variant [Length]"));
         res.setValue(new IntegerType(val));
         return res;
     }
@@ -452,8 +438,7 @@ class CancerFhirExample {
             long start, long end) {
         Observation.ObservationComponentComponent res =
                 new Observation.ObservationComponentComponent();
-        res.setCode(getCode(LOINC_SYSTEM, "81301-4",
-                "Structural variant outer start and end"));
+        res.setCode(getCode(LOINC_SYSTEM, "81301-4", "Structural variant outer start and end"));
         Range val = new Range();
         SimpleQuantity low = new SimpleQuantity();
         low.setValue(start);
@@ -469,8 +454,7 @@ class CancerFhirExample {
             long start, long end) {
         Observation.ObservationComponentComponent res =
                 new Observation.ObservationComponentComponent();
-        res.setCode(getCode(LOINC_SYSTEM, "81302-2",
-                "Structural variant inner start and end"));
+        res.setCode(getCode(LOINC_SYSTEM, "81302-2", "Structural variant inner start and end"));
         Range val = new Range();
         SimpleQuantity low = new SimpleQuantity();
         low.setValue(start);
