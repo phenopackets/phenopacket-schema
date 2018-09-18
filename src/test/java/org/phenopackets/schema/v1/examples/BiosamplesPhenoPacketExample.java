@@ -3,8 +3,8 @@ package org.phenopackets.schema.v1.examples;
 import org.phenopackets.schema.v1.PhenoPacket;
 import org.phenopackets.schema.v1.core.*;
 
+import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.parseTimestamp;
-import static org.phenopackets.schema.v1.converters.ConverterUtil.ontologyClass;
 
 /**
  * Test case for assessing suitability of the phenopacket for representing data from the Biosamples database

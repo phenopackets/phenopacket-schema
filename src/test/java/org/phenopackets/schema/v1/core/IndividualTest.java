@@ -10,7 +10,7 @@ import java.time.Instant;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.phenopackets.schema.v1.converters.ConverterUtil.ontologyClass;
+import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>

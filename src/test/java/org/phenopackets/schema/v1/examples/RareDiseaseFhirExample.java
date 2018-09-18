@@ -1,16 +1,12 @@
 package org.phenopackets.schema.v1.examples;
 
-import com.google.protobuf.Timestamp;
 import org.hl7.fhir.r4.model.*;
-import org.phenopackets.schema.v1.core.Individual;
-import org.phenopackets.schema.v1.core.Phenotype;
 
 import java.time.Instant;
 import java.util.Collections;
 import java.util.Date;
 
-import static org.phenopackets.schema.v1.converters.ConverterUtil.codeableConcept;
-import static org.phenopackets.schema.v1.converters.ConverterUtil.hpoConcept;
+import static org.phenopackets.schema.v1.PhenoPacketTestUtil.codeableConcept;
 
 /**
  * FHIR representation of the rare disease example from the Toronto hackathon. See
@@ -25,7 +21,7 @@ class RareDiseaseFhirExample {
      */
     static Bundle rareDiseaseBundle() {
         Patient probandPatient = new Patient();
-        probandPatient.setId("Proband#1");
+        probandPatient.setId("PROBAND#1");
         probandPatient.setBirthDate(Date.from(Instant.parse("1998-01-01T00:00:00Z")));
         probandPatient.setGender(Enumerations.AdministrativeGender.MALE);
 
@@ -75,14 +71,14 @@ class RareDiseaseFhirExample {
 //        Condition motherCondition = createPatientCondition(motherPhenotype, motherPatient);
 //
 //        //translate to Pedigree to FHIR
-//        FamilyMemberHistory familyMemberHistory = new FamilyMemberHistory();
-//        familyMemberHistory.setStatus(FamilyMemberHistory.FamilyHistoryStatus.COMPLETED);
-//        familyMemberHistory.setPatient(new Reference(probandPatient));
-//        familyMemberHistory.setRelationship(codeableConcept("http://hl7.org/fhir/ValueSet/v3-FamilyMember", "NMTH", null));//"NFTH" = Natural FaTHer
-//        Extension extension = new Extension();
-//        extension.setUrl("http://hl7.org/fhir/StructureDefinition/familymemberhistory-patient-record");
+        FamilyMemberHistory familyMemberHistory = new FamilyMemberHistory();
+        familyMemberHistory.setStatus(FamilyMemberHistory.FamilyHistoryStatus.COMPLETED);
+        familyMemberHistory.setPatient(new Reference(probandPatient));
+        familyMemberHistory.setRelationship(codeableConcept("http://hl7.org/fhir/ValueSet/v3-FamilyMember", "NMTH", null));//"NFTH" = Natural FaTHer
+        Extension extension = new Extension();
+        extension.setUrl("http://hl7.org/fhir/StructureDefinition/familymemberhistory-patient-record");
 //        extension.setValue(new Reference(motherPatient));
-//        familyMemberHistory.setExtension(Collections.singletonList(extension));
+        familyMemberHistory.setExtension(Collections.singletonList(extension));
 
         Bundle bundle = new Bundle();
         bundle.setType(Bundle.BundleType.COLLECTION);
@@ -98,8 +94,12 @@ class RareDiseaseFhirExample {
 //        bundle.addEntry().setResource(motherSex);
 //        bundle.addEntry().setResource(motherCondition);
 //
-//        bundle.addEntry().setResource(familyMemberHistory);
+        bundle.addEntry().setResource(familyMemberHistory);
 
         return bundle;
+    }
+
+    private static CodeableConcept hpoConcept(String id, String label){
+        return codeableConcept("http://pul.obolibrary.org/obo/hpo.owl", id, label);
     }
 }

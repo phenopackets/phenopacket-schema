@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.phenopackets.schema.v1.PhenoPacketTestUtil.toYaml;
+import static org.phenopackets.schema.v1.io.PhenoPacketFormat.toYaml;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>

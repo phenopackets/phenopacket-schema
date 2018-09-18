@@ -6,7 +6,8 @@ import org.phenopackets.schema.v1.core.*;
 
 import java.time.Instant;
 
-import static org.phenopackets.schema.v1.converters.ConverterUtil.ontologyClass;
+import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
+
 
 /**
  * Phenopacket representation of the cancer example from the Toronto hackathon. See
