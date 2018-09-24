@@ -143,7 +143,7 @@ message Individual {
     repeated Phenotype phenotypes = 6;
 
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
-    // For resources where there may be more than one organism being studied it is advisable to indicate the taxomic
+    // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to it's most specific level
     OntologyClass taxonomy = 7;
 
@@ -480,14 +480,21 @@ message File {
     string uri = 2;
 }
 
-// Defines a relationship between two individuals as referred to by their identifiers and an ontology term defining the
-// relationship between the two entities.
+// Defines a relationship between two entities as referred to by their identifiers and an ontology term defining the
+// relationship between the two entities and the evidence to support this. This is in the form of a 'triple' of
+// subject-predicate-object. For example HGNC:11179 - RO:0002326 - OMIM:105400
+// ('Gene SOD1' 'contributes_to' 'Amyotrophic lateral sclerosis 1')
 message Relationship {
+    // Identifier of the source or subject, ideally in CURIE form, or present in the current phenopacket.
     string source_id = 1;
-    // An ontology term/class used to describe the relationship between the source and the target, for example
-    // "contained in" http://purl.obolibrary.org/obo/RO_0001018
+    // An ontology term/class used to describe the relationship between the source and the target. This is the 'predicate'
+    // in a triple, for example "contained in" http://purl.obolibrary.org/obo/RO_0001018
     OntologyClass relationship_class = 2;
+    // Identifier of the target or object, ideally in CURIE form, or present in the current phenopacket.
     string target_id = 3;
+    // Sources of evidence in support of the asserted relationship. For example, this could be primary literature,
+    // clinical assay, informatics pipeline or observation.
+    repeated Evidence evidence = 4;
 }
 
 // Simple placeholder for a Gene concept

@@ -47,4 +47,7 @@ message PhenoPacket {
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     org.phenopackets.schema.v1.core.MetaData metaData = 11;
+
+    // Relationships between entities described in the phenopacket
+    repeated org.phenopackets.schema.v1.core.Relationship relationships = 12;
 }
