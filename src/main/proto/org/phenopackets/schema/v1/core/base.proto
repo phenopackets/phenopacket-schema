@@ -512,6 +512,8 @@ message HtsFile {
     // assembly the contents of this file was called against
     GenomeAssembly genome_assembly = 2;
     // a map of identifiers mapping an individual to a sample in the file should they differ, otherwise this should be empty
+    // the key values must correspond to the Individual::id for the individuals in the message, the values must map to the
+    // samples in the file.
     map<string, string> individual_to_sample_identifiers = 3;
     // the actual hts file
     File file = 4;
