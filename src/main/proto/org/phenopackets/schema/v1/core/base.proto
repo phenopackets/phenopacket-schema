@@ -500,7 +500,7 @@ message File {
 // A file in one of the HTS formats (https://samtools.github.io/hts-specs)
 message HtsFile {
 
-    enum HtsType {
+    enum HtsFormat {
         SAM = 0;
         BAM = 1;
         CRAM = 2;
@@ -508,7 +508,7 @@ message HtsFile {
         BCF = 4;
     }
 
-    HtsType hts_type = 1;
+    HtsFormat hts_format = 1;
     // assembly the contents of this file was called against
     GenomeAssembly genome_assembly = 2;
     // a map of identifiers mapping an individual to a sample in the file should they differ, otherwise this should be empty

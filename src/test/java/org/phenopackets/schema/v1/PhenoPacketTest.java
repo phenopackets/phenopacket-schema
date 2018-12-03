@@ -127,7 +127,7 @@ public class PhenoPacketTest {
                 .addGenes(fgfr2Gene)
                 .addDiseases(pfeifferSyndrome)
                 .addHtsFiles(HtsFile.newBuilder()
-                        .setHtsType(HtsFile.HtsType.VCF)
+                        .setHtsFormat(HtsFile.HtsFormat.VCF)
                         .setGenomeAssembly(GenomeAssembly.GRCH_37)
                         // in this case the proband identifier is different to the sample
                         // identifier used in the VCF file
