@@ -30,7 +30,9 @@ message Resource {
     // however, this field is purely for information purposes and software
     // should not encode any assumptions
     string name = 2;
-    // The prefix used in the CURIE e.g. HP, MP, ECO
+    // The prefix used in the CURIE of an OntologyClass e.g. HP, MP, ECO
+    // For example an HPO term will have a CURIE like this - HP:0012828 which should be used in combination with
+    // the iri_prefix to form a fully-resolvable IRI
     string namespace_prefix = 3;
     
     // For OBO ontologies, this should always be the PURL, e.g.
@@ -39,6 +41,19 @@ message Resource {
     
     // for OBO ontologies, this should be the versionIRI
     string version = 5;
+
+    // Full IRI prefix which can be used with the namespace_prefix and the OntologyClass::id to resolve to an IRI for a
+    // term. Tools such as the curie-util (https://github.com/prefixcommons/curie-util) can utilise this to produce
+    // fully-resolvable IRIs for an OntologyClass.
+    // e.g. Using the HPO term encoding the concept of 'Severe'
+    //    OntologyClass:
+    //        id: 'HP:0012828'
+    //        label: 'Severe'
+    //    Resource:
+    //        namespace_prefix: 'HP'
+    //        iri_prefix: 'http://purl.obolibrary.org/obo/HP_'
+    // the term can be resolved to http://purl.obolibrary.org/obo/HP_0012828
+    string iri_prefix = 6;
 }
 
 // A class (aka term, concept) in an ontology.
@@ -47,7 +62,7 @@ message Resource {
 message OntologyClass {
     // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
     // This is the primary key for the ontology class
-    // REQUIRED?
+    // REQUIRED!
     string id = 1;
     
     // class label, aka name. E.g. "Abnormality of cardiovascular system"
@@ -494,9 +509,9 @@ message HtsFile {
         BCF = 4;
     }
 
-    HtsType htsType = 1;
+    HtsType hts_type = 1;
     // assembly the contents of this file was called against
-    GenomeAssembly genomeAssembly = 2;
+    GenomeAssembly genome_assembly = 2;
     // the actual hts file
     File file = 3;
 }
