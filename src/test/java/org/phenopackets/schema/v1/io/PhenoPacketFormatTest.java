@@ -32,4 +32,26 @@ class PhenoPacketFormatTest {
         //Ta-da!
         assertThat(fromJson, equalTo(original));
     }
+
+    @Test
+    void toFromJson() throws Exception {
+        PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
+
+        String asJson = PhenoPacketFormat.toJson(original);
+        System.out.println(asJson);
+
+        PhenoPacket transformed = PhenoPacketFormat.fromJson(asJson);
+        assertThat(transformed, equalTo(original));
+    }
+
+    @Test
+    void toFromYaml() throws Exception {
+        PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
+
+        String asYaml = PhenoPacketFormat.toYaml(original);
+        System.out.println(asYaml);
+
+        PhenoPacket transformed = PhenoPacketFormat.fromYaml(asYaml);
+        assertThat(transformed, equalTo(original));
+    }
 }
