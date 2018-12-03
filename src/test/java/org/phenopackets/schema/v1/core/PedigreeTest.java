@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.phenopackets.schema.v1.io.PhenoPacketFormat.toYaml;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
@@ -48,8 +47,6 @@ public class PedigreeTest {
                 .addPersons(father)
                 .addPersons(daughter)
                 .build();
-
-        System.out.println(toYaml(pedigree));
 
         assertThat(pedigree.getPersonsCount(), equalTo(3));
     }

@@ -25,9 +25,7 @@ class PhenoPacketFormatTest {
         String asJson = PhenoPacketFormat.yamlToJson(asYaml);
         System.out.println(asJson);
 
-        PhenoPacket.Builder builder = PhenoPacket.newBuilder();
-        JsonFormat.parser().merge(asJson, builder);
-        PhenoPacket fromJson = builder.build();
+        PhenoPacket fromJson = PhenoPacketFormat.fromJson(asJson);
 
         //Ta-da!
         assertThat(fromJson, equalTo(original));

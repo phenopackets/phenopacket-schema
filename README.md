@@ -31,7 +31,24 @@ Java people can incorporate phenopackets-api into their code by importing the ja
 The following sections describe how to achieve these two things.
 
 ### Exchanging PhenoPackets directly
-Examples on how these can be used can be found in the test directory. There are no explicit relationships defined between fields in the phenopacket (apart from the Pedigree), so it is vital that resources exchanging phenopackets agree on what is valid and what the fields mean in relation to other fields in the phenopacket. For example the ```PhenoPacket.genes``` field may be agreed upon as representing the genes for a gene panel in one context, or a set of candidate genes or perhaps a diagnosed causative gene.  
+Examples on how these can be used can be found in the test directory. There are no explicit relationships defined between fields in the phenopacket (apart from the Pedigree), so it is vital that resources exchanging phenopackets agree on what is valid and what the fields mean in relation to other fields in the phenopacket. For example the ```PhenoPacket.genes``` field may be agreed upon as representing the genes for a gene panel in one context, or a set of candidate genes or perhaps a diagnosed causative gene.
+
+### JSON/YAML formats 
+A PhenoPacket can be transformed from the native binary format into JSON or YAML and easily inter-converted between these formats. The ```PhenoPacketFormat``` class contains simple utility methods to perform these transformations. Usage is shown here:
+
+```java
+PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
+
+String asYaml = PhenoPacketFormat.toYaml(original);
+System.out.println(asYaml);
+PhenoPacket fromYaml = PhenoPacketFormat.fromYaml(asYaml);
+
+String asJson = PhenoPacketFormat.yamlToJson(asYaml);
+System.out.println(asJson);
+
+PhenoPacket fromJson = PhenoPacketFormat.fromJson(asJson);
+String backToJson = PhenoPacketFormat.toJson(fromJson);
+```
 
 ### Building new messages from the schema
 There is an example of how to do this included in the ```proto/org/matchmakerexchange.api/v1/mme.proto``` file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from ```phenopackets/schema/v1/core/base.proto``` where applicable. Using the above example, perhaps the ```PhenoPacket.genes``` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ```Gene``` as a building block.  

@@ -24,9 +24,9 @@ public class PhenoPacketFormat {
     }
 
     public static PhenoPacket fromJson(String jsonString) throws IOException {
-        PhenoPacket.Builder phenopacketBuilder = PhenoPacket.newBuilder();
-        JsonFormat.parser().merge(jsonString, phenopacketBuilder);
-        return phenopacketBuilder.build();
+        PhenoPacket.Builder phenoPacketBuilder = PhenoPacket.newBuilder();
+        JsonFormat.parser().merge(jsonString, phenoPacketBuilder);
+        return phenoPacketBuilder.build();
     }
 
     public static String toYaml(PhenoPacket phenoPacket) throws IOException {
