@@ -98,6 +98,7 @@ public class PhenoPacketTest {
                         .setId("hp")
                         .setName("human phenotype ontology")
                         .setNamespacePrefix("HP")
+                        .setIriPrefix("http://purl.obolibrary.org/obo/HP_")
                         .setUrl("http://purl.obolibrary.org/obo/hp.owl")
                         .setVersion("2018-03-08")
                         .build())
@@ -105,6 +106,7 @@ public class PhenoPacketTest {
                         .setId("geno")
                         .setName("Genotype Ontology")
                         .setNamespacePrefix("GENO")
+                        .setIriPrefix("http://purl.obolibrary.org/obo/GENO_")
                         .setUrl("http://purl.obolibrary.org/obo/geno.owl")
                         .setVersion("19-03-2018")
                         .build())
@@ -112,6 +114,7 @@ public class PhenoPacketTest {
                         .setId("so")
                         .setName("Sequence types and features")
                         .setNamespacePrefix("SO")
+                        .setIriPrefix("http://purl.obolibrary.org/obo/SO_")
                         .setUrl("http://purl.obolibrary.org/obo/so.owl")
                         .setVersion("2015-11-24")
                         .build())
@@ -119,12 +122,18 @@ public class PhenoPacketTest {
                 .build();
 
         PhenoPacket pfeifferDiagnosisExample = PhenoPacket.newBuilder()
-                .setPatient(proband)
+                .setSubject(proband)
                 .addVariants(pathogenicVariant)
                 .addGenes(fgfr2Gene)
                 .addDiseases(pfeifferSyndrome)
-                .setGenomeAssembly(GenomeAssembly.GRCH_37)
-                .setVcf(File.newBuilder().setPath("/data/vcfs/proband.vcf").build())
+                .addHtsFiles(HtsFile.newBuilder()
+                        .setHtsType(HtsFile.HtsType.VCF)
+                        .setGenomeAssembly(GenomeAssembly.GRCH_37)
+                        // in this case the proband identifier is different to the sample
+                        // identifier used in the VCF file
+                        .putIndividualToSampleIdentifiers(proband.getId(), "SAMPLE0001")
+                        .setFile(File.newBuilder().setPath("/data/vcfs/proband.vcf").build())
+                        .build())
                 .setMetaData(metaData)
                 .build();
 

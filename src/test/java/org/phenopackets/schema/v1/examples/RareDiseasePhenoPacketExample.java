@@ -191,7 +191,7 @@ class RareDiseasePhenoPacketExample {
                 .build();
 
         return PhenoPacket.newBuilder()
-                .setPatient(proband)
+                .setSubject(proband)
                 .addAllIndividuals(ImmutableList.of(sisterOfProband, mother, father))
                 .setPedigree(pedigree)
                 .addAllVariants(ImmutableList.of(var1, var2, var3))
