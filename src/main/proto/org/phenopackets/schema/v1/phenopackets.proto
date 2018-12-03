@@ -15,7 +15,7 @@ message PhenoPacket {
     string id = 1;
 
     // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
-    org.phenopackets.schema.v1.core.Individual patient = 2;
+    org.phenopackets.schema.v1.core.Individual subject = 2;
 
     // Individuals genetically related to the patient - e.g. mother, father, siblings or members of a cohort.
     // It is expected that a pedigree be included if this and the patient fields are included.
@@ -39,15 +39,12 @@ message PhenoPacket {
     // resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Disease diseases = 8;
 
-    // Reference genome assembly against which the sample was called. This is required as the VCF specification
-    // does not mandate this.
-    org.phenopackets.schema.v1.core.GenomeAssembly genome_assembly = 9;
-    // Pointer to the relevant VCF file for the patient
-    org.phenopackets.schema.v1.core.File vcf = 10;
+    // Pointer to the relevant HTS file(s) for the patient
+    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 9;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v1.core.MetaData metaData = 11;
+    org.phenopackets.schema.v1.core.MetaData metaData = 10;
 
     // Relationships between entities described in the phenopacket
-    repeated org.phenopackets.schema.v1.core.Relationship relationships = 12;
+    repeated org.phenopackets.schema.v1.core.Relationship relationships = 11;
 }
