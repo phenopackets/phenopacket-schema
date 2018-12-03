@@ -473,11 +473,32 @@ message Pedigree {
     }
 }
 
+// Any relevant, non-HTS (see HtsFile for HTS files) file.
 message File {
     // Full system path to the file. e.g. /data/genomes/file1.vcf.gz
     string path = 1;
     // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
     string uri = 2;
+    // description of the file contents
+    string description = 3;
+}
+
+// A file in on of the HTS formats (https://samtools.github.io/hts-specs)
+message HtsFile {
+
+    enum HtsType {
+        SAM = 0;
+        BAM = 1;
+        CRAM = 2;
+        VCF = 3;
+        BCF = 4;
+    }
+
+    HtsType htsType = 1;
+    // assembly the contents of this file was called against
+    GenomeAssembly genomeAssembly = 2;
+    // the actual hts file
+    File file = 3;
 }
 
 // Defines a relationship between two entities as referred to by their identifiers and an ontology term defining the
