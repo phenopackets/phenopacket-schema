@@ -461,6 +461,16 @@ message Disease {
     string id = 1;
     // Textual name of the disease e.g. Pfeiffer syndrome
     string label = 2;
+
+    // The onset of the disease. The values of this will come from the HPO onset hierarchy
+    // i.e. subclasses of HP:0003674
+    // FHIR mapping: Condition.onset
+    oneof onset {
+        Age age_of_onset = 3;
+        google.protobuf.Timestamp time_of_onset = 4;
+        Period period_of_onset = 5;
+        OntologyClass class_of_onset = 6;
+    }
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
@@ -506,6 +516,7 @@ message HtsFile {
         CRAM = 2;
         VCF = 3;
         BCF = 4;
+        GVCF = 5;
     }
 
     HtsFormat hts_format = 1;
@@ -517,23 +528,6 @@ message HtsFile {
     map<string, string> individual_to_sample_identifiers = 3;
     // the actual hts file
     File file = 4;
-}
-
-// Defines a relationship between two entities as referred to by their identifiers and an ontology term defining the
-// relationship between the two entities and the evidence to support this. This is in the form of a 'triple' of
-// subject-predicate-object. For example HGNC:11179 - RO:0002326 - OMIM:105400
-// ('Gene SOD1' 'contributes_to' 'Amyotrophic lateral sclerosis 1')
-message Relationship {
-    // Identifier of the source or subject, ideally in CURIE form, or present in the current phenopacket.
-    string source_id = 1;
-    // An ontology term/class used to describe the relationship between the source and the target. This is the 'predicate'
-    // in a triple, for example "contained in" http://purl.obolibrary.org/obo/RO_0001018
-    OntologyClass relationship_class = 2;
-    // Identifier of the target or object, ideally in CURIE form, or present in the current phenopacket.
-    string target_id = 3;
-    // Sources of evidence in support of the asserted relationship. For example, this could be primary literature,
-    // clinical assay, informatics pipeline or observation.
-    repeated Evidence evidence = 4;
 }
 
 // Simple placeholder for a Gene concept
