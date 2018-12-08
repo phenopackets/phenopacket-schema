@@ -70,3 +70,99 @@ This will generate a Java file called ``Dog.java`` with code to create, import, 
 
 
 It is highly recommended to peruse the complete Java file, but we will leave that as an exercise for the reader.
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+Using the generated code
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+We can now easily use a generated code to create Java instance of the Dog class. We will not provide a complete maven tutorial here, but the
+key things that need to be done to get this to work are the following.
+
+1. set up a maven-typical directory structure such as::
+
+     src
+     --main
+     ----java
+     ------org
+     --------example
+     ----proto
+
+
+Add the following to the dependencies::
+
+   <dependency>
+     <groupId>com.google.protobuf</groupId>
+     <artifactId>protobuf-java</artifactId>
+     <version>3.5.1</version>
+   </dependency>
+   
+and add the following to the plugin section::
+
+   <plugin>
+      <groupId>org.xolstice.maven.plugins</groupId>
+      <artifactId>protobuf-maven-plugin</artifactId>
+      <version>0.5.1</version>
+      <extensions>true</extensions>
+      <configuration>
+        <protocExecutable>/usr/local/bin/protoc</protocExecutable>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>compile</goal>
+            <goal>test-compile</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+
+This is the simplest configuration of the `xolstice plugin <https://www.xolstice.org/protobuf-maven-plugin/usage.html>`_, see the documentation for further information. We have assumed that protoc is installed in /usr/local/bin in the above, and the path may need to be adjusted on your system.
+
+
+Add the protobuf definition to the proto directory. Add a class such as *Main.java* in the /src/main/java/org/example directory (package: org.example). For simplcity, the following code snippets could be written in the main method::
+
+   String name = "Fido";
+   int weight = 5;
+   String toy1="bone";
+   String toy2="ball";
+   
+   Dog.dog fido = Dog.dog.newBuilder()
+                .setName(name).
+                setWeight(weight).
+                addToys(toy1).
+                addToys(toy2).
+                build();
+		
+    System.out.println(fido.getName() + "; weight: " + fido.getWeight() + "kg;  favorite toys: "
+        + fido.getToysList().stream().collect(Collectors.joining("; ")));
+
+
+
+The code can be compiled with::
+
+  $ mvn clean package
+
+If we run the demo app, it should output ``Fido; weight: 5kg;  favorite toys: bone; ball``.
+
+The following code snippet serializes the Java object fido and writes the serialized message to disk, then reads the message and displays it.::
+
+        try {
+            // serialize
+            String filePath="fido.pb";
+            FileOutputStream fos = new FileOutputStream(filePath);
+            fido.writeTo(fos);
+            // deserialize
+            Dog.dog deserialized
+                    = Dog.dog.newBuilder()
+                    .mergeFrom(new FileInputStream(filePath)).build();
+
+            System.out.println("deserialized: "+deserialized.getName() + "; weight: " + deserialized.getWeight() + "kg;  favorite toys: "
+                    + deserialized.getToysList().stream().collect(Collectors.joining("; ")));
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+The code should output ``deserialized: Fido; weight: 5kg;  favorite toys: bone; ball``.
+
+We hope that this brief introduction was useful and refer to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for more details. 
