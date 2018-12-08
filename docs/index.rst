@@ -7,13 +7,7 @@ Welcome to the documentation for phenopackets-schema!
    :caption: Contents
 
    protobuf
-   02_gui_data
-   03_gui_design
-   04_gui_viewpoint
-   05_output
-   06_concepts
-   07_probe_upload
-   08_troubleshooting
+   basics
 
 ~~~~~~~~~~~~~~~~~~~~~~
 What is a PhenoPacket?
