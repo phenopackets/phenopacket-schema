@@ -1,0 +1,72 @@
+================================
+A short introduction to protobuf
+================================
+
+Phenopackets schema uses protobuf, an exchange format developed in 2--8 by Google. We refer readers to the excellent `Wikipedia page on Protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ and to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for details. This page intends to get readers who are unfamiliar with protobuf up to speed with the main aspects of this technology that will be needed to understand the
+phenopackets-schema.
+
+Google initially develop Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopackets-schema with Java, but all of the features are available in any of the lanugages that protobuf works with including C++ and Python. phenopackets-schema currently uses protobuf version 3.5.1 and we restrict our explanations to protobuf version 3 in this documentation.
+
+The major advantages of protobuf are that it is language -neutral, faster than many other schema languages such as XML and JSON, and can be simpler to use because of features such as automatic validation of data objects.
+
+
+Protobuf forsees that data structures (called ** messages**) are defined in a definition file (with the suffix .proto) and compiled to generate code that is invoked by the sender or recipient of the data to encode/decode the data. 
+
+
+~~~~~~~~~~~~~~~~~~~
+Installing protobuf
+~~~~~~~~~~~~~~~~~~~
+
+The following exercise is not necessary to use phenopackets-schema, but is intended to build intuition for how protobuf works. We first need to install protobuf. We show one simple way of installing protobuf on a linux system in the following.
+
+1. Download the source code from the `protobuf GitHub page <https://github.com/protocolbuffers/protobuf>`_. Most users should down load the latest tar.gz archive from the Release page. Extract the code.
+
+2. Install the code as follows (to do so, you will need the packages autoconf, automake, libtool, curl, make, g++, unzip).
+
+ .. code::
+
+   ./configure
+   make
+   make check
+   sudo make install
+   sudo ldconfig # refresh shared library cache.
+
+
+You now should check if installation was sucessful::
+
+  $ protoc --version
+  libprotoc 3.6.1
+
+~~~~~~~~~~~~~~~~~
+An example schema
+~~~~~~~~~~~~~~~~~
+
+protobuf represents data as messages whose fields are indicated and aliased with a number and tag. Fields can be required, optional, or repeated.
+The following message describes a dog. The name is represented as a string, and the field is indicated with the number 1. The weight of the dog is represented as an integer.  The toys field can store multiple items represented as a string. Note that in protobuf3, alls fields are optional by default and it is not possible to define a field as required.
+
+ .. code::
+
+    syntax = "proto3";
+    
+    message dog {
+      required string name = 1;
+      int32 weight = 2;
+      repeated string toys = 4;
+      }
+
+We can compile this code with the following command::
+
+  $ protoc -I=. --java_out=. dog.proto 
+
+This will generate a Java file called ``Dog.java`` with code to create, import, and export protobuf data. For example, the weight field is represented as follows.
+
+ .. code::
+    
+    public static final int WEIGHT_FIELD_NUMBER = 2;
+    private int weight_;
+    public int getWeight() {
+      return weight_;
+    }
+
+
+It is highly recommended to peruse the complete Java file, but we will leave that as an exercise for the reader.
