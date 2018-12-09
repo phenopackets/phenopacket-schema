@@ -17,6 +17,7 @@ Welcome to the documentation for phenopackets-schema!
    attributes
    externalresource
    evidence
+   metadata
 
 ~~~~~~~~~~~~~~~~~~~~~~
 What is a PhenoPacket?
