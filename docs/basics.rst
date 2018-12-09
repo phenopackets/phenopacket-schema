@@ -46,8 +46,7 @@ subject
 ~~~~~~~
 
 This is typically the individual human (or another organism) that the PhenoPacket is describing. In many cases, the individual will
-be a patient or proband of the study. This field maps to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ element. The element
-is desribed in detail TODO (add appendix), but contains elements that describe attributes such as biological sex, age, or date of birth.
+be a patient or proband of the study. This field maps to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ element. The PhenoPacket :ref:`Individual` element contains elements that describe attributes such as biological sex, age, or date of birth.
 
 ~~~~~~~~~~~
 individuals

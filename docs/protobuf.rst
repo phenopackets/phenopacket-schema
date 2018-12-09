@@ -144,6 +144,10 @@ The code can be compiled with::
 
 If we run the demo app, it should output ``Fido; weight: 5kg;  favorite toys: bone; ball``.
 
+
+Serialization
+=============
+
 The following code snippet serializes the Java object fido and writes the serialized message to disk, then reads the message and displays it.::
 
         try {

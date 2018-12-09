@@ -8,6 +8,15 @@ Welcome to the documentation for phenopackets-schema!
 
    protobuf
    basics
+   spherocytosis
+   individual
+   phenotype
+   variant
+   age
+   geolocation
+   attributes
+   externalresource
+   evidence
 
 ~~~~~~~~~~~~~~~~~~~~~~
 What is a PhenoPacket?
