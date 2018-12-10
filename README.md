@@ -1,6 +1,7 @@
 # Phenopacket schema
 [![Build Status](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema)
+[![Documentation](https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest)](https://phenopackets-schema.readthedocs.io/en/latest/)
 
 This has been produced as part of the [GA4GH](https://ga4gh.org) [Clinical Phenotype Data Capture Workstream](https://ga4gh-cp.github.io/) and it merges the existing [GA4GH metadata-schemas](https://github.com/ga4gh-metadata/metadata-schemas) work with a more focused model from the [phenopacket-reference-implementation](https://github.com/phenopackets/phenopacket-reference-implementation). 
 
