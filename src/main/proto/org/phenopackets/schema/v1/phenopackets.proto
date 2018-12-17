@@ -35,7 +35,7 @@ message PhenoPacket {
     // variants. The resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Variant variants = 7;
 
-    // Placeholder for disease concepts - could be used for either describing diagnosed or suspect conditions. The
+    // Placeholder for disease concepts - could be used for either describing diagnosed or suspected conditions. The
     // resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Disease diseases = 8;
 
