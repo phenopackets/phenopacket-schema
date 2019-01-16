@@ -20,7 +20,7 @@ public class PhenoPacketFormat {
     }
 
     public static String toJson(PhenoPacket phenoPacket) throws IOException {
-        return JsonFormat.printer().print(phenoPacket);
+        return JsonFormat.printer().includingDefaultValueFields().print(phenoPacket);
     }
 
     public static PhenoPacket fromJson(String jsonString) throws IOException {

@@ -542,15 +542,16 @@ message Gene {
 // Human genome reference assembly - major version
 enum GenomeAssembly {
     option allow_alias = true;
-    //  defaulted to GRCh37 as this is more common than NCBI36?
-    GRCH_37 = 0;
-    HG_19 = 0;
+    UNKNOWN = 0;
 
     NCBI_36 = 1;
     HG_18 = 1;
 
-    GRCH_38 = 2;
-    HG_38 = 2;
+    GRCH_37 = 2;
+    HG_19 = 2;
+
+    GRCH_38 = 3;
+    HG_38 = 3;
 }
 
 // Representation of the sequence coordinate system.
