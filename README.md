@@ -7,6 +7,12 @@ This has been produced as part of the [GA4GH](https://ga4gh.org) [Clinical Pheno
 
 This is a re-defined version of the original phenopacket with a more individual-centric approach. This new approach was taken in order to simplify the code required to represent and manipulate the data and also better represent this sort of data as it is in day to day use.
 
+## Documentation
+
+The core documentation can be found at [https://phenopackets-schema.readthedocs.io/](https://phenopackets-schema.readthedocs.io/)
+
+The documentation in this README is primarily for the users of the phenopackets-schema java library.
+
 ## Scope and Purpose
 The goal of the phenopacket-schema is to define the phenotypic description of a patient/sample in the context of rare disease or cancer genomic diagnosis. It aims to provide sufficient and shareable information of the data outside of the EHR (Electronic Health Record) with the aim of enabling capturing of sufficient structured data at the point of care by a clinician or clinical geneticist for sharing with other labs or computational analysis of the data in clinical or research environments. 
 
