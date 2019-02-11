@@ -10,8 +10,10 @@ message MetaData {
     google.protobuf.Timestamp created = 1;
     // some kind of identifier for the contributor/ program
     string created_by = 2;
+    // information about the person/organisation/network that has submitted this phenopacket
+    string submitted_by = 3;
     // a listing of the ontologies/resources referenced in the phenopacket
-    repeated Resource resources = 3;
+    repeated Resource resources = 4;
 }
 
 // Description of an external resource used for referencing an object. For example the resource may be an ontology such
