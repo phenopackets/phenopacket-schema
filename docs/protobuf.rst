@@ -2,12 +2,12 @@
 A short introduction to protobuf
 ================================
 
-Phenopackets schema uses protobuf, an exchange format developed in 2--8 by Google. We refer readers to the excellent `Wikipedia page on Protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ and to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for details. This page intends to get readers who are unfamiliar with protobuf up to speed with the main aspects of this technology that will be needed to understand the
+Phenopackets schema uses protobuf, an exchange format developed in 2008 by Google. We refer readers to the excellent `Wikipedia page on Protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ and to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for details. This page intends to get readers who are unfamiliar with protobuf up to speed with the main aspects of this technology that will be needed to understand the
 phenopackets-schema.
 
 Google initially develop Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopackets-schema with Java, but all of the features are available in any of the lanugages that protobuf works with including C++ and Python. phenopackets-schema currently uses protobuf version 3.5.1 and we restrict our explanations to protobuf version 3 in this documentation.
 
-The major advantages of protobuf are that it is language -neutral, faster than many other schema languages such as XML and JSON, and can be simpler to use because of features such as automatic validation of data objects.
+The major advantages of protobuf are that it is language-neutral, faster than many other schema languages such as XML and JSON, and can be simpler to use because of features such as automatic validation of data objects.
 
 
 Protobuf forsees that data structures (called ** messages**) are defined in a definition file (with the suffix .proto) and compiled to generate code that is invoked by the sender or recipient of the data to encode/decode the data. 
@@ -19,7 +19,7 @@ Installing protobuf
 
 The following exercise is not necessary to use phenopackets-schema, but is intended to build intuition for how protobuf works. We first need to install protobuf. We show one simple way of installing protobuf on a linux system in the following.
 
-1. Download the source code from the `protobuf GitHub page <https://github.com/protocolbuffers/protobuf>`_. Most users should down load the latest tar.gz archive from the Release page. Extract the code.
+1. Download the source code from the `protobuf GitHub page <https://github.com/protocolbuffers/protobuf>`_. Most users should download the latest tar.gz archive from the Release page. Extract the code.
 
 2. Install the code as follows (to do so, you will need the packages autoconf, automake, libtool, curl, make, g++, unzip).
 
