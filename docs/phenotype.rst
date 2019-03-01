@@ -51,7 +51,7 @@ required in cases to indicate that the phenotype was looked for, but not observe
 severity (Phenotype)
 ====================
 This optional element describes the severity of the condition e.g. subclasses of
-`Severity (HP:0012824) <https://hpo.jax.org/app/browse/term/HP:0012824>` or `SNOMED:272141005-Severities <https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.96&code=272141005>`
+`Severity (HP:0012824) <https://hpo.jax.org/app/browse/term/HP:0012824>`_ or `SNOMED:272141005-Severities <https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.96&code=272141005>`_
    
 modifiers (Phenotype)
 =====================
@@ -63,7 +63,7 @@ Terms can be taken from the hierarchy of `Clinical modifier <https://hpo.jax.org
 onset (Phenotype)
 =================
 This element can be used to describe the age at which a phenotypic feature was first noticed or diagnosed.
-For many medical use cases, either the Age subelement or an ontology term (e.g., from the HPO Onset (HP:0003674) `https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
+For many medical use cases, either the Age subelement or an ontology term (e.g., from the HPO `Onset (HP:0003674) https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
 
 evidence (Phenotype)
 ====================
