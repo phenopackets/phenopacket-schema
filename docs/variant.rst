@@ -60,9 +60,11 @@ as opposed to it being implicit within the spec of the system. This element reli
 
 position (Variant)
 ==================
-TODO -- define me!
-  // Sequence position at which the change is located, in the specified coordinate system.
-   //start, end...
+Sequence position at which the change is located, in the specified coordinate system.
+For instance, ``Seq1:4:A:G`` refers to a single nucleotide variant at the fifth nucleotide (
+nucleotide 4 according to zero-based numbering) from an ``A`` to a ``G``. See the
+`SPDI webpage <https://www.ncbi.nlm.nih.gov/variation/notation/>`_ for more
+examples.
 
 deletion
 ========
