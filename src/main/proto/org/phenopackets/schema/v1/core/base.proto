@@ -578,7 +578,7 @@ message Variant {
     // as opposed to it being implicit within the spec of the system.
     CoordinateSystem coordinate_system = 3;
     // Sequence position at which the change is located, in the specified coordinate system.
-    int32 position = 4; //start, end...
+    int32 position = 4;
     // Deleted bases on the forward strand - equivalent to the VCF REF
     string deletion = 5;
     // Inserted bases on the forward strand - equivalent to the VCF ALT
