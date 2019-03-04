@@ -132,7 +132,7 @@ class RareDiseasePhenoPacketExample {
 
 
         Variant var1 = Variant.newBuilder()
-                .setSequence("NM_001361.4")
+                .setSequenceAccession("NM_001361.4")
                 .setPosition(423)
                 .setDeletion("C")
                 .setInsertion("T")
@@ -143,7 +143,7 @@ class RareDiseasePhenoPacketExample {
                 .build();
 
         Variant var2 = Variant.newBuilder()
-                .setSequence("NM_001361.4")
+                .setSequenceAccession("NM_001361.4")
                 .setPosition(474)
                 .setDeletion("G")
                 .setInsertion("A")
@@ -154,7 +154,7 @@ class RareDiseasePhenoPacketExample {
                 .build();
 
         Variant var3 = Variant.newBuilder()
-                .setSequence("NM_001369.2")
+                .setSequenceAccession("NM_001369.2")
                 .setPosition(12639)
                 .setDeletion("AA")
                 .setInsertion("AAA")

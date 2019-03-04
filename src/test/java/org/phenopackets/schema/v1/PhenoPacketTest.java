@@ -23,7 +23,7 @@ public class PhenoPacketTest {
                 .build();
 
         Variant pathogenicVariant = Variant.newBuilder()
-                .setSequence("NC_000010.10")
+                .setSequenceAccession("NC_000010.10")
                 .setPosition(123256214)
                 .setDeletion("T")
                 .setInsertion("G")

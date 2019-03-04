@@ -572,7 +572,7 @@ message Variant {
     // genome assembly isn't strictly necessary if using the sequence accession as that will be unique for the assembly/sequence
     GenomeAssembly genome_assembly = 1;
     // Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10)
-    string sequence = 2;
+    string sequence_accession = 2;
     // Coordinate system of the position. Defaults to ZERO_BASED. Note that SPDI and VMC mandate a ZERO_BASED system,
     // whereas VCV and HGVS use ONE_BASED systems. This is specified here as a means of providing unambiguous positioning
     // as opposed to it being implicit within the spec of the system.

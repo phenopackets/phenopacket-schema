@@ -12,7 +12,7 @@ import java.io.IOException;
  * Utility class for transforming {@link PhenoPacket} objects to/from JSON or YAML and for inter-converting between
  * these representations.
  *
- * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
+ * @author Jules Jacobsen j.jacobsen@qmul.ac.uk
  */
 public class PhenoPacketFormat {
 

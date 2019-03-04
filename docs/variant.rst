@@ -23,7 +23,7 @@ The protobuf code is as follows::
 
   message Variant {
     GenomeAssembly genome_assembly = 1; 
-    string sequence = 2; 
+    string sequence_accession = 2; 
     CoordinateSystem coordinate_system = 3;
     int32 position = 4;
     // Deleted bases on the forward strand - equivalent to the VCF REF
@@ -43,7 +43,7 @@ It is not strictly necessary to indicate the genome assembly the sequence access
 
 sequence
 ========
- Accession of the sequence e.g. NC_000010.10 (GRCh37 chromosome 10).
+ Accession of the sequence e.g., NC_000010.10 (GRCh37 chromosome 10), or ENST00000380152.7 (Ensembl's BRCA2-201 transcript).
  
 
 coordinate_system
