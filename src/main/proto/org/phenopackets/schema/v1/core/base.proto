@@ -161,7 +161,7 @@ message Individual {
 
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
-    // identifier of that organism, to it's most specific level
+    // identifier of that organism, to its most specific level
     OntologyClass taxonomy = 7;
 
     // ISO8601 UTC timestamp at which this Individual's record was created, in
