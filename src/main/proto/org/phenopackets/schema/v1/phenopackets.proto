@@ -17,7 +17,8 @@ message PhenoPacket {
     // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
     org.phenopackets.schema.v1.core.Individual subject = 2;
 
-    // Individuals genetically related to the patient - e.g. mother, father, siblings or members of a cohort.
+    // Individuals related in some way to the patient. For instance, the individuals may 
+    // be genetically related or may be members of a cohort.
     // It is expected that a pedigree be included if this and the patient fields are included.
     repeated org.phenopackets.schema.v1.core.Individual individuals = 3;
 
