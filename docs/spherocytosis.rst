@@ -77,11 +77,11 @@ With this, we present a function that creates a PhenoPacket that represents the 
 
         Individual proband = Individual.newBuilder()
                 .setSex(FEMALE)
-               .setId(PROBAND_ID)
+                .setId(PROBAND_ID)
                 .setAgeAtCollection(Age.newBuilder().setAge("P27Y3M").build())
                 .addPhenotypes(spherocytosis)
-               .addPhenotypes(jaundice)
-               .addPhenotypes(splenomegaly)
+                .addPhenotypes(jaundice)
+                .addPhenotypes(splenomegaly)
                 .addPhenotypes(notHepatomegaly)
                 .addPhenotypes(reticulocytosis)
                 .build();
@@ -225,3 +225,62 @@ This code will outut the following JSON code::
   }
 
 The phenopackets-schema offers many more functions to create phenopackets for special situations. We refer interested readers to the protobuf and the example Java code in the phenopackets-schema repository.
+
+
+Reading phenopackets in Java
+============================
+The following code demonstrates how to use Java to input a Phenopacket
+that describes a patient with Human Phenotype Ontology (HPO) terms. We make
+use of the open-source `phenol library <https://github.com/monarch-initiative/phenol>`_ to
+input and manipulate the HPO file.
+
+  .. code-block:: java	  
+
+    import org.json.simple.JSONObject;
+    import org.json.simple.parser.JSONParser;
+    import org.phenopackets.schema.v1.PhenoPacket;
+    import org.phenopackets.schema.v1.core.*;
+    JSONParser parser = new JSONParser();
+    
+    Object obj = parser.parse(new FileReader(pathToJsonPhenopacketFile));
+    JSONObject jsonObject = (JSONObject) obj;
+    String phenopacketJsonString = jsonObject.toJSONString();
+    PhenoPacket phenopack = PhenoPacketFormat.fromJson(phenopacketJsonString);
+    String samplename = phenopack.getSubject().getId();
+    // Get the phenotypic abnormalities that were observed in the affected individual
+    Individual subject =phenoPacket.getSubject();
+    List<TermId> observedPhenotypes= subject
+                .getPhenotypesList()
+                .stream()
+                .distinct() // this removes any duplicate HPO terms that may be present
+                .filter(((Predicate<Phenotype>) Phenotype::getNegated).negate()) // i.e., just take non-negated phenotypes
+                .map(Phenotype::getType)
+                .map(OntologyClass::getId)
+                .map(TermId::of)
+                .collect(ImmutableList.toImmutableList());
+    // Get the excluded phenotypes (i.e., these were observed to be not present)
+    List<TermId> excludedPhenotypes = subject
+                .getPhenotypesList()
+                .stream()
+                .filter(Phenotype::getNegated) // i.e., just take negated phenotypes
+                .map(Phenotype::getType)
+                .map(OntologyClass::getId)
+                .map(TermId::of)
+                .collect(ImmutableList.toImmutableList());
+    List<HtsFile> htsFileList = phenoPacket.getHtsFilesList();
+    // depending on application, we may need to check that there is one (and only one) high-throughput file
+    // The following code assumes that the list of HTS files contains one VCF file
+    String vcfpath=null;
+    String genomeAssembly=null;
+    for (HtsFile htsFile : htsFileList) {
+      if (htsFile.getHtsFormat().equals(HtsFile.HtsFormat.VCF)) {
+        vcfpath=htsFile.getFile().getPath();
+        genomeAssembly=htsFile.getGenomeAssembly().name();
+      }
+    }
+
+
+The above code block thus extracts the same of the proband, a list of observed and excluded HPO terms, as well
+as the path to the corresponding VCF file. We would expect such a VCF file to be used to coordinate the
+running of a phenotype-driven genomic diagnostic analysis software that requires both a VCF file as well
+as lists of observed (and optionally) excluded phenotypes.
