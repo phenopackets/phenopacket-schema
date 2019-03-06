@@ -52,8 +52,14 @@ be a patient or proband of the study. This field maps to the FHIR `Patient <http
 individuals
 ~~~~~~~~~~~
 This field can contain a list of other individuals. The PhenoPacket standard expects
-that these individuals are related to the proband in some way, e.g., mother, father, siblings or members of a cohort.
-TODO see https://github.com/phenopackets/phenopacket-schema/issues/15
+that these individuals are related in some way to the subject of the phenopacket. For instance, the individuals may 
+be genetically related or may be members of a cohort. If this field is used, then 
+it is expected that a pedigree will be included for genetically related individuals 
+for use cases such as genomic diagnostics. If a phenopacket is being used to 
+describe one member of a cohort, then in general one phenopacket will be 
+created for each of the individuals in the cohort. In general, applications that 
+process such files are expected to perform Q/C to ensure data consistency, 
+but this is not and cannot be enforced on the level of the protobuf message itself.
 
 ~~~~~~~~
 pedigree
@@ -69,6 +75,7 @@ biosamples
 
 This field describes samples that have been derived from the patient who is the object of the PhenoPacket.
 or a collection of biosamples in isolation. TODO see  https://github.com/phenopackets/phenopacket-schema/issues/16
+
 
 ~~~~~
 genes
