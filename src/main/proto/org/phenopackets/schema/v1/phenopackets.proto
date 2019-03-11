@@ -28,15 +28,15 @@ message PhenoPacket {
     // Biosample(s) derived from the patient or a collection of biosamples in isolation
     repeated org.phenopackets.schema.v1.core.Biosample biosamples = 5;
 
-    // Placeholder for gene concepts - could be used for either describing candidate genes or causative genes. The
+    // Field for gene identifiers - could be used for listing either candidate genes or causative genes. The
     // resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Gene genes = 6;
 
-    // Placeholder for genetic variants - could be used for either describing candidate variants or diagnosed causative
+    // Field for genetic variants - could be used for listing either candidate variants or diagnosed causative
     // variants. The resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Variant variants = 7;
 
-    // Placeholder for disease concepts - could be used for either describing diagnosed or suspected conditions. The
+    // Field for disease identifiers - could be used for listing either diagnosed or suspected conditions. The
     // resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Disease diseases = 8;
 

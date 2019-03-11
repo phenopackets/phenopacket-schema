@@ -532,7 +532,7 @@ message HtsFile {
     File file = 4;
 }
 
-// Simple placeholder for a Gene concept
+// Gene identifier
 message Gene {
     // a CURIE with a prefix that is NCBIGene, HGNC, ENSEMBL, UCSC e.g. HGNC:347, ENSG00000120705, uc003ldc.6
     // https://www.genenames.org/cgi-bin/gene_symbol_report?q=data/hgnc_data.php&hgnc_id=HGNC:3477
@@ -562,7 +562,7 @@ enum CoordinateSystem {
     ONE_BASED = 1;
 }
 
-// Placeholder message in SPDI format (https://www.ncbi.nlm.nih.gov/variation/notation/)
+// Variant message in SPDI format (https://www.ncbi.nlm.nih.gov/variation/notation/)
 // SPDI format is the exchange standard used for ClinVar, dbSNP and soon the EVA
 // Tools for interconversion between SPDI, HGVS and VCF exist at https://api.ncbi.nlm.nih.gov/variation/v0/
 // Subject to change - this could be replaced with a GA4GH Variant Representation when finalised by the working group.
