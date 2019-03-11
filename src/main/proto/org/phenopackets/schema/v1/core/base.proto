@@ -238,6 +238,11 @@ message Biosample {
     // The address coded as GeoLocation where the biosample was collected.
     GeoLocation location = 14;
 
+    // Pointer to the relevant HTS file(s) for the biosample.
+    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 15;
+
+    // Field for variants relevant to this biosample.
+    repeated org.phenopackets.schema.v1.core.Variant variants = 16;
 }
 
 // See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
