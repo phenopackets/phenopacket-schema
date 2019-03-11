@@ -57,15 +57,6 @@ class CancerPhenoPacketExample {
                 .setIndividualAgeAtCollection(Age.newBuilder().setAge("P49Y2M").build())
                 .setType((ontologyClass("NCIT:C12389", "Esophagus")))
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("NCIT:C15189", "Biopsy")).build())
-                .setAttributes(Attributes.newBuilder()
-                        .putAttributes("Analysis", AttributeValues.newBuilder()
-                                .addValues(AttributeValue.newBuilder()
-                                        .setExperiment(Experiment.newBuilder()
-                                                .setDescription("variants, SNV (WES) & CNV (array)")
-                                                .build())
-                                        .build())
-                                .build())
-                        .build())
                 .build();
 
         Biosample lungAutopsy = Biosample.newBuilder()
