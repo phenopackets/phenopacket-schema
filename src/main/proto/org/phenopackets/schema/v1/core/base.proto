@@ -14,6 +14,9 @@ message MetaData {
     string submitted_by = 3;
     // a listing of the ontologies/resources referenced in the phenopacket
     repeated Resource resources = 4;
+    // ISO8601 UTC timestamps at which this record was updated, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
+    repeated google.protobuf.Timestamp updated = 5;
 }
 
 // Description of an external resource used for referencing an object. For example the resource may be an ontology such
@@ -164,22 +167,6 @@ message Individual {
     // identifier of that organism, to its most specific level
     OntologyClass taxonomy = 7;
 
-    // ISO8601 UTC timestamp at which this Individual's record was created, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp created = 8;
-
-    // ISO8601 UTC timestamp at which this Individual record was updated, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp updated = 9;
-
-    // The address coded as geolocation where this individual originated from.
-    // It is recommended that this reflects the place of birth or main place of
-    // living, not necessarily a current address.
-    GeoLocation location = 10;
-
-    // A map of additional information regarding the Individual.
-    Attributes attributes = 11;
-
     // External identifiers representing this individual. These are considered
     // different representation of the same record, not records which are in some
     // other relation with the record at hand.
@@ -218,14 +205,6 @@ message Biosample {
     // characteristics object uses lists of Phenotype objects to describe
     // diseases, phenotypes, source ... associated with this BioSample.
     repeated Phenotype phenotypes = 6;
-
-    // ISO8601 UTC timestamp for the time at which this Biosample record was created, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp created = 7;
-
-    // ISO8601 UTC timestamp at which this Biosample record was updated, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp updated = 8;
 
     // The id of the individual this biosample was derived from.
     string individual_id = 9;
