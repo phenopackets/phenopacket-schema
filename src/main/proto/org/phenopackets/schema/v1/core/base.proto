@@ -88,6 +88,7 @@ message Phenotype {
 
     // Flag to indicate whether the phenotype was observed or not. Default is 'false', in other words the phenotype was
     // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but not observed.
+    // *CAUTION* It is imperative to check this field.
     bool negated = 3;
 
     // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
@@ -173,7 +174,13 @@ message Individual {
     repeated ExternalReference external_identifiers = 12;
 }
 
-// See https://github.com/ga4gh-metadata/metadata-schemas/blob/d4ca1b4b36a5e7b3a17db79da9ae03a2114cfcaf/schemas/biometadata.proto#L84-L138
+
+//TODO re-write this
+// https://www.ncbi.nlm.nih.gov/pubmed/29092942/
+// PDX-MI: Minimal Information for Patient-Derived Tumor Xenograft Models.
+// https://pdxintegrator.readthedocs.io/en/latest/tumor.html
+
+
 // A Biosample refers to a unit of biological material from which the substrate
 // molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
 // sequencing, array hybridisation, mass-spectrometry) are extracted. Examples
@@ -191,8 +198,8 @@ message Biosample {
     // The ID of the dataset this Biosample belongs to.
     string dataset_id = 2;
 
-    // The Biosample's name This is a label or symbolic identifier for the biosample.
-    string name = 3;
+    // The id of the individual this biosample was derived from.
+    string individual_id = 3;
 
     // The biosample's description. This attribute contains human readable text.
     // The "description" attributes should not contain any structured data.
@@ -202,14 +209,10 @@ message Biosample {
     // or monocyte (CL:0000576). Could include molecular type, body fluids, environmental samples, bacterial cultures...
     OntologyClass type = 5;
 
-    // characteristics object uses lists of Phenotype objects to describe
-    // diseases, phenotypes, source ... associated with this BioSample.
+    // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
     repeated Phenotype phenotypes = 6;
 
-    // The id of the individual this biosample was derived from.
-    string individual_id = 9;
-
-    // NCBI taxonomic identifier (NCBITaxon) of the organism from which the sample was taken e.g. NCBITaxon:9606
+    // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
     OntologyClass taxonomy = 10;
 
     // External identifiers representing this biosample. These are considered
@@ -232,14 +235,38 @@ message Biosample {
     //See http://build.fhir.org/datatypes
     Age individual_age_at_collection = 13;
 
-    // The address coded as GeoLocation where the biosample was collected.
-    GeoLocation location = 14;
-
     // Pointer to the relevant HTS file(s) for the biosample.
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 15;
 
     // Field for variants relevant to this biosample.
     repeated org.phenopackets.schema.v1.core.Variant variants = 16;
+
+    // UBERON class describing the tissue from which the specimen was collected.
+    // PDX = 'Specimen tumor tissue'
+    OntologyClass sampled_tissue = 19;
+
+    // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
+    // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
+    OntologyClass histological_diagnosis = 20;
+
+    // Is the specimen tissue from the primary tumor, a metastasis or a recurrence? Use NCIT terminology.
+    //
+    OntologyClass tumor_progression = 18;
+
+    //
+    OntologyClass tumor_grade = 22;
+
+    //
+    repeated OntologyClass tumor_stage = 23;
+
+    repeated OntologyClass diagnostic_markers = 24;
+
+    Procedure procedure = 25;
+}
+
+// FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html
+message Procedure {
+
 }
 
 // See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
