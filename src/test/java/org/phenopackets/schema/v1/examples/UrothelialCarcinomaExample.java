@@ -1,14 +1,12 @@
 package org.phenopackets.schema.v1.examples;
 
-import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.PhenoPacket;
 import org.phenopackets.schema.v1.core.*;
+import org.phenopackets.schema.v1.io.PhenoPacketFormat;
 
 import java.time.Instant;
-import java.util.List;
-
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
@@ -20,7 +18,6 @@ import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
  * chr5:g.1295228G>A (TERT promoter mutation, -124C>T
  * 2.  	rs730882008 chr17:g.7577093C>A (ClinVar 182938), TP53
  * 3. AKT chr14	105246551	105246551	C	T (hg37)
- *
  */
 
 public class UrothelialCarcinomaExample {
@@ -36,7 +33,7 @@ public class UrothelialCarcinomaExample {
 
         this.phenopacket = PhenoPacket.newBuilder()
                 .setSubject(subject())
-              .addBiosamples(bladderBiopsy())
+                .addBiosamples(bladderBiopsy())
                 .addBiosamples(prostateBiospy())
                 .addBiosamples(leftUreterBiospy())
                 .addBiosamples(rightUreterBiospy())
@@ -44,10 +41,7 @@ public class UrothelialCarcinomaExample {
                 .addDiseases(infiltratingUrothelialCarcinoma())
                 .setMetaData(metaData)
                 .build();
-
-
     }
-
 
     private MetaData buildMetaData() {
         return MetaData.newBuilder()
@@ -63,12 +57,11 @@ public class UrothelialCarcinomaExample {
 
 
     private Disease infiltratingUrothelialCarcinoma() {
-            return Disease.newBuilder()
+        return Disease.newBuilder()
                 .setId("NCIT:C39853")
                 .setLabel("Infiltrating Urothelial Carcinoma")
                 .build();
     }
-
 
     private Individual subject() {
         return Individual.newBuilder()
@@ -78,88 +71,93 @@ public class UrothelialCarcinomaExample {
                 .build();
     }
 
-
-    private Biosample biosampleBuilder(String patientId, String sampleId, String age, OntologyClass sampleType, List<Phenotype> phenotypes) {
+    private Biosample.Builder biosampleBuilder(String patientId, String sampleId, String age, OntologyClass sampleType) {
         return Biosample.newBuilder().
                 setIndividualId(patientId).
                 setId(sampleId).
                 setIndividualAgeAtCollection(Age.newBuilder().
                         setAge(age).
                         build()).
-                setType(sampleType).
-                addAllPhenotypes(phenotypes).
-                build();
+                setType(sampleType);
     }
-
-    private Phenotype fromFinding(String id, String label) {
-        OntologyClass oc = ontologyClass(id, label);
-        return Phenotype.newBuilder().setType(oc).build();
-    }
-
 
     private Biosample bladderBiopsy() {
         String sampleId = "sample1";
         // left wall of urinary bladder
         OntologyClass sampleType = ontologyClass("UBERON_0001256", "wall of urinary bladder");
+        Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
         // also want to mention the procedure, Prostatocystectomy (NCIT:C94464)
-        ImmutableList.Builder<Phenotype> builder = new ImmutableList.Builder<>();
         //Infiltrating Urothelial Carcinoma (Code C39853)
-        Phenotype infiltratingUrothelialCarcinoma = fromFinding("NCIT:C39853", "Infiltrating Urothelial Carcinoma");
-        builder.add(infiltratingUrothelialCarcinoma);
+        OntologyClass infiltratingUrothelialCarcinoma = ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma");
+        biosampleBuilder.setHistologicalDiagnosis(infiltratingUrothelialCarcinoma);
+        // A malignant tumor at the original site of growth
+        OntologyClass primary = ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm");
+        biosampleBuilder.setTumorProgression(primary);
         // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
         // pT2b Stage Finding (Code C48766)
-        Phenotype pT2b = fromFinding("NCIT:C48766", "pT2b Stage Finding");
-        builder.add(pT2b);
+        OntologyClass pT2b = ontologyClass("NCIT:C48766", "pT2b Stage Finding");
+        biosampleBuilder.addTumorStage(pT2b);
         //pN2 Stage Finding (Code C48750)
         // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
-        Phenotype pN2 = fromFinding("NCIT:C48750", "pN2 Stage Finding");
-        builder.add(pN2);
-        return biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType, builder.build());
+        OntologyClass pN2 = ontologyClass("NCIT:C48750", "pN2 Stage Finding");
+        biosampleBuilder.addTumorStage(pN2);
+        return biosampleBuilder.build();
     }
 
     private Biosample prostateBiospy() {
         String sampleId = "sample2";
         //prostate
         OntologyClass sampleType = ontologyClass("UBERON:0002367", "prostate gland");
-        ImmutableList.Builder<Phenotype> builder = new ImmutableList.Builder<>();
-        Phenotype prostateAcinarAdenocarcinoma = fromFinding("NCIT:C5596", "Prostate Acinar Adenocarcinoma");
-        Phenotype gleason7 = fromFinding("NCIT:C28091","Gleason Score 7");
-        builder.add(prostateAcinarAdenocarcinoma);
-        builder.add(gleason7);
-        return biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType, builder.build());
+        Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
+        OntologyClass prostateAcinarAdenocarcinoma = ontologyClass("NCIT:C5596", "Prostate Acinar Adenocarcinoma");
+        biosampleBuilder.setHistologicalDiagnosis(prostateAcinarAdenocarcinoma);
+
+        // A primary malignant neoplasm in a patient who has been already diagnosed with a primary malignant neoplasm in another anatomic site.
+        OntologyClass secondary = ontologyClass("NCIT:C95606", "Second Primary Malignant Neoplasm");
+        biosampleBuilder.setTumorProgression(secondary);
+
+        // The Gleason scoring system is used to grade prostate cancer (1). The Gleason score is based on biopsy samples taken from the prostate.
+        // Gleason 7: The tumor tissue is moderately differentiated
+        OntologyClass gleason7 = ontologyClass("NCIT:C28091", "Gleason Score 7");
+        biosampleBuilder.setTumorGrade(gleason7);
+        return biosampleBuilder.build();
     }
 
     private Biosample leftUreterBiospy() {
         String sampleId = "sample3";
         OntologyClass sampleType = ontologyClass("UBERON:0001223", "left ureter");
-        ImmutableList.Builder<Phenotype> builder = new ImmutableList.Builder<>();
-        Phenotype normalFinding = fromFinding("NCIT:C38757", "Negative Finding");
-        builder.add(normalFinding);
-        return biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType, builder.build());
+        Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
+        OntologyClass normalFinding = ontologyClass("NCIT:C38757", "Negative Finding");
+        biosampleBuilder.setHistologicalDiagnosis(normalFinding);
+        return biosampleBuilder.build();
     }
+
     private Biosample rightUreterBiospy() {
         String sampleId = "sample4";
         OntologyClass sampleType = ontologyClass("UBERON:0001222", "right ureter");
-        ImmutableList.Builder<Phenotype> builder = new ImmutableList.Builder<>();
-        Phenotype normalFinding = fromFinding("NCIT:C38757", "Negative Finding");
-        builder.add(normalFinding);
-        return biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType, builder.build());
+        Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
+        OntologyClass normalFinding = ontologyClass("NCIT:C38757", "Negative Finding");
+        biosampleBuilder.setHistologicalDiagnosis(normalFinding);
+        return biosampleBuilder.build();
     }
 
     private Biosample pelvicLymphNodeBiospy() {
         String sampleId = "sample5";
         OntologyClass sampleType = ontologyClass("UBERON:0015876", "pelvic lymph node");
-        ImmutableList.Builder<Phenotype> builder = new ImmutableList.Builder<>();
-        Phenotype metastasis = fromFinding("NCIT:C19151", "Metastasis");
-        builder.add(metastasis);
-        return biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType, builder.build());
+        Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
+        OntologyClass metastasis = ontologyClass("NCIT:C3261", "Metastatic Neoplasm");
+        biosampleBuilder.setTumorProgression(metastasis);
+        return biosampleBuilder.build();
     }
 
 
     @Test
     void testPatientName() {
-        String expected = this.patientId;
-        assertEquals(expected,this.phenopacket.getSubject().getId());
+        assertEquals(this.patientId, this.phenopacket.getSubject().getId());
     }
 
+    @Test
+    void printAsJson() throws Exception{
+        System.out.println(PhenoPacketFormat.toJson(phenopacket));
+    }
 }
