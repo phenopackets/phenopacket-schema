@@ -243,27 +243,40 @@ message Biosample {
 
     // UBERON class describing the tissue from which the specimen was collected.
     // PDX = 'Specimen tumor tissue'
+    // TODO - how is this related to 'type'
     OntologyClass sampled_tissue = 19;
 
     // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
     // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
     OntologyClass histological_diagnosis = 20;
 
-    // Is the specimen tissue from the primary tumor, a metastasis or a recurrence? Use NCIT terminology.
-    //
+    // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
+    // Most likely a child term of NCIT:C7062 (Neoplasm by Special Category)
+    // NCIT:C3677 (Benign Neoplasm)
+    // NCIT:C84509 (Primary Malignant Neoplasm)
+    // NCIT:C95606 (Second Primary Malignant Neoplasm)
+    // NCIT:C3261 (Metastatic Neoplasm)
+    // NCIT:C4813 (Recurrent Malignant Neoplasm)
     OntologyClass tumor_progression = 18;
 
-    //
+    // Potentially a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent
+    // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
     OntologyClass tumor_grade = 22;
 
-    //
+    // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
+    // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
+    // e.g. Child terms of NCIT:C48232 (Cancer TNM Finding)
     repeated OntologyClass tumor_stage = 23;
 
+    // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
+    // NCIT:C25294 (Laboratory Procedure).
+    // e.g. NCIT:C68748 (HER2/Neu Positive), NCIT:C131711 (Human Papillomavirus-18 Positive)
     repeated OntologyClass diagnostic_markers = 24;
 
     Procedure procedure = 25;
 }
 
+// TODO!
 // FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html
 message Procedure {
 
