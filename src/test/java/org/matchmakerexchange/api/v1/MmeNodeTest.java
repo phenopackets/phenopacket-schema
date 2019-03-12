@@ -9,6 +9,6 @@ public class MmeNodeTest {
 
     @Test
     public void name() {
-        MmePatient patient = MmePatient.newBuilder().build();
+       // MmePatient patient = MmePatient.newBuilder().build();
     }
 }
