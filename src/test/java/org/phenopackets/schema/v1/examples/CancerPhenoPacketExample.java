@@ -47,7 +47,18 @@ class CancerPhenoPacketExample {
                 .setIndividualId(patientId)
                 .setId("sample1")
                 .setIndividualAgeAtCollection(Age.newBuilder().setAge("P48Y3M").build())
-                .setType(ontologyClass("NCIT:C12745", "Lymph Node"))
+                //Biosample (lymph node biopsy)
+                .setType(ontologyClass("NCIT:C139196", "Esophageal Lymph Node"))
+                .setTumorProgression(ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm"))
+                //diagnosis: Squamous cell carcinoma of the esophagus, T2N1M0
+                .setHistologicalDiagnosis(ontologyClass("NCIT:C4024", "Esophageal Squamous Cell Carcinoma"))
+                .addTumorStage(ontologyClass("NCIT:C48724", "T2 Stage Finding"))
+                .addTumorStage(ontologyClass("NCIT:C48706", "N1 Stage Finding"))
+                .addTumorStage(ontologyClass("NCIT:C48699", "M0 Stage Finding"))
+                //HPV-18 positive (cancer tissue)
+                .addDiagnosticMarkers(ontologyClass("NCIT:C131711", "Human Papillomavirus-18 Positive"))
+                // Procedure
+                // diagnostic sample (tumor resection)
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("NCIT:C15189", "Biopsy")).build())
                 .build();
 
@@ -56,6 +67,8 @@ class CancerPhenoPacketExample {
                 .setId("sample2")
                 .setIndividualAgeAtCollection(Age.newBuilder().setAge("P49Y2M").build())
                 .setType((ontologyClass("NCIT:C12389", "Esophagus")))
+                //recurrence sample, esophagus (biopsy)
+                .setTumorProgression(ontologyClass("NCIT:C4813", "Recurrent Malignant Neoplasm"))
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("NCIT:C15189", "Biopsy")).build())
                 .build();
 
@@ -64,7 +77,7 @@ class CancerPhenoPacketExample {
                 .setId("sample3")
                 .setIndividualAgeAtCollection(Age.newBuilder().setAge("P50Y7M").build())
                 .setType(ontologyClass("NCIT:C12468", "Lung"))
-                .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("NCIT:C19151", "Metastasis")).build())
+                .setTumorProgression(ontologyClass("NCIT:C3261", "Metastatic Neoplasm"))
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("NCIT:C25153", "Autopsy")).build())
                 .build();
 
