@@ -78,7 +78,7 @@ public class UrothelialCarcinomaExample {
                 setIndividualAgeAtCollection(Age.newBuilder().
                         setAge(age).
                         build()).
-                setType(sampleType);
+                setSampledTissue(sampleType);
     }
 
     private Biosample bladderBiopsy() {
@@ -101,6 +101,7 @@ public class UrothelialCarcinomaExample {
         // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
         OntologyClass pN2 = ontologyClass("NCIT:C48750", "pN2 Stage Finding");
         biosampleBuilder.addTumorStage(pN2);
+        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
         return biosampleBuilder.build();
     }
 
@@ -120,6 +121,7 @@ public class UrothelialCarcinomaExample {
         // Gleason 7: The tumor tissue is moderately differentiated
         OntologyClass gleason7 = ontologyClass("NCIT:C28091", "Gleason Score 7");
         biosampleBuilder.setTumorGrade(gleason7);
+        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
         return biosampleBuilder.build();
     }
 
@@ -129,6 +131,7 @@ public class UrothelialCarcinomaExample {
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
         OntologyClass normalFinding = ontologyClass("NCIT:C38757", "Negative Finding");
         biosampleBuilder.setHistologicalDiagnosis(normalFinding);
+        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
         return biosampleBuilder.build();
     }
 
@@ -147,6 +150,7 @@ public class UrothelialCarcinomaExample {
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
         OntologyClass metastasis = ontologyClass("NCIT:C3261", "Metastatic Neoplasm");
         biosampleBuilder.setTumorProgression(metastasis);
+        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
         return biosampleBuilder.build();
     }
 
