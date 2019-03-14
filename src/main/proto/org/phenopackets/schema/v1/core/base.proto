@@ -163,7 +163,7 @@ message Individual {
     // External identifiers representing this individual. These are considered
     // different representation of the same record, not records which are in some
     // other relation with the record at hand.
-    repeated ExternalReference external_identifiers = 12;
+    repeated ExternalReference external_references = 12;
 }
 
 
