@@ -103,8 +103,7 @@ message Phenotype {
     // FHIR mapping: Condition.onset
     oneof onset {
         Age age_of_onset = 6;
-        google.protobuf.Timestamp time_of_onset = 7;
-        Period period_of_onset = 8;
+        AgeRange age_range_of_onset = 7;
         OntologyClass class_of_onset = 9;
     }
 
@@ -146,24 +145,27 @@ message Individual {
     // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
     // See http://build.fhir.org/datatypes
-    Age age_at_collection = 4;
+    oneof age_at_collection {
+        Age age = 4;
+        AgeRange age_range = 5;
+    }
 
     // A PATO term for the biological sex of the individual
     // http://purl.obolibrary.org/obo/PATO_0000047
-    OntologyClass sex = 5;
+    OntologyClass sex = 6;
 
     // A set of phenotypes describing the individual.
-    repeated Phenotype phenotypes = 6;
+    repeated Phenotype phenotypes = 7;
 
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to its most specific level
-    OntologyClass taxonomy = 7;
+    OntologyClass taxonomy = 8;
 
     // External identifiers representing this individual. These are considered
     // different representation of the same record, not records which are in some
     // other relation with the record at hand.
-    repeated ExternalReference external_references = 12;
+    repeated ExternalReference external_references = 9;
 }
 
 
@@ -218,7 +220,10 @@ message Biosample {
     // of the age either as ISO8601 duration or time interval (preferred), or
     // as ontology term object.
     //See http://build.fhir.org/datatypes
-    Age individual_age_at_collection = 9;
+    oneof individual_age_at_collection {
+        Age age = 9;
+        AgeRange age_range = 18;
+    }
 
     // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
     // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
@@ -262,11 +267,12 @@ message Biosample {
 // body site should be used. In cases where this is not possible, the body site should be indicated using a separate
 // ontology class.
 // e.g.
-// {{"NCIT:C51585": "Biopsy of Soft Palate"}}
-//{{"NCIT:C28743": "Punch Biopsy"}, {"FMA:33642": "Right shoulder"}} - a punch biopsy of the skin from the right shoulder
+// {"code":{"NCIT:C51585": "Biopsy of Soft Palate"}}
+// {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"FMA:33642": "Right shoulder"}} - a punch biopsy of the skin from the right shoulder
 // FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
 message Procedure {
 
+    //
     // FHIR mapping: Procedure.code
     OntologyClass code = 1;
 
@@ -290,9 +296,11 @@ message Age {
     // or
     //  age_class : { term_id : "HSAPDV:0000255", term : "114-year-old human stage" }
     OntologyClass age_class = 2;
+}
 
-    // TODO add range https://github.com/phenopackets/phenopacket-schema/issues/30#issuecomment-469295707
-
+message AgeRange {
+    Age start = 1;
+    Age end = 2;
 }
 
 // A GeoLocation object provides information about a geographic position
@@ -340,14 +348,6 @@ message GeoLocation {
     double altitude = 5;
 }
 
-message Period {
-    // ISO8601 UTC timestamp for the start of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp start = 1;
-
-    // ISO8601 UTC timestamp for the end of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp end = 2;
-}
-
 // Simple identifier name tuple to link to a concept
 message Disease {
     // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
@@ -360,8 +360,7 @@ message Disease {
     // FHIR mapping: Condition.onset
     oneof onset {
         Age age_of_onset = 3;
-        google.protobuf.Timestamp time_of_onset = 4;
-        Period period_of_onset = 5;
+        AgeRange age_range_of_onset = 4;
         OntologyClass class_of_onset = 6;
     }
 }
