@@ -29,7 +29,8 @@ public class IndividualTest {
         Individual individual = Individual.newBuilder()
                 .setId("INDIVIDUAL:1")
                 .setDateOfBirth(dobTimestamp)
-                .setSex(PhenoPacketTestUtil.FEMALE)
+                .setSex(Sex.FEMALE)
+                .setKaryotypicSex(KaryotypicSex.XX)
                 .addPhenotypes(phenotype)
                 .build();
 

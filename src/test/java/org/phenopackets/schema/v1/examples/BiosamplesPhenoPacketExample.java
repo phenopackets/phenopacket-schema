@@ -71,7 +71,7 @@ class BiosamplesPhenoPacketExample {
 
         Individual individual = Individual.newBuilder()
                 .setId("SAMN05324082-individual")
-                .setSex(ontologyClass("PATO:0000384", "male"))
+                .setSex(Sex.MALE)
                 .setTaxonomy(ontologyClass("NCBITaxon:9606", "Homo sapiens"))
                 .build();
 

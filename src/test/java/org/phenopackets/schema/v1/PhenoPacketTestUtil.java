@@ -12,9 +12,6 @@ import java.time.Instant;
  */
 public class PhenoPacketTestUtil {
 
-    public static final OntologyClass FEMALE = ontologyClass("PATO:0000383", "female");
-    public static final OntologyClass MALE = ontologyClass("PATO:0000384", "male");
-
     public static OntologyClass ontologyClass(String id, String label) {
         return OntologyClass.newBuilder()
                 .setId(id)

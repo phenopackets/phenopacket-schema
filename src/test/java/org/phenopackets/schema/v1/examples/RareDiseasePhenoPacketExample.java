@@ -52,7 +52,7 @@ class RareDiseasePhenoPacketExample {
 
 
         Individual proband = Individual.newBuilder()
-                .setSex(MALE)
+                .setSex(Sex.MALE)
                 .setId(PROBAND_ID)
                 .setDateOfBirth(Timestamp.newBuilder().setSeconds(Instant.parse("1998-01-01T00:00:00Z").getEpochSecond()).build())
                 .addPhenotypes(syndactylyCongenitalOnset)
@@ -63,7 +63,7 @@ class RareDiseasePhenoPacketExample {
 
         Pedigree.Person pedProband = Pedigree.Person.newBuilder()
                 .setIndividualId(PROBAND_ID)
-                .setSex(Pedigree.Person.Sex.MALE)
+                .setSex(Sex.MALE)
                 .setMaternalId(MOTHER_ID)
                 .setPaternalId(FATHER_ID)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
@@ -85,7 +85,7 @@ class RareDiseasePhenoPacketExample {
                 .build();
 
         Individual sisterOfProband = Individual.newBuilder()
-                .setSex(FEMALE)
+                .setSex(Sex.FEMALE)
                 .setId(SISTER_ID)
                 .setDateOfBirth(Timestamp.newBuilder().setSeconds(Instant.parse("2000-03-04T00:00:00Z").getEpochSecond()).build())
                 .addPhenotypes(syndactylyCongenitalOnset)
@@ -95,31 +95,31 @@ class RareDiseasePhenoPacketExample {
 
         Pedigree.Person pedSister = Pedigree.Person.newBuilder()
                 .setIndividualId(SISTER_ID)
-                .setSex(Pedigree.Person.Sex.FEMALE)
+                .setSex(Sex.FEMALE)
                 .setMaternalId(MOTHER_ID)
                 .setPaternalId(FATHER_ID)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
                 .build();
 
         Individual mother = Individual.newBuilder()
-                .setSex(FEMALE)
+                .setSex(Sex.FEMALE)
                 .setId(MOTHER_ID)
                 .build();
 
         Pedigree.Person pedMother = Pedigree.Person.newBuilder()
                 .setIndividualId(MOTHER_ID)
-                .setSex(Pedigree.Person.Sex.FEMALE)
+                .setSex(Sex.FEMALE)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
                 .build();
 
         Individual father = Individual.newBuilder()
-                .setSex(MALE)
+                .setSex(Sex.MALE)
                 .setId(FATHER_ID)
                 .build();
 
         Pedigree.Person pedFather = Pedigree.Person.newBuilder()
                 .setIndividualId(FATHER_ID)
-                .setSex(Pedigree.Person.Sex.MALE)
+                .setSex(Sex.MALE)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
                 .build();
 

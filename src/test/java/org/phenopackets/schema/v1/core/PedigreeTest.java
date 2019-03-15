@@ -22,14 +22,14 @@ public class PedigreeTest {
         Pedigree.Person mother = Pedigree.Person.newBuilder()
                 .setFamilyId("FAMILY:1")
                 .setIndividualId("MOTHER:1")
-                .setSex(Pedigree.Person.Sex.FEMALE)
+                .setSex(Sex.FEMALE)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
                 .build();
 
         Pedigree.Person father = Pedigree.Person.newBuilder()
                 .setFamilyId("FAMILY:1")
                 .setIndividualId("FATHER:1")
-                .setSex(Pedigree.Person.Sex.MALE)
+                .setSex(Sex.MALE)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
                 .build();
 
@@ -38,7 +38,7 @@ public class PedigreeTest {
                 .setIndividualId("DAUGHTER:1")
                 .setMaternalId("MOTHER:1")
                 .setPaternalId("FATHER:1")
-                .setSex(Pedigree.Person.Sex.FEMALE)
+                .setSex(Sex.FEMALE)
                 .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
                 .build();
 

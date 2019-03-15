@@ -150,9 +150,11 @@ message Individual {
         AgeRange age_range_at_collection = 5;
     }
 
-    // A PATO term for the biological sex of the individual
-    // http://purl.obolibrary.org/obo/PATO_0000047
-    OntologyClass sex = 6;
+    // The phenotypic / administrative sex of the individual
+    Sex sex = 6;
+
+    // The karyotypic sex of the individual
+    KaryotypicSex karyotypic_sex = 10;
 
     // A set of phenotypes describing the individual.
     repeated Phenotype phenotypes = 7;
@@ -168,6 +170,33 @@ message Individual {
     repeated ExternalReference external_references = 9;
 }
 
+// Phenotypic sex of an individual
+// FHIR mapping: AdministrativeGender (https://www.hl7.org/fhir/codesystem-administrative-gender.html)
+enum Sex {
+    // Not assessed / available.
+    UNKNOWN_SEX = 0;
+    // Female
+    FEMALE = 1;
+    // Male
+    MALE = 2;
+    // It is not possible, to accurately assess the applicability of MALE/FEMALE.
+    OTHER_SEX = 3;
+}
+
+// Karyotypic sex of the individual
+enum KaryotypicSex {
+    UNKNOWN_KARYOTYPE = 0;
+    XX = 1;
+    XY = 2;
+    XO = 3;
+    XXY = 4;
+    XXX = 5;
+    XXYY = 6;
+    XXXY = 7;
+    XXXX = 8;
+    XYY = 9;
+    OTHER_KARYOTYPE = 10;
+}
 
 //TODO re-write this
 // https://www.ncbi.nlm.nih.gov/pubmed/29092942/
@@ -370,11 +399,6 @@ message Pedigree {
     repeated Person persons = 1;
 
     message Person {
-        enum Sex {
-            UNKNOWN = 0;
-            MALE = 1;
-            FEMALE = 2;
-        }
         enum AffectedStatus {
             MISSING = 0;
             UNAFFECTED = 1;
@@ -434,7 +458,7 @@ message Gene {
 // Human genome reference assembly - major version
 enum GenomeAssembly {
     option allow_alias = true;
-    UNKNOWN = 0;
+    UNKNOWN_ASSEMBLY = 0;
 
     NCBI_36 = 1;
     HG_18 = 1;
