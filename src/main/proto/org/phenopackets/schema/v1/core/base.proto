@@ -88,6 +88,7 @@ message Phenotype {
 
     // Flag to indicate whether the phenotype was observed or not. Default is 'false', in other words the phenotype was
     // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but not observed.
+    // *CAUTION* It is imperative to check this field.
     bool negated = 3;
 
     // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
@@ -102,8 +103,7 @@ message Phenotype {
     // FHIR mapping: Condition.onset
     oneof onset {
         Age age_of_onset = 6;
-        google.protobuf.Timestamp time_of_onset = 7;
-        Period period_of_onset = 8;
+        AgeRange age_range_of_onset = 7;
         OntologyClass class_of_onset = 9;
     }
 
@@ -144,36 +144,37 @@ message Individual {
 
     // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
-    // Example:
-    //   "individual_age_at_collection": {
-    //     "age": "P12Y0M",
-    //     "age_class": {
-    //         "term": "Juvenile onset",
-    //         "term_id": "HP:0003621"
-    //     }
-    // },
     // See http://build.fhir.org/datatypes
-    Age age_at_collection = 4;
+    oneof age_at_collection {
+        Age age = 4;
+        AgeRange age_range = 5;
+    }
 
     // A PATO term for the biological sex of the individual
     // http://purl.obolibrary.org/obo/PATO_0000047
-    OntologyClass sex = 5;
+    OntologyClass sex = 6;
 
     // A set of phenotypes describing the individual.
-    repeated Phenotype phenotypes = 6;
+    repeated Phenotype phenotypes = 7;
 
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to its most specific level
-    OntologyClass taxonomy = 7;
+    OntologyClass taxonomy = 8;
 
     // External identifiers representing this individual. These are considered
     // different representation of the same record, not records which are in some
     // other relation with the record at hand.
-    repeated ExternalReference external_identifiers = 12;
+    repeated ExternalReference external_references = 9;
 }
 
-// See https://github.com/ga4gh-metadata/metadata-schemas/blob/d4ca1b4b36a5e7b3a17db79da9ae03a2114cfcaf/schemas/biometadata.proto#L84-L138
+
+//TODO re-write this
+// https://www.ncbi.nlm.nih.gov/pubmed/29092942/
+// PDX-MI: Minimal Information for Patient-Derived Tumor Xenograft Models.
+// https://pdxintegrator.readthedocs.io/en/latest/tumor.html
+
+
 // A Biosample refers to a unit of biological material from which the substrate
 // molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
 // sequencing, array hybridisation, mass-spectrometry) are extracted. Examples
@@ -191,55 +192,92 @@ message Biosample {
     // The ID of the dataset this Biosample belongs to.
     string dataset_id = 2;
 
-    // The Biosample's name This is a label or symbolic identifier for the biosample.
-    string name = 3;
+    // The id of the individual this biosample was derived from.
+    string individual_id = 3;
 
     // The biosample's description. This attribute contains human readable text.
     // The "description" attributes should not contain any structured data.
     string description = 4;
 
-    // Type of material forming the biosample. For example, the tissue or cell type of the sample e.g. esophagus (UBERON:0001043)
-    // or monocyte (CL:0000576). Could include molecular type, body fluids, environmental samples, bacterial cultures...
-    OntologyClass type = 5;
+    // UBERON class describing the tissue from which the specimen was collected.
+    // PDX-MI mapping: 'Specimen tumor tissue'
+    // FHIR mapping: Specimen.type
+    OntologyClass sampled_tissue = 5;
 
-    // characteristics object uses lists of Phenotype objects to describe
-    // diseases, phenotypes, source ... associated with this BioSample.
+    // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
     repeated Phenotype phenotypes = 6;
 
-    // The id of the individual this biosample was derived from.
-    string individual_id = 9;
-
-    // NCBI taxonomic identifier (NCBITaxon) of the organism from which the sample was taken e.g. NCBITaxon:9606
-    OntologyClass taxonomy = 10;
+    // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
+    OntologyClass taxonomy = 7;
 
     // External identifiers representing this biosample. These are considered
     // different representation of the same record, not records which are in some
     // other relation with the record at hand.
-    repeated ExternalReference external_references = 12;
+    repeated ExternalReference external_references = 8;
 
     // An age object describing the age of the individual this biosample was
     // derived from at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or
     // as ontology term object.
-    // Example:
-    //   "individual_age_at_collection": {
-    //     "age": "P12Y0M",
-    //     "age_class": {
-    //         "term": "Juvenile onset",
-    //         "term_id": "HP:0003621"
-    //     }
-    // },
     //See http://build.fhir.org/datatypes
-    Age individual_age_at_collection = 13;
+    oneof individual_age_at_collection {
+        Age age = 9;
+        AgeRange age_range = 18;
+    }
 
-    // The address coded as GeoLocation where the biosample was collected.
-    GeoLocation location = 14;
+    // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
+    // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
+    // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
+    OntologyClass histological_diagnosis = 10;
+
+    // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
+    // Most likely a child term of NCIT:C7062 (Neoplasm by Special Category)
+    // NCIT:C3677 (Benign Neoplasm)
+    // NCIT:C84509 (Primary Malignant Neoplasm)
+    // NCIT:C95606 (Second Primary Malignant Neoplasm)
+    // NCIT:C3261 (Metastatic Neoplasm)
+    // NCIT:C4813 (Recurrent Malignant Neoplasm)
+    OntologyClass tumor_progression = 11;
+
+    // Potentially a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent
+    // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
+    OntologyClass tumor_grade = 12;
+
+    // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
+    // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
+    // e.g. Child terms of NCIT:C48232 (Cancer TNM Finding)
+    repeated OntologyClass tumor_stage = 13;
+
+    // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
+    // NCIT:C25294 (Laboratory Procedure).
+    // e.g. NCIT:C68748 (HER2/Neu Positive), NCIT:C131711 (Human Papillomavirus-18 Positive)
+    repeated OntologyClass diagnostic_markers = 14;
+
+    // Clinical procedure performed on the subject in order to extract the biosample.
+    Procedure procedure = 15;
 
     // Pointer to the relevant HTS file(s) for the biosample.
-    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 15;
+    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 16;
 
     // Field for variants relevant to this biosample.
-    repeated org.phenopackets.schema.v1.core.Variant variants = 16;
+    repeated org.phenopackets.schema.v1.core.Variant variants = 17;
+}
+
+// A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the
+// body site should be used. In cases where this is not possible, the body site should be indicated using a separate
+// ontology class.
+// e.g.
+// {"code":{"NCIT:C51585": "Biopsy of Soft Palate"}}
+// {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"FMA:33642": "Right shoulder"}} - a punch biopsy of the skin from the right shoulder
+// FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
+message Procedure {
+
+    //
+    // FHIR mapping: Procedure.code
+    OntologyClass code = 1;
+
+    // FHIR mapping: Procedure.bodySite
+    OntologyClass body_site = 2;
 }
 
 // See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
@@ -252,12 +290,17 @@ message Age {
     // time interval, e.g. 1967-11-21/P40Y10M05D)
     string age = 1;
 
-    // An age class, e.g. corresponding to the use of "age of onset" in HPO.
-    // HPO is recommended, for example, subclasses of "Onset":
-    // http://purl.obolibrary.org/obo/HP_0003674
-    // Example:
-    //  age_class : { term_id : "HP:0003596", term : "Middle age onset" }
+    // An age class, the Human Developmental Stages ontology is recommended.
+    // For example:
+    //  age_class : { term_id : "HSAPDV:0000236", term : "second decade human stage" }
+    // or
+    //  age_class : { term_id : "HSAPDV:0000255", term : "114-year-old human stage" }
     OntologyClass age_class = 2;
+}
+
+message AgeRange {
+    Age start = 1;
+    Age end = 2;
 }
 
 // A GeoLocation object provides information about a geographic position
@@ -305,14 +348,6 @@ message GeoLocation {
     double altitude = 5;
 }
 
-message Period {
-    // ISO8601 UTC timestamp for the start of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp start = 1;
-
-    // ISO8601 UTC timestamp for the end of the period in the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    google.protobuf.Timestamp end = 2;
-}
-
 // Simple identifier name tuple to link to a concept
 message Disease {
     // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
@@ -325,8 +360,7 @@ message Disease {
     // FHIR mapping: Condition.onset
     oneof onset {
         Age age_of_onset = 3;
-        google.protobuf.Timestamp time_of_onset = 4;
-        Period period_of_onset = 5;
+        AgeRange age_range_of_onset = 4;
         OntologyClass class_of_onset = 6;
     }
 }
@@ -424,6 +458,11 @@ enum CoordinateSystem {
 // Subject to change - this could be replaced with a GA4GH Variant Representation when finalised by the working group.
 // See: https://docs.google.com/document/d/1Sulg3kECnorTEAbutINOsK-lFkKAcKpl6IHgPaPQEgA
 // See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
+// TODO SpdiVariant
+// TODO VcfVariant
+// TODO HgvsVariant
+// TODO StructuralVariant
+
 message Variant {
     // genome assembly isn't strictly necessary if using the sequence accession as that will be unique for the assembly/sequence
     GenomeAssembly genome_assembly = 1;

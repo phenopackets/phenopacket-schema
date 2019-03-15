@@ -81,10 +81,11 @@ class BiosamplesPhenoPacketExample {
                 .setDescription("THP-1; 6 hours; DMSO; Replicate 1")
                 .setIndividualAgeAtCollection(Age.newBuilder().setAge("P1Y").build())
                 .setTaxonomy(ontologyClass("NCBITaxon:9606", "Homo sapiens"))
-                .setType(ontologyClass("CL:0000576", "monocyte"))
+                .setSampledTissue(ontologyClass("UBERON:0000178", "peripheral blood"))
+                .setHistologicalDiagnosis(ontologyClass("EFO:0000221", "Acute Monocytic Leukemia"))
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("EFO:0001253", "THP-1")).build())
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("BTO:0000214", "cell culture")).build())
-                .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("UBERON:0000178", "peripheral blood")).build())
+                .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("CL:0000576", "monocyte")).build())
                 .build();
 
         Disease disease = Disease.newBuilder().setId("EFO:0000222").setLabel("acute myeloid leukemia").build();

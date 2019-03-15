@@ -31,7 +31,7 @@ Java people can incorporate phenopackets-api into their code by importing the ja
 <dependency>
     <groupId>org.phenopackets</groupId>
     <artifactId>phenopacket-schema</artifactId>
-    <version>${project.version}</version>
+    <version>${phenopacket-schema.version}</version>
 </dependency>
 ```
 
