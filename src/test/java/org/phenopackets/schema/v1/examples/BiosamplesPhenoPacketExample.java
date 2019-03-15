@@ -79,7 +79,7 @@ class BiosamplesPhenoPacketExample {
                 .setId("SAMN05324082")
                 .setIndividualId("SAMN05324082-individual")
                 .setDescription("THP-1; 6 hours; DMSO; Replicate 1")
-                .setIndividualAgeAtCollection(Age.newBuilder().setAge("P1Y").build())
+                .setAgeOfIndividualAtCollection(Age.newBuilder().setAge("P1Y").build())
                 .setTaxonomy(ontologyClass("NCBITaxon:9606", "Homo sapiens"))
                 .setSampledTissue(ontologyClass("UBERON:0000178", "peripheral blood"))
                 .setHistologicalDiagnosis(ontologyClass("EFO:0000221", "Acute Monocytic Leukemia"))

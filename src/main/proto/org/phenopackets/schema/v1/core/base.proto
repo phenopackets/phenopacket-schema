@@ -145,9 +145,9 @@ message Individual {
     // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
     // See http://build.fhir.org/datatypes
-    oneof age_at_collection {
-        Age age = 4;
-        AgeRange age_range = 5;
+    oneof age {
+        Age age_at_collection = 4;
+        AgeRange age_range_at_collection = 5;
     }
 
     // A PATO term for the biological sex of the individual
@@ -221,8 +221,8 @@ message Biosample {
     // as ontology term object.
     //See http://build.fhir.org/datatypes
     oneof individual_age_at_collection {
-        Age age = 9;
-        AgeRange age_range = 18;
+        Age age_of_individual_at_collection = 9;
+        AgeRange age_range_of_individual_at_collection = 18;
     }
 
     // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
