@@ -12,7 +12,13 @@ Phenopacket schema
 .. |Documentation| image:: https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest
   :target: https://phenopackets-schema.readthedocs.io/en/latest
 
-This has been produced as part of the [GA4GH](https://ga4gh.org) [Clinical Phenotype Data Capture Workstream](https://ga4gh-cp.github.io/) and it merges the existing [GA4GH metadata-schemas](https://github.com/ga4gh-metadata/metadata-schemas) work with a more focused model from the [phenopacket-reference-implementation](https://github.com/phenopackets/phenopacket-reference-implementation). 
+This has been produced as part of the `GA4GH`_ `Clinical Phenotype Data Capture Workstream`_ and it merges the existing `GA4GH metadata-schemas`_ work with a more focused model from the `phenopacket-reference-implementation`_.
+
+.. _GA4GH: https://ga4gh.org
+.. _Clinical Phenotype Data Capture Workstream: https://ga4gh-cp.github.io/
+.. _GA4GH metadata-schemas: https://github.com/ga4gh-metadata/metadata-schemas
+.. _phenopacket-reference-implementation: https://github.com/phenopackets/phenopacket-reference-implementation
+
 
 This is a re-defined version of the original phenopacket with a more individual-centric approach. This new approach was taken in order to simplify the code required to represent and manipulate the data and also better represent this sort of data as it is in day to day use.
 
@@ -41,7 +47,7 @@ There are two ways to use this library, firstly using the ``PhenoPacket`` as an 
 
 Java people can incorporate phenopackets-api into their code by importing the jar using maven:
 
-.. code:: xml
+.. code::
     <dependency>
         <groupId>org.phenopackets</groupId>
         <artifactId>phenopacket-schema</artifactId>
@@ -58,7 +64,7 @@ JSON/YAML formats
 -----------------
 A PhenoPacket can be transformed from the native binary format into JSON or YAML and easily inter-converted between these formats. The ``PhenoPacketFormat`` class contains simple utility methods to perform these transformations. Usage is shown here:
 
-.. code:: java
+.. code::
     PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
 
     String asYaml = PhenoPacketFormat.toYaml(original);
@@ -110,6 +116,7 @@ Building the project will automatically compile Java, Python and C++ artefacts. 
     target/generated-sources/protobuf/python
 
 and
+
 .. code:: bash
     target/generated-sources/protobuf/cpp
 
