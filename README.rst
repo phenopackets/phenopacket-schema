@@ -1,4 +1,17 @@
 # Phenopacket schema
+
+|Build Status|
+  .. |Build Status| image:: https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master
+      :target: https://travis-ci.org/phenopackets/phenopacket-schema
+
+|Maven Central|
+  .. |Maven Central| image:: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg
+      :target: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema
+
+|Documentation|
+  .. |Documentation| image:: https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest
+      :target: https://phenopackets-schema.readthedocs.io/en/latest
+
 [![Build Status](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)](https://travis-ci.org/phenopackets/phenopacket-schema)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema)
 [![Documentation](https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest)](https://phenopackets-schema.readthedocs.io/en/latest/)
