@@ -32,8 +32,7 @@ class CancerPhenoPacketExample {
 
         //Diagnosis - should this be under Disease, or is it a phenotype of the patient or the biosample?
         Disease esophagealCarcinoma = Disease.newBuilder()
-                .setId("NCIT:C4024")
-                .setLabel("Esophageal Squamous Cell Carcinoma")
+                .setTerm(ontologyClass("NCIT:C4024","Esophageal Squamous Cell Carcinoma"))
                 .build();
 
 

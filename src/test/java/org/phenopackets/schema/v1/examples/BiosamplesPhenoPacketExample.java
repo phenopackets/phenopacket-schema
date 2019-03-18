@@ -88,7 +88,7 @@ class BiosamplesPhenoPacketExample {
                 .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("CL:0000576", "monocyte")).build())
                 .build();
 
-        Disease disease = Disease.newBuilder().setId("EFO:0000222").setLabel("acute myeloid leukemia").build();
+        Disease disease = Disease.newBuilder().setTerm(ontologyClass("EFO:0000222", "acute myeloid leukemia")).build();
 
         return PhenoPacket.newBuilder()
                 .setMetaData(metaData)

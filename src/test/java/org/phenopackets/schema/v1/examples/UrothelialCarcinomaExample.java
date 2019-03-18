@@ -58,8 +58,7 @@ public class UrothelialCarcinomaExample {
 
     private Disease infiltratingUrothelialCarcinoma() {
         return Disease.newBuilder()
-                .setId("NCIT:C39853")
-                .setLabel("Infiltrating Urothelial Carcinoma")
+                .setTerm(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"))
                 .build();
     }
 

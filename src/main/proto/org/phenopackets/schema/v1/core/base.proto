@@ -374,9 +374,7 @@ message GeoLocation {
 // Simple identifier name tuple to link to a concept
 message Disease {
     // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
-    string id = 1;
-    // Textual name of the disease e.g. Pfeiffer syndrome
-    string label = 2;
+    OntologyClass term = 1;
 
     // The onset of the disease. The values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674

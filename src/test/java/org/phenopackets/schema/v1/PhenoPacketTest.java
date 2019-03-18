@@ -79,8 +79,7 @@ public class PhenoPacketTest {
                 .build();
 
         Disease pfeifferSyndrome = Disease.newBuilder()
-                .setId("OMIM:101600")
-                .setLabel("PFEIFFER SYNDROME")
+                .setTerm(ontologyClass("OMIM:101600","PFEIFFER SYNDROME"))
                 .build();
 
 
