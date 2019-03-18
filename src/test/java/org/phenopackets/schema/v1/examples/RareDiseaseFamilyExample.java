@@ -2,8 +2,8 @@ package org.phenopackets.schema.v1.examples;
 
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
+import org.phenopackets.schema.v1.Family;
 import org.phenopackets.schema.v1.PhenoPacket;
-import org.phenopackets.schema.v1.RareDiseaseFamily;
 import org.phenopackets.schema.v1.core.*;
 
 import java.time.Instant;
@@ -186,13 +186,13 @@ class RareDiseaseFamilyExample {
                 .build();
     }
 
-        /**
-         * Driver project example case - https://docs.google.com/document/d/1_6RwjdJa0qtGeidykZeG_PcPqhdMOIttUirCXGTGpwk
-         * Here there are two affected siblings - the proband is affected with two conditions, one caused by a single
-         * homozygous allele, the other by a compound heterozygous genotype. The proband's sister is affected with a
-         * single condition caused by the compound heterozygous genotype. Neither parent exhibits an abnormal phenotype.
-         */
-    static RareDiseaseFamily rareDiseaseFamily() {
+    /**
+     * Driver project example case - https://docs.google.com/document/d/1_6RwjdJa0qtGeidykZeG_PcPqhdMOIttUirCXGTGpwk
+     * Here there are two affected siblings - the proband is affected with two conditions, one caused by a single
+     * homozygous allele, the other by a compound heterozygous genotype. The proband's sister is affected with a
+     * single condition caused by the compound heterozygous genotype. Neither parent exhibits an abnormal phenotype.
+     */
+    static Family rareDiseaseFamily() {
 
         MetaData metaData = MetaData.newBuilder()
                 .addResources(Resource.newBuilder()
@@ -222,7 +222,7 @@ class RareDiseaseFamilyExample {
                 .setCreatedBy("Jules J.")
                 .build();
 
-        return RareDiseaseFamily.newBuilder()
+        return Family.newBuilder()
                 .setProband(proband())
                 .addAllRelatives(ImmutableList.of(affectedSisterOfProband(), unaffectedMother(), unaffectedFather()))
                 .setPedigree(pedigree())

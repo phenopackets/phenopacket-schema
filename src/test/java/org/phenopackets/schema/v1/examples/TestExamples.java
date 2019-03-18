@@ -3,7 +3,7 @@ package org.phenopackets.schema.v1.examples;
 
 import org.hl7.fhir.r4.model.Bundle;
 import org.phenopackets.schema.v1.PhenoPacket;
-import org.phenopackets.schema.v1.RareDiseaseFamily;
+import org.phenopackets.schema.v1.Family;
 
 /**
  * Utility test class containing pre-canned FHIR and Phenopacket messages. These classes are created from the examples in
@@ -35,7 +35,7 @@ public class TestExamples {
      *
      * @return a {@link PhenoPacket} containing a rare disease patient and relations.
      */
-    public static RareDiseaseFamily rareDiseaseFamily() {
+    public static Family rareDiseaseFamily() {
         return RareDiseaseFamilyExample.rareDiseaseFamily();
     }
 

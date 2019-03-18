@@ -43,10 +43,10 @@ message PhenoPacket {
     org.phenopackets.schema.v1.core.MetaData metaData = 10;
 }
 
-// Phenotype, sample and pedigree data required for a rare disease diagnosis.
+// Phenotype, sample and pedigree data required for a genomic diagnosis.
 // Equivalent to the Genomics England InterpretationRequestRD
 // https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretationRequestRD.avdl
-message RareDiseaseFamily {
+message Family {
     // An identifier specific for this family.
     string id = 1;
 
