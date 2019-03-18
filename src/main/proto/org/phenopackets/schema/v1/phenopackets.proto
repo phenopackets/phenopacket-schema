@@ -70,3 +70,14 @@ message Family {
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     org.phenopackets.schema.v1.core.MetaData metaData = 10;
 }
+
+// A group of individuals related in some phenotypic or genotypic aspect.
+message Cohort {
+    string id = 1;
+    string description = 2;
+    repeated PhenoPacket members = 3;
+    // Pointer to the relevant HTS file(s) for the patient
+    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 4;
+    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
+    org.phenopackets.schema.v1.core.MetaData metaData = 5;
+}
