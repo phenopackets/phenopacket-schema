@@ -82,8 +82,10 @@ A PhenoPacket can be transformed from the native binary format into JSON or YAML
 
 Building new messages from the schema
 -------------------------------------
-There is an example of how to do this included in the ``proto/org/matchmakerexchange.api/v1/mme.proto`` file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from ``phenopackets/schema/v1/core/base.proto`` where applicable. Using the above example, perhaps the ``PhenoPacket.genes`` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ``Gene`` as a building block.
+There is an example of how to do this included in the `src/test/proto/org/matchmakerexchange.api/v1/mme.proto`_ file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from `phenopackets/schema/v1/core/base.proto`_ where applicable. Using the above example, perhaps the ``PhenoPacket.genes`` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ``Gene`` as a building block.
 
+.. _src/test/proto/org/matchmakerexchange.api/v1/mme.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/test/proto/org/matchmakerexchange/api/v1/mme.proto
+.. _phenopackets/schema/v1/core/base.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/main/proto/org/phenopackets/schema/v1/core/base.proto
 Building
 ========
 The project can be built using the awesome `Takari maven wrapper`_ which requires no local maven installation. The only requirement for the build is to have a working java installation and network access.
