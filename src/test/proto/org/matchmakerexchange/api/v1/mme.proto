@@ -26,7 +26,7 @@ message MmePatient {
 
 message MmeGenomicFeature {
     // Ensembl gene
-    org.phenopackets.schema.v1.core.Gene = 1;
+    org.phenopackets.schema.v1.core.Gene gene = 1;
     MmeVariant variant = 2;
     int32 zygosity = 3;
     // Class from the Sequence Ontology (SO)
