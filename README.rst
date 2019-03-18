@@ -19,12 +19,15 @@ This is a re-defined version of the original phenopacket with a more individual-
 Documentation
 =============
 
-The core documentation can be found at [https://phenopackets-schema.readthedocs.io/](https://phenopackets-schema.readthedocs.io/)
+The core documentation can be found at `Documentation`_
 
 The documentation in this README is primarily for the users of the phenopackets-schema java library.
 
-## Scope and Purpose
-The goal of the phenopacket-schema is to define the phenotypic description of a patient/sample in the context of rare disease or cancer genomic diagnosis. It aims to provide sufficient and shareable information of the data outside of the EHR (Electronic Health Record) with the aim of enabling capturing of sufficient structured data at the point of care by a clinician or clinical geneticist for sharing with other labs or computational analysis of the data in clinical or research environments. 
+.. _Documentation: https://phenopackets-schema.readthedocs.io/en/latest
+
+Scope and Purpose
+=================
+The goal of the phenopacket-schema is to define the phenotypic description of a patient/sample in the context of rare disease or cancer genomic diagnosis. It aims to provide sufficient and shareable information of the data outside of the EHR (Electronic Health Record) with the aim of enabling capturing of sufficient structured data at the point of care by a clinician or clinical geneticist for sharing with other labs or computational analysis of the data in clinical or research environments.
 
 The schema aims to define a common, limited set of data types which may be composed into more specialised types for data sharing between resources using an agreed upon common schema (as defined in base.proto).
 
@@ -34,79 +37,89 @@ Currently this is very much work in progress and breaking changes will occur. On
 
 Usage
 =====
-There are two ways to use this library, firstly using the ```PhenoPacket``` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
+There are two ways to use this library, firstly using the ``PhenoPacket`` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
 
 Java people can incorporate phenopackets-api into their code by importing the jar using maven:
 
-```xml
-<dependency>
-    <groupId>org.phenopackets</groupId>
-    <artifactId>phenopacket-schema</artifactId>
-    <version>${phenopacket-schema.version}</version>
-</dependency>
-```
+.. code:: xml
+    <dependency>
+        <groupId>org.phenopackets</groupId>
+        <artifactId>phenopacket-schema</artifactId>
+        <version>${phenopacket-schema.version}</version>
+    </dependency>
 
 The following sections describe how to achieve these two things.
 
 Exchanging PhenoPackets directly
 --------------------------------
-Examples on how these can be used can be found in the test directory. There are no explicit relationships defined between fields in the phenopacket (apart from the Pedigree), so it is vital that resources exchanging phenopackets agree on what is valid and what the fields mean in relation to other fields in the phenopacket. For example the ```PhenoPacket.genes``` field may be agreed upon as representing the genes for a gene panel in one context, or a set of candidate genes or perhaps a diagnosed causative gene.
+Examples on how these can be used can be found in the test directory. There are no explicit relationships defined between fields in the phenopacket (apart from the Pedigree), so it is vital that resources exchanging phenopackets agree on what is valid and what the fields mean in relation to other fields in the phenopacket. For example the ``PhenoPacket.genes`` field may be agreed upon as representing the genes for a gene panel in one context, or a set of candidate genes or perhaps a diagnosed causative gene.
 
 JSON/YAML formats
 -----------------
-A PhenoPacket can be transformed from the native binary format into JSON or YAML and easily inter-converted between these formats. The ```PhenoPacketFormat``` class contains simple utility methods to perform these transformations. Usage is shown here:
+A PhenoPacket can be transformed from the native binary format into JSON or YAML and easily inter-converted between these formats. The ``PhenoPacketFormat`` class contains simple utility methods to perform these transformations. Usage is shown here:
 
-```java
-PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
+.. code:: java
+    PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
 
-String asYaml = PhenoPacketFormat.toYaml(original);
-System.out.println(asYaml);
-PhenoPacket fromYaml = PhenoPacketFormat.fromYaml(asYaml);
+    String asYaml = PhenoPacketFormat.toYaml(original);
+    System.out.println(asYaml);
+    PhenoPacket fromYaml = PhenoPacketFormat.fromYaml(asYaml);
 
-String asJson = PhenoPacketFormat.yamlToJson(asYaml);
-System.out.println(asJson);
+    String asJson = PhenoPacketFormat.yamlToJson(asYaml);
+    System.out.println(asJson);
 
-PhenoPacket fromJson = PhenoPacketFormat.fromJson(asJson);
-String backToJson = PhenoPacketFormat.toJson(fromJson);
-```
+    PhenoPacket fromJson = PhenoPacketFormat.fromJson(asJson);
+    String backToJson = PhenoPacketFormat.toJson(fromJson);
+
 
 Building new messages from the schema
 -------------------------------------
-There is an example of how to do this included in the ```proto/org/matchmakerexchange.api/v1/mme.proto``` file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from ```phenopackets/schema/v1/core/base.proto``` where applicable. Using the above example, perhaps the ```PhenoPacket.genes``` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ```Gene``` as a building block.
+There is an example of how to do this included in the ``proto/org/matchmakerexchange.api/v1/mme.proto`` file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from ``phenopackets/schema/v1/core/base.proto`` where applicable. Using the above example, perhaps the ``PhenoPacket.genes`` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ``Gene`` as a building block.
 
 Building
 ========
-The project can be built using the awesome [Takari maven wrapper](https://github.com/takari/maven-wrapper) which requires no local maven installation. The only requirement for the build is to have a working java installation and network access.
+The project can be built using the awesome `Takari maven wrapper`_ which requires no local maven installation. The only requirement for the build is to have a working java installation and network access.
 
-To do this ```cd``` to the project root and run the wrapper scripts:
+To do this ``cd`` to the project root and run the wrapper scripts:
                                                     
-```bash
-$ ./mvnw clean install
-```
+.. code:: bash
+
+    $ ./mvnw clean install
+
 or
 
-```cmd
-$ ./mvnw.cmd clean install
-```
+.. code:: cmd
+
+    $ ./mvnw.cmd clean install
+
+
+.. _Takari maven wrapper: https://github.com/takari/maven-wrapper
 
 Sign artefacts for release
 ==========================
-There is a ```release-sign-artifacts``` profile which can be triggered with the command
+There is a ``release-sign-artifacts`` profile which can be triggered with the command
 
-```bash
-$ ./mvnw clean install -DperformRelease=true
-```
+.. code:: bash
+    $ ./mvnw clean install -DperformRelease=true
 
 Java, Python and C++ artefacts
 ==============================
 Building the project will automatically compile Java, Python and C++ artefacts. The Java jar file can be directly used in any Java project. For Python or C++ the build artefacts can be found at
 
-```bash
-target/generated-sources/protobuf/python
-```
-and
-```bash
-target/generated-sources/protobuf/cpp
-```
+.. code:: bash
+    target/generated-sources/protobuf/python
 
-Other languages will need to compile the files in ```src/main/proto``` to their desired language. The protobuf developer site has examples on how to do this, e.g [GO](https://developers.google.com/protocol-buffers/docs/gotutorial#compiling-your-protocol-buffers) or [C#](https://developers.google.com/protocol-buffers/docs/csharptutorial#compiling-your-protocol-buffers). Protobuf also supports a [host of other languages](https://github.com/google/protobuf/tree/v3.5.1#protobuf-runtime-installation).
+and
+.. code:: bash
+    target/generated-sources/protobuf/cpp
+
+Other languages will need to compile the files in ``src/main/proto`` to
+their desired language. The protobuf developer site has examples on how
+to do this, e.g `GO`_ or `C#`_. Protobuf also supports a `host of other
+languages`_.
+
+.. _GO: https://developers.google.com/protocol-buffers/docs/gotutorial#compiling-your-protocol-buffers
+.. _C#: https://developers.google.com/protocol-buffers/docs/csharptutorial#compiling-your-protocol-buffers
+.. _host of other languages: https://github.com/google/protobuf/tree/v3.7.0#protobuf-runtime-installation
+
+
