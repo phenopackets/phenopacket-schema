@@ -43,11 +43,11 @@ message Resource {
     // For example an HPO term will have a CURIE like this - HP:0012828 which should be used in combination with
     // the iri_prefix to form a fully-resolvable IRI
     string namespace_prefix = 3;
-    
+
     // For OBO ontologies, this should always be the PURL, e.g.
     // http://purl.obolibrary.org/obo/hp.owl, http://purl.obolibrary.org/obo/hp.obo
     string url = 4;
-    
+
     // for OBO ontologies, this should be the versionIRI
     string version = 5;
 
@@ -73,7 +73,7 @@ message OntologyClass {
     // This is the primary key for the ontology class
     // REQUIRED!
     string id = 1;
-    
+
     // class label, aka name. E.g. "Abnormality of cardiovascular system"
     string label = 2;
 }
@@ -118,14 +118,18 @@ message Phenotype {
 // FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
 message Evidence {
     // The encoded evidence type using, for example the Evidence & Conclusion Ontology (ECO - http://purl.obolibrary.org/obo/eco.owl)
+    // FHIR mapping: Condition.evidence.code
     OntologyClass evidence_code = 1;
+    // FHIR mapping: Condition.evidence.detail
     ExternalReference reference = 2;
 }
 
 // FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
 message ExternalReference {
-    // e.g. ISBN, PMID:123456, DOI:...
+    // e.g. ISBN, PMID:123456, DOI:...,
+    // FHIR mapping: Reference.identifier
     string id = 1;
+    // FHIR mapping: Reference.reference
     string description = 2;
 }
 
@@ -199,7 +203,6 @@ enum KaryotypicSex {
 // PDX-MI: Minimal Information for Patient-Derived Tumor Xenograft Models.
 // https://pdxintegrator.readthedocs.io/en/latest/tumor.html
 
-
 // A Biosample refers to a unit of biological material from which the substrate
 // molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
 // sequencing, array hybridisation, mass-spectrometry) are extracted. Examples
@@ -235,19 +238,14 @@ message Biosample {
     // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
     OntologyClass taxonomy = 7;
 
-    // External identifiers representing this biosample. These are considered
-    // different representation of the same record, not records which are in some
-    // other relation with the record at hand.
-    repeated ExternalReference external_references = 8;
-
     // An age object describing the age of the individual this biosample was
     // derived from at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or
     // as ontology term object.
     //See http://build.fhir.org/datatypes
     oneof individual_age_at_collection {
-        Age age_of_individual_at_collection = 9;
-        AgeRange age_range_of_individual_at_collection = 18;
+        Age age_of_individual_at_collection = 8;
+        AgeRange age_range_of_individual_at_collection = 9;
     }
 
     // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
