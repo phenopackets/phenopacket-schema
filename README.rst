@@ -47,7 +47,8 @@ There are two ways to use this library, firstly using the ``PhenoPacket`` as an 
 
 Java people can incorporate phenopackets-api into their code by importing the jar using maven:
 
-.. code::
+.. code:: xml
+
     <dependency>
         <groupId>org.phenopackets</groupId>
         <artifactId>phenopacket-schema</artifactId>
@@ -64,7 +65,8 @@ JSON/YAML formats
 -----------------
 A PhenoPacket can be transformed from the native binary format into JSON or YAML and easily inter-converted between these formats. The ``PhenoPacketFormat`` class contains simple utility methods to perform these transformations. Usage is shown here:
 
-.. code::
+.. code:: java
+
     PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
 
     String asYaml = PhenoPacketFormat.toYaml(original);
