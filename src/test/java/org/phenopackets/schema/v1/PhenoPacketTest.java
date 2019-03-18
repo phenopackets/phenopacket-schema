@@ -86,11 +86,6 @@ public class PhenoPacketTest {
 
         Individual proband = Individual.newBuilder()
                 .setId("proband")
-                .addPhenotypes(brachydactyly)
-                .addPhenotypes(craniosynostosis)
-                .addPhenotypes(broadThumb)
-                .addPhenotypes(broadHallux)
-                .addPhenotypes(proptosisCongenitalMild)
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
@@ -123,6 +118,11 @@ public class PhenoPacketTest {
 
         PhenoPacket pfeifferDiagnosisExample = PhenoPacket.newBuilder()
                 .setSubject(proband)
+                .addPhenotypes(brachydactyly)
+                .addPhenotypes(craniosynostosis)
+                .addPhenotypes(broadThumb)
+                .addPhenotypes(broadHallux)
+                .addPhenotypes(proptosisCongenitalMild)
                 .addVariants(pathogenicVariant)
                 .addGenes(fgfr2Gene)
                 .addDiseases(pfeifferSyndrome)
@@ -147,6 +147,7 @@ public class PhenoPacketTest {
 
     @Test
     void printRareDisease() throws IOException {
+        // TODO Add a RareDiseaseFamilyFormat class for this case...
         System.out.println(toYaml(TestExamples.rareDiseasePhenoPacket()));
     }
 

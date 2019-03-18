@@ -92,7 +92,7 @@ class BiosamplesPhenoPacketExample {
 
         return PhenoPacket.newBuilder()
                 .setMetaData(metaData)
-                .addIndividuals(individual)
+                .setSubject(individual)
                 .addBiosamples(biosample)
                 .addDiseases(disease)
                 .build();

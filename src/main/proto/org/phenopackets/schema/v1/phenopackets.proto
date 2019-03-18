@@ -17,21 +17,15 @@ message PhenoPacket {
     // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
     org.phenopackets.schema.v1.core.Individual subject = 2;
 
-    // Individuals related in some way to the patient. For instance, the individuals may be genetically related or may
-    // be members of a cohort. If this field is used, then  it is expected that a pedigree will be included for
-    // genetically related individuals for use cases such as genomic diagnostics. If a phenopacket is being used to
-    // describe one member of a cohort, then in general one phenopacket will be created for each of the individuals in
-    // the cohort.
-    repeated org.phenopackets.schema.v1.core.Individual individuals = 3;
-
-    // The pedigree defining the relations between the patient and their relatives.
-    org.phenopackets.schema.v1.core.Pedigree pedigree = 4;
+    // Phenotypes relating to the subject of the phenopacket
+    repeated org.phenopackets.schema.v1.core.Phenotype phenotypes = 3;
 
     // Biosample(s) derived from the patient or a collection of biosamples in isolation
     repeated org.phenopackets.schema.v1.core.Biosample biosamples = 5;
 
     // Field for gene identifiers - could be used for listing either candidate genes or causative genes. The
-    // resources using these fields should define what this represents in their context.
+    // resources using these fields should define what this represents in their context. This could be used in order to
+    // obfuscate the specific causative/candidate variant.
     repeated org.phenopackets.schema.v1.core.Gene genes = 6;
 
     // Field for genetic variants - could be used for listing either candidate variants or diagnosed causative
@@ -47,5 +41,32 @@ message PhenoPacket {
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     org.phenopackets.schema.v1.core.MetaData metaData = 10;
+}
 
+// Phenotype, sample and pedigree data required for a rare disease diagnosis.
+// Equivalent to the Genomics England InterpretationRequestRD
+// https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretationRequestRD.avdl
+message RareDiseaseFamily {
+    // An identifier specific for this family.
+    string id = 1;
+
+    // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
+    PhenoPacket proband = 2;
+
+    // Individuals related in some way to the patient. For instance, the individuals may be genetically related or may
+    // be members of a cohort. If this field is used, then  it is expected that a pedigree will be included for
+    // genetically related individuals for use cases such as genomic diagnostics. If a phenopacket is being used to
+    // describe one member of a cohort, then in general one phenopacket will be created for each of the individuals in
+    // the cohort.
+    repeated PhenoPacket relatives = 4;
+
+    // The pedigree defining the relations between the proband and their relatives. Pedigree.individual_id should
+    // map to the PhenoPacket.Individual.id
+    org.phenopackets.schema.v1.core.Pedigree pedigree = 5;
+
+    // Pointer to the relevant HTS file(s) for the patient
+    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 9;
+
+    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
+    org.phenopackets.schema.v1.core.MetaData metaData = 10;
 }

@@ -6,7 +6,10 @@ import "org/phenopackets/schema/v1/core/base.proto";
 option java_multiple_files = true;
 option java_outer_classname = "MatchMakerExchange";
 
-// https://github.com/ga4gh/mme-apis/blob/master/search-api.md#search-request
+// This is an example of how other resources, in this case the MME can define their own custom messages using the
+// Phenopackets schema to define common elements, such as Gene, OntologyClass, Disease, Phenotype and Individual. Other
+// resource-specific types require specifying in their own schema definition, as is shown in this file.
+// See https://github.com/ga4gh/mme-apis/blob/master/search-api.md#search-request for the specification.
 message MmeMatchRequest {
     string disclaimer = 1;
     string terms = 2;
@@ -16,8 +19,31 @@ message MmeMatchRequest {
 
 message MmePatient {
     org.phenopackets.schema.v1.core.Individual individual = 4;
-//    repeated org.phenopackets.schema.v1.core.GenomicFeature genomic_features = 5; //make this an MmeGenomicFeature
-    repeated org.phenopackets.schema.v1.core.Disease diseases = 6;
+    repeated MmeGenomicFeature genomic_features = 5;
+    repeated org.phenopackets.schema.v1.core.Phenotype features = 6;
+    repeated org.phenopackets.schema.v1.core.Disease disorders = 7;
+}
+
+message MmeGenomicFeature {
+    // Ensembl gene
+    org.phenopackets.schema.v1.core.Gene = 1;
+    MmeVariant variant = 2;
+    int32 zygosity = 3;
+    // Class from the Sequence Ontology (SO)
+    org.phenopackets.schema.v1.core.OntologyClass type = 4;
+}
+
+message MmeVariant {
+    // "NCBI36"|"GRCh37.p13"|"GRCh38.p1"|…,
+    string assembly = 1;
+    // "1"|"2"|…|"X"|"Y"
+    string referenceName = 2;
+    int32 start = 3;
+    int32 end = 4;
+    // "A"|"ACG"|…,
+    string referenceBases = 5;
+    // "A"|"ACG"|…,
+    string alternateBases = 6;
 }
 
 message MmeContact {

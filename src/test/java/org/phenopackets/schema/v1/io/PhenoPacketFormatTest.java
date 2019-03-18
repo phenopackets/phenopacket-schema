@@ -33,7 +33,7 @@ class PhenoPacketFormatTest {
 
     @Test
     void toFromJson() throws Exception {
-        PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
+        PhenoPacket original = TestExamples.cancerPhenoPacket();
 
         String asJson = PhenoPacketFormat.toJson(original);
         System.out.println(asJson);
@@ -44,7 +44,7 @@ class PhenoPacketFormatTest {
 
     @Test
     void toFromYaml() throws Exception {
-        PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
+        PhenoPacket original = TestExamples.biosamplesPhenoPacket();
 
         String asYaml = PhenoPacketFormat.toYaml(original);
         System.out.println(asYaml);

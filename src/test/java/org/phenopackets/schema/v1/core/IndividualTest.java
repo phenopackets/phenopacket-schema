@@ -19,10 +19,6 @@ public class IndividualTest {
 
     @Test
     public void testIndividual() throws Exception {
-        Phenotype phenotype = Phenotype.newBuilder()
-                .setClassOfOnset(ontologyClass("HP:0003623", "Neonatal onset"))
-                .setType(ontologyClass("HP:0001711", "Abnormality of the left ventricle"))
-                .build();
 
         long dateOfBirth = Instant.parse("2018-03-12T15:15:30.00Z").getEpochSecond();
         Timestamp dobTimestamp = Timestamp.newBuilder().setSeconds(dateOfBirth).build();
@@ -31,11 +27,9 @@ public class IndividualTest {
                 .setDateOfBirth(dobTimestamp)
                 .setSex(Sex.FEMALE)
                 .setKaryotypicSex(KaryotypicSex.XX)
-                .addPhenotypes(phenotype)
                 .build();
 
         System.out.println(JsonFormat.printer().print(individual));
         assertThat(individual.getDateOfBirth(), equalTo(dobTimestamp));
-        assertThat(individual.getPhenotypesList(), equalTo(ImmutableList.of(phenotype)));
     }
 }

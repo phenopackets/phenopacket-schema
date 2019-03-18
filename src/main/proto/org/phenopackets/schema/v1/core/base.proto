@@ -17,6 +17,10 @@ message MetaData {
     // ISO8601 UTC timestamps at which this record was updated, in
     // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
     repeated google.protobuf.Timestamp updated = 5;
+    // External identifiers for this message. These are considered different representation of the same record, not
+    // records which are in some other relation with the record at hand. For example this might be a PubMed reference
+    // to a study in which the individuals are reported.
+    repeated ExternalReference external_references = 9;
 }
 
 // Description of an external resource used for referencing an object. For example the resource may be an ontology such
@@ -156,18 +160,10 @@ message Individual {
     // The karyotypic sex of the individual
     KaryotypicSex karyotypic_sex = 10;
 
-    // A set of phenotypes describing the individual.
-    repeated Phenotype phenotypes = 7;
-
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to its most specific level
     OntologyClass taxonomy = 8;
-
-    // External identifiers representing this individual. These are considered
-    // different representation of the same record, not records which are in some
-    // other relation with the record at hand.
-    repeated ExternalReference external_references = 9;
 }
 
 // Phenotypic sex of an individual

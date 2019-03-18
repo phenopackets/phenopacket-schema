@@ -81,7 +81,7 @@ class CancerPhenoPacketExample {
                 .build();
 
         return PhenoPacket.newBuilder()
-                .addIndividuals(patient)
+                .setSubject(patient)
                 .addBiosamples(lymphNodeBiopsy)
                 .addBiosamples(esophagusBiopsy)
                 .addBiosamples(lungAutopsy)
