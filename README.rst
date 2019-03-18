@@ -1,26 +1,23 @@
-# Phenopacket schema
+Phenopacket schema
+==================
 
-|Build Status|
-  .. |Build Status| image:: https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master
-      :target: https://travis-ci.org/phenopackets/phenopacket-schema
+|Build Status| |Maven Central| |Documentation|
 
-|Maven Central|
-  .. |Maven Central| image:: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg
-      :target: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema
+.. |Build Status| image:: https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master
+  :target: https://travis-ci.org/phenopackets/phenopacket-schema
 
-|Documentation|
-  .. |Documentation| image:: https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest
-      :target: https://phenopackets-schema.readthedocs.io/en/latest
+.. |Maven Central| image:: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg
+  :target: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema
 
-[![Build Status](https://travis-ci.org/phenopackets/phenopacket-schema.svg?branch=master)](https://travis-ci.org/phenopackets/phenopacket-schema)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema)
-[![Documentation](https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest)](https://phenopackets-schema.readthedocs.io/en/latest/)
+.. |Documentation| image:: https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest
+  :target: https://phenopackets-schema.readthedocs.io/en/latest
 
 This has been produced as part of the [GA4GH](https://ga4gh.org) [Clinical Phenotype Data Capture Workstream](https://ga4gh-cp.github.io/) and it merges the existing [GA4GH metadata-schemas](https://github.com/ga4gh-metadata/metadata-schemas) work with a more focused model from the [phenopacket-reference-implementation](https://github.com/phenopackets/phenopacket-reference-implementation). 
 
 This is a re-defined version of the original phenopacket with a more individual-centric approach. This new approach was taken in order to simplify the code required to represent and manipulate the data and also better represent this sort of data as it is in day to day use.
 
-## Documentation
+Documentation
+=============
 
 The core documentation can be found at [https://phenopackets-schema.readthedocs.io/](https://phenopackets-schema.readthedocs.io/)
 
@@ -35,7 +32,8 @@ This common schema has been used to define the 'Phenopacket' which is a catch-al
 
 Currently this is very much work in progress and breaking changes will occur. Once we have settled on something stable we will draft a 1.0.0-RELEASE and thereafter stick to semantic versioning semantics.
 
-## Usage
+Usage
+=====
 There are two ways to use this library, firstly using the ```PhenoPacket``` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
 
 Java people can incorporate phenopackets-api into their code by importing the jar using maven:
@@ -50,10 +48,12 @@ Java people can incorporate phenopackets-api into their code by importing the ja
 
 The following sections describe how to achieve these two things.
 
-### Exchanging PhenoPackets directly
+Exchanging PhenoPackets directly
+--------------------------------
 Examples on how these can be used can be found in the test directory. There are no explicit relationships defined between fields in the phenopacket (apart from the Pedigree), so it is vital that resources exchanging phenopackets agree on what is valid and what the fields mean in relation to other fields in the phenopacket. For example the ```PhenoPacket.genes``` field may be agreed upon as representing the genes for a gene panel in one context, or a set of candidate genes or perhaps a diagnosed causative gene.
 
-### JSON/YAML formats 
+JSON/YAML formats
+-----------------
 A PhenoPacket can be transformed from the native binary format into JSON or YAML and easily inter-converted between these formats. The ```PhenoPacketFormat``` class contains simple utility methods to perform these transformations. Usage is shown here:
 
 ```java
@@ -70,11 +70,13 @@ PhenoPacket fromJson = PhenoPacketFormat.fromJson(asJson);
 String backToJson = PhenoPacketFormat.toJson(fromJson);
 ```
 
-### Building new messages from the schema
-There is an example of how to do this included in the ```proto/org/matchmakerexchange.api/v1/mme.proto``` file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from ```phenopackets/schema/v1/core/base.proto``` where applicable. Using the above example, perhaps the ```PhenoPacket.genes``` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ```Gene``` as a building block.  
+Building new messages from the schema
+-------------------------------------
+There is an example of how to do this included in the ```proto/org/matchmakerexchange.api/v1/mme.proto``` file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from ```phenopackets/schema/v1/core/base.proto``` where applicable. Using the above example, perhaps the ```PhenoPacket.genes``` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ```Gene``` as a building block.
 
-## Building
-The project can be built using the awesome [Takari maven wrapper](https://github.com/takari/maven-wrapper) which requires no local maven installation. The only requirement for the build is to have a working java installation and network access. 
+Building
+========
+The project can be built using the awesome [Takari maven wrapper](https://github.com/takari/maven-wrapper) which requires no local maven installation. The only requirement for the build is to have a working java installation and network access.
 
 To do this ```cd``` to the project root and run the wrapper scripts:
                                                     
@@ -87,14 +89,16 @@ or
 $ ./mvnw.cmd clean install
 ```
 
-## Sign artefacts for release
+Sign artefacts for release
+==========================
 There is a ```release-sign-artifacts``` profile which can be triggered with the command
 
 ```bash
 $ ./mvnw clean install -DperformRelease=true
 ```
 
-## Java, Python and C++ artefacts
+Java, Python and C++ artefacts
+==============================
 Building the project will automatically compile Java, Python and C++ artefacts. The Java jar file can be directly used in any Java project. For Python or C++ the build artefacts can be found at
 
 ```bash
