@@ -3,11 +3,11 @@ package org.phenopackets.schema.v1;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.core.*;
 import org.phenopackets.schema.v1.examples.TestExamples;
+import org.phenopackets.schema.v1.io.PhenoPacketFormat;
 
 import java.io.IOException;
 
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
-import static org.phenopackets.schema.v1.io.PhenoPacketFormat.toYaml;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
@@ -27,7 +27,7 @@ public class PhenoPacketTest {
         // SPDI: NC_000010.10:123256214:T:G
         // VCF:  10-123256215-T-G or NC_000010.10-123256215-T-G
         SpdiAllele pathogenicAllele = SpdiAllele.newBuilder()
-                .setSequence("NC_000010.10")
+                .setSeqId("NC_000010.10")
                 .setPosition(123256214)
                 .setDeletedSequence("T")
                 .setInsertedSequence("G")
