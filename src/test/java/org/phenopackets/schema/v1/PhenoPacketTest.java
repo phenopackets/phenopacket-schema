@@ -144,22 +144,22 @@ public class PhenoPacketTest {
                 .setMetaData(metaData)
                 .build();
 
-        System.out.println(toYaml(pfeifferDiagnosisExample));
+        System.out.println(PhenoPacketFormat.toYaml(pfeifferDiagnosisExample));
     }
 
     @Test
     void printCancer() throws IOException {
-        System.out.println(toYaml(TestExamples.cancerPhenoPacket()));
+        System.out.println(PhenoPacketFormat.toYaml(TestExamples.cancerPhenoPacket()));
     }
 
     @Test
     void printRareDisease() throws IOException {
         // TODO Add a RareDiseaseFamilyFormat class for this case...
-        System.out.println(toYaml(TestExamples.rareDiseasePhenoPacket()));
+        System.out.println(PhenoPacketFormat.toYaml(TestExamples.rareDiseasePhenoPacket()));
     }
 
     @Test
     void printBiosamples() throws IOException {
-        System.out.println(toYaml(TestExamples.biosamplesPhenoPacket()));
+        System.out.println(PhenoPacketFormat.toYaml(TestExamples.biosamplesPhenoPacket()));
     }
 }
