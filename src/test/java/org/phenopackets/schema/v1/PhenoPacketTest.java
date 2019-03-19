@@ -22,12 +22,20 @@ public class PhenoPacketTest {
                 .setSymbol("FGFR2")
                 .build();
 
-        Variant pathogenicVariant = Variant.newBuilder()
-                .setSequenceAccession("NC_000010.10")
+        // These are equivalent:
+        // HGVS: NC_000010.10:g.123256215T>G
+        // SPDI: NC_000010.10:123256214:T:G
+        // VCF:  10-123256215-T-G or NC_000010.10-123256215-T-G
+        SpdiAllele pathogenicAllele = SpdiAllele.newBuilder()
+                .setSequence("NC_000010.10")
                 .setPosition(123256214)
-                .setDeletion("T")
-                .setInsertion("G")
-                .putSampleGenotypes("proband", ontologyClass("GENO:0000135", "heterozygous"))
+                .setDeletedSequence("T")
+                .setInsertedSequence("G")
+                .build();
+
+        Variant heterozygousPathogenicVariant = Variant.newBuilder()
+                .setSpdiAllele(pathogenicAllele)
+                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
 
         Phenotype coronalCraniosynostosis = Phenotype.newBuilder()
@@ -122,7 +130,7 @@ public class PhenoPacketTest {
                 .addPhenotypes(broadThumb)
                 .addPhenotypes(broadHallux)
                 .addPhenotypes(proptosisCongenitalMild)
-                .addVariants(pathogenicVariant)
+                .addVariants(heterozygousPathogenicVariant)
                 .addGenes(fgfr2Gene)
                 .addDiseases(pfeifferSyndrome)
                 .addHtsFiles(HtsFile.newBuilder()

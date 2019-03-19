@@ -23,6 +23,29 @@ class RareDiseaseFamilyExample {
     private static final String MOTHER_ID = "MOTHER";
     private static final String FATHER_ID = "FATHER";
 
+    // Alleles
+    private static final HgvsAllele NM_001361_403_C_T = hgvs("NM_001361.4:c.403C>T");
+    private static final HgvsAllele NM_001361_454_G_A = hgvs("NM_001361.4:c.454G>A");
+    private static final HgvsAllele NM_001369_12599_dupA = hgvs("NM_001369.2:c.12599dupA");
+
+    private static HgvsAllele hgvs(String value) {
+        return HgvsAllele.newBuilder().setHgvs(value).build();
+    }
+
+    private static Variant het(HgvsAllele allele) {
+        return Variant.newBuilder()
+                .setHgvsAllele(allele)
+                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
+                .build();
+    }
+
+    private static Variant hom(HgvsAllele allele) {
+        return Variant.newBuilder()
+                .setHgvsAllele(allele)
+                .setGenotype(ontologyClass("GENO:0000136", "homozygous"))
+                .build();
+    }
+
     static PhenoPacket proband() {
         Phenotype syndactylyCongenitalOnset = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0001159", "Syndactyly"))
@@ -45,40 +68,6 @@ class RareDiseaseFamilyExample {
                 .setClassOfOnset(ontologyClass("HP:0003581", "Adult onset"))
                 .build();
 
-        Variant var1 = Variant.newBuilder()
-                .setSequenceAccession("NM_001361.4")
-                .setPosition(423)
-                .setDeletion("C")
-                .setInsertion("T")
-                .setHgvs("NM_001361.4:c.403C>T")
-                .putSampleGenotypes(PROBAND_ID, ontologyClass("GENO:0000135", "heterozygous"))
-                .putSampleGenotypes(SISTER_ID, ontologyClass("GENO:0000135", "heterozygous"))
-                .putSampleGenotypes("FATHER:1", ontologyClass("GENO:0000135", "heterozygous"))
-                .build();
-
-        Variant var2 = Variant.newBuilder()
-                .setSequenceAccession("NM_001361.4")
-                .setPosition(474)
-                .setDeletion("G")
-                .setInsertion("A")
-                .setHgvs("NM_001361.4:c.454G>A")
-                .putSampleGenotypes(PROBAND_ID, ontologyClass("GENO:0000135", "heterozygous"))
-                .putSampleGenotypes(SISTER_ID, ontologyClass("GENO:0000135", "heterozygous"))
-                .putSampleGenotypes(MOTHER_ID, ontologyClass("GENO:0000135", "heterozygous"))
-                .build();
-
-        Variant var3 = Variant.newBuilder()
-                .setSequenceAccession("NM_001369.2")
-                .setPosition(12639)
-                .setDeletion("AA")
-                .setInsertion("AAA")
-                .setHgvs("NM_001369.2:c.12599dupA")
-                .putSampleGenotypes(PROBAND_ID, ontologyClass("GENO:0000136", "homozygous"))
-                .putSampleGenotypes(SISTER_ID, ontologyClass("GENO:0000135", "heterozygous"))
-                .putSampleGenotypes(MOTHER_ID, ontologyClass("GENO:0000135", "heterozygous"))
-                .putSampleGenotypes("FATHER:1", ontologyClass("GENO:0000135", "heterozygous"))
-                .build();
-
         Individual proband = Individual.newBuilder()
                 .setSex(Sex.MALE)
                 .setId(PROBAND_ID)
@@ -92,7 +81,9 @@ class RareDiseaseFamilyExample {
                 .addPhenotypes(pneumoniaChildhoodOnset)
                 .addPhenotypes(cryptorchidismCongenitalOnset)
                 .addPhenotypes(chronicSinusitisAdultOnsetSevere)
-                .addAllVariants(ImmutableList.of(var1, var2, var3))
+                .addVariants(het(NM_001361_403_C_T))
+                .addVariants(het(NM_001361_454_G_A))
+                .addVariants(hom(NM_001369_12599_dupA))
                 .build();
     }
 
@@ -125,6 +116,9 @@ class RareDiseaseFamilyExample {
                 .addPhenotypes(syndactylyCongenitalOnset)
                 .addPhenotypes(notPneumonia)
                 .addPhenotypes(notChronicSinusitis)
+                .addVariants(het(NM_001361_403_C_T))
+                .addVariants(het(NM_001361_454_G_A))
+                .addVariants(het(NM_001369_12599_dupA))
                 .build();
     }
 
@@ -135,6 +129,8 @@ class RareDiseaseFamilyExample {
                 .build();
         return PhenoPacket.newBuilder()
                 .setSubject(mother)
+                .addVariants(het(NM_001361_454_G_A))
+                .addVariants(het(NM_001369_12599_dupA))
                 .build();
     }
 
@@ -145,6 +141,8 @@ class RareDiseaseFamilyExample {
                 .build();
         return PhenoPacket.newBuilder()
                 .setSubject(father)
+                .addVariants(het(NM_001361_403_C_T))
+                .addVariants(het(NM_001369_12599_dupA))
                 .build();
     }
 
