@@ -8,6 +8,7 @@ import org.phenopackets.schema.v1.io.PhenoPacketFormat;
 import java.io.IOException;
 
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
+import static org.phenopackets.schema.v1.io.PhenoPacketFormat.toYaml;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
