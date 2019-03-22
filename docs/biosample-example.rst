@@ -157,7 +157,7 @@ Finally,
 
   public class UrothelialCarcinomaExample {
 
-    private final PhenoPacket phenopacket;
+    private final Phenopacket phenopacket;
 
     private final String patientId = "patient1";
     private final String ageAtBiopsy = "P52Y2M";
@@ -167,9 +167,9 @@ Finally,
         MetaData metaData = buildMetaData();
         Individual patient = buildPatient();
 
-        this.phenopacket = PhenoPacket.newBuilder()
+        phenopacket = Phenopacket.newBuilder()
                 .addIndividuals(patient)
-              .addBiosamples(bladderBiopsy())
+                .addBiosamples(bladderBiopsy())
                 .addBiosamples(prostateBiospy())
                 .addBiosamples(leftUreterBiospy())
                 .addBiosamples(rightUreterBiospy())

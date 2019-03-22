@@ -3,7 +3,7 @@ Metadata element
 ================
 
 
-This element contains structured definitions of the resources and ontologies used within the phenopacket. It is considered to be a required element of a valid PhenoPacket and application Q/C software should check this.
+This element contains structured definitions of the resources and ontologies used within the phenopacket. It is considered to be a required element of a valid Phenopacket and application Q/C software should check this.
 
 The protobuf code is::
 

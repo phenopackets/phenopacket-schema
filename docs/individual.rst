@@ -43,7 +43,7 @@ This element represents the date of birth of the individual as an `ISO8601 UTC t
 Age and age_at_collection
 =========================
 
-An age object describing the age of the individual at the time of collection of biospecimens or phenotypic observations reported in the current PhenoPacket. It is specified using an :ref:`Age element`. 
+An age object describing the age of the individual at the time of collection of biospecimens or phenotypic observations reported in the current Phenopacket. It is specified using an :ref:`Age element`.
 
 
 
@@ -69,7 +69,7 @@ In Java, the sex can be specified as follows::
 
 phenotypes
 ==========
-This is a list of ontology terms that describe the phenotype of the subject of the PhenoPacket.
+This is a list of ontology terms that describe the phenotype of the subject of the Phenopacket.
 It makes use of the :ref:`Phenotype element`.
 
 taxonomy
