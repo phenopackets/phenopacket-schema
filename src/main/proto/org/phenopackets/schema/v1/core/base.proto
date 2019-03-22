@@ -198,7 +198,6 @@ enum KaryotypicSex {
     OTHER_KARYOTYPE = 10;
 }
 
-//TODO re-write this
 // https://www.ncbi.nlm.nih.gov/pubmed/29092942/
 // PDX-MI: Minimal Information for Patient-Derived Tumor Xenograft Models.
 // https://pdxintegrator.readthedocs.io/en/latest/tumor.html

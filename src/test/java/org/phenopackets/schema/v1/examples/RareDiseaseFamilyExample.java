@@ -3,12 +3,12 @@ package org.phenopackets.schema.v1.examples;
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
 import org.phenopackets.schema.v1.Family;
-import org.phenopackets.schema.v1.PhenoPacket;
+import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
 import java.time.Instant;
 
-import static org.phenopackets.schema.v1.PhenoPacketTestUtil.*;
+import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
 
 /**
  * Phenopacket representation of the rare disease example from the Toronto hackathon. See
@@ -46,7 +46,7 @@ class RareDiseaseFamilyExample {
                 .build();
     }
 
-    static PhenoPacket proband() {
+    static Phenopacket proband() {
         Phenotype syndactylyCongenitalOnset = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0001159", "Syndactyly"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
@@ -75,7 +75,7 @@ class RareDiseaseFamilyExample {
                         .setSeconds(Instant.parse("1998-01-01T00:00:00Z").getEpochSecond())
                         .build())
                 .build();
-        return PhenoPacket.newBuilder()
+        return Phenopacket.newBuilder()
                 .setSubject(proband)
                 .addPhenotypes(syndactylyCongenitalOnset)
                 .addPhenotypes(pneumoniaChildhoodOnset)
@@ -87,7 +87,7 @@ class RareDiseaseFamilyExample {
                 .build();
     }
 
-    static PhenoPacket affectedSisterOfProband() {
+    static Phenopacket affectedSisterOfProband() {
         Phenotype syndactylyCongenitalOnset = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0001159", "Syndactyly"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
@@ -111,7 +111,7 @@ class RareDiseaseFamilyExample {
                         .build())
                 .build();
 
-        return PhenoPacket.newBuilder()
+        return Phenopacket.newBuilder()
                 .setSubject(sister)
                 .addPhenotypes(syndactylyCongenitalOnset)
                 .addPhenotypes(notPneumonia)
@@ -122,24 +122,24 @@ class RareDiseaseFamilyExample {
                 .build();
     }
 
-    static PhenoPacket unaffectedMother() {
+    static Phenopacket unaffectedMother() {
         Individual mother = Individual.newBuilder()
                 .setSex(Sex.FEMALE)
                 .setId(MOTHER_ID)
                 .build();
-        return PhenoPacket.newBuilder()
+        return Phenopacket.newBuilder()
                 .setSubject(mother)
                 .addVariants(het(NM_001361_454_G_A))
                 .addVariants(het(NM_001369_12599_dupA))
                 .build();
     }
 
-    static PhenoPacket unaffectedFather() {
+    static Phenopacket unaffectedFather() {
         Individual father = Individual.newBuilder()
                 .setSex(Sex.MALE)
                 .setId(FATHER_ID)
                 .build();
-        return PhenoPacket.newBuilder()
+        return Phenopacket.newBuilder()
                 .setSubject(father)
                 .addVariants(het(NM_001361_403_C_T))
                 .addVariants(het(NM_001369_12599_dupA))
