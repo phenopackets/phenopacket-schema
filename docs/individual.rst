@@ -29,6 +29,8 @@ This element is the primary identifier for the individual. The contents of the e
 be determined by the application. For instance, if the Phenopacket is being used to represent a case study about
 an individual with some genetic disease, the individual may be referred to in that study by their position in
 the pedigree, e.g., III:2 for the second person in the third generation. In this case, id would be set to ``III:2``.
+If a ``Pedigree`` element is used, it is essential that the ``id`` used here matches the individual_id of
+the ``Pedigree`` element.
 
 dataset_id
 ==========
