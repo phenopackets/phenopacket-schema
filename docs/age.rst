@@ -7,17 +7,24 @@ The Age element allows the age of the subject to be encoded in several different
 Age can be encoded either as `ISO8601 duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_ or as time interval '(preferred). Alternatively, the age can be encoded using an ontology term. Here is the message::
 
   message Age {
-
-    // 
     string age = 1;
-
-    // An age class, e.g. corresponding to the use of "age of onset" in HPO.
-    // HPO is recommended, for example, subclasses of "Onset":
-    // http://purl.obolibrary.org/obo/HP_0003674
-    // Example:
-    //  age_class : { term_id : "HP:0003596", term : "Middle age onset" }
     OntologyClass age_class = 2;
   }
+
+The string element (string age=1) should be used for ISO8601 duration or time intervals.
+The use of time intervals makes an additional anchor unnecessary (i.e. DOB and age can be
+represented as start-anchored time interval, e.g. 1967-11-21/P40Y10M05D). For many use cases,
+less precise strings will be preferred for privacy reasons, e.g., P40Y.
+
+Alternatively, an ontology class can be used to represent age. We recommend the
+`Human Developmental Stages ontology <https://www.ebi.ac.uk/ols/ontologies/hsapdv>`_.
+For example `second decade human stage <https://www.ebi.ac.uk/ols/ontologies/hsapdv/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHsapDv_0000236>`_
+or `114-year-old human stage <https://www.ebi.ac.uk/ols/ontologies/hsapdv/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FHsapDv_0000255>`_.
+
+In FHIR, age data is is represented as a UCUM measurement - http://unitsofmeasure.org/trac/
+
+See `Condition onset` <http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_>`_.
+
 
 age (string)
 ============
