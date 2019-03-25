@@ -12,13 +12,16 @@ import java.util.Date;
  * src/test/resources/toronto_cancer_example.md.
  *
  * @author Alejandro Metke <alejandro.metke@csiro.au>
- *
  */
 class CancerFhirExample {
 
     static final String SNOMED_CT_SYSTEM = "http://snomed.info/sct";
     static final String LOINC_SYSTEM = "http://loinc.org";
     static final String UCUM_SYSTEM = "http://unitsofmeasure.org";
+    static final String SYSTEM_CONDITION_CLINICAL = "http://terminology.hl7.org/CodeSystem/condition-clinical";
+
+    static final CodeableConcept RECURRENCE = getCode(SYSTEM_CONDITION_CLINICAL, "recurrence", "Recurrence");
+    static final CodeableConcept ACTIVE = getCode(SYSTEM_CONDITION_CLINICAL, "active", "Active");
 
     static Bundle cancerBundle() {
         Patient patient = new Patient();
@@ -40,16 +43,14 @@ class CancerFhirExample {
         Encounter initialEncounter = new Encounter();
         initialEncounter.setId("enc-1");
         initialEncounter.setStatus(Encounter.EncounterStatus.FINISHED);
-        initialEncounter.setClass_(getCoding("http://hl7.org/fhir/v3/ActCode",
-                "NONAC", "inpatient non-acute"));
+        initialEncounter.setClass_(getCoding("http://hl7.org/fhir/v3/ActCode", "NONAC", "inpatient non-acute"));
         initialEncounter.setSubject(new Reference(patient));
 
         // HPV-18 positive (cancer tissue)
         // HPV-positive is on cancer tissue so we model this as a body structure
         BodyStructure tumour = new BodyStructure();
         tumour.setId("bs-1");
-        tumour.setMorphology(getCode(SNOMED_CT_SYSTEM, "252987004",
-                "Tumour cells"));
+        tumour.setMorphology(getCode(SNOMED_CT_SYSTEM, "252987004", "Tumour cells"));
         tumour.setPatient(new Reference(patient));
 
         // We make an observation on the body structure
@@ -58,53 +59,47 @@ class CancerFhirExample {
         hpvObservation.setCode(getCode(LOINC_SYSTEM, "77377-0", "Human "
                 + "papilloma virus 16 and 18 and 31+33+35+39+45+51+52+56+58+59+66+"
                 + "68 DNA [Interpretation] in Unspecified specimen"));
-        hpvObservation.setValue(getCode(LOINC_SYSTEM, "LA22706-8",
-                "HPV type 18 detected"));
-        hpvObservation.setFocus(new Reference(tumour));
-        hpvObservation.setContext(new Reference(initialEncounter));
+        hpvObservation.setValue(getCode(LOINC_SYSTEM, "LA22706-8", "HPV type 18 detected"));
+        hpvObservation.setFocus(Arrays.asList(new Reference(tumour)));
+        hpvObservation.setEncounter(new Reference(initialEncounter));
 
         // diagnosis - including stage
         Condition carcinoma = new Condition();
         carcinoma.setId("cond-1");
-        carcinoma.setClinicalStatus(Condition.ConditionClinicalStatus.ACTIVE);
-        carcinoma.setCode(getCode(SNOMED_CT_SYSTEM, "402815007",
-                "Squamous cell carcinoma"));
+        carcinoma.setClinicalStatus(ACTIVE);
+        carcinoma.setCode(getCode(SNOMED_CT_SYSTEM, "402815007", "Squamous cell carcinoma"));
         carcinoma.setBodySite(Arrays.asList(getCode(SNOMED_CT_SYSTEM, "32849002", "Oesophageal structure")));
-        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "67673008","T2 category"));
-        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "53623008","N1 category"));
-        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "30893008","M0 category"));
+        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "67673008", "T2 category"));
+        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "53623008", "N1 category"));
+        carcinoma.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "30893008", "M0 category"));
 
         // Represented P48Y3M in UCUM months (i.e. (48 *12) + 3)
-        carcinoma.setOnset(new Age().setSystem(UCUM_SYSTEM).setCode("mo")
-                .setValue(579));
-        carcinoma.setContext(new Reference(initialEncounter));
+        carcinoma.setOnset(new Age().setSystem(UCUM_SYSTEM).setCode("mo").setValue(579));
+        carcinoma.setEncounter(new Reference(initialEncounter));
 
         // diagnostic sample (tumor resection) => variants, SNV (WES) & CNV
         // (array) analysed in Cambridge, MA, U.S. - this cannot be captured at
         // this granularity
         Specimen tumourResection = new Specimen();
         tumourResection.setId("spec-1");
-        tumourResection.setType(getCode(SNOMED_CT_SYSTEM, "370612006","Excision of neoplasm"));
+        tumourResection.setType(getCode(SNOMED_CT_SYSTEM, "370612006", "Excision of neoplasm"));
         tumourResection.setSubject(new Reference(patient));
 
         Observation cnvVariant = new Observation();
         cnvVariant.setId("obs-cnv");
-        cnvVariant.getMeta().addProfile("http://hl7.org/fhir/uv/"
-                + "genomics-reporting/StructureDefinition/obs-described-variant");
+        cnvVariant.getMeta().addProfile("http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/obs-described-variant");
 
         // This is TBD in the current implementation guide - following
         // suggestion from MGHA
-        cnvVariant.setCode(getCode(LOINC_SYSTEM, "69548-6"," Genetic variant assessment"));
+        cnvVariant.setCode(getCode(LOINC_SYSTEM, "69548-6", " Genetic variant assessment"));
         // reference_name = 8
         cnvVariant.addComponent(getStudiedGene("8"));
 
-        // TODO Ignoring genetic coordinate system because code is still TBD
-        // in FHIR
+        // TODO Ignoring genetic coordinate system because code is still TBD in FHIR
 
         // start = 116618580
         // end = 145078636
-        cnvVariant.addComponent(getGenomicAlleleStartEnd(116618580,
-                145078636));
+        cnvVariant.addComponent(getGenomicAlleleStartEnd(116618580, 145078636));
 
         // There is no notion of "cipos" and "ciend" in the current FHIR
         // genomic implementation
@@ -117,10 +112,8 @@ class CancerFhirExample {
         // outer end = 145078636 + 500 = 145079136
         // inner start = 116618580 + 500 = 116619080
         // inner end = 145078636 - 500 = 145078136
-        cnvVariant.addComponent(getStructuralVariantOuterStartEnd(116618080,
-                145079136));
-        cnvVariant.addComponent(getStructuralVariantInnerStartEnd(116619080,
-                145078136));
+        cnvVariant.addComponent(getStructuralVariantOuterStartEnd(116618080, 145079136));
+        cnvVariant.addComponent(getStructuralVariantInnerStartEnd(116619080, 145078136));
 
         // variant_type = DUP
         cnvVariant.addComponent(getDnaChangeType(DnaChangeType.DUPLICATION));
@@ -142,8 +135,7 @@ class CancerFhirExample {
 
         Observation snvVariant = new Observation();
         snvVariant.setId("obs-snv");
-        snvVariant.getMeta().addProfile("http://hl7.org/fhir/uv/"
-                + "genomics-reporting/StructureDefinition/obs-described-variant");
+        snvVariant.getMeta().addProfile("http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/obs-described-variant");
 
         // reference_name = 1
         snvVariant.addComponent(getStudiedGene("8"));
@@ -161,10 +153,8 @@ class CancerFhirExample {
         // genotype = [ 0, 1], i.e. CT
         Observation genotype = new Observation();
         genotype.setId("obs-gen");
-        genotype.getMeta().addProfile("http://hl7.org/fhir/uv/"
-                + "genomics-reporting/StructureDefinition/obs-genotype");
-        genotype.addCategory(getCode("http://hl7.org/fhir/"
-                + "observation-category", "laboratory", "Laboratory"));
+        genotype.getMeta().addProfile("http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/obs-genotype");
+        genotype.addCategory(getCode("http://hl7.org/fhir/observation-category", "laboratory", "Laboratory"));
         genotype.setValue(new StringType("CT"));
         genotype.addDerivedFrom(new Reference(snvVariant));
 
@@ -182,17 +172,16 @@ class CancerFhirExample {
         Procedure surgery = new Procedure();
         surgery.setId("proc-1");
         surgery.setStatus(Procedure.ProcedureStatus.COMPLETED);
-        surgery.setCode(getCode(SNOMED_CT_SYSTEM, "387713003",
-                "Surgical procedure"));
+        surgery.setCode(getCode(SNOMED_CT_SYSTEM, "387713003", "Surgical procedure"));
         surgery.setSubject(new Reference(patient));
-        surgery.setContext(new Reference(initialEncounter));
+        surgery.setEncounter(new Reference(initialEncounter));
 
         Procedure radiation = new Procedure();
         radiation.setId("proc-2");
         radiation.setStatus(Procedure.ProcedureStatus.COMPLETED);
         radiation.setCode(getCode(SNOMED_CT_SYSTEM, "108290001", "Radiation oncology AND/OR radiotherapy"));
         radiation.setSubject(new Reference(patient));
-        radiation.setContext(new Reference(initialEncounter));
+        radiation.setEncounter(new Reference(initialEncounter));
 
         // Second encounter
         Encounter secondEncounter = new Encounter();
@@ -206,27 +195,25 @@ class CancerFhirExample {
         Condition carcinomaRecurrence = new Condition();
         // Same id because this will be an update
         carcinomaRecurrence.setId("cond-1");
-        carcinoma.setClinicalStatus(Condition.ConditionClinicalStatus.RECURRENCE);
-        carcinomaRecurrence.setCode(getCode(SNOMED_CT_SYSTEM, "402815007",
-                "Squamous cell carcinoma"));
+        carcinoma.setClinicalStatus(RECURRENCE);
+        carcinomaRecurrence.setCode(getCode(SNOMED_CT_SYSTEM, "402815007", "Squamous cell carcinoma"));
         carcinomaRecurrence.setBodySite(Arrays.asList(getCode(SNOMED_CT_SYSTEM, "32849002", "Oesophageal structure")));
-        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,"67673008", "T2 category"));
-        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,"53623008", "N1 category"));
-        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM,"55440008", "M1 category"));
-        carcinomaRecurrence.setOnset(new Age().setSystem(UCUM_SYSTEM)
-                .setCode("mo").setValue(590));
-        carcinomaRecurrence.setContext(new Reference(secondEncounter));
+        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "67673008", "T2 category"));
+        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "53623008", "N1 category"));
+        carcinomaRecurrence.addStage().setSummary(getCode(SNOMED_CT_SYSTEM, "55440008", "M1 category"));
+        carcinomaRecurrence.setOnset(new Age().setSystem(UCUM_SYSTEM).setCode("mo").setValue(590));
+        carcinomaRecurrence.setEncounter(new Reference(secondEncounter));
 
         // Condition to represent the metastasis in the lung
         Condition metastasis = new Condition();
         metastasis.setId("cond-2");
-        metastasis.setClinicalStatus(Condition.ConditionClinicalStatus.ACTIVE);
+        metastasis.setClinicalStatus(ACTIVE);
         metastasis.setCode(getCode(SNOMED_CT_SYSTEM, "94391008", "Secondary malignant neoplasm of lung"));
         // No need for a body site because it is implicit in the code
         // No need for staging because this is a metastasis of the primary cancer
         metastasis.setOnset(new Age().setSystem(UCUM_SYSTEM)
                 .setCode("mo").setValue(590));
-        metastasis.setContext(new Reference(secondEncounter));
+        metastasis.setEncounter(new Reference(secondEncounter));
 
         Procedure palliativeRadiation = new Procedure();
         palliativeRadiation.setId("proc-3");
@@ -234,14 +221,13 @@ class CancerFhirExample {
         palliativeRadiation.setCode(getCode(SNOMED_CT_SYSTEM, "108290001", "Radiation oncology AND/OR radiotherapy"));
         palliativeRadiation.setReasonCode(Arrays.asList(getCode(SNOMED_CT_SYSTEM, "362964009", "Palliative procedure")));
         palliativeRadiation.setSubject(new Reference(patient));
-        palliativeRadiation.setContext(new Reference(secondEncounter));
+        palliativeRadiation.setEncounter(new Reference(secondEncounter));
 
         // Third encounter
         Encounter thirdEncounter = new Encounter();
         thirdEncounter.setId("enc-3");
         thirdEncounter.setStatus(Encounter.EncounterStatus.FINISHED);
-        thirdEncounter.setClass_(getCoding("http://hl7.org/fhir/v3/ActCode",
-                "NONAC", "inpatient non-acute"));
+        thirdEncounter.setClass_(getCoding("http://hl7.org/fhir/v3/ActCode","NONAC", "inpatient non-acute"));
         thirdEncounter.setSubject(new Reference(patient));
 
         // The patient death
@@ -342,10 +328,8 @@ class CancerFhirExample {
         MOBILE_ELEMENT_INSERTION("LA26324-6", "Mobile element insertion"),
         NOVEL_SEQUENCE_INSERTION("LA26325-3", "Mobile element insertion"),
         TANDEM_DUPLICATION("LA26326-1", "Tandem duplication"),
-        INTRACHROMOSOMAL_BREAKPOINT("LA26327-9",
-                "Intrachromosomal breakpoint"),
-        INTERCHROMOSOMAL_BREAKPOINT("LA26328-7",
-                "Interchromosomal breakpoint"),
+        INTRACHROMOSOMAL_BREAKPOINT("LA26327-9", "Intrachromosomal breakpoint"),
+        INTERCHROMOSOMAL_BREAKPOINT("LA26328-7", "Interchromosomal breakpoint"),
         TRANSLOCATION("LA26331-1", "Translocation"),
         COMPLEX("LA26330-3", "Complex"),
         SEQUENCE_ALTERATION("LA26329-5", "Sequence alteration");
@@ -402,18 +386,15 @@ class CancerFhirExample {
     }
 
     private static Observation.ObservationComponentComponent getStudiedGene(String val) {
-        Observation.ObservationComponentComponent res =
-                new Observation.ObservationComponentComponent();
+        Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
         res.setCode(getCode(LOINC_SYSTEM, "48018-6", "Gene studied [ID]"));
         res.setValue(new StringType(val));
         return res;
     }
 
-    private static Observation.ObservationComponentComponent getGenomicAlleleStartEnd(long start,
-                                                                               long end) {
+    private static Observation.ObservationComponentComponent getGenomicAlleleStartEnd(long start, long end) {
         Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
-        res.setCode(getCode(LOINC_SYSTEM, "81254-5",
-                "Genomic allele start-end"));
+        res.setCode(getCode(LOINC_SYSTEM, "81254-5", "Genomic allele start-end"));
         Range val = new Range();
         SimpleQuantity low = new SimpleQuantity();
         low.setValue(start);
@@ -425,19 +406,15 @@ class CancerFhirExample {
         return res;
     }
 
-    private static Observation.ObservationComponentComponent getStructuralVariantLength(
-            long val) {
-        Observation.ObservationComponentComponent res =
-                new Observation.ObservationComponentComponent();
+    private static Observation.ObservationComponentComponent getStructuralVariantLength(long val) {
+        Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
         res.setCode(getCode(LOINC_SYSTEM, "81300-6", "Structural variant [Length]"));
         res.setValue(new IntegerType(val));
         return res;
     }
 
-    private static Observation.ObservationComponentComponent getStructuralVariantOuterStartEnd(
-            long start, long end) {
-        Observation.ObservationComponentComponent res =
-                new Observation.ObservationComponentComponent();
+    private static Observation.ObservationComponentComponent getStructuralVariantOuterStartEnd(long start, long end) {
+        Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
         res.setCode(getCode(LOINC_SYSTEM, "81301-4", "Structural variant outer start and end"));
         Range val = new Range();
         SimpleQuantity low = new SimpleQuantity();
@@ -450,10 +427,8 @@ class CancerFhirExample {
         return res;
     }
 
-    private static Observation.ObservationComponentComponent getStructuralVariantInnerStartEnd(
-            long start, long end) {
-        Observation.ObservationComponentComponent res =
-                new Observation.ObservationComponentComponent();
+    private static Observation.ObservationComponentComponent getStructuralVariantInnerStartEnd(long start, long end) {
+        Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
         res.setCode(getCode(LOINC_SYSTEM, "81302-2", "Structural variant inner start and end"));
         Range val = new Range();
         SimpleQuantity low = new SimpleQuantity();
@@ -466,30 +441,23 @@ class CancerFhirExample {
         return res;
     }
 
-    private static Observation.ObservationComponentComponent getDnaChangeType(
-            DnaChangeType dnaChangeType) {
-        Observation.ObservationComponentComponent res =
-                new Observation.ObservationComponentComponent();
+    private static Observation.ObservationComponentComponent getDnaChangeType(DnaChangeType dnaChangeType) {
+        Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
         res.setCode(getCode(LOINC_SYSTEM, "48019-4", "DNA change [Type]"));
-        res.setValue(getCode(LOINC_SYSTEM, dnaChangeType.getCode(),
-                dnaChangeType.getDisplay()));
+        res.setValue(getCode(LOINC_SYSTEM, dnaChangeType.getCode(), dnaChangeType.getDisplay()));
         return res;
     }
 
     private static Observation.ObservationComponentComponent getGenomicRefAllele(String val) {
-        Observation.ObservationComponentComponent res =
-                new Observation.ObservationComponentComponent();
-        res.setCode(getCode(LOINC_SYSTEM, "69547-8",
-                "Genomic ref allele [ID]"));
+        Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
+        res.setCode(getCode(LOINC_SYSTEM, "69547-8", "Genomic ref allele [ID]"));
         res.setValue(new StringType(val));
         return res;
     }
 
     private static Observation.ObservationComponentComponent getGenomicAltAllele(String val) {
-        Observation.ObservationComponentComponent res =
-                new Observation.ObservationComponentComponent();
-        res.setCode(getCode(LOINC_SYSTEM, "69551-0",
-                "Genomic alt allele [ID]"));
+        Observation.ObservationComponentComponent res = new Observation.ObservationComponentComponent();
+        res.setCode(getCode(LOINC_SYSTEM, "69551-0", "Genomic alt allele [ID]"));
         res.setValue(new StringType(val));
         return res;
     }

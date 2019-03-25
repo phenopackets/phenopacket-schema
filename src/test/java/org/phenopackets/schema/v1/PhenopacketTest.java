@@ -3,17 +3,16 @@ package org.phenopackets.schema.v1;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.core.*;
 import org.phenopackets.schema.v1.examples.TestExamples;
-import org.phenopackets.schema.v1.io.PhenoPacketFormat;
+import org.phenopackets.schema.v1.io.PhenopacketFormat;
 
 import java.io.IOException;
 
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
-import static org.phenopackets.schema.v1.io.PhenoPacketFormat.toYaml;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-public class PhenoPacketTest {
+public class PhenopacketTest {
 
     @Test
     public void testRareDiseaseDiagnosis() throws Exception {
@@ -124,7 +123,7 @@ public class PhenoPacketTest {
                 .setCreatedBy("Jules J.")
                 .build();
 
-        PhenoPacket pfeifferDiagnosisExample = PhenoPacket.newBuilder()
+        Phenopacket pfeifferDiagnosisExample = Phenopacket.newBuilder()
                 .setSubject(proband)
                 .addPhenotypes(brachydactyly)
                 .addPhenotypes(craniosynostosis)
@@ -145,22 +144,22 @@ public class PhenoPacketTest {
                 .setMetaData(metaData)
                 .build();
 
-        System.out.println(PhenoPacketFormat.toYaml(pfeifferDiagnosisExample));
+        System.out.println(PhenopacketFormat.toYaml(pfeifferDiagnosisExample));
     }
 
     @Test
     void printCancer() throws IOException {
-        System.out.println(PhenoPacketFormat.toYaml(TestExamples.cancerPhenoPacket()));
+        System.out.println(PhenopacketFormat.toYaml(TestExamples.cancerPhenopacket()));
     }
 
     @Test
     void printRareDisease() throws IOException {
         // TODO Add a RareDiseaseFamilyFormat class for this case...
-        System.out.println(PhenoPacketFormat.toYaml(TestExamples.rareDiseasePhenoPacket()));
+        System.out.println(PhenopacketFormat.toYaml(TestExamples.rareDiseasePhenopacket()));
     }
 
     @Test
     void printBiosamples() throws IOException {
-        System.out.println(PhenoPacketFormat.toYaml(TestExamples.biosamplesPhenoPacket()));
+        System.out.println(PhenopacketFormat.toYaml(TestExamples.biosamplesPhenopacket()));
     }
 }

@@ -41,9 +41,9 @@ We show some Java code that demonstrates the basic methodology for building a Ph
                 .build();
     }
 
-With this, we present a function that creates a PhenoPacket that represents the case report described above::
+With this, we present a function that creates a Phenopacket that represents the case report described above::
 
-  public PhenoPacket spherocytosisExample() {
+  public Phenopacket spherocytosisExample() {
         final String PROBAND_ID = "PROBAND#1";
         final OntologyClass FEMALE = ontologyClass("PATO:0000383", "female");
         Phenotype spherocytosis = Phenotype.newBuilder()
@@ -114,7 +114,7 @@ With this, we present a function that creates a PhenoPacket that represents the 
                 .setCreatedBy("Example clinician")
                 .build();
 
-        return PhenoPacket.newBuilder()
+        return Phenopacket.newBuilder()
                 .setSubject(proband)
                 .addAllVariants(ImmutableList.of(ANK1_variant))
                 .setMetaData(metaData)
@@ -123,9 +123,9 @@ With this, we present a function that creates a PhenoPacket that represents the 
 
 JSON export
 ===========
-This phenopacket can be easily serialized in (binary) protobuf format, but in some situations it may be desirable to export the PhenoPacket as `JSON <https://en.wikipedia.org/wiki/JSON>`_. This is easy with the following commands::
+This phenopacket can be easily serialized in (binary) protobuf format, but in some situations it may be desirable to export the Phenopacket as `JSON <https://en.wikipedia.org/wiki/JSON>`_. This is easy with the following commands::
 
-   PhenoPacket phenoPacket =new PhenoPacketExample().spherocytosisExample();
+   Phenopacket phenoPacket =new PhenoPacketExample().spherocytosisExample();
    try {
      System.out.println(toJson(phenoPacket));
      } catch (IOException e) {
@@ -238,14 +238,14 @@ input and manipulate the HPO file.
 
     import org.json.simple.JSONObject;
     import org.json.simple.parser.JSONParser;
-    import org.phenopackets.schema.v1.PhenoPacket;
+    import org.phenopackets.schema.v1.Phenopacket;
     import org.phenopackets.schema.v1.core.*;
     JSONParser parser = new JSONParser();
     
     Object obj = parser.parse(new FileReader(pathToJsonPhenopacketFile));
     JSONObject jsonObject = (JSONObject) obj;
     String phenopacketJsonString = jsonObject.toJSONString();
-    PhenoPacket phenopack = PhenoPacketFormat.fromJson(phenopacketJsonString);
+    Phenopacket phenopack = PhenoPacketFormat.fromJson(phenopacketJsonString);
     String samplename = phenopack.getSubject().getId();
     // Get the phenotypic abnormalities that were observed in the affected individual
     Individual subject =phenoPacket.getSubject();

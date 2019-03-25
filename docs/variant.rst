@@ -84,7 +84,7 @@ an unambiguous use of variants with respect to transcripts (which is the typical
 
 sample_genotypes
 ================
-The genotype of the variant as determined in all of the samples represented in this PhenoPacket is represented using a list of
+The genotype of the variant as determined in all of the samples represented in this Phenopacket is represented using a list of
 terms taken from the `Genotype Ontology (GENO) <https://www.ebi.ac.uk/ols/ontologies/geno>`_. For instance, if a variant
 affects one of two alleles at a certain locus, we could record the genotype using the term
 `heterozygous (GENO:0000135) <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.

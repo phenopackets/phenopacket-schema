@@ -2,8 +2,8 @@ package org.phenopackets.schema.v1.examples;
 
 
 import org.hl7.fhir.r4.model.Bundle;
-import org.phenopackets.schema.v1.PhenoPacket;
 import org.phenopackets.schema.v1.Family;
+import org.phenopackets.schema.v1.Phenopacket;
 
 /**
  * Utility test class containing pre-canned FHIR and Phenopacket messages. These classes are created from the examples in
@@ -30,16 +30,16 @@ public class TestExamples {
     }
 
     /**
-     * Utility method for returning a {@link PhenoPacket} rare disease example based on the case defined in
+     * Utility method for returning a {@link Phenopacket} rare disease example based on the case defined in
      * src/test/resources/toronto_rare_disease_example.md
      *
-     * @return a {@link PhenoPacket} containing a rare disease patient and relations.
+     * @return a {@link Phenopacket} containing a rare disease patient and relations.
      */
     public static Family rareDiseaseFamily() {
         return RareDiseaseFamilyExample.rareDiseaseFamily();
     }
 
-    public static PhenoPacket rareDiseasePhenoPacket() {
+    public static Phenopacket rareDiseasePhenopacket() {
         return RareDiseaseFamilyExample.proband();
     }
 
@@ -47,12 +47,12 @@ public class TestExamples {
         return CancerFhirExample.cancerBundle();
     }
 
-    public static PhenoPacket cancerPhenoPacket() {
-        return CancerPhenoPacketExample.cancerPhenopacket();
+    public static Phenopacket cancerPhenopacket() {
+        return CancerPhenopacketExample.cancerPhenopacket();
     }
 
-    public static PhenoPacket biosamplesPhenoPacket() {
-        return BiosamplesPhenoPacketExample.biosamplePhenoPacket();
+    public static Phenopacket biosamplesPhenopacket() {
+        return BiosamplesPhenopacketExample.biosamplePhenopacket();
     }
 
 }

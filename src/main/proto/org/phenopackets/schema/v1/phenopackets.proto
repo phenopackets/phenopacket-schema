@@ -10,7 +10,7 @@ option java_multiple_files = true;
 // This is a bundle of high-level concepts with no specifically defined relational concepts. It is expected that the
 // resources sharing the phenopackets will define and enforce their own semantics and level of requirements for included
 // fields.
-message PhenoPacket {
+message Phenopacket {
     // An identifier specific for this phenopacket.
     string id = 1;
 
@@ -51,14 +51,14 @@ message Family {
     string id = 1;
 
     // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
-    PhenoPacket proband = 2;
+    Phenopacket proband = 2;
 
     // Individuals related in some way to the patient. For instance, the individuals may be genetically related or may
     // be members of a cohort. If this field is used, then  it is expected that a pedigree will be included for
     // genetically related individuals for use cases such as genomic diagnostics. If a phenopacket is being used to
     // describe one member of a cohort, then in general one phenopacket will be created for each of the individuals in
     // the cohort.
-    repeated PhenoPacket relatives = 4;
+    repeated Phenopacket relatives = 4;
 
     // The pedigree defining the relations between the proband and their relatives. Pedigree.individual_id should
     // map to the PhenoPacket.Individual.id
@@ -75,7 +75,7 @@ message Family {
 message Cohort {
     string id = 1;
     string description = 2;
-    repeated PhenoPacket members = 3;
+    repeated Phenopacket members = 3;
     // Pointer to the relevant HTS file(s) for the patient
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 4;
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED

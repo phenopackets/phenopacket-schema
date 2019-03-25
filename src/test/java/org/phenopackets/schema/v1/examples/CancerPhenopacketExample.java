@@ -1,7 +1,7 @@
 package org.phenopackets.schema.v1.examples;
 
 import com.google.protobuf.Timestamp;
-import org.phenopackets.schema.v1.PhenoPacket;
+import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
 import java.time.Instant;
@@ -15,9 +15,9 @@ import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
  *
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-class CancerPhenoPacketExample {
+class CancerPhenopacketExample {
 
-    static PhenoPacket cancerPhenopacket() {
+    static Phenopacket cancerPhenopacket() {
         MetaData metaData = MetaData.newBuilder()
                 .addResources(Resource.newBuilder()
                         .setId("ncit")
@@ -79,7 +79,7 @@ class CancerPhenoPacketExample {
                 .setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build())
                 .build();
 
-        return PhenoPacket.newBuilder()
+        return Phenopacket.newBuilder()
                 .setSubject(patient)
                 .addBiosamples(lymphNodeBiopsy)
                 .addBiosamples(esophagusBiopsy)

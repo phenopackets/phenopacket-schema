@@ -3,7 +3,7 @@ Individual element
 ==================
 
 The subject of the Phenopacket is represented by an *Individual* element.
-The PhenoPackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.
+The Phenopackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.
 
 Individual
 ==========
@@ -53,7 +53,7 @@ age
 ===
 
 An age object describing the age of the individual at the time of collection of biospecimens or phenotypic observations
-reported in the current PhenoPacket. It is specified using either an :ref:`Age element`, which can represent an Age in several different ways,
+reported in the current Phenopacket. It is specified using either an :ref:`Age element`, which can represent an Age in several different ways,
 or an :ref:`AgeRange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
 was to protect privacy of study participants).
 
@@ -81,7 +81,7 @@ In Java, the sex can be specified as follows::
 
 phenotypes
 ==========
-This is a list of ontology terms that describe the phenotype of the subject of the PhenoPacket.
+This is a list of ontology terms that describe the phenotype of the subject of the Phenopacket.
 It makes use of the :ref:`Phenotype element`.
 
 taxonomy

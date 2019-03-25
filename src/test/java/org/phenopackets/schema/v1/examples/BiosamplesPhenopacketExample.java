@@ -1,6 +1,6 @@
 package org.phenopackets.schema.v1.examples;
 
-import org.phenopackets.schema.v1.PhenoPacket;
+import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
@@ -15,12 +15,12 @@ import static org.phenopackets.schema.v1.PhenoPacketTestUtil.parseTimestamp;
  *
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-class BiosamplesPhenoPacketExample {
+class BiosamplesPhenopacketExample {
 
     /**
      * https://www.ebi.ac.uk/biosamples/samples/SAMN05324082
      */
-    static PhenoPacket biosamplePhenoPacket() {
+    static Phenopacket biosamplePhenopacket() {
 
         MetaData metaData = MetaData.newBuilder()
                 .setCreated(parseTimestamp("2016-06-29T12:03:03.240Z"))
@@ -90,7 +90,7 @@ class BiosamplesPhenoPacketExample {
 
         Disease disease = Disease.newBuilder().setTerm(ontologyClass("EFO:0000222", "acute myeloid leukemia")).build();
 
-        return PhenoPacket.newBuilder()
+        return Phenopacket.newBuilder()
                 .setMetaData(metaData)
                 .setSubject(individual)
                 .addBiosamples(biosample)

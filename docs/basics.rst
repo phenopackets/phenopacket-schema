@@ -1,5 +1,5 @@
 ==================
-PhenoPacket basics
+Phenopacket basics
 ==================
 
 The phenopacket schema is defined in two files that are maintained in the `phenopacket-schema GitHub repository <https://github.com/phenopackets/phenopacket-schema>`_. We will explain the ``phenopackets.proto`` here; this file contains the top-level concepts that make up a phenopacket, using more detailed definitions from a second file called ``base.proto``. Both files are available in the **src/main/proto/org/phenopackets/schema/v1** directory, with base.proto located in the core subdirectory.
@@ -18,7 +18,7 @@ This is the main definition file
   import "org/phenopackets/schema/v1/core/base.proto";
   option java_multiple_files = true;
 
-  message PhenoPacket {
+  message Phenopacket {
     string id = 1;
     org.phenopackets.schema.v1.core.Individual subject = 2;
     repeated org.phenopackets.schema.v1.core.Individual individuals = 3;
@@ -32,7 +32,7 @@ This is the main definition file
   }
 
 The header specifies that we are using protobuf version 3 and defines the package name. It imports the ``base.proto`` file mentioned above. The
-command ``option java_multiple_files = true;`` puts each top-level message type from the .proto file into an independent .java file. The message then goes on to define the main components of the PhenoPacket.
+command ``option java_multiple_files = true;`` puts each top-level message type from the .proto file into an independent .java file. The message then goes on to define the main components of the Phenopacket.
 
 ~~
 id
@@ -45,13 +45,13 @@ TODO recommendations for how to use this field.
 subject
 ~~~~~~~
 
-This is typically the individual human (or another organism) that the PhenoPacket is describing. In many cases, the individual will
-be a patient or proband of the study. This field maps to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ element. The PhenoPacket :ref:`Individual` element contains elements that describe attributes such as biological sex, age, or date of birth.
+This is typically the individual human (or another organism) that the Phenopacket is describing. In many cases, the individual will
+be a patient or proband of the study. This field maps to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ element. The Phenopacket :ref:`Individual` element contains elements that describe attributes such as biological sex, age, or date of birth.
 
 ~~~~~~~~~~~
 individuals
 ~~~~~~~~~~~
-This field can contain a list of other individuals. The PhenoPacket standard expects
+This field can contain a list of other individuals. The Phenopacket standard expects
 that these individuals are related in some way to the subject of the phenopacket. For instance, the individuals may 
 be genetically related or may be members of a cohort. If this field is used, then 
 it is expected that a pedigree will be included for genetically related individuals 
@@ -73,7 +73,7 @@ TODO detail page.
 biosamples
 ~~~~~~~~~~
 
-This field describes samples that have been derived from the patient who is the object of the PhenoPacket.
+This field describes samples that have been derived from the patient who is the object of the Phenopacket.
 or a collection of biosamples in isolation. TODO see  https://github.com/phenopackets/phenopacket-schema/issues/16
 
 
@@ -115,7 +115,7 @@ refers to a resource on the web.
 metaData
 ~~~~~~~~
 This element contains structured definitions of the resources and ontologies used within the phenopacket.
-It is expected that every valid PhenoPacket contains a metaData element.
+It is expected that every valid Phenopacket contains a metaData element.
 
 TODO link the above elements to the corresponding pages.
 

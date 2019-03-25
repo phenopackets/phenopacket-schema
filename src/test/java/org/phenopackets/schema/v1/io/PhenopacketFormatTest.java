@@ -1,8 +1,7 @@
 package org.phenopackets.schema.v1.io;
 
-import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
-import org.phenopackets.schema.v1.PhenoPacket;
+import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.examples.TestExamples;
 
 import java.io.IOException;
@@ -13,19 +12,19 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-class PhenoPacketFormatTest {
+class PhenopacketFormatTest {
 
     @Test
     void roundTripping() throws IOException {
-        PhenoPacket original = TestExamples.rareDiseasePhenoPacket();
+        Phenopacket original = TestExamples.rareDiseasePhenopacket();
 
-        String asYaml = PhenoPacketFormat.toYaml(original);
+        String asYaml = PhenopacketFormat.toYaml(original);
         System.out.println(asYaml);
 
-        String asJson = PhenoPacketFormat.yamlToJson(asYaml);
+        String asJson = PhenopacketFormat.yamlToJson(asYaml);
         System.out.println(asJson);
 
-        PhenoPacket fromJson = PhenoPacketFormat.fromJson(asJson);
+        Phenopacket fromJson = PhenopacketFormat.fromJson(asJson);
 
         //Ta-da!
         assertThat(fromJson, equalTo(original));
@@ -33,23 +32,23 @@ class PhenoPacketFormatTest {
 
     @Test
     void toFromJson() throws Exception {
-        PhenoPacket original = TestExamples.cancerPhenoPacket();
+        Phenopacket original = TestExamples.cancerPhenopacket();
 
-        String asJson = PhenoPacketFormat.toJson(original);
+        String asJson = PhenopacketFormat.toJson(original);
         System.out.println(asJson);
 
-        PhenoPacket transformed = PhenoPacketFormat.fromJson(asJson);
+        Phenopacket transformed = PhenopacketFormat.fromJson(asJson);
         assertThat(transformed, equalTo(original));
     }
 
     @Test
     void toFromYaml() throws Exception {
-        PhenoPacket original = TestExamples.biosamplesPhenoPacket();
+        Phenopacket original = TestExamples.biosamplesPhenopacket();
 
-        String asYaml = PhenoPacketFormat.toYaml(original);
+        String asYaml = PhenopacketFormat.toYaml(original);
         System.out.println(asYaml);
 
-        PhenoPacket transformed = PhenoPacketFormat.fromYaml(asYaml);
+        Phenopacket transformed = PhenopacketFormat.fromYaml(asYaml);
         assertThat(transformed, equalTo(original));
     }
 }
