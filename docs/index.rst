@@ -8,16 +8,12 @@ Welcome to the documentation for phenopackets-schema!
 
    protobuf
    basics
+   building-blocks
    spherocytosis
-   individual
-   phenotype
-   variant
-   age
-   geolocation
-   attributes
-   externalresource
-   evidence
-   metadata
+   biosample-example
+
+
+
 
 ~~~~~~~~~~~~~~~~~~~~~~
 What is a Phenopacket?
