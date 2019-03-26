@@ -66,9 +66,10 @@ public class MurineDiseaseModel {
                 .setId(MgiId)
                 .build();
 
-        HgvsAllele allele = HgvsAllele.newBuilder().setHgvs("Fbn1tm1Hcd").build();
+        MouseAllele allele = MouseAllele.newBuilder().setId("MGI:3690325").setGene("Fbn1").setAlleleCode("tm1Hcd").build();
         Variant Fbn1variant = Variant.newBuilder()
-                .setHgvsAllele(allele)
+                .setMouseAllele(allele)
+                .setBackground("involves: 129S1/Sv * 129X1/SvJ * C57BL/6J")
                 .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
 

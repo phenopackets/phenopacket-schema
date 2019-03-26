@@ -109,16 +109,18 @@ We first show the entire Phenopacket, and further below explain the individual s
     }],
     "biosamples": [],
     "genes": [],
-    "variants": [{
-      "hgvsAllele": {
-        "id": "",
-        "hgvs": "Fbn1tm1Hcd"
-      },
-      "genotype": {
-        "id": "GENO:0000135",
-        "label": "heterozygous"
-      }
-     }],
+     "variants": [{
+    "genotype": {
+      "id": "GENO:0000135",
+      "label": "heterozygous"
+    },
+    "background": "involves: 129S1/Sv * 129X1/SvJ * C57BL/6J",
+    "mouseAllele": {
+      "id": "MGI:3690325",
+      "gene": "Fbn1",
+      "alleleCode": "tm1Hcd"
+    }
+  }],
     "diseases": [],
     "htsFiles": [],
     "metaData": {
@@ -181,8 +183,7 @@ To do -- is there a useful ``datasetId`` here ?
 
 disease and htsFiles
 ====================
-
-ToDO -- what do we say here?
+These elements are not required for transmitting data about a mouse model and are left empty.
 
 
 
@@ -216,26 +217,42 @@ terms that were used to describe the phenotypic abnormalities observed in the mo
 
 biosamples and genes
 ~~~~~~~~~~~~~~~~~~~~
-ToDo what do we say here?
+These elements are not required for transmitting data about a mouse model and are left empty.
+
 
 variants
 ~~~~~~~~
-The variants section is currently using ``hgvsAllele`` to identify the mutant allele.
-This is a **known mistake** and we would like to ask the advice of the MGI and IMPC
-communities as to the best way of moving forward such that we can represent at least the
-majority of alleles currently in MGI/IMPC. The example refers to the
+The variants section can use one of several ways of expressing the variant. For mice, the
+Phenopacket standard includes an element called ``mouseAllele``.
+is currently using ``hgvsAllele`` to identify the mutant allele. Please
+refer to the page on the :ref:`variant` message for further deails.
+Our example refers to the
 allele `Fbn1tm1Hcd <http://www.informatics.jax.org/allele/MGI:3690325>`_. ::
 
     "variants": [{
-      "hgvsAllele": {
-        "id": "",
-        "hgvs": "Fbn1tm1Hcd"
-      },
-      "genotype": {
-        "id": "GENO:0000135",
-        "label": "heterozygous"
-      }
-     }],
+    "genotype": {
+      "id": "GENO:0000135",
+      "label": "heterozygous"
+    },
+    "background": "involves: 129S1/Sv * 129X1/SvJ * C57BL/6J",
+    "mouseAllele": {
+      "id": "MGI:3690325",
+      "gene": "Fbn1",
+      "alleleCode": "tm1Hcd"
+    }
+  }],
+
+
+The ``variant`` element includes a reference to ``background``.
+This field is intended to be used to denote the genetic background of an experimental animal model. ::
+
+     "background": "involves: 129S1/Sv * 129X1/SvJ * C57BL/6J"
+
+
+For mice, we recommend following the guidelines of the
+`Mouse Genome Informatics Database <http://www.informatics.jax.org/mgihome/nomen/index.shtml>`_.
+
+
 
 metadata
 ~~~~~~~~
