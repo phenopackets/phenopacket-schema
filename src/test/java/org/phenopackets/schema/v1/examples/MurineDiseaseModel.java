@@ -1,12 +1,12 @@
 package org.phenopackets.schema.v1.examples;
 
-import com.google.protobuf.Timestamp;
+
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 import org.phenopackets.schema.v1.io.PhenopacketFormat;
 
-import java.time.Instant;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
@@ -69,7 +69,7 @@ public class MurineDiseaseModel {
         HgvsAllele allele = HgvsAllele.newBuilder().setHgvs("Fbn1tm1Hcd").build();
         Variant Fbn1variant = Variant.newBuilder()
                 .setHgvsAllele(allele)
-                .setGenotype(ontologyClass("GENO:0000136", "homozygous"))
+                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
 
         ExternalReference pubmedRef = ExternalReference.newBuilder()

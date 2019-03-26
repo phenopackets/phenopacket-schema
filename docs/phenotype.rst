@@ -1,7 +1,7 @@
 =================
 Phenotype element
 =================
-
+.. _phenotype:
 
 This element is intended to be used to describe a phenotype that characterizes the subject of the Phenopacket.
 For medical use cases the subject will generally be a patient or a proband of a study, and the phenotypes will
@@ -63,7 +63,7 @@ Terms can be taken from the hierarchy of `Clinical modifier <https://hpo.jax.org
 onset (Phenotype)
 =================
 This element can be used to describe the age at which a phenotypic feature was first noticed or diagnosed.
-For many medical use cases, either the Age subelement or an ontology term (e.g., from the HPO `Onset (HP:0003674) https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
+For many medical use cases, either the Age subelement or an ontology term (e.g., from the HPO `Onset (HP:0003674) <https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
 
 evidence (Phenotype)
 ====================
