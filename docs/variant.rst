@@ -2,7 +2,50 @@
 Variant element
 ===============
 This element should be used to describe candidate variants or diagnosed causative
-variants. The resources using these fields should define what this represents in their context.
+variants. There is currently no standard variant nomenclature that can represent all kinds
+of genetic variation that is relevant to human medicine, science, and model organisms. Therefore,
+we represent variants using the keyword ``oneof``, which is used in protobuf for an item
+with many  optional fields where at most one field will be set at the same time. Variant messages
+contain an allele, the genotype of the allele, and, and a background element that can be
+used to represent the genetic background of an animal model. For the Phenopacket standard,
+the ``allele`` element is
+required, the ``genotype`` element is recommended but not required (if the information in unknown),
+and the ``background`` element is optional.
+
+ Alleles can be
+listed using HGVS, VCF, SPDI, ISCN, or "mouse allele" notation.
+
+// A variant allele.
+    // SPDI format is the exchange standard used for ClinVar, dbSNP and soon the EVA
+// Tools for interconversion between SPDI, HGVS and VCF exist at https://api.ncbi.nlm.nih.gov/variation/v0/
+
+bal ::
+
+    message Variant {
+    oneof allele {
+        HgvsAllele hgvs_allele = 2;
+        VcfAllele vcf_allele = 3;
+        SpdiAllele spdi_allele = 4;
+        IscnAllele iscn_allele = 5;
+        MouseAllele mouse_allele = 8;
+    }
+    // Genotype of the alleles using GENO ontology
+    OntologyClass genotype = 6;
+    string background = 7;
+    }
+
+
+genotype
+~~~~~~~~
+Genotype of the allele using GENO ontology. For instance, ``heterozygous`` is represented by
+``GENO:0000135 <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.
+
+background
+~~~~~~~~~~
+Phenopackets that describe mouse models of disease should
+ report the genetic background, using a string such as
+``involves: 129S1/Sv * 129X1/SvJ * C57BL/6J`` that follows the
+    // see http://www.informatics.jax.org/allele/MGI:3690325#phenotypes for examples
 
 The PhenoPackets format expects that variants are described using the
 `Sequence Position Deletion Insertion (SPDI) notation <https://www.ncbi.nlm.nih.gov/variation/notation/>`_. We

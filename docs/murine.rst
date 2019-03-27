@@ -120,7 +120,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "gene": "Fbn1",
       "alleleCode": "tm1Hcd"
     }
-  }],
+   }],
     "diseases": [],
     "htsFiles": [],
     "metaData": {
@@ -224,10 +224,9 @@ variants
 ~~~~~~~~
 The variants section can use one of several ways of expressing the variant. For mice, the
 Phenopacket standard includes an element called ``mouseAllele``.
-is currently using ``hgvsAllele`` to identify the mutant allele. Please
-refer to the page on the :ref:`variant` message for further deails.
+Please refer to the page on the :ref:`variant` message for further deails.
 Our example refers to the
-allele `Fbn1tm1Hcd <http://www.informatics.jax.org/allele/MGI:3690325>`_. ::
+allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_. ::
 
     "variants": [{
     "genotype": {
