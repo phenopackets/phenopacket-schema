@@ -24,5 +24,6 @@ building blocks.
    geolocation
    individual
    metadata
+   ontologyclass
    phenotype
    variant
