@@ -217,7 +217,17 @@ class RareDiseaseFamilyExample {
                         .setUrl("http://purl.obolibrary.org/obo/geno.owl")
                         .setVersion("19-03-2018")
                         .build())
+                .addResources(Resource.newBuilder()
+                        .setId("doi")
+                        .setName("Digital Object Identifier")
+                        .setNamespacePrefix("DOI")
+                        .setIriPrefix("http://dx.doi.org/")
+                        .build())
                 .setCreatedBy("Jules J.")
+                .addExternalReferences(ExternalReference.newBuilder()
+                        .setId("DOI:10.1126/science.1186802")
+                        .setDescription("Analysis of genetic inheritance in a family quartet by whole-genome sequencing.")
+                        .build())
                 .build();
 
         return Family.newBuilder()
