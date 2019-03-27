@@ -502,11 +502,12 @@ message IscnAllele {
 // See http://informatics.jax.org/mgihome/nomen/
 message MouseAllele {
     string id = 1;
-    // e.g., Fbn1
+    // e.g. Fbn1
     string gene = 2;
-    // The allele_code should be used for the allele name or lab code, which is written
+    // The allele_symbol should be used for denoting the unformatted allele symbol, which is written
     // in superscript according to the International Committee on Standardized Genetic
-    // Nomenclature for Mice
-    // e.g. tm1Hcd
-    string allele_code = 3;
+    // Nomenclature for Mice. In written text it is customary to enclose the allele symbol in angled brackets to
+    // denote the superscript e.g. <tm1Hcd>. However in this field the allele code should be stored here as without the
+    // angled brackets e.g. tm1Hcd in order to allow software to correctly format the symbol.
+    string allele_symbol = 3;
 }

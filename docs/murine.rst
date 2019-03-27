@@ -118,7 +118,7 @@ We first show the entire Phenopacket, and further below explain the individual s
     "mouseAllele": {
       "id": "MGI:3690325",
       "gene": "Fbn1",
-      "alleleCode": "tm1Hcd"
+      "alleleSymbol": "tm1Hcd"
     }
   }],
     "diseases": [],
@@ -238,7 +238,7 @@ allele `Fbn1tm1Hcd <http://www.informatics.jax.org/allele/MGI:3690325>`_. ::
     "mouseAllele": {
       "id": "MGI:3690325",
       "gene": "Fbn1",
-      "alleleCode": "tm1Hcd"
+      "alleleSymbol": "tm1Hcd"
     }
   }],
 
