@@ -9,8 +9,8 @@ Welcome to the documentation for phenopackets-schema!
    protobuf
    basics
    building-blocks
-   spherocytosis
-   biosample-example
+   examples
+   Creating and Reading Phenopackets with Java <java>
 
 
 
