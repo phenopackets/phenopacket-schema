@@ -46,12 +46,15 @@ subject
 ~~~~~~~
 
 This is typically the individual human (or another organism) that the Phenopacket is describing. In many cases, the individual will
-be a patient or proband of the study. This field maps to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ element. The Phenopacket :ref:`Individual` element contains elements that describe attributes such as biological sex, age, or date of birth.
+be a patient or proband of the study.
+This field maps to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ element. The
+Phenopacket :ref:`Individual <rstindividual>` element
+contains elements that describe attributes such as biological sex, age, or date of birth.
 
 ~~~~~~~~~~~
 individuals
 ~~~~~~~~~~~
-This field can contain a list of other individuals. The Phenopacket standard expects
+This field can contain a list of other :ref:`Individual <rstindividual>`s. The Phenopacket standard expects
 that these individuals are related in some way to the subject of the phenopacket. For instance, the individuals may 
 be genetically related or may be members of a cohort. If this field is used, then 
 it is expected that a pedigree will be included for genetically related individuals 
@@ -64,9 +67,8 @@ but this is not and cannot be enforced on the level of the protobuf message itse
 ~~~~~~~~
 pedigree
 ~~~~~~~~
-The pedigree object contains information that is comparable to a PED file. It
+The :ref:`Pedigree <rstpedigree>` object contains information that is comparable to a PED file. It
 defines the relations between the patient and their relatives.
-TODO detail page.
 
 
 ~~~~~~~~~~

@@ -1,3 +1,5 @@
+.. _rstevidence:
+
 ================
 Evidence element
 ================

@@ -21,6 +21,7 @@ building blocks.
    disease
    evidence
    externalresource
+   gene
    geolocation
    individual
    metadata

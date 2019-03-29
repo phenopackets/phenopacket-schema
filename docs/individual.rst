@@ -1,3 +1,5 @@
+.. _rstindividual:
+
 ==================
 Individual element
 ==================

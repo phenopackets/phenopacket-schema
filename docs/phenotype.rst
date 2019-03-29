@@ -37,37 +37,40 @@ sufficiently able to capture all the nuances. In general, the type and onset etc
 this field is a last resort.
     
 
-type (Phenotype)
-================
-The element represents the primary ontology class which describes the phenotype.
+type
+====
+The element represents the primary :ref:`ontology class <rstontologyclass>` which describes the phenotype.
 For example `Craniosynostosis (HP:0001363) <https://hpo.jax.org/app/browse/term/HP:0001363>`_.
 
-negated (Phenotype)
-===================
-This optional element is a flag to indicate whether the phenotype was observed or not.
-Default is 'false', in other words the phenotype was observed. Therefore it is only
+negated
+=======
+This element is a flag to indicate whether the phenotype was observed or not.
+The default is 'false', in other words the phenotype was observed. Therefore it is only
 required in cases to indicate that the phenotype was looked for, but not observed.
 
-severity (Phenotype)
-====================
-This optional element describes the severity of the condition e.g. subclasses of
-`Severity (HP:0012824) <https://hpo.jax.org/app/browse/term/HP:0012824>`_ or `SNOMED:272141005-Severities <https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.96&code=272141005>`_
+severity
+========
+This  element is an :ref:`ontology class <rstontologyclass>` that describes the severity of the condition e.g. subclasses of
+`Severity (HP:0012824) <https://hpo.jax.org/app/browse/term/HP:0012824>`_ or
+`SNOMED:272141005-Severities <https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.96&code=272141005>`_
    
-modifiers (Phenotype)
-=====================
-This element can be empty or contain one or more ontology terms that are intended
+modifier
+========
+This element is a list of :ref:`ontology class <rstontologyclass>` elements that can be empty or contain one or more
+ontology terms that are intended
 to provide  more expressive or precise descriptions of a phenotypic feature, including attributes such as
 positionality and external factors that tend to trigger or ameliorate the feature.
-Terms can be taken from the hierarchy of `Clinical modifier <https://hpo.jax.org/app/browse/term/HP:0012823>`_ in the HPO (noting that severity should be coded in the severity element). 
+Terms can be taken from the hierarchy of `Clinical modifier <https://hpo.jax.org/app/browse/term/HP:0012823>`_ in the HPO
+(noting that severity should be coded in the severity element).
 
-onset (Phenotype)
-=================
+onset
+=====
 This element can be used to describe the age at which a phenotypic feature was first noticed or diagnosed.
-For many medical use cases, either the Age subelement or an ontology term (e.g., from the HPO `Onset (HP:0003674) <https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
+For many medical use cases, either the Age subelement or an :ref:`ontology class <rstontologyclass>` (e.g., from the HPO `Onset (HP:0003674) <https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
 
-evidence (Phenotype)
-====================
-This element can contain one or more :ref:`Evidence element` items that specify how the phenotype was determined.
+evidence
+========
+This element can contain one or more :ref:`Evidence <rstevidence>` elements that specify how the phenotype was determined.
 
 FHIR Mapping of the Phenotype element
 =====================================
