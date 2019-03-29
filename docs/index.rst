@@ -8,6 +8,7 @@ Welcome to the documentation for phenopackets-schema!
 
    protobuf
    basics
+   requirements
    building-blocks
    examples
    Creating and Reading Phenopackets with Java <java>
