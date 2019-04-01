@@ -96,17 +96,17 @@ Add the following to the dependencies
 
 .. code-block:: xml
 
-   <dependency>
-     <groupId>com.google.protobuf</groupId>
-     <artifactId>protobuf-java</artifactId>
-     <version>3.5.1</version>
-   </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>3.5.1</version>
+    </dependency>
    
 and add the following to the plugin section
 
 .. code-block:: xml
 
-   <plugin>
+    <plugin>
       <groupId>org.xolstice.maven.plugins</groupId>
       <artifactId>protobuf-maven-plugin</artifactId>
       <version>0.5.1</version>
