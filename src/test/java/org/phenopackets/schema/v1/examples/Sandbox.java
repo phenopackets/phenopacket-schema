@@ -2,6 +2,7 @@ package org.phenopackets.schema.v1.examples;
 
 import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
+import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
 import java.text.ParseException;
@@ -83,7 +84,32 @@ public class Sandbox {
                 setProcedure(procedure2).
                 build();
         System.out.println(bs);
+    }
 
+    @Test
+    void testDisease() {
+        OntologyClass HPMRS1 = OntologyClass.newBuilder().
+                setId("OMIM:239300").
+                setLabel("Hyperphosphatasia with mental retardation syndrome 1").
+                build();
+        OntologyClass neonatalOnset = OntologyClass.newBuilder().
+                setId("HP:0003623").
+                setLabel("Neonatal onset").
+                build();
+        Disease disease = Disease.newBuilder().
+                setTerm(HPMRS1).
+                setClassOfOnset(neonatalOnset).
+                build();
+        Disease disease2 = Disease.newBuilder().
+                setTerm(HPMRS1).
+                setClassOfOnset(neonatalOnset).
+                build();
+        Phenopacket pp = Phenopacket.newBuilder().
+                addDiseases(disease).
+                addDiseases(disease2).build();
+        System.out.println(pp);
 
     }
+
+
 }

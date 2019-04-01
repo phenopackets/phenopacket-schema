@@ -1,6 +1,8 @@
-===============
-Disease element
-===============
+.. _rstdisease:
+
+=======
+Disease
+=======
 
 The word *phenotype* is used with many different meanings, including "the observable traits of an organism”. In medicine,
 the word can be used with at least two different meanings. It is used to refer to
@@ -33,5 +35,20 @@ is used to refer to the age of onset of the disease, we recommend using a term f
 `the HPO onset hierarchy <https://hpo.jax.org/app/browse/term/HP:0003674>`_. The FHIR mapping of the onset element
 is ``Condition.onset``.
 
+
+
+ .. list-table:: Phenopacket requirements for the ``Disease`` element
+    :widths: 25 50 50
+    :header-rows: 1
+
+    * - Field
+      - Example
+      - Status
+    * - term
+      - an :ref:`rstontologyclass` that represents the disease
+      - required
+    * - onset
+      - See above
+      - optional
 
 
