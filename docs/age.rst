@@ -32,13 +32,13 @@ See `Condition onset` <http://build.fhir.org/datatypes and http://build.fhir.org
 
 
 age
-===
+~~~
 It is possible to represent age using a string that should be formated according  as ISO8601
 duration or time intervals. We recommend using the ISO 8601 standard for representing
 age as a `Duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
 
 age_class
-=========
+~~~~~~~~~
 Alternatively, the age can be represented using an :ref:`ontology class <rstontologyclass>`. For humans,
 we recommend using the `Human Developmental Stages <https://www.ebi.ac.uk/ols/ontologies/hsapdv>`_ ontology.
 There are several reasons why users might choose to use an :ref:`ontology class <rstontologyclass>` rather than an ISO8601 string
@@ -50,25 +50,25 @@ with the Human Developmental Stages ontology term second decade human stage
 
 
  .. list-table:: Phenopacket requirements for the ``Age`` element
-:widths: 25 50 50
+   :widths: 25 50 50
    :header-rows: 1
 
-       * - Field
-         - Example
-         - Status
-       * - age
-         - P25Y3M2D
-         - optional
-       * - age_class
-         - An ontology term such as second decade human stage (HSAPDV:0000236)
-         - optional
+    * - Field
+      - Example
+      - Status
+    * - age
+      - P25Y3M2D
+      - optional
+    * - age_class
+      - An ontology term such as second decade human stage (HSAPDV:0000236)
+      - optional
 
 
 If the Age message is used, at least one of the two elements ``age`` and ``age_class`` must be present.
 
 
-FHIR mapping (Age)
-==================
+FHIR mapping
+~~~~~~~~~~~~
 This element is mapped to the FHIR using  a `UCUM  measurement <http://unitsofmeasure.org/trac/>`_.
 
 

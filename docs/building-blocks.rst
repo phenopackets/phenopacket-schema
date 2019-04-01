@@ -24,9 +24,11 @@ building blocks.
    gene
    geolocation
    individual
+   karyotypic sex <karyotypicsex>
    metadata
    ontologyclass
    pedigree
    phenotype
    resource
+   sex
    variant

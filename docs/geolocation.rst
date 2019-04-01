@@ -1,6 +1,8 @@
-===================
-Geolocation element
-===================
+.. _rstgeolocation:
+
+===========
+Geolocation
+===========
 
 A GeoLocation object provides information about a geographic position
 related to a record. Note that the GeoLocation element can be used within

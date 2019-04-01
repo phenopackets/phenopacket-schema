@@ -1,8 +1,8 @@
-.. _phenotype:
+.. _rstphenotype:
 
-=================
-Phenotype element
-=================
+=========
+Phenotype
+=========
 
 
 This element is intended to be used to describe a phenotype that characterizes the subject of the Phenopacket.

@@ -47,7 +47,7 @@ all types of evidence will have an external reference, and therefore this field 
 
 
 
-FHIR mapping (Evidence)
-~~~~~~~~~~~~~~~~~~~~~~~
+FHIR mapping
+~~~~~~~~~~~~
 This element is mapped to the FHIR
 element `Condition.evidence <https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence>`_.

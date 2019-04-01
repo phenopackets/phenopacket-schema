@@ -170,7 +170,7 @@ message Individual {
     OntologyClass taxonomy = 8;
 }
 
-// Phenotypic sex of an individual
+// Sex of an individual
 // FHIR mapping: AdministrativeGender (https://www.hl7.org/fhir/codesystem-administrative-gender.html)
 enum Sex {
     // Not assessed / available.
