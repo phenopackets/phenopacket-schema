@@ -82,6 +82,46 @@ codes from the `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`_ resource
 NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
 
 
+
+
+
+
+   Sex sex = 6;
+   KaryotypicSex karyotypic_sex = 10;
+   OntologyClass taxonomy = 8;
+
+
+ .. list-table:: Phenopacket requirements for the ``Individual`` element
+   :widths: 25 50 50
+   :header-rows: 1
+
+    * - Field
+      - Example
+      - Status
+    * - id
+      - Arbitrary identifier
+      - recommended
+    * - dataset_id
+      - Arbitrary identifier
+      - optional
+    * - date_of_birth
+      - (A timestamp)
+      - optional
+    * - age
+      - See :ref:`rstage`
+      - recommended
+    * - sex
+      - FEMALE
+      - recommended
+    * - karyotypic_sex
+      - XX
+      - optional
+    * - taxonomy
+      - an :ref:`rstontologyclass` representing Canis lupus familiaris (NCBITaxon:9615)
+      - optional
+
+
+
 FHIR mapping
 ~~~~~~~~~~~~
 The Phenopackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.
