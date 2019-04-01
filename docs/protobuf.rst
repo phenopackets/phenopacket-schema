@@ -5,7 +5,7 @@ A short introduction to protobuf
 Phenopackets schema uses protobuf, an exchange format developed in 2008 by Google. We refer readers to the excellent `Wikipedia page on Protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ and to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for details. This page intends to get readers who are unfamiliar with protobuf up to speed with the main aspects of this technology that will be needed to understand the
 phenopackets-schema.
 
-Google initially develop Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopackets-schema with Java, but all of the features are available in any of the lanugages that protobuf works with including C++ and Python. phenopackets-schema currently uses protobuf version 3.5.1 and we restrict our explanations to protobuf version 3 in this documentation.
+Google initially develop Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopackets-schema with Java, but all of the features are available in any of the languages that protobuf works with including C++ and Python. phenopackets-schema currently uses protobuf version 3.7.0 and we restrict our explanations to protobuf version 3 in this documentation.
 
 The major advantages of protobuf are that it is language-neutral, faster than many other schema languages such as XML and JSON, and can be simpler to use because of features such as automatic validation of data objects.
 
@@ -23,7 +23,7 @@ The following exercise is not necessary to use phenopackets-schema, but is inten
 
 2. Install the code as follows (to do so, you will need the packages autoconf, automake, libtool, curl, make, g++, unzip).
 
- .. code::
+ .. code:: bash
 
    ./configure
    make
@@ -32,10 +32,12 @@ The following exercise is not necessary to use phenopackets-schema, but is inten
    sudo ldconfig # refresh shared library cache.
 
 
-You now should check if installation was sucessful::
+You now should check if installation was sucessful
+
+ .. code:: bash
 
   $ protoc --version
-  libprotoc 3.6.1
+  libprotoc 3.7.0
 
 ~~~~~~~~~~~~~~~~~
 An example schema
@@ -44,7 +46,7 @@ An example schema
 protobuf represents data as messages whose fields are indicated and aliased with a number and tag. Fields can be required, optional, or repeated.
 The following message describes a dog. The name is represented as a string, and the field is indicated with the number 1. The weight of the dog is represented as an integer.  The toys field can store multiple items represented as a string. Note that in protobuf3, alls fields are optional by default and it is not possible to define a field as required.
 
- .. code::
+ .. code:: proto
 
     syntax = "proto3";
     
@@ -54,13 +56,15 @@ The following message describes a dog. The name is represented as a string, and 
       repeated string toys = 4;
       }
 
-We can compile this code with the following command::
+We can compile this code with the following command
+
+ .. code:: bash
 
   $ protoc -I=. --java_out=. dog.proto 
 
 This will generate a Java file called ``Dog.java`` with code to create, import, and export protobuf data. For example, the weight field is represented as follows.
 
- .. code::
+ .. code:: java
     
     public static final int WEIGHT_FIELD_NUMBER = 2;
     private int weight_;
@@ -88,7 +92,9 @@ key things that need to be done to get this to work are the following.
      ----proto
 
 
-Add the following to the dependencies::
+Add the following to the dependencies
+
+ .. code:: xml
 
    <dependency>
      <groupId>com.google.protobuf</groupId>
@@ -96,7 +102,9 @@ Add the following to the dependencies::
      <version>3.5.1</version>
    </dependency>
    
-and add the following to the plugin section::
+and add the following to the plugin section
+
+ .. code:: xml
 
    <plugin>
       <groupId>org.xolstice.maven.plugins</groupId>
@@ -119,7 +127,9 @@ and add the following to the plugin section::
 This is the simplest configuration of the `xolstice plugin <https://www.xolstice.org/protobuf-maven-plugin/usage.html>`_, see the documentation for further information. We have assumed that protoc is installed in /usr/local/bin in the above, and the path may need to be adjusted on your system.
 
 
-Add the protobuf definition to the proto directory. Add a class such as *Main.java* in the /src/main/java/org/example directory (package: org.example). For simplcity, the following code snippets could be written in the main method::
+Add the protobuf definition to the proto directory. Add a class such as *Main.java* in the /src/main/java/org/example directory (package: org.example). For simplcity, the following code snippets could be written in the main method
+
+ .. code:: java
 
    String name = "Fido";
    int weight = 5;
@@ -138,7 +148,9 @@ Add the protobuf definition to the proto directory. Add a class such as *Main.ja
 
 
 
-The code can be compiled with::
+The code can be compiled with
+
+ .. code:: bash
 
   $ mvn clean package
 
@@ -148,7 +160,9 @@ If we run the demo app, it should output ``Fido; weight: 5kg;  favorite toys: bo
 Serialization
 =============
 
-The following code snippet serializes the Java object fido and writes the serialized message to disk, then reads the message and displays it.::
+The following code snippet serializes the Java object fido and writes the serialized message to disk, then reads the message and displays it.
+
+ .. code:: java
 
         try {
             // serialize
