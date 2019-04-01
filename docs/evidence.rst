@@ -5,14 +5,14 @@ Evidence element
 ================
 
 This element intends to represent the evidence for an assertion such as an observation of a :ref:`Phenotype element`.
-We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <http://purl.obolibrary.org/obo/eco.owl>`_::
+We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <http://purl.obolibrary.org/obo/eco.owl>`_
+
+.. code-block:: proto
 
   message Evidence {
     OntologyClass evidence_code = 1;
     ExternalReference reference = 2;
   }
-
-
 
 
 evidence_code and reference
@@ -22,7 +22,6 @@ the ECO term `author statement from published clinical study used in manual asse
 (See :ref:`External Reference element`). 
 
 
-  
 
 FHIR mapping (Evidence)
 =======================

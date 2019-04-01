@@ -13,7 +13,9 @@ in the context of genomic analysis).
 
 This message represets the core Ped file information
 that is used by many programs for analysis of a multi-sample VCF file with exome or genome sequences of members
-of a family, some of whom are affected by a Mendelian disease. ::
+of a family, some of whom are affected by a Mendelian disease.
+
+.. code-block:: proto
 
   message Pedigree {
     repeated Person persons = 1;

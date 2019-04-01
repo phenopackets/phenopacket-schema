@@ -10,8 +10,9 @@ The word phenotype is used with many different meanings including disease entity
 An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
 frequency.
 
-This is the protobuf that we use to define a phenotype::
+This is the protobuf that we use to define a phenotype
 
+.. code-block:: proto
   
   message Phenotype {
     string description = 1;

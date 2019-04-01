@@ -6,12 +6,14 @@ External Reference element
 ToDo discuss intended use cases.
 
 
-The protobuf code::
-  
-  message ExternalReference {
-    // e.g. ISBN, PMID:123456, DOI:...
-    string id = 1;
-    string description = 2;
+The protobuf code
+
+.. code-block:: proto
+
+    message ExternalReference {
+        // e.g. ISBN, PMID:123456, DOI:...
+        string id = 1;
+        string description = 2;
     }
 
 

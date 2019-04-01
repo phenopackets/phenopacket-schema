@@ -5,7 +5,9 @@ Metadata element
 
 This element contains structured definitions of the resources and ontologies used within the phenopacket. It is considered to be a required element of a valid Phenopacket and application Q/C software should check this.
 
-The protobuf code is::
+The protobuf code is
+
+.. code-block:: proto
 
   message MetaData {
     google.protobuf.Timestamp created = 1;

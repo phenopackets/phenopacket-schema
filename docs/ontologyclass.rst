@@ -6,7 +6,9 @@ Ontology Class
 
 This element is used to represent classes (terms) from ontologies, and is used in many places throughout the
 Phenopacket standard. It is a simple, two element message that represents the identifier and the label of
-an ontology class. ::
+an ontology class.
+
+.. code-block:: proto
 
     message OntologyClass {
        string id = 1;

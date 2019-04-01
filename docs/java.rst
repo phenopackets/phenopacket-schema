@@ -10,7 +10,7 @@ Setting up the Java build
 =========================
 To include the phenopackets-schema package from maven central, add the following to the pom file
 
-.. code:: xml
+.. code-block:: xml
 
   <dependency>
     <groupId>org.phenopackets</groupId>
@@ -20,7 +20,7 @@ To include the phenopackets-schema package from maven central, add the following
 
 Define the phenopackets.version in the properties section of the pom file (the current version is 0.1.0)
 
-.. code:: xml
+.. code-block:: xml
 
    <properties>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -33,7 +33,7 @@ The Java code
 =============
 We show some Java code that demonstrates the basic methodology for building a Phenopacket. We have put the entire code into one function for didactic purposes, but real-life code might be more structured. We do define one auxialliary function
 
-.. code:: java
+.. code-block:: java
 
    /** convenience function to help creating OntologyClass objects. */
     public static OntologyClass ontologyClass(String id, String label) {
@@ -45,7 +45,7 @@ We show some Java code that demonstrates the basic methodology for building a Ph
 
 With this, we present a function that creates a Phenopacket that represents the case report described above
 
-.. code:: java
+.. code-block:: java
 
   public Phenopacket spherocytosisExample() {
         final String PROBAND_ID = "PROBAND#1";
@@ -134,7 +134,7 @@ Messages can be written in binary format using the native protobuf encoding. Whi
  `documentation <https://developers.google.com/protocol-buffers/docs/javatutorial#parsing-and-serialization>`_ on this topic,
  but will briefly give an example of writing to an ``OutputStream`` here.
 
-.. code:: java
+.. code-block:: java
 
     Path path = Paths.get("/path/to/file");
     try (OutputStream outputStream = Files.newOutputStream(path)) {
@@ -158,7 +158,7 @@ In many situations it
 may be desirable to export the Phenopacket as `JSON <https://en.wikipedia.org/wiki/JSON>`_. This is easy with
 the following commands
 
-.. code:: java
+.. code-block:: java
 
    Phenopacket phenoPacket = new PhenoPacketExample().spherocytosisExample();
    try {

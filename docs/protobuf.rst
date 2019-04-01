@@ -23,7 +23,7 @@ The following exercise is not necessary to use phenopackets-schema, but is inten
 
 2. Install the code as follows (to do so, you will need the packages autoconf, automake, libtool, curl, make, g++, unzip).
 
- .. code:: bash
+.. code-block:: bash
 
    ./configure
    make
@@ -34,7 +34,7 @@ The following exercise is not necessary to use phenopackets-schema, but is inten
 
 You now should check if installation was sucessful
 
- .. code:: bash
+.. code-block:: bash
 
   $ protoc --version
   libprotoc 3.7.0
@@ -46,7 +46,7 @@ An example schema
 protobuf represents data as messages whose fields are indicated and aliased with a number and tag. Fields can be required, optional, or repeated.
 The following message describes a dog. The name is represented as a string, and the field is indicated with the number 1. The weight of the dog is represented as an integer.  The toys field can store multiple items represented as a string. Note that in protobuf3, alls fields are optional by default and it is not possible to define a field as required.
 
- .. code:: proto
+.. code-block:: proto
 
     syntax = "proto3";
     
@@ -58,13 +58,13 @@ The following message describes a dog. The name is represented as a string, and 
 
 We can compile this code with the following command
 
- .. code:: bash
+.. code-block:: bash
 
   $ protoc -I=. --java_out=. dog.proto 
 
 This will generate a Java file called ``Dog.java`` with code to create, import, and export protobuf data. For example, the weight field is represented as follows.
 
- .. code:: java
+.. code-block:: java
     
     public static final int WEIGHT_FIELD_NUMBER = 2;
     private int weight_;
@@ -94,7 +94,7 @@ key things that need to be done to get this to work are the following.
 
 Add the following to the dependencies
 
- .. code:: xml
+.. code-block:: xml
 
    <dependency>
      <groupId>com.google.protobuf</groupId>
@@ -104,7 +104,7 @@ Add the following to the dependencies
    
 and add the following to the plugin section
 
- .. code:: xml
+.. code-block:: xml
 
    <plugin>
       <groupId>org.xolstice.maven.plugins</groupId>
@@ -129,7 +129,7 @@ This is the simplest configuration of the `xolstice plugin <https://www.xolstice
 
 Add the protobuf definition to the proto directory. Add a class such as *Main.java* in the /src/main/java/org/example directory (package: org.example). For simplcity, the following code snippets could be written in the main method
 
- .. code:: java
+.. code-block:: java
 
    String name = "Fido";
    int weight = 5;
@@ -150,7 +150,7 @@ Add the protobuf definition to the proto directory. Add a class such as *Main.ja
 
 The code can be compiled with
 
- .. code:: bash
+.. code-block:: bash
 
   $ mvn clean package
 
@@ -162,7 +162,7 @@ Serialization
 
 The following code snippet serializes the Java object fido and writes the serialized message to disk, then reads the message and displays it.
 
- .. code:: java
+.. code-block:: java
 
         try {
             // serialize

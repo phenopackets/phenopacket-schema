@@ -9,7 +9,9 @@ The Phenopackets schema maps the *Individual* element to the FHIR `Patient eleme
 
 Individual
 ==========
-This element intends to represent an individual human or other organism. In this documentation, we explain the element using the example of a human proband in a clinical investigation.::
+This element intends to represent an individual human or other organism. In this documentation, we explain the element using the example of a human proband in a clinical investigation.
+
+.. code-block:: proto
 
   message Individual {
    string id = 1;
@@ -68,7 +70,9 @@ Phenopackets make use of ontology terms to denote the sex of an individual. We r
 any ontology term that represents sex in any way to be used. The PATO terms `female <https://www.ebi.ac.uk/ols/ontologies/pato/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPATO_0000383>`_ and `male <https://www.ebi.ac.uk/ols/ontologies/pato/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPATO_0000384>`_ represent phenotypic sex. There may be situations when it is more appropriate to use a term such as `male genotypic sex <https://www.ebi.ac.uk/ols/ontologies/pato/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FPATO_0020001>`_.
    
 
-In Java, the sex can be specified as follows::
+In Java, the sex can be specified as follows
+
+.. code-block:: java
 
    /** convenience function to help creating OntologyClass objects. */
     public static OntologyClass ontologyClass(String id, String label) {

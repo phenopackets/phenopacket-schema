@@ -7,7 +7,9 @@ Gene
 
 This element represents an indentifier for a gene. It can be used to transmit the information that
 the gene is thought to play a causative role in the disease phenotypes being described in cases where
-the exact variant cannot be transmitted, either for privacy reasons or because it is unknown. ::
+the exact variant cannot be transmitted, either for privacy reasons or because it is unknown.
+
+.. code-block:: proto
 
     message Gene {
         string id = 1;

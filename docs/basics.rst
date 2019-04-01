@@ -10,7 +10,7 @@ phenopackets.proto
 
 This is the main definition file
 
- .. code::
+.. code-block:: proto
 
   syntax = "proto3";
   package org.phenopackets.schema.v1;

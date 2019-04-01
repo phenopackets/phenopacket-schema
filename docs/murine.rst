@@ -14,8 +14,9 @@ aortic wall architecture, which are features that are comparable `Marfan syndrom
 humans.
 
 We generated the phenopacket using Java code that is available in the test files section (``MurineDiseaseModel.java``).
-We first show the entire Phenopacket, and further below explain the individual sections. ::
+We first show the entire Phenopacket, and further below explain the individual sections.
 
+.. code-block:: json
 
    {
     "id": "",
@@ -152,10 +153,11 @@ We first show the entire Phenopacket, and further below explain the individual s
 
 id
 ~~
-This is the protobuf code ::
+This is the protobuf code
+
+.. code-block:: proto
 
     "id": "",
-
 
 
 To do -- is there a useful identifier here that goes beyond the identifier for the subject?
@@ -167,8 +169,9 @@ In this example, we use the MGI genotype id `MGI:3690326 <http://www.informatics
 We use the Phenopacket to refer to a typical individual with this genotype (if the information is available, one
 Phenopacket can be used per individual mouse). The two elements ``sex`` and ``karyotypicSex`` are defined as
 enumerations in the protobuf code and therefore appear here with their default values. If the sex of the mouse
-is important, it should be indicated specifically.  ::
+is important, it should be indicated specifically.
 
+.. code-block:: json
 
     "subject": {
       "id": "MGI:3690326",
@@ -191,7 +194,9 @@ phenotypes
 ~~~~~~~~~~
 
 The ``phenotypes`` element is a list of  :ref:`phenotype` elements, here specifying the Mammalian Phenotype Ontology
-terms that were used to describe the phenotypic abnormalities observed in the mouse model. ::
+terms that were used to describe the phenotypic abnormalities observed in the mouse model.
+
+.. code-block:: json
 
    "phenotypes": [{
       "description": "",
@@ -226,7 +231,9 @@ The variants section can use one of several ways of expressing the variant. For 
 Phenopacket standard includes an element called ``mouseAllele``.
 Please refer to the page on the :ref:`variant` message for further deails.
 Our example refers to the
-allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_. ::
+allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_.
+
+.. code-block:: json
 
     "variants": [{
     "genotype": {
@@ -243,7 +250,9 @@ allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_. ::
 
 
 The ``variant`` element includes a reference to ``background``.
-This field is intended to be used to denote the genetic background of an experimental animal model. ::
+This field is intended to be used to denote the genetic background of an experimental animal model.
+
+.. code-block:: json
 
      "background": "involves: 129S1/Sv * 129X1/SvJ * C57BL/6J"
 
@@ -257,7 +266,9 @@ metadata
 ~~~~~~~~
 
 The metadata element contains references to the Mammalian Phenotype Ontology and the Sequence Ontology, as well as
-a link to the original publication (as indicated by its PubMed id, complemented by an optional description). ::
+a link to the original publication (as indicated by its PubMed id, complemented by an optional description).
+
+.. code-block:: json
 
     "metaData": {
       "createdBy": "Peter",

@@ -14,7 +14,9 @@ A 27-year-old  woman presented with mild anemia, jaundice, and splenomegaly firs
 
 
 
-This code will outut the following JSON code::
+This code will outut the following JSON code
+
+.. code-block:: json
 
   {
   "subject": {
