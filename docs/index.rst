@@ -11,7 +11,7 @@ Welcome to the documentation for phenopackets-schema!
    requirements
    building-blocks
    examples
-   Creating and Reading Phenopackets with Java <java>
+   Working with Phenopackets in Java <java>
 
 
 

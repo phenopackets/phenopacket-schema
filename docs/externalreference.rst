@@ -1,3 +1,5 @@
+.. _rstexternalreference:
+
 ==========================
 External Reference element
 ==========================

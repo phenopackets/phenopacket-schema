@@ -11,7 +11,9 @@ Phenopacket that is explained in the Examples section.
 .. toctree::
    :maxdepth: 1
 
+   evidence <java-evidence>
    timestamp <java-timestamp>
+
 
 Setting up the Java build
 =========================

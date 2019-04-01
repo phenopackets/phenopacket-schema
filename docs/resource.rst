@@ -70,7 +70,7 @@ be resolved to http://purl.obolibrary.org/obo/HP_0012828.
 
 
 
-  .. list-table:: Phenopacket requirements for the ``Metadata`` element
+  .. list-table:: Phenopacket requirements for the ``Resource`` element
     :widths: 25 50 50
     :header-rows: 1
 
@@ -97,4 +97,6 @@ be resolved to http://purl.obolibrary.org/obo/HP_0012828.
       - required
 
 
+FHIR Mapping of the Phenotype element
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The FHIR mapping for the Phenopacket `Resource` is: `CodeSystem <http://www.hl7.org/fhir/codesystem.html>`_.

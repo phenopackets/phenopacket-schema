@@ -20,7 +20,7 @@ building blocks.
    age
    disease
    evidence
-   externalresource
+   externalreference
    gene
    geolocation
    individual
