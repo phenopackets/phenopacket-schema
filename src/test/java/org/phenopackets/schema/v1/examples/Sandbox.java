@@ -2,9 +2,7 @@ package org.phenopackets.schema.v1.examples;
 
 import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
-import org.phenopackets.schema.v1.core.Evidence;
-import org.phenopackets.schema.v1.core.ExternalReference;
-import org.phenopackets.schema.v1.core.OntologyClass;
+import org.phenopackets.schema.v1.core.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,5 +50,40 @@ public class Sandbox {
                 setReference(reference).
                 build();
         System.out.println(evidence);
+    }
+
+
+    @Test
+    void testProcedure() {
+        OntologyClass biopsySoftPalate = OntologyClass.newBuilder().
+                setId("NCIT:C51585").
+                setLabel("Biopsy of Soft Palate").
+                build();
+        Procedure procedure1 = Procedure.newBuilder().
+                setCode(biopsySoftPalate).
+                build();
+        Biosample bs = Biosample.newBuilder().
+                setProcedure(procedure1).
+                build();
+        System.out.println(bs);
+
+        OntologyClass punchBiopsy = OntologyClass.newBuilder().
+                setId("NCIT:C28743").
+                setLabel("Punch Biopsy").
+                build();
+        OntologyClass skinOfForearm = OntologyClass.newBuilder().
+                setId("UBERON:0003403").
+                setLabel("skin of forearm").
+                build();
+        Procedure procedure2 = Procedure.newBuilder().
+                setCode(punchBiopsy).
+                setBodySite(skinOfForearm).
+                build();
+        bs = Biosample.newBuilder().
+                setProcedure(procedure2).
+                build();
+        System.out.println(bs);
+
+
     }
 }

@@ -29,6 +29,7 @@ building blocks.
    ontologyclass
    pedigree
    phenotype
+   procedure
    resource
    sex
    variant

@@ -295,7 +295,7 @@ message Biosample {
 // ontology class.
 // e.g.
 // {"code":{"NCIT:C51585": "Biopsy of Soft Palate"}}
-// {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"FMA:33642": "Right shoulder"}} - a punch biopsy of the skin from the right shoulder
+// {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"UBERON:0003403": "skin of forearm"}} - a punch biopsy of the skin from the forearm
 // FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
 message Procedure {
 
