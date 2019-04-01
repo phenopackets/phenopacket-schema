@@ -387,8 +387,9 @@ message HtsFile {
     }
 
     HtsFormat hts_format = 1;
-    // assembly the contents of this file was called against
-    GenomeAssembly genome_assembly = 2;
+    // Genome assembly the contents of this file was called against. We recommend using the Genome Reference Consortium
+    // nomenclature e.g. GRCh37, GRCh38
+    string genome_assembly = 2;
     // a map of identifiers mapping an individual to a sample in the file should they differ, otherwise this should be empty
     // the key values must correspond to the Individual::id for the individuals in the message, the values must map to the
     // samples in the file.
@@ -404,27 +405,6 @@ message Gene {
     string id = 1;
     // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
     string symbol = 2;
-}
-
-// Human genome reference assembly - major version
-enum GenomeAssembly {
-    option allow_alias = true;
-    UNKNOWN_ASSEMBLY = 0;
-
-    NCBI_36 = 1;
-    HG_18 = 1;
-
-    GRCH_37 = 2;
-    HG_19 = 2;
-
-    GRCH_38 = 3;
-    HG_38 = 3;
-}
-
-// Representation of the sequence coordinate system.
-enum CoordinateSystem {
-    ZERO_BASED = 0;
-    ONE_BASED = 1;
 }
 
 // A variant allele. Alleles can be listed using HGVS, VCF, SPDI or ISCN notation.
@@ -460,12 +440,15 @@ message HgvsAllele {
 // END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
 // See https://samtools.github.io/hts-specs/VCFv4.3.pdf
 message VcfAllele {
-    string id = 1;
-    string chr = 2;
-    int32 pos = 3;
-    string ref = 4;
-    string alt = 5;
-    string info = 6;
+    // Genome assembly the allele was called against. We recommend using the Genome Reference Consortium
+    // nomenclature e.g. GRCh37, GRCh38
+    string genome_assembly = 1;
+    string id = 2;
+    string chr = 3;
+    int32 pos = 4;
+    string ref = 5;
+    string alt = 6;
+    string info = 7;
 }
 
 // A single SPDI allele.
