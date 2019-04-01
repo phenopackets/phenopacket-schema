@@ -26,5 +26,6 @@ building blocks.
    individual
    metadata
    ontologyclass
+   pedigree
    phenotype
    variant

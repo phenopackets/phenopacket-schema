@@ -57,7 +57,7 @@ age
 ===
 
 An age object describing the age of the individual at the time of collection of biospecimens or phenotypic observations
-reported in the current Phenopacket. It is specified using either an :ref:`Age element`, which can represent an Age in several different ways,
+reported in the current Phenopacket. It is specified using either an :ref:`Age element<rstage>`, which can represent an Age in several different ways,
 or an :ref:`AgeRange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
 was to protect privacy of study participants).
 

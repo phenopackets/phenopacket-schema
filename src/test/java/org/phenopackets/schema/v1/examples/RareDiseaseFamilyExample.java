@@ -2,9 +2,13 @@ package org.phenopackets.schema.v1.examples;
 
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
+import com.google.protobuf.util.JsonFormat;
+import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.Family;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
+import org.phenopackets.schema.v1.io.FamilyFormat;
+import org.phenopackets.schema.v1.io.PhenopacketFormat;
 
 import java.time.Instant;
 
@@ -192,6 +196,10 @@ class RareDiseaseFamilyExample {
      */
     static Family rareDiseaseFamily() {
 
+        long millis  = System.currentTimeMillis();
+        Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                .setNanos((int) ((millis % 1000) * 1000000)).build();
+
         MetaData metaData = MetaData.newBuilder()
                 .addResources(Resource.newBuilder()
                         .setId("hp")
@@ -224,6 +232,7 @@ class RareDiseaseFamilyExample {
                         .setIriPrefix("http://dx.doi.org/")
                         .build())
                 .setCreatedBy("Jules J.")
+                .setCreated(timestamp)
                 .addExternalReferences(ExternalReference.newBuilder()
                         .setId("DOI:10.1126/science.1186802")
                         .setDescription("Analysis of genetic inheritance in a family quartet by whole-genome sequencing.")
@@ -236,6 +245,12 @@ class RareDiseaseFamilyExample {
                 .setPedigree(pedigree())
                 .setMetaData(metaData)
                 .build();
+    }
+
+    @Test
+    void printAsJson() throws Exception{
+       String s= JsonFormat.printer().includingDefaultValueFields().print(rareDiseaseFamily());
+       System.out.println(s);
     }
 
 }
