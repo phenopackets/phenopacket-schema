@@ -20,7 +20,8 @@ The protobuf code is
 
 created
 =======
-This element is a `ISO8601 UTC timestamp <https://en.wikipedia.org/wiki/ISO_8601>`_ for when this phenopacket was created in ISO, e.g.,  "2018-03-01T00:00:00Z"
+This element is a `ISO8601 UTC timestamp <https://en.wikipedia.org/wiki/ISO_8601>`_ for when this phenopacket was
+created in ISO, e.g.,  "2018-03-01T00:00:00Z".
 
 
 created_by

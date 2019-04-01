@@ -98,10 +98,10 @@ identifier of that organism, to its most specific level using an NCBI taxonomic 
 e.g. NCBITaxon:9606 or NCBITaxon:1337 encoded as an OntologyClass.
 
 timestamp
-=========
+~~~~~~~~~
 This element represents the `ISO8601 UTC timestamp <https://en.wikipedia.org/wiki/ISO_8601>`_ at
 which this Individual record was created, in the format YYYY-MM-DDTHH:MM:SS.SSSZ,
-e.g. 2007-12-03T10:15:30.00Z.
+e.g. 2007-12-03T10:15:30.00Z. See :ref:`here <rstjavatimestamp>` for more information.
 
 updated
 =======

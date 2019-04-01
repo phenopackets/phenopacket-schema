@@ -1,10 +1,17 @@
-===========================================
-Creating and Reading Phenopackets with Java
-===========================================
+=================================
+Working with Phenopackets in Java
+=================================
 
 
 Here we provide some guidance on how to work with Phenopackets in Java. The code produces the :ref:`spherocytosis`
 Phenopacket that is explained in the Examples section.
+
+
+
+.. toctree::
+   :maxdepth: 1
+
+   timestamp <java-timestamp>
 
 Setting up the Java build
 =========================
