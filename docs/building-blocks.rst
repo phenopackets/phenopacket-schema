@@ -28,4 +28,5 @@ building blocks.
    ontologyclass
    pedigree
    phenotype
+   resource
    variant

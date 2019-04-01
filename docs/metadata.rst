@@ -19,18 +19,18 @@ The protobuf code is
 
 
 created
-=======
+~~~~~~~
 This element is a `ISO8601 UTC timestamp <https://en.wikipedia.org/wiki/ISO_8601>`_ for when this phenopacket was
 created in ISO, e.g.,  "2018-03-01T00:00:00Z".
 
 
 created_by
-==========
+~~~~~~~~~~
 This is a string that represents identifier for the contributor/ program. The expected syntax and semantics are application-dependent.
 
 
 resources
-=========
+~~~~~~~~~
 This element contains a listing of the ontologies/resources referenced in the phenopacket.
 
 
@@ -53,3 +53,8 @@ This element contains a listing of the ontologies/resources referenced in the ph
     * - resources
       - (see text)
       - required
+
+The `Metadata` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
+terms are used in the Phenopacket. For instance, if a MONDO term is used to specificy the disease and
+HPO terms are used to specificy the phenotypes of a patient, then the `Metadata` element MUST have
+one `Resource` element each for MONDO and HPO.
