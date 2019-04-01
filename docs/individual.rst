@@ -92,15 +92,15 @@ NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
 
 
  .. list-table:: Phenopacket requirements for the ``Individual`` element
-   :widths: 25 50 50
-   :header-rows: 1
+    :widths: 25 50 50
+    :header-rows: 1
 
     * - Field
       - Example
       - Status
     * - id
       - Arbitrary identifier
-      - recommended
+      - required
     * - dataset_id
       - Arbitrary identifier
       - optional
