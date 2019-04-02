@@ -135,7 +135,7 @@ public class PhenopacketTest {
                 .addDiseases(pfeifferSyndrome)
                 .addHtsFiles(HtsFile.newBuilder()
                         .setHtsFormat(HtsFile.HtsFormat.VCF)
-                        .setGenomeAssembly(GenomeAssembly.GRCH_37)
+                        .setGenomeAssembly("GRCh37")
                         // in this case the proband identifier is different to the sample
                         // identifier used in the VCF file
                         .putIndividualToSampleIdentifiers(proband.getId(), "SAMPLE0001")
