@@ -108,7 +108,7 @@ public class Sandbox {
                 build();
         Phenopacket pp = Phenopacket.newBuilder().
                 addDiseases(disease).
-                //addDiseases(disease2).
+                addDiseases(disease2).
                 build();
         System.out.println(JsonFormat.printer().includingDefaultValueFields().print(pp));
 
