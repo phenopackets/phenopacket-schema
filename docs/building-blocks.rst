@@ -21,6 +21,7 @@ building blocks.
    disease
    evidence
    externalreference
+   file
    gene
    geolocation
    individual
