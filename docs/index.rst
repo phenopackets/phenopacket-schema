@@ -10,6 +10,10 @@ Welcome to the documentation for phenopackets-schema!
    basics
    requirements
    building-blocks
+   phenopacket
+   family
+   cohort
+   biosample
    Working with Phenopackets in Java <java>
    examples
 

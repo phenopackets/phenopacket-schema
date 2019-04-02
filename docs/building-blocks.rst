@@ -1,3 +1,5 @@
+.. _rstbuildingblocks:
+
 ===========================
 Phenopacket building blocks
 ===========================

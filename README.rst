@@ -41,6 +41,13 @@ This common schema has been used to define the 'Phenopacket' which is a catch-al
 
 Currently this is very much work in progress and breaking changes will occur. Once we have settled on something stable we will draft a 1.0.0-RELEASE and thereafter stick to semantic versioning semantics.
 
+
+Email list
+==========
+There is a low-volume mailing list for announcements about phenopackets at phenopackets@groups.io. More information
+about this list is available at https://groups.io/g/phenopackets.
+
+
 Usage
 =====
 There are two ways to use this library, firstly using the ``Phenopacket`` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.

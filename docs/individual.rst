@@ -1,8 +1,8 @@
 .. _rstindividual:
 
-==================
-Individual element
-==================
+==========
+Individual
+==========
 
 The subject of the Phenopacket is represented by an *Individual* element.
 This element intends to represent an individual human or other organism. In this documentation,

@@ -2,122 +2,27 @@
 Phenopacket basics
 ==================
 
-The phenopacket schema is defined in two files that are maintained in the `phenopacket-schema GitHub repository <https://github.com/phenopackets/phenopacket-schema>`_. We will explain the ``phenopackets.proto`` here; this file contains the top-level concepts that make up a phenopacket, using more detailed definitions from a second file called ``base.proto``. Both files are available in the **src/main/proto/org/phenopackets/schema/v1** directory, with base.proto located in the core subdirectory.
+The phenopacket schema is defined in two files that are maintained in
+the `phenopacket-schema GitHub repository <https://github.com/phenopackets/phenopacket-schema>`_. We will introduce
+the basic concepts of the Phenopacket here, but refer users to the detailed explanations of individual
+elements on the :ref:`rstbuildingblocks` pages.
 
-~~~~~~~~~~~~~~~~~~
-phenopackets.proto
-~~~~~~~~~~~~~~~~~~
 
-This is the main definition file
+The elements of the Phenopacket are hierarchical, whereby one element can contain others. Elements of the
+Phenopacket are defined as protobuf messages. The Phenopacket schema has two protobuf files; The
+file ``phenopackets.proto`` has definitions of four Elements that can be used to transmit phenotype
+information for four major use cases.
 
-.. code-block:: proto
+1. :ref:`rstphenopacket` Information about the phenotypic findings, and optionally genetic variants or a link
+to an external file such as a VCF file from an exome or genome sequencing experiment.
 
-  syntax = "proto3";
-  package org.phenopackets.schema.v1;
-  
-  import "org/phenopackets/schema/v1/core/base.proto";
-  option java_multiple_files = true;
 
-  message Phenopacket {
-    string id = 1;
-    org.phenopackets.schema.v1.core.Individual subject = 2;
-    repeated org.phenopackets.schema.v1.core.Individual individuals = 3;
-    org.phenopackets.schema.v1.core.Pedigree pedigree = 4;
-    repeated org.phenopackets.schema.v1.core.Biosample biosamples = 5;
-    repeated org.phenopackets.schema.v1.core.Gene genes = 6;
-    repeated org.phenopackets.schema.v1.core.Variant variants = 7;
-    repeated org.phenopackets.schema.v1.core.Disease diseases = 8;
-    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 9;
-    org.phenopackets.schema.v1.core.MetaData metaData = 10;
-  }
+messages ``Phenopacket``, ``Family``, ``Cohort`` and
+``Biosample``, which are
+
+
+
+
 
 The header specifies that we are using protobuf version 3 and defines the package name. It imports the ``base.proto`` file mentioned above. The
 command ``option java_multiple_files = true;`` puts each top-level message type from the .proto file into an independent .java file. The message then goes on to define the main components of the Phenopacket.
-
-~~
-id
-~~
-
-The id is an identifier specific for this phenopacket.
-TODO recommendations for how to use this field.
-
-~~~~~~~
-subject
-~~~~~~~
-
-This is typically the individual human (or another organism) that the Phenopacket is describing. In many cases, the individual will
-be a patient or proband of the study.
-This field maps to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ element. The
-Phenopacket :ref:`Individual <rstindividual>` element
-contains elements that describe attributes such as biological sex, age, or date of birth.
-
-~~~~~~~~~~~
-individuals
-~~~~~~~~~~~
-This field can contain a list of other :ref:`Individual <rstindividual>`s. The Phenopacket standard expects
-that these individuals are related in some way to the subject of the phenopacket. For instance, the individuals may 
-be genetically related or may be members of a cohort. If this field is used, then 
-it is expected that a pedigree will be included for genetically related individuals 
-for use cases such as genomic diagnostics. If a phenopacket is being used to 
-describe one member of a cohort, then in general one phenopacket will be 
-created for each of the individuals in the cohort. In general, applications that 
-process such files are expected to perform Q/C to ensure data consistency, 
-but this is not and cannot be enforced on the level of the protobuf message itself.
-
-~~~~~~~~
-pedigree
-~~~~~~~~
-The :ref:`Pedigree <rstpedigree>` object contains information that is comparable to a PED file. It
-defines the relations between the patient and their relatives.
-
-
-~~~~~~~~~~
-biosamples
-~~~~~~~~~~
-
-This field describes samples that have been derived from the patient who is the object of the Phenopacket.
-or a collection of biosamples in isolation. TODO see  https://github.com/phenopackets/phenopacket-schema/issues/16
-
-
-~~~~~
-genes
-~~~~~
-This field defines a list of one or more genes that can be used to denote a collection of 
-candidate genes or causative genes. The resources using these fields should define what this
-represents in their context.
-
-~~~~~~~~
-variants
-~~~~~~~~
-This field defines a list of genetic variants and should be used for either describing candidate
-variants or diagnosed causative variants. The resources using these fields should define what this
-represents in their context.
-TODO see https://github.com/phenopackets/phenopacket-schema/issues/17
-
-~~~~~~~~
-diseases
-~~~~~~~~
-
-This field should be used to describe a list of  diagnosed or suspected conditions. The
-resources using these fields should define what this represents in their context. If this
-field is used to describe an individual with a rare disease, then the intended semantics is
-that the phenopacket is analogous to a case report that presents the phenotypes (and in many
-cases the variants) observed in an individual with the named disease(s).
-
-~~~~~~~~~
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the patient. Each element
-describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-File element which optionally refers to a file on a given file system or can be a URI that
-refers to a resource on the web.
-
-~~~~~~~~
-metaData
-~~~~~~~~
-This element contains structured definitions of the resources and ontologies used within the phenopacket.
-It is expected that every valid Phenopacket contains a metaData element.
-
-TODO link the above elements to the corresponding pages.
-

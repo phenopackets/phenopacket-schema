@@ -1,3 +1,5 @@
+.. _rstvariant:
+
 ===============
 Variant element
 ===============
@@ -112,12 +114,13 @@ for exome, genome, and other Next-Generation-Sequencing-based variant calling. I
 option to use for variants reported according to their chromosomal location as dervied from a VCF file. ::
 
     message VcfAllele {
-        string id = 1;
-        string chr = 2;
-        int32 pos = 3;
-        string ref = 4;
-        string alt = 5;
-        string info = 6;
+        string genome_assembly = 1;
+        string id = 2;
+        string chr = 3;
+        int32 pos = 4;
+        string ref = 5;
+        string alt = 6;
+        string info = 7;
     }
 
 In the Phenopacket format, it is expected that one ``VcfAllele`` message described a single allele (in contrast to
@@ -137,6 +140,9 @@ Phenopacket will report the contents of the info field for single nucleotide and
    * - Field
      - Example
      - Status
+   * - genome_assembly
+     - GRCh38
+     - required
    * - id
      - An arbitrary identifier
      - recommended
