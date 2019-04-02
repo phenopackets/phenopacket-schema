@@ -64,7 +64,7 @@ public class MurineDiseaseModel {
                 .setId(MgiId)
                 .build();
 
-        MouseAllele allele = MouseAllele.newBuilder().setId("MGI:3690325").setGene("Fbn1").setAlleleCode("tm1Hcd").build();
+        MouseAllele allele = MouseAllele.newBuilder().setId("MGI:3690325").setGene("Fbn1").setAlleleSymbol("tm1Hcd").build();
         Variant Fbn1variant = Variant.newBuilder()
                 .setMouseAllele(allele)
                 .setBackground("involves: 129S1/Sv * 129X1/SvJ * C57BL/6J")
