@@ -10,8 +10,8 @@ Welcome to the documentation for phenopackets-schema!
    basics
    requirements
    building-blocks
-   examples
    Working with Phenopackets in Java <java>
+   examples
 
 
 

@@ -1,6 +1,8 @@
 package org.phenopackets.schema.v1.examples;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Timestamp;
+import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
@@ -87,7 +89,7 @@ public class Sandbox {
     }
 
     @Test
-    void testDisease() {
+    void testDisease() throws InvalidProtocolBufferException  {
         OntologyClass HPMRS1 = OntologyClass.newBuilder().
                 setId("OMIM:239300").
                 setLabel("Hyperphosphatasia with mental retardation syndrome 1").
@@ -106,8 +108,9 @@ public class Sandbox {
                 build();
         Phenopacket pp = Phenopacket.newBuilder().
                 addDiseases(disease).
-                addDiseases(disease2).build();
-        System.out.println(pp);
+                //addDiseases(disease2).
+                build();
+        System.out.println(JsonFormat.printer().includingDefaultValueFields().print(pp));
 
     }
 
