@@ -364,7 +364,7 @@ message Pedigree {
     }
 }
 
-// Any relevant, non-HTS (see HtsFile for HTS files) file.
+// A file of unspecified type.
 message File {
     // Full system path to the file. e.g. /data/genomes/file1.vcf.gz
     string path = 1;
