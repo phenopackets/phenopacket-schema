@@ -400,8 +400,10 @@ message HtsFile {
 
 // Gene identifier
 message Gene {
-    // a CURIE with a prefix that is NCBIGene, HGNC, ENSEMBL, UCSC e.g. HGNC:347, ENSG00000120705, uc003ldc.6
-    // https://www.genenames.org/cgi-bin/gene_symbol_report?q=data/hgnc_data.php&hgnc_id=HGNC:3477
+    // The official gene identifier as designated by the organism gene nomenclature committee e.g. HGNC:3477 or MGI:2385071
+    // Preferentially this should be a CURIE, however it is acceptable to use another equivalent resource identifier
+    // such as ENSG00000120705, uc003ldc.6
+    // https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477
     string id = 1;
     // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
     string symbol = 2;
