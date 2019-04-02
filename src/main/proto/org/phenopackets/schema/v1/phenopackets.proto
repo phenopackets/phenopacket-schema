@@ -76,7 +76,7 @@ message Cohort {
     string id = 1;
     string description = 2;
     repeated Phenopacket members = 3;
-    // Pointer to the relevant HTS file(s) for the patient
+    // Pointer to the relevant HTS file(s) for the cohort
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 4;
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     org.phenopackets.schema.v1.core.MetaData meta_data = 5;
