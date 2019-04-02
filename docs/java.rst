@@ -5,8 +5,15 @@ Working with Phenopackets in Java
 =================================
 
 
-Here we provide some guidance on how to work with Phenopackets in Java. The code produces the :ref:`spherocytosis`
-Phenopacket that is explained in the Examples section.
+Here we provide some guidance on how to work with Phenopackets in Java. The sections on
+:ref:`rstjavabuild`, :ref:`rstjavaexport` TODO provide general guidance about using Java
+to work with phenopackets. The following sections provide a few examples of how to build
+various elements of Phenopackets. Finally, we present the full Java code used to build
+each of the three examples for :ref:`Rare Disease <rstrarediseaseexamplejava>`, cancer, and model
+organism phenotypes. TODO.
+
+
+
 
 
 

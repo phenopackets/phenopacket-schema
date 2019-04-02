@@ -1,10 +1,17 @@
-.. _spherocytosis:
+.. _rstrarediseaseexamplejava:
 
-=========================================
-A complete example in Java: Rare Disease
-=========================================
+============
+Rare Disease
+============
 
-We will now demonstrate how to construct a phenopacket in Java to represent a case report about an individual with `type 1 spherocytosis <https://omim.org/entry/182900>`_. We present data from a simulated case report in which the phenotypic features and *ANK1* mutation are used to initialize a phenopacket. The phenopacket can be serialized and deserialized as shown in the section on :ref:`Serialization`. Here, we will show how to export the phenopacket in JSON format.
+TODO -- update to have the same example as in the test class
+
+
+We will now demonstrate how to construct a phenopacket in Java to represent a case report
+about an individual with `type 1 spherocytosis <https://omim.org/entry/182900>`_. We present data from a
+simulated case report in which the phenotypic features and *ANK1* mutation are used to initialize a phenopacket.
+The phenopacket can be serialized and deserialized as shown in the section on :ref:`Serialization`. Here, we will
+show how to export the phenopacket in JSON format.
 
 
 Spherocytosis: A case report

@@ -1,6 +1,8 @@
-====================================
-A complete example in Java: Oncology
-====================================
+.. _rstcancerexample:
+
+============================
+A complete example: Oncology
+============================
 
 We will now demonstrate how to construct a phenopacket in Java to represent a case in which several biosamples are
 created to represent biopsies.
@@ -188,6 +190,3 @@ Finally,
     }
 
 
-Setting up the Java build
-~~~~~~~~~~~~~~~~~~~~~~~~~
-see rare disease example put in separate file

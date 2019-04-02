@@ -10,6 +10,17 @@ available in the ``src/test/org/phenopackets/schema/v1/examples`` directory by a
 .. toctree::
    :maxdepth: 1
 
-   spherocytosis
+   rd-example-java
    murine
-   biosample-example
+   cancer-example
+
+
+
+Each example has a corresponding explanation of how to create the Phenopacket using Java.
+
+.. toctree::
+   :maxdepth: 1
+
+   rd-example-java
+   murine
+   cancer-example-java
