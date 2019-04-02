@@ -1,3 +1,5 @@
+.. _rstjava:
+
 =================================
 Working with Phenopackets in Java
 =================================
@@ -11,32 +13,11 @@ Phenopacket that is explained in the Examples section.
 .. toctree::
    :maxdepth: 1
 
+   including phenopackets in Java projects <java-build>
+   Phenopacket File I/O in Java <java-export>
    evidence <java-evidence>
    timestamp <java-timestamp>
 
-
-Setting up the Java build
-=========================
-To include the phenopackets-schema package from maven central, add the following to the pom file
-
-.. code-block:: xml
-
-  <dependency>
-    <groupId>org.phenopackets</groupId>
-    <artifactId>phenopacket-schema</artifactId>
-    <version>${phenopackets.version}</version>
-  </dependency>
-
-Define the phenopackets.version in the properties section of the pom file (the current version is 0.1.0)
-
-.. code-block:: xml
-
-   <properties>
-     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-     ...
-     <phenopackets.version>0.1.0</phenopackets.version>
-     <protobuf.version>3.5.1</protobuf.version>
-   </properties>
 
 The Java code
 =============

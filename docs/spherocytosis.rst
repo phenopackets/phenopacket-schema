@@ -1,4 +1,5 @@
 .. _spherocytosis:
+
 =========================================
 A complete example in Java: Rare Disease
 =========================================

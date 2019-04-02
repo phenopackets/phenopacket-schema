@@ -1,5 +1,8 @@
 package org.phenopackets.schema.v1.examples;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.JsonFormat;
@@ -7,9 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static org.phenopackets.schema.v1.io.PhenopacketFormat.toJson;
 
 public class Sandbox {
 
@@ -111,6 +117,34 @@ public class Sandbox {
                 addDiseases(disease2).
                 build();
         System.out.println(JsonFormat.printer().includingDefaultValueFields().print(pp));
+
+    }
+
+
+    @Test void test1() {
+        Phenopacket phenoPacket = Phenopacket.newBuilder().build();
+        try {
+            System.out.println(toJson(phenoPacket));
+            System.out.println(JsonFormat.printer().includingDefaultValueFields().print(phenoPacket));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @Test void test22() throws IOException {
+        OntologyClass biopsySoftPalate = OntologyClass.newBuilder().
+                setId("NCIT:C51585").
+                setLabel("Biopsy of Soft Palate").
+                build();
+        String JSONString = JsonFormat.printer().includingDefaultValueFields().print(biopsySoftPalate);
+        JsonNode jsonNodeTree = new ObjectMapper().readTree(JSONString);
+        String yamlString = new YAMLMapper().writeValueAsString(jsonNodeTree);
+        System.out.println(yamlString);
+
+        biopsySoftPalate.writeTo(System.out);
+
 
     }
 
