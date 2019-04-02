@@ -40,7 +40,7 @@ message Phenopacket {
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 9;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v1.core.MetaData metaData = 10;
+    org.phenopackets.schema.v1.core.MetaData meta_data = 10;
 }
 
 // Phenotype, sample and pedigree data required for a genomic diagnosis.
@@ -68,7 +68,7 @@ message Family {
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 9;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v1.core.MetaData metaData = 10;
+    org.phenopackets.schema.v1.core.MetaData meta_data = 10;
 }
 
 // A group of individuals related in some phenotypic or genotypic aspect.
@@ -79,5 +79,5 @@ message Cohort {
     // Pointer to the relevant HTS file(s) for the patient
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 4;
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v1.core.MetaData metaData = 5;
+    org.phenopackets.schema.v1.core.MetaData meta_data = 5;
 }
