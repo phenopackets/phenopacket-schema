@@ -1,15 +1,19 @@
 package org.phenopackets.schema.v1.examples;
 
 import com.google.protobuf.Timestamp;
+import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 import org.phenopackets.schema.v1.io.PhenopacketFormat;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
+import static org.phenopackets.schema.v1.core.HtsFileTest.createMetastasisHtsFile;
 
 
 /**
@@ -31,20 +35,47 @@ public class UrothelialCarcinomaExample {
     public UrothelialCarcinomaExample() {
         MetaData metaData = buildMetaData();
 
+        Phenotype hematuria = Phenotype.newBuilder().setType(ontologyClass("HP:0000790","Hematuria")).build();
+        Phenotype dsyuria = Phenotype.newBuilder().setType(ontologyClass("HP:0100518","Dysuria")).setSeverity(ontologyClass("HP:0012828","Severe")).build();
+
         this.phenopacket = Phenopacket.newBuilder()
+                .setId("example case")
                 .setSubject(subject())
+                .addPhenotypes(hematuria)
+                .addPhenotypes(dsyuria)
                 .addBiosamples(bladderBiopsy())
                 .addBiosamples(prostateBiospy())
                 .addBiosamples(leftUreterBiospy())
                 .addBiosamples(rightUreterBiospy())
                 .addBiosamples(pelvicLymphNodeBiospy())
                 .addDiseases(infiltratingUrothelialCarcinoma())
+                .addHtsFiles(HtsFileTest.createNormalGermlineHtsFile())
                 .setMetaData(metaData)
                 .build();
     }
 
     private MetaData buildMetaData() {
+
+        long millis  = System.currentTimeMillis();
+        Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                .setNanos((int) ((millis % 1000) * 1000000)).build();
         return MetaData.newBuilder()
+                .addResources(Resource.newBuilder()
+                        .setId("hp")
+                        .setName("human phenotype ontology")
+                        .setNamespacePrefix("HP")
+                        .setIriPrefix("http://purl.obolibrary.org/obo/HP_")
+                        .setUrl("http://purl.obolibrary.org/obo/hp.owl")
+                        .setVersion("2019-04-08")
+                        .build())
+                .addResources(Resource.newBuilder()
+                        .setId("uberon")
+                        .setName("uber anatomy ontology")
+                        .setNamespacePrefix("UBERON")
+                        .setIriPrefix("http://purl.obolibrary.org/obo/UBERON_")
+                        .setUrl("http://purl.obolibrary.org/obo/uberon.owl")
+                        .setVersion("2019-03-08")
+                        .build())
                 .addResources(Resource.newBuilder()
                         .setId("ncit")
                         .setName("NCI Thesaurus OBO Edition")
@@ -52,8 +83,16 @@ public class UrothelialCarcinomaExample {
                         .setUrl("http://purl.obolibrary.org/obo/ncit.owl")
                         .setVersion("18.05d")
                         .build())
+                .setCreatedBy("Peter R")
+                .setCreated(timestamp)
+                .setSubmittedBy("Peter R")
+                .addExternalReferences(ExternalReference.newBuilder()
+                        .setId("PMID:29221636")
+                        .setDescription("Urothelial neoplasms in pediatric and young adult patients: A large single-center series")
+                        .build())
                 .build();
     }
+
 
 
     private Disease infiltratingUrothelialCarcinoma() {
@@ -65,6 +104,8 @@ public class UrothelialCarcinomaExample {
     private Individual subject() {
         return Individual.newBuilder()
                 .setId(this.patientId)
+                .setDatasetId("urology cohort")
+                .setSex(Sex.MALE)
                 .setDateOfBirth(Timestamp.newBuilder()
                         .setSeconds(Instant.parse("1964-03-15T00:00:00Z").getEpochSecond()))
                 .build();
@@ -100,6 +141,7 @@ public class UrothelialCarcinomaExample {
         // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
         OntologyClass pN2 = ontologyClass("NCIT:C48750", "pN2 Stage Finding");
         biosampleBuilder.addTumorStage(pN2);
+        biosampleBuilder.addHtsFiles(HtsFileTest.createSomaticHtsFile());
         biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
         return biosampleBuilder.build();
     }
@@ -149,6 +191,7 @@ public class UrothelialCarcinomaExample {
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
         OntologyClass metastasis = ontologyClass("NCIT:C3261", "Metastatic Neoplasm");
         biosampleBuilder.setTumorProgression(metastasis);
+        biosampleBuilder.addHtsFiles(createMetastasisHtsFile());
         biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
         return biosampleBuilder.build();
     }
@@ -161,6 +204,6 @@ public class UrothelialCarcinomaExample {
 
     @Test
     void printAsJson() throws Exception{
-        System.out.println(PhenopacketFormat.toJson(phenopacket));
+        System.out.println(JsonFormat.printer().includingDefaultValueFields().print(phenopacket));
     }
 }
