@@ -3,7 +3,6 @@ package org.phenopackets.schema.v1.examples;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
@@ -11,11 +10,8 @@ import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import static org.phenopackets.schema.v1.io.PhenopacketFormat.toJson;
 
 public class Sandbox {
 
@@ -31,7 +27,7 @@ public class Sandbox {
 
 
     @Test
-    void testSpecificData() throws ParseException {
+    void testSpecificData() throws Exception {
         //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String hastings = "1066-10-14";
@@ -39,12 +35,12 @@ public class Sandbox {
         long millis = date.getTime();
         Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
                 .setNanos((int) ((millis % 1000) * 1000000)).build();
-        System.out.println(timestamp);
+        System.out.println(JsonFormat.printer().includingDefaultValueFields().print(timestamp));
     }
 
 
     @Test
-    void testEvidence() {
+    void testEvidence() throws Exception {
         OntologyClass publishedClinicalStudy = OntologyClass.
                 newBuilder().
                 setId("ECO:0006017").
@@ -58,12 +54,12 @@ public class Sandbox {
                 setEvidenceCode(publishedClinicalStudy).
                 setReference(reference).
                 build();
-        System.out.println(evidence);
+        System.out.println(JsonFormat.printer().includingDefaultValueFields().print(evidence));
     }
 
 
     @Test
-    void testProcedure() {
+    void testProcedure() throws Exception {
         OntologyClass biopsySoftPalate = OntologyClass.newBuilder().
                 setId("NCIT:C51585").
                 setLabel("Biopsy of Soft Palate").
@@ -74,7 +70,7 @@ public class Sandbox {
         Biosample bs = Biosample.newBuilder().
                 setProcedure(procedure1).
                 build();
-        System.out.println(bs);
+        System.out.println(JsonFormat.printer().includingDefaultValueFields().print(bs));
 
         OntologyClass punchBiopsy = OntologyClass.newBuilder().
                 setId("NCIT:C28743").
@@ -88,14 +84,14 @@ public class Sandbox {
                 setCode(punchBiopsy).
                 setBodySite(skinOfForearm).
                 build();
-        bs = Biosample.newBuilder().
-                setProcedure(procedure2).
-                build();
-        System.out.println(bs);
+        System.out.println(JsonFormat.printer()
+                .print(Biosample.newBuilder().
+                        setProcedure(procedure2).
+                        build()));
     }
 
     @Test
-    void testDisease() throws InvalidProtocolBufferException  {
+    void testDisease() throws Exception{
         OntologyClass HPMRS1 = OntologyClass.newBuilder().
                 setId("OMIM:239300").
                 setLabel("Hyperphosphatasia with mental retardation syndrome 1").
@@ -124,7 +120,6 @@ public class Sandbox {
     @Test void test1() {
         Phenopacket phenoPacket = Phenopacket.newBuilder().build();
         try {
-            System.out.println(toJson(phenoPacket));
             System.out.println(JsonFormat.printer().includingDefaultValueFields().print(phenoPacket));
         } catch (IOException e) {
             e.printStackTrace();
