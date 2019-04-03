@@ -4,8 +4,14 @@
 Exporting and Importing Phenopackets
 ====================================
 
-It is easy to export Phenopackets in JSON, YAML, or protobuf format.
-
+It is easy to export Phenopackets in JSON, YAML, or protobuf format. Bear in mind that protobuf was designed as a
+wire-format allowing for 'schema evolution' so this is safest to use in this environment. It would be advisable to store
+your data in a datastore with a schema relevant to your requirements and be able to map that to the relevant Phenopacket
+message types for exchange with your users/partners. If you don't it is possible that breaking changes to the schema will
+mean you cannot exchange data with parties using a later version of the schema or if you update the schema your tools are
+using they will no longer be able to read your data written using the previous version. While protobuf allows for
+'schema evolution' by design which will limit the impact of changes to the schema precipitating this scenario, it is
+nonetheless a possibility which the paranoid might wish to entertain.
 
 JSON export
 ~~~~~~~~~~~
@@ -21,8 +27,8 @@ the following commands (we show how to create a Phenopacket in Java elsewhere).
 
     Phenopacket phenoPacket = // create a Phenopacket
     try {
-        System.out.println(toJson(phenoPacket));
-        System.out.println(JsonFormat.printer().includingDefaultValueFields().print(pp));
+        String jsonString = JsonFormat.printer().includingDefaultValueFields().print(pp);
+        System.out.println(jsonString);
      } catch (IOException e) {
        e.printStackTrace();
      }
@@ -43,8 +49,8 @@ YAML export
 
     Phenopacket phenoPacket = // create a Phenopacket
     try {
-        String JSONString = JsonFormat.printer().includingDefaultValueFields().print(phenoPacket);
-        JsonNode jsonNodeTree = new ObjectMapper().readTree(JSONString);
+        String jsonString = JsonFormat.printer().includingDefaultValueFields().print(phenoPacket);
+        JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
         String yamlString = new YAMLMapper().writeValueAsString(jsonNodeTree);
         System.out.println(yamlString);
     } catch (IOException e) {
@@ -70,30 +76,23 @@ is more space efficient than JSON but it is a binary format that is not human re
         e.printStackTrace(); // or handle the Exception as appropriate
     }
 
-We can write to any FileOutputStream (replace System.out in the above code).
+We can write to any OutputStream (replace System.out in the above code), e.g. a file or network.
 
 
 Importing Phenopackets (JSON format)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-There are multiple ways of doing this with different JSON libraries. The following code should suffice for most
-purposes.
+There are multiple ways of doing this with different JSON libraries e.g. Jackson, Gson, JSON.simple.... The following
+code explains how to convert the JSON String object into a protobuf class. This isn't limited to a Phenopacket message,
+so long as you know the type of message contained in the json, you can merge it into the correct Java representation.
 
 .. code-block:: java
 
-    import org.json.simple.JSONObject;
-    import org.json.simple.parser.JSONParser;
-    import org.json.simple.parser.ParseException;
-
-    String path = // path to the phenopacket file in JSON format
-    JSONParser parser = new JSONParser();
+    String phenopacketJsonString = // Phenopacket in JSON as a String;
     try {
-        Object obj = parser.parse(new FileReader(pathToJsonPhenopacketFile));
-        JSONObject jsonObject = (JSONObject) obj;
-        String phenopacketJsonString = jsonObject.toJSONString();
         Phenopacket.Builder phenoPacketBuilder = Phenopacket.newBuilder();
         JsonFormat.parser().merge(jsonString, phenoPacketBuilder);
         Phenopacket phenopacket = phenoPacketBuilder.build();
-        // do somethign with phenopacket ...
+        // do something with phenopacket ...
     } catch (IOException e1) {
         e1.printStackTrace(); // or handle the Exception as appropriate
     } catch (ParseException e2) {
