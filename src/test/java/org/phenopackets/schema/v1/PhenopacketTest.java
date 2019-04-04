@@ -35,7 +35,7 @@ public class PhenopacketTest {
 
         Variant heterozygousPathogenicVariant = Variant.newBuilder()
                 .setSpdiAllele(pathogenicAllele)
-                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
+                .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
 
         Phenotype coronalCraniosynostosis = Phenotype.newBuilder()

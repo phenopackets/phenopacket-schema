@@ -111,7 +111,7 @@ We first show the entire Phenopacket, and further below explain the individual s
     "biosamples": [],
     "genes": [],
      "variants": [{
-    "genotype": {
+    "zygosity": {
       "id": "GENO:0000135",
       "label": "heterozygous"
     },
@@ -236,7 +236,7 @@ allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_.
 .. code-block:: json
 
     "variants": [{
-    "genotype": {
+    "zygosity": {
       "id": "GENO:0000135",
       "label": "heterozygous"
     },

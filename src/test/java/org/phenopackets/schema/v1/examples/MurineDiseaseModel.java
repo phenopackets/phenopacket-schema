@@ -68,7 +68,7 @@ public class MurineDiseaseModel {
         Variant Fbn1variant = Variant.newBuilder()
                 .setMouseAllele(allele)
                 .setBackground("involves: 129S1/Sv * 129X1/SvJ * C57BL/6J")
-                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
+                .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
 
         ExternalReference pubmedRef = ExternalReference.newBuilder()

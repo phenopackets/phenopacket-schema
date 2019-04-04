@@ -8,7 +8,7 @@ variants. There is currently no standard variant nomenclature that can represent
 of genetic variation that is relevant to human medicine, science, and model organisms. Therefore,
 we represent variants using the keyword ``oneof``, which is used in protobuf for an item
 with many  optional fields where at most one field will be set at the same time. Variant messages
-contain an allele, the genotype of the allele, and, and a background element that can be
+contain an allele, the zygosity of the allele, and, and a background element that can be
 used to represent the genetic background of an animal model.
 
 Alleles can be
@@ -22,7 +22,7 @@ listed using HGVS, VCF, SPDI, ISCN, or "mouse allele" notation.::
         IscnAllele iscn_allele = 5;
         MouseAllele mouse_allele = 8;
       }
-      OntologyClass genotype = 6;
+      OntologyClass zygosity = 6;
       string background = 7;
     }
 
@@ -41,8 +41,8 @@ the Phenopacket standard has the following requirements.
    * - allele
      - see individual elements, below
      - required
-   * - genotype
-     - See ``genotype``, below
+   * - zygosity
+     - See ``zygosity``, below
      - recommended
    * - background
      - involves: 129S1/Sv * 129X1/SvJ * C57BL/6J
@@ -51,11 +51,11 @@ the Phenopacket standard has the following requirements.
 
 
 
-genotype
+zygosity
 ~~~~~~~~
-The genotype of the variant as determined in all of the samples represented in this Phenopacket is represented using a list of
+The zygosity of the variant as determined in all of the samples represented in this Phenopacket is represented using a list of
 terms taken from the `Genotype Ontology (GENO) <https://www.ebi.ac.uk/ols/ontologies/geno>`_. For instance, if a variant
-affects one of two alleles at a certain locus, we could record the genotype using the term
+affects one of two alleles at a certain locus, we could record the zygosity using the term
 `heterozygous (GENO:0000135) <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.
 
 background

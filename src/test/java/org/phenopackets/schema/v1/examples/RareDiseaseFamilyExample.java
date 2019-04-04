@@ -37,14 +37,14 @@ class RareDiseaseFamilyExample {
     private static Variant het(HgvsAllele allele) {
         return Variant.newBuilder()
                 .setHgvsAllele(allele)
-                .setGenotype(ontologyClass("GENO:0000135", "heterozygous"))
+                .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
     }
 
     private static Variant hom(HgvsAllele allele) {
         return Variant.newBuilder()
                 .setHgvsAllele(allele)
-                .setGenotype(ontologyClass("GENO:0000136", "homozygous"))
+                .setZygosity(ontologyClass("GENO:0000136", "homozygous"))
                 .build();
     }
 

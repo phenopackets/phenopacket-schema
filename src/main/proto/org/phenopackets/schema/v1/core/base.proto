@@ -423,8 +423,8 @@ message Variant {
         IscnAllele iscn_allele = 5;
         MouseAllele mouse_allele = 8;
     }
-    // Genotype of the alleles using GENO ontology
-    OntologyClass genotype = 6;
+    // Zygosity of the allele using GENO ontology
+    OntologyClass zygosity = 6;
     // For mice the background of the variant is also required
     // e.g. involves: 129S1/Sv * 129X1/SvJ * C57BL/6J
     // see http://www.informatics.jax.org/allele/MGI:3690325#phenotypes for examples
