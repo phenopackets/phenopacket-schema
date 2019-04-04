@@ -4,175 +4,237 @@
 Rare Disease
 ============
 
-TODO -- update to have the same example as in the test class
+This page explains the Java code that was used to generate :ref:`rstrdexample`. The
+complete code is available in the src/test package of this repository in the class
+``BethlemMyopathyExample``.
 
 
-We will now demonstrate how to construct a phenopacket in Java to represent a case report
-about an individual with `type 1 spherocytosis <https://omim.org/entry/182900>`_. We present data from a
-simulated case report in which the phenotypic features and *ANK1* mutation are used to initialize a phenopacket.
-The phenopacket can be serialized and deserialized as shown in the section on :ref:`Serialization`. Here, we will
-show how to export the phenopacket in JSON format.
+Builders and Short cuts
+~~~~~~~~~~~~~~~~~~~~~~~
+The individual elements of a Phenopacket are constructed with functions provided by the protobuf framework.
+These functions use the Builder pattern. For instance, to create an OntologyClass object, we use the
+following code.
+
+.. code-block:: java
+
+    OntologyClass hematuria = OntologyClass.newBuilder()
+                .setId("HP:0000790")
+                .setLabel("Hematuria")
+                .build();
+
+Developers may find it easier to define convenience functions that wrap the builders. For instance, for the OntologyClass
+example, we might define the following function.
 
 
-Spherocytosis: A case report
-============================
-
-A 27-year-old  woman presented with mild anemia, jaundice, and splenomegaly first observed in early childhood. Hepatomegaly was ruled out. Blood film showed about 70% spherocytes and reticulocytosis of 6.5%. The heterozygous variant NM_001142446.1:c.5620C>T was found, corresponding to chr8:41661923G>A (on Assembly GRCh38).
 
 
+.. code-block:: java
 
-
-This code will outut the following JSON code
-
-.. code-block:: json
-
-  {
-  "subject": {
-    "id": "PROBAND#1",
-    "ageAtCollection": {
-      "age": "P27Y3M"
-    },
-    "sex": {
-      "id": "PATO:0000383",
-      "label": "female"
-    },
-    "phenotypes": [{
-      "type": {
-        "id": "HP:0004444",
-        "label": "Spherocytosis"
-      },
-      "classOfOnset": {
-        "id": "HP:0011463",
-        "label": "Childhood onset"
-      }
-    }, {
-      "type": {
-        "id": "HP:0000952",
-        "label": "Jaundice"
-      },
-      "classOfOnset": {
-        "id": "HP:0011463",
-        "label": "Childhood onset"
-      }
-    }, {
-      "type": {
-        "id": "HP:0001744",
-        "label": "Splenomegaly"
-      },
-      "classOfOnset": {
-        "id": "HP:0011463",
-        "label": "Childhood onset"
-      }
-    }, {
-      "type": {
-        "id": "HP:0002240",
-        "label": "Hepatomegaly"
-      },
-      "absent": true
-    }, {
-      "type": {
-        "id": "HP:0001923",
-        "label": "Reticulocytosis"
-      }
-    }]
-  },
-  "variants": [{
-    "sequence": "NM_001142446.1",
-    "position": 5620,
-    "deletion": "C",
-    "insertion": "T",
-    "hgvs": "NM_001142446.1:c.5620C>T ",
-    "sampleGenotypes": {
-      "PROBAND#1": {
-        "id": "GENO:0000135",
-        "label": "heterozygous"
-      }
+    public static OntologyClass ontologyClass(String id, String label) {
+        return OntologyClass.newBuilder()
+                .setId(id)
+                .setLabel(label)
+                .build();
     }
-  }],
-  "metaData": {
-    "createdBy": "Example clinician",
-    "resources": [{
-      "id": "hp",
-      "name": "human phenotype ontology",
-      "namespacePrefix": "HP",
-      "url": "http://purl.obolibrary.org/obo/hp.owl",
-      "version": "2018-03-08",
-      "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
-    }, {
-      "id": "pato",
-      "name": "Phenotype And Trait Ontology",
-      "namespacePrefix": "PATO",
-      "url": "http://purl.obolibrary.org/obo/pato.owl",
-      "version": "2018-03-28",
-      "iriPrefix": "http://purl.obolibrary.org/obo/PATO_"
-    }, {
-      "id": "geno",
-      "name": "Genotype Ontology",
-      "namespacePrefix": "GENO",
-      "url": "http://purl.obolibrary.org/obo/geno.owl",
-      "version": "19-03-2018",
-      "iriPrefix": "http://purl.obolibrary.org/obo/GENO_"
-    }]
-  }
-  }
 
-The phenopackets-schema offers many more functions to create phenopackets for special situations. We refer interested readers to the protobuf and the example Java code in the phenopackets-schema repository.
+We will use the ``ontologyClass`` function in our examples, but otherwise show all steps for clarity.
+
+Family members and variants
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We define the names of the family members and also an object to represent the variant that was found to occur
+in a de novo fashion in the son.
+
+.. code-block:: java
+
+    private static final String PROBAND_ID = "14 year-old boy";
+    private static final String MOTHER_ID = "MOTHER";
+    private static final String FATHER_ID = "FATHER";
+
+    // Allele
+    private static final HgvsAllele c_877G_to_A = HgvsAllele.
+            newBuilder().
+            setHgvs("NM_001848.2:c.877G>A").
+            build();
+    // Corresponding variant
+    private static final Variant heterozygousCOL6A1Variant = Variant.newBuilder()
+            .setHgvsAllele(c_877G_to_A)
+            .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
+            .build();
 
 
-Reading phenopackets in Java
-============================
-The following code demonstrates how to use Java to input a Phenopacket
-that describes a patient with Human Phenotype Ontology (HPO) terms. We make
-use of the open-source `phenol library <https://github.com/monarch-initiative/phenol>`_ to
-input and manipulate the HPO file.
+Proband
+~~~~~~~
+The following function then creates the Proband object. Note how
+we create OntologyClass objects for onset and severity modifiers,
+and create an Evidence object that indicates the provenance of the data.
 
-  .. code-block:: java	  
+.. code-block:: java
 
-    import org.json.simple.JSONObject;
-    import org.json.simple.parser.JSONParser;
-    import org.phenopackets.schema.v1.Phenopacket;
-    import org.phenopackets.schema.v1.core.*;
-    JSONParser parser = new JSONParser();
-    
-    Object obj = parser.parse(new FileReader(pathToJsonPhenopacketFile));
-    JSONObject jsonObject = (JSONObject) obj;
-    String phenopacketJsonString = jsonObject.toJSONString();
-    Phenopacket phenopack = PhenoPacketFormat.fromJson(phenopacketJsonString);
-    String samplename = phenopack.getSubject().getId();
-    // Get the phenotypic abnormalities that were observed in the affected individual
-    Individual subject =phenoPacket.getSubject();
-    List<TermId> observedPhenotypes= subject
-                .getPhenotypesList()
-                .stream()
-                .distinct() // this removes any duplicate HPO terms that may be present
-                .filter(((Predicate<Phenotype>) Phenotype::getAbsent).negate()) // i.e., just take non-negated phenotypes
-                .map(Phenotype::getType)
-                .map(OntologyClass::getId)
-                .map(TermId::of)
-                .collect(ImmutableList.toImmutableList());
-    // Get the excluded phenotypes (i.e., these were observed to be not present)
-    List<TermId> excludedPhenotypes = subject
-                .getPhenotypesList()
-                .stream()
-                .filter(Phenotype::getAbsent) // i.e., just take absent phenotypes
-                .map(Phenotype::getType)
-                .map(OntologyClass::getId)
-                .map(TermId::of)
-                .collect(ImmutableList.toImmutableList());
-    List<HtsFile> htsFileList = phenoPacket.getHtsFilesList();
-    // depending on application, we may need to check that there is one (and only one) high-throughput file
-    // The following code assumes that the list of HTS files contains one VCF file
-    String vcfpath=null;
-    String genomeAssembly=null;
-    for (HtsFile htsFile : htsFileList) {
-      if (htsFile.getHtsFormat().equals(HtsFile.HtsFormat.VCF)) {
-        vcfpath=htsFile.getFile().getPath();
-        genomeAssembly=htsFile.getGenomeAssembly().name();
-      }
+ static Phenopacket proband() {
+
+        OntologyClass mild = OntologyClass.
+                newBuilder().
+                setId("HP:0012825").
+                setLabel("Mild").
+                build();
+        OntologyClass evidenceCode = OntologyClass.newBuilder().
+                setId("ECO:0000033").
+                setLabel("author statement supported by traceable reference").
+                build();
+        Evidence citation = Evidence.newBuilder().
+                setReference(ExternalReference.newBuilder().
+                        setId("PMID:30808312").
+                        setDescription("COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report.").
+                        build()).
+                setEvidenceCode(evidenceCode)
+                .build();
+
+        Phenotype decreasedFetalMovement = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0001558", "Decreased fetal movement"))
+                .setClassOfOnset(ontologyClass("HP:0011461", "Fetal onset"))
+                .addEvidence(citation)
+                .build();
+        Phenotype absentCranialNerveAbnormality = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0031910", "Abnormal cranial nerve physiology"))
+                .setAbsent(true)
+                .addEvidence(citation)
+                .build();
+        Phenotype motorDelay = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0001270","Motor delay"))
+                .setClassOfOnset(ontologyClass("HP:0011463","Childhood onset"))
+                .setSeverity(mild)
+                .build();
+        Phenotype hematuria = Phenotype.newBuilder()
+                .setType(ontologyClass("HP:0011463", "Macroscopic hematuria"))
+                .setAgeOfOnset(Age.newBuilder().setAge("P14Y").build())
+                .addModifiers(ontologyClass("HP:0031796","Recurrent"))
+                .addEvidence(citation)
+                .build();
+
+        Individual proband = Individual.newBuilder()
+                .setSex(Sex.MALE)
+                .setId(PROBAND_ID)
+                .setAgeAtCollection(Age.newBuilder().setAge("P14Y").build())
+                .build();
+        return Phenopacket.newBuilder()
+                .setId(PROBAND_ID)
+                .setSubject(proband)
+                .addPhenotypes(decreasedFetalMovement)
+                .addPhenotypes(absentCranialNerveAbnormality)
+                .addPhenotypes(hematuria)
+                .addPhenotypes(motorDelay)
+                .addVariants(heterozygousCOL6A1Variant)
+                .build();
     }
 
 
-The above code block thus extracts the same of the proband, a list of observed and excluded HPO terms, as well
-as the path to the corresponding VCF file. We would expect such a VCF file to be used to coordinate the
-running of a phenotype-driven genomic diagnostic analysis software that requires both a VCF file as well
-as lists of observed (and optionally) excluded phenotypes.
+Unaffected parents
+~~~~~~~~~~~~~~~~~~
+
+The unaffected father is coded as follows:
+
+.. code-block:: java
+
+   static Phenopacket unaffectedFather() {
+        Individual father = Individual.newBuilder()
+                .setSex(Sex.MALE)
+                .setId(FATHER_ID)
+                .build();
+        return Phenopacket.newBuilder()
+                .setSubject(father)
+
+The mother is coded analogously. Note that in both cases, on two of the elements of the :ref:`rstphenopacket`
+are actually used.
+
+Pedigree
+~~~~~~~~
+The following code builds the :ref:`rstpedigree` object.
+
+.. code-block:: java
+
+ private static Pedigree pedigree() {
+        Pedigree.Person pedProband = Pedigree.Person.newBuilder()
+                .setIndividualId(PROBAND_ID)
+                .setSex(Sex.MALE)
+                .setMaternalId(MOTHER_ID)
+                .setPaternalId(FATHER_ID)
+                .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
+                .build();
+
+        Pedigree.Person pedMother = Pedigree.Person.newBuilder()
+                .setIndividualId(MOTHER_ID)
+                .setSex(Sex.FEMALE)
+                .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
+                .build();
+
+        Pedigree.Person pedFather = Pedigree.Person.newBuilder()
+                .setIndividualId(FATHER_ID)
+                .setSex(Sex.MALE)
+                .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
+                .build();
+
+        return Pedigree.newBuilder()
+                .addPersons(pedProband)
+                .addPersons(pedMother)
+                .addPersons(pedFather)
+                .build();
+    }
+
+
+Family
+~~~~~~
+
+Finally, the following code pulls everything together to build the Family object.
+
+.. code-block:: java
+ static Family rareDiseaseFamily() {
+
+        long millis  = System.currentTimeMillis();
+        Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+        MetaData metaData = MetaData.newBuilder()
+                .addResources(Resource.newBuilder()
+                        .setId("hp")
+                        .setName("human phenotype ontology")
+                        .setNamespacePrefix("HP")
+                        .setIriPrefix("http://purl.obolibrary.org/obo/HP_")
+                        .setUrl("http://purl.obolibrary.org/obo/hp.owl")
+                        .setVersion("2018-03-08")
+                        .build())
+                .addResources(Resource.newBuilder()
+                        .setId("geno")
+                        .setName("Genotype Ontology")
+                        .setNamespacePrefix("GENO")
+                        .setIriPrefix("http://purl.obolibrary.org/obo/GENO_")
+                        .setUrl("http://purl.obolibrary.org/obo/geno.owl")
+                        .setVersion("19-03-2018")
+                        .build())
+                .addResources(Resource.newBuilder()
+                        .setId("pubmed")
+                        .setName("PubMed")
+                        .setNamespacePrefix("PMID")
+                        .setIriPrefix("https://www.ncbi.nlm.nih.gov/pubmed/")
+                        .build())
+                .setCreatedBy("Peter R.")
+                .setCreated(timestamp)
+                .addExternalReferences(ExternalReference.newBuilder()
+                        .setId("PMID:30808312")
+                        .setDescription("Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: " +
+                                "a case report. BMC Neurol. 2019;19(1):32.")
+                        .build())
+                .build();
+
+        return Family.newBuilder()
+                .setId("family")
+                .setProband(proband())
+                .addAllRelatives(ImmutableList.of(unaffectedMother(), unaffectedFather()))
+                .setPedigree(pedigree())
+                .setMetaData(metaData)
+                .build();
+    }
+
+
+Note that we use ``System.currentTimeMillis()`` to get the current time (when we are creating and
+submitting this Phenopacket).

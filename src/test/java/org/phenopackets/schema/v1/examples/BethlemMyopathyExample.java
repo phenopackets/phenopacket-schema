@@ -8,7 +8,7 @@ import org.phenopackets.schema.v1.Family;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
-import java.time.Instant;
+
 
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
 
@@ -137,10 +137,7 @@ public class BethlemMyopathyExample {
 
 
     /**
-     * Driver project example case - https://docs.google.com/document/d/1_6RwjdJa0qtGeidykZeG_PcPqhdMOIttUirCXGTGpwk
-     * Here there are two affected siblings - the proband is affected with two conditions, one caused by a single
-     * homozygous allele, the other by a compound heterozygous genotype. The proband's sister is affected with a
-     * single condition caused by the compound heterozygous genotype. Neither parent exhibits an abnormal phenotype.
+     * Example taken from PMID:30808312
      */
     static Family rareDiseaseFamily() {
 

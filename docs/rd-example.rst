@@ -1,4 +1,4 @@
-.. _rstcancerexample:
+.. _rstrdexample:
 
 ================================
 A complete example: Rare Disease
@@ -10,6 +10,8 @@ We present each of the
 sections of the Phenopacket in separate subsections for legibility. Recall that JSON data is represented as
 as name/value pairs that are separated by commas (we show the trailing comma on all but the last name/value pair of the
 Phenopacket).
+
+We show how to create this phenopacket in Java :ref:`here<rstrarediseaseexamplejava>`.
 
 
 COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report

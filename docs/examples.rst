@@ -10,7 +10,7 @@ available in the ``src/test/org/phenopackets/schema/v1/examples`` directory by a
 .. toctree::
    :maxdepth: 1
 
-   rd-example-java
+   rd-example
    murine
    cancer-example
 
