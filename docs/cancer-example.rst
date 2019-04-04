@@ -361,7 +361,8 @@ This is a reference to the paired normal germline sample.
 
 metaData
 ~~~~~~~~
-
+The :ref:`rstmetadata` is required to provide details about all of the ontologies and external references used
+in the Phenopacket.
 
 .. code-block:: json
 

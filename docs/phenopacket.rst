@@ -103,10 +103,10 @@ See :ref:`rstmetadata` for further information.
      - required
    * - subject
      - See :ref:`rstindividual`
-     - required
+     - recommended
    * - phenotypes
      - See :ref:`rstphenotype`
-     - required
+     - recommended
    * - biosamples
      - See :ref:`rstbiosample`
      - optional
