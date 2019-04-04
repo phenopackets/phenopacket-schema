@@ -68,7 +68,7 @@ This code will outut the following JSON code
         "id": "HP:0002240",
         "label": "Hepatomegaly"
       },
-      "negated": true
+      "absent": true
     }, {
       "type": {
         "id": "HP:0001923",
@@ -145,7 +145,7 @@ input and manipulate the HPO file.
                 .getPhenotypesList()
                 .stream()
                 .distinct() // this removes any duplicate HPO terms that may be present
-                .filter(((Predicate<Phenotype>) Phenotype::getNegated).negate()) // i.e., just take non-negated phenotypes
+                .filter(((Predicate<Phenotype>) Phenotype::getAbsent).negate()) // i.e., just take non-negated phenotypes
                 .map(Phenotype::getType)
                 .map(OntologyClass::getId)
                 .map(TermId::of)
@@ -154,7 +154,7 @@ input and manipulate the HPO file.
     List<TermId> excludedPhenotypes = subject
                 .getPhenotypesList()
                 .stream()
-                .filter(Phenotype::getNegated) // i.e., just take negated phenotypes
+                .filter(Phenotype::getAbsent) // i.e., just take absent phenotypes
                 .map(Phenotype::getType)
                 .map(OntologyClass::getId)
                 .map(TermId::of)

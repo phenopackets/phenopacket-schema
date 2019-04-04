@@ -99,12 +99,12 @@ class RareDiseaseFamilyExample {
 
         Phenotype notPneumonia = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0002090", "Pneumonia"))
-                .setNegated(true)
+                .setAbsent(true)
                 .build();
 
         Phenotype notChronicSinusitis = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0011109", "Chronic sinusitis"))
-                .setNegated(true)
+                .setAbsent(true)
                 .build();
 
         Individual sister = Individual.newBuilder()

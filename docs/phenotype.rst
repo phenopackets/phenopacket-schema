@@ -19,7 +19,7 @@ This is the protobuf that we use to define a phenotype
   message Phenotype {
     string description = 1;
     OntologyClass type = 2;
-    bool negated = 3;
+    bool absent = 3;
     OntologyClass severity = 4;
     repeated OntologyClass modifiers = 5;
     oneof onset {
@@ -45,11 +45,11 @@ type
 The element represents the primary :ref:`ontology class <rstontologyclass>` which describes the phenotype.
 For example `Craniosynostosis (HP:0001363) <https://hpo.jax.org/app/browse/term/HP:0001363>`_.
 
-negated
+absent
 ~~~~~~~
 This element is a flag to indicate whether the phenotype was observed or not.
 The default is 'false', in other words the phenotype was observed. Therefore it is only
-required in cases to indicate that the phenotype was looked for, but not observed.
+required in cases to indicate that the phenotype was looked for, but found to be absent.
 
 severity
 ~~~~~~~~

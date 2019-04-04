@@ -93,9 +93,10 @@ message Phenotype {
     OntologyClass type = 2;
 
     // Flag to indicate whether the phenotype was observed or not. Default is 'false', in other words the phenotype was
-    // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but not observed.
+    // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but found to be
+    // absent.
     // *CAUTION* It is imperative to check this field.
-    bool negated = 3;
+    bool absent = 3;
 
     // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
     // FHIR mapping: Condition.severity

@@ -32,7 +32,7 @@ We first show the entire Phenopacket, and further below explain the individual s
         "id": "MP:0004044",
         "label": "aortic dissection"
       },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -41,7 +41,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0000150",
       "label": "abnormal rib morphology"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -50,7 +50,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0000160",
       "label": "kyphosis"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -59,7 +59,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0001183",
       "label": "overexpanded pulmonary alveoli"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -68,7 +68,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0003211",
       "label": "abnormal aorta elastic fiber morphology"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -77,7 +77,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0006120",
       "label": "mitral valve prolapse"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -86,7 +86,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0003923",
       "label": "abnormal heart left atrium morphology"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -95,7 +95,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0003921",
       "label": "abnormal heart left ventricle morphology"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -104,7 +104,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "id": "MP:0010996",
       "label": " increased aorta wall thickness"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
     }],
@@ -204,7 +204,7 @@ terms that were used to describe the phenotypic abnormalities observed in the mo
         "id": "MP:0004044",
         "label": "aortic dissection"
       },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    }, {
@@ -213,7 +213,7 @@ terms that were used to describe the phenotypic abnormalities observed in the mo
       "id": "MP:0000150",
       "label": "abnormal rib morphology"
     },
-    "negated": false,
+    "absent": false,
     "modifiers": [],
     "evidence": []
    },
