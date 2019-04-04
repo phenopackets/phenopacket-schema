@@ -10,9 +10,9 @@ available in the ``src/test/org/phenopackets/schema/v1/examples`` directory by a
 .. toctree::
    :maxdepth: 1
 
-   rd-example
-   murine
-   cancer-example
+   Complete example: Rare Disease <rd-example>
+   Complete example: Animal model<murine>
+   Complete example: Cancer <cancer-example>
 
 
 
@@ -21,6 +21,6 @@ Each example has a corresponding explanation of how to create the Phenopacket us
 .. toctree::
    :maxdepth: 1
 
-   rd-example-java
-   murine
-   cancer-example-java
+   Java: Rare Disease Phenopacket<rd-example-java>
+   Java: Animal Model Phenopacket<murine>
+   Java : Cancer Phenopacket<cancer-example-java>
