@@ -53,7 +53,7 @@ and ``datasetId`` is optional).
 
 phenotypes
 ~~~~~~~~~~
-This field can be used to represent clinical manifestations using the :ref:`phenotype` elelemt. Phenotypes directly related to the biopsied or
+This field can be used to represent clinical manifestations using the :ref:`phenotype` element. Phenotypes directly related to the biopsied or
 extirpated tumor specimens should be reported in the `Biosample` element (see below). In this example,
 the patient is found to have `Hematuria <https://hpo.jax.org/app/browse/term/HP:0000790>`_
 and severe `Dysuria <https://hpo.jax.org/app/browse/term/HP:0100518>`_.

@@ -20,8 +20,8 @@ import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
  */
 class RareDiseaseFamilyExample {
 
-    private static final String PROBAND_ID = "PROBAND#1";
-    private static final String SISTER_ID = "PROBAND#2";
+    private static final String PROBAND_ID = "kindred 1A";
+    private static final String SISTER_ID = "kindred 1B";
     private static final String MOTHER_ID = "MOTHER";
     private static final String FATHER_ID = "FATHER";
 
@@ -78,6 +78,7 @@ class RareDiseaseFamilyExample {
                         .build())
                 .build();
         return Phenopacket.newBuilder()
+                .setId(PROBAND_ID)
                 .setSubject(proband)
                 .addPhenotypes(syndactylyCongenitalOnset)
                 .addPhenotypes(pneumoniaChildhoodOnset)
@@ -224,20 +225,21 @@ class RareDiseaseFamilyExample {
                         .setVersion("19-03-2018")
                         .build())
                 .addResources(Resource.newBuilder()
-                        .setId("doi")
-                        .setName("Digital Object Identifier")
-                        .setNamespacePrefix("DOI")
-                        .setIriPrefix("http://dx.doi.org/")
+                        .setId("pubmed")
+                        .setName("PubMed")
+                        .setNamespacePrefix("PMID")
+                        .setIriPrefix("https://www.ncbi.nlm.nih.gov/pubmed/")
                         .build())
                 .setCreatedBy("Jules J.")
                 .setCreated(timestamp)
                 .addExternalReferences(ExternalReference.newBuilder()
-                        .setId("DOI:10.1126/science.1186802")
-                        .setDescription("Analysis of genetic inheritance in a family quartet by whole-genome sequencing.")
+                        .setId("PMID:19915526")
+                        .setDescription("Kindred 1 in Ng SB et al. Exome sequencing identifies the cause of a mendelian disorder. Nat Genet. 2010;42(1):30-5.")
                         .build())
                 .build();
 
         return Family.newBuilder()
+                .setId("kindred 1")
                 .setProband(proband())
                 .addAllRelatives(ImmutableList.of(affectedSisterOfProband(), unaffectedMother(), unaffectedFather()))
                 .setPedigree(pedigree())
