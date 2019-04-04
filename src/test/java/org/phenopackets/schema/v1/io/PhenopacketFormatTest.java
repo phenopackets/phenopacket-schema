@@ -21,7 +21,7 @@ class PhenopacketFormatTest {
         String asYaml = PhenopacketFormat.toYaml(original);
         System.out.println(asYaml);
 
-        String asJson = PhenopacketFormat.yamlToJson(asYaml);
+        String asJson = FormatMapper.yamlToJson(asYaml);
         System.out.println(asJson);
 
         Phenopacket fromJson = PhenopacketFormat.fromJson(asJson);

@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.Family;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
-import org.phenopackets.schema.v1.io.FamilyFormat;
-import org.phenopackets.schema.v1.io.PhenopacketFormat;
 
 import java.time.Instant;
 
@@ -249,7 +247,7 @@ class RareDiseaseFamilyExample {
 
     @Test
     void printAsJson() throws Exception{
-       String s= JsonFormat.printer().includingDefaultValueFields().print(rareDiseaseFamily());
+       String s = JsonFormat.printer().print(rareDiseaseFamily());
        System.out.println(s);
     }
 

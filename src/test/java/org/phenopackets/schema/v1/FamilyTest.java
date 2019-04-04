@@ -1,8 +1,9 @@
 package org.phenopackets.schema.v1;
 
+import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.examples.TestExamples;
-import org.phenopackets.schema.v1.io.FamilyFormat;
+import org.phenopackets.schema.v1.io.FormatMapper;
 
 import java.io.IOException;
 
@@ -14,27 +15,29 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class FamilyTest {
 
-    private final FamilyFormat familyFormat = new FamilyFormat();
-
-
     @Test
     void printFamilyAsYaml() throws IOException {
-        System.out.println(familyFormat.toYaml(TestExamples.rareDiseaseFamily()));
+        Family family = TestExamples.rareDiseaseFamily();
+        String json = JsonFormat.printer().print(family);
+        System.out.println(FormatMapper.jsonToYaml(json));
     }
 
     @Test
     void roundTrippingFamily() throws IOException {
         Family original = TestExamples.rareDiseaseFamily();
 
-        String asYaml = familyFormat.toYaml(original);
+        String json = JsonFormat.printer().print(original);
+        String asYaml = FormatMapper.jsonToYaml(json);
         System.out.println(asYaml);
 
-        System.out.println(familyFormat.toJson(original));
+        System.out.println(json);
 
-        String asJson = familyFormat.yamlToJson(asYaml);
+        String asJson = FormatMapper.yamlToJson(asYaml);
         System.out.println(asJson);
 
-        Family fromJson = familyFormat.fromJson(asJson);
+        Family.Builder familyBuilder = Family.newBuilder();
+        JsonFormat.parser().merge(asJson, familyBuilder);
+        Family fromJson = familyBuilder.build();
 
         //Ta-da!
         assertThat(fromJson, equalTo(original));
