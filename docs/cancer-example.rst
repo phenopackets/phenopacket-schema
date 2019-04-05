@@ -98,7 +98,9 @@ biosample 1: Infiltrating Urothelial Carcinoma
 The first biosample is a biopsy taken from the wall of the urinary bladder. The histologuical diagnosis is represented
 by a National Cancer Institute's Thesaurus code. This is a primary malignant neoplasm with stage T2bN2. A VCF file
 representing a paired normal germline sample is located at ``/data/genomes/urothelial_ca_wgs.vcf.gz`` on the file system.
-
+In order to specify the procedure used to remove the bladder and prostate gland,
+we use the NCIT term for `Radical Cystoprostatectomy <http://purl.obolibrary.org/obo/NCIT_C51899>`_ (defined as
+the simultaneous surgical resection of the urinary bladder and prostate gland with pelvic lymphadenectomy).
 
 .. code-block:: json
 
@@ -131,10 +133,10 @@ representing a paired normal germline sample is located at ``/data/genomes/uroth
             "label": "pN2 Stage Finding"
         }],
         "diagnosticMarkers": [],
-        "procedure": {
+         "procedure": {
             "code": {
-                "id": "NCIT:C15189",
-                "label": "Biopsy"
+            "id": "NCIT:C5189",
+            "label": "Radical Cystoprostatectomy"
             }
         },
         "htsFiles": [{

@@ -10,7 +10,7 @@ import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
-import static org.phenopackets.schema.v1.core.HtsFileTest.createMetastasisHtsFile;
+
 
 
 /**
@@ -40,18 +40,18 @@ public class UrothelialCarcinomaExample {
                 .setSubject(subject())
                 .addPhenotypes(hematuria)
                 .addPhenotypes(dsyuria)
-                .addBiosamples(bladderBiopsy())
-                .addBiosamples(prostateBiospy())
-                .addBiosamples(leftUreterBiospy())
-                .addBiosamples(rightUreterBiospy())
-                .addBiosamples(pelvicLymphNodeBiospy())
+                .addBiosamples(bladderBiosample())
+                .addBiosamples(prostateBiosample())
+                .addBiosamples(leftUreterBiosample())
+                .addBiosamples(rightUreterBiosample())
+                .addBiosamples(pelvicLymphNodeBiosample())
                 .addDiseases(infiltratingUrothelialCarcinoma())
-                .addHtsFiles(HtsFileTest.createNormalGermlineHtsFile())
+                .addHtsFiles(createNormalGermlineHtsFile())
                 .setMetaData(metaData)
                 .build();
     }
 
-    public static HtsFile createNormalGermlineHtsFile() {
+    public HtsFile createNormalGermlineHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
         String path = "/data/genomes/germline_wgs.vcf.gz";
@@ -67,7 +67,7 @@ public class UrothelialCarcinomaExample {
     }
 
 
-    public static HtsFile createSomaticHtsFile() {
+    public HtsFile createSomaticHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
         String path = "/data/genomes/urothelial_ca_wgs.vcf.gz";
@@ -81,7 +81,7 @@ public class UrothelialCarcinomaExample {
                 build();
     }
 
-    public static HtsFile createMetastasisHtsFile() {
+    public HtsFile createMetastasisHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
         String path = "/data/genomes/metastasis_wgs.vcf.gz";
@@ -162,7 +162,7 @@ public class UrothelialCarcinomaExample {
                 setSampledTissue(sampleType);
     }
 
-    private Biosample bladderBiopsy() {
+    private Biosample bladderBiosample() {
         String sampleId = "sample1";
         // left wall of urinary bladder
         OntologyClass sampleType = ontologyClass("UBERON_0001256", "wall of urinary bladder");
@@ -182,12 +182,12 @@ public class UrothelialCarcinomaExample {
         // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
         OntologyClass pN2 = ontologyClass("NCIT:C48750", "pN2 Stage Finding");
         biosampleBuilder.addTumorStage(pN2);
-        biosampleBuilder.addHtsFiles(HtsFileTest.createSomaticHtsFile());
-        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
+        biosampleBuilder.addHtsFiles(createSomaticHtsFile());
+        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C5189", "Radical Cystoprostatectomy")).build());
         return biosampleBuilder.build();
     }
 
-    private Biosample prostateBiospy() {
+    private Biosample prostateBiosample() {
         String sampleId = "sample2";
         //prostate
         OntologyClass sampleType = ontologyClass("UBERON:0002367", "prostate gland");
@@ -207,7 +207,7 @@ public class UrothelialCarcinomaExample {
         return biosampleBuilder.build();
     }
 
-    private Biosample leftUreterBiospy() {
+    private Biosample leftUreterBiosample() {
         String sampleId = "sample3";
         OntologyClass sampleType = ontologyClass("UBERON:0001223", "left ureter");
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
@@ -217,7 +217,7 @@ public class UrothelialCarcinomaExample {
         return biosampleBuilder.build();
     }
 
-    private Biosample rightUreterBiospy() {
+    private Biosample rightUreterBiosample() {
         String sampleId = "sample4";
         OntologyClass sampleType = ontologyClass("UBERON:0001222", "right ureter");
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
@@ -226,7 +226,7 @@ public class UrothelialCarcinomaExample {
         return biosampleBuilder.build();
     }
 
-    private Biosample pelvicLymphNodeBiospy() {
+    private Biosample pelvicLymphNodeBiosample() {
         String sampleId = "sample5";
         OntologyClass sampleType = ontologyClass("UBERON:0015876", "pelvic lymph node");
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
