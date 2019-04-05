@@ -50,7 +50,9 @@ about this list is available at https://groups.io/g/phenopackets.
 
 Usage
 =====
-There are two ways to use this library, firstly using the ``Phenopacket`` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
+The Phenopacket schema is defined using `Protobuf`_ which is `"a language-neutral, platform-neutral extensible mechanism for serializing structured data"`.  There are two ways to use this library, firstly using the ``Phenopacket`` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
+
+.. _Protobuf: https://developers.google.com/protocol-buffers/
 
 Java people can incorporate phenopackets-api into their code by importing the jar using maven:
 
@@ -70,22 +72,33 @@ Examples on how these can be used can be found in the test directory. There are 
 
 JSON/YAML formats
 -----------------
-A Phenopacket can be transformed from the native binary format into JSON or YAML and easily inter-converted between these formats. The ``PhenopacketFormat`` class contains simple utility methods to perform these transformations. Usage is shown here:
+A Phenopacket can be transformed between the native binary format and JSON using the ``JsonFormat`` class from the ``protobuf-java-util`` library. This contains simple utility methods to perform these transformations. Usage is shown here:
 
-.. code:: java
+.. code-block:: java
 
+    // Transform a Phenopacket into JSON
     Phenopacket original = TestExamples.rareDiseasePhenopacket();
 
-    String asYaml = PhenopacketFormat.toYaml(original);
-    System.out.println(asYaml);
-    Phenopacket fromYaml = PhenopacketFormat.fromYaml(asYaml);
-
-    String asJson = PhenopacketFormat.yamlToJson(asYaml);
+    String asJson = JsonFormat.printer().print(original);
     System.out.println(asJson);
 
-    Phenopacket fromJson = PhenopacketFormat.fromJson(asJson);
-    String backToJson = PhenopacketFormat.toJson(fromJson);
+    // Convert the JSON back to a Phenopacket
+    Phenopacket.Builder phenoPacketBuilder = Phenopacket.newBuilder();
+    JsonFormat.parser().merge(jsonString, phenoPacketBuilder);
+    Phenopacket fromJson = phenoPacketBuilder.build();
 
+    // Convert the JSON into YAML (using Jackson)
+    JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
+    String yamlPhenopacket = new YAMLMapper().writeValueAsString(jsonNodeTree);
+
+    // Convert the YAML back into JSON (using Jackson)
+    JsonNode jsonNodeTree = new YAMLMapper().readTree(yamlString);
+    String jsonPhenopacket = new ObjectMapper().writeValueAsString(jsonNodeTree);
+
+    // And finally back into a Java object
+    Phenopacket.Builder phenoPacketBuilder2 = Phenopacket.newBuilder();
+    JsonFormat.parser().merge(jsonPhenopacket, phenoPacketBuilder2);
+    Phenopacket fromJson2 = phenoPacketBuilder2.build();
 
 Building new messages from the schema
 -------------------------------------
