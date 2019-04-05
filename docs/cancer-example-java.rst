@@ -6,7 +6,6 @@ A complete example in Java: Oncology
 
 This example shows how to create the Phenopacket that was explained :ref:`here<rstcancerexample>`.
 
-PLEASE NOTE THIS SECTION IS NOT FINISHED YET PENDING FEEDBACK ON :ref:`here<rstcancerexample>`.
 
 subject
 ~~~~~~~

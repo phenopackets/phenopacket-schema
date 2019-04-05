@@ -73,8 +73,8 @@ public class MurineDiseaseModel {
 
         ExternalReference pubmedRef = ExternalReference.newBuilder()
                .setId("PMID:15254584")
-                .setDescription("Heterozygous Fbn1 C1039G mutation. Judge DP, Biery NJ, Keene DR, Geubtner J, Myers L, Huso DL, Sakai LY, Dietz\n" +
-                        "HC. Evidence for a critical contribution of haploinsufficiency in the complex\n" +
+                .setDescription("Heterozygous Fbn1 C1039G mutation. Judge DP, et al. \n" +
+                        "Evidence for a critical contribution of haploinsufficiency in the complex \n" +
                         "pathogenesis of Marfan syndrome. J Clin Invest. 2004;114(2):172-81.")
                 .build();
 
