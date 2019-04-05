@@ -8,8 +8,6 @@ import org.phenopackets.schema.v1.Family;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
 
-
-
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
 
 public class BethlemMyopathyExample {
@@ -51,7 +49,7 @@ public class BethlemMyopathyExample {
 
         Phenotype absentCranialNerveAbnormality = Phenotype.newBuilder()
                 .setType(ontologyClass("HP:0031910", "Abnormal cranial nerve physiology"))
-                .setAbsent(true)
+                .setNegated(true)
                 .addEvidence(citation)
                 .build();
 

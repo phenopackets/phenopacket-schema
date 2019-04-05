@@ -66,7 +66,7 @@ and severe `Dysuria <https://hpo.jax.org/app/browse/term/HP:0100518>`_.
       "id": "HP:0000790",
       "label": "Hematuria"
     },
-    "absent": false,
+    "negated": false,
     "modifiers": [],
     "evidence": []
   }, {
@@ -75,7 +75,7 @@ and severe `Dysuria <https://hpo.jax.org/app/browse/term/HP:0100518>`_.
       "id": "HP:0100518",
       "label": "Dysuria"
     },
-    "absent": false,
+    "negated": false,
     "severity": {
       "id": "HP:0012828",
       "label": "Severe"
