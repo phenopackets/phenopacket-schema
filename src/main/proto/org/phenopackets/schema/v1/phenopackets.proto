@@ -64,7 +64,8 @@ message Family {
     // map to the PhenoPacket.Individual.id
     org.phenopackets.schema.v1.core.Pedigree pedigree = 4;
 
-    // Pointer to the relevant HTS file(s) for the patient
+    // Pointer to the relevant HTS file(s) for the family. These should be files relating to one or more of the family
+    // members e.g a multi-sample VCF
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 5;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
