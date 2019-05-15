@@ -1,9 +1,11 @@
 syntax = "proto3";
+
 package org.phenopackets.schema.v1;
 
-import "org/phenopackets/schema/v1/core/base.proto";
+import "base.proto";
 
 option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v1";
 
 // An anonymous phenotypic description of an individual or biosample with potential genes of interest and/or diagnoses.
 //
