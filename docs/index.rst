@@ -15,6 +15,7 @@ Welcome to the documentation for phenopackets-schema!
    cohort
    biosample
    Working with Phenopackets in Java <java>
+   Working with Phenopackets in C++ <cpp>
    examples
 
 
