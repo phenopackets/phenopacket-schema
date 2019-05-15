@@ -93,8 +93,8 @@ so long as you know the type of message contained in the json, you can merge it 
         JsonFormat.parser().merge(jsonString, phenoPacketBuilder);
         Phenopacket phenopacket = phenoPacketBuilder.build();
         // do something with phenopacket ...
-    } catch (IOException e1) {
+    } catch (ParseException e1) {
         e1.printStackTrace(); // or handle the Exception as appropriate
-    } catch (ParseException e2) {
+    } catch (IOException e2) {
         e2.printStackTrace(); // or handle the Exception as appropriate
-    }
+    } 
