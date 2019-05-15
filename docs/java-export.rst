@@ -95,6 +95,4 @@ so long as you know the type of message contained in the json, you can merge it 
         // do something with phenopacket ...
     } catch (IOException e1) {
         e1.printStackTrace(); // or handle the Exception as appropriate
-    } catch (ParseException e2) {
-        e2.printStackTrace(); // or handle the Exception as appropriate
     }
