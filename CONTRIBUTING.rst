@@ -2,7 +2,9 @@
 Contributing
 ------------
 
-Non-technical folks would be best served by opening an issue on the issue pages - please check to see no one else has opened a similar/duplicated issue already.
+Non-technical folks would be best served by opening an issue on the `issue pages`_ - please check to see no one else has opened a similar/duplicated issue already.
+
+.. _issue pages: https://github.com/phenopackets/phenopacket-schema/issues
 
 Bear in mind that this is a standard used by many other resources, so it might not be suitable to add just one minor thing to serve your specific requirements. The schema is also developed using `semver`_ so minor and patch additions are far more likely to make their way into the standard than major breaking changes as we aim for stability and compatibility.
 
