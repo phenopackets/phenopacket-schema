@@ -147,31 +147,24 @@ message Individual {
     // The ID of the dataset this Individual belongs to.
     string dataset_id = 2;
 
-    // The date of birth of the individual as an ISO8601 UTC timestamp - rounded down to the closest known
-    // year/month/day/hour/minute
-    // e.g. "2018-03-01T00:00:00Z" for someone born on an unknown day in March 2018
-    // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
-    // or empty if unknown/ not stated.
-    google.protobuf.Timestamp date_of_birth = 3;
-
     // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
     // See http://build.fhir.org/datatypes
     oneof age {
-        Age age_at_collection = 4;
-        AgeRange age_range_at_collection = 5;
+        Age age_at_collection = 3;
+        AgeRange age_range_at_collection = 4;
     }
 
     // The phenotypic / administrative sex of the individual
-    Sex sex = 6;
+    Sex sex = 5;
 
     // The karyotypic sex of the individual
-    KaryotypicSex karyotypic_sex = 10;
+    KaryotypicSex karyotypic_sex = 6;
 
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to its most specific level
-    OntologyClass taxonomy = 8;
+    OntologyClass taxonomy = 7;
 }
 
 // Sex of an individual
@@ -376,6 +369,7 @@ message File {
     string uri = 2;
     // description of the file contents
     string description = 3;
+    //TODO checksum?
 }
 
 // A file in one of the HTS formats (https://samtools.github.io/hts-specs)
@@ -491,6 +485,7 @@ message IscnAllele {
 // The example given here encodes the allele Fbn1<tm1Hcd>
 // See http://informatics.jax.org/mgihome/nomen/
 message MouseAllele {
+    //TODO change to RodentAllele
     string id = 1;
     // e.g. Fbn1
     string gene = 2;
