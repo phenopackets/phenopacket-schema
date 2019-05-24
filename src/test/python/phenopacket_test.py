@@ -4,18 +4,18 @@
 
 import os
 
-import google.protobuf.timestamp_pb2 as timestamp_pb2
 from google.protobuf.json_format import Parse, MessageToJson
+from google.protobuf.timestamp_pb2 import Timestamp
 
-import base_pb2 as pp_base
-import phenopackets_pb2 as pp
+from base_pb2 import Individual, MALE, Phenotype, OntologyClass
+from phenopackets_pb2 import Phenopacket
 
 # Main - we're going to create a simple phenopacket, write it out as JSON then read it back in as an object
-subject = pp_base.Individual(id="Zaphod", sex=pp_base.MALE, date_of_birth=timestamp_pb2.Timestamp(seconds=-123456798))
-phenotypes = [pp_base.Phenotype(type=pp_base.OntologyClass(id="H2G2:00001", label="Hoopy")),
-              pp_base.Phenotype(type=pp_base.OntologyClass(id="H2G2:00002", label="Frood"))
+subject = Individual(id="Zaphod", sex=MALE, date_of_birth=Timestamp(seconds=-123456798))
+phenotypes = [Phenotype(type=OntologyClass(id="H2G2:00001", label="Hoopy")),
+              Phenotype(type=OntologyClass(id="H2G2:00002", label="Frood"))
               ]
-phenopacket = pp.Phenopacket(id="PPKT:1", subject=subject, phenotypes=phenotypes)
+phenopacket = Phenopacket(id="PPKT:1", subject=subject, phenotypes=phenotypes)
 
 test_json_file = "test.json"
 with open(test_json_file, 'w') as jsfile:
@@ -23,7 +23,7 @@ with open(test_json_file, 'w') as jsfile:
     jsfile.write(json)
 
 with open(test_json_file, 'r') as jsfile:
-    round_trip = Parse(message=pp.Phenopacket(), text=jsfile.read())
+    round_trip = Parse(message=Phenopacket(), text=jsfile.read())
     print(round_trip)
 
 try:
