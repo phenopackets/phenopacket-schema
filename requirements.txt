@@ -1,0 +1,2 @@
+protobuf==3.7.1
+xmltodict==0.12.0
