@@ -7,11 +7,11 @@ import os
 from google.protobuf.json_format import Parse, MessageToJson
 from google.protobuf.timestamp_pb2 import Timestamp
 
-from base_pb2 import Individual, MALE, Phenotype, OntologyClass
+from base_pb2 import Individual, Sex, Phenotype, OntologyClass
 from phenopackets_pb2 import Phenopacket
 
 # Main - we're going to create a simple phenopacket, write it out as JSON then read it back in as an object
-subject = Individual(id="Zaphod", sex=MALE, date_of_birth=Timestamp(seconds=-123456798))
+subject = Individual(id="Zaphod", sex=Sex.MALE, date_of_birth=Timestamp(seconds=-123456798))
 phenotypes = [Phenotype(type=OntologyClass(id="H2G2:00001", label="Hoopy")),
               Phenotype(type=OntologyClass(id="H2G2:00002", label="Frood"))
               ]
@@ -25,6 +25,21 @@ with open(test_json_file, 'w') as jsfile:
 with open(test_json_file, 'r') as jsfile:
     round_trip = Parse(message=Phenopacket(), text=jsfile.read())
     print(round_trip)
+
+    individual = round_trip.subject
+    print("Meet", individual.id)
+
+    if individual.sex:
+        sex = Sex.Name(individual.sex)
+        if sex == 'MALE':
+            print("He is", sex)
+        elif sex == 'FEMALE':
+            print("She is", sex)
+
+    print("{}'s friends describe him as a:".format(individual.id))
+    for phenotype in round_trip.phenotypes:
+        term = phenotype.type
+        print("{} [{}]".format(term.label, term.id))
 
 try:
     os.remove(test_json_file)
