@@ -17,8 +17,8 @@ message Phenopacket {
     // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
     org.phenopackets.schema.v1.core.Individual subject = 2;
 
-    // Phenotypes relating to the subject of the phenopacket
-    repeated org.phenopackets.schema.v1.core.Phenotype phenotypes = 3;
+    // Phenotypic features relating to the subject of the phenopacket
+    repeated org.phenopackets.schema.v1.core.PhenotypicFeature phenotypic_features = 3;
 
     // Biosample(s) derived from the patient or a collection of biosamples in isolation
     repeated org.phenopackets.schema.v1.core.Biosample biosamples = 4;

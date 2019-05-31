@@ -20,7 +20,7 @@ message MmeMatchRequest {
 message MmePatient {
     org.phenopackets.schema.v1.core.Individual individual = 4;
     repeated MmeGenomicFeature genomic_features = 5;
-    repeated org.phenopackets.schema.v1.core.Phenotype features = 6;
+    repeated org.phenopackets.schema.v1.core.PhenotypicFeature features = 6;
     repeated org.phenopackets.schema.v1.core.Disease disorders = 7;
 }
 
