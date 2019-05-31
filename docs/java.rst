@@ -157,9 +157,10 @@ the following commands
 
 .. code-block:: java
 
-   Phenopacket phenoPacket = new PhenoPacketExample().spherocytosisExample();
-   try {
-     System.out.println(toJson(phenoPacket));
-     } catch (IOException e) {
-       e.printStackTrace();
-     }
+        Phenopacket p = spherocytosisExample();
+        try {
+            String jsonString = JsonFormat.printer().includingDefaultValueFields().print(p);
+            System.out.println(jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
