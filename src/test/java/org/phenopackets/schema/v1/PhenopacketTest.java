@@ -38,50 +38,50 @@ public class PhenopacketTest {
                 .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
 
-        Phenotype coronalCraniosynostosis = Phenotype.newBuilder()
+        PhenotypicFeature coronalCraniosynostosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0004440", "Coronal craniosynostosis"))
                 .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
-        Phenotype maxillaryHypoplasia = Phenotype.newBuilder()
+        PhenotypicFeature maxillaryHypoplasia = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000327", "Maxillary hypoplasia"))
                 .build();
 
-        Phenotype cloverleafSkullOccasional = Phenotype.newBuilder()
+        PhenotypicFeature cloverleafSkullOccasional = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002676", "Cloverleaf skull"))
                 .addModifiers(ontologyClass("HP:0040283", "Occasional"))
                 .build();
 
-        Phenotype brachydactyly = Phenotype.newBuilder()
+        PhenotypicFeature brachydactyly = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001156", "Brachydactyly"))
                 .build();
 
-        Phenotype craniosynostosis = Phenotype.newBuilder()
+        PhenotypicFeature craniosynostosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001363", "Craniosynostosis"))
                 .build();
 
-        Phenotype broadThumb = Phenotype.newBuilder()
+        PhenotypicFeature broadThumb = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011304", "Broad thumb"))
                 .build();
 
-        Phenotype broadHallux = Phenotype.newBuilder()
+        PhenotypicFeature broadHallux = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0010055", "Broad hallux"))
                 .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
-        Phenotype proptosisCongenitalSevere = Phenotype.newBuilder()
+        PhenotypicFeature proptosisCongenitalSevere = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
                 .addModifiers(ontologyClass("HP:0012828", "Severe"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
-        Phenotype proptosisCongenitalMild = Phenotype.newBuilder()
+        PhenotypicFeature proptosisCongenitalMild = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
                 .addModifiers(ontologyClass("HP:0012825", "Mild"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
-        Phenotype intellectualDisabilityOccasional = Phenotype.newBuilder()
+        PhenotypicFeature intellectualDisabilityOccasional = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001249", "Intellectual disability"))
                 .addModifiers(ontologyClass("HP:0040283", "Occasional"))
                 .build();
@@ -125,11 +125,11 @@ public class PhenopacketTest {
 
         Phenopacket pfeifferDiagnosisExample = Phenopacket.newBuilder()
                 .setSubject(proband)
-                .addPhenotypes(brachydactyly)
-                .addPhenotypes(craniosynostosis)
-                .addPhenotypes(broadThumb)
-                .addPhenotypes(broadHallux)
-                .addPhenotypes(proptosisCongenitalMild)
+                .addPhenotypicFeatures(brachydactyly)
+                .addPhenotypicFeatures(craniosynostosis)
+                .addPhenotypicFeatures(broadThumb)
+                .addPhenotypicFeatures(broadHallux)
+                .addPhenotypicFeatures(proptosisCongenitalMild)
                 .addVariants(heterozygousPathogenicVariant)
                 .addGenes(fgfr2Gene)
                 .addDiseases(pfeifferSyndrome)

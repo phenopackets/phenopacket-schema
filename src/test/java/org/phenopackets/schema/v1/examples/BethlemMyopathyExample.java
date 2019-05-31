@@ -40,27 +40,27 @@ public class BethlemMyopathyExample {
                 setEvidenceCode(evidenceCode)
                 .build();
 
-        Phenotype decreasedFetalMovement = Phenotype.newBuilder()
+        PhenotypicFeature decreasedFetalMovement = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001558", "Decreased fetal movement"))
                 .setClassOfOnset(ontologyClass("HP:0011461", "Fetal onset"))
                 .addEvidence(citation)
                 .build();
 
 
-        Phenotype absentCranialNerveAbnormality = Phenotype.newBuilder()
+        PhenotypicFeature absentCranialNerveAbnormality = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0031910", "Abnormal cranial nerve physiology"))
                 .setNegated(true)
                 .addEvidence(citation)
                 .build();
 
-        Phenotype motorDelay = Phenotype.newBuilder()
+        PhenotypicFeature motorDelay = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001270","Motor delay"))
                 .setClassOfOnset(ontologyClass("HP:0011463","Childhood onset"))
                 .setSeverity(mild)
                 .build();
 
 
-        Phenotype hematuria = Phenotype.newBuilder()
+        PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011463", "Macroscopic hematuria"))
                 .setAgeOfOnset(Age.newBuilder().setAge("P14Y").build())
                 .addModifiers(ontologyClass("HP:0031796","Recurrent"))
@@ -77,10 +77,10 @@ public class BethlemMyopathyExample {
         return Phenopacket.newBuilder()
                 .setId(PROBAND_ID)
                 .setSubject(proband)
-                .addPhenotypes(decreasedFetalMovement)
-                .addPhenotypes(absentCranialNerveAbnormality)
-                .addPhenotypes(hematuria)
-                .addPhenotypes(motorDelay)
+                .addPhenotypicFeatures(decreasedFetalMovement)
+                .addPhenotypicFeatures(absentCranialNerveAbnormality)
+                .addPhenotypicFeatures(hematuria)
+                .addPhenotypicFeatures(motorDelay)
                 .addVariants(heterozygousCOL6A1Variant)
                 .build();
     }

@@ -54,7 +54,7 @@ class RareDiseaseFhirExample {
         chronicSinusitisCondition.setSubject(new Reference(probandPatient));
 
 //
-//        Phenotype motherPhenotype = abnormalPhenotype.toBuilder()
+//        PhenotypicFeature motherPhenotype = abnormalPhenotype.toBuilder()
 //                .setSeverity(ontologyClass("HP:0012826", "Moderate"))
 //                .build();
 //
@@ -63,7 +63,7 @@ class RareDiseaseFhirExample {
 //                .setSex(FEMALE)
 //                .setId(MOTHER_ID)
 //                .setDateOfBirth(Timestamp.newBuilder().setSeconds(motherBirthInstant.getEpochSecond()).build())
-//                .addPhenotypes(motherPhenotype)
+//                .addPhenotypicFeatures(motherPhenotype)
 //                .build();
 //
 //        Patient motherPatient = createPatient(mother);

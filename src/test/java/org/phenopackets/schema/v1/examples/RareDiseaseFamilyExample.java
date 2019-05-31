@@ -49,22 +49,22 @@ class RareDiseaseFamilyExample {
     }
 
     static Phenopacket proband() {
-        Phenotype syndactylyCongenitalOnset = Phenotype.newBuilder()
+        PhenotypicFeature syndactylyCongenitalOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001159", "Syndactyly"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
-        Phenotype pneumoniaChildhoodOnset = Phenotype.newBuilder()
+        PhenotypicFeature pneumoniaChildhoodOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002090", "Pneumonia"))
                 .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
-        Phenotype cryptorchidismCongenitalOnset = Phenotype.newBuilder()
+        PhenotypicFeature cryptorchidismCongenitalOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000028", "Cryptorchidism"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
-        Phenotype chronicSinusitisAdultOnsetSevere = Phenotype.newBuilder()
+        PhenotypicFeature chronicSinusitisAdultOnsetSevere = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011109", "Chronic sinusitis"))
                 .setSeverity(ontologyClass("HP:0012828", "Severe"))
                 .setClassOfOnset(ontologyClass("HP:0003581", "Adult onset"))
@@ -80,10 +80,10 @@ class RareDiseaseFamilyExample {
         return Phenopacket.newBuilder()
                 .setId(PROBAND_ID)
                 .setSubject(proband)
-                .addPhenotypes(syndactylyCongenitalOnset)
-                .addPhenotypes(pneumoniaChildhoodOnset)
-                .addPhenotypes(cryptorchidismCongenitalOnset)
-                .addPhenotypes(chronicSinusitisAdultOnsetSevere)
+                .addPhenotypicFeatures(syndactylyCongenitalOnset)
+                .addPhenotypicFeatures(pneumoniaChildhoodOnset)
+                .addPhenotypicFeatures(cryptorchidismCongenitalOnset)
+                .addPhenotypicFeatures(chronicSinusitisAdultOnsetSevere)
                 .addVariants(het(NM_001361_403_C_T))
                 .addVariants(het(NM_001361_454_G_A))
                 .addVariants(hom(NM_001369_12599_dupA))
@@ -91,17 +91,17 @@ class RareDiseaseFamilyExample {
     }
 
     static Phenopacket affectedSisterOfProband() {
-        Phenotype syndactylyCongenitalOnset = Phenotype.newBuilder()
+        PhenotypicFeature syndactylyCongenitalOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001159", "Syndactyly"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
-        Phenotype notPneumonia = Phenotype.newBuilder()
+        PhenotypicFeature notPneumonia = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002090", "Pneumonia"))
                 .setNegated(true)
                 .build();
 
-        Phenotype notChronicSinusitis = Phenotype.newBuilder()
+        PhenotypicFeature notChronicSinusitis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011109", "Chronic sinusitis"))
                 .setNegated(true)
                 .build();
@@ -116,9 +116,9 @@ class RareDiseaseFamilyExample {
 
         return Phenopacket.newBuilder()
                 .setSubject(sister)
-                .addPhenotypes(syndactylyCongenitalOnset)
-                .addPhenotypes(notPneumonia)
-                .addPhenotypes(notChronicSinusitis)
+                .addPhenotypicFeatures(syndactylyCongenitalOnset)
+                .addPhenotypicFeatures(notPneumonia)
+                .addPhenotypicFeatures(notChronicSinusitis)
                 .addVariants(het(NM_001361_403_C_T))
                 .addVariants(het(NM_001361_454_G_A))
                 .addVariants(het(NM_001369_12599_dupA))
@@ -210,7 +210,7 @@ class RareDiseaseFamilyExample {
                         .build())
                 .addResources(Resource.newBuilder()
                         .setId("pato")
-                        .setName("Phenotype And Trait Ontology")
+                        .setName("PhenotypicFeature And Trait Ontology")
                         .setNamespacePrefix("PATO")
                         .setIriPrefix("http://purl.obolibrary.org/obo/PATO_")
                         .setUrl("http://purl.obolibrary.org/obo/pato.owl")

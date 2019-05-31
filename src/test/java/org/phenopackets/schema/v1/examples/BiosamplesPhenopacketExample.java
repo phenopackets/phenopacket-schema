@@ -27,7 +27,7 @@ class BiosamplesPhenopacketExample {
                 .addUpdated(parseTimestamp("2018-06-10T10:59:06.784Z"))
                 .addResources(Resource.newBuilder()
                         .setId("pato")
-                        .setName("Phenotype And Trait Ontology")
+                        .setName("PhenotypicFeature And Trait Ontology")
                         .setNamespacePrefix("PATO")
                         .setUrl("http://purl.obolibrary.org/obo/pato.owl")
                         .setVersion("2018-03-28")
@@ -83,9 +83,9 @@ class BiosamplesPhenopacketExample {
                 .setTaxonomy(ontologyClass("NCBITaxon:9606", "Homo sapiens"))
                 .setSampledTissue(ontologyClass("UBERON:0000178", "peripheral blood"))
                 .setHistologicalDiagnosis(ontologyClass("EFO:0000221", "Acute Monocytic Leukemia"))
-                .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("EFO:0001253", "THP-1")).build())
-                .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("BTO:0000214", "cell culture")).build())
-                .addPhenotypes(Phenotype.newBuilder().setType(ontologyClass("CL:0000576", "monocyte")).build())
+                .addPhenotypicFeatures(PhenotypicFeature.newBuilder().setType(ontologyClass("EFO:0001253", "THP-1")).build())
+                .addPhenotypicFeatures(PhenotypicFeature.newBuilder().setType(ontologyClass("BTO:0000214", "cell culture")).build())
+                .addPhenotypicFeatures(PhenotypicFeature.newBuilder().setType(ontologyClass("CL:0000576", "monocyte")).build())
                 .build();
 
         Disease disease = Disease.newBuilder().setTerm(ontologyClass("EFO:0000222", "acute myeloid leukemia")).build();

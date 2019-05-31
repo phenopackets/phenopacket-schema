@@ -27,12 +27,12 @@ public class ResourceOntologyClassExample {
                 // Consult http://obofoundry.org for a complete list
                 // For other ontologies (e.g. SNOMED), use the prefix in identifiers.org
                 .setId("hpo")
-                // e.g. The Human Phenotype Ontology
+                // e.g. The Human PhenotypicFeature Ontology
                 // for OBO Ontologies, the value of this string SHOULD be the same as the title
                 // field on http://obofoundry.org
                 // however, this field is purely for information purposes and software
                 // should not encode any assumptions
-                .setName("The Human Phenotype Ontology")
+                .setName("The Human PhenotypicFeature Ontology")
                 // For OBO ontologies, this should always be the PURL, e.g.
                 // http://purl.obolibrary.org/obo/hp.owl, http://purl.obolibrary.org/obo/hp.obo
                 .setUrl("http://purl.obolibrary.org/obo/hp.obo")

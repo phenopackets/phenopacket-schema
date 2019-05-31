@@ -19,42 +19,42 @@ public class MurineDiseaseModel {
 
 
     Phenopacket C1039Gmodel() {
-        Phenotype aorticDissection = Phenotype.newBuilder()
+        PhenotypicFeature aorticDissection = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0004044", "aortic dissection"))
                 .build();
 
-        Phenotype abnormalRibMorphology = Phenotype.newBuilder()
+        PhenotypicFeature abnormalRibMorphology = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0000150", "abnormal rib morphology"))
                 .build();
 
-        Phenotype kyphosis = Phenotype.newBuilder()
+        PhenotypicFeature kyphosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0000160", "kyphosis"))
                 .build();
 
-        Phenotype  	overexpandedPulmonaryAlveoli = Phenotype.newBuilder()
+        PhenotypicFeature  	overexpandedPulmonaryAlveoli = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0001183", "overexpanded pulmonary alveoli"))
                 .build();
 
 
 
-        Phenotype abnormalAortaElasticFiberMorphology =Phenotype.newBuilder()
+        PhenotypicFeature abnormalAortaElasticFiberMorphology =PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0003211", "abnormal aorta elastic fiber morphology"))
                 .build();
 
-        Phenotype mitralValveProlapse=Phenotype.newBuilder()
+        PhenotypicFeature mitralValveProlapse=PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0006120", "mitral valve prolapse"))
                 .build();
 
-        Phenotype  abnormalHeartLeftAtriumMorphology=Phenotype.newBuilder()
+        PhenotypicFeature  abnormalHeartLeftAtriumMorphology=PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0003923", "abnormal heart left atrium morphology"))
                 .build();
 
-        Phenotype  abnormalHeartLeftVentricleMorphology=Phenotype.newBuilder()
+        PhenotypicFeature  abnormalHeartLeftVentricleMorphology=PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0003921", "abnormal heart left ventricle morphology"))
                 .build();
 
 
-        Phenotype   increasedAortaWallThickness=Phenotype.newBuilder()
+        PhenotypicFeature   increasedAortaWallThickness=PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0010996", " increased aorta wall thickness"))
                 .build();
 
@@ -101,15 +101,15 @@ public class MurineDiseaseModel {
 
         return Phenopacket.newBuilder()
                 .setSubject(Fbn1C1039G_Model)
-                .addPhenotypes(aorticDissection)
-                .addPhenotypes(abnormalRibMorphology)
-                .addPhenotypes(kyphosis)
-                .addPhenotypes(overexpandedPulmonaryAlveoli)
-                .addPhenotypes(abnormalAortaElasticFiberMorphology)
-                .addPhenotypes(mitralValveProlapse)
-                .addPhenotypes(abnormalHeartLeftAtriumMorphology)
-                .addPhenotypes(abnormalHeartLeftVentricleMorphology)
-                .addPhenotypes(increasedAortaWallThickness)
+                .addPhenotypicFeatures(aorticDissection)
+                .addPhenotypicFeatures(abnormalRibMorphology)
+                .addPhenotypicFeatures(kyphosis)
+                .addPhenotypicFeatures(overexpandedPulmonaryAlveoli)
+                .addPhenotypicFeatures(abnormalAortaElasticFiberMorphology)
+                .addPhenotypicFeatures(mitralValveProlapse)
+                .addPhenotypicFeatures(abnormalHeartLeftAtriumMorphology)
+                .addPhenotypicFeatures(abnormalHeartLeftVentricleMorphology)
+                .addPhenotypicFeatures(increasedAortaWallThickness)
                 .addVariants(Fbn1variant)
                 .setMetaData(metaData)
                 .build();

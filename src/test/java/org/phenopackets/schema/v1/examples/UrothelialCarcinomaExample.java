@@ -32,14 +32,14 @@ public class UrothelialCarcinomaExample {
     public UrothelialCarcinomaExample() {
         MetaData metaData = buildMetaData();
 
-        Phenotype hematuria = Phenotype.newBuilder().setType(ontologyClass("HP:0000790","Hematuria")).build();
-        Phenotype dsyuria = Phenotype.newBuilder().setType(ontologyClass("HP:0100518","Dysuria")).setSeverity(ontologyClass("HP:0012828","Severe")).build();
+        PhenotypicFeature hematuria = PhenotypicFeature.newBuilder().setType(ontologyClass("HP:0000790","Hematuria")).build();
+        PhenotypicFeature dsyuria = PhenotypicFeature.newBuilder().setType(ontologyClass("HP:0100518","Dysuria")).setSeverity(ontologyClass("HP:0012828","Severe")).build();
 
         this.phenopacket = Phenopacket.newBuilder()
                 .setId("example case")
                 .setSubject(subject())
-                .addPhenotypes(hematuria)
-                .addPhenotypes(dsyuria)
+                .addPhenotypicFeatures(hematuria)
+                .addPhenotypicFeatures(dsyuria)
                 .addBiosamples(bladderBiosample())
                 .addBiosamples(prostateBiosample())
                 .addBiosamples(leftUreterBiosample())
