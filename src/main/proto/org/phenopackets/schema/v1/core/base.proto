@@ -17,6 +17,8 @@ message MetaData {
     // ISO8601 UTC timestamps at which this record was updated, in
     // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
     repeated google.protobuf.Timestamp updated = 5;
+    // phenopacket-schema-version used to create this phenopacket
+    string phenopacket_schema_version = 6;
     // External identifiers for this message. These are considered different representation of the same record, not
     // records which are in some other relation with the record at hand. For example this might be a PubMed reference
     // to a study in which the individuals are reported.
