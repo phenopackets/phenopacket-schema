@@ -97,6 +97,6 @@ be resolved to http://purl.obolibrary.org/obo/HP_0012828.
       - required
 
 
-FHIR Mapping of the Phenotype element
+FHIR Mapping of the Resource element
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The FHIR mapping for the Phenopacket `Resource` is: `CodeSystem <http://www.hl7.org/fhir/codesystem.html>`_.

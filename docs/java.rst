@@ -47,23 +47,23 @@ With this, we present a function that creates a Phenopacket that represents the 
   public Phenopacket spherocytosisExample() {
         final String PROBAND_ID = "PROBAND#1";
         final OntologyClass FEMALE = ontologyClass("PATO:0000383", "female");
-        Phenotype spherocytosis = Phenotype.newBuilder()
+        PhenotypicFeature spherocytosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0004444", "Spherocytosis"))
                 .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
-        Phenotype jaundice = Phenotype.newBuilder()
+        PhenotypicFeature jaundice = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000952", "Jaundice"))
                 .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
-        Phenotype splenomegaly = Phenotype.newBuilder()
+        PhenotypicFeature splenomegaly = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001744", "Splenomegaly"))
                 .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
-        Phenotype notHepatomegaly = Phenotype.newBuilder()
+        PhenotypicFeature notHepatomegaly = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002240", "Hepatomegaly"))
                 .setNegated(true)
                 .build();
-        Phenotype reticulocytosis = Phenotype.newBuilder()
+        PhenotypicFeature reticulocytosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001923", "Reticulocytosis"))
                 .build();
 

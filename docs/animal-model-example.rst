@@ -28,7 +28,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "sex": "UNKNOWN_SEX",
       "karyotypicSex": "UNKNOWN_KARYOTYPE"
     },
-    "phenotypes": [{
+    "phenotypicFeatures": [{
       "description": "",
       "type": {
         "id": "MP:0004044",
@@ -192,15 +192,15 @@ These elements are not required for transmitting data about a mouse model and ar
 
 
 
-phenotypes
-~~~~~~~~~~
+phenotypicFeatures
+~~~~~~~~~~~~~~~~~~
 
-The ``phenotypes`` element is a list of  :ref:`phenotype` elements, here specifying the Mammalian Phenotype Ontology
+The ``phenotypicFeatures`` element is a list of  :ref:`phenotypicFeature` elements, here specifying the Mammalian Phenotype Ontology
 terms that were used to describe the phenotypic abnormalities observed in the mouse model.
 
 .. code-block:: json
 
-   "phenotypes": [{
+   "phenotypicFeatures": [{
       "description": "",
       "type": {
         "id": "MP:0004044",

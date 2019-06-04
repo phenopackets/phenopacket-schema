@@ -51,8 +51,8 @@ and ``datasetId`` is optional).
         "karyotypicSex": "UNKNOWN_KARYOTYPE"
     },
 
-phenotypes
-~~~~~~~~~~
+phenotypicFeatures
+~~~~~~~~~~~~~~~~~~
 This field can be used to represent clinical manifestations using the :ref:`phenotype` element. Phenotypes directly related to the biopsied or
 extirpated tumor specimens should be reported in the `Biosample` element (see below). In this example,
 the patient is found to have `Hematuria <https://hpo.jax.org/app/browse/term/HP:0000790>`_
@@ -60,7 +60,7 @@ and severe `Dysuria <https://hpo.jax.org/app/browse/term/HP:0100518>`_.
 
 .. code-block:: json
 
- "phenotypes": [{
+ "phenotypicFeatures": [{
     "description": "",
     "type": {
       "id": "HP:0000790",
@@ -113,7 +113,7 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
             "id": "UBERON_0001256",
             "label": "wall of urinary bladder"
         },
-        "phenotypes": [],
+        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -170,7 +170,7 @@ Prostate adenocarcinoma was discovered as an incidental finding. The tumor was f
             "id": "UBERON:0002367",
             "label": "prostate gland"
         },
-        "phenotypes": [],
+        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -214,7 +214,7 @@ A biopsy of the left ureter reveal normal findings.
             "id": "UBERON:0001223",
             "label": "left ureter"
         },
-        "phenotypes": [],
+        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -251,7 +251,7 @@ A biopsy of the right ureter reveal normal findings.
             "id": "UBERON:0001222",
             "label": "right ureter"
         },
-        "phenotypes": [],
+        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -288,7 +288,7 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
             "id": "UBERON:0015876",
             "label": "pelvic lymph node"
         },
-        "phenotypes": [],
+        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },

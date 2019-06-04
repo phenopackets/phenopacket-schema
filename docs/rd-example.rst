@@ -51,7 +51,7 @@ At this point in the :ref:`rstphenopacket` element, there follows a list of phen
 
 .. code-block:: json
 
- "phenotypes": [{ ... }, { ... }, (...) , { ... } ]
+ "phenotypicFeatures": [{ ... }, { ... }, (...) , { ... } ]
 
 We present each phenotype separately in the following.
 

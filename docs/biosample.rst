@@ -21,7 +21,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
         string individual_id = 3;
         string description = 4;
         OntologyClass sampled_tissue = 5;
-        repeated Phenotype phenotypes = 6;
+        repeated PhenotypicFeature phenotypic_features = 6;
         OntologyClass taxonomy = 7;
         oneof individual_age_at_collection {
             Age age_of_individual_at_collection = 8;
@@ -63,7 +63,7 @@ On :ref:`rstontologyclass` describing the tissue from which the specimen was col
 We recommend the use of `UBERON <https://www.ebi.ac.uk/ols/ontologies/uberon>`_. The
 PDX MI mapping is ``Specimen tumor tissue``. The FHIR mapping is ``Specimen.type``.
 
-phenotypes
+phenotypic_features
 ~~~~~~~~~~
 The phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
 See :ref:`rstphenotype` for further information.
@@ -172,7 +172,7 @@ the default value is false.
    * - sampled_tissue
      - See :ref:`rstontologyclass`
      - required
-   * - phenotypes
+   * - phenotypic_features
      - See :ref:`rstphenotype`
      - recommend (may be empty if this element is used merely to report the genotype in a sample)
    * - taxonomy

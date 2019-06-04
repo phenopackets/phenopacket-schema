@@ -26,11 +26,11 @@ We create an object to represent the proband as an :ref:`rstindividual`.
 
 
 
-phenotypes
-~~~~~~~~~~
+phenotypicFeatures
+~~~~~~~~~~~~~~~~~~
 There are two categories of phenotypes that can be of interest with cancer data. Firstly, there
 are constitutional phenotypes such as weight loss that are related to the disease of cancer. Second,
-the tumor, and is applicable metasases, each have their owb phenotypes including histology and grade.
+the tumor, and is applicable metasases, each have their own phenotypes including histology and grade.
 The Phenopacket standard represents constitutional Phenotypes using a list of :ref:`rstphenotype`
 elements, and represents phenotypes of the tumor and metastases in :ref:`rstbiosample` elements.
 In the present case, the patient was found to have hematuria and severe dysuria, which are coded as follows.
@@ -39,10 +39,10 @@ In the present case, the patient was found to have hematuria and severe dysuria,
 .. code-block:: java
 
 
-        Phenotype hematuria = Phenotype.newBuilder().
+        PhenotypicFeature hematuria = PhenotypicFeature.newBuilder().
                 setType(ontologyClass("HP:0000790","Hematuria")).
                 build();
-        Phenotype dsyuria = Phenotype.newBuilder().
+        PhenotypicFeature dsyuria = PhenotypicFeature.newBuilder().
             setType(ontologyClass("HP:0100518","Dysuria")).
             setSeverity(ontologyClass("HP:0012828","Severe")).
             build();

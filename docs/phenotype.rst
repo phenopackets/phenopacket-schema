@@ -1,8 +1,8 @@
 .. _rstphenotype:
 
-=========
-Phenotype
-=========
+=================
+PhenotypicFeature
+=================
 
 
 This element is intended to be used to describe a phenotype that characterizes the subject of the Phenopacket.
@@ -12,11 +12,11 @@ The word phenotype is used with many different meanings including disease entity
 An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
 frequency.
 
-This is the protobuf that we use to define a phenotype
+This is the protobuf that we use to define a phenotypic feature
 
 .. code-block:: proto
   
-  message Phenotype {
+  message PhenotypicFeature {
     string description = 1;
     OntologyClass type = 2;
     bool negated = 3;
@@ -69,16 +69,16 @@ Terms can be taken from the hierarchy of `Clinical modifier <https://hpo.jax.org
 onset
 ~~~~~
 This element can be used to describe the age at which a phenotypic feature was first noticed or diagnosed.
-For many medical use cases, either the Age subelement or an :ref:`ontology class <rstontologyclass>` (e.g., from the HPO `Onset (HP:0003674) <https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
+For many medical use cases, either the Age sub-element or an :ref:`ontology class <rstontologyclass>` (e.g., from the HPO `Onset (HP:0003674) <https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
 
 evidence
 ~~~~~~~~
 This element can contain one or more :ref:`Evidence <rstevidence>` elements that specify how the phenotype was determined.
 
-FHIR Mapping of the Phenotype element
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+FHIR Mapping of the PhenotypicFeature element
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This element maps the FHIR `Condition <https://www.hl7.org/fhir/condition.html>`_ or
 `Observation <https://www.hl7.org/fhir/observation.html>`_ elements. The FHIR mapping of
-the type element of Phenotype is *Condition.identifier*, the mapping of the severity element
+the type element of PhenotypicFeature is *Condition.identifier*, the mapping of the severity element
 is *Condition.severity*, the mapping of onset is *Condition.onset*.
 

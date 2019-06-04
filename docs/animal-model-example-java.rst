@@ -51,7 +51,7 @@ We create a series of :ref:`rstphenotype` objects to represent the phenotypic ob
 made on this model.
 
 .. code-block:: java
-    Phenotype increasedAortaWallThickness=Phenotype.newBuilder()
+    PhenotypicFeature increasedAortaWallThickness = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("MP:0010996", " increased aorta wall thickness"))
                 .build();
 

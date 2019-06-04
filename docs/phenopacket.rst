@@ -19,7 +19,7 @@ abnormalities direclty associated with an extirpated or biospied tumor).
     message Phenopacket {
         string id = 1;
         org.phenopackets.schema.v1.core.Individual subject = 2;
-        repeated org.phenopackets.schema.v1.core.Phenotype phenotypes = 3;
+        repeated org.phenopackets.schema.v1.core.PhenotypicFeature phenotypic_features = 3;
         repeated org.phenopackets.schema.v1.core.Biosample biosamples = 5;
         repeated org.phenopackets.schema.v1.core.Gene genes = 6;
         repeated org.phenopackets.schema.v1.core.Variant variants = 7;
@@ -44,7 +44,7 @@ This is typically the individual human (or another organism) that the Phenopacke
 be a patient or proband of the study. See :ref:`rstindividual` for further information.
 
 
-phenotypes
+phenotypic_features
 ~~~~~~~~~~
 This is a list of phenotypic findings observed in the subject. See :ref:`rstphenotype` for further information.
 
@@ -104,7 +104,7 @@ See :ref:`rstmetadata` for further information.
    * - subject
      - See :ref:`rstindividual`
      - recommended
-   * - phenotypes
+   * - phenotypic_features
      - See :ref:`rstphenotype`
      - recommended
    * - biosamples

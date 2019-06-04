@@ -4,7 +4,7 @@
 Evidence element
 ================
 
-This element intends to represent the evidence for an assertion such as an observation of a :ref:`Phenotype element`.
+This element intends to represent the evidence for an assertion such as an observation of a :ref:`PhenotypicFeature element`.
 We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <http://purl.obolibrary.org/obo/eco.owl>`_
 
 .. code-block:: proto
