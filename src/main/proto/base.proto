@@ -1,9 +1,11 @@
 syntax = "proto3";
+
 package org.phenopackets.schema.v1.core;
 
 import "google/protobuf/timestamp.proto";
 
 option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v1.core";
 
 message MetaData {
     // ISO8601 UTC timestamp for when this phenopacket was created in ISO "2018-03-01T00:00:00Z"
@@ -285,10 +287,10 @@ message Biosample {
     Procedure procedure = 15;
 
     // Pointer to the relevant HTS file(s) for the biosample.
-    repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 16;
+    repeated HtsFile hts_files = 16;
 
     // Field for variants relevant to this biosample.
-    repeated org.phenopackets.schema.v1.core.Variant variants = 17;
+    repeated Variant variants = 17;
 
     // if true, this sample is being use as a normal control, often in combination with
     // another sample that is thought to contain a pathological finding

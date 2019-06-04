@@ -1,10 +1,11 @@
 syntax = "proto3";
 package org.matchmakerexchange.api.v1;
 
-import "org/phenopackets/schema/v1/core/base.proto";
+import "base.proto";
 
 option java_multiple_files = true;
 option java_outer_classname = "MatchMakerExchange";
+option java_package = "org.matchmakerexchange.api.v1";
 
 // This is an example of how other resources, in this case the MME can define their own custom messages using the
 // Phenopackets schema to define common elements, such as Gene, OntologyClass, Disease, Phenotype and Individual. Other

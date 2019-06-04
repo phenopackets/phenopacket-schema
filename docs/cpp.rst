@@ -1,0 +1,161 @@
+.. _cppjava:
+
+================================
+Working with Phenopackets in C++
+================================
+
+Here we provide some guidance on how to work with Phenopackets in C++.
+
+Generating the C++ files
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+The maven build generates Java, C++, and Python code that can be directly used in other
+projects. Therefore, if you have maven set up on your machine, the easiest way to generate
+the C++ files is ::
+
+    $ mvn compile
+    $ mvn package
+
+This will generate four files in the following location. ::
+
+    $ ls target/generated-sources/protobuf/cpp/
+        base.pb.cc          phenopackets.pb.cc
+        base.pb.h           phenopackets.pb.h
+
+The other option is to use Google's ``protoc`` tool to generate the C++ files (The tool can be obtained
+from the `Protobuf website <https://developers.google.com/protocol-buffers/>`_ Install the tool
+using commands appropriate to your system). The following commands
+will generate identical files in a new directory called ``gen``. ::
+
+    $ mkdir gen
+    $ protoc \
+        --proto_path=src/main/proto/ \
+        --cpp_out=gen/ \
+        src/main/proto/phenopackets.proto src/main/proto/base.proto
+
+The ``protoc`` command specifies the directory where the protobuf files are located (`--proto_path`), the
+location of the directory to which the corresponding C++ files are to be written, and then passes the two
+protobuf files.
+
+
+Compiling and building Phenopackets
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The phenopacket code can be compiled and built using standard tools. Here we present a small example of
+a C++ program that reads in a phenopacket JSON file from the command line and prints our some of the
+information contained in it to the shell. The classes defined by the phenopacket are located within
+namespace declarations that mirror the Java package names, and thus are extremly unlikely to
+collide with other C++ identifiers. ::
+
+    #include <iostream>
+    #include <string>
+    #include <fstream>
+    #include <sstream>
+
+    #include <google/protobuf/message.h>
+    #include <google/protobuf/util/json_util.h>
+
+    #include "phenopackets.pb.h"
+
+
+    using namespace std;
+
+    int main(int argc, char ** argv) {
+        // check that user has passed a file.
+        if (argc!=2) {
+            cerr << "usage: ./phenopacket_demo phenopacket-file.json\n";
+            exit(EXIT_FAILURE);
+        }
+        string fileName=argv[1];
+
+        GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+        stringstream sstr;
+        ifstream inFile;
+        inFile.open(fileName);
+        if (! inFile.good()) {
+            cerr << "Could not open Phenopacket file at " << fileName <<"\n";
+            return EXIT_FAILURE;
+        }
+        sstr << inFile.rdbuf();
+        string JSONstring = sstr.str();
+
+        ::google::protobuf::util::JsonParseOptions options;
+        ::org::phenopackets::schema::v1::Phenopacket phenopacket;
+        ::google::protobuf::util::JsonStringToMessage(JSONstring,&phenopacket,options);
+        cout << "\n::: Reading Phenopacket at: " << fileName << " ::::\n\n";
+        cout << "\tsubject.id: "<<phenopacket.subject().id() << "\n";
+        // print age if available
+        if (phenopacket.subject().has_age_at_collection()) {
+            ::org::phenopackets::schema::v1::core::Age age = phenopacket.subject().age_at_collection();
+            if (! age.age().empty()) {
+                cout <<"\tsubject.age: " << age.age() << "\n";
+            }
+        cout <<"\tsubject.sex: " ;
+        org::phenopackets::schema::v1::core::Sex sex = phenopacket.subject().sex();
+        switch (sex) {
+            case ::org::phenopackets::schema::v1::core::UNKNOWN_SEX : cout << " unknown"; break;
+            case ::org::phenopackets::schema::v1::core::FEMALE : cout <<"female"; break;
+            case ::org::phenopackets::schema::v1::core::MALE: cout <<"male"; break;
+            case ::org::phenopackets::schema::v1::core::OTHER_SEX:
+            default:
+	            cout <<"other"; break;
+        }
+        cout << "\n";
+    }
+    cout <<"\n\tPhenotypes:\n";
+    for (auto i = 0; i < phenopacket.phenotypes_size(); i++) {
+      const ::org::phenopackets::schema::v1::core::Phenotype& phenotype = phenopacket.phenotypes(i);
+      const ::org::phenopackets::schema::v1::core::OntologyClass type = phenotype.type();
+      cout << "\tid: " << type.id() << ": " << type.label() << "\n";
+    }
+    cout <<"\n";
+    }
+
+The Makefile for this little program is as follows. ::
+
+    CXX=g++
+    CXXFLAGS=-Wall -g -O0 --std=c++17 -pthread
+    LIBS=-lprotobuf
+
+    TARGET=phenopacket_demo
+    all:$(TARGET)
+
+    OBJS=phenopackets.pb.o base.pb.o
+
+    $(TARGET):main.cpp $(OBJS)
+	    $(CXX) $< $(OBJS) $(CXXFLAGS) ${LIBS} -o $@
+
+    %.o: %.cpp
+	    $(CXX) $(CXXFLAGS) -o $@ -c $<
+
+    .PHONY: clean
+    clean:
+	    rm -f $(OBJS) $(TARGET)
+
+The executbale can be generated by calling ``make``.
+Running it on a simple phenopacket would lead to the following output. ::
+
+    $ ./phenopacket_demo Gebbia-1997-ZIC3.json
+
+    ::: Reading Phenopacket at: Gebbia-1997-ZIC3.json ::::
+
+	    subject.id: III-1
+	    subject.age: 7W
+	    subject.sex: male
+    Phenotypes:
+	    id: HP:0002139: Arrhinencephaly
+	    id: HP:0001750: Single ventricle
+	    id: HP:0001643: Patent ductus arteriosus
+	    id: HP:0001746: Asplenia
+	    id: HP:0004971: Pulmonary artery hypoplasia
+	    id: HP:0001674: Complete atrioventricular canal defect
+	    id: HP:0001669: Transposition of the great arteries
+	    id: HP:0012890: Posteriorly placed anus
+	    id: HP:0001629: Ventricular septal defect
+	    id: HP:0012262: Abnormal ciliary motility
+	    id: HP:0004935: Pulmonary artery atresia
+	    id: HP:0003363: Abdominal situs inversus
+
+More information about using C++ with Protobuf is available at the
+`Protobuf website <https://developers.google.com/protocol-buffers/>`_.
