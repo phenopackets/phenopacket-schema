@@ -20,7 +20,7 @@ listed using HGVS, VCF, SPDI, ISCN, or "mouse allele" notation.::
         VcfAllele vcf_allele = 3;
         SpdiAllele spdi_allele = 4;
         IscnAllele iscn_allele = 5;
-        MouseAllele mouse_allele = 8;
+        MurineAllele murine_allele = 8;
       }
       OntologyClass zygosity = 6;
       string background = 7;
@@ -69,7 +69,7 @@ We expect that this element will be used mainly for Phenopackets for animal mode
 allele
 ~~~~~~
 The allele element is required and can be one and only one of ``HgvsAllele``, ``VcfAlelle``, ``SpdiAllele``, ``IcsnAllele``,
-or ``MouseAllele``.
+or ``MurineAllele``.
 
 HgvsAllele
 ~~~~~~~~~~
@@ -270,12 +270,12 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
      - required
 
 
-MouseAllele
+MurineAllele
 ~~~~~~~~~~~
-This sessage is intended specifically for encoding mouse alleles in accordance with the
+This sessage is intended specifically for encoding mouse or rat alleles in accordance with the
 `International Committee on Standardized Genetic Nomenclature for Mice <http://informatics.jax.org/mgihome/nomen/>`_.::
 
-    message MouseAllele {
+    message MurineAllele {
         string id = 1;
         string gene = 2;
         string allele_code = 3;
@@ -286,7 +286,7 @@ The allele_code should be used for the allele name or lab code, which is written
 in superscript according to the International Committee on Standardized Genetic
 Nomenclature for Mice.
 
- .. list-table:: Phenopacket requirements for the ``MouseAllele`` element
+ .. list-table:: Phenopacket requirements for the ``MurineAllele`` element
    :widths: 25 50 50
    :header-rows: 1
 

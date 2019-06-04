@@ -118,7 +118,7 @@ We first show the entire Phenopacket, and further below explain the individual s
       "label": "heterozygous"
     },
     "background": "involves: 129S1/Sv * 129X1/SvJ * C57BL/6J",
-    "mouseAllele": {
+    "murineAllele": {
       "id": "MGI:3690325",
       "gene": "Fbn1",
       "alleleSymbol": "tm1Hcd"
@@ -230,7 +230,7 @@ These elements are not required for transmitting data about a mouse model and ar
 variants
 ~~~~~~~~
 The variants section can use one of several ways of expressing the variant. For mice, the
-Phenopacket standard includes an element called ``mouseAllele``.
+Phenopacket standard includes an element called ``murineAllele``.
 Please refer to the page on the :ref:`variant` message for further deails.
 Our example refers to the
 allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_.
@@ -243,7 +243,7 @@ allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_.
       "label": "heterozygous"
     },
     "background": "involves: 129S1/Sv * 129X1/SvJ * C57BL/6J",
-    "mouseAllele": {
+    "murineAllele": {
       "id": "MGI:3690325",
       "gene": "Fbn1",
       "alleleSymbol": "tm1Hcd"

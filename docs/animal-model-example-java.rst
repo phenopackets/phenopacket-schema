@@ -23,7 +23,7 @@ individual based on examination of a cohort of animal models.
                 .build();
 
 
-MouseAllele
+MurineAllele
 ~~~~~~~~~~~
 This is the code used to represent
 `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/MGI:3690325>`_.
@@ -31,14 +31,14 @@ The animals used for the investigation were heterozygous
 
 .. code-block:: java
 
-    MouseAllele allele = MouseAllele.
+    MurineAllele allele = MurineAllele.
                             newBuilder().
                             setId("MGI:3690325").
                             setGene("Fbn1").
                             setAlleleSymbol("tm1Hcd").
                             build();
     Variant Fbn1variant = Variant.newBuilder()
-        .setMouseAllele(allele)
+        .setMurineAllele(allele)
         .setBackground("involves: 129S1/Sv * 129X1/SvJ * C57BL/6J")
         .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
         .build();

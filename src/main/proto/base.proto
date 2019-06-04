@@ -426,11 +426,11 @@ message Variant {
         VcfAllele vcf_allele = 3;
         SpdiAllele spdi_allele = 4;
         IscnAllele iscn_allele = 5;
-        MouseAllele mouse_allele = 8;
+        MurineAllele murine_allele = 8;
     }
     // Zygosity of the allele using GENO ontology
     OntologyClass zygosity = 6;
-    // For mice the background of the variant is also required
+    // For mice/rats the background of the variant is also required
     // e.g. involves: 129S1/Sv * 129X1/SvJ * C57BL/6J
     // see http://www.informatics.jax.org/allele/MGI:3690325#phenotypes for examples
     string background = 7;
@@ -489,11 +489,11 @@ message IscnAllele {
     string var = 2;
 }
 
-// Message specifically for encoding mouse alleles in accordance with the
+// Message specifically for encoding murine alleles in accordance with the
 // International Committee on Standardized Genetic Nomenclature for Mice
 // The example given here encodes the allele Fbn1<tm1Hcd>
 // See http://informatics.jax.org/mgihome/nomen/
-message MouseAllele {
+message MurineAllele {
     string id = 1;
     // e.g. Fbn1
     string gene = 2;
