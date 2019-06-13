@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 /**
- * FHIR representation of the cancer example from the Toronto hackathon. See
- * src/test/resources/toronto_cancer_example.md.
+ * FHIR representation of the cancer example from the Toronto hackathon.
  *
  * @author Alejandro Metke <alejandro.metke@csiro.au>
  */

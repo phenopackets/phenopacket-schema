@@ -13,8 +13,7 @@ import java.time.Instant;
 import static org.phenopackets.schema.v1.PhenoPacketTestUtil.ontologyClass;
 
 /**
- * Phenopacket representation of the rare disease example from the Toronto hackathon. See
- * src/test/resources/toronto_rare_disease_example.md.
+ * Phenopacket representation of the rare disease example from the Toronto hackathon.
  *
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
