@@ -57,6 +57,7 @@ This common schema has been used to define the 'Phenopacket' which is a catch-al
    family
    cohort
    biosample
+   interpretation
    Working with Phenopackets in Java <java>
    Working with Phenopackets in C++ <cpp>
    examples
