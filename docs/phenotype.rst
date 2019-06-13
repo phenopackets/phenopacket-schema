@@ -1,4 +1,4 @@
-.. _rstphenotype:
+.. _rstphenotypicfeature:
 
 =================
 PhenotypicFeature
