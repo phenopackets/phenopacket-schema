@@ -49,8 +49,8 @@ with the Human Developmental Stages ontology term second decade human stage
 
 
  .. list-table:: Phenopacket requirements for the ``Age`` element
-   :widths: 25 50 50
-   :header-rows: 1
+    :widths: 25 50 50
+    :header-rows: 1
 
     * - Field
       - Example
@@ -59,7 +59,7 @@ with the Human Developmental Stages ontology term second decade human stage
       - P25Y3M2D
       - optional
     * - age_class
-      - An ontology term such as second decade human stage (HSAPDV:0000236)
+      - An ontology term such as *second decade human stage* (HSAPDV:0000236)
       - optional
 
 
@@ -68,7 +68,7 @@ If the Age message is used, at least one of the two elements ``age`` and ``age_c
 
 FHIR mapping
 ~~~~~~~~~~~~
-This element is mapped to the FHIR using  a `UCUM  measurement <http://unitsofmeasure.org/trac/>`_.
+This element is mapped to the FHIR using `Unified Code for Units of Measure (UCUM) <http://unitsofmeasure.org/trac/>`_.
 See also `Condition onset <http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_>`_.
 
 
