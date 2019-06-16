@@ -19,7 +19,8 @@ evidence_code
 ~~~~~~~~~~~~~
 For example, in order to describe the evidence for a phenotypic observation that is derived from a publication,
 one might use
-the ECO term `author statement from published clinical study used in manual assertion <https://www.ebi.ac.uk/ols/ontologies/eco/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FECO_0006017>`_
+the ECO term *author statement from published clinical study used in manual assertion*
+(`ECO:0006017 <https://www.ebi.ac.uk/ols/ontologies/eco/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FECO_0006017>`_)
 and record a PubMed id in the reference field
 (See :ref:`External Reference element`). 
 
@@ -39,7 +40,7 @@ all types of evidence will have an external reference, and therefore this field 
       - Example
       - Status
     * - evidence_code
-      -
+      - :ref:`rstontologyclass` representing ECO:0006017
       - required
     * - reference
       - human phenotype ontology
