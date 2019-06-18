@@ -69,12 +69,13 @@ This message is ued for a file in one of the `HTS formats <https://samtools.gith
     message HtsFile {
 
         enum HtsFormat {
-            SAM = 0;
-            BAM = 1;
-            CRAM = 2;
-            VCF = 3;
-            BCF = 4;
-            GVCF = 5;
+            UNKNOWN = 0;
+            SAM = 1;
+            BAM = 2;
+            CRAM = 3;
+            VCF = 4;
+            BCF = 5;
+            GVCF = 6;
         }
         HtsFormat hts_format = 1;
         string genome_assembly = 2;
