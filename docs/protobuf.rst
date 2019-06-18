@@ -23,7 +23,8 @@ Installing protobuf
 
 The following exercise is not necessary to use phenopackets-schema,
 but is intended to build intuition for how protobuf works.
-We first need to install protobuf. We show one simple way of installing protobuf on a linux system in the following.
+We first need to install protobuf (Note that these intructions are for this tutorial only. The maven system will automatically
+pull in protobuf for phenopackets schema). We show one simple way of installing protobuf on a linux system in the following.
 
 1. Download the source code from the `protobuf GitHub page <https://github.com/protocolbuffers/protobuf>`_. Most users should download the latest tar.gz archive from the Release page. Extract the code.
 
@@ -43,7 +44,7 @@ You now should check if installation was sucessful
 .. code-block:: bash
 
   $ protoc --version
-  libprotoc 3.7.0
+  libprotoc 3.8.0
 
 ~~~~~~~~~~~~~~~~~
 An example schema
