@@ -2,23 +2,9 @@
 Welcome to the documentation for phenopackets-schema!
 =====================================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents
-
-   protobuf
-   basics
-   requirements
-   building-blocks
-   phenopacket
-   family
-   cohort
-   biosample
-   Working with Phenopackets in Java <java>
-   Working with Phenopackets in C++ <cpp>
-   examples
-
-
+The goal of the phenopacket-schema is to define the phenotypic description of a patient/sample in the context
+of rare disease or cancer genomic diagnosis. The schema as well as source code in Java, C++, and Python
+is available from the `phenopacket-schema GitHub repository <https://github.com/phenopackets/phenopacket-schema>`_.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -33,9 +19,18 @@ Phenotypic abnormalities of individuals are currently described in diverse place
 
 The terms ‘disease’ and ‘phenotype’ are often conflated. The Phenopackets standard uses ``phenotypic feature`` to refer to a phenotypic feature, such as `Arachnodactyly <https://hpo.jax.org/app/browse/term/HP:0001166>`_, that is the component of a disease, such as `Marfan syndrome <https://hpo.jax.org/app/browse/disease/OMIM:154700>`_. The Phenopacket proposed here is designed to support `deep phenotyping <https://www.ncbi.nlm.nih.gov/pubmed/22504886>`_, a process wherein individual components of each phenotype are observed and documented. The phenoptypes may be constitutional or those related to a sample (such as from a biopsy).
 
-Phenopackets require the use of a common ontology, a logically defined hierarchy of terms, that allows sophisticated algorithmic analysis over medically relevant abnormalities. The National Cancer institute's Thesaurus (NCIt: http://www.obofoundry.org/ontology/ncit.html) is used for cancer biosamples, and is the de facto standard for cancer knowledge representation and regulatory submission.  The `Human Phenotype Ontology <http://www.human-phenotype-ontology.org>`_ (HPO) was built for this purpose and has been used for genomic diagnostics, translational research, genomic matchmaking, and systems biology applications. The HPO is developed in the context of the `Monarch Initiative <https://monarchinitiative.org/>`_, an international team of computer scientists, clinicians, and biologists in the United States, Europe, and Australia; HPO is being translated into multiple languages to support international interoperability. Due to its extensive phenotypic coverage beyond other terminologies, HPO has recently been integrated into the `Unified Medical Language System <https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/HPO/>`_ (UMLS) to support deep phenotyping in a variety of mainstream health care IT systems.
+Phenopackets require the use of a common ontology, a logically defined hierarchy of terms, that allows
+sophisticated algorithmic analysis over medically relevant abnormalities.
+The `National Cancer institute's Thesaurus (NCIt) <http://www.obofoundry.org/ontology/ncit.html>`_ is used for cancer biosamples, and is the de facto standard for cancer knowledge representation and regulatory submission.
+The `Human Phenotype Ontology (HPO) <http://www.human-phenotype-ontology.org>`_  was built for this
+purpose and has been used for genomic diagnostics, translational research, genomic matchmaking, and
+systems biology applications. The HPO is developed in the context of
+the `Monarch Initiative <https://monarchinitiative.org/>`_, an international team of
+computer scientists, clinicians, and biologists in the United States, Europe, and Australia;
+HPO is being translated into multiple languages to support international interoperability.
+Due to its extensive phenotypic coverage beyond other terminologies, HPO has recently been integrated
+into the `Unified Medical Language System <https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/HPO/>`_ (UMLS) to support deep phenotyping in a variety of mainstream health care IT systems.
 
-For more information, please consult the `Phenopackets Website <http://phenopackets.org/>`_.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 What is the Phenopacket Schema?
@@ -49,3 +44,21 @@ be compatible with  `GA4GH metadata-schemas <https://github.com/ga4gh-metadata/m
 The phenopacket schema defines a common, limited set of data types which may be composed into more specialised types for data sharing between resources using an agreed upon common schema.
 
 This common schema has been used to define the 'Phenopacket' which is a catch-all collection of data types, specifically focused on representing rare-disease or cancer samples for both initial data capture and analysis. The phenopacket is designed to be both human and machine-readable, and to inter-operate with the `HL7 Fast Healthcare Interoperability Resources Specification (aka FHIR®) <http://hl7.org/fhir/>`_.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents
+
+   protobuf
+   basics
+   requirements
+   building-blocks
+   phenopacket
+   family
+   cohort
+   biosample
+   interpretation
+   Working with Phenopackets in Java <java>
+   Working with Phenopackets in C++ <cpp>
+   examples
+

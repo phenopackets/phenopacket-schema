@@ -66,7 +66,7 @@ PDX MI mapping is ``Specimen tumor tissue``. The FHIR mapping is ``Specimen.type
 phenotypic_features
 ~~~~~~~~~~
 The phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
-See :ref:`rstphenotype` for further information.
+See :ref:`rstphenotypicfeature` for further information.
 
 
 taxonomy
@@ -90,9 +90,17 @@ See :ref:`rstontologyclass` for further information.
 
 tumor_progression
 ~~~~~~~~~~~~~~~~~
-TODO -- refine this description.
+This field can be used to indicate if a specimen is from  the primary tumor, a metastasis or a recurrence.
+There are multiple ways of representing this using ontology terms, and the terms chosen should have
+a specific meaning that is application specific.
 
-Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
+For example a term from the following NCIT terms from
+the `Neoplasm by Special Category <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C7062>`_
+can be chosen.
+
+* `Primary Neoplasm <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C8509>`_
+* `Metastatic Neoplasm <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C3261>`_
+* `Recurrent Neoplasm <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C4798>`_
 
 tumor_grade
 ~~~~~~~~~~~

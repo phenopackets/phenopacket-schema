@@ -8,7 +8,7 @@ This enumeration represents the chromosomal sex of an individual.
 
 .. code:: proto
 
-  enum Sex {
+  enum KaryotypicSex {
     UNKNOWN_KARYOTYPE = 0;
     XX = 1;
     XY = 2;
