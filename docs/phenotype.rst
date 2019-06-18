@@ -1,4 +1,4 @@
-.. _rstphenotype:
+.. _rstphenotypicfeature:
 
 =================
 PhenotypicFeature
@@ -24,8 +24,7 @@ This is the protobuf that we use to define a phenotypic feature
     repeated OntologyClass modifiers = 5;
     oneof onset {
         Age age_of_onset = 6;
-        google.protobuf.Timestamp time_of_onset = 7;
-        Period period_of_onset = 8;
+        AgeRange age_range_of_onset = 7;
         OntologyClass class_of_onset = 9;
     }
     repeated Evidence evidence = 10;
@@ -74,6 +73,43 @@ For many medical use cases, either the Age sub-element or an :ref:`ontology clas
 evidence
 ~~~~~~~~
 This element can contain one or more :ref:`Evidence <rstevidence>` elements that specify how the phenotype was determined.
+
+
+
+
+
+  .. list-table:: Phenopacket requirements for the ``Evidence`` element
+    :widths: 25 50 50
+    :header-rows: 1
+
+    * - Field
+      - Example
+      - Status
+    * - description
+      - free text
+      - optional
+    * - type
+      - :ref:`rstontologyclass` representing HP:0012823
+      - required
+    * - negated
+      - false
+      - required
+    * - severity
+      - :ref:`rstontologyclass` representing `HP:0012825  <https://hpo.jax.org/app/browse/term/HP:0012825>`_
+      - optional
+    * - modifier
+      - list of :ref:`rstontologyclass` representing one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
+      - optional
+    * - onset
+      - :ref:`rstontologyclass` representing `HP:0011462  <https://hpo.jax.org/app/browse/term/HP:0011462>`_
+      - optional
+    * - evidence
+      - An :ref:`Evidence <rstevidence>`
+      - required
+
+
+
+
 
 FHIR Mapping of the PhenotypicFeature element
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

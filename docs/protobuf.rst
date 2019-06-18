@@ -2,22 +2,29 @@
 A short introduction to protobuf
 ================================
 
-Phenopackets schema uses protobuf, an exchange format developed in 2008 by Google. We refer readers to the excellent `Wikipedia page on Protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ and to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for details. This page intends to get readers who are unfamiliar with protobuf up to speed with the main aspects of this technology that will be needed to understand the
-phenopackets-schema.
+Phenopackets schema uses protobuf, an exchange format developed in 2008 by Google. We refer readers to the
+excellent `Wikipedia page on Protobuf <https://en.wikipedia.org/wiki/Protocol_Buffers>`_ and
+to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for details. This page
+intends to get curious readers who are unfamiliar with protobuf up to speed with the main aspects of this
+technology, but it is not necessary to understand protobuf to use the phenopacket schema.
 
-Google initially develop Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopackets-schema with Java, but all of the features are available in any of the languages that protobuf works with including C++ and Python. phenopackets-schema currently uses protobuf version 3.7.0 and we restrict our explanations to protobuf version 3 in this documentation.
+Google initially developed Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopackets-schema with Java, but all of the features are available in any of the languages that protobuf works with including C++ and Python. phenopackets-schema uses protobuf version 3.7.0.
+
 
 The major advantages of protobuf are that it is language-neutral, faster than many other schema languages such as XML and JSON, and can be simpler to use because of features such as automatic validation of data objects.
 
 
-Protobuf forsees that data structures (called ** messages**) are defined in a definition file (with the suffix .proto) and compiled to generate code that is invoked by the sender or recipient of the data to encode/decode the data. 
+Protobuf forsees that data structures (so-called **messages**) are defined in a definition file (with the suffix .proto) and compiled to generate code that is invoked by the sender or recipient of the data to encode/decode the data.
 
 
 ~~~~~~~~~~~~~~~~~~~
 Installing protobuf
 ~~~~~~~~~~~~~~~~~~~
 
-The following exercise is not necessary to use phenopackets-schema, but is intended to build intuition for how protobuf works. We first need to install protobuf. We show one simple way of installing protobuf on a linux system in the following.
+The following exercise is not necessary to use phenopackets-schema,
+but is intended to build intuition for how protobuf works.
+We first need to install protobuf (Note that these intructions are for this tutorial only. The maven system will automatically
+pull in protobuf for phenopackets schema). We show one simple way of installing protobuf on a linux system in the following.
 
 1. Download the source code from the `protobuf GitHub page <https://github.com/protocolbuffers/protobuf>`_. Most users should download the latest tar.gz archive from the Release page. Extract the code.
 
@@ -37,7 +44,7 @@ You now should check if installation was sucessful
 .. code-block:: bash
 
   $ protoc --version
-  libprotoc 3.7.0
+  libprotoc 3.8.0
 
 ~~~~~~~~~~~~~~~~~
 An example schema
@@ -124,7 +131,7 @@ and add the following to the plugin section
       </executions>
     </plugin>
 
-This is the simplest configuration of the `xolstice plugin <https://www.xolstice.org/protobuf-maven-plugin/usage.html>`_, see the documentation for further information. We have assumed that protoc is installed in /usr/local/bin in the above, and the path may need to be adjusted on your system.
+This is the simplest configuration of the `xolstice plugin <https://www.xolstice.org/protobuf-maven-plugin/usage.html>`_; see the documentation for further information. We have assumed that protoc is installed in /usr/local/bin in the above, and the path may need to be adjusted on your system.
 
 
 Add the protobuf definition to the proto directory. Add a class such as *Main.java* in the /src/main/java/org/example directory (package: org.example). For simplcity, the following code snippets could be written in the main method
@@ -154,7 +161,9 @@ The code can be compiled with
 
   $ mvn clean package
 
-If we run the demo app, it should output ``Fido; weight: 5kg;  favorite toys: bone; ball``.
+If we run the demo app, it should output the following. ::
+
+    Fido; weight: 5kg;  favorite toys: bone; ball``.
 
 
 Serialization
@@ -181,6 +190,8 @@ The following code snippet serializes the Java object fido and writes the serial
             ioe.printStackTrace();
         }
 
-The code should output ``deserialized: Fido; weight: 5kg;  favorite toys: bone; ball``.
+The code should output the following. ::
+
+    deserialized: Fido; weight: 5kg;  favorite toys: bone; ball
 
 We hope that this brief introduction was useful and refer to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ for more details. 
