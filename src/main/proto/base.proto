@@ -24,7 +24,7 @@ message MetaData {
     // External identifiers for this message. These are considered different representation of the same record, not
     // records which are in some other relation with the record at hand. For example this might be a PubMed reference
     // to a study in which the individuals are reported.
-    repeated ExternalReference external_references = 9;
+    repeated ExternalReference external_references = 7;
 }
 
 // Description of an external resource used for referencing an object. For example the resource may be an ontology such
@@ -286,6 +286,9 @@ message Biosample {
     // Clinical procedure performed on the subject in order to extract the biosample.
     Procedure procedure = 15;
 
+    //
+    OntologyClass preservation_method = 19;
+
     // Pointer to the relevant HTS file(s) for the biosample.
     repeated HtsFile hts_files = 16;
 
@@ -450,15 +453,17 @@ message HgvsAllele {
 // END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
 // See https://samtools.github.io/hts-specs/VCFv4.3.pdf
 message VcfAllele {
+    // The value of the VCF spec fileformat field: e.g VCFv4.1, VCFv4.2, VCFv4.3
+    string vcf_version = 1;
     // Genome assembly the allele was called against. We recommend using the Genome Reference Consortium
     // nomenclature e.g. GRCh37, GRCh38
-    string genome_assembly = 1;
-    string id = 2;
-    string chr = 3;
-    int32 pos = 4;
-    string ref = 5;
-    string alt = 6;
-    string info = 7;
+    string genome_assembly = 2;
+    string id = 3;
+    string chr = 4;
+    int32 pos = 5;
+    string ref = 6;
+    string alt = 7;
+    string info = 8;
 }
 
 // A single SPDI allele.
