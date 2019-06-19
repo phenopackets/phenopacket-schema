@@ -286,9 +286,6 @@ message Biosample {
     // Clinical procedure performed on the subject in order to extract the biosample.
     Procedure procedure = 15;
 
-    //
-    OntologyClass preservation_method = 19;
-
     // Pointer to the relevant HTS file(s) for the biosample.
     repeated HtsFile hts_files = 16;
 
