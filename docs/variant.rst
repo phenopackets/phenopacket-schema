@@ -12,7 +12,7 @@ contain an allele, the zygosity of the allele, and, and a background element tha
 used to represent the genetic background of an animal model.
 
 Alleles can be
-listed using HGVS, VCF, SPDI, ISCN, or "mouse allele" notation.::
+listed using HGVS, VCF, SPDI or ISCN notation.::
 
     message Variant {
       oneof allele {
@@ -20,10 +20,8 @@ listed using HGVS, VCF, SPDI, ISCN, or "mouse allele" notation.::
         VcfAllele vcf_allele = 3;
         SpdiAllele spdi_allele = 4;
         IscnAllele iscn_allele = 5;
-        MurineAllele murine_allele = 8;
       }
       OntologyClass zygosity = 6;
-      string background = 7;
     }
 
 
@@ -44,9 +42,6 @@ the Phenopacket standard has the following requirements.
    * - zygosity
      - See ``zygosity``, below
      - recommended
-   * - background
-     - involves: 129S1/Sv * 129X1/SvJ * C57BL/6J
-     - optional
 
 
 
@@ -58,18 +53,10 @@ terms taken from the `Genotype Ontology (GENO) <https://www.ebi.ac.uk/ols/ontolo
 affects one of two alleles at a certain locus, we could record the zygosity using the term
 `heterozygous (GENO:0000135) <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.
 
-background
-~~~~~~~~~~
-Phenopackets that describe mouse models of disease should
-report the genetic background, using a string such as
-``involves: 129S1/Sv * 129X1/SvJ * C57BL/6J``.
-We expect that this element will be used mainly for Phenopackets for animal models.
-
 
 allele
 ~~~~~~
-The allele element is required and can be one and only one of ``HgvsAllele``, ``VcfAlelle``, ``SpdiAllele``, ``IcsnAllele``,
-or ``MurineAllele``.
+The allele element is required and can be one and only one of ``HgvsAllele``, ``VcfAlelle``, ``SpdiAllele`` or ``IcsnAllele``.
 
 HgvsAllele
 ~~~~~~~~~~
@@ -267,38 +254,4 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
      - recommended
    * - var
      - t(8;9;11)(q12;p24;p12)
-     - required
-
-
-MurineAllele
-~~~~~~~~~~~
-This sessage is intended specifically for encoding mouse or rat alleles in accordance with the
-`International Committee on Standardized Genetic Nomenclature for Mice <http://informatics.jax.org/mgihome/nomen/>`_.::
-
-    message MurineAllele {
-        string id = 1;
-        string gene = 2;
-        string allele_code = 3;
-    }
-
-The example given here encodes the allele `Fbn1\<tm1Hcd\> <http://www.informatics.jax.org/allele/key/51149>`_.
-The allele_code should be used for the allele name or lab code, which is written
-in superscript according to the International Committee on Standardized Genetic
-Nomenclature for Mice.
-
- .. list-table:: Phenopacket requirements for the ``MurineAllele`` element
-   :widths: 25 50 50
-   :header-rows: 1
-
-   * - Field
-     - Example
-     - Status
-   * - id
-     - An arbitrary identifier
-     - recommended
-   * - gene
-     - Fbn1
-     - required
-   * - allele_code
-     - tm1Hcd
      - required

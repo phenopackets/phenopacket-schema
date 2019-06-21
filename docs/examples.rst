@@ -11,7 +11,6 @@ available in the ``src/test/org/phenopackets/schema/v1/examples`` directory by a
    :maxdepth: 1
 
    Complete example: Rare Disease <rd-example>
-   Complete example: Animal model<animal-model-example>
    Complete example: Cancer <cancer-example>
 
 
@@ -22,5 +21,4 @@ Each example has a corresponding explanation of how to create the Phenopacket us
    :maxdepth: 1
 
    Java: Rare Disease Phenopacket<rd-example-java>
-   Java: Animal Model Phenopacket<animal-model-example-java>
    Java: Cancer Phenopacket<cancer-example-java>

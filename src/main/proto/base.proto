@@ -426,14 +426,9 @@ message Variant {
         VcfAllele vcf_allele = 3;
         SpdiAllele spdi_allele = 4;
         IscnAllele iscn_allele = 5;
-        MurineAllele murine_allele = 8;
     }
     // Zygosity of the allele using GENO ontology
     OntologyClass zygosity = 6;
-    // For mice/rats the background of the variant is also required
-    // e.g. involves: 129S1/Sv * 129X1/SvJ * C57BL/6J
-    // see http://www.informatics.jax.org/allele/MGI:3690325#phenotypes for examples
-    string background = 7;
 }
 
 // A single HGVS allele.
@@ -489,20 +484,4 @@ message IscnAllele {
     string id = 1;
     // an ICSN code such as del(6)(q23q24) , t(8;9;11)(q12;p24;p12), +15
     string var = 2;
-}
-
-// Message specifically for encoding murine alleles in accordance with the
-// International Committee on Standardized Genetic Nomenclature for Mice
-// The example given here encodes the allele Fbn1<tm1Hcd>
-// See http://informatics.jax.org/mgihome/nomen/
-message MurineAllele {
-    string id = 1;
-    // e.g. Fbn1
-    string gene = 2;
-    // The allele_symbol should be used for denoting the unformatted allele symbol, which is written
-    // in superscript according to the International Committee on Standardized Genetic
-    // Nomenclature for Mice. In written text it is customary to enclose the allele symbol in angled brackets to
-    // denote the superscript e.g. <tm1Hcd>. However in this field the allele code should be stored here as without the
-    // angled brackets e.g. tm1Hcd in order to allow software to correctly format the symbol.
-    string allele_symbol = 3;
 }
