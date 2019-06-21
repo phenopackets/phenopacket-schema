@@ -8,8 +8,7 @@ variants. There is currently no standard variant nomenclature that can represent
 of genetic variation that is relevant to human medicine, science, and model organisms. Therefore,
 we represent variants using the keyword ``oneof``, which is used in protobuf for an item
 with many  optional fields where at most one field will be set at the same time. Variant messages
-contain an allele, the zygosity of the allele, and, and a background element that can be
-used to represent the genetic background of an animal model.
+contain an allele and the zygosity of the allele.
 
 Alleles can be
 listed using HGVS, VCF, SPDI or ISCN notation.::
