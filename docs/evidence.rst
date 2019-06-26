@@ -43,7 +43,7 @@ all types of evidence will have an external reference, and therefore this field 
       - :ref:`rstontologyclass` representing ECO:0006017
       - required
     * - reference
-      - human phenotype ontology
+      - An :ref:`rstexternalreference`
       - optional
 
 
