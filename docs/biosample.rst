@@ -199,15 +199,12 @@ the default value is false.
    * - diagnostic_markers
      - See :ref:`rstontologyclass`
      - recommended
-   * - diseases
-     - See :ref:`rstdisease`
-     - optional
    * - hts_files
      - See :ref:`rstfile`
      - optional
    * - variants
      - See :ref:`rstvariant`
-     - recommended
+     - optional
    * - bool is_control_sample
      - true or false
      - optional (default: false)
