@@ -159,3 +159,9 @@ Running it on a simple phenopacket would lead to the following output. ::
 
 More information about using C++ with Protobuf is available at the
 `Protobuf website <https://developers.google.com/protocol-buffers/>`_.
+
+phenotools
+~~~~~~~~~~
+
+A more complete C++ implementation that performs Q/C is being developed as
+`phenotools <https://github.com/pnrobinson/phenotools>`_.

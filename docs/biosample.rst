@@ -33,8 +33,8 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
         repeated OntologyClass tumor_stage = 13;
         repeated OntologyClass diagnostic_markers = 14;
         Procedure procedure = 15;
-        repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 16;
-        repeated org.phenopackets.schema.v1.core.Variant variants = 17;
+        repeated HtsFile hts_files = 16;
+        repeated Variant variants = 17;
         bool is_control_sample = 18;
     }
 
@@ -105,7 +105,7 @@ can be chosen.
 tumor_grade
 ~~~~~~~~~~~
 This should be a child term of  NCIT:C28076 (Disease Grade Qualifier) or equivalent.
-See the `tumor grade fact sheet <https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet`_.
+See the `tumor grade fact sheet <https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet>`_.
 
 tumor_stage
 ~~~~~~~~~~~
@@ -149,14 +149,6 @@ the default value is false.
 
 
 
-
-
-
-
-        Procedure procedure = 15;
-        repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 16;
-        repeated org.phenopackets.schema.v1.core.Variant variants = 17;
-        bool is_control_sample = 18;
 
  .. list-table:: Phenopacket requirements for the ``Biosample`` element
    :widths: 25 50 50
@@ -207,15 +199,12 @@ the default value is false.
    * - diagnostic_markers
      - See :ref:`rstontologyclass`
      - recommended
-   * - diseases
-     - See :ref:`rstdisease`
-     - optional
    * - hts_files
      - See :ref:`rstfile`
      - optional
    * - variants
      - See :ref:`rstvariant`
-     - recommended
+     - optional
    * - bool is_control_sample
      - true or false
      - optional (default: false)
