@@ -51,7 +51,9 @@ An example schema
 ~~~~~~~~~~~~~~~~~
 
 protobuf represents data as messages whose fields are indicated and aliased with a number and tag. Fields can be required, optional, or repeated.
-The following message describes a dog. The name is represented as a string, and the field is indicated with the number 1. The weight of the dog is represented as an integer.  The toys field can store multiple items represented as a string. Note that in protobuf3, alls fields are optional by default and it is not possible to define a field as required.
+The following message describes a dog. The name is represented as a string, and the field is indicated with the number 1. The weight of the dog is represented as an integer.
+The toys field can store multiple items represented as a string. Note that in protobuf3,
+it is not possible to define a field as required.
 
 .. code-block:: proto
 

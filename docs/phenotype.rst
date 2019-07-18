@@ -72,7 +72,8 @@ For many medical use cases, either the Age sub-element or an :ref:`ontology clas
 
 evidence
 ~~~~~~~~
-This element can contain one or more :ref:`Evidence <rstevidence>` elements that specify how the phenotype was determined.
+This element is required and must contain one or more :ref:`Evidence <rstevidence>` elements
+that specify how the phenotype was determined.
 
 
 
@@ -93,7 +94,7 @@ This element can contain one or more :ref:`Evidence <rstevidence>` elements that
       - required
     * - negated
       - false
-      - required
+      - optional
     * - severity
       - :ref:`rstontologyclass` representing `HP:0012825  <https://hpo.jax.org/app/browse/term/HP:0012825>`_
       - optional

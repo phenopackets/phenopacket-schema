@@ -63,14 +63,14 @@ was to protect privacy of study participants).
 
 sex
 ~~~
-Phenopackets make use of an enumeration to denote the karyotypic sex of an individual.  This element
-represents the chromosomal sex of an individusal. See :ref:`here<rstsex>`.
+Phenopackets make use of an enumeration to denote the adminstrative sex of an individual.
+This element represents the chromosomal sex of an individual. See :ref:`here<rstsex>`.
 
 
 
 karyotypic_sex
 ~~~~~~~~~~~~~~
-Phenopackets make use of an enumeration to denote the "administrative" sex of an individual.
+Phenopackets make use of an enumeration to denote the chromosomal sex of an individual.
 See :ref:`here<rstkaryotypicsex>`.
 
 
@@ -83,12 +83,6 @@ NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
 
 
 
-
-
-
-   Sex sex = 6;
-   KaryotypicSex karyotypic_sex = 10;
-   OntologyClass taxonomy = 8;
 
 
  .. list-table:: Phenopacket requirements for the ``Individual`` element

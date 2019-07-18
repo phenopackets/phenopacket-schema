@@ -31,7 +31,7 @@ would be represented as follows.
     }
 
 
-In cases where it is not possible to represent the procedure adequately with a sinlge
+In cases where it is not possible to represent the procedure adequately with a single
 :ref:`rstontologyclass`, the body site should be indicated using a separate
 ontology class. For instance, the following indicates a punch biopsy on the
 skin of the forearm.

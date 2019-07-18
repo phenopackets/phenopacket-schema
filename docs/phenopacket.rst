@@ -11,7 +11,7 @@ genetic findings that are causative of the disease, or alternatively it can cont
 exome sequencing is being performed as a part of the differential diagnostic process. A Phenopacket can also be used to
 describe phenotypic abnormalities observed in a genetically modified animal model, or to describe the constitutional
 phenotypic findings of an individual with cancer (a :ref:`rstbiosample` should be used to describe the phenotypic
-abnormalities direclty associated with an extirpated or biospied tumor).
+abnormalities directly associated with an extirpated or biospied tumor).
 
 
 .. code:: proto
