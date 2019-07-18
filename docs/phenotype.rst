@@ -72,7 +72,7 @@ For many medical use cases, either the Age sub-element or an :ref:`ontology clas
 
 evidence
 ~~~~~~~~
-This element is required and must contain one or more :ref:`Evidence <rstevidence>` elements
+This element is recommended and contain one or more :ref:`Evidence <rstevidence>` elements
 that specify how the phenotype was determined.
 
 
@@ -106,7 +106,7 @@ that specify how the phenotype was determined.
       - optional
     * - evidence
       - An :ref:`Evidence <rstevidence>`
-      - required
+      - recommended
 
 
 
