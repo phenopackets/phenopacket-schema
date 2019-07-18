@@ -6,10 +6,11 @@ Phenopacket
 
 A Phenopacket is an anonymous phenotypic description of an individual or biosample with potential genes of interest
 and/or diagnoses. It can be used for multiple use cases. For instance, it can be used to describe the
-phenotypic findings observed in an individual with a rare disease. The phenopacket can contain information about
+phenotypic findings observed in an individual with a disease that is being studied or for an individual in
+whom the diagnosis is being sought. The phenopacket can contain information about
 genetic findings that are causative of the disease, or alternatively it can contain a reference to a VCF file if
 exome sequencing is being performed as a part of the differential diagnostic process. A Phenopacket can also be used to
-describe phenotypic abnormalities observed in a genetically modified animal model, or to describe the constitutional
+describe the constitutional
 phenotypic findings of an individual with cancer (a :ref:`rstbiosample` should be used to describe the phenotypic
 abnormalities directly associated with an extirpated or biospied tumor).
 
