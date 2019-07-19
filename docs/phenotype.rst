@@ -12,24 +12,38 @@ The word phenotype is used with many different meanings including disease entity
 An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
 frequency.
 
-This is the protobuf that we use to define a phenotypic feature
 
-.. code-block:: proto
-  
-  message PhenotypicFeature {
-    string description = 1;
-    OntologyClass type = 2;
-    bool negated = 3;
-    OntologyClass severity = 4;
-    repeated OntologyClass modifiers = 5;
-    oneof onset {
-        Age age_of_onset = 6;
-        AgeRange age_range_of_onset = 7;
-        OntologyClass class_of_onset = 9;
+**Data model**
+
+.. csv-table::
+   :header: Field, Type, Status, Description
+
+    description, string, optional, human-readable verbiage **NOT** for structured text
+    type, :ref:`rstontologyclass`, required,
+    negated, boolean, optional, defaults to `false`
+    severity, :ref:`rstontologyclass`, optional, description of the severity of the feature described in `type` representing `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
+    modifier, list of :ref:`rstontologyclass`, optional, representing one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
+    onset, :ref:`rstontologyclass`, optional, HP:0003674 `HP:0011462  <https://hpo.jax.org/app/browse/term/HP:0011462>`_
+    evidence, :ref:`Evidence <rstevidence>`, recommended, the evidence for an assertion of the observation of a `type`
+
+**Example**
+
+.. code-block:: json
+
+    {
+        "type": {
+          "id": "HP:0000520",
+          "label": "Proptosis"
+        },
+        "severity": {
+            id": "HP:0012825",
+            "label": "Mild"
+        }
+        "classOfOnset": {
+          "id": "HP:0003577",
+          "label": "Congenital onset"
+        }
     }
-    repeated Evidence evidence = 10;
-  }
-
 
 description
 ~~~~~~~~~~~
@@ -74,41 +88,6 @@ evidence
 ~~~~~~~~
 This element is recommended and contain one or more :ref:`Evidence <rstevidence>` elements
 that specify how the phenotype was determined.
-
-
-
-
-
-  .. list-table:: Phenopacket requirements for the ``Evidence`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - description
-      - free text
-      - optional
-    * - type
-      - :ref:`rstontologyclass` representing HP:0012823
-      - required
-    * - negated
-      - false
-      - optional
-    * - severity
-      - :ref:`rstontologyclass` representing `HP:0012825  <https://hpo.jax.org/app/browse/term/HP:0012825>`_
-      - optional
-    * - modifier
-      - list of :ref:`rstontologyclass` representing one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
-      - optional
-    * - onset
-      - :ref:`rstontologyclass` representing `HP:0011462  <https://hpo.jax.org/app/browse/term/HP:0011462>`_
-      - optional
-    * - evidence
-      - An :ref:`Evidence <rstevidence>`
-      - recommended
-
-
 
 
 
