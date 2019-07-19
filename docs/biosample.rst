@@ -14,7 +14,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
 
 **Data model**
 
- .. list-table:: Definition of the ``Biosample`` element
+ .. list-table::
    :widths: 25 25 50 50
    :header-rows: 1
 
@@ -51,7 +51,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - optional
      - Species of the sampled individual
    * - individual_age_at_collection
-     - see text
+     - :ref:`rstage` OR :ref:`rstagerange`
      - recommended
      - Age of the proband at the time the sample was taken
    * - histological_diagnosis
@@ -90,7 +90,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - boolean
      - optional (default: false)
      - whether the sample is being used as a normal control
-
 
 
 
@@ -149,10 +148,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
   }
 
 
-
-
-
-
 id
 ~~
 The Biosample id. This is unique in the context of the server instance.
@@ -193,7 +188,7 @@ NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
 
 individual_age_at_collection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-An age object describing the age of the individual this biosample was
+An :ref:`rstage` or :ref:`rstagerange` describing the age or age range of the individual this biosample was
 derived from at the time of collection. See :ref:`rstage` for further information.
 
 histological_diagnosis
