@@ -86,8 +86,8 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - :ref:`rstvariant`
      - optional
      - List of variants determined to be present in the biosample
-   * - bool is_control_sample
-     - true or false
+   * - is_control_sample
+     - boolean
      - optional (default: false)
      - whether the sample is being used as a normal control
 
