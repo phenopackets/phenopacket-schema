@@ -6,19 +6,20 @@ Karyotypic sex
 
 This enumeration represents the chromosomal sex of an individual.
 
-.. code:: proto
+**Data model**
 
-  enum KaryotypicSex {
-    UNKNOWN_KARYOTYPE = 0;
-    XX = 1;
-    XY = 2;
-    XO = 3;
-    XXY = 4;
-    XXX = 5;
-    XXYY = 6;
-    XXXY = 7;
-    XXXX = 8;
-    XYY = 9;
-    OTHER_KARYOTYPE = 10;
-  }
+.. csv-table::
+   :header: Name, Description
+
+    UNKNOWN_KARYOTYPE, Untyped or inconclusive karyotyping
+    XX, Female
+    XY, Male
+    XO, Single X chromosome only
+    XXY, Two X and one Y chromosome
+    XXX, Three X chromosomes
+    XXYY, Two X chromosomes and two Y chromosomes
+    XXXY, Three X chromosomes and one Y chromosome
+    XXXX, Four X chromosomes
+    XYY, One X and two Y chromosomes
+    OTHER_KARYOTYPE, None of the above types
 
