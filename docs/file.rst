@@ -6,8 +6,8 @@ File and HtsFile
 
 Phenopackets can be used to hold phenotypic information that can inform the analysis of
 sequencing data in `VCF format <https://www.ncbi.nlm.nih.gov/pubmed/21653522>`_ as well
-as other high-throughput sequencing (HTS) or other data types. The Phenopacket provides to
-messages that allow phenopackets to link to files with data.
+as other high-throughput sequencing (HTS) or other data types. The Phenopacket provides two
+messages that allow phenopackets to link files with data.
 
 
 

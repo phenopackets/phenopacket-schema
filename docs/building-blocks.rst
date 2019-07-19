@@ -25,7 +25,6 @@ building blocks.
    externalreference
    file
    gene
-   geolocation
    individual
    karyotypic sex <karyotypicsex>
    metadata

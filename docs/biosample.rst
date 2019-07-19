@@ -46,8 +46,8 @@ dataset_id
 ~~~~~~~~~~
 The ID of the dataset this Biosample belongs to.
 
-string individual_id
-~~~~~~~~~~~~~~~~~~~~
+individual_id
+~~~~~~~~~~~~~
 The id of the individual this biosample was derived from. It is not necessary to
 provide this information here if the Biosample is being transmitted as a part of
 a :ref:`rstphenopacket`.
