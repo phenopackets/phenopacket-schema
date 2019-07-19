@@ -10,7 +10,7 @@ a group of individuals being investigated in a genome-wide analysis study. We re
 to describe families being investigated for the presence of a Mendelian disease.
 
 
-
+**Data model**
 
 .. list-table:: Definition of the ``Cohort`` element
    :widths: 25 25 50 50
