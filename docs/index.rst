@@ -8,12 +8,12 @@ is available from the `phenopacket-schema GitHub repository <https://github.com/
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents
 
    introduction
-   building-blocks
    toplevel
+   building-blocks
    working
 
 
