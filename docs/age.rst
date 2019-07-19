@@ -7,14 +7,33 @@ Age
 
 The Age element allows the age of the subject to be encoded in several different ways that support different use cases.
 Age can be encoded either as `ISO8601 duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_ or as time
-interval '(preferred). Alternatively, the age can be encoded using an ontology term. Here is the message
+interval (preferred). Alternatively, the age can be encoded using an ontology term.
 
-.. code:: proto
 
-  message Age {
-    string age = 1;
-    OntologyClass age_class = 2;
+**Data model**
+
+.. csv-table::
+   :header: Field, Type, Status, Description
+   :align: left
+
+   age, string, optional, An ISO8601 string represent age
+   age_class, :ref:`rstontologyclass`, optional, an ontology class representing age
+
+
+
+If the Age message is used, at least one of the two elements ``age`` and ``age_class`` must be present.
+
+
+**Example**
+
+.. parsed-literal::
+
+  {
+      "age": "P25Y3M2D",
   }
+
+
+
 
 The string element (string age=1) should be used for ISO8601 duration or time intervals.
 The use of time intervals makes an additional anchor unnecessary (i.e. DOB and age can be
@@ -48,24 +67,6 @@ with the Human Developmental Stages ontology term second decade human stage
 
 
 
- .. list-table:: Phenopacket requirements for the ``Age`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - age
-      - P25Y3M2D
-      - optional
-    * - age_class
-      - An ontology term such as *second decade human stage* (HSAPDV:0000236)
-      - optional
-
-
-If the Age message is used, at least one of the two elements ``age`` and ``age_class`` must be present.
-
-
 FHIR mapping
 ~~~~~~~~~~~~
 This element is mapped to the FHIR using `Unified Code for Units of Measure (UCUM) <http://unitsofmeasure.org/trac/>`_.
@@ -83,12 +84,45 @@ The AgeRange element is inteded to be used when the age of a subject is represen
 such as this are used in some situations in order to protect the privacy of study participants, whose age is then
 represented by bins suich as 45-49 years, 50-54 years, 55-59 years, and so on.
 
-.. code-block:: proto
 
-  message AgeRange {
-    Age start = 1;
-    Age end = 2;
-  }
+
+
+
+**Data model**
+
+.. csv-table::
+   :header: Field, Type, Status, Description
+   :align: left
+
+   start, :ref:`rstage`, required, An Age message
+   end, :ref:`rstage`, required, An Age message
+
+
+|
+|
+|
+|
+
+
+**Example**
 
 For instance, to represent the bin 45-49 years, one could use an Age element with **P45Y** as the start element of the AgeRange elemnt,
 and an Age element with **P49Y** as the end element.
+
+
+
+
+.. parsed-literal::
+
+  {
+    "start": {
+        "age": "P45Y"
+    },
+    "end": {
+        "age": "P49Y"
+    }
+  }
+
+
+
+
