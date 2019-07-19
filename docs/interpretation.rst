@@ -247,11 +247,11 @@ to encode any knowledge or results of specific computations.
       - Status
       - Example
     * - status
-      - CAUSATIVE
+      - :ref:`rstgenomicinterpretationstatus`
       - required
-      -
+      - How the `call` of this :ref:`rstgenomicinterpretation` was interpreted
     * - call
-      - A :ref:`rstgene` or :ref:`rstvariant` element
+      - :ref:`rstgene` or :ref:`rstvariant`
       - required
       - The gene or variant contributing to the diagnosis
 
