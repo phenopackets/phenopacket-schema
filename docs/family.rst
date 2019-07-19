@@ -20,18 +20,44 @@ necessary to include Phenopacket elements for them. Instead, their status as una
 with the :ref:`rstpedigree` element.
 
 
+**Data model**
 
 
-.. code:: proto
+ .. list-table:: Definition of the ``Family`` element
+   :widths: 25 25 50 50
+   :header-rows: 1
 
-    message Family {
-        string id = 1;
-        Phenopacket proband = 2;
-        repeated Phenopacket relatives = 4;
-        org.phenopackets.schema.v1.core.Pedigree pedigree = 5;
-        repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 9;
-        org.phenopackets.schema.v1.core.MetaData meta_data = 10;
-    }
+   * - Field
+     - Type
+     - Status
+     - Description
+   * - id
+     - string
+     - required
+     - application-specific identifier
+   * - proband
+     - :ref:`rstphenopacket`
+     - required
+     - The proband (index patient) in the family
+   * - relatives
+     - :ref:`rstphenopacket` (list)
+     - optional
+     - list of Phenopackets for family members other than the proband
+   * - pedigree
+     - :ref:`rstpedigree`
+     - required
+     - representation of the pedigree
+   * - hts_files
+     - :ref:`rstfile` (list)
+     - optional
+     - list of high-throughput sequencing files
+   * - meta_data
+     - :ref:`rstmetadata`
+     - required
+     - Metadata about ontologies and references used in this message
+
+
+
 
 
 id
@@ -79,30 +105,3 @@ See :ref:`rstmetadata` for further information.
 
 
 
-
-
- .. list-table:: Phenopacket requirements for the ``Family`` element
-   :widths: 25 50 50
-   :header-rows: 1
-
-   * - Field
-     - Example
-     - Status
-   * - id
-     - arbitrary identifier
-     - required
-   * - proband
-     - See :ref:`rstphenopacket`
-     - required
-   * - relatives
-     - See :ref:`rstphenotype`
-     - optional
-   * - pedigree
-     - See :ref:`rstpedigree`
-     - required
-   * - hts_files
-     - See :ref:`rstfile`
-     - optional
-   * - meta_data
-     - See :ref:`rstmetadata`
-     - required
