@@ -9,6 +9,36 @@ The Resource element is a description of an external resource used for referenci
 resource may be an ontology such as the HPO or SNOMED. The :ref:`rstmetadata` element uses one resource
 element to describe each ontology that is referenced in the Phenopacket.
 
+**Data model**
+
+.. csv-table::
+   :header: Field, Type, Status, Description
+
+   id, string, required, hp
+   name, string, required, human phenotype ontology
+   namespace_prefix, string, required, HP
+   url, string, required, http://purl.obolibrary.org/obo/hp.owl
+   version, string, required, 2018-03-08
+   iri_prefix, string, required, http://purl.obolibrary.org/obo/HP_
+
+**Example**
+
+.. code-block:: json
+
+  {
+      "id": "so",
+      "name": "Sequence types and features",
+      "url": "http://purl.obolibrary.org/obo/so.owl",
+      "version": "2015-11-24",
+      "namespacePrefix": "SO",
+      "iriPrefix": "http://purl.obolibrary.org/obo/SO_"
+  }
+
+
+**FHIR Mapping**
+The FHIR mapping for the Phenopacket `Resource` is: `CodeSystem <http://www.hl7.org/fhir/codesystem.html>`_.
+
+
 id
 ~~
 For OBO Ontologies, the value of this string MUST always be the official
@@ -52,34 +82,3 @@ For example, using the HPO term encoding the concept of 'Severe' (which correspo
 `HP:0012828 <https://hpo.jax.org/app/browse/term/HP:0012828>`_), and the iri_prefix
 `http://purl.obolibrary.org/obo/HP_`, the term can
 be resolved to http://purl.obolibrary.org/obo/HP_0012828.
-
-
-**Data model**
-
-.. csv-table::
-   :header: Field, Type, Status, Description
-
-   id, string, required, hp
-   name, string, required, human phenotype ontology
-   namespace_prefix, string, required, HP
-   url, string, required, http://purl.obolibrary.org/obo/hp.owl
-   version, string, required, 2018-03-08
-   iri_prefix, string, required, http://purl.obolibrary.org/obo/HP_
-
-**Example**
-
-.. code-block:: json
-
-  {
-      "id": "so",
-      "name": "Sequence types and features",
-      "url": "http://purl.obolibrary.org/obo/so.owl",
-      "version": "2015-11-24",
-      "namespacePrefix": "SO",
-      "iriPrefix": "http://purl.obolibrary.org/obo/SO_"
-  }
-
-
-FHIR Mapping of the Resource element
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The FHIR mapping for the Phenopacket `Resource` is: `CodeSystem <http://www.hl7.org/fhir/codesystem.html>`_.

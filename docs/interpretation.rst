@@ -5,39 +5,163 @@ Interpretation
 This message intends to represent the interpretation of a genomic analysis, such as the report from
 a diagnostic laboratory.
 
+**Data model**
 
-.. code-block:: proto
+ .. list-table::
+    :widths: 25 50 50 50
+    :header-rows: 1
 
-  message Interpretation {
-      enum ResolutionStatus {
-          UNKNOWN = 0;
-          SOLVED = 1;
-          UNSOLVED = 3;
-          IN_PROGRESS = 4;
+    * - Field
+      - Type
+      - Status
+      - Description
+    * - id
+      - string
+      - required
+      - Arbitrary identifier
+    * - resolution_status
+      - :ref:`rstresolutionstatus`
+      - required
+      - The current status of work on the case
+    * - phenopacket_or_family
+      - :ref:`rstphenopacket` or :ref:`rstfamily` element
+      - required
+      - The subject of this interpretation
+    * - diagnosis
+      - :ref:`rstdiagnosis`
+      - repeated
+      - One or more diagnoses, if made
+    * - meta_data
+      - See :ref:`rstmetadata`
+      - required
+      - Metadata about this interpretation
+
+**Example**
+
+.. code-block:: json
+
+  {
+  "id": "SOLVERD:0000123456",
+  "resolutionStatus": "SOLVED",
+  "phenopacket": {
+    "id": "SOLVERD:0000234567",
+    "subject": {
+      "id": "SOLVERD:0000345678",
+      "dateOfBirth": "1998-01-01T00:00:00Z",
+      "sex": "MALE"
+    },
+    "phenotypicFeatures": [{
+      "type": {
+        "id": "HP:0001159",
+        "label": "Syndactyly"
+      },
+      "classOfOnset": {
+        "id": "HP:0003577",
+        "label": "Congenital onset"
       }
-      string id = 1;
-      ResolutionStatus resolution_status = 2;
-      oneof phenopacket_or_family {
-        org.phenopackets.schema.v1.Phenopacket phenopacket = 3;
-        org.phenopackets.schema.v1.Family family = 4;
+    }, {
+      "type": {
+        "id": "HP:0002090",
+        "label": "Pneumonia"
+      },
+      "classOfOnset": {
+        "id": "HP:0011463",
+        "label": "Childhood onset"
       }
-      repeated Diagnosis diagnosis = 5;
-      org.phenopackets.schema.v1.core.MetaData meta_data = 6;
-  }
+    }, {
+      "type": {
+        "id": "HP:0000028",
+        "label": "Cryptorchidism"
+      },
+      "classOfOnset": {
+        "id": "HP:0003577",
+        "label": "Congenital onset"
+      }
+    }, {
+      "type": {
+        "id": "HP:0011109",
+        "label": "Chronic sinusitis"
+      },
+      "severity": {
+        "id": "HP:0012828",
+        "label": "Severe"
+      },
+      "classOfOnset": {
+        "id": "HP:0003581",
+        "label": "Adult onset"
+      }
+    }],
+    "variants": [{
+      "hgvsAllele": {
+        "hgvs": "NM_001361.4:c.403C\u003eT"
+      },
+      "zygosity": {
+        "id": "GENO:0000135",
+        "label": "heterozygous"
+      }
+    }, {
+      "hgvsAllele": {
+        "hgvs": "NM_001361.4:c.454G\u003eA"
+      },
+      "zygosity": {
+        "id": "GENO:0000135",
+        "label": "heterozygous"
+      }
+    }, {
+      "hgvsAllele": {
+        "hgvs": "NM_001369.2:c.12599dupA"
+      },
+      "zygosity": {
+        "id": "GENO:0000136",
+        "label": "homozygous"
+      }
+    }]
+  },
+  "diagnosis": [{
+    "disease": {
+      "term": {
+        "id": "OMIM:263750",
+        "label": "Miller syndrome"
+      }
+    },
+    "genomicInterpretations": [{
+      "status": "CAUSATIVE",
+      "gene": {
+        "id": "HGNC:2867",
+        "symbol": "DHODH"
+      }
+    }]
+  }]
+ }
 
 id
 ~~
 The id has the same interpretation as the **id** element in the :ref:`rstindividual` element.
 
-resolution_status
+.. _rstresolutionstatus:
+
+Resolution_status
 ~~~~~~~~~~~~~~~~~
 
 The interpretation has a **ResolutionStatus** that refers to the status of the attempted diagnosis.
 
-* UNKNOWN No information is available about the diagnosis
-* SOLVED  The interpretation is considered to be a definitive diagnosis
-* UNSOLVED No definitive diagnosis was found
-* IN_PROGRESS No diagnosis has been found to date, but additional differential diagnostic work is in progress.
+**Data model**
+
+.. csv-table::
+   :header: Name, Description
+
+    UNKNOWN, No information is available about the diagnosis
+    SOLVED,  The interpretation is considered to be a definitive diagnosis
+    UNSOLVED, No definitive diagnosis was found
+    IN_PROGRESS, No diagnosis has been found to date but additional differential diagnostic work is in progress.
+
+**Example**
+
+.. code-block:: json
+
+ {
+    "resolutionStatus": "SOLVED"
+ }
 
 
 phenopacket_or_family
@@ -57,38 +181,6 @@ See :ref:`rstmetadata` for further information.
 
 .. _rstdiagnosis:
 
-
-
- .. list-table:: Phenopacket requirements for the ``Interpretation`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - id
-      - Arbitrary identifier
-      - required
-    * - resolution_status
-      - SOLVED
-      - required
-    * - phenopacket_or_family
-      - :ref:`rstphenopacket` or :ref:`rstfamily` element
-      - required
-    * - diagnosis
-      - see below
-      - optional
-    * - meta_data
-      - See :ref:`rstmetadata`
-      - required
-
-
-
-
-
-
-.. _rstdiagnosis:
-
 Diagnosis
 ~~~~~~~~~
 
@@ -96,56 +188,85 @@ The diagnosis element is meant to refer to the disease that is infered to be pre
 or family being analyzed. The diagnosis can be made by  means of an analysis of the phenotypic or the genomic findings or both.
 The element is optional because if the **resolution_status** is **UNSOLVED** then there is no diagnosis.
 
+**Data elements**
 
-
-.. code-block:: proto
-
-  message Diagnosis {
-    org.phenopackets.schema.v1.core.Disease disease = 1;
-    repeated GenomicInterpretation genomic_interpretations = 2;
-  }
-
-
-
- .. list-table:: Phenopacket requirements for the ``Diagnosis`` element
-    :widths: 25 50 50
+ .. list-table::
+    :widths: 25 50 50 50
     :header-rows: 1
 
     * - Field
-      - Example
+      - Type
       - Status
+      - Description
     * - disease
-      - :ref:`rstdisease` element
+      - :ref:`rstdisease`
       - required
+      - The diagnosed condition
     * - genomic_interpretations
-      - see below
-      - optional
+      - :ref:`rstgenomicinterpretation`
+      - repeated
+      - The genomic elements assessed as being responsible for the disease or empty
+
+**Example**
+
+.. code-block:: json
+
+ {
+    "disease": {
+      "term": {
+        "id": "OMIM:263750",
+        "label": "Miller syndrome"
+      }
+    },
+    "genomicInterpretations": [{
+      "status": "CAUSATIVE",
+      "gene": {
+        "id": "HGNC:2867",
+        "symbol": "DHODH"
+      }
+    }]
+ }
 
 The *genomic_interpretations* should be used if the genetic findings were used to help make the diagnosis, but can be
 omitted if genetic/genomic analysis was not contributory or were not performed.
 
+.. _rstgenomicinterpretation:
 
 GenomicInterpretation
 ~~~~~~~~~~~~~~~~~~~~~
 A statement about the contribution of a genomic element towards the observed phenotype. Note that this does not intend
 to encode any knowledge or results of specific computations.
 
+**Data model**
+ .. list-table::
+    :widths: 25 50 50 50
+    :header-rows: 1
 
-.. code-block:: proto
+    * - Field
+      - Type
+      - Status
+      - Example
+    * - status
+      - CAUSATIVE
+      - required
+      -
+    * - call
+      - A :ref:`rstgene` or :ref:`rstvariant` element
+      - required
+      - The gene or variant contributing to the diagnosis
 
-  message GenomicInterpretation {
-    enum Status {
-      UNKNOWN = 0;
-      REJECTED = 1;
-      CANDIDATE = 3;
-      CAUSATIVE = 4;
+**Example**
+
+.. code-block:: json
+
+    {
+      "status": "CAUSATIVE",
+      "gene": {
+        "id": "HGNC:2867",
+        "symbol": "DHODH"
+      }
     }
-    Status status = 1;
-    oneof call {
-      org.phenopackets.schema.v1.core.Gene gene = 2;
-      org.phenopackets.schema.v1.core.Variant variant = 3;
-    }
-  }
+
 
 A gene can be listed as **CAUSATIVE**. Alternatively, or additionally, a variant may be listed as
 **CAUSATIVE**. Note that the intended semantics is different from the
@@ -157,18 +278,27 @@ disease being investigated (for instance, a heterozygous variant associated with
 may be found in a proband with causative variants in another gene).
 
 
+.. _rstgenomicinterpretationstatus:
 
+GenomicInterpretation Status
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- .. list-table:: Phenopacket requirements for the ``GenomicInterpretation`` element
-    :widths: 25 50 50
-    :header-rows: 1
+An enumeration describing the status of a :ref:`rstgenomicinterpretation`
 
-    * - Field
-      - Example
-      - Status
-    * - status
-      - CAUSATIVE
-      - required
-    * - call
-      - A :ref:`rstgene` or :ref:`rstvariant` element
-      - required
+**Data model**
+
+.. csv-table::
+   :header: Name, Description
+
+    UNKNOWN, It is not known how this genomic element contributes to the diagnosis
+    REJECTED, The genomic element has been investigated and ruled-out
+    CANDIDATE, The genomic element is under investigation
+    CAUSATIVE, The genomic element has been judged to be contributing to the diagnosis
+
+**Example**
+
+.. code-block:: json
+
+    {
+      "status": "CAUSATIVE"
+    }

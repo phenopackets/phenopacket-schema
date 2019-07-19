@@ -12,14 +12,14 @@ Setting up the Java build
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 To include the phenopackets-schema package from maven central, add the following to the pom file
 
-Define the phenopackets.version in the properties section of the pom.xml file (the current version is 0.3.0).
+Define the phenopackets.version in the properties section of the pom.xml file.
 
 .. code-block:: xml
 
    <properties>
      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
      ...
-     <phenopackets.version>0.3.0</phenopackets.version>
+     <phenopackets.version>1.0.0</phenopackets.version>
    </properties>
 
 Then put the following stanza into the ``dependencies`` section of the maven pom.xml file.
