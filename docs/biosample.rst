@@ -13,30 +13,145 @@ Several instances (e.g. technical replicates) or types of experiments (e.g.
 genomic array as well as RNA-seq experiments) may refer to the same Biosample.
 
 
-.. code:: proto
 
-    message Biosample {
-        string id = 1;
-        string dataset_id = 2;
-        string individual_id = 3;
-        string description = 4;
-        OntologyClass sampled_tissue = 5;
-        repeated PhenotypicFeature phenotypic_features = 6;
-        OntologyClass taxonomy = 7;
-        oneof individual_age_at_collection {
-            Age age_of_individual_at_collection = 8;
-            AgeRange age_range_of_individual_at_collection = 9;
-        }
-        OntologyClass histological_diagnosis = 10;
-        OntologyClass tumor_progression = 11;
-        OntologyClass tumor_grade = 12;
-        repeated OntologyClass tumor_stage = 13;
-        repeated OntologyClass diagnostic_markers = 14;
-        Procedure procedure = 15;
-        repeated HtsFile hts_files = 16;
-        repeated Variant variants = 17;
-        bool is_control_sample = 18;
-    }
+ .. list-table:: Definition of the ``Biosample`` element
+   :widths: 25 25 50 50
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Status
+     - Description
+   * - id
+     - string
+     - required
+     - arbitrary identifier
+   * - dataset_id
+     - string
+     - optional
+     - arbitrary identifier
+   * - individual_id
+     - string
+     - optional
+     - arbitrary identifier
+   * - description
+     - string
+     - optional
+     - arbitrary text
+   * - sampled_tissue
+     - :ref:`rstontologyclass`
+     - required
+     - Tissue from which the sample was taken
+   * - phenotypic_features
+     - :ref:`rstphenotypicfeature`
+     - recommended
+     - List of phenotypic abnormalities of the sample
+   * - taxonomy
+     - :ref:`rstontologyclass`
+     - optional
+     - Species of the sampled individual
+   * - individual_age_at_collection
+     - see text
+     - recommended
+     - Age of the proband at the time the sample was taken
+   * - histological_diagnosis
+     - :ref:`rstontologyclass`
+     - recommended
+     - Disease diagnosis that was inferred from the histological examination
+   * - tumor_progression
+     - :ref:`rstontologyclass`
+     - recommended
+     - Indicates primary, metastatic, recurrent
+   * - tumor_grade
+     - :ref:`rstontologyclass`
+     - recommended
+     - List of terms representing the tumor grade
+   * - tumor_stage
+     - :ref:`rstontologyclass`
+     - recommended
+     - List of terms representing the tumor stage (TNM findings)
+   * - diagnostic_markers
+     - :ref:`rstontologyclass`
+     - recommended
+     - Clinically relevant biomarkers
+   * - procedure
+     - :ref:`rstprocedure`
+     - required
+     - The procedure used to extract the biosample
+   * - hts_files
+     - :ref:`rstfile`
+     - optional
+     - list of high-throughput sequencing files derived from the biosample
+   * - variants
+     - :ref:`rstvariant`
+     - optional
+     - List of variants determined to be present in the biosample
+   * - bool is_control_sample
+     - true or false
+     - optional (default: false)
+     - whether the sample is being used as a normal control
+
+
+
+
+**Example**
+
+.. parsed-literal::
+
+  {
+    "id": "sample1",
+    "datasetId": "",
+    "individualId": "patient1",
+    "description": "",
+    "sampledTissue": {
+      "id": "UBERON_0001256",
+      "label": "wall of urinary bladder"
+    },
+    "phenotypicFeatures": [],
+    "ageOfIndividualAtCollection": {
+      "age": "P52Y2M"
+    },
+    "histologicalDiagnosis": {
+      "id": "NCIT:C39853",
+      "label": "Infiltrating Urothelial Carcinoma"
+    },
+    "tumorProgression": {
+      "id": "NCIT:C84509",
+      "label": "Primary Malignant Neoplasm"
+    },
+    "tumorStage": [{
+      "id": "NCIT:C48766",
+      "label": "pT2b Stage Finding"
+    }, {
+      "id": "NCIT:C48750",
+      "label": "pN2 Stage Finding"
+    }],
+    "diagnosticMarkers": [],
+    "procedure": {
+      "code": {
+        "id": "NCIT:C5189",
+        "label": "Radical Cystoprostatectomy"
+      }
+    },
+    "htsFiles": [{
+      "htsFormat": "VCF",
+      "genomeAssembly": "GRCh38",
+      "individualToSampleIdentifiers": {
+      },
+      "file": {
+        "path": "/data/genomes/urothelial_ca_wgs.vcf.gz",
+        "uri": "",
+        "description": "Urothelial carcinoma sample"
+      }
+    }],
+    "variants": [],
+    "isControlSample": false
+  }
+
+
+
+
+
 
 id
 ~~
@@ -146,68 +261,6 @@ If true, this sample is being use as a normal control, often in combination with
 the default value is false.
 
 
-
-
-
-
- .. list-table:: Phenopacket requirements for the ``Biosample`` element
-   :widths: 25 50 50
-   :header-rows: 1
-
-   * - Field
-     - Example
-     - Status
-   * - id
-     - arbitrary identifier
-     - required
-   * - dataset_id
-     - arbitrary identifier
-     - optional
-   * - individual_id
-     - arbitrary identifier
-     - optional
-   * - description
-     - arbitrary text
-     - optional
-   * - sampled_tissue
-     - See :ref:`rstontologyclass`
-     - required
-   * - phenotypic_features
-     - See :ref:`rstphenotype`
-     - recommend (may be empty if this element is used merely to report the genotype in a sample)
-   * - taxonomy
-     - See :ref:`rstontologyclass`
-     - optional
-   * - individual_age_at_collection
-     - see text
-     - recommended
-   * - histological_diagnosis
-     - See :ref:`rstontologyclass`
-     - recommended
-   * - tumor_progression
-     - See :ref:`rstontologyclass`
-     - recommended
-   * - tumor_grade
-     - See :ref:`rstontologyclass`
-     - recommended
-   * - tumor_stage
-     - See :ref:`rstontologyclass`
-     - recommended
-   * - histological_diagnosis
-     - See :ref:`rstontologyclass`
-     - recommended
-   * - diagnostic_markers
-     - See :ref:`rstontologyclass`
-     - recommended
-   * - hts_files
-     - See :ref:`rstfile`
-     - optional
-   * - variants
-     - See :ref:`rstvariant`
-     - optional
-   * - bool is_control_sample
-     - true or false
-     - optional (default: false)
 
 
 
