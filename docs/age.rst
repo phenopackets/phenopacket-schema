@@ -29,7 +29,7 @@ If the Age message is used, at least one of the two elements ``age`` and ``age_c
 .. code-block:: json
 
   {
-      "age": "P25Y3M2D",
+      "age": "P25Y3M2D"
   }
 
 
@@ -80,10 +80,7 @@ AgeRange
 
 The AgeRange element is inteded to be used when the age of a subject is represented by a bin, e.g., 5-10 years. Bins
 such as this are used in some situations in order to protect the privacy of study participants, whose age is then
-represented by bins suich as 45-49 years, 50-54 years, 55-59 years, and so on.
-
-
-
+represented by bins such as 45-49 years, 50-54 years, 55-59 years, and so on.
 
 
 **Data model**
@@ -98,7 +95,7 @@ represented by bins suich as 45-49 years, 50-54 years, 55-59 years, and so on.
 
 **Example**
 
-For instance, to represent the bin 45-49 years, one could use an Age element with **P45Y** as the start element of the AgeRange elemnt,
+For instance, to represent the bin 45-49 years, one could use an Age element with **P45Y** as the start element of the AgeRange element,
 and an Age element with **P49Y** as the end element.
 
 .. code-block:: json
