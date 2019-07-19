@@ -9,23 +9,23 @@ This element does not represent gender identity, but instead represents
 "Administrative sex", which is used to indicate the sex a person has listed with
 their insurance company.
 
-.. code:: proto
+**Data model**
 
-  enum Sex {
-    UNKNOWN_SEX = 0;
-    FEMALE = 1;
-    MALE = 2;
-    OTHER_SEX = 3;
-  }
+.. csv-table::
+   :header: Name, Description
 
+    UNKNOWN_SEX,  Not assessed or not available.
+    FEMALE, female sex.
+    MALE, male sex.
+    OTHER_SEX, It is not possible to accurately assess the applicability of MALE/FEMALE.
 
-The meaning of the items is:
+**Example**
 
-1. UNKNOWN_SEX.  Not assessed or not available.
-2. FEMALE. female sex.
-3. MALE. male sex.
-4. OTHER_SEX. It is not possible, to accurately assess the applicability of MALE/FEMALE.
+.. code-block:: json
 
+    {
+        "sex": "UNKNOWN_SEX"
+    }
 
 FHIR mapping
 ~~~~~~~~~~~~
