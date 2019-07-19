@@ -10,40 +10,44 @@ we represent variants using the keyword ``oneof``, which is used in protobuf for
 with many  optional fields where at most one field will be set at the same time. Variant messages
 contain an allele and the zygosity of the allele.
 
-Alleles can be
-listed using HGVS, VCF, SPDI or ISCN notation.::
+Alleles can be listed using HGVS, VCF, SPDI or ISCN notation.
 
-    message Variant {
-      oneof allele {
-        HgvsAllele hgvs_allele = 2;
-        VcfAllele vcf_allele = 3;
-        SpdiAllele spdi_allele = 4;
-        IscnAllele iscn_allele = 5;
-      }
-      OntologyClass zygosity = 6;
-    }
+The GA4GH Variant Representation specification are under review at the same time as Phenopackets, and we expect that this representation will be included in future version of Phenopackets.
 
-
+- See: https://vr-spec.readthedocs.io/en/1.0rc/
+- See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
 
 The ``variant`` element itself is an optional element of a ``Phenopacket``  or ``Biosample``. If it is present,
 the Phenopacket standard has the following requirements.
 
- .. list-table:: Phenopacket requirements for the ``variant`` element
-   :widths: 25 50 50
-   :header-rows: 1
 
-   * - Field
-     - Example
-     - Status
-   * - allele
-     - see individual elements, below
-     - required
-   * - zygosity
-     - See ``zygosity``, below
-     - recommended
+**Data model**
+
+.. csv-table::
+   :header: Field, Type, Status, Description
+
+    allele, :ref:`Allele`, required, one of the Allele types described below
+    zygosity, :ref:`OntologyClass` , recommended, See ``zygosity`` below
 
 
+**Example**
 
+.. code-block:: json
+
+    {
+        "spdiAllele": {
+          "seqId": "NC_000010.10",
+          "position": 123256214,
+          "deletedSequence": "T",
+          "insertedSequence": "G"
+        },
+        "zygosity": {
+          "id": "GENO:0000135",
+          "label": "heterozygous"
+        }
+    }
+
+.. _zygosity:
 
 zygosity
 ~~~~~~~~
@@ -52,6 +56,8 @@ terms taken from the `Genotype Ontology (GENO) <https://www.ebi.ac.uk/ols/ontolo
 affects one of two alleles at a certain locus, we could record the zygosity using the term
 `heterozygous (GENO:0000135) <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.
 
+
+.. _allele:
 
 allele
 ~~~~~~
@@ -62,109 +68,82 @@ HgvsAllele
 This element is used to describe an allele according to the nomenclature of the
 `Human Geneome Variation Society (HGVS) <http://www.hgvs.org/>`_. For instance,
 ``NM_000226.3:c.470T>G`` indicates that a T at position 470 of the sequence represented by version 3 of
-NM_000226 (which is the mRNA of the human keratin 9 gene `KRT9 <https://www.ncbi.nlm.nih.gov/nuccore/NM_000226.3>`_). ::
-
-    message HgvsAllele {
-        string id = 1;
-        string hgvs = 2;
-    }
-
+NM_000226 (which is the mRNA of the human keratin 9 gene `KRT9 <https://www.ncbi.nlm.nih.gov/nuccore/NM_000226.3>`_).
 
 We recommend using a tool such as `VariantValidator <https://variantvalidator.org/>`_ or
 `Mutalyzer <https://mutalyzer.nl/>`_ to validate the HGVS string. See the
 `HGVS recommendations <http://varnomen.hgvs.org/recommendations/DNA/variant/alleles/>`_ for details about the
 HGVS nomenclature.
 
+**Data model**
 
- .. list-table:: Phenopacket requirements for the ``HgvsAllele`` element
-   :widths: 25 50 50
-   :header-rows: 1
+.. csv-table::
+   :header: Field, Type, Status, Description
 
-   * - Field
-     - Example
-     - Status
-   * - id
-     - An arbitrary identifier
-     - recommended
-   * - hgvs
-     - NM_000226.3:c.470T>G
-     - required
+    id, string, recommended, An arbitrary identifier
+    hgvs, string, required, NM_000226.3:c.470T>G
 
+**Example**
 
+.. code-block:: json
+
+    {
+        "id": "",
+        "hgvs": "NM_000226.3:c.470T>G"
+    }
 
 VcfAllele
 ~~~~~~~~~
 This element is used to describe variants using the
 `Variant Call Format <https://samtools.github.io/hts-specs/VCFv4.3.pdf>`_, which is in near universal use
 for exome, genome, and other Next-Generation-Sequencing-based variant calling. It is an appropriate
-option to use for variants reported according to their chromosomal location as dervied from a VCF file. ::
-
-    message VcfAllele {
-        string genome_assembly = 1;
-        string id = 2;
-        string chr = 3;
-        int32 pos = 4;
-        string ref = 5;
-        string alt = 6;
-        string info = 7;
-    }
+option to use for variants reported according to their chromosomal location as derived from a VCF file.
 
 In the Phenopacket format, it is expected that one ``VcfAllele`` message described a single allele (in contrast to
 the actial VCF format that allows multiple alleles at the same position to be reported on the same line; to report
 these in Phenopacket format, two ``variant`` messages would be required).
 
-
 For structural variation the INFO field should contain the relevant information .
 In general, the ``info`` field should only be used to report structural variants and it is not expected that the
 Phenopacket will report the contents of the info field for single nucleotide and other small variants.
 
+**Data model**
 
- .. list-table:: Phenopacket requirements for the ``VcfAllele`` element
-   :widths: 25 50 50
-   :header-rows: 1
+.. csv-table::
+   :header: Field, Type, Status, Description
 
-   * - Field
-     - Example
-     - Status
-   * - genome_assembly
-     - GRCh38
-     - required
-   * - id
-     - An arbitrary identifier
-     - recommended
-   * - chr
-     - chr2
-     - required
-   * - pos
-     - 134327882
-     - required
-   * - ref
-     - A
-     - required
-   * - alt
-     - C
-     - required
-   * - info
-     - END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
-     - optional
+    genome_assembly, string, required, GRCh38
+    id, string, recommended, An arbitrary identifier
+    chr, string, required, chr2
+    pos, int32, required, 134327882
+    re, string, required, A
+    alt, string, required, C
+    info, string, optional, END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
 
+**Example**
+
+.. code-block:: json
+
+    {
+        "genome_assembly": "GRCh38",
+        "chr": "2",
+        "id": ".",
+        "pos": 134327882,
+        "ref": "A",
+        "alt": "<DUP>",
+        "info": "END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;",
+    }
 
 SpdiAllele
 ~~~~~~~~~~
 This option can be used as an alternative to the VcfAllele, and describes variants using the
 `Sequence Position Deletion Insertion (SPDI) notation <https://www.ncbi.nlm.nih.gov/variation/notation/>`_. We
-recommend that users familiarize themselves with this relatively new standard, which
-differs in important ways from other standards such as VCF and HGVS. SPDI has become the
+recommend that users familiarize themselves with this relatively new notation, which
+differs in important ways from other standards such as VCF and HGVS. SPDI has become the format of choice for
 `ClinVar <https://www.ncbi.nlm.nih.gov/clinvar/>`_, `dbSNP <https://www.ncbi.nlm.nih.gov/projects/SNP/>`_,
 and and soon the `EVA <https://www.ebi.ac.uk/eva/>`_.
 
 Tools for interconversion between SPDI, HGVS and VCF exist at the `NCBI <https://api.ncbi.nlm.nih.gov/variation/v0/>`_.
-
-Effort of the  GA4GH Variant Representation are ongoing, and this may change in future version of
-PhenoPackets.
-
-- See: https://docs.google.com/document/d/1Sulg3kECnorTEAbutINOsK-lFkKAcKpl6IHgPaPQEgA
-- See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
 
 SPDI stands for
 
@@ -184,44 +163,30 @@ starts immediately before the first nucleotide, and position 1 represents a dele
 first and second residues, and so on. Either the deleted or the inserted interval can be empty, resulting a pure
 insertion or deletion.
 
-
-
-
-The definition of the ``SpdiAllele`` element is as follows. ::
-
-    message SpdiAllele {
-        string id = 1;
-        string seq_id = 2;
-        int32 position = 3;
-        string deleted_sequence = 4;
-        string inserted_sequence = 5;
-    }
-
 Note that the deleted and inserted sequences in SPDI are all written on the positive strand for two-stranded molecules.
 
- .. list-table:: Phenopacket requirements for the ``SpdiAllele`` element
-   :widths: 25 50 50
-   :header-rows: 1
+**Data model**
 
-   * - Field
-     - Example
-     - Status
-   * - id
-     - An arbitrary identifier
-     - recommended
-   * - seq_id
-     - Seq1
-     - required
-   * - position
-     - 4
-     - required
-   * - deleted_sequence
-     - A
-     - required
-   * - inserted_sequence
-     - G
-     - required
+.. csv-table::
+   :header: Field, Type, Status, Description
 
+    id, string, recommended, An arbitrary identifier
+    seq_id, string, required, Seq1
+    position, int32, required, 4
+    deleted_sequence, string, required, A
+    inserted_sequence, string, required, G
+
+**Example**
+
+.. code-block:: json
+
+    {
+        "id": 1,
+        "seqId": "NC_000001.10",
+        "position": 12346,
+        "deletedSequence": "",
+        "insertedSequence": "T"
+    }
 
 
 IscnAllele
@@ -245,7 +210,7 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 
 **Example**
 
-.. code:: json
+.. code-block:: json
 
     {
       "id": "ISCN:12345",
