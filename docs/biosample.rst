@@ -12,7 +12,7 @@ sequencing or a protein fraction from a gradient centrifugation.
 Several instances (e.g. technical replicates) or types of experiments (e.g.
 genomic array as well as RNA-seq experiments) may refer to the same Biosample.
 
-
+**Data model**
 
  .. list-table:: Definition of the ``Biosample`` element
    :widths: 25 25 50 50
