@@ -230,27 +230,24 @@ This element can be used to describe cytogenetic anomalies according to the
 `International System for Human Cytogenetic Nomenclature (ISCN) <https://www.ncbi.nlm.nih.gov/pubmed/?term=18428230>`_,
 an international standard for human
 chromosome nomenclature, which includes band names,
-symbols and abbreviated terms used in the description of human chromosome and chromosome abnormalities. ::
-
-    message IscnAllele {
-        string id = 1;
-        string var = 2;
-    }
-
+symbols and abbreviated terms used in the description of human chromosome and chromosome abnormalities.
 
 For example
 del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 
- .. list-table:: Phenopacket requirements for the ``IscnAllele`` element
-   :widths: 25 50 50
-   :header-rows: 1
+**Data model**
 
-   * - Field
-     - Example
-     - Status
-   * - id
-     - An arbitrary identifier
-     - recommended
-   * - var
-     - t(8;9;11)(q12;p24;p12)
-     - required
+.. csv-table::
+   :header: Field, Type, Status, Description
+
+   id, string, recommended, An arbitrary identifier
+   var, string, required, t(8;9;11)(q12;p24;p12)
+
+**Example**
+
+.. code:: json
+
+    {
+      "id": "ISCN:12345",
+      "var": "t(8;9;11)(q12;p24;p12)"
+    }
