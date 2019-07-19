@@ -96,7 +96,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
 
 **Example**
 
-.. parsed-literal::
+.. code-block:: json
 
   {
     "id": "sample1",
