@@ -47,9 +47,9 @@ public class PhenopacketTest {
                 .setType(ontologyClass("HP:0000327", "Maxillary hypoplasia"))
                 .build();
 
-        PhenotypicFeature cloverleafSkullOccasional = PhenotypicFeature.newBuilder()
+        PhenotypicFeature cloverleafSkullSevere = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002676", "Cloverleaf skull"))
-                .addModifiers(ontologyClass("HP:0040283", "Occasional"))
+                .setSeverity(ontologyClass("HP:0012828", "Severe"))
                 .build();
 
         PhenotypicFeature brachydactyly = PhenotypicFeature.newBuilder()
@@ -71,19 +71,19 @@ public class PhenopacketTest {
 
         PhenotypicFeature proptosisCongenitalSevere = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
-                .addModifiers(ontologyClass("HP:0012828", "Severe"))
+                .setSeverity(ontologyClass("HP:0012828", "Severe"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
         PhenotypicFeature proptosisCongenitalMild = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
-                .addModifiers(ontologyClass("HP:0012825", "Mild"))
+                .setSeverity(ontologyClass("HP:0012825", "Mild"))
                 .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
         PhenotypicFeature intellectualDisabilityOccasional = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001249", "Intellectual disability"))
-                .addModifiers(ontologyClass("HP:0040283", "Occasional"))
+                .setSeverity(ontologyClass("HP:0040283", "Occasional"))
                 .build();
 
         Disease pfeifferSyndrome = Disease.newBuilder()
@@ -93,6 +93,7 @@ public class PhenopacketTest {
 
         Individual proband = Individual.newBuilder()
                 .setId("proband")
+                .setSex(Sex.MALE)
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
@@ -144,7 +145,7 @@ public class PhenopacketTest {
                 .setMetaData(metaData)
                 .build();
 
-        System.out.println(PhenopacketFormat.toYaml(pfeifferDiagnosisExample));
+        System.out.println(PhenopacketFormat.toJson(pfeifferDiagnosisExample));
     }
 
     @Test
@@ -155,7 +156,7 @@ public class PhenopacketTest {
     @Test
     void printRareDisease() throws IOException {
         // TODO Add a RareDiseaseFamilyFormat class for this case...
-        System.out.println(PhenopacketFormat.toYaml(TestExamples.rareDiseasePhenopacket()));
+        System.out.println(PhenopacketFormat.toJson(TestExamples.rareDiseasePhenopacket()));
     }
 
     @Test
