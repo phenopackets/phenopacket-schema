@@ -26,13 +26,11 @@ If the Age message is used, at least one of the two elements ``age`` and ``age_c
 
 **Example**
 
-.. parsed-literal::
+.. code-block:: json
 
   {
       "age": "P25Y3M2D",
   }
-
-
 
 
 The string element (string age=1) should be used for ISO8601 duration or time intervals.
@@ -98,21 +96,12 @@ represented by bins suich as 45-49 years, 50-54 years, 55-59 years, and so on.
    end, :ref:`rstage`, required, An Age message
 
 
-|
-|
-|
-|
-
-
 **Example**
 
 For instance, to represent the bin 45-49 years, one could use an Age element with **P45Y** as the start element of the AgeRange elemnt,
 and an Age element with **P49Y** as the end element.
 
-
-
-
-.. parsed-literal::
+.. code-block:: json
 
   {
     "start": {

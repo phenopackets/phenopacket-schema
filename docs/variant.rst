@@ -27,7 +27,7 @@ the Phenopacket standard has the following requirements.
    :header: Field, Type, Status, Description
 
     allele, :ref:`Allele`, required, one of the Allele types described below
-    zygosity, :ref:`OntologyClass` , recommended, See ``zygosity`` below
+    zygosity, :ref:`rstontologyclass` , recommended, See :ref:`zygosity` below
 
 
 **Example**
@@ -63,6 +63,8 @@ allele
 ~~~~~~
 The allele element is required and can be one and only one of ``HgvsAllele``, ``VcfAlelle``, ``SpdiAllele`` or ``IcsnAllele``.
 
+.. _hgvs:
+
 HgvsAllele
 ~~~~~~~~~~
 This element is used to describe an allele according to the nomenclature of the
@@ -91,6 +93,8 @@ HGVS nomenclature.
         "id": "",
         "hgvs": "NM_000226.3:c.470T>G"
     }
+
+.. _vcf:
 
 VcfAllele
 ~~~~~~~~~
@@ -133,6 +137,8 @@ Phenopacket will report the contents of the info field for single nucleotide and
         "alt": "<DUP>",
         "info": "END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;",
     }
+
+.. _spdi:
 
 SpdiAllele
 ~~~~~~~~~~
@@ -188,6 +194,7 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
         "insertedSequence": "T"
     }
 
+.. _iscn:
 
 IscnAllele
 ~~~~~~~~~~
