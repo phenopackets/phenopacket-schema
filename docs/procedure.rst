@@ -6,13 +6,7 @@ Procedure
 
 The Procedure element represents a clinical procedure performed on a subject in order to extract a biosample.
 
-.. code:: proto
-
-  message Procedure {
-    OntologyClass code = 1;
-    OntologyClass body_site = 2;
-  }
-
+.. _procedurecode:
 
 code
 ~~~~
@@ -21,31 +15,32 @@ This element is an :ref:`rstontologyclass` that represents clinical procedure pe
 would be represented as follows.
 
 
-.. code-block:: proto
+.. code-block:: json
 
-    procedure {
-        code {
-            id: "NCIT:C51585"
-            label: "Biopsy of Soft Palate"
+    {
+        "code": {
+            "id": "NCIT:C51585"
+            "label": "Biopsy of Soft Palate"
         }
     }
 
-
+body site
+~~~~~~~~~
 In cases where it is not possible to represent the procedure adequately with a single
 :ref:`rstontologyclass`, the body site should be indicated using a separate
 ontology class. For instance, the following indicates a punch biopsy on the
 skin of the forearm.
 
-.. code-block:: proto
+.. code-block:: json
 
-    procedure {
-        code {
-            id: "NCIT:C28743"
-            label: "Punch Biopsy"
-        }
-        body_site {
-            id: "UBERON:0003403"
-            label: "skin of forearm"
+    {
+        "code" {
+            "id": "NCIT:C28743"
+            "label": "Punch Biopsy"
+        },
+        "bodySite" {
+            "id": "UBERON:0003403"
+            "label": "skin of forearm"
         }
     }
 
@@ -53,21 +48,28 @@ skin of the forearm.
 If the Procedure element is used, it must contain a ``code`` element, but only need contain the
 body_site element if needed.
 
+**Data model**
 
- .. list-table:: Phenopacket requirements for the ``Procedure`` element
-    :widths: 25 50 50
-    :header-rows: 1
+.. csv-table::
+   :header: Field, Type, Status, Description
 
-    * - Field
-      - Example
-      - Status
-    * - code
-      - see above
-      - required
-    * - body_site
-      - See above
-      - optional
+    code, :ref:`rstontologyclass`, required, clinical procedure performed on a subject
+    body_site, :ref:`rstontologyclass`, optional, specific body site if unable to represent this is the :ref:`procedurecode`
 
+**Example**
+
+.. code-block:: json
+
+    {
+        "code" {
+            "id": "NCIT:C28743"
+            "label": "Punch Biopsy"
+        },
+        "bodySite" {
+            "id": "UBERON:0003403"
+            "label": "skin of forearm"
+        }
+    }
 
 FHIR mapping
 ~~~~~~~~~~~~

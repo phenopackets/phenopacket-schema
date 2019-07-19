@@ -9,20 +9,6 @@ The Resource element is a description of an external resource used for referenci
 resource may be an ontology such as the HPO or SNOMED. The :ref:`rstmetadata` element uses one resource
 element to describe each ontology that is referenced in the Phenopacket.
 
-
-.. code-block:: proto
-
-    message Resource {
-        string id = 1;
-        string name = 2;
-        string namespace_prefix = 3;
-        string url = 4;
-        string version = 5;
-        string iri_prefix = 6;
-    }
-
-
-
 id
 ~~
 For OBO Ontologies, the value of this string MUST always be the official
@@ -68,33 +54,30 @@ For example, using the HPO term encoding the concept of 'Severe' (which correspo
 be resolved to http://purl.obolibrary.org/obo/HP_0012828.
 
 
+**Data model**
 
+.. csv-table::
+   :header: Field, Type, Status, Description
 
-  .. list-table:: Phenopacket requirements for the ``Resource`` element
-    :widths: 25 50 50
-    :header-rows: 1
+   id, string, required, hp
+   name, string, required, human phenotype ontology
+   namespace_prefix, string, required, HP
+   url, string, required, http://purl.obolibrary.org/obo/hp.owl
+   version, string, required, 2018-03-08
+   iri_prefix, string, required, http://purl.obolibrary.org/obo/HP_
 
-    * - Field
-      - Example
-      - Status
-    * - id
-      - hp
-      - required
-    * - name
-      - human phenotype ontology
-      - required
-    * - namespace_prefix
-      - HP
-      - required
-    * - url
-      - http://purl.obolibrary.org/obo/hp.owl
-      - required
-    * - version
-      - 2018-03-08
-      - required
-    * - iri_prefix
-      - http://purl.obolibrary.org/obo/HP_
-      - required
+**Example**
+
+.. code-block:: json
+
+  {
+      "id": "so",
+      "name": "Sequence types and features",
+      "url": "http://purl.obolibrary.org/obo/so.owl",
+      "version": "2015-11-24",
+      "namespacePrefix": "SO",
+      "iriPrefix": "http://purl.obolibrary.org/obo/SO_"
+  }
 
 
 FHIR Mapping of the Resource element

@@ -14,10 +14,10 @@ their insurance company.
 .. csv-table::
    :header: Name, Description
 
-    UNKNOWN_SEX,  Not assessed or not available.
-    FEMALE, female sex.
-    MALE, male sex.
-    OTHER_SEX, It is not possible to accurately assess the applicability of MALE/FEMALE.
+    UNKNOWN_SEX,  Not assessed or not available
+    FEMALE, female sex
+    MALE, male sex
+    OTHER_SEX, It is not possible to accurately assess the applicability of MALE/FEMALE
 
 **Example**
 
