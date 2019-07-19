@@ -19,10 +19,12 @@ would be represented as follows.
 
     {
         "code": {
-            "id": "NCIT:C51585"
+            "id": "NCIT:C51585",
             "label": "Biopsy of Soft Palate"
         }
     }
+
+.. _procedurebodysite:
 
 body site
 ~~~~~~~~~
@@ -35,11 +37,11 @@ skin of the forearm.
 
     {
         "code" {
-            "id": "NCIT:C28743"
+            "id": "NCIT:C28743",
             "label": "Punch Biopsy"
         },
         "bodySite" {
-            "id": "UBERON:0003403"
+            "id": "UBERON:0003403",
             "label": "skin of forearm"
         }
     }
@@ -62,15 +64,15 @@ body_site element if needed.
 
     {
         "code" {
-            "id": "NCIT:C28743"
+            "id": "NCIT:C28743",
             "label": "Punch Biopsy"
         },
         "bodySite" {
-            "id": "UBERON:0003403"
+            "id": "UBERON:0003403",
             "label": "skin of forearm"
         }
     }
 
-FHIR mapping
-~~~~~~~~~~~~
+**FHIR mapping**
+
 `Procedure <https://www.hl7.org/fhir/procedure.html>`_.
