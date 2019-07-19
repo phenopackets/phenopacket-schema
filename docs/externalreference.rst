@@ -1,20 +1,42 @@
 .. _rstexternalreference:
 
-==========================
-External Reference element
-==========================
+==================
+External Reference
+==================
 
 
-This element encodes the evidence type using, for example
-the `Evidence & Conclusion Ontology (ECO) `http://purl.obolibrary.org/obo/eco.owl`_.
+This element encodes information about an external reference.
 
 
-.. code-block:: proto
+**Data model**
 
-    message ExternalReference {
-        string id = 1;
-        string description = 2;
-    }
+
+ .. list-table:: Definition of the ``ExternalReference`` element
+    :widths: 25 25 50 50
+    :header-rows: 1
+
+    * - Field
+      - Type
+      - Status
+      - Description
+    * - id
+      - string
+      - required
+      - An application specific identifier
+    * - description
+      - string
+      - optional
+      - An application specific description
+
+
+**Example**
+
+.. code-block:: json
+
+   {
+     "id": "PMID:30962759",
+     "description": "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation"
+   }
 
 
 id
@@ -29,20 +51,6 @@ description
 An optional free text description of the evidence.
 
 
-
- .. list-table:: Phenopacket requirements for the ``Age`` element
-   :widths: 25 50 50
-   :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - id
-      - An arbitrary identifier.
-      - required
-    * - description
-      - free text
-      - optional
 
 
 
