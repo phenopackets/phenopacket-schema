@@ -12,15 +12,35 @@ to describe families being investigated for the presence of a Mendelian disease.
 
 
 
-.. code:: proto
+.. list-table:: Definition of the ``Cohort`` element
+   :widths: 25 25 50 50
+   :header-rows: 1
 
-    message Cohort {
-        string id = 1;
-        string description = 2;
-        repeated Phenopacket members = 3;
-        repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 4;
-        org.phenopackets.schema.v1.core.MetaData meta_data = 5;
-    }
+   * - Field
+     - Type
+     - Status
+     - Description
+   * - id
+     - string
+     - required
+     - arbitrary identifier
+   * - description
+     - string
+     - optional
+     - arbitrary text
+   * - members
+     - :ref:`rstphenopacket`
+     - required
+     - Phenopackets that represent members of the cohort
+   * - hts_files
+     - :ref:`rstfile`
+     - optional
+     - High-thoughput sequencing files obtained from members of the cohort
+   * - meta_data
+     - :ref:`rstmetadata`
+     - required
+     - Metadata related to the ontologies and references used in this message
+
 
 id
 ~~
@@ -52,27 +72,3 @@ See :ref:`rstmetadata` for further information.
 
 
 
-
-
- .. list-table:: Phenopacket requirements for the ``Cohort`` element
-   :widths: 25 50 50
-   :header-rows: 1
-
-   * - Field
-     - Example
-     - Status
-   * - id
-     - arbitrary identifier
-     - required
-   * - description
-     - arbitrary text
-     - optional
-   * - members
-     - See :ref:`rstphenopacket`
-     - required
-   * - hts_files
-     - See :ref:`rstfile`
-     - optional
-   * - meta_data
-     - See :ref:`rstmetadata`
-     - required
