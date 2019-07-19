@@ -6,6 +6,34 @@ Procedure
 
 The Procedure element represents a clinical procedure performed on a subject in order to extract a biosample.
 
+If the Procedure element is used, it must contain a ``code`` element, but only need contain the
+body_site element if needed.
+
+**Data model**
+
+.. csv-table::
+   :header: Field, Type, Status, Description
+
+    code, :ref:`rstontologyclass`, required, clinical procedure performed on a subject
+    body_site, :ref:`rstontologyclass`, optional, specific body site if unable to represent this is the :ref:`procedurecode`
+
+**Example**
+
+.. code-block:: json
+
+    {
+        "code" {
+            "id": "NCIT:C28743",
+            "label": "Punch Biopsy"
+        },
+        "bodySite" {
+            "id": "UBERON:0003403",
+            "label": "skin of forearm"
+        }
+    }
+
+**FHIR mapping:** `Procedure <https://www.hl7.org/fhir/procedure.html>`_
+
 .. _procedurecode:
 
 code
@@ -45,34 +73,3 @@ skin of the forearm.
             "label": "skin of forearm"
         }
     }
-
-
-If the Procedure element is used, it must contain a ``code`` element, but only need contain the
-body_site element if needed.
-
-**Data model**
-
-.. csv-table::
-   :header: Field, Type, Status, Description
-
-    code, :ref:`rstontologyclass`, required, clinical procedure performed on a subject
-    body_site, :ref:`rstontologyclass`, optional, specific body site if unable to represent this is the :ref:`procedurecode`
-
-**Example**
-
-.. code-block:: json
-
-    {
-        "code" {
-            "id": "NCIT:C28743",
-            "label": "Punch Biopsy"
-        },
-        "bodySite" {
-            "id": "UBERON:0003403",
-            "label": "skin of forearm"
-        }
-    }
-
-**FHIR mapping**
-
-`Procedure <https://www.hl7.org/fhir/procedure.html>`_.

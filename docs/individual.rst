@@ -8,21 +8,54 @@ The subject of the Phenopacket is represented by an *Individual* element.
 This element intends to represent an individual human or other organism. In this documentation,
 we explain the element using the example of a human proband in a clinical investigation.
 
-.. code-block:: proto
+ .. list-table::
+    :widths: 25 50 50 50
+    :header-rows: 1
 
-  message Individual {
-   string id = 1;
-   string dataset_id = 2;
-   google.protobuf.Timestamp date_of_birth = 3;
-   oneof age {
-       Age age_at_collection = 4;
-       AgeRange age_range_at_collection = 5;
-   }
-   Sex sex = 6;
-   KaryotypicSex karyotypic_sex = 10;
-   OntologyClass taxonomy = 8;
+    * - Field
+      - Type
+      - Status
+      - Example
+    * - id
+      - string
+      - required
+      - An arbitrary identifier
+    * - dataset_id
+      - string
+      - optional
+      - An arbitrary identifier
+    * - date_of_birth
+      - timestamp
+      - optional
+      - A timestamp either exact or imprecise
+    * - age
+      - :ref:`rstage` or :ref:`rstagerange`
+      - recommended
+      - The age or age range of the individual
+    * - sex
+      - :ref:`rstsex`
+      - recommended
+      - Observed apparent sex of the individual
+    * - karyotypic_sex
+      - :ref:`rstkaryotypicsex`
+      - optional
+      - The karyotypic sex of the individual
+    * - taxonomy
+      - :ref:`rstontologyclass`
+      - optional
+      - an :ref:`rstontologyclass` representing Canis lupus familiaris (NCBITaxon:9615)
+
+.. code-block:: json
+
+  {
+      "id": "patient:0",
+      "dateOfBirth": "1998-01-01T00:00:00Z",
+      "sex": "MALE"
   }
 
+
+**FHIR mapping**
+The Phenopackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.
 
 id
 ~~
@@ -80,42 +113,3 @@ For resources where there may be more than one organism being studied it is advi
 identifier of that organism, to its most specific level. We advise using the
 codes from the `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`_ resource. For instance,
 NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
-
-
-
-
-
- .. list-table:: Phenopacket requirements for the ``Individual`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - id
-      - Arbitrary identifier
-      - required
-    * - dataset_id
-      - Arbitrary identifier
-      - optional
-    * - date_of_birth
-      - (A timestamp)
-      - optional
-    * - age
-      - See :ref:`rstage`
-      - recommended
-    * - sex
-      - FEMALE
-      - recommended
-    * - karyotypic_sex
-      - XX
-      - optional
-    * - taxonomy
-      - an :ref:`rstontologyclass` representing Canis lupus familiaris (NCBITaxon:9615)
-      - optional
-
-
-
-FHIR mapping
-~~~~~~~~~~~~
-The Phenopackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.
