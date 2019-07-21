@@ -7,18 +7,81 @@ Metadata
 
 This element contains structured definitions of the resources and ontologies used within the phenopacket. It is considered to be a required element of a valid Phenopacket and application Q/C software should check this.
 
-The protobuf code is
+**Data model**
 
-.. code-block:: proto
+  .. list-table:: Definition of the ``Metadata`` element
+    :widths: 25 25 50 50
+    :header-rows: 1
 
-  message MetaData {
-    google.protobuf.Timestamp created = 1;
-    string created_by = 2;
-    string submitted_by = 3;
-    repeated Resource resources = 4;
-    repeated google.protobuf.Timestamp updated = 5;
-    string phenopacket_schema_version = 6;
-    repeated ExternalReference external_references = 7;
+    * - Field
+      - Type
+      - Status
+      - Description
+    * - created
+      - A Timestamp
+      - required
+      - Representation of the time when this object was created, e.g., 2019-04-01T15:10:17.808Z
+    * - created_by
+      - string
+      - required
+      - Name of person who created the phenopacket
+    * - submitted_by
+      - string
+      - optional
+      - Name of person who submitted the phenopacket
+    * - resources
+      - list of :ref:`rstresource`
+      - required
+      - (See text)
+    * - updated
+      - list of timestamps
+      - optional
+      - List of times when phenopacket was updated
+    * - phenopacket_schema_version
+      - string
+      - optional
+      - schema version of the current phenopacket
+    * - external_references
+      - List of :ref:`rstexternalreference`
+      - optional
+      - (See text)
+
+The `Metadata` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
+terms are used in the Phenopacket. For instance, if a MONDO term is used to specificy the disease and
+HPO terms are used to specificy the phenotypes of a patient, then the `Metadata` element MUST have
+one `Resource` element each for MONDO and HPO.
+
+**Example**
+
+.. code-block:: json
+
+  {
+    "created": "2019-07-21T00:25:54.662Z",
+    "createdBy": "Peter R.",
+    "resources": [{
+      "id": "hp",
+      "name": "human phenotype ontology",
+      "url": "http://purl.obolibrary.org/obo/hp.owl",
+      "version": "2018-03-08",
+      "namespacePrefix": "HP",
+      "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
+    }, {
+      "id": "geno",
+      "name": "Genotype Ontology",
+      "url": "http://purl.obolibrary.org/obo/geno.owl",
+      "version": "19-03-2018",
+      "namespacePrefix": "GENO",
+      "iriPrefix": "http://purl.obolibrary.org/obo/GENO_"
+    }, {
+      "id": "pubmed",
+      "name": "PubMed",
+      "namespacePrefix": "PMID",
+      "iriPrefix": "https://www.ncbi.nlm.nih.gov/pubmed/"
+    }],
+    "externalReferences": [{
+      "id": "PMID:30808312",
+      "description": "Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report. BMC Neurol. 2019;19(1):32."
+    }]
   }
 
 
@@ -58,37 +121,3 @@ external_references
 A list of :ref:`rstexternalreference` (such as the PubMed id of a publication from which a
 phenopacket was derived).
 
-
-  .. list-table:: Phenopacket requirements for the ``Metadata`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - created
-      - 2019-04-01T15:10:17.808Z
-      - required
-    * - created_by
-      - (Name of person who created the phenopacket
-      - required
-    * - submitted_by
-      - Name of person who submitted the phenopacket
-      - optional
-    * - resources
-      - (see text)
-      - required
-    * - updated
-      - list of timestamps for when phenopacket was updated
-      - optional
-    * - phenopacket_schema_version
-      - 1.0.0
-      - optional
-    * - external_references
-      - :ref:`rstexternalreference`
-      - optional
-
-The `Metadata` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
-terms are used in the Phenopacket. For instance, if a MONDO term is used to specificy the disease and
-HPO terms are used to specificy the phenotypes of a patient, then the `Metadata` element MUST have
-one `Resource` element each for MONDO and HPO.
