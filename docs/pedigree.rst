@@ -33,7 +33,8 @@ of a family, some of whom are affected by a Mendelian disease.
      - list of family members in this pedigree
 
 
-The pedigree is simply a list of Person objects.
+The pedigree is simply a list of Person objects. THese objects are meant to reflect the elements of
+a PED file.
 
 .. _rstperson:
 
@@ -116,6 +117,13 @@ have individuals that do not have an associated ``Phenopacket``. This is useful,
 is being used to store the affected/not affected status of family members being examined by exome or genome
 sequencing. In this case, it is expected that the ``individual_id`` elements match the sample identifiers
 of the exome/genome file.
+
+
+
+The Pedigree object  does not support reporting multiple phenotypes in one individual.
+The phenotype represented by the affectation status is whether the disease is present or not.
+If this is desired, then one would have to create full phenopackets for each individual in a family.
+
 
 
 

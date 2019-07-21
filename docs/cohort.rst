@@ -5,8 +5,10 @@ Cohort
 ======
 
 
-This element describes a group of individuals related in some phenotypic or genotypic aspect. It can be used to describe
-a group of individuals being investigated in a genome-wide analysis study. We recommend using the :ref:`rstfamily` element
+This element describes a group of individuals related in some phenotypic or genotypic aspect. For instance, a cohort
+can consist of individuals all of whom have been disagnosed with a certain disease or have been found to have
+a certain phenotypic feature.
+We recommend using the :ref:`rstfamily` element
 to describe families being investigated for the presence of a Mendelian disease.
 
 

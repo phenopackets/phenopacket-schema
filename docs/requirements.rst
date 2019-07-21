@@ -11,13 +11,12 @@ these fields have a certain format (syntax) or intended meaning (semantics). Sof
 check the validity of the data with other means. We provide a Java implementation called
 `Phenopacket Validator <https://github.com/phenopackets/phenopacket-validator>`_ that tests Phenopackets (and related
 messages including Family, Cohort, and Biosample messages) for validity. Application code may additional check for
-application-specific criteria. As an example, the Phenopacket Validator has three validators that are specific to
-an rare-disease Family Phenopacket that uses the Human Phenotype Ontology to describe phenotypes, a Biosample
-Phenopacket that makes use of terms from the National Cancer Institute's Thesaurus, and a Phenopacket that describes
-a mouse model of Mendelian disease.
+application-specific criteria.
 
 
-The Phenopacket schema uses three requirement levels.
+The Phenopacket schema uses three requirement levels. The required/recommended/optional designations are
+phenopacket-specific extensions used in the schema only (not code) and are not supported by protobuf.
+
 
 
 Required

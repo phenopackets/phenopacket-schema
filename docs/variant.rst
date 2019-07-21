@@ -145,9 +145,7 @@ SpdiAllele
 This option can be used as an alternative to the VcfAllele, and describes variants using the
 `Sequence Position Deletion Insertion (SPDI) notation <https://www.ncbi.nlm.nih.gov/variation/notation/>`_. We
 recommend that users familiarize themselves with this relatively new notation, which
-differs in important ways from other standards such as VCF and HGVS. SPDI has become the format of choice for
-`ClinVar <https://www.ncbi.nlm.nih.gov/clinvar/>`_, `dbSNP <https://www.ncbi.nlm.nih.gov/projects/SNP/>`_,
-and and soon the `EVA <https://www.ebi.ac.uk/eva/>`_.
+differs in important ways from other standards such as VCF and HGVS.
 
 Tools for interconversion between SPDI, HGVS and VCF exist at the `NCBI <https://api.ncbi.nlm.nih.gov/variation/v0/>`_.
 
