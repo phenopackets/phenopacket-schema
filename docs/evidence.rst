@@ -53,7 +53,7 @@ one might use
 the ECO term *author statement from published clinical study used in manual assertion*
 (`ECO:0006017 <https://www.ebi.ac.uk/ols/ontologies/eco/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FECO_0006017>`_)
 and record a PubMed id in the reference field
-(See :ref:`External Reference element`). 
+(See :ref:`rstexternalreference`).
 
 
 reference
