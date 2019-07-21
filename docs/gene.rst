@@ -12,7 +12,10 @@ the exact variant cannot be transmitted, either for privacy reasons or because i
 
 
 
-.. list-table:: Phenopacket requirements for the ``Gene`` element
+**Data model**
+
+
+.. list-table:: Definition  of the ``Gene`` element
    :widths: 25 25 50 50
    :header-rows: 1
 
