@@ -12,5 +12,6 @@ Introduction to Phenopackets
 
    Phenopacket basics <basics>
    requirements
+   ontologies
    protobuf
 

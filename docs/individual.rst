@@ -8,6 +8,8 @@ The subject of the Phenopacket is represented by an *Individual* element.
 This element intends to represent an individual human or other organism. In this documentation,
 we explain the element using the example of a human proband in a clinical investigation.
 
+**Data model**
+
  .. list-table::
     :widths: 25 50 50 50
     :header-rows: 1
@@ -15,7 +17,7 @@ we explain the element using the example of a human proband in a clinical invest
     * - Field
       - Type
       - Status
-      - Example
+      - Description
     * - id
       - string
       - required
@@ -43,7 +45,12 @@ we explain the element using the example of a human proband in a clinical invest
     * - taxonomy
       - :ref:`rstontologyclass`
       - optional
-      - an :ref:`rstontologyclass` representing Canis lupus familiaris (NCBITaxon:9615)
+      - an :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
+
+
+**Example**
+
+The following example is typical but does not make use of all of the optional fields of this element.
 
 .. code-block:: json
 
@@ -53,9 +60,6 @@ we explain the element using the example of a human proband in a clinical invest
       "sex": "MALE"
   }
 
-
-**FHIR mapping**
-The Phenopackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.
 
 id
 ~~
@@ -113,3 +117,6 @@ For resources where there may be more than one organism being studied it is advi
 identifier of that organism, to its most specific level. We advise using the
 codes from the `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`_ resource. For instance,
 NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
+
+**FHIR mapping**
+The Phenopackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.

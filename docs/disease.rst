@@ -11,16 +11,36 @@ i.e., and inference or hypothesis about the  cause underlying the observed pheno
 physicians use the word phenotype to refer to a disease, but we do not use this meaning here. The Disease element
 has two components.
 
-.. code-block:: proto
 
- message Disease {
-    OntologyClass term = 1;
-    oneof onset {
-        Age age_of_onset = 3;
-        AgeRange age_range_of_onset = 4;
-        OntologyClass class_of_onset = 6;
+
+**Data model**
+
+.. csv-table::
+   :header: Field, Type, Status, Description
+   :align: left
+
+   term, :ref:`rstontologyclass`, required, An ontology class that represents the disease
+   onset, :ref:`rstage` or :ref:`rstagerange` or :ref:`rstontologyclass`, optional, an element representing the age of onset of the disease
+
+
+
+**Example**
+
+.. code-block:: json
+
+  {
+  "term": {
+    "id": "OMIM:164400",
+    "label": "Spinocerebellar ataxia 1 "
+    },
+  "ageOfOnset": {
+    "age": "P38Y7M"
     }
-   }
+  }
+
+
+
+
 
 In the phenopacket schema, the disease element denotes the diagnosis by means of an ontology class. For rare
 diseases, we recommend using a term from  `Online Mendelian Inheritance in Man (OMIM) <https://omim.org/>`_ (e.g.,
@@ -32,23 +52,8 @@ ontologies and terminologies that can be used including `Disease Ontology <http:
 The ``onset`` element provides three possibilities of describing the onset of the disease. It is also possible
 to denote the onset of individual phenotypic features of disease in the Phenopacket element. If an ontology class
 is used to refer to the age of onset of the disease, we recommend using a term from
-`the HPO onset hierarchy <https://hpo.jax.org/app/browse/term/HP:0003674>`_. The FHIR mapping of the onset element
-is ``Condition.onset``.
+`the HPO onset hierarchy <https://hpo.jax.org/app/browse/term/HP:0003674>`_.
 
 
-
- .. list-table:: Phenopacket requirements for the ``Disease`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - term
-      - an :ref:`rstontologyclass` that represents the disease
-      - required
-    * - onset
-      - See above
-      - optional
 
 

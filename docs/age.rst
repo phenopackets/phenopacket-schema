@@ -6,8 +6,8 @@ Age
 
 
 The Age element allows the age of the subject to be encoded in several different ways that support different use cases.
-Age can be encoded either as `ISO8601 duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_ or as time
-interval (preferred). Alternatively, the age can be encoded using an ontology term.
+Age can be encoded either as `ISO8601 duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
+Alternatively, the age can be encoded using an ontology term.
 
 
 **Data model**
@@ -33,9 +33,7 @@ If the Age message is used, at least one of the two elements ``age`` and ``age_c
   }
 
 
-The string element (string age=1) should be used for ISO8601 duration or time intervals.
-The use of time intervals makes an additional anchor unnecessary (i.e. DOB and age can be
-represented as start-anchored time interval, e.g. 1967-11-21/P40Y10M05D). For many use cases,
+The string element (string age=1) should be used for ISO8601 durations (e.g., P40Y10M05D). For many use cases,
 less precise strings will be preferred for privacy reasons, e.g., P40Y.
 
 Alternatively, an :ref:`ontology class <rstontologyclass>` can be used to represent age. We recommend the
@@ -49,8 +47,7 @@ age
 ~~~
 
 It is possible to represent age using a string that should be formated according  as ISO8601
-duration or time intervals. We recommend using the ISO 8601 standard for representing
-age as a `Duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
+`Duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
 
 age_class
 ~~~~~~~~~
@@ -68,7 +65,7 @@ with the Human Developmental Stages ontology term second decade human stage
 FHIR mapping
 ~~~~~~~~~~~~
 This element is mapped to the FHIR using `Unified Code for Units of Measure (UCUM) <http://unitsofmeasure.org/trac/>`_.
-See also `Condition onset <http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_>`_.
+See also `Condition onset <http://build.fhir.org/condition-definitions.html#Condition.onset_x_>`_.
 
 
 

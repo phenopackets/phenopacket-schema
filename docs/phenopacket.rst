@@ -15,19 +15,53 @@ phenotypic findings of an individual with cancer (a :ref:`rstbiosample` should b
 abnormalities directly associated with an extirpated or biospied tumor).
 
 
-.. code:: proto
 
-    message Phenopacket {
-        string id = 1;
-        org.phenopackets.schema.v1.core.Individual subject = 2;
-        repeated org.phenopackets.schema.v1.core.PhenotypicFeature phenotypic_features = 3;
-        repeated org.phenopackets.schema.v1.core.Biosample biosamples = 5;
-        repeated org.phenopackets.schema.v1.core.Gene genes = 6;
-        repeated org.phenopackets.schema.v1.core.Variant variants = 7;
-        repeated org.phenopackets.schema.v1.core.Disease diseases = 8;
-        repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 9;
-        org.phenopackets.schema.v1.core.MetaData meta_data = 10;
-    }
+ .. list-table:: Definition of the ``Phenopacket`` element
+    :widths: 25 25 25 75
+    :header-rows: 1
+
+    * - Field
+      - Type
+      - Status
+      - Definition
+    * - id
+      - string
+      - required
+      - arbitrary identifier
+    * - subject
+      - :ref:`rstindividual`
+      - recommended
+      - The proband
+    * - phenotypic_features
+      - List of :ref:`phenotypicfeature`
+      - recommended
+      - Phenotypic features observed in the proband
+    * - biosamples
+      - :ref:`rstbiosample`
+      - optional
+      - samples (e.g., biopsies), if any
+    * - genes
+      - :ref:`rstgene`
+      - optional
+      - Gene deemed to be relevant to the case (application specific)
+    * - variants
+      - List of :ref:`rstvariant`
+      - optional
+      - Variants identified in the proband
+    * - diseases
+      - List of :ref:`rstdisease`
+      - optional
+      - Disease(s) diagnosed in the proband
+    * - hts_files
+      - List of :ref:`rstfile`
+      - optional
+      - VCF or other high-througput sequencing files
+    * - meta_data
+      - :ref:`rstmetadata`
+      - required
+      - Information about ontologies and references used in the phenopacket
+
+
 
 
 
@@ -46,8 +80,8 @@ be a patient or proband of the study. See :ref:`rstindividual` for further infor
 
 
 phenotypic_features
-~~~~~~~~~~
-This is a list of phenotypic findings observed in the subject. See :ref:`rstphenotype` for further information.
+~~~~~~~~~~~~~~~~~~~
+This is a list of phenotypic findings observed in the subject. See :ref:`phenotypicfeature` for further information.
 
 
 biosamples
@@ -91,38 +125,3 @@ It is expected that every valid Phenopacket contains a metaData element.
 See :ref:`rstmetadata` for further information.
 
 
-
- .. list-table:: Phenopacket requirements for the ``Phenopacket`` element
-   :widths: 25 50 50
-   :header-rows: 1
-
-   * - Field
-     - Example
-     - Status
-   * - id
-     - arbitrary identifier
-     - required
-   * - subject
-     - See :ref:`rstindividual`
-     - recommended
-   * - phenotypic_features
-     - See :ref:`rstphenotype`
-     - recommended
-   * - biosamples
-     - See :ref:`rstbiosample`
-     - optional
-   * - genes
-     - :ref:`rstgene`
-     - optional
-   * - variants
-     - See :ref:`rstvariant`
-     - optional
-   * - diseases
-     - See :ref:`rstdisease`
-     - optional
-   * - hts_files
-     - See :ref:`rstfile`
-     - optional
-   * - meta_data
-     - See :ref:`rstmetadata`
-     - required

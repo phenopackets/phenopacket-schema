@@ -104,7 +104,7 @@ for exome, genome, and other Next-Generation-Sequencing-based variant calling. I
 option to use for variants reported according to their chromosomal location as derived from a VCF file.
 
 In the Phenopacket format, it is expected that one ``VcfAllele`` message described a single allele (in contrast to
-the actial VCF format that allows multiple alleles at the same position to be reported on the same line; to report
+the actual VCF format that allows multiple alleles at the same position to be reported on the same line; to report
 these in Phenopacket format, two ``variant`` messages would be required).
 
 For structural variation the INFO field should contain the relevant information .
@@ -145,9 +145,7 @@ SpdiAllele
 This option can be used as an alternative to the VcfAllele, and describes variants using the
 `Sequence Position Deletion Insertion (SPDI) notation <https://www.ncbi.nlm.nih.gov/variation/notation/>`_. We
 recommend that users familiarize themselves with this relatively new notation, which
-differs in important ways from other standards such as VCF and HGVS. SPDI has become the format of choice for
-`ClinVar <https://www.ncbi.nlm.nih.gov/clinvar/>`_, `dbSNP <https://www.ncbi.nlm.nih.gov/projects/SNP/>`_,
-and and soon the `EVA <https://www.ebi.ac.uk/eva/>`_.
+differs in important ways from other standards such as VCF and HGVS.
 
 Tools for interconversion between SPDI, HGVS and VCF exist at the `NCBI <https://api.ncbi.nlm.nih.gov/variation/v0/>`_.
 

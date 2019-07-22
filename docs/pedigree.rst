@@ -17,24 +17,87 @@ This message represets the core Ped file information
 that is used by many programs for analysis of a multi-sample VCF file with exome or genome sequences of members
 of a family, some of whom are affected by a Mendelian disease.
 
-.. code-block:: proto
+**Data model**
 
-  message Pedigree {
-    repeated Person persons = 1;
-    message Person {
-        enum AffectedStatus {
-            MISSING = 0;
-            UNAFFECTED = 1;
-            AFFECTED = 2;
-        }
-        string family_id = 1;
-        string individual_id = 2;
-        string paternal_id = 3;
-        string maternal_id = 4;
-        Sex sex = 5;
-        AffectedStatus affected_status = 6;
-    }
-  }
+.. list-table:: Definition of the ``Pedigree`` element
+   :widths: 25 25 50 50
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Status
+     - Description
+   * - persons
+     - list of :ref:`rstperson`
+     - required
+     - list of family members in this pedigree
+
+
+The pedigree is simply a list of Person objects. THese objects are meant to reflect the elements of
+a PED file.
+
+.. _rstperson:
+
+Person
+~~~~~~
+
+
+.. list-table:: Definition of the ``Person`` element
+   :widths: 25 25 50 50
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Status
+     - Description
+   * - family_id
+     - string
+     - required
+     - application specific identifier
+   * - individual_id
+     - string
+     - required
+     - application specific identifier
+   * - family_id
+     - string
+     - required
+     - application specific identifier
+   * - paternal_id
+     - string
+     - required
+     - application specific identifier
+   * - paternal_id
+     - string
+     - required
+     - application specific identifier
+   * - sex
+     - :ref:`rstsex`
+     - required
+     - see text
+   * - affected_status
+     - :ref:`rstaffectedstatus`
+     - required
+     - see text
+
+
+.. _rstaffectedstatus:
+
+AffectedStatus
+~~~~~~~~~~~~~~
+
+
+
+This element is an enumeration
+
+.. csv-table::
+   :header: Name, Description
+
+   MISSING, 0
+   UNAFFECTED, 1
+   AFFECTED, 2
+
+
+
 
 The message is made up of a list of ``Person`` elements (the Person element is defined within the Pedigree element).
 Each Person element is equivalent to one row of a PED file.
@@ -57,32 +120,10 @@ of the exome/genome file.
 
 
 
- .. list-table::
- .. list-table:: Phenopacket requirements for the ``Person`` element
-   :widths: 25 50 50
-   :header-rows: 1
+The Pedigree object  does not support reporting multiple phenotypes in one individual.
+The phenotype represented by the affectation status is whether the disease is present or not.
+If this is desired, then one would have to create full phenopackets for each individual in a family.
 
-   * - Field
-     - Example/Explanation
-     - Status
-   * - family_id
-     - FAM001
-     - required
-   * - individual_id
-     - A unique identifier for the sample
-     - required
-   * - paternal_id
-     - The sample ID for the father of individual_id (or 0 if the father is not represented in the pedigree)
-     - required
-   * - maternal_id
-     -  The sample ID for the mother of individual_id (or 0 if the mother is not represented in the pedigree)
-     - required
-   * - sex
-     - 1 for male, 2 for female, 0 if unknown (the integers associated with the phenopacket Sex enumeration correspond to the conventional PED file codes)
-     - required
-   * - affected_status
-     - 1 for unaffected, 2 for affected, 0 if unknown. (the integers associated with the phenopacket AffectedStatus enumeration correspond to the conventional PED file codes)
-     - required
 
 
 
