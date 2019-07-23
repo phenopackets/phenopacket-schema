@@ -347,9 +347,9 @@ message Disease {
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
     oneof onset {
-        Age age_of_onset = 3;
-        AgeRange age_range_of_onset = 4;
-        OntologyClass class_of_onset = 6;
+        Age age_of_onset = 2;
+        AgeRange age_range_of_onset = 3;
+        OntologyClass class_of_onset = 4;
     }
 }
 
