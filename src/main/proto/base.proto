@@ -483,5 +483,5 @@ message SpdiAllele {
 message IscnAllele {
     string id = 1;
     // an ICSN code such as del(6)(q23q24) , t(8;9;11)(q12;p24;p12), +15
-    string var = 2;
+    string iscn = 2;
 }

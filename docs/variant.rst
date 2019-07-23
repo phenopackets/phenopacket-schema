@@ -198,9 +198,8 @@ IscnAllele
 ~~~~~~~~~~
 This element can be used to describe cytogenetic anomalies according to the
 `International System for Human Cytogenetic Nomenclature (ISCN) <https://www.ncbi.nlm.nih.gov/pubmed/?term=18428230>`_,
-an international standard for human
-chromosome nomenclature, which includes band names,
-symbols and abbreviated terms used in the description of human chromosome and chromosome abnormalities.
+an international standard for human chromosome nomenclature, which includes band names, symbols and
+abbreviated terms used in the description of human chromosome and chromosome abnormalities.
 
 For example
 del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
@@ -211,7 +210,7 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
    :header: Field, Type, Status, Description
 
    id, string, recommended, An arbitrary identifier
-   var, string, required, t(8;9;11)(q12;p24;p12)
+   iscn, string, required, t(8;9;11)(q12;p24;p12)
 
 **Example**
 
@@ -219,5 +218,5 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 
     {
       "id": "ISCN:12345",
-      "var": "t(8;9;11)(q12;p24;p12)"
+      "iscn": "t(8;9;11)(q12;p24;p12)"
     }
