@@ -119,4 +119,4 @@ codes from the `NCBI Taxonomy <https://www.ncbi.nlm.nih.gov/taxonomy>`_ resource
 NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
 
 **FHIR mapping**
-The Phenopackets schema maps the *Individual* element to the FHIR `Patient element <https://www.hl7.org/fhir/patient.html>`_.
+The Phenopackets schema maps the *Individual* element to the FHIR `Patient <https://www.hl7.org/fhir/patient.html>`_ resource.
