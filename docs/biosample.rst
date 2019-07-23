@@ -32,7 +32,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - arbitrary identifier
    * - individual_id
      - string
-     - optional
+     - recommended
      - arbitrary identifier
    * - description
      - string
@@ -158,7 +158,7 @@ The ID of the dataset this Biosample belongs to.
 
 individual_id
 ~~~~~~~~~~~~~
-The id of the individual this biosample was derived from. It is not necessary to
+The id of the individual this biosample was derived from. It is recommended, but not necessary to
 provide this information here if the Biosample is being transmitted as a part of
 a :ref:`rstphenopacket`.
 

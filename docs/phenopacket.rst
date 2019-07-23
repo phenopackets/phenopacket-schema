@@ -10,10 +10,8 @@ phenotypic findings observed in an individual with a disease that is being studi
 whom the diagnosis is being sought. The phenopacket can contain information about
 genetic findings that are causative of the disease, or alternatively it can contain a reference to a VCF file if
 exome sequencing is being performed as a part of the differential diagnostic process. A Phenopacket can also be used to
-describe the constitutional
-phenotypic findings of an individual with cancer (a :ref:`rstbiosample` should be used to describe the phenotypic
-abnormalities directly associated with an extirpated or biospied tumor).
-
+describe the constitutional phenotypic findings of an individual with cancer (a :ref:`rstbiosample` should be used to
+describe the phenotypic abnormalities directly associated with an extirpated or biopsied tumor).
 
 
  .. list-table:: Definition of the ``Phenopacket`` element
@@ -55,7 +53,7 @@ abnormalities directly associated with an extirpated or biospied tumor).
     * - hts_files
       - List of :ref:`rstfile`
       - optional
-      - VCF or other high-througput sequencing files
+      - VCF or other high-throughput sequencing files
     * - meta_data
       - :ref:`rstmetadata`
       - required

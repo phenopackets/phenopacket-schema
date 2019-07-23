@@ -140,7 +140,8 @@ public class PhenopacketTest {
                         // in this case the proband identifier is different to the sample
                         // identifier used in the VCF file
                         .putIndividualToSampleIdentifiers(proband.getId(), "SAMPLE0001")
-                        .setFile(File.newBuilder().setPath("/data/vcfs/proband.vcf").build())
+                        .setUri("file://data/vcfs/proband.vcf")
+                        .setGenomeAssembly("GRCh37")
                         .build())
                 .setMetaData(metaData)
                 .build();

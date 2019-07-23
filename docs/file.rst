@@ -1,26 +1,89 @@
 .. _rstfile:
 
 ================
-File and HtsFile
+HtsFile
 ================
 
 Phenopackets can be used to hold phenotypic information that can inform the analysis of
 sequencing data in `VCF format <https://www.ncbi.nlm.nih.gov/pubmed/21653522>`_ as well
-as other high-throughput sequencing (HTS) or other data types. The Phenopacket provides two
-messages that allow phenopackets to link files with data.
+as other high-throughput sequencing (HTS) or other data types. The HtsFile
+message allows a Phenopacket to link HTS files with data.
 
 
+HtsFile
+~~~~~~~
 
-File
-~~~~
+.. list-table::
+    :widths: 25 50 50 50
+    :header-rows: 1
+
+    * - Field
+      - Type
+      - Status
+      - Description
+    * - uri
+      - string
+      - required
+      - A valid URI e.g. file://data/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
+    * - description
+      - string
+      - optional
+      - arbitrary description of the file
+    * - hts_format
+      - :ref:`rsthtsformat`
+      - required
+      - VCF
+    * - genome_assembly
+      - string
+      - required
+      - e.g. GRCh38
+    * - individual_to_sample_identifiers
+      - a map of string key: value
+      - recommended
+      - The mapping between the Individual.id or Biosample.id to the sample identifier in the HTS file
 
 
-.. code-block:: proto
+.. _rsthtsformat:
 
-    message File {
-        string path = 1;
-        string uri = 2;
-        string description = 3;
+HtsFormat
+~~~~~~~~~
+This message is used for a file in one of the `HTS formats <https://samtools.github.io/hts-specs>`_.
+
+
+.. list-table::
+    :widths: 25 100
+    :header-rows: 1
+
+    * - Field
+      - Description
+    * - UNKNOWN
+      - An HTS file of unknown type.
+    * - SAM
+      - A SAM format file
+    * - BAM
+      - A BAM format file
+    * - CRAM
+      - A CRAM format file
+    * - VCF
+      - A VCF format file
+    * - BCF
+      - A BCF format file
+    * - GVCF
+      - A GVCF format file
+
+
+**Example**
+
+.. code-block:: json
+
+    {
+        "uri": "file://data/genomes/germline_wgs.vcf.gz",
+        "description": "Matched normal germline sample",
+        "htsFormat": "VCF",
+        "genomeAssembly": "GRCh38",
+        "individualToSampleIdentifiers": {
+          "patient23456": "NA12345"
+        }
     }
 
 
@@ -39,50 +102,6 @@ An arbitrary description of the file contents.
 The `File` message MUST have at least one of `path` and `uri` and usually should just have one of the two (in exceptional
 cases the same file might be referenced on a local file system and on the network).
 
-
- .. list-table:: Phenopacket requirements for the ``File`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - path
-      - /data/genomes/file1.vcf.gz
-      - see text
-    * - uri
-      - https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
-      - see text
-    * - description
-      - arbitrary description
-      - optional
-
-
-
-HtsFile
-~~~~~~~
-This message is ued for a file in one of the `HTS formats <https://samtools.github.io/hts-specs>`_.
-
-
-.. code-block:: proto
-
-    message HtsFile {
-
-        enum HtsFormat {
-            UNKNOWN = 0;
-            SAM = 1;
-            BAM = 2;
-            CRAM = 3;
-            VCF = 4;
-            BCF = 5;
-            GVCF = 6;
-        }
-        HtsFormat hts_format = 1;
-        string genome_assembly = 2;
-        map<string, string> individual_to_sample_identifiers = 3;
-        File file = 4;
-    }
-
 hts_format
 ~~~~~~~~~~
 This indicates which format the file has.
@@ -96,31 +115,5 @@ individual_to_sample_identifiers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 A map of identifiers mapping an individual refered to in the Phenopacket
 to a sample in the file.
-The key values must correspond to the Individual::id for the individuals in the message, the values must map to the
-samples in the file.
-
-file
-~~~~
-A reference to the file.
-
-
-
- .. list-table:: Phenopacket requirements for the ``File`` element
-    :widths: 25 50 50
-    :header-rows: 1
-
-    * - Field
-      - Example
-      - Status
-    * - hts_format
-      - VCF
-      - required
-    * - genome_assembly
-      - GRCh38
-      - required
-    * - individual_to_sample_identifiers
-      - see text
-      - recommended
-    * - file
-      - reference to a `File` message
-      - required
+The key values must correspond to the Individual::id for the individuals in the message or Biosample::id for biosamples, the values must map to the
+samples in the HTS file.

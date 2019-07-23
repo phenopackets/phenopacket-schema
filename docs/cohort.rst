@@ -6,10 +6,11 @@ Cohort
 
 
 This element describes a group of individuals related in some phenotypic or genotypic aspect. For instance, a cohort
-can consist of individuals all of whom have been disagnosed with a certain disease or have been found to have
-a certain phenotypic feature.
-We recommend using the :ref:`rstfamily` element
-to describe families being investigated for the presence of a Mendelian disease.
+can consist of individuals all of whom have been diagnosed with a certain disease or have been found to have a certain
+phenotypic feature.
+
+We recommend using the :ref:`rstfamily` element to describe families being investigated for the presence of a Mendelian
+disease.
 
 
 **Data model**
