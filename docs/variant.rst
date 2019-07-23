@@ -20,6 +20,7 @@ The GA4GH Variant Representation specification are under review at the same time
 The ``variant`` element itself is an optional element of a ``Phenopacket``  or ``Biosample``. If it is present,
 the Phenopacket standard has the following requirements.
 
+*n.b.* phase information for alleles are not represented in this model
 
 **Data model**
 
