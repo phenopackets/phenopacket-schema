@@ -324,13 +324,6 @@ message Age {
     // anchor unnecessary (i.e. DOB and age can be represented as start-anchored
     // time interval, e.g. 1967-11-21/P40Y10M05D)
     string age = 1;
-
-    // An age class, the Human Developmental Stages ontology is recommended.
-    // For example:
-    //  age_class : { term_id : "HSAPDV:0000236", term : "second decade human stage" }
-    // or
-    //  age_class : { term_id : "HSAPDV:0000255", term : "114-year-old human stage" }
-    OntologyClass age_class = 2;
 }
 
 message AgeRange {
