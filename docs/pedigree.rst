@@ -6,20 +6,17 @@ Pedigree
 
 
 
-This element is used to represent a pedigree file (PRD file). A PED file ("pedigree file") describes the family relationships of each sample along with their
-gender and phenotype (See the detailed description
-at the `PLINK <http://zzz.bwh.harvard.edu/plink/data.shtml>`_ website for more information).
-PED files are typically used by software for genetic linkage analysis.
-PED files have six mandatory columns, and additional optional columns (that are typically not used
-in the context of genomic analysis).
+This element is used to represent a pedigree to describe the family relationships of each sample along with their
+gender and phenotype. Phenopackets uses a PED-like data structure  (See the detailed description
+at the `PLINK <http://zzz.bwh.harvard.edu/plink/data.shtml>`_ website for more information). PED files are typically
+used by software for genetic linkage analysis.
 
-This message represets the core Ped file information
-that is used by many programs for analysis of a multi-sample VCF file with exome or genome sequences of members
-of a family, some of whom are affected by a Mendelian disease.
+This message represents the core pedigree information which can be used by programs for analysis of a multi-sample VCF
+file with exome or genome sequences of members of a family, some of whom are affected by a Mendelian disease.
 
 **Data model**
 
-.. list-table:: Definition of the ``Pedigree`` element
+.. list-table::
    :widths: 25 25 50 50
    :header-rows: 1
 
@@ -33,7 +30,7 @@ of a family, some of whom are affected by a Mendelian disease.
      - list of family members in this pedigree
 
 
-The pedigree is simply a list of Person objects. THese objects are meant to reflect the elements of
+The pedigree is simply a list of Person objects. These objects are meant to reflect the elements of
 a PED file.
 
 .. _rstperson:
@@ -58,15 +55,11 @@ Person
      - string
      - required
      - application specific identifier
-   * - family_id
-     - string
-     - required
-     - application specific identifier
    * - paternal_id
      - string
      - required
      - application specific identifier
-   * - paternal_id
+   * - maternal_id
      - string
      - required
      - application specific identifier
@@ -85,9 +78,7 @@ Person
 AffectedStatus
 ~~~~~~~~~~~~~~
 
-
-
-This element is an enumeration
+This element is an enumeration to
 
 .. csv-table::
    :header: Name, Description
@@ -95,8 +86,6 @@ This element is an enumeration
    MISSING, 0
    UNAFFECTED, 1
    AFFECTED, 2
-
-
 
 
 The message is made up of a list of ``Person`` elements (the Person element is defined within the Pedigree element).
@@ -117,8 +106,6 @@ have individuals that do not have an associated ``Phenopacket``. This is useful,
 is being used to store the affected/not affected status of family members being examined by exome or genome
 sequencing. In this case, it is expected that the ``individual_id`` elements match the sample identifiers
 of the exome/genome file.
-
-
 
 The Pedigree object  does not support reporting multiple phenotypes in one individual.
 The phenotype represented by the affectation status is whether the disease is present or not.
