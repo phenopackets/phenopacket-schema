@@ -41,7 +41,7 @@ This element encodes information about an external reference.
 
 id
 ~~
-The syntax of the identifier is application specific. In many contexts, it is a CURIE \
+The syntax of the identifier is application specific. In many contexts, it is a CURIE
 that uniquely identifies the evidence source, e.g.,
 **ISBN:978-3-16-148410-0** or **PMID:123456**.
 

@@ -6,8 +6,7 @@ Age
 
 
 The Age element allows the age of the subject to be encoded in several different ways that support different use cases.
-Age can be encoded either as `ISO8601 duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
-Alternatively, the age can be encoded using an ontology term.
+Age is encoded as `ISO8601 duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
 
 
 **Data model**

@@ -10,9 +10,10 @@ we represent variants using the keyword ``oneof``, which is used in protobuf for
 with many  optional fields where at most one field will be set at the same time. Variant messages
 contain an allele and the zygosity of the allele.
 
-Alleles can be listed using HGVS, VCF, SPDI or ISCN notation.
+Alleles can be listed using HGVS, VCF, SPDI or ISCN notation. The phenopacket schema will
+implement the `GA4GH Variation Representation Specification  <https://github.com/ga4gh/vr-spec>`_ once that
+is mature. The VR-Spec will be the recommended option in some settings.
 
-The GA4GH Variant Representation specification are under review at the same time as Phenopackets, and we expect that this representation will be included in future version of Phenopackets.
 
 - See: https://vr-spec.readthedocs.io/en/1.0rc/
 - See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
@@ -20,7 +21,7 @@ The GA4GH Variant Representation specification are under review at the same time
 The ``variant`` element itself is an optional element of a ``Phenopacket``  or ``Biosample``. If it is present,
 the Phenopacket standard has the following requirements.
 
-*n.b.* phase information for alleles are not represented in this model
+*n.b.* phase information for alleles are not represented in this model.
 
 **Data model**
 
