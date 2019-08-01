@@ -8,8 +8,7 @@ The word *phenotype* is used with many different meanings, including "the observ
 the word can be used with at least two different meanings. It is used to refer to
 some **observed** deviation from normal morphology, physiology, or behavior. In contrast, the *disease* is a diagnosis,
 i.e., and inference or hypothesis about the  cause underlying the observed phenotypic abnormalities. Occasionally,
-physicians use the word phenotype to refer to a disease, but we do not use this meaning here. The Disease element
-has two components.
+physicians use the word phenotype to refer to a disease, but we do not use this meaning here.
 
 
 
@@ -21,6 +20,7 @@ has two components.
 
    term, :ref:`rstontologyclass`, required, An ontology class that represents the disease
    onset, :ref:`rstage` or :ref:`rstagerange` or :ref:`rstontologyclass`, optional, an element representing the age of onset of the disease
+   tumor_stage, :ref:`rstontologyclass`, optional, List of terms representing the tumor stage (TNM findings)
 
 
 
@@ -38,8 +38,11 @@ has two components.
     }
   }
 
+See :ref:`rstcancerexample` for a usage of the Disease element that includes information about tumor staging.
 
 
+term
+~~~~
 
 
 In the phenopacket schema, the disease element denotes the diagnosis by means of an ontology class. For rare
@@ -48,6 +51,17 @@ OMIM:101600), `Orphanet <https://www.orpha.net/consor/cgi-bin/index.php>`_ (e.g.
 `MONDO <https://github.com/monarch-initiative/mondo>`_ (e.g., MONDO:0007043). There are many other
 ontologies and terminologies that can be used including `Disease Ontology <http://disease-ontology.org/>`_,
 `SNOMED <http://www.snomed.org/>`_, and `ICD <https://www.who.int/classifications/icd/en/>`_.
+
+tumor_stage
+~~~~~~~~~~~
+This element can be used if the phenopacket is described cancer. Tumor staging describes
+the extent of growth of cancer. including the tumor and if applicable affected lymph nodes, and
+distant metastases. See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
+This element should be derived from child terms of NCIT:C48232 (Cancer TNM Finding) or equivalent.
+
+
+age_of_onset
+~~~~~~~~~~~~
 
 The ``onset`` element provides three possibilities of describing the onset of the disease. It is also possible
 to denote the onset of individual phenotypic features of disease in the Phenopacket element. If an ontology class
