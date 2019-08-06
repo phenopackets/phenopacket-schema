@@ -20,6 +20,7 @@ building blocks.
    :maxdepth: 1
 
    age
+   biosample
    disease
    evidence
    externalreference
