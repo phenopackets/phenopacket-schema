@@ -66,10 +66,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - :ref:`rstontologyclass`
      - recommended
      - List of terms representing the tumor grade
-   * - tumor_stage
-     - :ref:`rstontologyclass`
-     - recommended
-     - List of terms representing the tumor stage (TNM findings)
    * - diagnostic_markers
      - :ref:`rstontologyclass`
      - recommended
@@ -217,11 +213,7 @@ tumor_grade
 This should be a child term of  NCIT:C28076 (Disease Grade Qualifier) or equivalent.
 See the `tumor grade fact sheet <https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet>`_.
 
-tumor_stage
-~~~~~~~~~~~
-Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
-See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
-This element should be derived from child terms of NCIT:C48232 (Cancer TNM Finding) or equivalent.
+
 
 diagnostic_markers
 ~~~~~~~~~~~~~~~~~~

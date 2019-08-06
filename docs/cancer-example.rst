@@ -125,13 +125,6 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
             "id": "NCIT:C84509",
             "label": "Primary Malignant Neoplasm"
         },
-        "tumorStage": [{
-            "id": "NCIT:C48766",
-            "label": "pT2b Stage Finding"
-           }, {
-            "id": "NCIT:C48750",
-            "label": "pN2 Stage Finding"
-        }],
         "diagnosticMarkers": [],
          "procedure": {
             "code": {
@@ -330,7 +323,8 @@ diseases
 ~~~~~~~~
 
 We recommend using the National Cancer Institute's Thesaurus codes to represent cancer diagnoses, but any
-relevant ontology term can be used.
+relevant ontology term can be used. Information about tumor staging should be addded here. See :ref:`rstdisease` for
+details.
 
 .. code-block:: json
 
@@ -338,7 +332,14 @@ relevant ontology term can be used.
         "term": {
             "id": "NCIT:C39853",
             "label": "Infiltrating Urothelial Carcinoma"
-            }
+            },
+        "tumorStage": [{
+             "id": "NCIT:C48766",
+             "label": "pT2b Stage Finding"
+             }, {
+             "id": "NCIT:C48750",
+             "label": "pN2 Stage Finding"
+        }],
     }],
 
 
