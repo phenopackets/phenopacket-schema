@@ -274,29 +274,24 @@ message Biosample {
     // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
     OntologyClass tumor_grade = 12;
 
-    // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
-    // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
-    // e.g. Child terms of NCIT:C48232 (Cancer TNM Finding)
-    repeated OntologyClass tumor_stage = 13;
-
     // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
     // NCIT:C25294 (Laboratory Procedure).
     // e.g. NCIT:C68748 (HER2/Neu Positive), NCIT:C131711 (Human Papillomavirus-18 Positive)
-    repeated OntologyClass diagnostic_markers = 14;
+    repeated OntologyClass diagnostic_markers = 13;
 
     // Clinical procedure performed on the subject in order to extract the biosample.
-    Procedure procedure = 15;
+    Procedure procedure = 14;
 
     // Pointer to the relevant HTS file(s) for the biosample.
-    repeated HtsFile hts_files = 16;
+    repeated HtsFile hts_files = 15;
 
     // Field for variants relevant to this biosample.
-    repeated Variant variants = 17;
+    repeated Variant variants = 16;
 
     // if true, this sample is being use as a normal control, often in combination with
     // another sample that is thought to contain a pathological finding
     // the default value is false
-    bool is_control_sample = 18;
+    bool is_control_sample = 17;
 }
 
 // A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the
@@ -345,6 +340,12 @@ message Disease {
         AgeRange age_range_of_onset = 3;
         OntologyClass class_of_onset = 4;
     }
+
+    // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
+    // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
+    // e.g. Child terms of NCIT:C48232 (Cancer TNM Finding)
+    repeated OntologyClass tumor_stage = 5;
+
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016

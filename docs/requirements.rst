@@ -25,7 +25,9 @@ If a field is required, its presence is  an absolute requirement of the specific
 phenopacket is regarded as malformed. This corresponds to the key woirds ``MUST``, ``REQUIRED``, and ``SHALL`` in
 `RFC2119 <https://www.ietf.org/rfc/rfc2119.txt>`_.
 
-Validation software must emit an error if a required field is missing.
+Validation software must emit an error if a required field is missing. We note that natively protobuf messages never
+return a null pointer, and so if a field is missing it will be an empty string, a zero, or default instance depending
+on the datatype. Therefore, in practive validation software does not need to check for null pointers.
 
 Recommended
 ===========
