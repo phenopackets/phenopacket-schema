@@ -14,6 +14,5 @@ the information.
    phenopacket
    family
    cohort
-   biosample
    interpretation
 
