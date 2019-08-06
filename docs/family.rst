@@ -58,8 +58,6 @@ with the :ref:`rstpedigree` element.
 
 
 
-
-
 id
 ~~
 An identifier specific for this family.
@@ -76,28 +74,28 @@ Individuals related in some way to the patient. For instance, the individuals ma
 be members of a cohort. If this field is used, then  it is expected that a pedigree will be included for
 genetically related individuals for use cases such as genomic diagnostics. If a phenopacket is being used to
 describe one member of a cohort, then in general one phenopacket will be created for each of the individuals in
-the cohort. If this field is used, then
-it is expected that a pedigree will be included for genetically related individuals
-for use cases such as genomic diagnostics. If all that is required
-is to record affected/not-affected status in a family, it is possible to use the pedigree element only.
+the cohort. If this field is used, then it is expected that a pedigree will be included for genetically related individuals
+for use cases such as genomic diagnostics. If all that is required is to record affected/not-affected status in a family,
+it is possible to use the pedigree element only.
 
 
 pedigree
 ~~~~~~~~
 The pedigree defining the relations between the proband and their relatives. This element
-contains information comaptible with the information in a PED file. Pedigree.individual_id MUST
-ap to the PhenoPacket.Individual.id. See :ref:`rstpedigree` for further information.
+contains information compatible with the information in a PED file. Pedigree.individual_id MUST
+map to the PhenoPacket.Individual.id. See :ref:`rstpedigree` for further information.
 
 hts_files
 ~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the patient. Each element
-describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-File element which optionally refers to a file on a given file system or can be a URI that
-refers to a resource on the web. See :ref:`rstfile` for further information.
+This element contains a list of pointers to the relevant HTS file(s) for the family as a whole. For a ``Family`` these
+files SHOULD be merged/multi-sample files with appropriate genotype information. In the case of a multi-sample VCF the sample
+identifiers MUST each map to a Pedigree.individual_id referenced in the ``pedigree`` field, in order that linkage
+analysis can be performed on the sample.
+
+See :ref:`rstfile` for further information.
 
 
-metaData
+meta_data
 ~~~~~~~~
 This element contains structured definitions of the resources and ontologies used within the phenopacket.
 It is expected that every valid Phenopacket contains a metaData element.

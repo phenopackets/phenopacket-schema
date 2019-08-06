@@ -133,15 +133,13 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
             }
         },
         "htsFiles": [{
-            "htsFormat": "VCF",
-            "genomeAssembly": "GRCh38",
-            "individualToSampleIdentifiers": {
-            },
-            "file": {
-                "path": "/data/genomes/urothelial_ca_wgs.vcf.gz",
-                "uri": "",
-                "description": "Urothelial carcinoma sample"
-            }
+          "uri": "file://data/genomes/urothelial_ca_wgs.vcf.gz",
+          "description": "Urothelial carcinoma sample",
+          "htsFormat": "VCF",
+          "genomeAssembly": "GRCh38",
+          "individualToSampleIdentifiers": {
+            "sample1": "BS342730"
+          }
         }],
         "variants": [],
         "isControlSample": false
@@ -298,15 +296,13 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
             }
         },
         "htsFiles": [{
-            "htsFormat": "VCF",
-            "genomeAssembly": "GRCh38",
-            "individualToSampleIdentifiers": {
-            },
-            "file": {
-                "path": "/data/genomes/metastasis_wgs.vcf.gz",
-                "uri": "",
-                "description": "lymph node metastasis sample"
-            }
+          "uri": "file://data/genomes/metastasis_wgs.vcf.gz",
+          "description": "lymph node metastasis sample",
+          "htsFormat": "VCF",
+          "genomeAssembly": "GRCh38",
+          "individualToSampleIdentifiers": {
+            "sample5": "BS730275"
+          }
         }],
         "variants": [],
         "isControlSample": false
@@ -350,14 +346,12 @@ This is a reference to the paired normal germline sample.
 .. code-block:: json
 
     "htsFiles": [{
+        "uri": "file://data/genomes/germline_wgs.vcf.gz",
+        "description": "Matched normal germline sample",
         "htsFormat": "VCF",
         "genomeAssembly": "GRCh38",
         "individualToSampleIdentifiers": {
-        },
-        "file": {
-            "path": "/data/genomes/germline_wgs.vcf.gz",
-            "uri": "",
-            "description": "Matched normal germline sample"
+          "patient1": "NA12345"
         }
     }],
 

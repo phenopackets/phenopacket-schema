@@ -63,11 +63,12 @@ hts_files
 This element contains a list of pointers to the relevant HTS file(s) for the cohort. Each element
 describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
 as well as a map of samples and individuals represented in that file. It also contains a
-File element which optionally refers to a file on a given file system or can be a URI that
-refers to a resource on the web. See :ref:`rstfile` for further information.
+URI element which refers to a file on a given file system or a resource on the web.
+
+See :ref:`rstfile` for further information.
 
 
-metaData
+meta_data
 ~~~~~~~~
 This element contains structured definitions of the resources and ontologies used within the phenopacket.
 It is expected that every valid Phenopacket contains a metaData element.

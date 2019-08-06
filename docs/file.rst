@@ -86,11 +86,6 @@ This message is used for a file in one of the `HTS formats <https://samtools.git
         }
     }
 
-
-path
-~~~~
-Full system path to the file. e.g. ``/data/genomes/file1.vcf.gz``.
-
 uri
 ~~~
 URI for the file e.g. `file://data/genomes/file1.vcf.gz` or `https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444`.
