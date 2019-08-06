@@ -14,4 +14,5 @@ Introduction to Phenopackets
    requirements
    ontologies
    protobuf
+   fhir
 
