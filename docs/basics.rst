@@ -4,7 +4,7 @@
 What is a Phenopacket?
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The Phenopacket Schema represents an open standard for sharing disease and phenotype information will improve our ability
+The Phenopacket Schema represents an open standard for sharing disease and phenotype information to improve our ability
 to understand, diagnose, and treat both rare and common diseases. A Phenopacket links detailed phenotype
 descriptions with disease, patient, and genetic information, enabling clinicians, biologists, and disease
 and drug researchers to build more complete models of disease (see :ref:`rstdisease` for the distinction
