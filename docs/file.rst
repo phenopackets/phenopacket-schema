@@ -9,6 +9,13 @@ sequencing data in `VCF format <https://www.ncbi.nlm.nih.gov/pubmed/21653522>`_ 
 as other high-throughput sequencing (HTS) or other data types. The HtsFile
 message allows a Phenopacket to link HTS files with data.
 
+Given that HtsFile elements are listed in various locations such as the ``Phenopacket``, ``Biosample``, ``Family`` etc.
+which can in turn be nested, individual HTS files MUST be contained within their appropriate scope.
+For example within a ``Phenopacket`` for germline samples of an individual or within the scope of the ``Phenopacket.Biosample``
+in the case of genomic data derived from sequencing that biosample. Aggregate data types such as ``Cohort`` and ``Family``
+MUST contain aggregate HTS file data i.e. merged/multi-sample VCF at the level of the Family/Cohort, but each member
+Phenopacket can contain its own locally-scope HTS files pertaining to that individual/biosample(s).
+
 
 HtsFile
 ~~~~~~~

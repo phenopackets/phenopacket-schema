@@ -88,8 +88,8 @@ map to the PhenoPacket.Individual.id. See :ref:`rstpedigree` for further informa
 hts_files
 ~~~~~~~~~
 This element contains a list of pointers to the relevant HTS file(s) for the family as a whole. For a ``Family`` these
-files SHOULD be merged/multi-sample files with appropriate genotype information. In the case of a multi-sample VCF the sample
-identifiers MUST each map to a Pedigree.individual_id referenced in the ``pedigree`` field, in order that linkage
+files MUST be merged/multi-sample files with appropriate genotype information. For a multi-sample file, the sample
+identifiers MUST each map to a ``Pedigree.individual_id`` referenced in the ``pedigree`` field, in order that linkage
 analysis can be performed on the sample.
 
 See :ref:`rstfile` for further information.

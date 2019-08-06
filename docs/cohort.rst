@@ -57,16 +57,17 @@ members
 ~~~~~~~
 One :ref:`phenopacket` is included for each member of the cohort.
 
-
 hts_files
 ~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the cohort. Each element
-describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
+This element contains a list of pointers to the relevant HTS file(s) for the cohort. The HTS file MUST be a
+multi-sample file referring to the entire cohort, if appropriate. Individual HTS files MUST otherwise be contained
+within their appropriate scope. e.g. within a ``Phenopacket`` for germline samples of an individual or within the scope
+of the ``Phenopacket.Biosample`` in the case of genomic data derived from sequencing that biosample.
+Each element describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
 as well as a map of samples and individuals represented in that file. It also contains a
 URI element which refers to a file on a given file system or a resource on the web.
 
 See :ref:`rstfile` for further information.
-
 
 meta_data
 ~~~~~~~~
