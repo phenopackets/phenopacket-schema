@@ -138,6 +138,12 @@ public class UrothelialCarcinomaExample {
     private Disease infiltratingUrothelialCarcinoma() {
         return Disease.newBuilder()
                 .setTerm(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"))
+                // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
+                // pT2b Stage Finding (Code C48766)
+                .addTumorStage(ontologyClass("NCIT:C48766", "pT2b Stage Finding"))
+                //pN2 Stage Finding (Code C48750)
+                // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
+                .addTumorStage(ontologyClass("NCIT:C48750", "pN2 Stage Finding"))
                 .build();
     }
 
@@ -168,19 +174,9 @@ public class UrothelialCarcinomaExample {
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
         // also want to mention the procedure, Prostatocystectomy (NCIT:C94464)
         //Infiltrating Urothelial Carcinoma (Code C39853)
-        OntologyClass infiltratingUrothelialCarcinoma = ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma");
-        biosampleBuilder.setHistologicalDiagnosis(infiltratingUrothelialCarcinoma);
+        biosampleBuilder.setHistologicalDiagnosis(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"));
         // A malignant tumor at the original site of growth
-        OntologyClass primary = ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm");
-        biosampleBuilder.setTumorProgression(primary);
-        // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
-        // pT2b Stage Finding (Code C48766)
-        OntologyClass pT2b = ontologyClass("NCIT:C48766", "pT2b Stage Finding");
-        biosampleBuilder.addTumorStage(pT2b);
-        //pN2 Stage Finding (Code C48750)
-        // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
-        OntologyClass pN2 = ontologyClass("NCIT:C48750", "pN2 Stage Finding");
-        biosampleBuilder.addTumorStage(pN2);
+        biosampleBuilder.setTumorProgression(ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm"));
         biosampleBuilder.addHtsFiles(createSomaticHtsFile());
         biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C5189", "Radical Cystoprostatectomy")).build());
         return biosampleBuilder.build();

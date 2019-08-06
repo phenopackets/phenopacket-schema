@@ -32,6 +32,9 @@ class CancerPhenopacketExample {
         //Diagnosis - should this be under Disease, or is it a phenotype of the patient or the biosample?
         Disease esophagealCarcinoma = Disease.newBuilder()
                 .setTerm(ontologyClass("NCIT:C4024","Esophageal Squamous Cell Carcinoma"))
+                .addTumorStage(ontologyClass("NCIT:C48724", "T2 Stage Finding"))
+                .addTumorStage(ontologyClass("NCIT:C48706", "N1 Stage Finding"))
+                .addTumorStage(ontologyClass("NCIT:C48699", "M0 Stage Finding"))
                 .build();
 
 
@@ -50,9 +53,6 @@ class CancerPhenopacketExample {
                 .setTumorProgression(ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm"))
                 //diagnosis: Squamous cell carcinoma of the esophagus, T2N1M0
                 .setHistologicalDiagnosis(ontologyClass("NCIT:C4024", "Esophageal Squamous Cell Carcinoma"))
-                .addTumorStage(ontologyClass("NCIT:C48724", "T2 Stage Finding"))
-                .addTumorStage(ontologyClass("NCIT:C48706", "N1 Stage Finding"))
-                .addTumorStage(ontologyClass("NCIT:C48699", "M0 Stage Finding"))
                 //HPV-18 positive (cancer tissue)
                 .addDiagnosticMarkers(ontologyClass("NCIT:C131711", "Human Papillomavirus-18 Positive"))
                 .setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build())
