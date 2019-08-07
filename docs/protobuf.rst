@@ -1,3 +1,5 @@
+.. _rstprotobuf:
+
 ================================
 A short introduction to protobuf
 ================================
