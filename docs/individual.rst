@@ -88,18 +88,14 @@ or an :ref:`AgeRange` element, which can represent a range of ages such as 10-14
 was to protect privacy of study participants).
 
 
-
 sex
 ~~~
-Phenopackets make use of an enumeration to denote the adminstrative sex of an individual.
-This element represents the chromosomal sex of an individual. See :ref:`here<rstsex>`.
-
+Phenopackets make use of an enumeration to denote the phenotypic sex of an individual. See :ref:`rstsex`.
 
 
 karyotypic_sex
 ~~~~~~~~~~~~~~
-Phenopackets make use of an enumeration to denote the chromosomal sex of an individual.
-See :ref:`here<rstkaryotypicsex>`.
+Phenopackets make use of an enumeration to denote the chromosomal sex of an individual. See :ref:`rstkaryotypicsex`.
 
 
 taxonomy
