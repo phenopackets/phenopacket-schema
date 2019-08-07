@@ -38,14 +38,12 @@ The `id` field is an arbitrary but required value.
 
 subject
 ~~~~~~~
-The subject block is an :ref:`rstindividual` element. The `id` and `datasetId` can be arbitrary identifiers (``id`` is required,
-and ``datasetId`` is optional).
+The subject block is an :ref:`rstindividual` element. The `id` can be arbitrary identifiers (``id`` is required).
 
 .. code-block:: json
 
     "subject": {
         "id": "patient1",
-        "datasetId": "urology cohort",
         "dateOfBirth": "1964-03-15T00:00:00Z",
         "sex": "MALE",
         "karyotypicSex": "UNKNOWN_KARYOTYPE"
@@ -106,7 +104,6 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
 
     {
         "id": "sample1",
-        "datasetId": "",
         "individualId": "patient1",
         "description": "",
         "sampledTissue": {
@@ -154,7 +151,6 @@ Prostate adenocarcinoma was discovered as an incidental finding. The tumor was f
 
     {
         "id": "sample2",
-        "datasetId": "",
         "individualId": "patient1",
         "description": "",
         "sampledTissue": {
@@ -198,7 +194,6 @@ A biopsy of the left ureter reveal normal findings.
 
     {
         "id": "sample3",
-        "datasetId": "",
         "individualId": "patient1",
         "description": "",
         "sampledTissue": {
@@ -235,7 +230,6 @@ A biopsy of the right ureter reveal normal findings.
 
     {
         "id": "sample4",
-        "datasetId": "",
         "individualId": "patient1",
         "description": "",
         "sampledTissue": {
@@ -272,7 +266,6 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
 
      {
         "id": "sample5",
-        "datasetId": "",
         "individualId": "patient1",
         "description": "",
         "sampledTissue": {

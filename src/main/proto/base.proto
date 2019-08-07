@@ -28,6 +28,12 @@ message MetaData {
     repeated ExternalReference external_references = 7;
 }
 
+message Update {
+    google.protobuf.Timestamp updated = 1;
+    string updated_by =2;
+    string comment = 3;
+}
+
 // Description of an external resource used for referencing an object. For example the resource may be an ontology such
 // as the HPO or SNOMED.
 // FHIR mapping: CodeSystem (http://www.hl7.org/fhir/codesystem.html)
@@ -149,34 +155,31 @@ message Individual {
     // An identifer for the individual. This must be unique within the record.
     string id = 1;
 
-    // The ID of the dataset this Individual belongs to.
-    string dataset_id = 2;
-
     // The date of birth of the individual as an ISO8601 UTC timestamp - rounded down to the closest known
     // year/month/day/hour/minute
     // e.g. "2018-03-01T00:00:00Z" for someone born on an unknown day in March 2018
     // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
     // or empty if unknown/ not stated.
-    google.protobuf.Timestamp date_of_birth = 3;
+    google.protobuf.Timestamp date_of_birth = 2;
 
     // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
     // See http://build.fhir.org/datatypes
     oneof age {
-        Age age_at_collection = 4;
-        AgeRange age_range_at_collection = 5;
+        Age age_at_collection = 3;
+        AgeRange age_range_at_collection = 4;
     }
 
     // The phenotypic / administrative sex of the individual
-    Sex sex = 6;
+    Sex sex = 5;
 
     // The karyotypic sex of the individual
-    KaryotypicSex karyotypic_sex = 10;
+    KaryotypicSex karyotypic_sex = 6;
 
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to its most specific level
-    OntologyClass taxonomy = 8;
+    OntologyClass taxonomy = 7;
 }
 
 // Sex of an individual
@@ -225,26 +228,23 @@ message Biosample {
     // context of the server instance.
     string id = 1;
 
-    // The ID of the dataset this Biosample belongs to.
-    string dataset_id = 2;
-
     // The id of the individual this biosample was derived from.
-    string individual_id = 3;
+    string individual_id = 2;
 
     // The biosample's description. This attribute contains human readable text.
     // The "description" attributes should not contain any structured data.
-    string description = 4;
+    string description = 3;
 
     // UBERON class describing the tissue from which the specimen was collected.
     // PDX-MI mapping: 'Specimen tumor tissue'
     // FHIR mapping: Specimen.type
-    OntologyClass sampled_tissue = 5;
+    OntologyClass sampled_tissue = 4;
 
     // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
-    repeated PhenotypicFeature phenotypic_features = 6;
+    repeated PhenotypicFeature phenotypic_features = 5;
 
     // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
-    OntologyClass taxonomy = 7;
+    OntologyClass taxonomy = 6;
 
     // An age object describing the age of the individual this biosample was
     // derived from at the time of collection. The Age object allows the encoding
@@ -252,14 +252,14 @@ message Biosample {
     // as ontology term object.
     //See http://build.fhir.org/datatypes
     oneof individual_age_at_collection {
-        Age age_of_individual_at_collection = 8;
-        AgeRange age_range_of_individual_at_collection = 9;
+        Age age_of_individual_at_collection = 7;
+        AgeRange age_range_of_individual_at_collection = 8;
     }
 
     // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
     // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
     // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
-    OntologyClass histological_diagnosis = 10;
+    OntologyClass histological_diagnosis = 9;
 
     // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
     // Most likely a child term of NCIT:C7062 (Neoplasm by Special Category)
@@ -268,30 +268,30 @@ message Biosample {
     // NCIT:C95606 (Second Primary Malignant Neoplasm)
     // NCIT:C3261 (Metastatic Neoplasm)
     // NCIT:C4813 (Recurrent Malignant Neoplasm)
-    OntologyClass tumor_progression = 11;
+    OntologyClass tumor_progression = 10;
 
     // Potentially a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent
     // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
-    OntologyClass tumor_grade = 12;
+    OntologyClass tumor_grade = 11;
 
     // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
     // NCIT:C25294 (Laboratory Procedure).
     // e.g. NCIT:C68748 (HER2/Neu Positive), NCIT:C131711 (Human Papillomavirus-18 Positive)
-    repeated OntologyClass diagnostic_markers = 13;
+    repeated OntologyClass diagnostic_markers = 12;
 
     // Clinical procedure performed on the subject in order to extract the biosample.
-    Procedure procedure = 14;
+    Procedure procedure = 13;
 
     // Pointer to the relevant HTS file(s) for the biosample.
-    repeated HtsFile hts_files = 15;
+    repeated HtsFile hts_files = 14;
 
     // Field for variants relevant to this biosample.
-    repeated Variant variants = 16;
+    repeated Variant variants = 15;
 
     // if true, this sample is being use as a normal control, often in combination with
     // another sample that is thought to contain a pathological finding
     // the default value is false
-    bool is_control_sample = 17;
+    bool is_control_sample = 16;
 }
 
 // A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the

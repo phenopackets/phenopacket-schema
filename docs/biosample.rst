@@ -26,10 +26,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - string
      - required
      - arbitrary identifier
-   * - dataset_id
-     - string
-     - optional
-     - arbitrary identifier
    * - individual_id
      - string
      - recommended
@@ -95,7 +91,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
 
   {
     "id": "sample1",
-    "datasetId": "",
     "individualId": "patient1",
     "description": "",
     "sampledTissue": {
@@ -145,10 +140,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
 id
 ~~
 The Biosample id. This is unique in the context of the server instance.
-
-dataset_id
-~~~~~~~~~~
-The ID of the dataset this Biosample belongs to.
 
 individual_id
 ~~~~~~~~~~~~~
@@ -210,7 +201,6 @@ tumor_grade
 ~~~~~~~~~~~
 This should be a child term of  NCIT:C28076 (Disease Grade Qualifier) or equivalent.
 See the `tumor grade fact sheet <https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet>`_.
-
 
 
 diagnostic_markers

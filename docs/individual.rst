@@ -22,10 +22,6 @@ we explain the element using the example of a human proband in a clinical invest
       - string
       - required
       - An arbitrary identifier
-    * - dataset_id
-      - string
-      - optional
-      - An arbitrary identifier
     * - date_of_birth
       - timestamp
       - optional
@@ -69,11 +65,6 @@ an individual with some genetic disease, the individual may be referred to in th
 the pedigree, e.g., III:2 for the second person in the third generation. In this case, id would be set to ``III:2``.
 If a :ref:`pedigree` element is used, it is essential that the ``id`` used here matches the ``individual_id`` of
 the :ref:`pedigree` element.
-
-dataset_id
-~~~~~~~~~~
-This element represents the ID of the dataset this Individual belongs to.
-This field is represented by a string and its syntax and meaning are application-dependent.
 
 date_of_birth
 ~~~~~~~~~~~~~
