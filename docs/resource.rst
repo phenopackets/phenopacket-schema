@@ -35,10 +35,6 @@ element to describe each ontology that is referenced in the Phenopacket.
   }
 
 
-**FHIR Mapping**
-The FHIR mapping for the Phenopacket `Resource` is: `CodeSystem <http://www.hl7.org/fhir/codesystem.html>`_.
-
-
 id
 ~~
 For OBO Ontologies, the value of this string MUST always be the official

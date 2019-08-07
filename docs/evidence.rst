@@ -62,9 +62,3 @@ An :ref:`rstexternalreference` is used to store a reference to the publication o
 that supports the evidence. Not all types of evidence will have an external reference, and therefore
 this field is optional.
 
-
-
-FHIR mapping
-~~~~~~~~~~~~
-This element is mapped to the FHIR
-element `Condition.evidence <https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence>`_.

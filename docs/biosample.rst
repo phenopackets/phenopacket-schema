@@ -235,12 +235,3 @@ is_control_sample
 A boolean (true/false) value.
 If true, this sample is being use as a normal control, often in combination with another sample that is thought to contain a pathological finding
 the default value is false.
-
-
-
-
-
-
-FHIR mapping
-~~~~~~~~~~~~
-`Specimen <http://www.hl7.org/fhir/specimen.html>`_.

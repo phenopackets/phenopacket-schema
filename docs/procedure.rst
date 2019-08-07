@@ -32,8 +32,6 @@ body_site element if needed.
         }
     }
 
-**FHIR mapping:** `Procedure <https://www.hl7.org/fhir/procedure.html>`_
-
 .. _procedurecode:
 
 code

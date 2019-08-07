@@ -90,11 +90,3 @@ This element is recommended and contain one or more :ref:`Evidence <rstevidence>
 that specify how the phenotype was determined.
 
 
-
-FHIR Mapping of the PhenotypicFeature element
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-This element maps the FHIR `Condition <https://www.hl7.org/fhir/condition.html>`_ or
-`Observation <https://www.hl7.org/fhir/observation.html>`_ elements. The FHIR mapping of
-the type element of PhenotypicFeature is *Condition.identifier*, the mapping of the severity element
-is *Condition.severity*, the mapping of onset is *Condition.onset*.
-

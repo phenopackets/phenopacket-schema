@@ -1,7 +1,7 @@
 .. _rstmetadata:
 
 ========
-Metadata
+MetaData
 ========
 
 
@@ -9,7 +9,7 @@ This element contains structured definitions of the resources and ontologies use
 
 **Data model**
 
-  .. list-table:: Definition of the ``Metadata`` element
+  .. list-table:: Definition of the ``MetaData`` element
     :widths: 25 25 50 50
     :header-rows: 1
 
@@ -46,9 +46,9 @@ This element contains structured definitions of the resources and ontologies use
       - optional
       - (See text)
 
-The `Metadata` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
+The `MetaData` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
 terms are used in the Phenopacket. For instance, if a MONDO term is used to specificy the disease and
-HPO terms are used to specificy the phenotypes of a patient, then the `Metadata` element MUST have
+HPO terms are used to specificy the phenotypes of a patient, then the `MetaData` element MUST have
 one `Resource` element each for MONDO and HPO.
 
 **Example**

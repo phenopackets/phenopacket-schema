@@ -39,12 +39,6 @@ It is possible to represent age using a string that should be formated according
 `Duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
 
 
-FHIR mapping
-~~~~~~~~~~~~
-This element is mapped to the FHIR using `Unified Code for Units of Measure (UCUM) <http://unitsofmeasure.org/trac/>`_.
-See also `Condition onset <http://build.fhir.org/condition-definitions.html#Condition.onset_x_>`_.
-
-
 .. _rstagerange:
 
 ========

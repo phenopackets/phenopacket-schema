@@ -50,10 +50,3 @@ description
 ~~~~~~~~~~~
 An optional free text description of the evidence.
 
-
-
-
-
-FHIR mapping (ExternalReference)
-================================
-This element is mapped to the FHIR element `Reference <https://www.hl7.org/fhir/references.html>`_.

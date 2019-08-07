@@ -25,7 +25,3 @@ This element does not represent gender identity or :ref:`rstkaryotypicsex`, but 
     {
         "sex": "UNKNOWN_SEX"
     }
-
-FHIR mapping
-~~~~~~~~~~~~
-`AdministrativeGender <https://www.hl7.org/fhir/codesystem-administrative-gender.html>`_.

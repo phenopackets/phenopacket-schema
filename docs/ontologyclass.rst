@@ -36,8 +36,3 @@ should match the label of the version of the ontology indicated in the metadata 
 
 The ID of an OntologyClass element requires a `CURIE <https://www.w3.org/TR/2010/NOTE-curie-20101216/>`_ format.
 It must reference the namespace prefix of a :ref:`rstresource` named in the :ref:`rstmetadata`.
-
-
-
-The FHIR mapping is a `CodeableConcept <http://www.hl7.org/fhir/datatypes.html#CodeableConcept>`_.
-See also `Coding <http://www.hl7.org/fhir/datatypes.html#Coding>`_.
