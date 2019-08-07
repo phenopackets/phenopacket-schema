@@ -150,7 +150,6 @@ public class UrothelialCarcinomaExample {
     private Individual subject() {
         return Individual.newBuilder()
                 .setId(this.patientId)
-                .setDatasetId("urology cohort")
                 .setSex(Sex.MALE)
                 .setDateOfBirth(Timestamp.newBuilder()
                         .setSeconds(Instant.parse("1964-03-15T00:00:00Z").getEpochSecond()))
