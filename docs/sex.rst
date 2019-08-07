@@ -5,9 +5,8 @@ Sex
 ===
 
 An enumeration used to represent the sex of an individual.
-This element does not represent gender identity, but instead represents
-"Administrative sex", which is used to indicate the sex a person has listed with
-their insurance company.
+This element does not represent gender identity or :ref:`rstkaryotypicsex`, but instead represents typical
+"phenotypic sex", as would be determined by a midwife or physician at birth.
 
 **Data model**
 
