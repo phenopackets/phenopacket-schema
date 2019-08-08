@@ -24,8 +24,8 @@ building blocks.
    disease
    evidence
    externalreference
-   file
    gene
+   file
    individual
    karyotypicsex
    metadata
