@@ -22,7 +22,7 @@ phenopacket-specific extensions used in the schema only (not code) and are not s
 Required
 ========
 If a field is required, its presence is  an absolute requirement of the specification, failing which the entire
-phenopacket is regarded as malformed. This corresponds to the key woirds ``MUST``, ``REQUIRED``, and ``SHALL`` in
+phenopacket is regarded as malformed. This corresponds to the key words ``MUST``, ``REQUIRED``, and ``SHALL`` in
 `RFC2119 <https://www.ietf.org/rfc/rfc2119.txt>`_.
 
 Validation software must emit an error if a required field is missing. We note that natively protobuf messages never
