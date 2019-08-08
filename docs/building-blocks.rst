@@ -27,7 +27,7 @@ building blocks.
    file
    gene
    individual
-   karyotypic sex <karyotypicsex>
+   karyotypicsex
    metadata
    ontologyclass
    pedigree
