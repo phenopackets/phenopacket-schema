@@ -1,4 +1,5 @@
 // Generated using https://edotor.net/
+// See https://graphviz.gitlab.io/
 graph phenopacket_schema_v1 {
     splines=true # use splines for edges, if needed to avoid overlap
     engine=dot
