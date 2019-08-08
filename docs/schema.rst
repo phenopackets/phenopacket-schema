@@ -29,4 +29,4 @@ The diagram below shows an overview of the schema elements.
 
 .. figure:: graph/phenopacket-schema-v1.svg
 
-The schema is defined in :ref:`rstprotobuf`.
+The schema is defined in protobuf. You can find out more in the section ':ref:`rstprotobuf`'.
