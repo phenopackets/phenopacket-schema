@@ -12,6 +12,7 @@ is available from the `phenopacket-schema GitHub repository <https://github.com/
    :caption: Contents
 
    introduction
+   schema
    toplevel
    building-blocks
    working

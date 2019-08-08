@@ -1,3 +1,4 @@
+// Generated using https://edotor.net/
 graph phenopacket_schema_v1 {
     splines=true # use splines for edges, if needed to avoid overlap
     engine=dot
@@ -40,6 +41,15 @@ graph phenopacket_schema_v1 {
         # edges
         subgraph metadata {
             MetaData -- Resource;
+        }
+
+        subgraph pedigree {
+            Person;
+            AffectedStatus;
+
+            Pedigree -- Person;
+            Person -- Sex
+            Person -- AffectedStatus
         }
 
         Evidence -- ExternalReference;
