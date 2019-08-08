@@ -4,7 +4,7 @@
 Working with Phenopackets
 =========================
 
-The phenopacket schema has been defined in :ref:`rstprotobuf` which can be considered the source of truth for the
+The phenopacket schema has been introduced in :ref:`rstschema` and can be considered the source of truth for the
 specification. While it is possible to inter-operate with other services using JSON produced from
 hand-crafted/alternative implementations, we **strongly** suggest using the schema to compile any required
 language implementations.
