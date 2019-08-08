@@ -48,3 +48,7 @@ The phenopacket schema defines a common, limited set of data types which may be 
 This common schema has been used to define the 'Phenopacket' which is a catch-all collection of data types, specifically
 focused on representing disease data both initial data capture and analysis. The phenopacket schema is designed to be both human
 and machine-readable, and to inter-operate with the `HL7 Fast Healthcare Interoperability Resources Specification (aka FHIR®) <http://hl7.org/fhir/>`_.
+
+.. _phenopacket-schema-diagram:
+
+.. figure:: graph/phenopacket-schema-v1.svg
