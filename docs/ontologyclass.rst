@@ -1,8 +1,8 @@
 .. _rstontologyclass:
 
-==============
-Ontology Class
-==============
+=============
+OntologyClass
+=============
 
 This element is used to represent classes (terms) from ontologies, and is used in many places throughout the
 Phenopacket standard. It is a simple, two element message that represents the identifier and the label of

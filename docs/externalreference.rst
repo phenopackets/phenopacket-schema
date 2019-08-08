@@ -1,8 +1,8 @@
 .. _rstexternalreference:
 
-==================
-External Reference
-==================
+=================
+ExternalReference
+=================
 
 
 This element encodes information about an external reference.

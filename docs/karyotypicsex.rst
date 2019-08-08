@@ -1,8 +1,8 @@
 .. _rstkaryotypicsex:
 
-==============
-Karyotypic sex
-==============
+=============
+KaryotypicSex
+=============
 
 This enumeration represents the chromosomal sex of an individual.
 
