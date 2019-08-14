@@ -157,3 +157,9 @@ languages`_.
 .. _host of other languages: https://github.com/google/protobuf/tree/v3.7.0#protobuf-runtime-installation
 
 
+Security Disclaimer
+===================
+
+.. important::
+
+    DISCLAIMER.rst
