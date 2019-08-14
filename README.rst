@@ -155,11 +155,3 @@ languages`_.
 .. _GO: https://developers.google.com/protocol-buffers/docs/gotutorial#compiling-your-protocol-buffers
 .. _C#: https://developers.google.com/protocol-buffers/docs/csharptutorial#compiling-your-protocol-buffers
 .. _host of other languages: https://github.com/google/protobuf/tree/v3.7.0#protobuf-runtime-installation
-
-
-Security Disclaimer
-===================
-
-.. important::
-
-    DISCLAIMER.rst
