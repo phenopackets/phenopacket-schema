@@ -9,13 +9,6 @@ specification. While it is possible to inter-operate with other services using J
 hand-crafted/alternative implementations, we **strongly** suggest using the schema to compile any required
 language implementations.
 
-Security disclaimer
-~~~~~~~~~~~~~~~~~~~
-A stand-alone security review has been performed on the specification itself, however this example implementation is
-offered as-is, and without any security guarantees. It will need an independent security review before it can be
-considered ready for use in security-critical applications. If you integrate this code into your application it is
-AT YOUR OWN RISK AND RESPONSIBILITY to arrange for an audit.
-
 Example code
 ~~~~~~~~~~~~
 We provide several examples that demonstrate how to work with Phenopackets in Java and C++.
@@ -29,3 +22,10 @@ produced as part of the build (:ref:`rstjavabuild`).
    Working with Phenopackets in Java <java>
    Working with Phenopackets in C++ <cpp>
    examples
+
+Security disclaimer
+~~~~~~~~~~~~~~~~~~~
+A stand-alone security review has been performed on the specification itself, however these example implementations are
+offered as-is, and without any security guarantees. They will need an independent security review before they can be
+considered ready for use in security-critical applications. If you integrate this code into your application it is
+AT YOUR OWN RISK AND RESPONSIBILITY to arrange for an audit.
