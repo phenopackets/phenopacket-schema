@@ -145,11 +145,14 @@ parents of a person in the pedigree are shown with the corresponding individual 
 represented in the PED file are known as founders; their parents are represented by a zero ("0") in the
 columns for mother and father. Finally, the sex and the affected (disease) status of the person are shown.
 
+.. _pedigree_identifiers:
+
 If a ``Phenopacket`` is used to represent any of the individuals listed in the ``Pedigree``, then it is essential that
 the ``individual_id`` used in the pedigree matches the ``id`` of the ``subject`` of the ``Phenopacket``. It is allowable
 for the ``Pedigree`` to have individuals that do not have an associated ``Phenopacket``. This is useful, for instance,
 if the ``Pedigree`` is being used to store the affected/not affected status of family members being examined by exome or genome
-sequencing. In this case, it is expected that the ``individual_id`` elements match the sample identifiers of the exome/genome file.
+sequencing. In this case (i.e. where there are no associated phenopackets for the ``Pedigree.individual_id``), it is
+expected that the ``individual_id`` elements match the sample identifiers of the exome/genome file.
 
 The Pedigree object  does not support reporting multiple phenotypes in one individual.
 The phenotype represented by the affectation status is whether the disease is present or not.

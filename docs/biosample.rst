@@ -143,7 +143,7 @@ The Biosample id. This is unique in the context of the server instance.
 
 individual_id
 ~~~~~~~~~~~~~
-The id of the individual this biosample was derived from. It is recommended, but not necessary to
+The id of the :ref:`rstindividual` this biosample was derived from. It is recommended, but not necessary to
 provide this information here if the Biosample is being transmitted as a part of
 a :ref:`rstphenopacket`.
 

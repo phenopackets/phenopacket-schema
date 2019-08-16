@@ -59,12 +59,18 @@ The following example is typical but does not make use of all of the optional fi
 
 id
 ~~
-This element is the primary identifier for the individual. The contents of the element are context dependent, and will
-be determined by the application. For instance, if the Phenopacket is being used to represent a case study about
-an individual with some genetic disease, the individual may be referred to in that study by their position in
-the pedigree, e.g., III:2 for the second person in the third generation. In this case, id would be set to ``III:2``.
-If a :ref:`pedigree` element is used, it is essential that the ``id`` used here matches the ``individual_id`` of
-the :ref:`pedigree` element.
+This element is the **primary** identifier for the individual and SHOULD be used in other parts of a message when
+referring to this individual - for example in a :ref:`rstpedigree` or :ref:`rstbiosample`. The contents of the element
+are context dependent, and will be determined by the application. For instance, if the Phenopacket is being used to
+represent a case study about an individual with some genetic disease, the individual may be referred to in that study by
+their position in the pedigree, e.g., III:2 for the second person in the third generation. In this case, id would be set
+to ``III:2``.
+
+If a :ref:`pedigree` element is used, it is essential that the ``individual_id`` of the :ref:`pedigree` element matches
+the ``id`` field here.
+
+If a :ref:`rstbiosample` element is used, it is essential that the ``individual_id`` of the :ref:`rstbiosample` element
+matches the ``id`` field here.
 
 date_of_birth
 ~~~~~~~~~~~~~
