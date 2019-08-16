@@ -5,13 +5,13 @@ Requirement Levels
 ==================
 
 
-In protobuf3, all elements are optional, and so there is no mechanism within protobuf to declare that a certain field
-is required. The Phenopacket schema does require some fields to be present and in some cases additionally requires that
-these fields have a certain format (syntax) or intended meaning (semantics). Software that uses Phenopackets should
-check the validity of the data with other means. We provide a Java implementation called
-`Phenopacket Validator <https://github.com/phenopackets/phenopacket-validator>`_ that tests Phenopackets (and related
-messages including Family, Cohort, and Biosample messages) for validity. Application code may additional check for
-application-specific criteria.
+The schema is formally defined using `protobuf3 <rstprotobuf>`_. In protobuf3, all elements are optional, and so there is no mechanism
+within protobuf to declare that a certain field is required. The Phenopacket schema does require some fields to be
+present and in some cases additionally requires that these fields have a certain format (syntax) or intended meaning
+(semantics). Software that uses Phenopackets should check the validity of the data with other means. We provide a Java
+implementation called `Phenopacket Validator <https://github.com/phenopackets/phenopacket-validator>`_ that tests
+Phenopackets (and related messages including Family, Cohort, and Biosample messages) for validity. Application code may
+additionally check for application-specific criteria.
 
 
 The Phenopacket schema uses three requirement levels. The required/recommended/optional designations are
