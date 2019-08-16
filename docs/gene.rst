@@ -27,7 +27,7 @@ the exact variant cannot be transmitted, either for privacy reasons or because i
    * - symbol
      - string
      - required
-     - gene symbol
+     - Official gene symbol
 
 
 **Example**
@@ -50,5 +50,6 @@ or , `uc003ldc.6 <http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeTy
 
 symbol
 ~~~~~~
-The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1.
+This SHOULD use official gene symbol as designated by the organism gene nomenclature committee. In the case of human
+this is the `HUGO Gene Nomenclature Committee <https://www.genenames.org>`_ e.g. `ETF1 <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477>`_.
 
