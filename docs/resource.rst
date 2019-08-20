@@ -5,8 +5,12 @@ Resource
 ========
 
 
-The Resource element is a description of an external resource used for referencing an object. For example the resource
+The ``Resource`` element is a description of an external resource used for referencing an object. For example the resource
 may be an ontology such as the HPO or SNOMED or another data resource such as the HGNC or ClinVar.
+
+A ``Resource`` is used to contain data used to expand :ref:`rstcurie` identifiers when used in an ``id`` field. This is
+known as :ref:`rstidentifierresolution`.
+
 The :ref:`rstmetadata` element uses one resource element to describe each resource that is referenced in the Phenopacket.
 
 **Data model**
@@ -112,8 +116,34 @@ The full IRI prefix which can be used with the namespace_prefix and the Ontology
 term. Tools such as the curie-util (https://github.com/prefixcommons/curie-util) can utilise this to produce
 fully-resolvable IRIs for an OntologyClass.
 
+
+.. _rstcurie:
+
+CURIE
+~~~~~
+The `CURIE <https://www.w3.org/TR/curie/>`_ is defined by the `W3C <https://www.w3.org/>`_ as a means of encoding a
+"Compact URI". It is a simple string taking the form of colon (``:``) separated `prefix` and `reference` elements -
+`prefix:reference` e.g. HP:0012828 or HGNC:12805.
+
+It is RECOMMENDED to use CURIE identifiers where possible.
+
+Not all resources use CURIEs as identifiers (e.g. SNOMED, UniProt, ClinVar, PubMed). In these cases it is often possible
+to create a CURIE form of an identifier by using the prefix for that resource from `identifiers.org <http://identifiers.org/>`_.
+
+Where no CURIE prefix is present in `identifiers.org <http://identifiers.org/>`_ it is possible for a Resource to define
+a locally-scoped namespace, although if a Phenopacket is being shared publicly this is NOT recommended if the resource is
+not publicly resolvable.
+
+When using a CURIE identifier a corresponding :ref:`rstresource` SHALL also be included in the :ref:`rstmetadata` section.
+
+
+.. _rstidentifierresolution:
+
 Identifier resolution
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+
+A CURIE identifier can be resolved to an external resource using the :ref:`rstresource` element by looking-up the CURIE
+`prefix` against the Resource::namespacePrefix and then appending the CURIE `reference` to the Resource::iriPrefix.
 
 For example, using the HPO term encoding the concept of 'Severe', using this instance of an OntologyClass:
 
@@ -136,5 +166,10 @@ and this instance of a Resource:
         "namespacePrefix": "HP",
         "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
     }
+
+The id HP:0012828 can be split into the `prefix` - 'HP' and `reference` - '0012828'. The 'HP' prefix matches the
+Resource::namespacePrefix so we can append the reference '0012828' to the Resource::iriPrefix: which produces the URI
+
+  http://purl.obolibrary.org/obo/HP_0012828
 
 the term can be resolved to http://purl.obolibrary.org/obo/HP_0012828

@@ -19,8 +19,11 @@ is mature. The VR-Spec will be the recommended option in some settings.
 - See: https://vr-spec.readthedocs.io/en/1.0rc/
 - See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
 
-The ``variant`` element itself is an optional element of a ``Phenopacket``  or ``Biosample``. If it is present,
+The ``Variant`` element itself is an optional element of a ``Phenopacket``  or ``Biosample``. If it is present,
 the Phenopacket standard has the following requirements.
+
+Alleles can refer to external sources, for example the ClinGen allele registry, ClinVar, dbSNP, dbVAR etc. using the ``id``
+field. It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :ref:`rstresource`.
 
 *n.b.* phase information for alleles are not represented in this model.
 
@@ -39,6 +42,7 @@ the Phenopacket standard has the following requirements.
 
     {
         "spdiAllele": {
+          "id": "clinvar:13294"
           "seqId": "NC_000010.10",
           "position": 123256214,
           "deletedSequence": "T",

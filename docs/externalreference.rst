@@ -41,10 +41,11 @@ This element encodes information about an external reference.
 
 id
 ~~
-The syntax of the identifier is application specific. It is RECOMMENDED that this is a CURIE that uniquely identifies
+The syntax of the identifier is application specific. It is RECOMMENDED that this is a :ref:`rstcurie` that uniquely identifies
 the evidence source, e.g. **ISBN:978-3-16-148410-0** or **PMID:123456**. However, it could be a URL/URI, or other
 relevant identifier.
 
+It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :ref:`rstresource`.
 
 description
 ~~~~~~~~~~~
