@@ -34,7 +34,7 @@ term.
 
 id
 ~~
-The ID of an OntologyClass element MUST take the form of a `CURIE <https://www.w3.org/TR/curie/>`_ format.
+The ID of an OntologyClass element MUST take the form of a :ref:`rstcurie` format.
 In order that the class is resolvable, it MUST reference the namespace prefix of a :ref:`rstresource` named in the
 :ref:`rstmetadata`.
 
