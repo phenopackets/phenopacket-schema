@@ -75,7 +75,7 @@ This SHOULD use official gene symbol as designated by the organism gene nomencla
 this is the `HUGO Gene Nomenclature Committee <https://www.genenames.org>`_ e.g. `ETF1 <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477>`_.
 
 Model Organisms
-===============
+~~~~~~~~~~~~~~~
 Model organisms represented by the `Alliance of Genome Resources <https://www.alliancegenome.org>`_ should use the
 primary identifier and symbol provided. e.g. for Mus musculus gene `eukaryotic translation termination factor 1 <https://www.alliancegenome.org/gene/MGI:2385071>`_
 
