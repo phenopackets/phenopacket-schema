@@ -22,6 +22,10 @@ we explain the element using the example of a human proband in a clinical invest
       - string
       - required
       - An arbitrary identifier
+    * - alternate_ids
+      - a list of :ref:`rstcurie's
+      - optional
+      - A list of alternative identifiers for the individual
     * - date_of_birth
       - timestamp
       - optional
@@ -71,6 +75,67 @@ the ``id`` field here.
 
 If a :ref:`rstbiosample` element is used, it is essential that the ``individual_id`` of the :ref:`rstbiosample` element
 matches the ``id`` field here.
+
+All identifiers within a phenopacket pertaining to an individual SHOULD use this identifier. It is the responsibility of
+the sender to provide the recipient an internally consistent message. This is possible as all messages can be created
+dynamically be the sender using identifiers appropriate for the receiving system.
+
+For example, a hospital may want to send a :ref:`rstfamily` to an external lab for analysis. Here the hospital is providing
+an obfuscated identifier which is used to identify the individual in the :ref:`rstphenopacket`, the :ref:`rstpedigree` and
+mappings to the sample id in the :ref:`rsthtsfile`.
+
+In this case the :ref:`rstpedigree` is created by the sending system from whatever source they use and the identifiers
+should be mapped to those `Individual.id` contained in the `Family.proband` and `Family.relatives` phenopackets.
+
+In the case the VCF file, the sending system likely has no control or ability to change the identifiers used for the
+sample id and it is likely they use different identifiers. It is for this reason the :ref:`rsthtsfile` has a *local*
+mapping field `HtsFile.individual_to_sample_identifiers` where the `Individual.id` can be mapped to the sample id in that
+file.
+
+**example**
+
+In this example we show individual blocks which would be used as part of a singleton 'family' to illustrate the use of
+the internally consistent `Individual.id`. As noted above, the data may have been constructed by the sender from different
+sources but given they know these relationships, they should provide the receiver with a consistent view of the data both
+for ease of use and to limit incorrect mapping.
+
+.. code-block:: json
+
+    "individual": {
+      "id": "patient23456",
+      "dateOfBirth": "1998-01-01T00:00:00Z",
+      "sex": "MALE"
+    }
+
+    "htsFile": {
+        "uri": "file://data/genomes/germline_wgs.vcf.gz",
+        "description": "Germline sample",
+        "htsFormat": "VCF",
+        "genomeAssembly": "GRCh38",
+        "individualToSampleIdentifiers": {
+          "patient23456": "NA12345"
+        }
+    }
+
+    "pedigree": {
+        "persons": [
+            {
+                "familyId": "family 1",
+                "individualId": "patient23456",
+                "sex": "MALE",
+                "affectedStatus": "AFFECTED"
+            }
+        ]
+    }
+
+
+alternate_ids
+~~~~~~~~~~~~~
+
+An optional list of alternative identifiers for this individual. These should be in the form of :ref:`rstcurie`s and hence have a
+corresponding :ref:`rstresource` listed in the :ref:`rstmetadata`. These should **not** be used elsewhere in the phenopacket
+as this will break the assumptions required for using the ``id`` field as the primary identifier. This field is provided
+for the convenience of users who may have multiple mappings to an individual which they need to track.
 
 date_of_birth
 ~~~~~~~~~~~~~
