@@ -33,10 +33,10 @@ This element contains structured definitions of the resources and ontologies use
       - list of :ref:`rstresource`
       - required
       - (See text)
-    * - updated
-      - list of timestamps
+    * - updates
+      - list of :ref:`rstupdate`
       - optional
-      - List of times when phenopacket was updated
+      - List of updates to the phenopacket
     * - phenopacket_schema_version
       - string
       - optional
@@ -107,10 +107,11 @@ resources
 This element contains a listing of the ontologies/resources referenced in the phenopacket.
 
 
-updated
+updates
 ~~~~~~~
-This element is a list of  `ISO8601 UTC timestamp <https://en.wikipedia.org/wiki/ISO_8601>`_ for when
-this phenopacket was updated.
+This element contains a list of :ref:`rstupdate` objects which contain information about when, what and who updated
+a phenopacket. This is only necessary when a phenopacket is being used as a persistent record and is being continuously
+updated. Resources should provide information about how this is being used.
 
 phenopacket_schema_version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

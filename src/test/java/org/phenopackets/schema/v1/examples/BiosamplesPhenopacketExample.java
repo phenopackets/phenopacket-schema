@@ -24,7 +24,7 @@ class BiosamplesPhenopacketExample {
 
         MetaData metaData = MetaData.newBuilder()
                 .setCreated(parseTimestamp("2016-06-29T12:03:03.240Z"))
-                .addUpdated(parseTimestamp("2018-06-10T10:59:06.784Z"))
+                .addUpdates(Update.newBuilder().setTimestamp(parseTimestamp("2018-06-10T10:59:06.784Z")))
                 .addResources(Resource.newBuilder()
                         .setId("pato")
                         .setName("PhenotypicFeature And Trait Ontology")

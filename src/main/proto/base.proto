@@ -15,11 +15,10 @@ message MetaData {
     string created_by = 2;
     // information about the person/organisation/network that has submitted this phenopacket
     string submitted_by = 3;
-    // a listing of the ontologies/resources referenced in the phenopacket
+    // a listing of the ontologies and resources referenced in the phenopacket
     repeated Resource resources = 4;
-    // ISO8601 UTC timestamps at which this record was updated, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    repeated google.protobuf.Timestamp updated = 5;
+    // An OPTIONAL list of Updates to the phenopacket.
+    repeated Update updates = 5;
     // phenopacket-schema-version used to create this phenopacket
     string phenopacket_schema_version = 6;
     // External identifiers for this message. These are considered different representation of the same record, not
@@ -28,9 +27,18 @@ message MetaData {
     repeated ExternalReference external_references = 7;
 }
 
+// Information about when an update to a record occurred, who or what made the update and any pertinent information
+// regarding the content and/or reason for the update
 message Update {
-    google.protobuf.Timestamp updated = 1;
-    string updated_by =2;
+    // ISO8601 UTC timestamps at which this record was updated, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
+    // REQUIRED
+    google.protobuf.Timestamp timestamp = 1 [(validate.rules).timestamp.required = true];
+    // Information about the person/organisation/network that has updated the phenopacket.
+    // OPTIONAL
+    string updated_by = 2;
+    // Textual comment about the changes made to the content and/or reason for the update.
+    // OPTIONAL
     string comment = 3;
 }
 
