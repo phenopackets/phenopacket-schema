@@ -23,7 +23,7 @@ we explain the element using the example of a human proband in a clinical invest
       - required
       - An arbitrary identifier
     * - alternate_ids
-      - a list of :ref:`rstcurie's
+      - a list of :ref:`rstcurie`
       - optional
       - A list of alternative identifiers for the individual
     * - date_of_birth
