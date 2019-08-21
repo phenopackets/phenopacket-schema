@@ -401,8 +401,10 @@ message Gene {
     // such as ENSG00000120705, uc003ldc.6
     // https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477
     string id = 1;
+
+    repeated string alternate_ids = 2;
     // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
-    string symbol = 2;
+    string symbol = 3;
 }
 
 // A variant allele. Alleles can be listed using HGVS, VCF, SPDI or ISCN notation.
