@@ -10,13 +10,17 @@ This element does not represent gender identity or :ref:`rstkaryotypicsex`, but 
 
 **Data model**
 
-.. csv-table::
-   :header: Name, Description
+Implementation note - this is an enumerated type, therefore the values represented below are the only legal values. The
+value of this type SHALL NOT be null, instead it SHALL use the 0 (zero) ordinal element as the default value, should none
+be specified.
 
-    UNKNOWN_SEX,  Not assessed or not available
-    FEMALE, female sex
-    MALE, male sex
-    OTHER_SEX, It is not possible to accurately assess the applicability of MALE/FEMALE
+.. csv-table::
+   :header: Name, Ordinal, Description
+
+    UNKNOWN_SEX, 0, Not assessed or not available. Maps to `NCIT:C17998 <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C17998>`_
+    FEMALE, 1, female sex. Maps to `NCIT:C46113 <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C46113>`_
+    MALE, 2, male sex. Maps to `NCIT:C46112 <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C46112>`_
+    OTHER_SEX, 3, It is not possible to accurately assess the applicability of MALE/FEMALE. Maps to `NCIT:C45908 <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C45908>`_
 
 **Example**
 

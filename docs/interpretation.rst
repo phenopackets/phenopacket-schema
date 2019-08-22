@@ -147,13 +147,17 @@ The interpretation has a **ResolutionStatus** that refers to the status of the a
 
 **Data model**
 
-.. csv-table::
-   :header: Name, Description
+Implementation note - this is an enumerated type, therefore the values represented below are the only legal values. The
+value of this type SHALL NOT be null, instead it SHALL use the 0 (zero) ordinal element as the default value, should none
+be specified.
 
-    UNKNOWN, No information is available about the diagnosis
-    SOLVED,  The interpretation is considered to be a definitive diagnosis
-    UNSOLVED, No definitive diagnosis was found
-    IN_PROGRESS, No diagnosis has been found to date but additional differential diagnostic work is in progress.
+.. csv-table::
+   :header: Name, Ordinal, Description
+
+    UNKNOWN, 0, No information is available about the diagnosis
+    SOLVED, 1, The interpretation is considered to be a definitive diagnosis
+    UNSOLVED, 2, No definitive diagnosis was found
+    IN_PROGRESS, 3, No diagnosis has been found to date but additional differential diagnostic work is in progress.
 
 **Example**
 
@@ -287,13 +291,17 @@ An enumeration describing the status of a :ref:`rstgenomicinterpretation`
 
 **Data model**
 
-.. csv-table::
-   :header: Name, Description
+Implementation note - this is an enumerated type, therefore the values represented below are the only legal values. The
+value of this type SHALL NOT be null, instead it SHALL use the 0 (zero) ordinal element as the default value, should none
+be specified.
 
-    UNKNOWN, It is not known how this genomic element contributes to the diagnosis
-    REJECTED, The genomic element has been investigated and ruled-out
-    CANDIDATE, The genomic element is under investigation
-    CAUSATIVE, The genomic element has been judged to be contributing to the diagnosis
+.. csv-table::
+   :header: Name, Ordinal, Description
+
+    UNKNOWN, 0,  It is not known how this genomic element contributes to the diagnosis
+    REJECTED, 1, The genomic element has been investigated and ruled-out
+    CANDIDATE, 2, The genomic element is under investigation
+    CAUSATIVE, 3, The genomic element has been judged to be contributing to the diagnosis
 
 **Example**
 

@@ -12,8 +12,8 @@ message Interpretation {
     enum ResolutionStatus {
         UNKNOWN = 0;
         SOLVED = 1;
-        UNSOLVED = 3;
-        IN_PROGRESS = 4;
+        UNSOLVED = 2;
+        IN_PROGRESS = 3;
     }
     // id of the interpretation
     string id = 1;
@@ -43,8 +43,8 @@ message GenomicInterpretation {
     enum Status {
         UNKNOWN = 0;
         REJECTED = 1;
-        CANDIDATE = 3;
-        CAUSATIVE = 4;
+        CANDIDATE = 2;
+        CAUSATIVE = 3;
     }
     Status status = 1;
     oneof call {
