@@ -156,7 +156,7 @@ sampled_tissue
 ~~~~~~~~~~~~~~
 On :ref:`rstontologyclass` describing the tissue from which the specimen was collected.
 We recommend the use of `UBERON <https://www.ebi.ac.uk/ols/ontologies/uberon>`_. The
-PDX MI mapping is ``Specimen tumor tissue``. The FHIR mapping is ``Specimen.type``.
+PDX MI mapping is ``Specimen tumor tissue``.
 
 phenotypic_features
 ~~~~~~~~~~
