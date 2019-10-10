@@ -51,7 +51,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <protobuf.version>3.8.0</protobuf.version>
-        <pgv.version>0.2.0</pgv.version>
         <fhir.version>3.8.0</fhir.version>
     </properties>
 
@@ -128,17 +127,6 @@
                     <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
                 </configuration>
                 <executions>
-                    <execution>
-                        <id>protoc-java-pgv</id>
-                        <goals>
-                            <goal>compile-custom</goal>
-                        </goals>
-                        <configuration>
-                            <pluginParameter>lang=java</pluginParameter>
-                            <pluginId>java-pgv</pluginId>
-                            <pluginArtifact>io.envoyproxy.protoc-gen-validate:protoc-gen-validate:${pgv.version}:exe:${os.detected.classifier}</pluginArtifact>
-                        </configuration>
-                    </execution>
                     <execution>
                         <goals>
                             <goal>compile</goal>
@@ -226,12 +214,6 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
             <version>${protobuf.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.envoyproxy.protoc-gen-validate</groupId>
-            <artifactId>pgv-java-stub</artifactId>
-            <version>${pgv.version}</version>
         </dependency>
 
         <!--JSON + YAML deps-->

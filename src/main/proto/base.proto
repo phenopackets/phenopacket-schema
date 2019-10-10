@@ -3,7 +3,6 @@ syntax = "proto3";
 package org.phenopackets.schema.v1.core;
 
 import "google/protobuf/timestamp.proto";
-import "validate/validate.proto";
 
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v1.core";
@@ -33,7 +32,7 @@ message Update {
     // ISO8601 UTC timestamps at which this record was updated, in
     // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
     // REQUIRED
-    google.protobuf.Timestamp timestamp = 1 [(validate.rules).timestamp.required = true];
+    google.protobuf.Timestamp timestamp = 1;
     // Information about the person/organisation/network that has updated the phenopacket.
     // OPTIONAL
     string updated_by = 2;
