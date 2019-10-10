@@ -76,6 +76,15 @@ class RareDiseaseFamilyExample {
                         .setSeconds(Instant.parse("1998-01-01T00:00:00Z").getEpochSecond())
                         .build())
                 .build();
+
+
+        HtsFile patientVcf = HtsFile.newBuilder()
+                .setUri("file://data/file.vcf.gz")
+                .setHtsFormat(HtsFile.HtsFormat.VCF)
+                .setGenomeAssembly("GRCh38")
+                .putIndividualToSampleIdentifiers(PROBAND_ID, "SAME000234")
+                .build();
+
         return Phenopacket.newBuilder()
                 .setId(PROBAND_ID)
                 .setSubject(proband)
@@ -86,6 +95,7 @@ class RareDiseaseFamilyExample {
                 .addVariants(het(NM_001361_403_C_T))
                 .addVariants(het(NM_001361_454_G_A))
                 .addVariants(hom(NM_001369_12599_dupA))
+                .addHtsFiles(patientVcf)
                 .build();
     }
 
