@@ -41,10 +41,11 @@ This is a :ref:`rstphenopacket` element that describes the proband in this case,
         "subject": {
             "id": "14 year-old boy",
             "ageAtCollection": {
-            "age": "P14Y"
+                "age": "P14Y"
+            },
+            "sex": "MALE"
         },
-        "sex": "MALE"
-        },
+    }
 
 
 At this point in the :ref:`rstphenopacket` element, there follows a list of phenotypic observations,
