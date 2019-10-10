@@ -389,6 +389,7 @@ message HtsFile {
         VCF = 4;
         BCF = 5;
         GVCF = 6;
+        FASTQ = 7;
     }
 
     // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
