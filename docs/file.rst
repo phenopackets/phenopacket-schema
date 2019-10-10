@@ -77,6 +77,8 @@ This message is used for a file in one of the `HTS formats <https://samtools.git
       - A BCF format file
     * - GVCF
       - A GVCF format file
+    * - FASTQ
+      - A FASTQ format file
 
 
 **Example**
