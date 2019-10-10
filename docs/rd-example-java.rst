@@ -120,10 +120,10 @@ and create an Evidence object that indicates the provenance of the data.
         return Phenopacket.newBuilder()
                 .setId(PROBAND_ID)
                 .setSubject(proband)
-                .addPhenotypes(decreasedFetalMovement)
-                .addPhenotypes(absentCranialNerveAbnormality)
-                .addPhenotypes(hematuria)
-                .addPhenotypes(motorDelay)
+                .addPhenotypicFeatures(decreasedFetalMovement)
+                .addPhenotypicFeatures(absentCranialNerveAbnormality)
+                .addPhenotypicFeatures(hematuria)
+                .addPhenotypicFeatures(motorDelay)
                 .addVariants(heterozygousCOL6A1Variant)
                 .build();
     }
