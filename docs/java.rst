@@ -151,9 +151,22 @@ Messages can be written in binary format using the native protobuf encoding. Whi
 
 JSON export
 ===========
-In many situations it
-may be desirable to export the Phenopacket as `JSON <https://en.wikipedia.org/wiki/JSON>`_. This is easy with
-the following commands
+In many situations it may be desirable to export the Phenopacket as `JSON <https://en.wikipedia.org/wiki/JSON>`_. This
+is easy with the following commands:
+
+First add the protobuf-java-util dependency to your Maven POM.xml
+
+.. code-block:: xml
+
+    <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java-util</artifactId>
+        <version>${protobuf.version}</version>
+        <scope>test</scope>
+    </dependency>
+
+
+Then you can use it to print out JSON using the `JsonFormat` class.
 
 .. code-block:: java
 
