@@ -80,11 +80,11 @@ With this, we present a function that creates a Phenopacket that represents the 
                 .setSex(FEMALE)
                 .setId(PROBAND_ID)
                 .setAgeAtCollection(Age.newBuilder().setAge("P27Y3M").build())
-                .addPhenotypes(spherocytosis)
-                .addPhenotypes(jaundice)
-                .addPhenotypes(splenomegaly)
-                .addPhenotypes(notHepatomegaly)
-                .addPhenotypes(reticulocytosis)
+                .addPhenotypicFeatures(spherocytosis)
+                .addPhenotypicFeatures(jaundice)
+                .addPhenotypicFeatures(splenomegaly)
+                .addPhenotypicFeatures(notHepatomegaly)
+                .addPhenotypicFeatures(reticulocytosis)
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
