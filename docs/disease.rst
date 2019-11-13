@@ -20,7 +20,8 @@ physicians use the word phenotype to refer to a disease, but we do not use this 
 
    term, :ref:`rstontologyclass`, required, An ontology class that represents the disease
    onset, :ref:`rstage` or :ref:`rstagerange` or :ref:`rstontologyclass`, optional, an element representing the age of onset of the disease
-   tumor_stage, :ref:`rstontologyclass`, optional, List of terms representing the tumor stage (TNM findings)
+   tumor_stage, :ref:`rstontologyclass`, optional, List of terms representing the tumor stage
+   tnm_finding, :ref:`rstontologyclass`, optional, List of terms representing the tumor TNM score
 
 
 
@@ -44,21 +45,33 @@ See :ref:`rstcancerexample` for a usage of the Disease element that includes inf
 term
 ~~~~
 
-
 In the phenopacket schema, the disease element denotes the diagnosis by means of an ontology class. For rare
 diseases, we recommend using a term from  `Online Mendelian Inheritance in Man (OMIM) <https://omim.org/>`_ (e.g.,
 OMIM:101600), `Orphanet <https://www.orpha.net/consor/cgi-bin/index.php>`_ (e.g., Orphanet:710), or
 `MONDO <https://github.com/monarch-initiative/mondo>`_ (e.g., MONDO:0007043). There are many other
 ontologies and terminologies that can be used including `Disease Ontology <http://disease-ontology.org/>`_,
 `SNOMED <http://www.snomed.org/>`_, and `ICD <https://www.who.int/classifications/icd/en/>`_.
+For cancers, we recommend using terms from domain-specific ontologies, such as
+`NCIthesaurus <https://ncit.nci.nih.gov/ncitbrowser/>`_ (e.g., NCIT:C9049).
 
 tumor_stage
 ~~~~~~~~~~~
-This element can be used if the phenopacket is described cancer. Tumor staging describes
-the extent of growth of cancer. including the tumor and if applicable affected lymph nodes, and
-distant metastases. See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
-This element should be derived from child terms of NCIT:C48232 (Cancer TNM Finding) or equivalent.
 
+This attribute can be used if the phenopacket is describing cancer. Tumor staging describes
+the extent of cancer development, and varies with the type of cancer.
+See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
+The list of elements constituting this attribute should be derived from child terms of NCIT:C28108 (Disease Stage
+Qualifier) or equivalent hierarchy from another ontology.
+
+tnm_finding
+~~~~~~~~~~~
+
+This attribute can be used if the phenopacket is describing cancer. TNM findings score the progression of cancer
+with respect to the originating tumor (T), spread to lymph nodes (N), and presence of metastases (M). These findings
+support the staging of specific tumor types.
+See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
+The list of elements constituting this attribute should be derived from child terms of NCIT:C48232 (Cancer TNM Finding)
+or equivalent hierarchy from another ontology.
 
 age_of_onset
 ~~~~~~~~~~~~
