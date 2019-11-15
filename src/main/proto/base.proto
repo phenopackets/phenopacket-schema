@@ -354,7 +354,7 @@ message Disease {
     // Disease staging, the extent to which a disease has developed.
     // For cancers, see https://www.cancer.gov/about-cancer/diagnosis-staging/staging
     // Valid values include child terms of NCIT:C28108 (Disease Stage Qualifier)
-    repeated OntologyClass tumor_stage = 5;
+    repeated OntologyClass disease_stage = 5;
 
     // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
     // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
