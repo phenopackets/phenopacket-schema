@@ -20,7 +20,7 @@ physicians use the word phenotype to refer to a disease, but we do not use this 
 
    term, :ref:`rstontologyclass`, required, An ontology class that represents the disease
    onset, :ref:`rstage` or :ref:`rstagerange` or :ref:`rstontologyclass`, optional, an element representing the age of onset of the disease
-   tumor_stage, :ref:`rstontologyclass`, optional, List of terms representing the tumor stage
+   disease_stage, :ref:`rstontologyclass`, optional, List of terms representing the disease stage, e.g., AJCC stage group.
    tnm_finding, :ref:`rstontologyclass`, optional, List of terms representing the tumor TNM score
 
 
@@ -54,12 +54,12 @@ ontologies and terminologies that can be used including `Disease Ontology <http:
 For cancers, we recommend using terms from domain-specific ontologies, such as
 `NCIthesaurus <https://ncit.nci.nih.gov/ncitbrowser/>`_ (e.g., NCIT:C9049).
 
-tumor_stage
+disease_stage
 ~~~~~~~~~~~
 
-This attribute can be used if the phenopacket is describing cancer. Tumor staging describes
-the extent of cancer development, and varies with the type of cancer.
-See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
+This attribute is used to describe the stage of disease. If the disease is a cancer, this attribute describes
+the extent of cancer development, typically including an AJCC stage group (i.e., Stage 0, I-IV), though other staging
+systems are used for some cancers. See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
 The list of elements constituting this attribute should be derived from child terms of NCIT:C28108 (Disease Stage
 Qualifier) or equivalent hierarchy from another ontology.
 
@@ -68,7 +68,7 @@ tnm_finding
 
 This attribute can be used if the phenopacket is describing cancer. TNM findings score the progression of cancer
 with respect to the originating tumor (T), spread to lymph nodes (N), and presence of metastases (M). These findings
-support the staging of specific tumor types.
+are commonly reported for tumors, and support the stage classifications stored in the `disease_stage`_ attribute.
 See `staging <https://www.cancer.gov/about-cancer/diagnosis-staging/staging>`_.
 The list of elements constituting this attribute should be derived from child terms of NCIT:C48232 (Cancer TNM Finding)
 or equivalent hierarchy from another ontology.
