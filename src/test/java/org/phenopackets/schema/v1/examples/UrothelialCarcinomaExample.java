@@ -140,10 +140,10 @@ public class UrothelialCarcinomaExample {
                 .setTerm(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"))
                 // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
                 // pT2b Stage Finding (Code C48766)
-                .addTumorStage(ontologyClass("NCIT:C48766", "pT2b Stage Finding"))
+                .addTnmFinding(ontologyClass("NCIT:C48766", "pT2b Stage Finding"))
                 //pN2 Stage Finding (Code C48750)
                 // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
-                .addTumorStage(ontologyClass("NCIT:C48750", "pN2 Stage Finding"))
+                .addTnmFinding(ontologyClass("NCIT:C48750", "pN2 Stage Finding"))
                 .build();
     }
 
@@ -239,6 +239,8 @@ public class UrothelialCarcinomaExample {
 
     @Test
     void printAsJson() throws Exception{
-        System.out.println(JsonFormat.printer().includingDefaultValueFields().print(phenopacket));
+        System.out.println(JsonFormat.printer()
+//                .includingDefaultValueFields()
+                .print(phenopacket));
     }
 }
