@@ -283,20 +283,21 @@ details.
 
 .. code-block:: json
 
-  "diseases": [{
-    "term": {
-      "id": "NCIT:C39853",
-      "label": "Infiltrating Urothelial Carcinoma"
-    },
-    "tnmFinding": [{
-      "id": "NCIT:C48766",
-      "label": "pT2b Stage Finding"
-    }, {
-      "id": "NCIT:C48750",
-      "label": "pN2 Stage Finding"
-    }]
-  }]
-
+    {
+      "diseases": [{
+        "term": {
+          "id": "NCIT:C39853",
+          "label": "Infiltrating Urothelial Carcinoma"
+        },
+        "tnmFinding": [{
+          "id": "NCIT:C48766",
+          "label": "pT2b Stage Finding"
+        }, {
+          "id": "NCIT:C48750",
+          "label": "pN2 Stage Finding"
+        }]
+      }]
+    }
 
 htsFiles
 ~~~~~~~~
@@ -304,16 +305,17 @@ This is a reference to the paired normal germline sample.
 
 .. code-block:: json
 
-    "htsFiles": [{
-        "uri": "file://data/genomes/germline_wgs.vcf.gz",
-        "description": "Matched normal germline sample",
-        "htsFormat": "VCF",
-        "genomeAssembly": "GRCh38",
-        "individualToSampleIdentifiers": {
-          "patient1": "NA12345"
-        }
-    }],
-
+    {
+        "htsFiles": [{
+            "uri": "file://data/genomes/germline_wgs.vcf.gz",
+            "description": "Matched normal germline sample",
+            "htsFormat": "VCF",
+            "genomeAssembly": "GRCh38",
+            "individualToSampleIdentifiers": {
+              "patient1": "NA12345"
+            }
+        }],
+    }
 
 metaData
 ~~~~~~~~
@@ -322,36 +324,38 @@ in the Phenopacket.
 
 .. code-block:: json
 
-   "metaData": {
-        "created": "2019-04-03T15:31:40.765Z",
-        "createdBy": "Peter R",
-        "submittedBy": "Peter R",
-        "resources": [{
-            "id": "hp",
-            "name": "human phenotype ontology",
-            "namespacePrefix": "HP",
-            "url": "http://purl.obolibrary.org/obo/hp.owl",
-            "version": "2019-04-08",
-            "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
-            }, {
-            "id": "uberon",
-            "name": "uber anatomy ontology",
-            "namespacePrefix": "UBERON",
-            "url": "http://purl.obolibrary.org/obo/uberon.owl",
-            "version": "2019-03-08",
-            "iriPrefix": "http://purl.obolibrary.org/obo/UBERON_"
-            }, {
-            "id": "ncit",
-            "name": "NCI Thesaurus OBO Edition",
-            "namespacePrefix": "NCIT",
-            "url": "http://purl.obolibrary.org/obo/ncit.owl",
-            "version": "18.05d",
-            "iriPrefix": ""
-            }],
-        "externalReferences": [{
-            "id": "PMID:29221636",
-            "description": "Urothelial neoplasms in pediatric and young adult patients: A large single-center series"
-        }]
+   {
+       "metaData": {
+            "created": "2019-04-03T15:31:40.765Z",
+            "createdBy": "Peter R",
+            "submittedBy": "Peter R",
+            "resources": [{
+                "id": "hp",
+                "name": "human phenotype ontology",
+                "namespacePrefix": "HP",
+                "url": "http://purl.obolibrary.org/obo/hp.owl",
+                "version": "2019-04-08",
+                "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
+                }, {
+                "id": "uberon",
+                "name": "uber anatomy ontology",
+                "namespacePrefix": "UBERON",
+                "url": "http://purl.obolibrary.org/obo/uberon.owl",
+                "version": "2019-03-08",
+                "iriPrefix": "http://purl.obolibrary.org/obo/UBERON_"
+                }, {
+                "id": "ncit",
+                "name": "NCI Thesaurus OBO Edition",
+                "namespacePrefix": "NCIT",
+                "url": "http://purl.obolibrary.org/obo/ncit.owl",
+                "version": "18.05d",
+                "iriPrefix": ""
+                }],
+            "externalReferences": [{
+                "id": "PMID:29221636",
+                "description": "Urothelial neoplasms in pediatric and young adult patients: A large single-center series"
+            }]
+       }
    }
 
 
