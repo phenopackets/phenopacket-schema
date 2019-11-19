@@ -240,7 +240,6 @@ public class UrothelialCarcinomaExample {
     @Test
     void printAsJson() throws Exception{
         System.out.println(JsonFormat.printer()
-//                .includingDefaultValueFields()
                 .print(phenopacket));
     }
 }

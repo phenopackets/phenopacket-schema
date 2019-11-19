@@ -59,27 +59,19 @@ and severe `Dysuria <https://hpo.jax.org/app/browse/term/HP:0100518>`_.
 .. code-block:: json
 
  "phenotypicFeatures": [{
-    "description": "",
     "type": {
       "id": "HP:0000790",
       "label": "Hematuria"
     },
-    "negated": false,
-    "modifiers": [],
-    "evidence": []
   }, {
-    "description": "",
     "type": {
       "id": "HP:0100518",
       "label": "Dysuria"
     },
-    "negated": false,
     "severity": {
       "id": "HP:0012828",
       "label": "Severe"
     },
-    "modifiers": [],
-    "evidence": []
   }],
 
 biosamples
@@ -110,7 +102,6 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
             "id": "UBERON_0001256",
             "label": "wall of urinary bladder"
         },
-        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -122,7 +113,6 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
             "id": "NCIT:C84509",
             "label": "Primary Malignant Neoplasm"
         },
-        "diagnosticMarkers": [],
          "procedure": {
             "code": {
             "id": "NCIT:C5189",
@@ -138,7 +128,6 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
             "sample1": "BS342730"
           }
         }],
-        "variants": [],
         "isControlSample": false
     }
 
@@ -152,12 +141,10 @@ Prostate adenocarcinoma was discovered as an incidental finding. The tumor was f
     {
         "id": "sample2",
         "individualId": "patient1",
-        "description": "",
         "sampledTissue": {
             "id": "UBERON:0002367",
             "label": "prostate gland"
         },
-        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -173,16 +160,12 @@ Prostate adenocarcinoma was discovered as an incidental finding. The tumor was f
             "id": "NCIT:C28091",
             "label": "Gleason Score 7"
         },
-        "tumorStage": [],
-        "diagnosticMarkers": [],
         "procedure": {
             "code": {
                 "id": "NCIT:C15189",
                 "label": "Biopsy"
             }
         },
-        "htsFiles": [],
-        "variants": [],
         "isControlSample": false
     }
 
@@ -195,12 +178,10 @@ A biopsy of the left ureter reveal normal findings.
     {
         "id": "sample3",
         "individualId": "patient1",
-        "description": "",
         "sampledTissue": {
             "id": "UBERON:0001223",
             "label": "left ureter"
         },
-        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -208,16 +189,12 @@ A biopsy of the left ureter reveal normal findings.
             "id": "NCIT:C38757",
             "label": "Negative Finding"
         },
-        "tumorStage": [],
-        "diagnosticMarkers": [],
         "procedure": {
             "code": {
                 "id": "NCIT:C15189",
                 "label": "Biopsy"
             }
         },
-        "htsFiles": [],
-        "variants": [],
         "isControlSample": false
     }
 
@@ -231,12 +208,10 @@ A biopsy of the right ureter reveal normal findings.
     {
         "id": "sample4",
         "individualId": "patient1",
-        "description": "",
         "sampledTissue": {
             "id": "UBERON:0001222",
             "label": "right ureter"
         },
-        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -244,16 +219,12 @@ A biopsy of the right ureter reveal normal findings.
             "id": "NCIT:C38757",
             "label": "Negative Finding"
         },
-        "tumorStage": [],
-        "diagnosticMarkers": [],
         "procedure": {
             "code": {
                 "id": "NCIT:C15189",
                 "label": "Biopsy"
             }
         },
-        "htsFiles": [],
-        "variants": [],
         "isControlSample": false
     }
 
@@ -267,12 +238,10 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
      {
         "id": "sample5",
         "individualId": "patient1",
-        "description": "",
         "sampledTissue": {
             "id": "UBERON:0015876",
             "label": "pelvic lymph node"
         },
-        "phenotypicFeatures": [],
         "ageOfIndividualAtCollection": {
             "age": "P52Y2M"
         },
@@ -280,8 +249,6 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
             "id": "NCIT:C3261",
             "label": "Metastatic Neoplasm"
         },
-        "tumorStage": [],
-        "diagnosticMarkers": [],
         "procedure": {
             "code": {
                 "id": "NCIT:C15189",
@@ -297,7 +264,6 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
             "sample5": "BS730275"
           }
         }],
-        "variants": [],
         "isControlSample": false
      }
 
@@ -317,19 +283,19 @@ details.
 
 .. code-block:: json
 
-    "diseases": [{
-        "term": {
-            "id": "NCIT:C39853",
-            "label": "Infiltrating Urothelial Carcinoma"
-            },
-        "tumorStage": [{
-             "id": "NCIT:C48766",
-             "label": "pT2b Stage Finding"
-             }, {
-             "id": "NCIT:C48750",
-             "label": "pN2 Stage Finding"
-        }],
-    }],
+  "diseases": [{
+    "term": {
+      "id": "NCIT:C39853",
+      "label": "Infiltrating Urothelial Carcinoma"
+    },
+    "tnmFinding": [{
+      "id": "NCIT:C48766",
+      "label": "pT2b Stage Finding"
+    }, {
+      "id": "NCIT:C48750",
+      "label": "pN2 Stage Finding"
+    }]
+  }]
 
 
 htsFiles
@@ -382,7 +348,6 @@ in the Phenopacket.
             "version": "18.05d",
             "iriPrefix": ""
             }],
-        "updated": [],
         "externalReferences": [{
             "id": "PMID:29221636",
             "description": "Urothelial neoplasms in pediatric and young adult patients: A large single-center series"
