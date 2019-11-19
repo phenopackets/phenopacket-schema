@@ -97,7 +97,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
       "id": "UBERON_0001256",
       "label": "wall of urinary bladder"
     },
-    "phenotypicFeatures": [],
     "ageOfIndividualAtCollection": {
       "age": "P52Y2M"
     },
@@ -109,14 +108,6 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
       "id": "NCIT:C84509",
       "label": "Primary Malignant Neoplasm"
     },
-    "tumorStage": [{
-      "id": "NCIT:C48766",
-      "label": "pT2b Stage Finding"
-    }, {
-      "id": "NCIT:C48750",
-      "label": "pN2 Stage Finding"
-    }],
-    "diagnosticMarkers": [],
     "procedure": {
       "code": {
         "id": "NCIT:C5189",
@@ -199,7 +190,7 @@ can be chosen.
 
 tumor_grade
 ~~~~~~~~~~~
-This should be a child term of  NCIT:C28076 (Disease Grade Qualifier) or equivalent.
+This should be a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent.
 See the `tumor grade fact sheet <https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet>`_.
 
 
