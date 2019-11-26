@@ -278,7 +278,7 @@ diseases
 ~~~~~~~~
 
 We recommend using the National Cancer Institute's Thesaurus codes to represent cancer diagnoses, but any
-relevant ontology term can be used. Information about tumor staging should be addded here. See :ref:`rstdisease` for
+relevant ontology term can be used. Information about tumor staging should be added here. See :ref:`rstdisease` for
 details.
 
 .. code-block:: json
@@ -289,12 +289,19 @@ details.
           "id": "NCIT:C39853",
           "label": "Infiltrating Urothelial Carcinoma"
         },
+        "diseaseStage": [{
+          "id": "NCIT:C27971",
+          "label": "Stage IV"
+        }],
         "tnmFinding": [{
           "id": "NCIT:C48766",
           "label": "pT2b Stage Finding"
         }, {
           "id": "NCIT:C48750",
           "label": "pN2 Stage Finding"
+        }, {
+          "id": "NCIT:C48700",
+          "label": "M1 Stage Finding"
         }]
       }]
     }

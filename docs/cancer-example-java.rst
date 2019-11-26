@@ -132,15 +132,20 @@ relevant ontology term can be used. The following Java code creates a  :ref:`rst
 .. code-block:: java
 
      private Disease infiltratingUrothelialCarcinoma() {
-        return Disease.newBuilder()
-                   .setTerm(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"))
-                   // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
-                   // pT2b Stage Finding (Code C48766)
-                   .addTnmFinding(ontologyClass("NCIT:C48766", "pT2b Stage Finding"))
-                   //pN2 Stage Finding (Code C48750)
-                   // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
-                   .addTnmFinding(ontologyClass("NCIT:C48750", "pN2 Stage Finding"))
-                   .build();
+         return Disease.newBuilder()
+             .setTerm(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"))
+             // Disease stage here is calculated based on the TMN findings
+             .addDiseaseStage(ontologyClass("NCIT:C27971", "Stage IV"))
+             // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
+             // pT2b Stage Finding (Code C48766)
+             .addTnmFinding(ontologyClass("NCIT:C48766", "pT2b Stage Finding"))
+             // pN2 Stage Finding (Code C48750)
+             // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
+             .addTnmFinding(ontologyClass("NCIT:C48750", "pN2 Stage Finding"))
+             // M1 Stage Finding
+             // the tumour has spread from the original site (Metastatic Neoplasm in lymph node - sample5)
+             .addTnmFinding(ontologyClass("NCIT:C48700", "M1 Stage Finding"))
+             .build();
     }
 
 
