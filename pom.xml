@@ -4,7 +4,7 @@
 
     <groupId>org.phenopackets</groupId>
     <artifactId>phenopacket-schema</artifactId>
-    <version>1.0.0-RC4</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>phenopacket-schema</name>
