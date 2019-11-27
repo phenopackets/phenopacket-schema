@@ -39,8 +39,10 @@ The schema aims to define a common, limited set of data types which may be compo
 
 This common schema has been used to define the 'Phenopacket' which is a catch-all collection of data types, specifically focused on representing rare-disease or cancer samples for both initial data capture and analysis. The phenopacket is designed to be both human and machine-readable, and to inter-operate with the HL7 Fast Healthcare Interoperability Resources Specification (aka FHIR®).  
 
-Currently this is very much work in progress and breaking changes will occur. Once we have settled on something stable we will draft a 1.0.0-RELEASE and thereafter stick to semantic versioning semantics.
+Versioning
+==========
 
+The library uses semantic versioning. See https://semver.org for details.
 
 Email list
 ==========
@@ -72,7 +74,18 @@ Examples on how these can be used can be found in the test directory. There are 
 
 JSON/YAML formats
 -----------------
-A Phenopacket can be transformed between the native binary format and JSON using the ``JsonFormat`` class from the ``protobuf-java-util`` library. This contains simple utility methods to perform these transformations. Usage is shown here:
+A Phenopacket can be transformed between the native binary format and JSON using the ``JsonFormat`` class from the ``protobuf-java-util`` library. This will also need to be added to your pom.xml
+
+.. code:: xml
+
+    <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java-util</artifactId>
+        <version>${protobuf.version}</version>
+    </dependency>
+
+
+``protobuf-java-util`` contains simple utility methods to perform these transformations. Usage is shown here:
 
 .. code-block:: java
 
