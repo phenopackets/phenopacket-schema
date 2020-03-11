@@ -32,7 +32,7 @@ This element contains structured definitions of the resources and ontologies use
     * - resources
       - list of :ref:`rstresource`
       - required
-      - (See text)
+      - Ontologies used to create the phenopacket
     * - updates
       - list of :ref:`rstupdate`
       - optional
@@ -47,8 +47,8 @@ This element contains structured definitions of the resources and ontologies use
       - (See text)
 
 The `MetaData` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
-terms are used in the Phenopacket. For instance, if a MONDO term is used to specificy the disease and
-HPO terms are used to specificy the phenotypes of a patient, then the `MetaData` element MUST have
+terms are used in the Phenopacket. For instance, if a MONDO term is used to specify the disease and
+HPO terms are used to specify the phenotypes of a patient, then the `MetaData` element MUST have
 one `Resource` element each for MONDO and HPO.
 
 **Example**

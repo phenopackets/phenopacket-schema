@@ -25,7 +25,7 @@ Installing protobuf
 
 The following exercise is not necessary to use phenopackets-schema,
 but is intended to build intuition for how protobuf works.
-We first need to install protobuf (Note that these intructions are for this tutorial only. The maven system will automatically
+We first need to install protobuf (Note that these instructions are for this tutorial only. The maven system will automatically
 pull in protobuf for phenopackets schema). We show one simple way of installing protobuf on a linux system in the following.
 
 1. Download the source code from the `protobuf GitHub page <https://github.com/protocolbuffers/protobuf>`_. Most users should download the latest tar.gz archive from the Release page. Extract the code.
@@ -41,7 +41,7 @@ pull in protobuf for phenopackets schema). We show one simple way of installing 
    sudo ldconfig # refresh shared library cache.
 
 
-You now should check if installation was sucessful
+You now should check if installation was successful
 
 .. code-block:: bash
 
@@ -138,7 +138,7 @@ and add the following to the plugin section
 This is the simplest configuration of the `xolstice plugin <https://www.xolstice.org/protobuf-maven-plugin/usage.html>`_; see the documentation for further information. We have assumed that protoc is installed in /usr/local/bin in the above, and the path may need to be adjusted on your system.
 
 
-Add the protobuf definition to the proto directory. Add a class such as *Main.java* in the /src/main/java/org/example directory (package: org.example). For simplcity, the following code snippets could be written in the main method
+Add the protobuf definition to the proto directory. Add a class such as *Main.java* in the /src/main/java/org/example directory (package: org.example). For simplicity, the following code snippets could be written in the main method
 
 .. code-block:: java
 

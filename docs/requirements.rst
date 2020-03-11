@@ -27,13 +27,13 @@ phenopacket is regarded as malformed. This corresponds to the key words ``MUST``
 
 Validation software must emit an error if a required field is missing. We note that natively protobuf messages never
 return a null pointer, and so if a field is missing it will be an empty string, a zero, or default instance depending
-on the datatype. Therefore, in practive validation software does not need to check for null pointers.
+on the datatype. Therefore, in practice, validation software does not need to check for null pointers.
 
 Recommended
 ===========
 
 A field is not absolutely required, or there are valid reasons in particular circumstances that the field does
-not apply to the intended use case of the Phenopacket. This corresponds to the key woirds ``SHOULD`` and ``RECOMMENDED`` in
+not apply to the intended use case of the Phenopacket. This corresponds to the key words ``SHOULD`` and ``RECOMMENDED`` in
 `RFC2119 <https://www.ietf.org/rfc/rfc2119.txt>`_. For example, a variant may be associated with an id that can
 be useful to have but is not necessary for an analysis. The variant NM_000138.4:c.*2024A>G is associated with the
 id `rs558488257 <https://www.ncbi.nlm.nih.gov/snp/rs558488257>`_.

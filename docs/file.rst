@@ -19,6 +19,7 @@ Phenopacket can contain its own locally-scope HTS files pertaining to that indiv
 
 HtsFile
 ~~~~~~~
+This message is used for information about a high-throughput file.
 
 .. list-table::
     :widths: 25 50 50 50
