@@ -123,13 +123,13 @@ Phenopacket will report the contents of the info field for single nucleotide and
 .. csv-table::
    :header: Field, Type, Status, Description
 
-    genome_assembly, string, required, GRCh38
+    genome_assembly, string, required, The reference genome identifier e.g. GRCh38
     id, string, recommended, An arbitrary identifier
-    chr, string, required, chr2
-    pos, int32, required, 134327882
-    re, string, required, A
-    alt, string, required, C
-    info, string, optional, END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
+    chr, string, required, A chromosome identifier e.g. chr2 or 2
+    pos, int32, required, The 1-based genomic position e.g. 134327882
+    ref, string, required, The reference base(s)
+    alt, string, required, The alternate base(s)
+    info, string, optional, Relevant parts of the INFO field
 
 **Example**
 
@@ -137,8 +137,8 @@ Phenopacket will report the contents of the info field for single nucleotide and
 
     {
         "genome_assembly": "GRCh38",
-        "chr": "2",
         "id": ".",
+        "chr": "2",
         "pos": 134327882,
         "ref": "A",
         "alt": "<DUP>",
