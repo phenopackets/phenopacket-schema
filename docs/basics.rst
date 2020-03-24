@@ -36,5 +36,5 @@ The terms ‘disease’ and ‘phenotype’ are often conflated. The Phenopacket
 to a phenotypic feature, such as `Arachnodactyly <https://hpo.jax.org/app/browse/term/HP:0001166>`_, that is the
 component of a disease, such as `Marfan syndrome <https://hpo.jax.org/app/browse/disease/OMIM:154700>`_. The
 Phenopacket proposed here is designed to support `deep phenotyping <https://www.ncbi.nlm.nih.gov/pubmed/22504886>`_, a
-process wherein individual components of each phenotype are observed and documented. The phenoptypes may be
+process wherein individual components of each phenotype are observed and documented. The phenotypes may be
 constitutional or those related to a sample (such as from a biopsy).

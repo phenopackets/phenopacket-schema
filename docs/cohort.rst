@@ -38,7 +38,7 @@ disease.
    * - hts_files
      - :ref:`rstfile`
      - optional
-     - High-thoughput sequencing files obtained from members of the cohort
+     - High-throughput sequencing files obtained from members of the cohort
    * - meta_data
      - :ref:`rstmetadata`
      - required

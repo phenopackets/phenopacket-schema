@@ -87,7 +87,7 @@ mappings to the sample id in the :ref:`rsthtsfile`.
 In this case the :ref:`rstpedigree` is created by the sending system from whatever source they use and the identifiers
 should be mapped to those `Individual.id` contained in the `Family.proband` and `Family.relatives` phenopackets.
 
-In the case the VCF file, the sending system likely has no control or ability to change the identifiers used for the
+In the case of the VCF file, the sending system likely has no control or ability to change the identifiers used for the
 sample id and it is likely they use different identifiers. It is for this reason the :ref:`rsthtsfile` has a *local*
 mapping field `HtsFile.individual_to_sample_identifiers` where the `Individual.id` can be mapped to the sample id in that
 file.

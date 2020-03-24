@@ -35,7 +35,7 @@ less precise strings will be preferred for privacy reasons, e.g., P40Y.
 age
 ~~~
 
-It is possible to represent age using a string that should be formated according  as ISO8601
+It is possible to represent age using a string that should be formatted according to ISO8601
 `Duration <https://en.wikipedia.org/wiki/ISO_8601#Durations>`_.
 
 
@@ -45,7 +45,7 @@ It is possible to represent age using a string that should be formated according
 AgeRange
 ========
 
-The AgeRange element is inteded to be used when the age of a subject is represented by a bin, e.g., 5-10 years. Bins
+The AgeRange element is intended to be used when the age of a subject is represented by a bin, e.g., 5-10 years. Bins
 such as this are used in some situations in order to protect the privacy of study participants, whose age is then
 represented by bins such as 45-49 years, 50-54 years, 55-59 years, and so on.
 

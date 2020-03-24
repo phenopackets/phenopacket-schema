@@ -188,7 +188,7 @@ See :ref:`rstmetadata` for further information.
 Diagnosis
 ~~~~~~~~~
 
-The diagnosis element is meant to refer to the disease that is infered to be present in the individual
+The diagnosis element is meant to refer to the disease that is inferred to be present in the individual
 or family being analyzed. The diagnosis can be made by  means of an analysis of the phenotypic or the genomic findings or both.
 The element is optional because if the **resolution_status** is **UNSOLVED** then there is no diagnosis.
 
