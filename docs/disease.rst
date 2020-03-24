@@ -7,7 +7,7 @@ Disease
 The word *phenotype* is used with many different meanings, including "the observable traits of an organism”. In medicine,
 the word can be used with at least two different meanings. It is used to refer to
 some **observed** deviation from normal morphology, physiology, or behavior. In contrast, the *disease* is a diagnosis,
-i.e., and inference or hypothesis about the  cause underlying the observed phenotypic abnormalities. Occasionally,
+i.e., an inference or hypothesis about the  cause underlying the observed phenotypic abnormalities. Occasionally,
 physicians use the word phenotype to refer to a disease, but we do not use this meaning here.
 
 

@@ -18,7 +18,7 @@ data sharing between resources using an agreed upon common schema.
 
 This common schema has been used to define the 'Phenopacket' which is a catch-all collection of data types, specifically
 focused on representing disease data both initial data capture and analysis. The phenopacket schema is designed to be both human
-and machine-readable, and to inter-operate with standards being developed in organizations such as in the `ISO TC215 comittee <https://www.iso.org/committee/7546903.html>`_ and the `HL7 Fast Healthcare Interoperability Resources Specification (aka FHIR®) <http://hl7.org/fhir/>`_.
+and machine-readable, and to inter-operate with standards being developed in organizations such as in the `ISO TC215 committee <https://www.iso.org/committee/7546903.html>`_ and the `HL7 Fast Healthcare Interoperability Resources Specification (aka FHIR®) <http://hl7.org/fhir/>`_.
 
 .. _phenopacket-schema-diagram:
 

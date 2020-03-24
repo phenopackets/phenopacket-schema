@@ -75,7 +75,7 @@ The allele element is required and can be one and only one of ``HgvsAllele``, ``
 HgvsAllele
 ~~~~~~~~~~
 This element is used to describe an allele according to the nomenclature of the
-`Human Geneome Variation Society (HGVS) <http://www.hgvs.org/>`_. For instance,
+`Human Genome Variation Society (HGVS) <http://www.hgvs.org/>`_. For instance,
 ``NM_000226.3:c.470T>G`` indicates that a T at position 470 of the sequence represented by version 3 of
 NM_000226 (which is the mRNA of the human keratin 9 gene `KRT9 <https://www.ncbi.nlm.nih.gov/nuccore/NM_000226.3>`_).
 
@@ -171,7 +171,7 @@ examples.
 The SPDI notation represents variation as deletion of a sequence (D) at a given position (P) in reference sequence (S)
 followed by insertion of a replacement sequence (I) at that same position. Position 0 indicates a deletion that
 starts immediately before the first nucleotide, and position 1 represents a deletion interval that starts between the
-first and second residues, and so on. Either the deleted or the inserted interval can be empty, resulting a pure
+first and second residues, and so on. Either the deleted or the inserted interval can be empty, resulting in a pure
 insertion or deletion.
 
 Note that the deleted and inserted sequences in SPDI are all written on the positive strand for two-stranded molecules.
