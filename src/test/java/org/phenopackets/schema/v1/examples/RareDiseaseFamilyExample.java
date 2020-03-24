@@ -75,6 +75,7 @@ class RareDiseaseFamilyExample {
                 .setDateOfBirth(Timestamp.newBuilder()
                         .setSeconds(Instant.parse("1998-01-01T00:00:00Z").getEpochSecond())
                         .build())
+                .setAgeAtCollection(Age.newBuilder().setAge("P3Y").build())
                 .build();
 
 
