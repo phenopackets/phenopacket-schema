@@ -9,12 +9,8 @@ Here we provide some guidance on how to work with Phenopackets in Java. The sect
 :ref:`rstjavabuild`, :ref:`rstjavaexport` provide general guidance about using Java
 to work with phenopackets. The following sections provide a few examples of how to build
 various elements of Phenopackets. Finally, we present the full Java code used to build
-each of the three examples for :ref:`Rare Disease <rstrarediseaseexamplejava>`, cancer, and model
-organism phenotypes. TODO.
-
-
-
-
+each of the examples for :ref:`rare disease <rstrarediseaseexamplejava>` and
+:ref:`cancer <rstcancerexamplejava>`.
 
 
 .. toctree::
@@ -24,6 +20,7 @@ organism phenotypes. TODO.
    Phenopacket File I/O in Java <java-export>
    evidence <java-evidence>
    timestamp <java-timestamp>
+   duration <java-duration>
 
 
 The Java code
@@ -46,7 +43,6 @@ With this, we present a function that creates a Phenopacket that represents the 
 
   public Phenopacket spherocytosisExample() {
         final String PROBAND_ID = "PROBAND#1";
-        final OntologyClass FEMALE = ontologyClass("PATO:0000383", "female");
         PhenotypicFeature spherocytosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0004444", "Spherocytosis"))
                 .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
@@ -67,24 +63,23 @@ With this, we present a function that creates a Phenopacket that represents the 
                 .setType(ontologyClass("HP:0001923", "Reticulocytosis"))
                 .build();
 
+        VcfAllele vcfAllele = VcfAllele.newBuilder()
+                .setGenomeAssembly("GRCh37")
+                .setChr("8")
+                .setPos(41519441)
+                .setRef("G")
+                .setAlt("A")
+                .build();
+
         Variant ANK1_variant = Variant.newBuilder()
-                .setSequence("NM_001142446.1")
-                .setPosition(5620)
-                .setDeletion("C")
-                .setInsertion("T")
-                .setHgvs("NM_001142446.1:c.5620C>T ")
-                .putSampleGenotypes(PROBAND_ID, ontologyClass("GENO:0000135", "heterozygous"))
+                .setVcfAllele(vcfAllele)
+                .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
                 .build();
 
         Individual proband = Individual.newBuilder()
-                .setSex(FEMALE)
+                .setSex(Sex.FEMALE)
                 .setId(PROBAND_ID)
                 .setAgeAtCollection(Age.newBuilder().setAge("P27Y3M").build())
-                .addPhenotypicFeatures(spherocytosis)
-                .addPhenotypicFeatures(jaundice)
-                .addPhenotypicFeatures(splenomegaly)
-                .addPhenotypicFeatures(notHepatomegaly)
-                .addPhenotypicFeatures(reticulocytosis)
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
@@ -95,14 +90,6 @@ With this, we present a function that creates a Phenopacket that represents the 
                         .setIriPrefix("http://purl.obolibrary.org/obo/HP_")
                         .setUrl("http://purl.obolibrary.org/obo/hp.owl")
                         .setVersion("2018-03-08")
-                        .build())
-                .addResources(Resource.newBuilder()
-                        .setId("pato")
-                        .setName("Phenotype And Trait Ontology")
-                        .setNamespacePrefix("PATO")
-                        .setIriPrefix("http://purl.obolibrary.org/obo/PATO_")
-                        .setUrl("http://purl.obolibrary.org/obo/pato.owl")
-                        .setVersion("2018-03-28")
                         .build())
                 .addResources(Resource.newBuilder()
                         .setId("geno")
@@ -117,6 +104,11 @@ With this, we present a function that creates a Phenopacket that represents the 
 
         return Phenopacket.newBuilder()
                 .setSubject(proband)
+                .addPhenotypicFeatures(spherocytosis)
+                .addPhenotypicFeatures(jaundice)
+                .addPhenotypicFeatures(splenomegaly)
+                .addPhenotypicFeatures(notHepatomegaly)
+                .addPhenotypicFeatures(reticulocytosis)
                 .addAllVariants(ImmutableList.of(ANK1_variant))
                 .setMetaData(metaData)
                 .build();
