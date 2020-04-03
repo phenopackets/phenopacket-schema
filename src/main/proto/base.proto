@@ -131,11 +131,99 @@ message PhenotypicFeature {
         Age age_of_onset = 6;
         AgeRange age_range_of_onset = 7;
         OntologyClass class_of_onset = 9;
+        google.protobuf.Timestamp time_of_onset = 11;
+    }
+
+    // When the phenotypic feature was observed to have finished
+    oneof resolution {
+        Age age_of_resolution = 12;
+        AgeRange age_range_of_resolution = 13;
+        OntologyClass class_of_resolution = 14;
+
+        // A Timestamp represents a point in time independent of any time zone
+        // or calendar, represented as seconds and fractions of seconds at
+        // nanosecond resolution in UTC Epoch time. It is encoded using the
+        // Proleptic Gregorian Calendar which extends the Gregorian calendar
+        // backwards to year one. It is encoded assuming all minutes are 60
+        // seconds long, i.e. leap seconds are "smeared" so that no leap second
+        // table is needed for interpretation. Range is from
+        // 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z.
+        // By restricting to that range, we ensure that we can convert to
+        // and from  RFC 3339 date strings.
+        // See [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
+        google.protobuf.Timestamp time_of_resolution = 15;
     }
 
     // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 10;
 }
+
+// An individual environmental exposure, observed as either present or absent (negated), with possible onset, modifiers
+// and frequency. Recommended ontology for use is ECTO http://purl.obolibrary.org/obo/ecto.owl
+message Exposure {
+    // Free-text description of the exposure. Note this is not a acceptable place to document/describe the exposure -
+    // the type and onset etc... fields should be used for this purpose.
+    string description = 1;
+
+    // The primary ontology class which describes the exposure. For example TODO
+    OntologyClass type = 2;
+
+    // Flag to indicate whether the exposure occurred or not. Default is 'false', in other words the exposure has
+    // occurred. Therefore it is only required in cases to indicate that the exposure was deemed _not_ to have happened.
+    // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'type' field.
+    // *CAUTION* It is imperative to check this field for correct interpretation of the exposure!
+    bool negated = 3;
+
+    // Severity of the exposure e.g. subclasses of TODO Treatment.dose_error ?
+//    OntologyClass severity = 4;
+
+    // subclasses of HP:0012823 ! Clinical modifier apart from Severity HP:0012824 - Severity TODO?
+//    repeated OntologyClass modifiers = 5;
+
+    // the values of this will come from the HPO onset hierarchy
+    // i.e. subclasses of HP:0003674
+    // period rather than oneof
+    oneof start {
+        Age age_at_start = 6;
+        AgeRange age_range_at_start = 7;
+        OntologyClass class_at_start = 9;
+        google.protobuf.Timestamp time_at_start = 11;
+    }
+
+    // When the exposure was observed to have finished
+    oneof end {
+        Age age_at_end = 12;
+        AgeRange age_range_at_end = 13;
+        OntologyClass class_at_end = 14;
+
+        // A Timestamp represents a point in time independent of any time zone
+        // or calendar, represented as seconds and fractions of seconds at
+        // nanosecond resolution in UTC Epoch time. It is encoded using the
+        // Proleptic Gregorian Calendar which extends the Gregorian calendar
+        // backwards to year one. It is encoded assuming all minutes are 60
+        // seconds long, i.e. leap seconds are "smeared" so that no leap second
+        // table is needed for interpretation. Range is from
+        // 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z.
+        // By restricting to that range, we ensure that we can convert to
+        // and from  RFC 3339 date strings.
+        // See [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
+        google.protobuf.Timestamp time_at_end = 15;
+    }
+
+    // Evidences for how the exposure was determined.
+    repeated Evidence evidence = 10;
+}
+
+message Interval {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
+// For COVID-19
+// Timecourse - list of phenopackets over time, test results are a phenotypic feature
+// Treatment - medications plus operations/interventions outside of phenopackets
+// TestResults - test, subject, outcome (idea discarded as this is considered out of scope)
+// Environment - repeated Exposure ECTO (model after PhenotypicFeature)
 
 // FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
 message Evidence {

@@ -38,6 +38,10 @@ message Phenopacket {
     // resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Disease diseases = 7;
 
+    // A list of environmental exposures. The resources using these fields should define what this represents in their
+    // context.
+    repeated org.phenopackets.schema.v1.core.Exposure exposures = 11;
+
     // Pointer to the relevant HTS file(s) for the patient
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 8;
 
@@ -81,6 +85,16 @@ message Cohort {
     repeated Phenopacket members = 3;
     // Pointer to the relevant HTS file(s) for the cohort
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 4;
+    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
+    org.phenopackets.schema.v1.core.MetaData meta_data = 5;
+}
+
+// A set of observations of an individual over a period of time.
+message TimeCourse {
+    string id = 1;
+    string description = 2;
+    org.phenopackets.schema.v1.core.Individual subject = 3;
+    repeated Phenopacket observations = 4;
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     org.phenopackets.schema.v1.core.MetaData meta_data = 5;
 }
