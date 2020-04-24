@@ -128,31 +128,14 @@ message PhenotypicFeature {
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
     oneof onset {
-        Age age_of_onset = 6;
-        AgeRange age_range_of_onset = 7;
-        OntologyClass class_of_onset = 9;
-        google.protobuf.Timestamp time_of_onset = 11;
+        Age age_of_onset = 6 [deprecated = true];
+        AgeRange age_range_of_onset = 7 [deprecated = true];
+        OntologyClass class_of_onset = 9 [deprecated = true];
     }
 
-    // When the phenotypic feature was observed to have finished
-    oneof resolution {
-        Age age_of_resolution = 12;
-        AgeRange age_range_of_resolution = 13;
-        OntologyClass class_of_resolution = 14;
+    TimeElement onset_time = 11;
 
-        // A Timestamp represents a point in time independent of any time zone
-        // or calendar, represented as seconds and fractions of seconds at
-        // nanosecond resolution in UTC Epoch time. It is encoded using the
-        // Proleptic Gregorian Calendar which extends the Gregorian calendar
-        // backwards to year one. It is encoded assuming all minutes are 60
-        // seconds long, i.e. leap seconds are "smeared" so that no leap second
-        // table is needed for interpretation. Range is from
-        // 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z.
-        // By restricting to that range, we ensure that we can convert to
-        // and from  RFC 3339 date strings.
-        // See [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
-        google.protobuf.Timestamp time_of_resolution = 15;
-    }
+    TimeElement resolution_time = 12;
 
     // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 10;
@@ -165,7 +148,7 @@ message Exposure {
     // the type and onset etc... fields should be used for this purpose.
     string description = 1;
 
-    // The primary ontology class which describes the exposure. For example TODO
+    // The primary ontology class which describes the exposure.
     OntologyClass type = 2;
 
     // Flag to indicate whether the exposure occurred or not. Default is 'false', in other words the exposure has
@@ -174,50 +157,19 @@ message Exposure {
     // *CAUTION* It is imperative to check this field for correct interpretation of the exposure!
     bool negated = 3;
 
-    // Severity of the exposure e.g. subclasses of TODO Treatment.dose_error ?
-//    OntologyClass severity = 4;
+    // Mechanism of the exposure e.g. subclasses of
+    OntologyClass route = 4;
 
-    // subclasses of HP:0012823 ! Clinical modifier apart from Severity HP:0012824 - Severity TODO?
-//    repeated OntologyClass modifiers = 5;
+    // Ontology class describing the characteristics of the exposure
+    repeated OntologyClass modifiers = 5;
 
-    // the values of this will come from the HPO onset hierarchy
-    // i.e. subclasses of HP:0003674
-    // period rather than oneof
-    oneof start {
-        Age age_at_start = 6;
-        AgeRange age_range_at_start = 7;
-        OntologyClass class_at_start = 9;
-        google.protobuf.Timestamp time_at_start = 11;
-    }
-
-    // When the exposure was observed to have finished
-    oneof end {
-        Age age_at_end = 12;
-        AgeRange age_range_at_end = 13;
-        OntologyClass class_at_end = 14;
-
-        // A Timestamp represents a point in time independent of any time zone
-        // or calendar, represented as seconds and fractions of seconds at
-        // nanosecond resolution in UTC Epoch time. It is encoded using the
-        // Proleptic Gregorian Calendar which extends the Gregorian calendar
-        // backwards to year one. It is encoded assuming all minutes are 60
-        // seconds long, i.e. leap seconds are "smeared" so that no leap second
-        // table is needed for interpretation. Range is from
-        // 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z.
-        // By restricting to that range, we ensure that we can convert to
-        // and from  RFC 3339 date strings.
-        // See [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
-        google.protobuf.Timestamp time_at_end = 15;
-    }
+    // When the exposure occurred
+    TimeElement occurrence = 6;
 
     // Evidences for how the exposure was determined.
-    repeated Evidence evidence = 10;
+    repeated Evidence evidence = 7;
 }
 
-message Interval {
-    google.protobuf.Timestamp start = 1;
-    google.protobuf.Timestamp end = 2;
-}
 
 // For COVID-19
 // Timecourse - list of phenopackets over time, test results are a phenotypic feature
@@ -400,13 +352,14 @@ message Biosample {
 // {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"UBERON:0003403": "skin of forearm"}} - a punch biopsy of the skin from the forearm
 // FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
 message Procedure {
-
-    //
     // FHIR mapping: Procedure.code
     OntologyClass code = 1;
 
     // FHIR mapping: Procedure.bodySite
     OntologyClass body_site = 2;
+
+    // When the procedure was performed.
+    TimeElement performed = 3;
 }
 
 // See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
@@ -425,6 +378,21 @@ message AgeRange {
     Age end = 2;
 }
 
+message Interval {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
+message TimeElement {
+    oneof element {
+        Age age = 1;
+        AgeRange age_range = 2;
+        OntologyClass ontology_class = 3;
+        google.protobuf.Timestamp timestamp = 4;
+        Interval interval = 5;
+    }
+}
+
 // Message to indicate a disease (diagnosis) and its recorded onset.
 message Disease {
     // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
@@ -434,10 +402,14 @@ message Disease {
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
     oneof onset {
-        Age age_of_onset = 2;
-        AgeRange age_range_of_onset = 3;
-        OntologyClass class_of_onset = 4;
+        Age age_of_onset = 2 [deprecated = true];
+        AgeRange age_range_of_onset = 3 [deprecated = true];
+        OntologyClass class_of_onset = 4 [deprecated = true];
     }
+
+    TimeElement onset_time = 8;
+
+    TimeElement resolution_time = 9;
 
     // Disease staging, the extent to which a disease has developed.
     // For cancers, see https://www.cancer.gov/about-cancer/diagnosis-staging/staging
@@ -449,6 +421,55 @@ message Disease {
     // Valid values include child terms of NCIT:C48232 (Cancer TNM Finding)
     repeated OntologyClass tnm_finding = 6;
 
+}
+
+// alternatively
+message DoseInterval {
+
+    Quantity quantity = 1;
+    // The
+    Interval interval = 2;  // related to issue #64 these could be an Interval/Period
+}
+
+message Quantity {
+    // For instance, NCIT subhierarchy, Unit of Measure (Code C25709)
+    OntologyClass unit = 1;
+    // the  value of the quantity in the units  e.g. 2.0 mg
+    double value = 2;
+}
+
+// A simplified version of ODHSI-DRUG_EXPOSURE
+enum DrugType {
+    UNKNOWN_DRUG_TYPE = 0;
+    PRESCRIPTION = 1;
+    EHR_MEDICATION_LIST = 2;
+    ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
+}
+
+// Why was a medication discontinued?
+enum StopReason {
+    UNKNOWN_STOP_REASON = 0;
+    REGIMEN_COMPLETED = 1;
+    REGIMEN_CHANGED = 2;
+    REMOVED = 3; // what does 'removed' mean here?
+}
+
+// treatment with a pharmaceutical agent
+message PharmaceuticalTreatment {
+    OntologyClass drug = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+    OntologyClass route_of_administration = 2; // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
+    repeated DoseInterval dose_intervals  = 3;
+    DrugType drug_type = 4;
+    StopReason stop_reason_id = 5; // TODO: What if this is still ongoing? Will need a new value for this.
+}
+
+// medication, procedure, other actions taken for clinical management
+message MedicalAction {
+    oneof action {
+        PharmaceuticalTreatment pharmaceutical_treatment = 1;
+        Procedure procedure = 2;
+        // (to be expanded....)
+    }
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
