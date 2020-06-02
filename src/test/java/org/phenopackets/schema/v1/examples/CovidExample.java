@@ -132,18 +132,18 @@ class CovidExample {
                                 .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
                                 .setRouteOfAdministration(ontologyClass("NCIT:C38284", "Nasal Route of Administration"))
                                 .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(Interval.newBuilder().setStart(timestampFrom(LocalDate.parse("2020-03-20"))).setEnd(timestampFrom(LocalDate.parse("2020-03-22"))).build())
-                                        .setQuantity(Quantity.newBuilder().setUnit(ontologyClass("NCIT:C67388", "Liter per Minute")).setValue(2).build())
+                                        .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
+                                        .setQuantity(quantityOf(ontologyClass("NCIT:C67388", "Liter per Minute"), 2))
                                         .build())
                                 .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(Interval.newBuilder().setStart(timestampFrom(LocalDate.parse("2020-03-22"))).setEnd(timestampFrom(LocalDate.parse("2020-03-23"))).build())
-                                        .setQuantity(Quantity.newBuilder().setUnit(ontologyClass("NCIT:C67388", "Liter per Minute")).setValue(50).build())
+                                        .setInterval(parseLocalDateInterval("2020-03-22", "2020-03-23"))
+                                        .setQuantity(quantityOf(ontologyClass("NCIT:C67388", "Liter per Minute"), 50))
                                         .build())))
                 .addMedicalActions(MedicalAction.newBuilder()
                         .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
                                 .setDrug(ontologyClass("NCIT:C557", "Hydroxychloroquine"))
                                 .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(Interval.newBuilder().setStart(timestampFrom(LocalDate.parse("2020-03-20"))).setEnd(timestampFrom(LocalDate.parse("2020-03-22"))).build())
+                                        .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
                                         .build())
                                 .setStopReasonId(StopReason.REMOVED)
                                 .build())
@@ -151,7 +151,7 @@ class CovidExample {
                 .addMedicalActions(MedicalAction.newBuilder()
                         .setProcedure(Procedure.newBuilder()
                                 .setCode(ontologyClass("NCIT:C116648", "Tracheal Intubation"))
-                                .setPerformed(TimeElement.newBuilder().setTimestamp(timestampFrom(LocalDate.parse("2020-03-22"))).build())
+                                .setPerformed(parseLocalDate("2020-03-22"))
                                 .build())
                         .build())
                 // TODO: how to detail the amount of Oxygen administered via ventilator?
@@ -161,15 +161,15 @@ class CovidExample {
                                 .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
                                 .setRouteOfAdministration(ontologyClass("NCIT:C50254", "Positive end Expiratory Pressure Valve Device"))
                                 .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(Interval.newBuilder().setStart(timestampFrom(LocalDate.parse("2020-03-22"))).setEnd(timestampFrom(LocalDate.parse("2020-03-28"))).build())
-                                        .setQuantity(Quantity.newBuilder().setUnit(ontologyClass("NCIT:C91060", "Centimeters of Water")).setValue(14).build())
+                                        .setInterval(parseLocalDateInterval("2020-03-22", "2020-03-28"))
+                                        .setQuantity(quantityOf(ontologyClass("NCIT:C91060", "Centimeters of Water"), 14))
                                         .build()))
                         .build())
                 .addMedicalActions(MedicalAction.newBuilder()
                         .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
                                 .setDrug(ontologyClass("NCIT:C84217", "Tocilizumab"))
                                 .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(Interval.newBuilder().setStart(timestampFrom(LocalDate.parse("2020-03-24"))).setEnd(timestampFrom(LocalDate.parse("2020-03-28"))).build())
+                                        .setInterval(parseLocalDateInterval("2020-03-24", "2020-03-28"))
                                         .build())
                         .build()))
                 .addDiseases(cardiomyopathy)
@@ -179,19 +179,28 @@ class CovidExample {
                 .build();
     }
 
+    private static Quantity quantityOf(OntologyClass unit, double value) {
+        return Quantity.newBuilder().setUnit(unit).setValue(value).build();
+    }
+
+    private static Interval parseLocalDateInterval(String isoLocalDateStart, String isoLocalDateEnd) {
+        return Interval.newBuilder().setStart(parseIsoLocalDate(isoLocalDateStart)).setEnd(parseIsoLocalDate(isoLocalDateEnd)).build();
+    }
+
     private static TimeElement parseLocalDate(String isoLocalDate) {
         return TimeElement.newBuilder()
-                .setTimestamp(timestampFrom(LocalDate.parse(isoLocalDate)))
+                .setTimestamp(parseIsoLocalDate(isoLocalDate))
                 .build();
     }
 
     private static TimeElement parseLocalDateRange(String isoLocalDateStart, String isoLocalDateEnd) {
         return TimeElement.newBuilder()
-                .setInterval(Interval.newBuilder()
-                        .setStart(timestampFrom(LocalDate.parse(isoLocalDateStart)))
-                        .setEnd(timestampFrom(LocalDate.parse(isoLocalDateEnd)))
-                        .build())
+                .setInterval(parseLocalDateInterval(isoLocalDateStart, isoLocalDateEnd))
                 .build();
+    }
+
+    private static Timestamp parseIsoLocalDate(String isoLocalDate) {
+        return timestampFrom(LocalDate.parse(isoLocalDate));
     }
 
     private static Timestamp timestampFrom(LocalDate localDateStart) {
