@@ -20,10 +20,18 @@ message MetaData {
     repeated Update updates = 5;
     // phenopacket-schema-version used to create this phenopacket
     string phenopacket_schema_version = 6;
+    ApiVersion api_version = 8;
     // External identifiers for this message. These are considered different representation of the same record, not
     // records which are in some other relation with the record at hand. For example this might be a PubMed reference
     // to a study in which the individuals are reported.
     repeated ExternalReference external_references = 7;
+
+    // TODO: DUO tag?
+}
+
+enum ApiVersion {
+    v1_0 = 0;
+    v1_1 = 1;
 }
 
 // Information about when an update to a record occurred, who or what made the update and any pertinent information
@@ -220,6 +228,10 @@ message Individual {
         AgeRange age_range_at_collection = 5;
     }
 
+    // TODO: This is potentially confusing as the timeOfDeath could be set and yet the deceased value will return false.
+    //  might this be better stated as a LiveState class which has both deceased and time_of_death
+    LiveState live_state = 9;
+
     // The phenotypic sex of the individual
     Sex sex = 6;
 
@@ -230,6 +242,11 @@ message Individual {
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to its most specific level
     OntologyClass taxonomy = 8;
+}
+
+message LiveState {
+    bool deceased = 1;
+    TimeElement time_of_death = 2;
 }
 
 // Sex of an individual

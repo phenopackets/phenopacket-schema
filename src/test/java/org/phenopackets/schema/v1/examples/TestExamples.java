@@ -55,4 +55,7 @@ public class TestExamples {
         return BiosamplesPhenopacketExample.biosamplePhenopacket();
     }
 
+    public static Phenopacket severeCovidCaseWithCardiacComplications() {
+        return CovidExample.severeCovidCaseWithCardiacComplications();
+    }
 }

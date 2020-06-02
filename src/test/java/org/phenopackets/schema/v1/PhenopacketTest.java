@@ -164,4 +164,9 @@ public class PhenopacketTest {
     void printBiosamples() throws IOException {
         System.out.println(PhenopacketFormat.toYaml(TestExamples.biosamplesPhenopacket()));
     }
+
+    @Test
+    void printCovidCase() throws IOException {
+        System.out.println(PhenopacketFormat.toYaml(TestExamples.severeCovidCaseWithCardiacComplications()));
+    }
 }
