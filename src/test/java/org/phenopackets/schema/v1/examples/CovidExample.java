@@ -58,8 +58,6 @@ class CovidExample {
                 .setLiveState(LiveState.newBuilder().setDeceased(true).setTimeOfDeath(parseLocalDate("2020-03-28")).build())
                 .build();
 
-        System.out.println(patient.getLiveState());
-
         MedicalAction lvadImplant = MedicalAction.newBuilder()
                 .setProcedure(Procedure.newBuilder()
                         .setCode(ontologyClass("NCIT:C80473", "Left Ventricular Assist Device"))
@@ -112,10 +110,81 @@ class CovidExample {
                 .setOnsetTime(returnToHospitalTime)
                 .build();
 
-        return Phenopacket.newBuilder()
-                .setMetaData(MetaData.newBuilder()
-                        .setApiVersion(ApiVersion.v1_1)
+        MedicalAction nasalOxygenAdministered = MedicalAction.newBuilder()
+                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
+                        .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
+                        .setRouteOfAdministration(ontologyClass("NCIT:C38284", "Nasal Route of Administration"))
+                        .addDoseIntervals(DoseInterval.newBuilder()
+                                .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
+                                .setQuantity(quantityOf(2, ontologyClass("NCIT:C67388", "Liter per Minute")))
+                                .build())
+                        .addDoseIntervals(DoseInterval.newBuilder()
+                                .setInterval(parseLocalDateInterval("2020-03-22", "2020-03-23"))
+                                .setQuantity(quantityOf(50, ontologyClass("NCIT:C67388", "Liter per Minute")))
+                                .build()))
+                .build();
+
+        MedicalAction hydroxychloroquineAdministered = MedicalAction.newBuilder()
+                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
+                        .setDrug(ontologyClass("NCIT:C557", "Hydroxychloroquine"))
+                        .addDoseIntervals(DoseInterval.newBuilder()
+                                .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
+                                .build())
+                        .setStopReasonId(StopReason.REMOVED)
                         .build())
+                .build();
+
+        MedicalAction trachealIntubation = MedicalAction.newBuilder()
+                .setProcedure(Procedure.newBuilder()
+                        .setCode(ontologyClass("NCIT:C116648", "Tracheal Intubation"))
+                        .setPerformed(parseLocalDate("2020-03-22"))
+                        .build())
+                .build();
+
+        MedicalAction peepOxygenAdministered = MedicalAction.newBuilder()
+                // TODO: how to detail the amount of Oxygen administered via ventilator? Wouldn't this be better
+                //  described as a Procedure?
+//                        .setProcedure(Procedure.newBuilder().build())
+                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
+                        .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
+                        .setRouteOfAdministration(ontologyClass("NCIT:C50254", "Positive end Expiratory Pressure Valve Device"))
+                        .addDoseIntervals(DoseInterval.newBuilder()
+                                .setInterval(parseLocalDateInterval("2020-03-22", "2020-03-28"))
+                                .setQuantity(quantityOf(14, ontologyClass("NCIT:C91060", "Centimeters of Water")))
+                                .build()))
+                .build();
+
+        MedicalAction.Builder tocilizumabAdministered = MedicalAction.newBuilder()
+                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
+                        .setDrug(ontologyClass("NCIT:C84217", "Tocilizumab"))
+                        .addDoseIntervals(DoseInterval.newBuilder()
+                                .setInterval(parseLocalDateInterval("2020-03-24", "2020-03-28"))
+                                .build())
+                        .build());
+
+        Resource ncit = Resource.newBuilder()
+                .setId("ncit")
+                .setName("NCI Thesaurus OBO Edition")
+                .setUrl("http://purl.obolibrary.org/obo/ncit.owl")
+                .setVersion("http://purl.obolibrary.org/obo/ncit/releases/2019-11-26/ncit.owl")
+                .setNamespacePrefix("NCIT")
+                .build();
+
+        Resource mondo = Resource.newBuilder()
+                .setId("mondo")
+                .setName("Mondo Disease Ontology")
+                .setUrl("http://purl.obolibrary.org/obo/mondo.obo")
+                .setNamespacePrefix("MONDO")
+                .build();
+
+        MetaData metaData = MetaData.newBuilder()
+                .setApiVersion(ApiVersion.v1_1)
+                .addResources(ncit)
+                .addResources(mondo)
+                .build();
+
+        return Phenopacket.newBuilder()
+                .setMetaData(metaData)
                 .setSubject(patient)
                 .addPhenotypicFeatures(bloodGroupA)
                 .addPhenotypicFeatures(rhesusPositive)
@@ -127,51 +196,11 @@ class CovidExample {
                 .addPhenotypicFeatures(dyspnea)
                 .addPhenotypicFeatures(acuteRespiratoryFailure)
                 .addMedicalActions(lvadImplant)
-                .addMedicalActions(MedicalAction.newBuilder()
-                        .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                                .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
-                                .setRouteOfAdministration(ontologyClass("NCIT:C38284", "Nasal Route of Administration"))
-                                .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
-                                        .setQuantity(quantityOf(ontologyClass("NCIT:C67388", "Liter per Minute"), 2))
-                                        .build())
-                                .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(parseLocalDateInterval("2020-03-22", "2020-03-23"))
-                                        .setQuantity(quantityOf(ontologyClass("NCIT:C67388", "Liter per Minute"), 50))
-                                        .build())))
-                .addMedicalActions(MedicalAction.newBuilder()
-                        .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                                .setDrug(ontologyClass("NCIT:C557", "Hydroxychloroquine"))
-                                .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
-                                        .build())
-                                .setStopReasonId(StopReason.REMOVED)
-                                .build())
-                        .build())
-                .addMedicalActions(MedicalAction.newBuilder()
-                        .setProcedure(Procedure.newBuilder()
-                                .setCode(ontologyClass("NCIT:C116648", "Tracheal Intubation"))
-                                .setPerformed(parseLocalDate("2020-03-22"))
-                                .build())
-                        .build())
-                // TODO: how to detail the amount of Oxygen administered via ventilator?
-                .addMedicalActions(MedicalAction.newBuilder()
-//                        .setProcedure(Procedure.newBuilder().build())
-                        .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                                .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
-                                .setRouteOfAdministration(ontologyClass("NCIT:C50254", "Positive end Expiratory Pressure Valve Device"))
-                                .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(parseLocalDateInterval("2020-03-22", "2020-03-28"))
-                                        .setQuantity(quantityOf(ontologyClass("NCIT:C91060", "Centimeters of Water"), 14))
-                                        .build()))
-                        .build())
-                .addMedicalActions(MedicalAction.newBuilder()
-                        .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                                .setDrug(ontologyClass("NCIT:C84217", "Tocilizumab"))
-                                .addDoseIntervals(DoseInterval.newBuilder()
-                                        .setInterval(parseLocalDateInterval("2020-03-24", "2020-03-28"))
-                                        .build())
-                        .build()))
+                .addMedicalActions(nasalOxygenAdministered)
+                .addMedicalActions(hydroxychloroquineAdministered)
+                .addMedicalActions(trachealIntubation)
+                .addMedicalActions(peepOxygenAdministered)
+                .addMedicalActions(tocilizumabAdministered)
                 .addDiseases(cardiomyopathy)
                 .addDiseases(chronicKidneyDisease)
                 .addDiseases(obesity)
@@ -179,7 +208,7 @@ class CovidExample {
                 .build();
     }
 
-    private static Quantity quantityOf(OntologyClass unit, double value) {
+    private static Quantity quantityOf(double value, OntologyClass unit) {
         return Quantity.newBuilder().setUnit(unit).setValue(value).build();
     }
 
