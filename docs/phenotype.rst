@@ -39,7 +39,7 @@ frequency.
             id": "HP:0012825",
             "label": "Mild"
         }
-        "classOfOnset": {
+        "onset": {
           "id": "HP:0003577",
           "label": "Congenital onset"
         }
