@@ -16,5 +16,6 @@ is available from the `phenopacket-schema GitHub repository <https://github.com/
    toplevel
    building-blocks
    working
+   version2
 
 
