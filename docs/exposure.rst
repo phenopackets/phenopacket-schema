@@ -30,7 +30,7 @@ The resources using these fields should define what this represents in their con
      - optional
      - Free-text description of the exposure.
    * - type
-     - OntologyClass string
+     - OntologyClass
      - required
      - The primary ontology class which describes the exposure.
    * - negated

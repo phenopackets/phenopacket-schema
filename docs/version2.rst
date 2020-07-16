@@ -22,11 +22,17 @@ Version 2.0
 .. toctree::
    :maxdepth: 1
 
+   apiversion
    dose-interval
+   drug-type
    exposure
    interval
+   medical-action
+   pharmaceutical-treatment
    quantity
+   stop-reason
    time-element
+   vital-status
 
 
 We anticipate that version 2.0 will contain a very few breaking (backwards-incompatible)
