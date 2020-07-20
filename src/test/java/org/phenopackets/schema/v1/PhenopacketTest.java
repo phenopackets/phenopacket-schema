@@ -97,6 +97,7 @@ public class PhenopacketTest {
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
+                .setApiVersion(ApiVersion.v1_1)
                 .addResources(Resource.newBuilder()
                         .setId("hp")
                         .setName("human phenotype ontology")
@@ -156,8 +157,7 @@ public class PhenopacketTest {
 
     @Test
     void printRareDisease() throws IOException {
-        // TODO Add a RareDiseaseFamilyFormat class for this case...
-        System.out.println(PhenopacketFormat.toJson(TestExamples.rareDiseasePhenopacket()));
+        System.out.println(PhenopacketFormat.toYaml(TestExamples.rareDiseasePhenopacket()));
     }
 
     @Test
