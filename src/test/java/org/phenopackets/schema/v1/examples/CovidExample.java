@@ -66,15 +66,15 @@ class CovidExample {
                 .build();
         PhenotypicFeature fever = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("NCIT:C3038", "Fever"))
-                .setOnsetTime(initialSymptomsTime)
+                .setOnset(initialSymptomsTime)
                 .build();
         PhenotypicFeature flankPain = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("NCIT:C34615", "Flank Pain"))
-                .setOnsetTime(initialSymptomsTime)
+                .setOnset(initialSymptomsTime)
                 .build();
         PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("NCIT:C3090", "Hematuria"))
-                .setOnsetTime(initialSymptomsTime)
+                .setOnset(initialSymptomsTime)
                 .build();
 
         // He was tested for coronavirus disease 2019 (COVID-19), but he left against medical advice.
@@ -83,17 +83,17 @@ class CovidExample {
 
         PhenotypicFeature myalgia = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("NCIT:C27009", "Myalgia"))
-                .setOnsetTime(preHospitalisationDateRange)
+                .setOnset(preHospitalisationDateRange)
                 .build();
 
         PhenotypicFeature diarrhea = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("NCIT:C2987", "Diarrhea"))
-                .setOnsetTime(preHospitalisationDateRange)
+                .setOnset(preHospitalisationDateRange)
                 .build();
 
         PhenotypicFeature dyspnea = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("NCIT:C2998", "Dyspnea"))
-                .setOnsetTime(preHospitalisationDateRange)
+                .setOnset(preHospitalisationDateRange)
                 .build();
 
         // He returned to the emergency department and was in acute hypoxic respiratory failure requiring
@@ -102,12 +102,12 @@ class CovidExample {
 
         Disease covid19 = Disease.newBuilder()
                 .setTerm(ontologyClass("MONDO:0100096", "COVID-19"))
-                .setOnsetTime(initialSymptomsTime)
+                .setOnset(initialSymptomsTime)
                 .build();
 
         PhenotypicFeature acuteRespiratoryFailure = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("NCIT:C27043", "Acute Respiratory Failure"))
-                .setOnsetTime(returnToHospitalTime)
+                .setOnset(returnToHospitalTime)
                 .build();
 
         MedicalAction nasalOxygenAdministered = MedicalAction.newBuilder()

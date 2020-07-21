@@ -135,15 +135,15 @@ message PhenotypicFeature {
     // the values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
-    oneof onset {
+    oneof onset_time {
         Age age_of_onset = 6 [deprecated = true];
         AgeRange age_range_of_onset = 7 [deprecated = true];
         OntologyClass class_of_onset = 9 [deprecated = true];
     }
 
-    TimeElement onset_time = 11;
+    TimeElement onset = 11;
 
-    TimeElement resolution_time = 12;
+    TimeElement resolution = 12;
 
     // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 10;
@@ -418,15 +418,15 @@ message Disease {
     // The onset of the disease. The values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
-    oneof onset {
+    oneof onset_time {
         Age age_of_onset = 2 [deprecated = true];
         AgeRange age_range_of_onset = 3 [deprecated = true];
         OntologyClass class_of_onset = 4 [deprecated = true];
     }
 
-    TimeElement onset_time = 8;
+    TimeElement onset = 8;
 
-    TimeElement resolution_time = 9;
+    TimeElement resolution = 9;
 
     // Disease staging, the extent to which a disease has developed.
     // For cancers, see https://www.cancer.gov/about-cancer/diagnosis-staging/staging
