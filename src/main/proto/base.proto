@@ -228,9 +228,9 @@ message Individual {
         AgeRange age_range_at_collection = 5;
     }
 
-    // TODO: This is potentially confusing as the timeOfDeath could be set and yet the deceased value will return false.
-    //  might this be better stated as a LiveState class which has both deceased and time_of_death
-    LiveState live_state = 9;
+    // Vital status of the individual. If not present it is assumed that the individual is alive. If present it will
+    // default to 'false' i.e. the individual was alive when the data was collected.
+    VitalStatus vital_status = 9;
 
     // The phenotypic sex of the individual
     Sex sex = 6;
@@ -244,9 +244,18 @@ message Individual {
     OntologyClass taxonomy = 8;
 }
 
-message LiveState {
-    bool deceased = 1;
+message VitalStatus {
+    // Default = false i.e. the individual is alive. MUST be true if
+    enum Status {
+        UNKNOWN_STATUS = 0;
+        ALIVE = 1;
+        DECEASED = 2;
+    }
+    Status status = 1;
+
     TimeElement time_of_death = 2;
+
+    OntologyClass cause_of_death = 3;
 }
 
 // Sex of an individual
@@ -359,6 +368,8 @@ message Biosample {
     // another sample that is thought to contain a pathological finding
     // the default value is false
     bool is_control_sample = 16;
+
+    // preservation method
 }
 
 // A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the

@@ -55,7 +55,11 @@ class CovidExample {
         Individual patient = Individual.newBuilder().setId("P123542")
                 .setSex(Sex.MALE)
                 .setAgeAtCollection(Age.newBuilder().setAge("P70Y").build())
-                .setLiveState(LiveState.newBuilder().setDeceased(true).setTimeOfDeath(parseLocalDate("2020-03-28")).build())
+                .setVitalStatus(VitalStatus.newBuilder()
+                        .setStatus(VitalStatus.Status.DECEASED)
+                        .setTimeOfDeath(parseLocalDate("2020-03-28"))
+                        .setCauseOfDeath(ontologyClass("MONDO:0100096", "COVID-19"))
+                        .build())
                 .build();
 
         MedicalAction lvadImplant = MedicalAction.newBuilder()
