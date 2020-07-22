@@ -35,9 +35,11 @@ class CovidExample {
         // His post-LVAD complications include gastrointestinal bleeding, ventricular tachycardia, and right ventricular
         // (RV) dysfunction but no infectious complications.
         // He did not have diabetes or use tobacco.
-//       NOT "NCIT:C2985", "Diabetes Mellitus"
-        // TODO: Hmm unable to negate a disease... "MONDO:0005015", "diabetes mellitus (disease)"
-        Disease notDiabetes = Disease.newBuilder().setTerm(ontologyClass("NCIT:C2985", "Diabetes Mellitus")).build();
+        // NOT "NCIT:C2985", "Diabetes Mellitus"
+        Disease notDiabetes = Disease.newBuilder()
+                .setTerm(ontologyClass("NCIT:C2985", "Diabetes Mellitus"))
+                .setExcluded(true)
+                .build();
 
         // His blood group was type A positive.
         PhenotypicFeature bloodGroupA = PhenotypicFeature.newBuilder()
@@ -205,6 +207,7 @@ class CovidExample {
                 .addMedicalActions(trachealIntubation)
                 .addMedicalActions(peepOxygenAdministered)
                 .addMedicalActions(tocilizumabAdministered)
+                .addDiseases(notDiabetes)
                 .addDiseases(cardiomyopathy)
                 .addDiseases(chronicKidneyDisease)
                 .addDiseases(obesity)

@@ -426,6 +426,13 @@ message Disease {
     // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
     OntologyClass term = 1;
 
+    // Flag to indicate whether the disease was observed or not. Default is 'false', in other words the disease was
+    // observed. Therefore it is only required in cases to indicate that the disease was looked for, but found to be
+    // absent.
+    // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'term' field.
+    // *CAUTION* It is imperative to check this field for correct interpretation of the disease!
+    bool excluded = 7;
+
     // The onset of the disease. The values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
