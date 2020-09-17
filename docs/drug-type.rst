@@ -5,9 +5,10 @@ Drug Type
 =========
 
 
+Drugs can be administered in different contexts. This element does not intend to capture information about
+the administration route (e.g., by mouth or intravenous), but rather about the setting - inpatient, outpatient,
+or related to a (generally one-time) procedure.
 
-Drugs can be administered in different contexts, and this element
-captures information about this.
 
 
 
@@ -35,4 +36,5 @@ a local anesthetic given before a skin biopsy or a sedative given to perform
 a bronchoscopy.
 
 
-These categories were adapted from the `OMOP CDM <https://github.com/OHDSI/CommonDataModel/wiki/DRUG_EXPOSURE>`_,
+These categories were adapted from information in
+`OMOP CDM <https://github.com/OHDSI/CommonDataModel/wiki/DRUG_EXPOSURE>`_.
