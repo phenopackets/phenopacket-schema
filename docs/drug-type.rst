@@ -4,11 +4,10 @@
 Drug Type
 =========
 
-Following the `OMOP definitions <https://github.com/OHDSI/CommonDataModel/wiki/DRUG_EXPOSURE>`_ of
-these items, we consider that drugs include prescription and over-the-counter
-medicines, vaccines, and large-molecule biologic therapies.
 
-Drugs can be administered in different contexts, and this element captures information about this.
+
+Drugs can be administered in different contexts, and this element
+captures information about this.
 
 
 
@@ -23,6 +22,17 @@ Drugs can be administered in different contexts, and this element captures infor
     }
 
 
-To be discussed is whether this can be implemented instead as an ontology term.
-For instancec, NCIT has a term for `Prescription <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C28180>`_.
+This element does not intend to capture the medical reason for administering
+a treatment. Instead, it records the context in which the medication is
+administered. It is assumed that medications recorded on
+the medication list of an electronic health record (EHR) are likely
+to have been actually administered as prescribed. If a prescription
+is given for outpatient use, it is less likely that the medication
+will be taken exactly as prescribed
+(`Osterberg L, Adherence to medication. N Engl J Med. 2005 <https://pubmed.ncbi.nlm.nih.gov/16079372/>`_).
+Finally, medications may be given to conduct a medical procedure such as
+a local anesthetic given before a skin biopsy or a sedative given to perform
+a bronchoscopy.
 
+
+These categories were adapted from the `OMOP CDM <https://github.com/OHDSI/CommonDataModel/wiki/DRUG_EXPOSURE>`_,
