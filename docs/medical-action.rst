@@ -7,18 +7,34 @@ Medical action
 This element describes medications, procedures, other actions taken
 for clinical management. The element is a list of options.
 
+
+**Data model**
+
+
+.. list-table:: Definition  of the ``MedicalAction`` element
+   :widths: 25 25 50 50
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Status
+     - Description
+   * - action
+     - one of :ref:`rstprocedure`, :ref:`rsttreatment`, :ref:`rstchemotherapy`, :ref:`rsthormonetherapy`,:ref:`rstradiotherapy`.
+     - required
+     - One of a list of medical actions
+
 .. code-block:: json
 
     message MedicalAction {
-        oneof action {
-            // e.g.
-            Treatment treatment = 1; // to be discussed
-            PharmaceuticalTreatment pharmaceutical_treatment = 2;
-            RadiotherapyTreatment radiotherapy_treatment = 3;
-            Procedure procedure = 4;
-            // (to be expanded....)
-        }
+    oneof action {
+        Procedure procedure = 1;
+        Treatment treatment = 2;
+        ChemoTherapyTreatment chemo_therapy = 3;
+        HormoneTherapyTreatment hormone_therapy = 4;
+        RadiationTherapyTreatment radiation_therapy = 5;
     }
+}
 
 
 

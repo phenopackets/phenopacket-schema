@@ -30,6 +30,7 @@ Version 2.0
    medical-action
    pharmaceutical-treatment
    quantity
+   radiotherapy
    stop-reason
    time-element
    vital-status
