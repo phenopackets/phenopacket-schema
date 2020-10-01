@@ -48,9 +48,9 @@ medicines, vaccines, and large-molecule biologic therapies.
 
 
 
-drug
+agent
 ~~~~
-An ontology term representing the pharmaceutical agent. This can be
+An ontology term representing the therapeutic agent. This can be
 a term from `DrugCentral <http://drugcentral.org/>`_,
 `RxNorm <https://www.nlm.nih.gov/research/umls/rxnorm/index.html>`_,
 `Drugbank <https://www.drugbank.ca/>`_,
