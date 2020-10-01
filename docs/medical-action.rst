@@ -20,50 +20,22 @@ for clinical management. The element is a list of options.
      - Status
      - Description
    * - action
-     - one of :ref:`rstprocedure`, :ref:`rsttreatment`, :ref:`rstchemotherapy`, :ref:`rsthormonetherapy`,:ref:`rstradiotherapy`.
+     - one of Procedure, Treatment, Chemotherapy, Hormonetherapy, or Radiotherapy.
      - required
      - One of a list of medical actions
 
-.. code-block:: json
 
-    message MedicalAction {
-    oneof action {
-        Procedure procedure = 1;
-        Treatment treatment = 2;
-        ChemoTherapyTreatment chemo_therapy = 3;
-        HormoneTherapyTreatment hormone_therapy = 4;
-        RadiationTherapyTreatment radiation_therapy = 5;
-    }
-}
+action
+~~~~~~
 
+Each MedicalAction element refers to one of the following specific types of medical action:
 
+* :ref:`rstprocedure`
+* :ref:`rsttreatment`
+* :ref:`rstchemotherapy`
+* :ref:`rsthormonetherapy`
+* :ref:`rstradiotherapy`
 
-treatment
-~~~~~~~~~
-
-The element would be for treatments that are not pharmaceutical or surgical,
-for instance dialysis, oxygen therapy, phototherapy,
-or some other kind of therapy administering a quantity of an agent of a course of time.
-
-
-To be discussed. Is this the optimal way of modeling an ``other`` category?
-
-
-pharmaceutical_treatment
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-See :ref:`rstpharmaceuticaltreatment`
-
-radiotherapy_treatment
-~~~~~~~~~~~~~~~~~~~~~~
-
-This element would model Radiation therapy (also called radiotherapy).
-
-procedure
-~~~~~~~~~
-This element models surgery, biopsy, intubation, counseling.
-
-See :ref:`rstprocedure`.
 
 
 
