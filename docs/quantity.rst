@@ -4,7 +4,13 @@
 Quantity
 ========
 
-This element is meant to denote quantities of items such as medications.
+This element is meant to denote quantities of items such as medications. The unit of a dose
+can be expressed with NCIT terms such as
+`Milligram <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C28253&viewMode=All&siblings=false>`_,
+`Microgram <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C48152&viewMode=All&siblings=false>`_,
+or
+`Unit <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C44278&viewMode=All&siblings=false>`_.
+The value should be expressed as a number.
 
 
 
@@ -30,20 +36,25 @@ This element is meant to denote quantities of items such as medications.
 
 
 
-**Example**
+**Examples**
 
-.. code-block:: json
+The following message could be used to represent the quantity corresponding to a 15 mg tablet of Meloxicam.
 
-  {
-    "unit":
-        {
-            "id": "NCIT:C28253",
-            "label": "Milligram"
-        },
-    "value": 30
-  }
+.. code-block:: yaml
 
+  unit:
+    id: "NCIT:C28253"
+    label: "Milligram"
+  value: 15.0
 
+The following message could be used to represent the quantity corresponding to a bolus of 5000 units of Heparin.
+
+.. code-block:: yaml
+
+  unit:
+    id: "NCIT:C44278"
+    label: "Unit"
+  value: 5000
 
 unit
 ~~~~
@@ -53,5 +64,4 @@ from the subhierarchy for `Unit of Measure (Code C25709) <https://www.ebi.ac.uk/
 
 value
 ~~~~~
-The corresponding value of the quantity in the units. In the example, a ``Quantity`` element
-for 30 mg is shown.
+The corresponding value of the quantity in the indicated units.
