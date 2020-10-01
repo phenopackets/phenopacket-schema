@@ -117,8 +117,8 @@ class CovidExample {
                 .build();
 
         MedicalAction nasalOxygenAdministered = MedicalAction.newBuilder()
-                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                        .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
+                .setTreatment(Treatment.newBuilder()
+                        .setAgent(ontologyClass("NCIT:C722", "Oxygen"))
                         .setRouteOfAdministration(ontologyClass("NCIT:C38284", "Nasal Route of Administration"))
                         .addDoseIntervals(DoseInterval.newBuilder()
                                 .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
@@ -131,10 +131,20 @@ class CovidExample {
                 .build();
 
         MedicalAction hydroxychloroquineAdministered = MedicalAction.newBuilder()
-                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                        .setDrug(ontologyClass("NCIT:C557", "Hydroxychloroquine"))
+                .setTreatment(Treatment.newBuilder()
+                        .setAgent(ontologyClass("NCIT:C557", "Hydroxychloroquine"))
+                        // This was not specified in the original report, however we used these
+                        // https://www.covid19treatmentguidelines.nih.gov/antiviral-therapy/chloroquine-or-hydroxychloroquine-with-or-without-azithromycin/
+                        // 450 mg twice daily for 1 day, followed by 450 mg once daily for 4 days
                         .addDoseIntervals(DoseInterval.newBuilder()
-                                .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-22"))
+                                .setQuantity(quantityOf(450, ontologyClass("NCIT:C28253", "mg")))
+                                .setScheduleFrequency(ontologyClass("NCIT:C64496", "Twice Daily"))
+                                .setInterval(parseLocalDateInterval("2020-03-20", "2020-03-20"))
+                                .build())
+                        .addDoseIntervals(DoseInterval.newBuilder()
+                                .setQuantity(quantityOf(450, ontologyClass("NCIT:C28253", "mg")))
+                                .setScheduleFrequency(ontologyClass("NCIT:C125004", "Once Daily"))
+                                .setInterval(parseLocalDateInterval("2020-03-21", "2020-03-22"))
                                 .build())
                         .setStopReasonId(StopReason.REMOVED)
                         .build())
@@ -151,8 +161,8 @@ class CovidExample {
                 // TODO: how to detail the amount of Oxygen administered via ventilator? Wouldn't this be better
                 //  described as a Procedure?
 //                        .setProcedure(Procedure.newBuilder().build())
-                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                        .setDrug(ontologyClass("NCIT:C722", "Oxygen"))
+                .setTreatment(Treatment.newBuilder()
+                        .setAgent(ontologyClass("NCIT:C722", "Oxygen"))
                         .setRouteOfAdministration(ontologyClass("NCIT:C50254", "Positive end Expiratory Pressure Valve Device"))
                         .addDoseIntervals(DoseInterval.newBuilder()
                                 .setInterval(parseLocalDateInterval("2020-03-22", "2020-03-28"))
@@ -161,8 +171,8 @@ class CovidExample {
                 .build();
 
         MedicalAction.Builder tocilizumabAdministered = MedicalAction.newBuilder()
-                .setPharmaceuticalTreatment(PharmaceuticalTreatment.newBuilder()
-                        .setDrug(ontologyClass("NCIT:C84217", "Tocilizumab"))
+                .setTreatment(Treatment.newBuilder()
+                        .setAgent(ontologyClass("NCIT:C84217", "Tocilizumab"))
                         .addDoseIntervals(DoseInterval.newBuilder()
                                 .setInterval(parseLocalDateInterval("2020-03-24", "2020-03-28"))
                                 .build())

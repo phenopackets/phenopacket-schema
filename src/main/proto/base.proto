@@ -147,7 +147,38 @@ message PhenotypicFeature {
 
     // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 10;
+
+    Value value = 13;
+
 }
+
+//
+message Value {
+    //
+    OntologyClass observation = 1;
+
+    oneof value {
+        Quantity quantity = 2;
+        OntologyClass ontologyClass = 3;
+        int32 int = 4;
+        bool bool = 5;
+        Ratio ratio = 6;
+//        Range range = 7;
+    }
+}
+
+message Quantity {
+    // For instance, NCIT subhierarchy, Unit of Measure (Code C25709)
+    OntologyClass unit = 1;
+    // the  value of the quantity in the units  e.g. 2.0 mg
+    double value = 2;
+}
+
+message Ratio {
+    Quantity numerator = 1;
+    Quantity denominator = 2;
+}
+
 
 // An individual environmental exposure, observed as either present or absent (negated), with possible onset, modifiers
 // and frequency. Recommended ontology for use is ECTO http://purl.obolibrary.org/obo/ecto.owl
@@ -173,6 +204,9 @@ message Exposure {
 
     // When the exposure occurred
     TimeElement occurrence = 6;
+
+    //
+    Quantity quantity = 8;
 
     // Evidences for how the exposure was determined.
     repeated Evidence evidence = 7;
@@ -458,22 +492,17 @@ message Disease {
 
 }
 
-// alternatively
+//  Specimen storage, specimen type, specimen_processing
+
+// e.g. 50mg/ml 3 times daily for two weeks
 message DoseInterval {
-
     Quantity quantity = 1;
-    // The
-    Interval interval = 2;  // related to issue #64 these could be an Interval/Period
-}
-
-message Quantity {
-    // For instance, NCIT subhierarchy, Unit of Measure (Code C25709)
-    OntologyClass unit = 1;
-    // the  value of the quantity in the units  e.g. 2.0 mg
-    double value = 2;
+    OntologyClass schedule_frequency = 2;
+    Interval interval = 3;  // related to issue #64 these could be an Interval/Period
 }
 
 // A simplified version of ODHSI-DRUG_EXPOSURE
+// TODO: Do we need this?
 enum DrugType {
     UNKNOWN_DRUG_TYPE = 0;
     PRESCRIPTION = 1;
@@ -489,21 +518,47 @@ enum StopReason {
     REMOVED = 3; // what does 'removed' mean here?
 }
 
-// treatment with a pharmaceutical agent
-message PharmaceuticalTreatment {
-    OntologyClass drug = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+// treatment with an agent, such as a drug
+message Treatment {
+    OntologyClass agent = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
     OntologyClass route_of_administration = 2; // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
     repeated DoseInterval dose_intervals  = 3;
     DrugType drug_type = 4;
     StopReason stop_reason_id = 5; // TODO: What if this is still ongoing? Will need a new value for this.
 }
 
+// https://docs.icgc-argo.org/dictionary/
+// Chemotherapy
+message ChemoTherapyTreatment {
+    Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+    CumulativeDose cumulative_dose = 2;
+}
+// HormoneTherapy
+message HormoneTherapyTreatment {
+    Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+    CumulativeDose cumulative_dose = 2;
+}
+
+// RadiationTherapy
+message RadiationTherapyTreatment {
+    Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+    OntologyClass body_site = 2;
+    // Indicates the total number of fractions delivered as part of treatment.
+    int32 fractions = 3;
+}
+// TherapeuticProcedure NCIT:C49236 (i.e. other)
+message CumulativeDose {
+    // TODO: add in some means of describing a cumulative dose
+}
+
 // medication, procedure, other actions taken for clinical management
 message MedicalAction {
     oneof action {
-        PharmaceuticalTreatment pharmaceutical_treatment = 1;
-        Procedure procedure = 2;
-        // (to be expanded....)
+        Procedure procedure = 1;
+        Treatment treatment = 2;
+        ChemoTherapyTreatment chemo_therapy = 3;
+        HormoneTherapyTreatment hormone_therapy = 4;
+        RadiationTherapyTreatment radiation_therapy = 5;
     }
 }
 
