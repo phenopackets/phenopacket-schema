@@ -26,13 +26,14 @@ Version 2.0
    dose-interval
    drug-type
    exposure
+   hormonetherapy
    interval
    medical-action
-   pharmaceutical-treatment
    quantity
    radiotherapy
    stop-reason
    time-element
+   treatment
    vital-status
 
 

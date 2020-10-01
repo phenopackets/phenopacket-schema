@@ -555,7 +555,7 @@ message RadiationTherapyTreatment {
 }
 // TherapeuticProcedure NCIT:C49236 (i.e. other)
 message CumulativeDose {
-    // TODO: add in some means of describing a cumulative dose
+    Quantity quantity = 1;
 }
 
 // medication, procedure, other actions taken for clinical management
