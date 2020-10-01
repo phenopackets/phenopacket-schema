@@ -56,16 +56,21 @@ of 30 mg was given twice a day.
     start: "2020-03-15T13:00:00Z"
     end: "2020-03-25T09:00:00Z"
 
-**Privacy concerns**
 
-In some cases it may be desirable to shift all specific dates in a phenopacket by the same random amount. For instance, we
-might shift all dates by 2 years. In this case the above interval element would be represented as follows
+quantity
+~~~~~~~~
 
-.. code-block:: yaml
+The amount of an individual dose (See :ref:`rstquantity`).
 
-  interval:
-    start: "2018-03-15T13:00:00Z"
-    end: "2018-03-25T09:00:00Z"
+schedule_frequency
+~~~~~~~~~~~~~~~~~~
+This element specifies the number of instances within a specific time period. It is intended
+to have the same meaning as the NCIT
+`Schedule Frequency <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C64493>`_
+class.
 
+interval
+~~~~~~~~
+The time interval over which the specified dosage is given. See :ref:`rstinterval` for information
+about privacy concerns.
 
-We are considering adding a boolean element to the :ref:`metadata` that would indicate whether the dates are shifted in this way.

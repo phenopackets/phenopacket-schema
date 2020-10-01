@@ -1,11 +1,13 @@
-.. _rstpharmaceuticaltreatment:
+.. _rsttreatment:
 
-========================
-Pharmaceutical treatment
-========================
+=========
+Treatment
+=========
 
 
-This represents treatment with a pharmaceutical agent, broadly defined
+
+
+This represents treatment with an agent such as a drug (pharmaceutical agent), broadly defined
 as prescription and over-the-counter
 medicines, vaccines, and large-molecule biologic therapies.
 
@@ -13,7 +15,7 @@ medicines, vaccines, and large-molecule biologic therapies.
 **Data model**
 
 
-.. list-table:: Definition  of the ``PharmaceuticalTreatment`` element
+.. list-table:: Definition  of the ``Treatment`` element
    :widths: 25 25 50 50
    :header-rows: 1
 
@@ -21,7 +23,7 @@ medicines, vaccines, and large-molecule biologic therapies.
      - Type
      - Status
      - Description
-   * - drug
+   * - agent
      - OntologyClass
      - required
      - The drug.
@@ -41,6 +43,9 @@ medicines, vaccines, and large-molecule biologic therapies.
      - StopReason
      - optional
      - reason to stop taking the drug
+
+
+
 
 
 drug
