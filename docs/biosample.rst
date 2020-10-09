@@ -39,7 +39,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - required
      - Tissue from which the sample was taken
    * - phenotypic_features
-     - :ref:`rstphenotypicfeature`
+     - :ref:`rstphenotypicfeature` (list)
      - recommended
      - List of phenotypic abnormalities of the sample
    * - taxonomy
@@ -59,9 +59,9 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - recommended
      - Indicates primary, metastatic, recurrent
    * - tumor_grade
-     - :ref:`rstontologyclass`
+     - :ref:`rstontologyclass` (list)
      - recommended
-     - List of terms representing the tumor grade
+     - List of terms to indicate the grade of the tumor
    * - diagnostic_markers
      - :ref:`rstontologyclass`
      - recommended
@@ -71,11 +71,11 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
      - required
      - The procedure used to extract the biosample
    * - hts_files
-     - :ref:`rstfile`
+     - :ref:`rstfile` (list)
      - optional
      - list of high-throughput sequencing files derived from the biosample
    * - variants
-     - :ref:`rstvariant`
+     - :ref:`rstvariant` (list)
      - optional
      - List of variants determined to be present in the biosample
    * - is_control_sample
