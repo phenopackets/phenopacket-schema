@@ -44,7 +44,7 @@ This message is used for information about a high-throughput file.
     * - genome_assembly
       - string
       - required
-      - e.g. GRCh38
+      - The genome assembly used (e.g. GRCh38)
     * - individual_to_sample_identifiers
       - a map of string key: value
       - recommended
