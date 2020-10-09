@@ -36,11 +36,11 @@ This message is used for information about a high-throughput file.
     * - description
       - string
       - optional
-      - arbitrary description of the file
+      - Arbitrary description of the file
     * - hts_format
       - :ref:`rsthtsformat`
       - required
-      - VCF
+      - Indicates the format of the HTS file
     * - genome_assembly
       - string
       - required
