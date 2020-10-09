@@ -50,7 +50,7 @@ with the :ref:`rstpedigree` element.
    * - hts_files
      - :ref:`rstfile` (list)
      - optional
-     - list of high-throughput sequencing files
+     - High-throughput sequencing files obtained from members of the family 
    * - meta_data
      - :ref:`rstmetadata`
      - required
