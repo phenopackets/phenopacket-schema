@@ -26,17 +26,17 @@ disease.
    * - id
      - string
      - required
-     - arbitrary identifier
+     - Arbitrary identifier
    * - description
      - string
      - optional
-     - arbitrary text
+     - Arbitrary text
    * - members
-     - :ref:`rstphenopacket`
+     - :ref:`rstphenopacket` (list)
      - required
      - Phenopackets that represent members of the cohort
    * - hts_files
-     - :ref:`rstfile`
+     - :ref:`rstfile` (list)
      - optional
      - High-throughput sequencing files obtained from members of the cohort
    * - meta_data
