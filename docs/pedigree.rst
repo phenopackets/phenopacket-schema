@@ -27,7 +27,7 @@ sequences of members of a family, some of whom are affected by a Mendelian disea
      - Status
      - Description
    * - persons
-     - list of :ref:`rstperson`
+     - :ref:`rstperson` (list)
      - required
      - list of family members in this pedigree
 
