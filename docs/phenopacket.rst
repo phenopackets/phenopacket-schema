@@ -25,7 +25,7 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
     * - id
       - string
       - required
-      - arbitrary identifier
+      - Arbitrary identifier
     * - subject
       - :ref:`rstindividual`
       - recommended
@@ -37,7 +37,7 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
     * - biosamples
       - :ref:`rstbiosample`
       - optional
-      - samples (e.g., biopsies), if any
+      - Samples (e.g., biopsies), if any
     * - genes
       - :ref:`rstgene`
       - optional
