@@ -53,7 +53,7 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
     * - hts_files
       - :ref:`rstfile` (list)
       - optional
-      - High-throughput sequencing files (ie. VCF)
+      - High-throughput sequencing files (e.g. VCF)
     * - meta_data
       - :ref:`rstmetadata`
       - required
