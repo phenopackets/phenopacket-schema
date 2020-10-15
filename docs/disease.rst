@@ -19,7 +19,7 @@ physicians use the word phenotype to refer to a disease, but we do not use this 
    :align: left
 
    term, :ref:`rstontologyclass`, required, An ontology class that represents the disease
-   onset, :ref:`rstage` or :ref:`rstagerange` or :ref:`rstontologyclass`, optional, an element representing the age of onset of the disease
+   onset, :ref:`rstage` or :ref:`rstagerange` or :ref:`rstontologyclass`, optional, An element representing the age of onset of the disease
    disease_stage, :ref:`rstontologyclass` (list), optional, List of terms representing the disease stage e.g. AJCC stage group
    tnm_finding, :ref:`rstontologyclass` (list), optional, List of terms representing the tumor TNM score
 
