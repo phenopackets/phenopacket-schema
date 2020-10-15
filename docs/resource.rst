@@ -18,12 +18,12 @@ The :ref:`rstmetadata` element uses one resource element to describe each resour
 .. csv-table::
    :header: Field, Type, Status, Description
 
-   id, string, required, hp
-   name, string, required, human phenotype ontology
-   namespace_prefix, string, required, HP
+   id, string, required, OBO ID representing the resource
+   name, string, required, The name of the ontology referred to by the id element
    url, string, required, Uniform Resource Locator of the resource
-   version, string, required, 2018-03-08
-   iri_prefix, string, required, Internationalized Resource Identifier (e.g., http://purl.obolibrary.org/obo/HP_)
+   version, string, required, The version of the resource or ontology used to make the annotation
+   namespace_prefix, string, required, The prefix used in the CURIE of an OntologyClass
+   iri_prefix, string, required, The full Internationalized Resource Identifier (IRI) prefix (e.g., http://purl.obolibrary.org/obo/HP_)
 
 **Example**
 
