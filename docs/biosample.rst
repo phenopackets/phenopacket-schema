@@ -25,15 +25,15 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
    * - id
      - string
      - required
-     - arbitrary identifier
+     - Arbitrary identifier
    * - individual_id
      - string
      - recommended
-     - arbitrary identifier
+     - Arbitrary identifier
    * - description
      - string
      - optional
-     - arbitrary text
+     - Arbitrary text
    * - sampled_tissue
      - :ref:`rstontologyclass`
      - required
@@ -73,7 +73,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
    * - hts_files
      - :ref:`rstfile` (list)
      - optional
-     - list of high-throughput sequencing files derived from the biosample
+     - List of high-throughput sequencing files derived from the biosample
    * - variants
      - :ref:`rstvariant` (list)
      - optional
@@ -81,7 +81,7 @@ genomic array as well as RNA-seq experiments) may refer to the same Biosample.
    * - is_control_sample
      - boolean
      - optional (default: false)
-     - whether the sample is being used as a normal control
+     - Whether the sample is being used as a normal control
 
 
 
