@@ -45,7 +45,7 @@ we explain the element using the example of a human proband in a clinical invest
     * - taxonomy
       - :ref:`rstontologyclass`
       - optional
-      - an :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
+      - An :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
 
 
 **Example**
