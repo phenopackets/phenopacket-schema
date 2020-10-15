@@ -23,7 +23,7 @@ The :ref:`rstmetadata` element uses one resource element to describe each resour
    url, string, required, Uniform Resource Locator of the resource
    version, string, required, The version of the resource or ontology used to make the annotation
    namespace_prefix, string, required, The prefix used in the CURIE of an OntologyClass
-   iri_prefix, string, required, The full Internationalized Resource Identifier (IRI) prefix (e.g., http://purl.obolibrary.org/obo/HP_)
+   iri_prefix, string, required, The full Internationalized Resource Identifier (IRI) prefix (e.g. http://purl.obolibrary.org/obo/HP_)
 
 **Example**
 
