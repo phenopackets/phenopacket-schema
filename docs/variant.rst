@@ -32,8 +32,8 @@ field. It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :
 .. csv-table::
    :header: Field, Type, Status, Description
 
-    allele, :ref:`Allele`, required, one of the Allele types described below
-    zygosity, :ref:`rstontologyclass` , recommended, See :ref:`zygosity` below
+    allele, :ref:`Allele`, required, One of the Allele types described below: HgvsAllele, VcfAlelle, SpdiAllele or IcsnAllele
+    zygosity, :ref:`rstontologyclass` , recommended, The :ref:`zygosity` of the variant as determined in all of the samples
 
 
 **Example**
@@ -90,7 +90,7 @@ HGVS nomenclature.
    :header: Field, Type, Status, Description
 
     id, string, recommended, An arbitrary identifier
-    hgvs, string, required, NM_000226.3:c.470T>G
+    hgvs, string, required, Variant represented in hgvs nomenclature (e.g. NM_000226.3:c.470T>G)
 
 **Example**
 
@@ -123,10 +123,10 @@ Phenopacket will report the contents of the info field for single nucleotide and
 .. csv-table::
    :header: Field, Type, Status, Description
 
-    genome_assembly, string, required, The reference genome identifier e.g. GRCh38
+    genome_assembly, string, required, The reference genome identifier (e.g. GRCh38)
     id, string, recommended, An arbitrary identifier
-    chr, string, required, A chromosome identifier e.g. chr2 or 2
-    pos, int32, required, The 1-based genomic position e.g. 134327882
+    chr, string, required, A chromosome identifier (e.g. chr2 or 2)
+    pos, int32, required, The 1-based genomic position (e.g. 134327882)
     ref, string, required, The reference base(s)
     alt, string, required, The alternate base(s)
     info, string, optional, Relevant parts of the INFO field
@@ -182,10 +182,10 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
    :header: Field, Type, Status, Description
 
     id, string, recommended, An arbitrary identifier
-    seq_id, string, required, Seq1
-    position, int32, required, 4
-    deleted_sequence, string, required, A
-    inserted_sequence, string, required, G
+    seq_id, string, required, The reference sequence (e.g. Seq1)
+    position, int32, required, A 0-based coordinate for where the Deleted Sequence starts (e.g. 4)
+    deleted_sequence, string, required, Sequence of the deletion (e.g. A)
+    inserted_sequence, string, required, Sequence of the insertion (e.g. G)
 
 **Example**
 
@@ -217,7 +217,7 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
    :header: Field, Type, Status, Description
 
    id, string, recommended, An arbitrary identifier
-   iscn, string, required, t(8;9;11)(q12;p24;p12)
+   iscn, string, required, ISCN representation of the variant e.g. t(8;9;11)(q12;p24;p12)
 
 **Example**
 
