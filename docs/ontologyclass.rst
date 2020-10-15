@@ -19,8 +19,8 @@ term.
 .. csv-table::
    :header: Field, Type, Status, Description
 
-    id, string, required, a CURIE-style identifier e.g. HP:0001875
-    label, string, required, human-readable class name e.g. Neutropenia
+    id, string, required, A CURIE-style identifier e.g. HP:0001875
+    label, string, required, A human-readable class name e.g. Neutropenia
 
 
 **Example**
