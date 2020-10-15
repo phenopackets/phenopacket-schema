@@ -18,13 +18,13 @@ frequency.
 .. csv-table::
    :header: Field, Type, Status, Description
 
-    description, string, optional, human-readable verbiage **NOT** for structured text
-    type, :ref:`rstontologyclass`, required, term denoting the phenotypic feature
-    negated, boolean, optional, defaults to `false`
-    severity, :ref:`rstontologyclass`, optional, description of the severity of the feature described in `type` representing `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
-    modifier, :ref:`rstontologyclass` (list), optional, representing one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
+    description, string, optional, Human-readable verbiage **NOT** for structured text
+    type, :ref:`rstontologyclass`, required, Term denoting the phenotypic feature
+    negated, boolean, optional, Defaults to `false`
+    severity, :ref:`rstontologyclass`, optional, Description of the severity of the feature described in `type` representing `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
+    modifier, :ref:`rstontologyclass` (list), optional, Representing one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
     onset, :ref:`rstontologyclass`, optional, Age at which the features was first observed, e.g., `HP:0011462  <https://hpo.jax.org/app/browse/term/HP:0011462>`_
-    evidence, :ref:`Evidence <rstevidence>`, recommended, the evidence for an assertion of the observation of a `type`
+    evidence, :ref:`Evidence <rstevidence>`, recommended, The evidence for an assertion of the observation of a `type`
 
 **Example**
 
