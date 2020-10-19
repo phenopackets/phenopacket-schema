@@ -25,10 +25,12 @@ and machine-readable, and to inter-operate with standards being developed in org
 Overview
 ~~~~~~~~
 
-The diagram below shows an overview of Phenopackets schema elements and relationships. The orange circles represent an Interpretation and its sub-elements. Blue circles are the top-level elements used to describe an individual or group of individuals, and the green circles are the building block components. Lines between elements indicate composition.
-
-**Note:** Interpretation is displayed in a different colour from the other top-level elements because it contains a Family or Phenopacket. Interpretation interprets the Phenopacket based on its component elements, whereas the Phenopacket simply states what was observed. They are both composed of the green building block elements, but the additional orange elements are only used to compose the Interpretation. 
+The diagram below shows an overview of Phenopackets schema elements and relationships.
 
 .. figure:: graph/phenopacket-schema-v1.svg
+
+The yellow circles represent an Interpretation and its sub-elements. Blue circles are the top-level elements used to describe an individual or group of individuals, and the green circles are the building block components of those. Lines between elements indicate composition.
+
+**Note:** Interpretation is displayed in a different colour from the other top-level elements because it contains a Family or Phenopacket. Interpretation interprets the Phenopacket based on its component elements, whereas the Phenopacket simply states what was observed. They are both composed of the green building block elements, but the additional orange elements are only used to compose the Interpretation. 
 
 The schema is defined in protobuf. You can find out more in the section ':ref:`rstprotobuf`'.
