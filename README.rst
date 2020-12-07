@@ -66,6 +66,10 @@ Java people can incorporate phenopackets-api into their code by importing the ja
         <version>${phenopacket-schema.version}</version>
     </dependency>
 
+.. code:: python
+
+    pip install phenopackets
+
 The following sections describe how to achieve these two things.
 
 Exchanging Phenopackets directly
@@ -84,8 +88,11 @@ A Phenopacket can be transformed between the native binary format and JSON using
         <version>${protobuf.version}</version>
     </dependency>
 
+.. code:: python
 
-``protobuf-java-util`` contains simple utility methods to perform these transformations. Usage is shown here:
+    pip install protobuf
+
+``protobuf-java-util`` for java and ``protobuf`` for python contain simple utility methods to perform these transformations. Usage is shown here:
 
 .. code-block:: java
 
@@ -112,6 +119,26 @@ A Phenopacket can be transformed between the native binary format and JSON using
     Phenopacket.Builder phenoPacketBuilder2 = Phenopacket.newBuilder();
     JsonFormat.parser().merge(jsonPhenopacket, phenoPacketBuilder2);
     Phenopacket fromJson2 = phenoPacketBuilder2.build();
+
+.. code-block:: python
+
+    from google.protobuf.json_format import Parse
+    from phenopackets import Phenopacket
+
+    # Parsing phenopackets from json
+    with open('file.json', 'r') as jsfile:
+        phenopacket = Parse(Phenopacket(), text=jsfile.read())
+
+    # Writing phenopackets to json
+    with open('file.json', 'w') as jsfile:
+        subject = Individual(id="Zaphod", sex="MALE", date_of_birth=Timestamp(seconds=-123456798))
+        phenotypic_features = [PhenotypicFeature(type=OntologyClass(id="HG2G:00001", label="Hoopy")),
+                               PhenotypicFeature(type=OntologyClass(id="HG2G:00002", label="Frood"))]
+
+        phenopacket = Phenopacket(id="PPKT:1", subject=subject, phenotypic_features=phenotypic_features)
+
+        json = MessageToJson(self.phenopacket)
+        jsfile.write(json)
 
 Building new messages from the schema
 -------------------------------------
