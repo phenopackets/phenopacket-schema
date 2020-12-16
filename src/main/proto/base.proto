@@ -568,6 +568,16 @@ message MedicalAction {
         RadiationTherapyTreatment radiation_therapy = 5;
     }
     OntologyClass intention = 7;
+    string regimen_id = 8;
+}
+
+// examples for dosage
+// relative dose
+message Regimen {
+    // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
+    string id = 1;
+    string name = 2;
+    bool completed = 4;
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016

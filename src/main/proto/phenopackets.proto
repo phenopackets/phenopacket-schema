@@ -44,6 +44,8 @@ message Phenopacket {
 
     repeated org.phenopackets.schema.v1.core.MedicalAction medical_actions = 10;
 
+    repeated org.phenopackets.schema.v1.core.Regimen regimens = 12;
+
     // Pointer to the relevant HTS file(s) for the patient
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 8;
 
