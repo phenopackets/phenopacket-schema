@@ -20,18 +20,12 @@ message MetaData {
     repeated Update updates = 5;
     // phenopacket-schema-version used to create this phenopacket
     string phenopacket_schema_version = 6;
-    ApiVersion api_version = 8;
     // External identifiers for this message. These are considered different representation of the same record, not
     // records which are in some other relation with the record at hand. For example this might be a PubMed reference
     // to a study in which the individuals are reported.
     repeated ExternalReference external_references = 7;
 
     // TODO: DUO tag?
-}
-
-enum ApiVersion {
-    v1_0 = 0;
-    v1_1 = 1;
 }
 
 // Information about when an update to a record occurred, who or what made the update and any pertinent information

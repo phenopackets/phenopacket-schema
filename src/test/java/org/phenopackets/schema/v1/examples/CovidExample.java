@@ -194,7 +194,7 @@ class CovidExample {
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
-                .setApiVersion(ApiVersion.v1_1)
+                .setPhenopacketSchemaVersion("v2.0")
                 .addResources(ncit)
                 .addResources(mondo)
                 .build();

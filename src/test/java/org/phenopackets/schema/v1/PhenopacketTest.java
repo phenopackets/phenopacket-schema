@@ -97,7 +97,7 @@ public class PhenopacketTest {
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
-                .setApiVersion(ApiVersion.v1_1)
+                .setPhenopacketSchemaVersion("v2.0")
                 .addResources(Resource.newBuilder()
                         .setId("hp")
                         .setName("human phenotype ontology")
