@@ -567,6 +567,7 @@ message MedicalAction {
         HormoneTherapyTreatment hormone_therapy = 4;
         RadiationTherapyTreatment radiation_therapy = 5;
     }
+    OntologyClass intention = 7;
 }
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
