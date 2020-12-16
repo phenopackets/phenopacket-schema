@@ -146,7 +146,6 @@ class CovidExample {
                                 .setScheduleFrequency(ontologyClass("NCIT:C125004", "Once Daily"))
                                 .setInterval(parseLocalDateInterval("2020-03-21", "2020-03-22"))
                                 .build())
-                        .setStopReasonId(StopReason.REMOVED)
                         .build())
                 .build();
 

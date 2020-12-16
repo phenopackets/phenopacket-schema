@@ -509,20 +509,11 @@ message DoseInterval {
 }
 
 // A simplified version of ODHSI-DRUG_EXPOSURE
-// TODO: Do we need this?
 enum DrugType {
     UNKNOWN_DRUG_TYPE = 0;
     PRESCRIPTION = 1;
     EHR_MEDICATION_LIST = 2;
     ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
-}
-
-// Why was a medication discontinued?
-enum StopReason {
-    UNKNOWN_STOP_REASON = 0;
-    REGIMEN_COMPLETED = 1;
-    REGIMEN_CHANGED = 2;
-    REMOVED = 3; // what does 'removed' mean here?
 }
 
 // treatment with an agent, such as a drug
@@ -531,7 +522,6 @@ message Treatment {
     OntologyClass route_of_administration = 2; // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
     repeated DoseInterval dose_intervals  = 3;
     DrugType drug_type = 4;
-    StopReason stop_reason_id = 5; // TODO: What if this is still ongoing? Will need a new value for this.
 }
 
 // https://docs.icgc-argo.org/dictionary/
