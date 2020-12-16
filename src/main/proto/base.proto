@@ -440,7 +440,7 @@ message AgeRange {
     Age end = 2;
 }
 
-message Interval {
+message TimeInterval {
     google.protobuf.Timestamp start = 1;
     google.protobuf.Timestamp end = 2;
 }
@@ -452,7 +452,7 @@ message TimeElement {
         AgeRange age_range = 2;
         OntologyClass ontology_class = 3;
         google.protobuf.Timestamp timestamp = 4;
-        Interval interval = 5;
+        TimeInterval interval = 5;
     }
 }
 
@@ -505,7 +505,7 @@ message Disease {
 message DoseInterval {
     Quantity quantity = 1;
     OntologyClass schedule_frequency = 2;
-    Interval interval = 3;  // related to issue #64 these could be an Interval/Period
+    TimeInterval interval = 3;  // related to issue #64 these could be an Interval/Period
 }
 
 // A simplified version of ODHSI-DRUG_EXPOSURE

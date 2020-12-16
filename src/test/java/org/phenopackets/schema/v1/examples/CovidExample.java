@@ -229,8 +229,8 @@ class CovidExample {
         return Quantity.newBuilder().setUnit(unit).setValue(value).build();
     }
 
-    private static Interval parseLocalDateInterval(String isoLocalDateStart, String isoLocalDateEnd) {
-        return Interval.newBuilder().setStart(parseIsoLocalDate(isoLocalDateStart)).setEnd(parseIsoLocalDate(isoLocalDateEnd)).build();
+    private static TimeInterval parseLocalDateInterval(String isoLocalDateStart, String isoLocalDateEnd) {
+        return TimeInterval.newBuilder().setStart(parseIsoLocalDate(isoLocalDateStart)).setEnd(parseIsoLocalDate(isoLocalDateEnd)).build();
     }
 
     private static TimeElement parseLocalDate(String isoLocalDate) {
