@@ -539,9 +539,28 @@ message RadiationTherapyTreatment {
     // Indicates the total number of fractions delivered as part of treatment.
     int32 fractions = 3;
 }
-// TherapeuticProcedure NCIT:C49236 (i.e. other)
-message CumulativeDose {
-    Quantity quantity = 1;
+
+// immune therapy...?
+
+
+message TherapeuticRegimen {
+    // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
+    oneof identifier {
+        ExternalReference external_reference = 1;
+        OntologyClass ontology_class = 2;
+    }
+    // possibly undefined;
+    TimeElement start_time = 3;
+    // end time can be empty which would indicate ongoing
+    TimeElement end_time = 4;
+
+    RegimenStatus status = 5;
+    enum RegimenStatus {
+        UNKNOWN = 0;
+        STARTED = 1;
+        COMPLETED = 2;
+        DISCONTINUED = 3;
+    }
 }
 
 // medication, procedure, other actions taken for clinical management
@@ -552,19 +571,11 @@ message MedicalAction {
         ChemoTherapyTreatment chemo_therapy = 3;
         HormoneTherapyTreatment hormone_therapy = 4;
         RadiationTherapyTreatment radiation_therapy = 5;
+        TherapeuticRegimen therapeutic_regimen = 6;
     }
     OntologyClass intention = 7;
-    string regimen_id = 8;
 }
 
-// examples for dosage
-// relative dose
-message Regimen {
-    // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
-    string id = 1;
-    string name = 2;
-    bool completed = 4;
-}
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
 message Pedigree {
