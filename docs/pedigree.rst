@@ -27,9 +27,9 @@ sequences of members of a family, some of whom are affected by a Mendelian disea
      - Status
      - Description
    * - persons
-     - list of :ref:`rstperson`
+     - :ref:`rstperson` (list)
      - required
-     - list of family members in this pedigree
+     - List of family members in this pedigree
 
 
 The pedigree is simply a list of Person objects. These objects are meant to reflect the elements of
@@ -52,27 +52,27 @@ Person
    * - family_id
      - string
      - required
-     - application specific identifier
+     - Application specific identifier
    * - individual_id
      - string
      - required
-     - application specific identifier
+     - Application specific identifier
    * - paternal_id
      - string
      - required
-     - application specific identifier
+     - Application specific identifier
    * - maternal_id
      - string
      - required
-     - application specific identifier
+     - Application specific identifier
    * - sex
      - :ref:`rstsex`
      - required
-     - see text
+     - See text
    * - affected_status
      - :ref:`rstaffectedstatus`
      - required
-     - see text
+     - See text
 
 
 **Example**

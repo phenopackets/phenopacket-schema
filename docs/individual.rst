@@ -23,9 +23,9 @@ we explain the element using the example of a human proband in a clinical invest
       - required
       - An arbitrary identifier
     * - alternate_ids
-      - a list of :ref:`rstcurie`
+      - :ref:`rstcurie` (list)
       - optional
-      - A list of alternative identifiers for the individual
+      - Alternative identifiers for the individual
     * - date_of_birth
       - timestamp
       - optional
@@ -45,7 +45,7 @@ we explain the element using the example of a human proband in a clinical invest
     * - taxonomy
       - :ref:`rstontologyclass`
       - optional
-      - an :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
+      - An :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
 
 
 **Example**

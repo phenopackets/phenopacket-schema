@@ -14,8 +14,8 @@ body_site element if needed.
 .. csv-table::
    :header: Field, Type, Status, Description
 
-    code, :ref:`rstontologyclass`, required, clinical procedure performed on a subject
-    body_site, :ref:`rstontologyclass`, optional, specific body site if unable to represent this is the :ref:`procedurecode`
+    code, :ref:`rstontologyclass`, required, Clinical procedure performed on a subject
+    body_site, :ref:`rstontologyclass`, optional, Specific body site if unable to represent this is the :ref:`procedurecode`
 
 **Example**
 
