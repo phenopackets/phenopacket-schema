@@ -4,7 +4,7 @@
 Phenopacket
 ===========
 
-A Phenopacket is an anonymous phenotypic description of an individual or biosample with potential genes of interest
+A Phenopacket is an anonymized phenotypic description of an individual or biosample with potential genes of interest
 and/or diagnoses. It can be used for multiple use cases. For instance, it can be used to describe the
 phenotypic findings observed in an individual with a disease that is being studied or for an individual in
 whom the diagnosis is being sought. The phenopacket can contain information about
@@ -25,35 +25,35 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
     * - id
       - string
       - required
-      - arbitrary identifier
+      - Arbitrary identifier
     * - subject
       - :ref:`rstindividual`
       - recommended
       - The proband
     * - phenotypic_features
-      - List of :ref:`phenotypicfeature`
+      - :ref:`phenotypicfeature` (list)
       - recommended
       - Phenotypic features observed in the proband
     * - biosamples
       - :ref:`rstbiosample`
       - optional
-      - samples (e.g., biopsies), if any
+      - Samples (e.g., biopsies), if any
     * - genes
       - :ref:`rstgene`
       - optional
       - Gene deemed to be relevant to the case (application specific)
     * - variants
-      - List of :ref:`rstvariant`
+      - :ref:`rstvariant` (list)
       - optional
       - Variants identified in the proband
     * - diseases
-      - List of :ref:`rstdisease`
+      - :ref:`rstdisease` (list)
       - optional
       - Disease(s) diagnosed in the proband
     * - hts_files
-      - List of :ref:`rstfile`
+      - :ref:`rstfile` (list)
       - optional
-      - VCF or other high-throughput sequencing files
+      - High-throughput sequencing files (e.g. VCF)
     * - meta_data
       - :ref:`rstmetadata`
       - required

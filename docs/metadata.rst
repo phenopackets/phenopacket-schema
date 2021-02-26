@@ -30,21 +30,21 @@ This element contains structured definitions of the resources and ontologies use
       - optional
       - Name of person who submitted the phenopacket
     * - resources
-      - list of :ref:`rstresource`
+      - :ref:`rstresource` (list)
       - required
       - Ontologies used to create the phenopacket
     * - updates
-      - list of :ref:`rstupdate`
+      - :ref:`rstupdate` (list)
       - optional
       - List of updates to the phenopacket
     * - phenopacket_schema_version
       - string
       - optional
-      - schema version of the current phenopacket
+      - Schema version of the current phenopacket
     * - external_references
-      - List of :ref:`rstexternalreference`
+      - :ref:`rstexternalreference` (list)
       - optional
-      - (See text)
+      - A list of ExternalReference
 
 The `MetaData` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
 terms are used in the Phenopacket. For instance, if a MONDO term is used to specify the disease and

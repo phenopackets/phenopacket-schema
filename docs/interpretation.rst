@@ -5,6 +5,8 @@ Interpretation
 This message intends to represent the interpretation of a genomic analysis, such as the report from
 a diagnostic laboratory.
 
+The Interpretation message contains a Family or Phenopacket. Interpretation interprets the Phenopacket based on its component elements, whereas the Phenopacket simply states what was observed. They are both composed of Phenopacket building block elements, but the additional elements described in this section are only used to compose the Interpretation.
+
 **Data model**
 
  .. list-table::
@@ -28,8 +30,8 @@ a diagnostic laboratory.
       - required
       - The subject of this interpretation
     * - diagnosis
-      - :ref:`rstdiagnosis`
-      - repeated
+      - :ref:`rstdiagnosis` (list)
+      - optional
       - One or more diagnoses, if made
     * - meta_data
       - See :ref:`rstmetadata`
@@ -207,8 +209,8 @@ The element is optional because if the **resolution_status** is **UNSOLVED** the
       - required
       - The diagnosed condition
     * - genomic_interpretations
-      - :ref:`rstgenomicinterpretation`
-      - repeated
+      - :ref:`rstgenomicinterpretation` (list)
+      - optional
       - The genomic elements assessed as being responsible for the disease or empty
 
 **Example**

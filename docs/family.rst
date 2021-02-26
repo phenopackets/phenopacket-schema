@@ -34,7 +34,7 @@ with the :ref:`rstpedigree` element.
    * - id
      - string
      - required
-     - application-specific identifier
+     - Application-specific identifier
    * - proband
      - :ref:`rstphenopacket`
      - required
@@ -42,15 +42,15 @@ with the :ref:`rstpedigree` element.
    * - relatives
      - :ref:`rstphenopacket` (list)
      - optional
-     - list of Phenopackets for family members other than the proband
+     - List of Phenopackets for family members other than the proband
    * - pedigree
      - :ref:`rstpedigree`
      - required
-     - representation of the pedigree
+     - Representation of the pedigree
    * - hts_files
      - :ref:`rstfile` (list)
      - optional
-     - list of high-throughput sequencing files
+     - High-throughput sequencing files obtained from members of the family 
    * - meta_data
      - :ref:`rstmetadata`
      - required
