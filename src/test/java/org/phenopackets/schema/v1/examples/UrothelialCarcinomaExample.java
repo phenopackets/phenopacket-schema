@@ -162,13 +162,11 @@ public class UrothelialCarcinomaExample {
     }
 
     private Biosample.Builder biosampleBuilder(String patientId, String sampleId, String age, OntologyClass sampleType) {
-        return Biosample.newBuilder().
-                setIndividualId(patientId).
-                setId(sampleId).
-                setAgeOfIndividualAtCollection(Age.newBuilder().
-                        setAge(age).
-                        build()).
-                setSampledTissue(sampleType);
+        return Biosample.newBuilder()
+                .setIndividualId(patientId)
+                .setId(sampleId)
+                .setAgeOfIndividualAtCollection(Age.newBuilder().setIso8601Duration(age))
+                .setSampledTissue(sampleType);
     }
 
     private Biosample bladderBiosample() {

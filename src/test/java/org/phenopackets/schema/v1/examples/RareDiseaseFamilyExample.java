@@ -50,23 +50,23 @@ class RareDiseaseFamilyExample {
     static Phenopacket proband() {
         PhenotypicFeature syndactylyCongenitalOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001159", "Syndactyly"))
-                .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003577", "Congenital onset")))
                 .build();
 
         PhenotypicFeature pneumoniaChildhoodOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002090", "Pneumonia"))
-                .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463", "Childhood onset")))
                 .build();
 
         PhenotypicFeature cryptorchidismCongenitalOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000028", "Cryptorchidism"))
-                .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003577", "Congenital onset")))
                 .build();
 
         PhenotypicFeature chronicSinusitisAdultOnsetSevere = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011109", "Chronic sinusitis"))
                 .setSeverity(ontologyClass("HP:0012828", "Severe"))
-                .setClassOfOnset(ontologyClass("HP:0003581", "Adult onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003581", "Adult onset")))
                 .build();
 
         Individual proband = Individual.newBuilder()
@@ -75,7 +75,7 @@ class RareDiseaseFamilyExample {
                 .setDateOfBirth(Timestamp.newBuilder()
                         .setSeconds(Instant.parse("1998-01-01T00:00:00Z").getEpochSecond())
                         .build())
-                .setAgeAtCollection(Age.newBuilder().setAge("P3Y").build())
+                .setAgeAtCollection(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P3Y").build()))
                 .build();
 
 
@@ -103,7 +103,7 @@ class RareDiseaseFamilyExample {
     static Phenopacket affectedSisterOfProband() {
         PhenotypicFeature syndactylyCongenitalOnset = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001159", "Syndactyly"))
-                .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003577", "Congenital onset")))
                 .build();
 
         PhenotypicFeature notPneumonia = PhenotypicFeature.newBuilder()

@@ -40,7 +40,7 @@ public class PhenopacketTest {
 
         PhenotypicFeature coronalCraniosynostosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0004440", "Coronal craniosynostosis"))
-                .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463", "Childhood onset")))
                 .build();
 
         PhenotypicFeature maxillaryHypoplasia = PhenotypicFeature.newBuilder()
@@ -66,19 +66,19 @@ public class PhenopacketTest {
 
         PhenotypicFeature broadHallux = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0010055", "Broad hallux"))
-                .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463", "Childhood onset")))
                 .build();
 
         PhenotypicFeature proptosisCongenitalSevere = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
                 .setSeverity(ontologyClass("HP:0012828", "Severe"))
-                .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003577", "Congenital onset")))
                 .build();
 
         PhenotypicFeature proptosisCongenitalMild = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
                 .setSeverity(ontologyClass("HP:0012825", "Mild"))
-                .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003577", "Congenital onset")))
                 .build();
 
         PhenotypicFeature intellectualDisabilityOccasional = PhenotypicFeature.newBuilder()

@@ -56,12 +56,11 @@ class CovidExample {
         // after attending a party
         Individual patient = Individual.newBuilder().setId("P123542")
                 .setSex(Sex.MALE)
-                .setAgeAtCollection(Age.newBuilder().setAge("P70Y").build())
+                .setAgeAtCollection(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P70Y")))
                 .setVitalStatus(VitalStatus.newBuilder()
                         .setStatus(VitalStatus.Status.DECEASED)
                         .setTimeOfDeath(parseLocalDate("2020-03-28"))
-                        .setCauseOfDeath(ontologyClass("MONDO:0100096", "COVID-19"))
-                        .build())
+                        .setCauseOfDeath(ontologyClass("MONDO:0100096", "COVID-19")))
                 .build();
 
         MedicalAction lvadImplant = MedicalAction.newBuilder()
