@@ -504,6 +504,10 @@ message DoseInterval {
     TimeInterval interval = 3;  // related to issue #64 these could be an Interval/Period
 }
 
+message CumulativeDose {
+    Quantity quantity = 1;
+}
+
 // A simplified version of ODHSI-DRUG_EXPOSURE
 enum DrugType {
     UNKNOWN_DRUG_TYPE = 0;
