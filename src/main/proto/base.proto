@@ -138,23 +138,55 @@ message PhenotypicFeature {
 
     // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 10;
+}
 
-    Value value = 13;
+// FHIR mapping: Observation (https://www.hl7.org/fhir/observation.html)
+message Measurement {
+    // Free-text description of the feature. Note this is not a acceptable place to document/describe the phenotype -
+    // the type and onset etc... fields should be used for this purpose.
+    string description = 1;
 
+    // TODO: definition
+    // An ontology class which describes the measurement. For example "body temperature" (CMO:0000015) or
+    // "Platelets [#/volume] in Blood" (LOINC:26515-7)
+    // FHIR mapping: Observation.code
+    OntologyClass type = 2;
+
+    // https://github.com/phenopackets/phenopacket-schema/issues/261
+    // e.g. type: Increased circulating antibody level (HP:0010702)
+    //      quantity: unit: Microgram per Milliliter (NCIT:C64572), value: 23456.0
+
+    //      type:  body temperature (CMO:0000015)
+    //      quantity: unit: Degrees Celsius (UO:0000027), value: 37.5
+    //                      Degree Celsius (NCIT:C42559), value: 37.5
+
+    //      type:  LOINC: 26515-7 Platelets [#/volume] in Blood
+    //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
+    Value value = 3;
+
+    // Reference range for the measurement
+    // e.g. The normal range of platelets is 150,000 to 450,000 platelets/uL.
+    Range reference_range = 4;
+
+    // How the quantity was collected - REMOVED as this is already part of the Biosample message
+    // NCIT:C28221 (Phlebotomy) - NCIT:C103238 (Antecubital Fossa)
+//    Procedure assay = 6;
+
+    // The time at which the measurement was made
+    TimeElement time_observed = 5;
+
+    // The biological sample the measurement was taken from.
+    string biosample_id = 6;
 }
 
 //
 message Value {
-    //
-    OntologyClass observation = 1;
-
     oneof value {
-        Quantity quantity = 2;
-        OntologyClass ontologyClass = 3;
-        int32 int = 4;
-        bool bool = 5;
-        Ratio ratio = 6;
-//        Range range = 7;
+        Quantity quantity = 1;
+        OntologyClass ontologyClass = 2;
+        bool bool = 3;
+        Range range = 4;
+        Ratio ratio = 5;
     }
 }
 
@@ -163,6 +195,11 @@ message Quantity {
     OntologyClass unit = 1;
     // the  value of the quantity in the units  e.g. 2.0 mg
     double value = 2;
+}
+
+message Range {
+    Quantity low = 2;
+    Quantity high = 3;
 }
 
 message Ratio {
@@ -196,8 +233,8 @@ message Exposure {
     // When the exposure occurred
     TimeElement occurrence = 6;
 
-    //
-    Quantity quantity = 8;
+    // The amount an individual was exposed to the 'type' of exposure.
+    Value amount = 8;
 
     // Evidences for how the exposure was determined.
     repeated Evidence evidence = 7;
@@ -543,9 +580,6 @@ message RadiationTherapyTreatment {
     // Indicates the total number of fractions delivered as part of treatment.
     int32 fractions = 3;
 }
-
-// immune therapy...?
-
 
 message TherapeuticRegimen {
     // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
