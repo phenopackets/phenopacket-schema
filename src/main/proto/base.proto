@@ -164,13 +164,7 @@ message Measurement {
     //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
     Value value = 3;
 
-    // Reference range for the measurement
-    // e.g. The normal range of platelets is 150,000 to 450,000 platelets/uL.
-    Range reference_range = 4;
-
-    // How the quantity was collected - REMOVED as this is already part of the Biosample message
-    // NCIT:C28221 (Phlebotomy) - NCIT:C103238 (Antecubital Fossa)
-//    Procedure assay = 6;
+    repeated ComplexQuantity complex_quantity = 7;
 
     // The time at which the measurement was made
     TimeElement time_observed = 5;
@@ -183,10 +177,7 @@ message Measurement {
 message Value {
     oneof value {
         Quantity quantity = 1;
-        OntologyClass ontologyClass = 2;
-        bool bool = 3;
-        Range range = 4;
-        Ratio ratio = 5;
+        OntologyClass ontology_class = 2;
     }
 }
 
@@ -195,16 +186,31 @@ message Quantity {
     OntologyClass unit = 1;
     // the  value of the quantity in the units  e.g. 2.0 mg
     double value = 2;
+
+    // Reference range for the quantity
+    // e.g. The normal range of platelets is 150,000 to 450,000 platelets/uL.
+    ReferenceRange reference_range = 3;
+}
+
+message ReferenceRange {
+    OntologyClass unit = 1;
+    double low = 2;
+    double high = 3;
+}
+
+// For complex measurements, such as blood pressure where more than one component quantity is required to describe the
+// measurement
+message ComplexQuantity {
+    // e.g. diastolic, systolic
+    OntologyClass type = 1;
+    // mm Hg
+    Quantity quantity = 2;
 }
 
 message Range {
-    Quantity low = 2;
-    Quantity high = 3;
-}
-
-message Ratio {
-    Quantity numerator = 1;
-    Quantity denominator = 2;
+    OntologyClass unit = 1;
+    double low = 2;
+    double high = 3;
 }
 
 
