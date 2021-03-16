@@ -38,7 +38,7 @@ For an ontology, the url SHALL point to the obo or owl file, e.g. This informati
     url: "http://www.human-phenotype-ontology.org"
     version: "2018-03-08"
     namespacePrefix: "HP"
-    iriPrefix: "hp"
+    iriPrefix: "http://purl.obolibrary.org/obo/HP_"
 
 Non-ontology resources which use CURIEs as their native identifiers should be treated in a similarly resolvable manner.
 
@@ -50,7 +50,7 @@ Non-ontology resources which use CURIEs as their native identifiers should be tr
     url: "https://www.genenames.org"
     version: "2019-08-08"
     namespacePrefix: "HGNC"
-    iriPrefix: "hgnc"
+    iriPrefix: "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/"
 
 Using this :ref:`rstresource` definition it is possible for software to resolve the identifier `HGNC:12805` to
 https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/12805
@@ -66,7 +66,7 @@ when present. For example the UniProt Knowledgebase (https://registry.identifier
     url: "https://www.uniprot.org"
     version: "2019_07"
     namespacePrefix: "uniprot"
-    iriPrefix: "uniprot"
+    iriPrefix: "https://purl.uniprot.org/uniprot/"
 
 
 Using this :ref:`rstresource` definition it is possible for software to resolve the identifier `uniprot:Q8H0D3` to

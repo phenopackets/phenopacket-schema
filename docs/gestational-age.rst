@@ -11,7 +11,7 @@ approximately 3 weeks before implantation of the blastocyst. Because most women 
 not when ovulation occurred, this definition traditionally has been used when estimating the expected date of delivery.
 In contrast, chronological age (or postnatal age) is the time elapsed after birth.
 
-Gestational age is conventionally expressed as completed weeks. Therefore, a 25-week, 5=day fetus is considered a
+Gestational age is conventionally expressed as completed weeks. Therefore, a 25-week, 5-day fetus is considered a
 25-week fetus. Gestational age is often reported as W+D. For instance, 33 weeks and 2 days could be reported as 33+2.
 
 
