@@ -156,9 +156,6 @@ class CovidExample {
                 .build();
 
         MedicalAction peepOxygenAdministered = MedicalAction.newBuilder()
-                // TODO: how to detail the amount of Oxygen administered via ventilator? Wouldn't this be better
-                //  described as a Procedure?
-//                        .setProcedure(Procedure.newBuilder().build())
                 .setTreatment(Treatment.newBuilder()
                         .setAgent(ontologyClass("NCIT:C722", "Oxygen"))
                         .setRouteOfAdministration(ontologyClass("NCIT:C50254", "Positive end Expiratory Pressure Valve Device"))
