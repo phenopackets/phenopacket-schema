@@ -1,10 +1,7 @@
 package org.phenopackets.schema.v2.doc;
 
 import org.junit.jupiter.api.Test;
-import org.phenopackets.schema.v1.core.GestationalAge;
-import org.phenopackets.schema.v1.core.OntologyClass;
-import org.phenopackets.schema.v1.core.TimeElement;
-import org.phenopackets.schema.v1.core.VitalStatus;
+import org.phenopackets.schema.v1.core.*;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,6 +24,17 @@ public class YamlGeneration extends TestBase{
         OntologyClass neutropenia = ontologyClass(id, label);
         String yamlString = messageToYaml(neutropenia, "ontologyClass");
         //System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("e93ec31eb81c5923a646deba11d32a2550413cbe96a6d92c22b7d257e031b0b4", hash);
+    }
+
+    @Test
+    void ontologyClassHpoSevere() throws IOException {
+        String id = "HP:0012828";
+        String label = "Severe";
+        OntologyClass neutropenia = ontologyClass(id, label);
+        String yamlString = messageToYaml(neutropenia, "ontologyClass");
+        System.out.println(yamlString);
         String hash = sha256(yamlString);
         assertEquals("e93ec31eb81c5923a646deba11d32a2550413cbe96a6d92c22b7d257e031b0b4", hash);
     }
@@ -77,6 +85,32 @@ public class YamlGeneration extends TestBase{
         System.out.println(yamlString);
         String hash = sha256(yamlString);
         assertEquals("f12616d0a7fa92173179263efef56c22b1b12128deb7057a245d738f2e18ed19", hash);
+    }
 
+    @Test
+    void testHpoResource() throws IOException {
+        Resource hpoResource = hpoResource("2018-03-08");
+        String yamlString = messageToYaml(hpoResource, "resource");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("43a5457bd16282effa6d0ce656c4730c3525c7651765c6c253ce58a696c7db18", hash);
+    }
+
+    @Test
+    void testHgncResource() throws IOException {
+        Resource hgncResource = hgncResource("2019-08-08");
+        String yamlString = messageToYaml(hgncResource, "resource");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("e554b02a815eb1a92884c10440ff18171e05bbbd896e28ee9346e486d32a92b0", hash);
+    }
+
+    @Test
+    void testUniprotResource() throws IOException {
+        Resource uniprotResource = uniprotResource("2019_07");
+        String yamlString = messageToYaml(uniprotResource, "resource");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("e554b02a815eb1a92884c10440ff18171e05bbbd896e28ee9346e486d32a92b0", hash);
     }
 }

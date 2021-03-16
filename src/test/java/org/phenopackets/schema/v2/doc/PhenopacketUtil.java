@@ -2,10 +2,7 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
-import org.phenopackets.schema.v1.core.GestationalAge;
-import org.phenopackets.schema.v1.core.OntologyClass;
-import org.phenopackets.schema.v1.core.TimeElement;
-import org.phenopackets.schema.v1.core.VitalStatus;
+import org.phenopackets.schema.v1.core.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -56,6 +53,51 @@ public class PhenopacketUtil {
             throw new RuntimeException("Gestational age days must less than 7");
         }
         return GestationalAge.newBuilder().setWeeks(weeks).setDays(days).build();
+    }
+
+
+
+    public static Resource resource(String id,
+                                    String name,
+                                    String namespace_prefix,
+                                    String url,
+                                    String version,
+                                    String iri_prefix) {
+        return Resource.newBuilder()
+                .setId(id)
+                .setName(name)
+                .setNamespacePrefix(namespace_prefix)
+                .setUrl(url)
+                .setVersion(version)
+                .setIriPrefix(id)
+                .build();
+    }
+
+    public static Resource hpoResource(String version) {
+        String id = "hp";
+        String name = "Human Phenotype Ontology";
+        String namespace_prefix = "HP";
+        String url = "http://www.human-phenotype-ontology.org";
+        String iri_prefix = "http://purl.obolibrary.org/obo/HP_";
+        return resource(id, name, namespace_prefix, url,version, iri_prefix);
+    }
+
+    public static Resource hgncResource(String version) {
+        String id = "hgnc";
+        String name = "HUGO Gene Nomenclature Committee";
+        String namespace_prefix = "HGNC";
+        String url = "https://www.genenames.org";
+        String iri_prefix = "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/";
+        return resource(id, name, namespace_prefix, url,version, iri_prefix);
+    }
+
+    public static Resource uniprotResource(String version) {
+        String id ="uniprot";
+        String name = "UniProt Knowledgebase";
+        String namespace_prefix ="uniprot";
+        String url = "https://www.uniprot.org";
+        String iri_prefix = "https://purl.uniprot.org/uniprot/";
+        return resource(id, name, namespace_prefix, url,version, iri_prefix);
     }
 
 }
