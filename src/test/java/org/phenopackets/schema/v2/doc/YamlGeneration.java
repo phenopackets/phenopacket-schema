@@ -1,18 +1,22 @@
 package org.phenopackets.schema.v2.doc;
 
-import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
+import org.phenopackets.schema.v1.core.GestationalAge;
 import org.phenopackets.schema.v1.core.OntologyClass;
 import org.phenopackets.schema.v1.core.TimeElement;
 import org.phenopackets.schema.v1.core.VitalStatus;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.phenopackets.schema.v2.doc.Wrapper.*;
+import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
 
+/**
+ * This class is a convenience class for generating YAML snippets for the documentation. For each snippet,
+ * we calculate a Hash value and assert equality. If there is any upstream change, the assertion will fail,
+ * which will be a warning to update the documentation.
+ */
 public class YamlGeneration extends TestBase{
 
 
@@ -20,11 +24,11 @@ public class YamlGeneration extends TestBase{
     void ontologyClassYaml() throws IOException {
         String id = "HP:0001875";
         String label = "Neutropenia";
-        OntologyClass neutropenia = buildOntologyClass(id, label);
-        String yamlString = messageToYaml(neutropenia, "OntologyClass");
-        System.out.println(yamlString);
+        OntologyClass neutropenia = ontologyClass(id, label);
+        String yamlString = messageToYaml(neutropenia, "ontologyClass");
+        //System.out.println(yamlString);
         String hash = sha256(yamlString);
-        assertEquals("8460c503cf10e17284c2f6947a248eafb89cc2b79e24b460c1d6aef10476391f", hash);
+        assertEquals("e93ec31eb81c5923a646deba11d32a2550413cbe96a6d92c22b7d257e031b0b4", hash);
     }
 
 
@@ -47,22 +51,32 @@ public class YamlGeneration extends TestBase{
      */
     @Test
     void vitalStatusDeceasedYaml() throws IOException, ParseException {
-        OntologyClass causeOfDeath = buildOntologyClass("NCIT:C36263","Metastatic Malignant Neoplasm");
-        TimeElement timeOfDeath = buildFromDateString("2015-10-01T10:54:20.021Z");
-        VitalStatus deceased = buildDeceasedStatus(causeOfDeath, timeOfDeath);
-        String yamlString = messageToYaml(deceased, "VitalStatus");
-        System.out.println(yamlString);
+        OntologyClass causeOfDeath = ontologyClass("NCIT:C36263","Metastatic Malignant Neoplasm");
+        TimeElement timeOfDeath = timeElementFromDateString("2015-10-01T10:54:20.021Z");
+        VitalStatus deceased = vitalStatusDeceased(causeOfDeath, timeOfDeath);
+        String yamlString = messageToYaml(deceased, "vitalStatus");
+        //System.out.println(yamlString);
         String hash = sha256(yamlString);
-        assertEquals("40d20db7d503328a49d287444ced816643366ede8f123dac5521daa7db1ec737", hash);
+        assertEquals("eae16f64c90fbea14c2010b575426b25b59078245904b198a32a2fb9b8470258", hash);
     }
 
     @Test
-    void vitalStatusAliveYaml() throws IOException, ParseException {
-        TimeElement now = getNowTimestampElement(); // ?? Do we want to add time of lasat onservation
-        VitalStatus alive = buildAliveStatus();
-        String yamlString = messageToYaml(alive, "VitalStatus");
+    void vitalStatusAliveYaml() throws IOException {
+        VitalStatus alive = vitalStatusAlive();
+        String yamlString = messageToYaml(alive, "vitalStatus");
+        //System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("f12616d0a7fa92173179263efef56c22b1b12128deb7057a245d738f2e18ed19", hash);
+    }
+
+
+    @Test
+    void gestationalAgeYaml() throws IOException {
+        GestationalAge gestationalAge = gestationalAge(33,2);
+        String yamlString = messageToYaml(gestationalAge, "gestationalAge");
         System.out.println(yamlString);
         String hash = sha256(yamlString);
-        assertEquals("a3ee336af69925199fbb65326a2d9f8cefa8f4ba30d01ed4b7e31b7dd181ad33", hash);
+        assertEquals("f12616d0a7fa92173179263efef56c22b1b12128deb7057a245d738f2e18ed19", hash);
+
     }
 }

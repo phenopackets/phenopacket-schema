@@ -38,7 +38,7 @@ The following shows how the element can be used to report the time and cause of 
 
 .. code-block:: yaml
 
-    VitalStatus:
+    vitalStatus:
         status: "DECEASED"
         timeOfDeath:
             timestamp: "2015-10-01T10:54:20.021Z"
@@ -52,10 +52,11 @@ The following element should be used to report the individual is alive.
 
 .. code-block:: yaml
 
-    VitalStatus:
+    vitalStatus:
         status: "ALIVE"
 
-
+In practice, this element is useful in cohort studies in which the association of some treatment or genetic variation is
+compared with mortality. For many other applications, it may not be necessary to use a VitalStatus element.
 
 
 
