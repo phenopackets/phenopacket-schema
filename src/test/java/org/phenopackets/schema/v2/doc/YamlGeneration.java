@@ -18,12 +18,12 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void ontologyClassYaml() throws IOException {
+    void ontologyClassHpoNeutropenia() throws IOException {
         String id = "HP:0001875";
         String label = "Neutropenia";
         OntologyClass neutropenia = ontologyClass(id, label);
         String yamlString = messageToYaml(neutropenia, "ontologyClass");
-        //System.out.println(yamlString);
+        System.out.println(yamlString);
         String hash = sha256(yamlString);
         assertEquals("e93ec31eb81c5923a646deba11d32a2550413cbe96a6d92c22b7d257e031b0b4", hash);
     }
