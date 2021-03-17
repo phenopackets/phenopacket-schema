@@ -705,7 +705,7 @@ message HgvsAllele {
 }
 
 // A single VCF allele.
-// For structural variation the INFO field should contain the relevant information e.g.
+// For structural variation the INFO field should *NOT* contain the END, SVTYPE, SVLEN, MATEID or EVENTID fields.
 // END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
 // See https://samtools.github.io/hts-specs/VCFv4.3.pdf
 message VcfAllele {
@@ -720,6 +720,11 @@ message VcfAllele {
     string ref = 6;
     string alt = 7;
     string info = 8;
+    int32 end = 9;
+    string sv_type = 10;
+    int32 sv_length = 11;
+    string mate_id = 12;
+    string event_id = 13;
 }
 
 // A single SPDI allele.
