@@ -26,6 +26,7 @@ building blocks.
    externalreference
    gene
    file
+   gestational-age
    individual
    karyotypicsex
    metadata
