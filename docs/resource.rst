@@ -23,7 +23,7 @@ The :ref:`rstmetadata` element uses one resource element to describe each resour
    namespace_prefix, string, required, HP
    url, string, required, Uniform Resource Locator of the resource
    version, string, required, 2018-03-08
-   iri_prefix, string, required, Internationalized Resource Identifier (e.g., http://purl.obolibrary.org/obo/HP_)
+   iri_prefix, string, required, Internationalized Resource Identifier such as ``http://purl.obolibrary.org/obo/HP_``
 
 **Example**
 
