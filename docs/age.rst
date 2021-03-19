@@ -22,11 +22,10 @@ If the Age message is used, the ``age`` value must be present.
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-      "age": "P25Y3M2D"
-  }
+  age:
+    iso8601duration: "P25Y3M2D"
 
 
 The string element (string age=1) should be used for ISO8601 durations (e.g., P40Y10M05D). For many use cases,
@@ -64,16 +63,13 @@ represented by bins such as 45-49 years, 50-54 years, 55-59 years, and so on.
 For instance, to represent the bin 45-49 years, one could use an Age element with **P45Y** as the start element of the AgeRange element,
 and an Age element with **P49Y** as the end element. An AgeRange.end SHALL occur after AgeRange.start.
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-    "start": {
-        "age": "P45Y"
-    },
-    "end": {
-        "age": "P49Y"
-    }
-  }
+  ageRange:
+    start:
+        iso8601duration: "P45Y"
+    end:
+        iso8601duration: "P49Y"
 
 
 

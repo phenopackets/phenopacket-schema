@@ -1,5 +1,6 @@
 package org.phenopackets.schema.v2.doc;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.core.*;
 
@@ -142,4 +143,30 @@ public class YamlGeneration extends TestBase{
         String hash = sha256(yamlString);
         assertEquals("c8f8dd3459738139cb9e5ba033d0bad4ba23dfbfea0d4df9cc4dac53010223d2", hash);
     }
+
+    @Test
+    void testAge() throws IOException {
+        String validAge = "P25Y3M2D";
+        Age age = age(validAge);
+        String yamlString = messageToYaml(age, "age");
+        //System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("3515fa76f5944a3b7b630a10ca76e110f4059ae6f90d82b8d78d18fcea96527b", hash);
+        Assertions.assertThrows(RuntimeException.class, () ->{
+            String invalidAge = "25Y3M2D";
+            Age age2 = age(invalidAge);
+        });
+    }
+
+    @Test
+    void testAgeRange() throws IOException {
+        String bottom = "P45Y";
+        String top = "P49Y";
+        AgeRange ageRange = ageRange(bottom, top);
+        String yamlString = messageToYaml(ageRange, "ageRange");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("e55c7fbfbc064be8957295f1a3b0ad7219c79f8a3cbec2411d8ea5f776b6daf3", hash);
+    }
 }
+

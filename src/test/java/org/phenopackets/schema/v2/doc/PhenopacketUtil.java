@@ -12,6 +12,8 @@ import java.time.Month;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 public class PhenopacketUtil {
 
@@ -119,6 +121,38 @@ public class PhenopacketUtil {
 
     public static Gene gene(String id, String symbol, List<String> alternateIds) {
         return Gene.newBuilder().setId(id).setSymbol(symbol).addAllAlternateIds(alternateIds).build();
+    }
+
+    /**
+     * Contains a simple but incomplete format check, consider replacing with regex
+     * @param iso8601
+     * @return
+     */
+    public static Age age(String iso8601) {
+        Set<Character> allowableCharacters = Set.of('Y', 'M', 'D', 'H','S');
+        if (! iso8601.startsWith("P")) {
+            throw new RuntimeException("ISO8601 Age string must start with P, but we got '" + iso8601 +"'");
+        }
+        if (iso8601.length() < 2) {
+            throw new RuntimeException("ISO8601 Age string too short. We got '" + iso8601 +"'");
+        }
+        String a = iso8601.substring(1);
+
+        for (int i=0; i<a.length(); i++) {
+            char c = a.charAt(i);
+            if (Character.isDigit (c)) {
+                // fine
+            } else if (Character.isLetter(c)) {
+                if (! allowableCharacters.contains(c)) {
+                    throw new RuntimeException("Use of invalid character. We got '" + iso8601 +"'");
+                }
+            }
+        }
+        return Age.newBuilder().setIso8601Duration(iso8601).build();
+    }
+
+    public static AgeRange ageRange(String age1, String age2) {
+        return AgeRange.newBuilder().setStart(age(age1)).setEnd(age(age2)).build();
     }
 
 
