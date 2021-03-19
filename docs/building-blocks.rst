@@ -13,27 +13,36 @@ building blocks.
 
 
 
-
-
-
 .. toctree::
    :maxdepth: 1
 
    age
    biosample
    disease
+   dose-interval
+   drug-type
    evidence
+   exposure
    externalreference
    gene
    file
    gestational-age
+   hormonetherapy
    individual
+   interval
    karyotypicsex
+   medical-action
    metadata
    ontologyclass
    pedigree
    phenotype
    procedure
+   quantity
+   radiotherapy
    resource
    sex
+   stop-reason
+   time-element
+   treatment
    variant
+   vital-status
