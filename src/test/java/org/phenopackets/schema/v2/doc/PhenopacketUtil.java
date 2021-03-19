@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
+import java.util.List;
 
 public class PhenopacketUtil {
 
@@ -99,5 +100,26 @@ public class PhenopacketUtil {
         String iri_prefix = "https://purl.uniprot.org/uniprot/";
         return resource(id, name, namespace_prefix, url,version, iri_prefix);
     }
+
+    public static ExternalReference externalReference(String id, String description) {
+        return ExternalReference.newBuilder().setId(id).setDescription(description).build();
+    }
+
+    public static Evidence evidenceWithEcoAuthorStatement(String id, String description) {
+        String ecoId = "ECO:0006017";
+        String label = "author statement from published clinical study used in manual assertion";
+        OntologyClass evidenceCode = ontologyClass(ecoId, label);
+        ExternalReference extRef = externalReference(id, description);
+        return Evidence.newBuilder().setEvidenceCode(evidenceCode).setReference(extRef).build();
+    }
+
+    public static Gene gene(String id, String symbol) {
+        return Gene.newBuilder().setId(id).setSymbol(symbol).build();
+    }
+
+    public static Gene gene(String id, String symbol, List<String> alternateIds) {
+        return Gene.newBuilder().setId(id).setSymbol(symbol).addAllAlternateIds(alternateIds).build();
+    }
+
 
 }
