@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package org.ga4gh.pedigree.v1;
+
+import "base.proto";
+
+option java_multiple_files = true;
+option java_package = "org.ga4gh.pedigree.v1";
+
+// https://docs.google.com/spreadsheets/d/1iO8FR9XhGnqElbOqqvPfdw9Fb4H779Q3jRrVi37feF0/edit#gid=704129528
+
+message Pedigree  {
+    string format = 1;
+    repeated FamilyMember members = 2;
+    repeated Relationship relationships = 3;
+    PedigreeMetadata meta = 4;
+    string note = 5;
+}
+
+message FamilyMember {
+    // logical id, used to reference this individual within the Pedigree data model
+    string id = 1;
+    // name of the individual
+    string name	= 2;
+    // external identifiers for the individual
+    string identifiers = 3;
+    // Whether or not the individual is affected by the condition being investigated in this pedigree; Recommend using event instead; included for PED backwards compatibility
+    bool affected = 4;
+    // whether the invidividual has been evaluated by the clinical or research team, and the associated information is therefore considered to be verfied
+    bool evaluated = 5;
+    // Sex for Clinical Use, possible values: “male”, “female”, “other”, “unknown”
+    Concept sex = 6;
+    // Presumed or reported gender identity, values: “male”, “female”, “non-binary”, “non-disclosed”, “trans”
+    Concept gender = 7;
+    // The self-reported ancestry group; one of: AME; EAS; EUR; NEA; OCE; SAS; SSA; AAC; LAT
+    AncestryGroup ancestryGroup = 8;
+    // reported events related to the individuals health (e.g., cancer diagnosis, symptom) or life status (e.g., birth, death)
+    repeated Event event = 9;
+    // human-readable comment
+    string note = 10;
+}
+
+enum AncestryGroup {
+    UNK = 0;
+    AME = 1;
+    EAS = 2;
+    EUR = 3;
+    NEA = 4;
+    OCE = 5;
+    SAS = 6;
+    SSA = 7;
+    AAC = 8;
+    LAT = 9;
+}
+
+message Relationship {
+
+}
+
+message Event {
+
+}
+
+message PedigreeMetadata {
+    // date of pedigree collection; YYYY or YYYY-MM or YYYY-MM-DD
+    string date_collected = 1;
+    // individual recording the pedigree
+    string collected_by = 2;
+    // This is an OntologyClass in phenopackets
+    Concept reason = 3;
+    // id of family member seeking genetic counseling, testing, or risk assessment
+    string consultand = 4;
+    // id of affected family member coming to medical attention independent of other family members
+    string proband = 5;
+}
+
+// A concept, represented as a coded term in an ontology or taxonomy
+message Concept {
+    // fully-specified URI or CURIE-prefixed identifier
+    string id = 1;
+    // human-readable name
+    string label = 2;
+}
+
+
+// The FHH version is, I think the latest version
+// https://github.com/ga4gh-cp/pedigree/blob/2021-01/model.md#pedigree-conceptual-model
+
+message FhhPedgree {
+    string proband = 1; // ID optional 	id of Individual that is the index case for the family
+    string consultand = 2; //  	ID 	optional 	id of Individual that is the focus of the current analysis
+    string collectedAt = 3; //  	Date 	optional 	the date the pedigree was collected, as ISO full or partial date, i.e. YYYY, YYYY-MM, or YYYY-MM-DD
+    org.phenopackets.schema.v1.core.OntologyClass reasonCollected = 4; //  	Concept 	optional 	the health condition being investigated in the family; if any Individual has the affected property defined, it refers to this condition
+    repeated FhhIndividual individuals = 5;
+    repeated FhhRelationship relationships = 6;
+}
+
+// Fhh version of Person
+message FhhIndividual {
+    string ID = 1;
+    string name = 2; //	name of the individual
+    repeated string identifiers = 3; 	// list of string 	optional 	external identifiers for the individual
+    org.phenopackets.schema.v1.core.OntologyClass sex = 4; // Concept	required 	Sex assigned at birth, values: male, female, other, unknown; See: https://confluence.hl7.org/display/VOC/Gender+Harmony+Context+Definitions and https://www.hl7.org/fhir/valueset-administrative-gender.html
+    org.phenopackets.schema.v1.core.OntologyClass gender = 5;	// Concept 	optional 	Presumed or reported gender identity, values: male, female, non-binary, non-disclosed, trans, ...; See: https://confluence.hl7.org/display/VOC/Gender+Harmony+Context+Definitions
+    org.phenopackets.schema.v1.core.OntologyClass lifeStatus = 6; // Concept 	recommended 	The presumed/accepted life status of the individual as of the pedigree collection date; one of: alive, deceased, unborn
+    bool affected = 7; //	boolean
+}
+
+message FhhRelationship {
+    string id = 1; //	ID 	required 	logical id
+    string individual = 2; //	ID required 	identifier of the subject Individual; equivalent to the FHIR "Scoping Individual" and the Biolink "Object"
+    string relative = 3; //	ID 	required 	identifier of the relative Individual; equivalent to the FHIR "Player" and the Biolink "Subject"
+    org.phenopackets.schema.v1.core.OntologyClass relation = 4; //	Concept 	required 	the relationship between individual and relative; if the relationship is directed, it is the relationship that the relative has to the individual (e.g., individual is the child, relative is the mother, then relation is parent); terms should come from the relationship terminology, below
+}
+
+message FhhRelationships {
+    repeated FhhRelationship relationships = 1;
+}
