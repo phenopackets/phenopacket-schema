@@ -25,12 +25,11 @@ term.
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-      "id": "HP:0001875",
-      "label": "Neutropenia"
-    }
+    ontologyClass:
+        id: "HP:0001875"
+        label: "Neutropenia"
 
 id
 ~~
