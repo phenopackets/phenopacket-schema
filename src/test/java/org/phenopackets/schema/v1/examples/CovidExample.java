@@ -221,7 +221,7 @@ class CovidExample {
     }
 
     private static Quantity quantityOf(double value, OntologyClass unit) {
-        return Quantity.newBuilder().setUnit(unit).setValue(value).build();
+        return Quantity.newBuilder().setUnitClass(unit).setValue(value).build();
     }
 
     private static TimeInterval parseLocalDateInterval(String isoLocalDateStart, String isoLocalDateEnd) {
