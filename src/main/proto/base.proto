@@ -146,11 +146,11 @@ message Measurement {
     // the type and onset etc... fields should be used for this purpose.
     string description = 1;
 
-    // TODO: definition
-    // An ontology class which describes the measurement. For example "body temperature" (CMO:0000015) or
+    // An ontology class which describes the assay used to produce the measurement.
+    // For example "body temperature" (CMO:0000015) or
     // "Platelets [#/volume] in Blood" (LOINC:26515-7)
     // FHIR mapping: Observation.code
-    OntologyClass type = 2;
+    OntologyClass assay = 2;
 
     // https://github.com/phenopackets/phenopacket-schema/issues/261
     // e.g. type: Increased circulating antibody level (HP:0010702)
@@ -169,21 +169,25 @@ message Measurement {
     // The time at which the measurement was made
     TimeElement time_observed = 5;
 
-    // The biological sample the measurement was taken from.
-    string biosample_id = 6;
+    // Clinical procedure performed on the subject in order to produce the measurement.
+    Procedure procedure = 8;
 }
 
 //
 message Value {
     oneof value {
         Quantity quantity = 1;
+        // for use with things such as categories 'red', 'yellow' or 'absent'/'present'
         OntologyClass ontology_class = 2;
     }
 }
 
 message Quantity {
     // For instance, NCIT subhierarchy, Unit of Measure (Code C25709)
-    OntologyClass unit = 1;
+    oneof unit_oneof {
+        OntologyClass unit_class = 1;
+        string unit_string = 4;
+    }
     // the  value of the quantity in the units  e.g. 2.0 mg
     double value = 2;
 
@@ -203,6 +207,7 @@ message ReferenceRange {
 message ComplexQuantity {
     // e.g. diastolic, systolic
     OntologyClass type = 1;
+    // TODO should this be a complex Value? e.g. Value not Quantity.
     // mm Hg
     Quantity quantity = 2;
 }
@@ -233,25 +238,16 @@ message Exposure {
     // Mechanism of the exposure e.g. subclasses of
     OntologyClass route = 4;
 
-    // Ontology class describing the characteristics of the exposure
-    repeated OntologyClass modifiers = 5;
+    // The amount an individual was exposed to the 'type' of exposure.
+    Value amount = 5;
 
     // When the exposure occurred
     TimeElement occurrence = 6;
-
-    // The amount an individual was exposed to the 'type' of exposure.
-    Value amount = 8;
 
     // Evidences for how the exposure was determined.
     repeated Evidence evidence = 7;
 }
 
-
-// For COVID-19
-// Timecourse - list of phenopackets over time, test results are a phenotypic feature
-// Treatment - medications plus operations/interventions outside of phenopackets
-// TestResults - test, subject, outcome (idea discarded as this is considered out of scope)
-// Environment - repeated Exposure ECTO (model after PhenotypicFeature)
 
 // FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
 message Evidence {
@@ -389,6 +385,8 @@ message Biosample {
 
     // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
     repeated PhenotypicFeature phenotypic_features = 5;
+
+    repeated Measurement measurements = 20;
 
     // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
     OntologyClass taxonomy = 6;
