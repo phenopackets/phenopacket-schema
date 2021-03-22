@@ -19,7 +19,7 @@ We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <ht
       - Status
       - Description
     * - evidence_code
-      - :ref:`rstontologyclass` representing ECO:0006017
+      - :ref:`rstontologyclass`
       - required
       - An ontology class that represents the evidence type
     * - reference
@@ -30,20 +30,15 @@ We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <ht
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
- {
-   "evidenceCode": {
-     "id": "ECO:0006017",
-     "label": "author statement from published clinical study used in manual assertion"
-   },
-   "reference": {
-     "id": "PMID:30962759",
-     "description": "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation"
-   }
- }
-
-
+    evidence:
+        evidenceCode:
+            id: "ECO:0006017"
+            label: "author statement from published clinical study used in manual assertion"
+        reference:
+            id: "PMID:30962759"
+            description: "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation"
 
 
 evidence_code
