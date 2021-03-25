@@ -155,5 +155,9 @@ public class PhenopacketUtil {
         return AgeRange.newBuilder().setStart(age(age1)).setEnd(age(age2)).build();
     }
 
+    public static ReferenceRange referenceRange(OntologyClass unit, double lower, double upper) {
+        return ReferenceRange.newBuilder().setUnit(unit).setLow(lower).setHigh(upper).build();
+    }
+
 
 }

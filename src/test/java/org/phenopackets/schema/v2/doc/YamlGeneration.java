@@ -168,5 +168,17 @@ public class YamlGeneration extends TestBase{
         String hash = sha256(yamlString);
         assertEquals("e55c7fbfbc064be8957295f1a3b0ad7219c79f8a3cbec2411d8ea5f776b6daf3", hash);
     }
+
+    @Test
+    void testReferenceRange() throws IOException {
+        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316","cells per microliter");
+        double lower = 150_000;
+        double upper = 450_000;
+        ReferenceRange referenceRange = referenceRange(cellsPerMicroliter, lower, upper);
+        String yamlString = messageToYaml(referenceRange, "referenceRange");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("e55c7fbfbc064be8957295f1a3b0ad7219c79f8a3cbec2411d8ea5f776b6daf3", hash);
+    }
 }
 

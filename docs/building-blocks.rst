@@ -39,6 +39,7 @@ building blocks.
    procedure
    quantity
    radiotherapy
+   reference-range
    resource
    sex
    stop-reason
