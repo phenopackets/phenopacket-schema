@@ -12,6 +12,7 @@ import java.time.Month;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -136,12 +137,12 @@ public class PhenopacketUtil {
 
         for (int i=0; i<a.length(); i++) {
             char c = a.charAt(i);
-            if (Character.isDigit (c)) {
-                // fine
-            } else if (Character.isLetter(c)) {
+            if (Character.isLetter(c)) {
                 if (! allowableCharacters.contains(c)) {
                     throw new RuntimeException("Use of invalid character. We got '" + iso8601 +"'");
                 }
+            } else if (! Character.isDigit (c)) {
+                throw new RuntimeException("Use of invalid character (must be digit or character). We got '" + iso8601 +"'");
             }
         }
         return Age.newBuilder().setIso8601Duration(iso8601).build();
@@ -198,6 +199,16 @@ public class PhenopacketUtil {
                 .addComplexQuantity(systolicCC)
                 .addComplexQuantity(diastolicCC)
                 .setTimeObserved(timeElement)
+                .build();
+    }
+
+    public static HtsFile vcfFile(String uri, String description,String genomeAssembly,Map<String,String> individualToSampleIdentifiers ) {
+        return HtsFile.newBuilder()
+                .setUri(uri)
+                .setDescription(description)
+                .setGenomeAssembly(genomeAssembly)
+                .setHtsFormat(HtsFile.HtsFormat.VCF)
+                .putAllIndividualToSampleIdentifiers(individualToSampleIdentifiers)
                 .build();
     }
 

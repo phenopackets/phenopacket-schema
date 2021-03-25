@@ -26,9 +26,9 @@ building blocks.
    exposure
    externalreference
    gene
-   file
    gestational-age
    hormonetherapy
+   htsfile
    individual
    interval
    karyotypicsex

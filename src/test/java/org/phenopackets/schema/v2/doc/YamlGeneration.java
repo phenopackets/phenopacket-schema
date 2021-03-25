@@ -7,6 +7,7 @@ import org.phenopackets.schema.v1.core.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
@@ -231,6 +232,23 @@ public class YamlGeneration extends TestBase{
         System.out.println(yamlString);
         String hash = sha256(yamlString);
         assertEquals("6f445ad265d69253eafba7c38758b228af1e0013aebdee25c1126e8f424e630c", hash);
+    }
+
+
+    @Test
+    void htsFileTest() throws IOException {
+        String uri = "file://data/genomes/germline_wgs.vcf.gz";
+        String description = "Matched normal germline sample";
+                //"htsFormat": "VCF",
+        String genomeAssembly = "GRCh38";
+        Map<String,String> individualToSampleIdentifiers = Map.of("patient23456", "NA12345");
+        HtsFile vcfFile = vcfFile(uri,description,genomeAssembly,individualToSampleIdentifiers);
+        String yamlString = messageToYaml(vcfFile, "htsFile");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("ec4ab02f2dc2b0fc46ec62ec5b401ebf97d34cf0178e021d70c71e14cd84e2cd", hash);
+
+
     }
 
 
