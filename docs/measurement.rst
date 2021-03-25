@@ -44,6 +44,7 @@ quantitative, ordinal (e.g., absent/present), or categorical measurements.
      - optional
      - Clinical procdure performed to acquire the sample used for the measurement
 
+**Examples**
 
 The following example shows measurement of platelet count. The result is abnormally low, but in
 general this element can be used to represent normal or abnormal measurements.
@@ -95,6 +96,37 @@ that is reached on the basis of the test.
 Categorical measurements, in which the outcome of the measurement is represented by one of two or more
 options that are not ordered, are represented in an analogous fashion.
 
+The following example presents a blood pressure measurement. The measurement of blood pressure
+consists of two measurements (systolic and diastolic), that are represented as a :ref:`rstcomplexquantity`.
+
+
+.. code-block:: yaml
+
+    measurement:
+        assay:
+            id: "CMO:0000003"
+            label: "blood pressure measurement"
+        timeObserved:
+            timestamp: "2021-01-01T10:54:20.021Z"
+        complexQuantity:
+            - type:
+                id: "NCIT:C25298"
+                label: "Systolic Blood Pressure"
+            quantity:
+                unitClass:
+                    id: "NCIT:C49670"
+                    label: "Millimeter of Mercury"
+                value: 125.0
+            - type:
+                id: "NCIT:C25299"
+                label: "Diastolic Blood Pressure"
+            quantity:
+                unitClass:
+                    id: "NCIT:C49670"
+                    label: "Millimeter of Mercury"
+                value: 75.0
+
+**Explanations**
 
 
 description
@@ -124,23 +156,14 @@ complex_quantity
 This is intended to represent measurements that consist of a tightly coupled group of related quanitities.
 For instance, blood pressure represents a measurement of systolic and diastolic blood pressure.
 
-    // https://github.com/phenopackets/phenopacket-schema/issues/261
-    // e.g. type: Increased circulating antibody level (HP:0010702)
-    //      quantity: unit: Microgram per Milliliter (NCIT:C64572), value: 23456.0
 
-    //      type:  body temperature (CMO:0000015)
-    //      quantity: unit: Degrees Celsius (UO:0000027), value: 37.5
-    //                      Degree Celsius (NCIT:C42559), value: 37.5
+time_observed
+~~~~~~~~~~~~~
+The time at which the measurement was made.
 
-    //      type:  LOINC: 26515-7 Platelets [#/volume] in Blood
-    //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
-    Value value = 3;
-
-    repeated ComplexQuantity complex_quantity = 7;
-
-    // The time at which the measurement was made
-    TimeElement time_observed = 5;
-
-    // Clinical procedure performed on the subject in order to produce the measurement.
-    Procedure procedure = 8;
-}
+procedure
+~~~~~~~~~
+Clinical procedure performed on the subject in order to obtain the sample used for the measurement.
+Examples include blood draw and biopsy. If the procedure can be inferred from the measurement or if the
+details of the measurement are deemed unimportant (e.g., a blood glucose test is performed on a blood sample
+obtained with some procedure that is not specified), this element can be omitted.

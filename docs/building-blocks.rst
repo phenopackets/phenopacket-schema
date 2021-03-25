@@ -18,6 +18,7 @@ building blocks.
 
    age
    biosample
+   complex-quantity
    disease
    dose-interval
    drug-type

@@ -123,11 +123,7 @@ public class PhenopacketUtil {
         return Gene.newBuilder().setId(id).setSymbol(symbol).addAllAlternateIds(alternateIds).build();
     }
 
-    /**
-     * Contains a simple but incomplete format check, consider replacing with regex
-     * @param iso8601
-     * @return
-     */
+
     public static Age age(String iso8601) {
         Set<Character> allowableCharacters = Set.of('Y', 'M', 'D', 'H','S');
         if (! iso8601.startsWith("P")) {
@@ -175,32 +171,34 @@ public class PhenopacketUtil {
         return Value.newBuilder().setOntologyClass(present).build();
     }
 
-    /*
-    string description = 1;
-    OntologyClass assay = 2;
 
-    // https://github.com/phenopackets/phenopacket-schema/issues/261
-    // e.g. type: Increased circulating antibody level (HP:0010702)
-    //      quantity: unit: Microgram per Milliliter (NCIT:C64572), value: 23456.0
-
-    //      type:  body temperature (CMO:0000015)
-    //      quantity: unit: Degrees Celsius (UO:0000027), value: 37.5
-    //                      Degree Celsius (NCIT:C42559), value: 37.5
-
-    //      type:  LOINC: 26515-7 Platelets [#/volume] in Blood
-    //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
-    Value value = 3;
-
-    repeated ComplexQuantity complex_quantity = 7;
-
-    // The time at which the measurement was made
-    TimeElement time_observed = 5;
-
-    // Clinical procedure performed on the subject in order to produce the measurement.
-    Procedure procedure = 8;
-     */
     public static Measurement measurement(OntologyClass assay, Value value, TimeElement timeElement) {
         return Measurement.newBuilder().setAssay(assay).setValue(value).setTimeObserved(timeElement).build();
+    }
+
+    public static ComplexQuantity complexQuantity(OntologyClass type, Quantity quantity) {
+        return ComplexQuantity.newBuilder().setType(type).setQuantity(quantity).build();
+    }
+
+    public static Quantity quantity(double value, OntologyClass unit) {
+        return Quantity.newBuilder().setValue(value).setUnitClass(unit).build();
+    }
+
+    public static Measurement bloodPressure(double systolic, double diastolic, TimeElement timeElement) {
+        OntologyClass systolicBP = ontologyClass("NCIT:C25298", "Systolic Blood Pressure");
+        OntologyClass diastolicBP = ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
+        OntologyClass mmHg = ontologyClass("NCIT:C49670", "Millimeter of Mercury");
+        Quantity systolicQuantity = quantity(systolic, mmHg);
+        Quantity diastolicQuantity = quantity(diastolic, mmHg);
+        ComplexQuantity systolicCC = complexQuantity(systolicBP, systolicQuantity);
+        ComplexQuantity diastolicCC = complexQuantity(diastolicBP, diastolicQuantity);
+        OntologyClass bloodPressureMeasurement = ontologyClass("CMO:0000003", "blood pressure measurement");
+        return Measurement.newBuilder()
+                .setAssay(bloodPressureMeasurement)
+                .addComplexQuantity(systolicCC)
+                .addComplexQuantity(diastolicCC)
+                .setTimeObserved(timeElement)
+                .build();
     }
 
 

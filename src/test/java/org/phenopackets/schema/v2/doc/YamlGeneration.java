@@ -178,7 +178,7 @@ public class YamlGeneration extends TestBase{
         String yamlString = messageToYaml(referenceRange, "referenceRange");
         System.out.println(yamlString);
         String hash = sha256(yamlString);
-        assertEquals("e55c7fbfbc064be8957295f1a3b0ad7219c79f8a3cbec2411d8ea5f776b6daf3", hash);
+        assertEquals("d8f1b33456a2fedf52cbaeddef99bb775770a04186ec82924367f4fc7e930380", hash);
     }
 
     @Test
@@ -207,7 +207,30 @@ public class YamlGeneration extends TestBase{
         System.out.println(yamlString);
         String hash = sha256(yamlString);
         assertEquals("26a135acd05734f17750feac37544c2cfa82686145b8ecfe0a494e5ddf12b812", hash);
+    }
 
+    @Test
+    void testBloodPressure() throws IOException, ParseException {
+        TimeElement time = timeElementFromDateString("2021-01-01T10:54:20.021Z");
+        Measurement bloodPressure = bloodPressure(125,75, time);
+        String yamlString = messageToYaml(bloodPressure, "measurement");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("81248dd3fa41e8a4c48877546c420838ddfdbb24844ba9b1f0e1443862e67326", hash);
+    }
+
+
+    @Test
+    void diastolicBP() throws IOException {
+        OntologyClass diastolicBP = ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
+        OntologyClass mmHg = ontologyClass("NCIT:C49670", "Millimeter of Mercury");
+        double diastolic = 70;
+        Quantity diastolicQuantity = quantity(diastolic, mmHg);
+        ComplexQuantity complexQuantity = complexQuantity(diastolicBP, diastolicQuantity);
+        String yamlString = messageToYaml(complexQuantity, "complexQuantity");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("6f445ad265d69253eafba7c38758b228af1e0013aebdee25c1126e8f424e630c", hash);
     }
 
 
