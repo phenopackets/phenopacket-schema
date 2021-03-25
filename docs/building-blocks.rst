@@ -31,6 +31,7 @@ building blocks.
    individual
    interval
    karyotypicsex
+   measurement
    medical-action
    metadata
    ontologyclass

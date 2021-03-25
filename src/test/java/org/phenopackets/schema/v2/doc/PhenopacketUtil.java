@@ -159,5 +159,49 @@ public class PhenopacketUtil {
         return ReferenceRange.newBuilder().setUnit(unit).setLow(lower).setHigh(upper).build();
     }
 
+    public static Value quantitativeValue(OntologyClass unit, double value, ReferenceRange referenceRange) {
+        Quantity quantity = Quantity.newBuilder()
+                .setValue(value)
+                .setUnitClass(unit)
+                .setReferenceRange(referenceRange)
+                .build();
+        return Value.newBuilder().setQuantity(quantity).build();
+    }
+
+    public static Value presentValue() {
+        String id = "NCIT:C25626";
+        String label = "Present";
+        OntologyClass present = OntologyClass.newBuilder().setId(id).setLabel(label).build();
+        return Value.newBuilder().setOntologyClass(present).build();
+    }
+
+    /*
+    string description = 1;
+    OntologyClass assay = 2;
+
+    // https://github.com/phenopackets/phenopacket-schema/issues/261
+    // e.g. type: Increased circulating antibody level (HP:0010702)
+    //      quantity: unit: Microgram per Milliliter (NCIT:C64572), value: 23456.0
+
+    //      type:  body temperature (CMO:0000015)
+    //      quantity: unit: Degrees Celsius (UO:0000027), value: 37.5
+    //                      Degree Celsius (NCIT:C42559), value: 37.5
+
+    //      type:  LOINC: 26515-7 Platelets [#/volume] in Blood
+    //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
+    Value value = 3;
+
+    repeated ComplexQuantity complex_quantity = 7;
+
+    // The time at which the measurement was made
+    TimeElement time_observed = 5;
+
+    // Clinical procedure performed on the subject in order to produce the measurement.
+    Procedure procedure = 8;
+     */
+    public static Measurement measurement(OntologyClass assay, Value value, TimeElement timeElement) {
+        return Measurement.newBuilder().setAssay(assay).setValue(value).setTimeObserved(timeElement).build();
+    }
+
 
 }

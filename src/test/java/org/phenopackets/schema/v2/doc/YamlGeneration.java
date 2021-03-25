@@ -180,5 +180,37 @@ public class YamlGeneration extends TestBase{
         String hash = sha256(yamlString);
         assertEquals("e55c7fbfbc064be8957295f1a3b0ad7219c79f8a3cbec2411d8ea5f776b6daf3", hash);
     }
+
+    @Test
+    void testPlateletMeasurement() throws IOException, ParseException {
+        OntologyClass loinc = ontologyClass("LOINC:26515-7","Platelets [#/volume] in Blood");
+        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316","cells per microliter");
+        double lower = 150_000;
+        double upper = 450_000;
+        ReferenceRange referenceRange = referenceRange(cellsPerMicroliter, lower, upper);
+        Value value = quantitativeValue(cellsPerMicroliter, 24_000, referenceRange);
+        TimeElement time = timeElementFromDateString("2020-10-01T10:54:20.021Z");
+        Measurement measurement = measurement(loinc, value, time);
+        String yamlString = messageToYaml(measurement, "measurement");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("0dc085d5e2a532951b4f4b11401d841de39df27e36f1b7ac4cb60db9643bad62", hash);
+    }
+
+    @Test
+    void testNitrituriaMeasurement() throws IOException, ParseException {
+        OntologyClass loinc = ontologyClass("LOINC:5802-4","Nitrite [Presence] in Urine by Test strip");
+        Value present = presentValue();
+        TimeElement time = timeElementFromDateString("2021-01-01T10:54:20.021Z");
+        Measurement measurement = measurement(loinc, present, time);
+        String yamlString = messageToYaml(measurement, "measurement");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("26a135acd05734f17750feac37544c2cfa82686145b8ecfe0a494e5ddf12b812", hash);
+
+    }
+
+
+
 }
 
