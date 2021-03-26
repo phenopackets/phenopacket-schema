@@ -20,19 +20,19 @@ public class FhhPedigreeTest {
                 .setSex(ontologyClass("", "")) // what ontology?
                 .build();
 
-        FhhRelationship probandMotherRelationship = FhhRelationship.newBuilder().setIndividual("mother")
+        FhhRelationship probandMotherRelationship = FhhRelationship.newBuilder().setIndividual("proband")
                 .setRelation(ontologyClass("REL:003", "biological parent"))
-                .setRelative("proband")
+                .setRelative("mother")
                 .build();
 
-        FhhRelationship probandFatherRelationship = FhhRelationship.newBuilder().setIndividual("father")
+        FhhRelationship probandFatherRelationship = FhhRelationship.newBuilder().setIndividual("proband")
                 .setRelation(ontologyClass("REL:003", "biological parent"))
-                .setRelative("proband")
+                .setRelative("father")
                 .build();
 
         FhhPedgree fhhPedgree = FhhPedgree.newBuilder()
                 .setProband("proband")
-                .setConsultand("someone")
+                .setConsultand("mother")
                 .setDate("2021-02-18")
                 .setReason(ontologyClass("OMIM:101600", "Apert syndrome"))
                 .addIndividuals(proband)
