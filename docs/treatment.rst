@@ -48,9 +48,30 @@ Data model
 Example
 #######
 
+The following example describes twice daily dosing of 30 mg of losartan given orally.
 
+.. code-block:: yaml
 
-
+    treatment:
+        agent:
+            id: "DrugCentral:1610"
+            label: "losartan"
+        routeOfAdministration:
+            id: "NCIT:C38288"
+            label: "Oral Route of Administration"
+        doseIntervals:
+            - quantity:
+                unitClass:
+                    id: "UO:0000022"
+                    label: "milligram"
+                value: 30.0
+        scheduleFrequency:
+            id: "NCIT:C64496"
+            label: "Twice Daily"
+        interval:
+            start: "2020-03-15T13:00:00Z"
+            end: "2020-03-25T09:00:00Z"
+        drugType: "PRESCRIPTION"
 
 
 Explanations
@@ -83,13 +104,5 @@ drug_type
 ~~~~~~~~~
 The context in which a drug was administered.
 See :ref:`rstdrugtype`.
-
-
-
-stop_reason_id
-~~~~~~~~~~~~~~
-the reason for which a medication was discontinued.
-See :ref:`rststopreason`.
-Todo -- if the medication is still ongoing, we will need to represent this.
 
 

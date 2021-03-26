@@ -222,5 +222,25 @@ public class PhenopacketUtil {
                 .build();
     }
 
+    public static DoseInterval doseInterval(TimeInterval timeInterval, Quantity quantity, OntologyClass schedule_frequency) {
+        return DoseInterval.newBuilder()
+                .setInterval(timeInterval)
+                .setQuantity(quantity)
+                .setScheduleFrequency(schedule_frequency)
+                .build();
+    }
+
+
+    public static Treatment treatment(OntologyClass agent,
+                                      OntologyClass route_of_administration,
+                                      List<DoseInterval> doseIntervalList,
+                                      DrugType drug_type) {
+       return Treatment.newBuilder()
+               .setAgent(agent)
+               .setRouteOfAdministration(route_of_administration)
+               .addAllDoseIntervals(doseIntervalList)
+               .setDrugType(drug_type).build();
+    }
+
 
 }

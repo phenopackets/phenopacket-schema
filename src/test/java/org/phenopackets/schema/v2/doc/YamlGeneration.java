@@ -22,7 +22,13 @@ import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
  */
 public class YamlGeneration extends TestBase{
 
-
+    /**
+     * Print out the YAML string we will use for documentation and calculate and return the sha2356 hash
+     * Comment out the print statement if documentation is finalized.
+     * @param message an element of the Phenopacket
+     * @param label the label we will put on this element for generating YAML
+     * @return a sha256 hash
+     */
     private String printAndGetHash(Message message, String label) {
         try {
             String yamlString = messageToYaml(message, label);
@@ -240,6 +246,34 @@ public class YamlGeneration extends TestBase{
         TimeInterval timeInterval = timeInterval(start, end);
         String hash = printAndGetHash(timeInterval, "timeInterval");
         assertEquals("261af4635f6bda84278b76f19382bfca9d23556dbcb62d1feb24db76d12c578b", hash);
+    }
+
+    private DoseInterval doseIntervalExample()  throws ParseException {
+        String start = "2020-03-15T13:00:00Z";
+        String end = "2020-03-25T09:00:00Z";
+        TimeInterval timeInterval = timeInterval(start, end);
+        OntologyClass unit = ontologyClass("UO:0000022", "milligram");
+        Quantity quantity = quantity(30, unit);
+        OntologyClass twiceDaily = ontologyClass("NCIT:C64496", "Twice Daily");
+        return doseInterval(timeInterval, quantity, twiceDaily);
+    }
+
+    @Test
+    void doseIntervalTest() throws ParseException {
+        DoseInterval doseInterval = doseIntervalExample();
+        String hash = printAndGetHash(doseInterval, "doseInterval");
+        assertEquals("21cfbe01d59fcae44b0012571c6f06fd62ae0d0465bb22081473f82523ac4ae1", hash);
+    }
+
+    @Test
+    void treatmentTest() throws ParseException  {
+        OntologyClass agent = ontologyClass("DrugCentral:1610", "losartan");  // for instance, DrugCentral, RxNorm Drugbank concept
+        OntologyClass route_of_administration = ontologyClass("NCIT:C38288","Oral Route of Administration"); // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
+        List<DoseInterval> doseIntervalList = List.of(doseIntervalExample());
+        DrugType drug_type = DrugType.PRESCRIPTION;
+        Treatment treatment = treatment(agent, route_of_administration, doseIntervalList,drug_type);
+        String hash = printAndGetHash(treatment, "treatment");
+        assertEquals("99126a60a4a9a80024e93d99cd4515a245443d774f431af5dd500928ab7e8656", hash);
     }
 
 

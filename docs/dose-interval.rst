@@ -1,8 +1,8 @@
 .. _rstdoseinterval:
 
-=============
+*************
 Dose Interval
-=============
+*************
 
 This element represents a block of time in which the dosage of a medication was
 constant. For example, to represent a period of  30 mg twice a day for an interval of 10 days, we would
@@ -37,24 +37,30 @@ element to represent `twice a day`, and an :ref:`rstinterval` element to represe
      - The specific interval over which the dosage was administered in the indicated quantity.
 
 
-**Example**
+Example
+#######
 
 The following message represents a dose interval from March 15, 2020 to March 25, 2020, in which a constant dose
 of 30 mg was given twice a day.
 
 .. code-block:: yaml
 
-  quantity:
-    unit:
-        id: "NCIT:C28253"
-        label: "Milligram"
-    value: 30.0
-  scheduleFrequency:
-    id: "NCIT:C64496"
-    label: "Twice Daily"
-  interval:
-    start: "2020-03-15T13:00:00Z"
-    end: "2020-03-25T09:00:00Z"
+  doseInterval:
+    quantity:
+        unitClass:
+            id: "UO:0000022"
+            label: "milligram"
+        value: 30.0
+    scheduleFrequency:
+        id: "NCIT:C64496"
+        label: "Twice Daily"
+    interval:
+        start: "2020-03-15T13:00:00Z"
+        end: "2020-03-25T09:00:00Z"
+
+
+Explanations
+############
 
 
 quantity
@@ -71,6 +77,6 @@ class.
 
 interval
 ~~~~~~~~
-The time interval over which the specified dosage is given. See :ref:`rstinterval` for information
+The time interval over which the specified dosage is given. See :ref:`rsttimeinterval` for information
 about privacy concerns.
 
