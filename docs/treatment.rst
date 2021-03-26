@@ -1,8 +1,8 @@
 .. _rsttreatment:
 
-=========
+*********
 Treatment
-=========
+*********
 
 
 
@@ -12,7 +12,8 @@ as prescription and over-the-counter
 medicines, vaccines, and large-molecule biologic therapies.
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``Treatment`` element
@@ -44,9 +45,16 @@ medicines, vaccines, and large-molecule biologic therapies.
      - optional
      - reason to stop taking the drug
 
+Example
+#######
 
 
 
+
+
+
+Explanations
+############
 
 agent
 ~~~~

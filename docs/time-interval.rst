@@ -1,19 +1,20 @@
-.. _rstinterval:
+.. _rsttimeinterval:
 
-========
-Interval
-========
+************
+TimeInterval
+************
 
-An interval is meant to denote an interval of time whose begin and end is defined
+An time interval is meant to denote an interval of time whose begin and end is defined
 by `Timestamps <https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/Timestamp>`_.
 
 
 
 
-**Data model**
+Data model
+##########
 
 
-.. list-table:: Definition  of the ``Interval`` element
+.. list-table:: Definition  of the ``TimeInterval`` element
    :widths: 25 25 50 50
    :header-rows: 1
 
@@ -31,16 +32,22 @@ by `Timestamps <https://developers.google.com/protocol-buffers/docs/reference/ja
      - end of interval
 
 
-**Example**
+Example
+#######
 
 The following message could be used to represent the
 interval from March 15, 2020, 1PM to March 25, 2020, 9PM.
 
 .. code-block:: yaml
 
-  interval:
+  timeInterval:
     start: "2020-03-15T13:00:00Z"
     end: "2020-03-25T09:00:00Z"
+
+
+Explanations
+############
+
 
 start
 ~~~~~
@@ -58,6 +65,6 @@ might shift all dates by 2 years. In this case the above interval element would 
 
 .. code-block:: yaml
 
-  interval:
+  timeInterval:
     start: "2018-03-15T13:00:00Z"
     end: "2018-03-25T09:00:00Z"

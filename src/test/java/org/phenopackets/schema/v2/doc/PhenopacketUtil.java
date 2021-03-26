@@ -4,17 +4,10 @@ import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import org.phenopackets.schema.v1.core.*;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class PhenopacketUtil {
 
@@ -218,7 +211,15 @@ public class PhenopacketUtil {
                 .setDateOfBirth(dob)
                 .setSex(sex)
                 .build();
+    }
 
+    public static TimeInterval timeInterval(String dateString1, String dateString2) throws ParseException {
+        Timestamp t1 = Timestamps.parse(dateString1);
+        Timestamp t2 = Timestamps.parse(dateString2);
+        return TimeInterval.newBuilder()
+                .setStart(t1)
+                .setEnd(t2)
+                .build();
     }
 
 

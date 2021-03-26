@@ -30,7 +30,6 @@ building blocks.
    hormonetherapy
    htsfile
    individual
-   interval
    karyotypicsex
    measurement
    medical-action
@@ -46,6 +45,7 @@ building blocks.
    sex
    stop-reason
    time-element
+   time-interval
    treatment
    variant
    vital-status
