@@ -12,11 +12,11 @@ public class FhhPedigreeTest {
 
     @Test
     void trio() throws InvalidProtocolBufferException {
-        FhhIndividual proband = FhhIndividual.newBuilder().setID("proband").build();
-        FhhIndividual mother = FhhIndividual.newBuilder().setID("mother")
+        FhhIndividual proband = FhhIndividual.newBuilder().setId("proband").build();
+        FhhIndividual mother = FhhIndividual.newBuilder().setId("mother")
                 .setSex(ontologyClass("", "")) // what ontology?
                 .build();
-        FhhIndividual father = FhhIndividual.newBuilder().setID("father")
+        FhhIndividual father = FhhIndividual.newBuilder().setId("father")
                 .setSex(ontologyClass("", "")) // what ontology?
                 .build();
 
