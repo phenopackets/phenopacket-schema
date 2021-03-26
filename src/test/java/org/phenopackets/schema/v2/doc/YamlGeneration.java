@@ -1,5 +1,7 @@
 package org.phenopackets.schema.v2.doc;
 
+import com.google.protobuf.Timestamp;
+import com.google.protobuf.util.Timestamps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.core.*;
@@ -247,8 +249,18 @@ public class YamlGeneration extends TestBase{
         System.out.println(yamlString);
         String hash = sha256(yamlString);
         assertEquals("ec4ab02f2dc2b0fc46ec62ec5b401ebf97d34cf0178e021d70c71e14cd84e2cd", hash);
+    }
 
-
+    @Test
+    void individualTest() throws IOException, ParseException {
+        String id = "patient:0";
+        Timestamp dob = Timestamps.parse("1998-01-01T00:00:00Z");
+        Sex male = Sex.MALE;
+        Individual individual = individual(id, dob, male);
+        String yamlString = messageToYaml(individual, "individual");
+        System.out.println(yamlString);
+        String hash = sha256(yamlString);
+        assertEquals("638a7d0480c97f8690c1b76525ddb2725270f56e7aec6374fe52b5a30fd73450", hash);
     }
 
 

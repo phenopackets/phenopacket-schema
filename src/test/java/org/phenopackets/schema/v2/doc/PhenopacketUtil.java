@@ -212,5 +212,14 @@ public class PhenopacketUtil {
                 .build();
     }
 
+    public static Individual individual(String id, Timestamp dob, Sex sex) {
+        return Individual.newBuilder()
+                .setId(id)
+                .setDateOfBirth(dob)
+                .setSex(sex)
+                .build();
+
+    }
+
 
 }
