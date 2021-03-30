@@ -162,15 +162,16 @@ message Measurement {
 
     //      type:  LOINC: 26515-7 Platelets [#/volume] in Blood
     //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
-    Value value = 3;
-
-    repeated ComplexQuantity complex_quantity = 7;
+    oneof measurement_value {
+        Value value = 3;
+        ComplexValue complex_value = 4;
+    }
 
     // The time at which the measurement was made
     TimeElement time_observed = 5;
 
     // Clinical procedure performed on the subject in order to produce the measurement.
-    Procedure procedure = 8;
+    Procedure procedure = 6;
 }
 
 //
@@ -180,6 +181,12 @@ message Value {
         // for use with things such as categories 'red', 'yellow' or 'absent'/'present'
         OntologyClass ontology_class = 2;
     }
+}
+
+message ComplexValue {
+    // The quantities required to fully describe the complex value. For example the systolic and diastolic blood pressure
+    // quantities
+    repeated TypedQuantity typed_quantities = 1;
 }
 
 message Quantity {
@@ -194,28 +201,20 @@ message Quantity {
     ReferenceRange reference_range = 3;
 }
 
+// For complex measurements, such as blood pressure where more than one component quantity is required to describe the
+// measurement
+message TypedQuantity {
+    // e.g. diastolic, systolic
+    OntologyClass type = 1;
+    // e.g. mm Hg
+    Quantity quantity = 2;
+}
+
 message ReferenceRange {
     OntologyClass unit = 1;
     double low = 2;
     double high = 3;
 }
-
-// For complex measurements, such as blood pressure where more than one component quantity is required to describe the
-// measurement
-message ComplexQuantity {
-    // e.g. diastolic, systolic
-    OntologyClass type = 1;
-    // TODO should this be a complex Value? e.g. Value not Quantity.
-    // mm Hg
-    Quantity quantity = 2;
-}
-
-message Range {
-    OntologyClass unit = 1;
-    double low = 2;
-    double high = 3;
-}
-
 
 // An individual environmental exposure, observed as either present or absent (negated), with possible onset, modifiers
 // and frequency. Recommended ontology for use is ECTO http://purl.obolibrary.org/obo/ecto.owl
