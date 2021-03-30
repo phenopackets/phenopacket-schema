@@ -2,7 +2,7 @@ package org.phenopackets.schema.v2.doc;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.phenopackets.schema.v1.core.*;
+import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
 import java.text.ParseException;

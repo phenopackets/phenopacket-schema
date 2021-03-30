@@ -2,18 +2,11 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
-import org.phenopackets.schema.v1.core.*;
+import org.phenopackets.schema.v2.core.*;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class PhenopacketUtil {
 
