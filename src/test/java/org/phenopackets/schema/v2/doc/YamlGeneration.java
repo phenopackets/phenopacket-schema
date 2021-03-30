@@ -201,7 +201,7 @@ public class YamlGeneration extends TestBase{
         TimeElement time = timeElementFromDateString("2021-01-01T10:54:20.021Z");
         Measurement bloodPressure = bloodPressure(125,75, time);
         String hash = printAndGetHash(bloodPressure, "measurement");
-        assertEquals("81248dd3fa41e8a4c48877546c420838ddfdbb24844ba9b1f0e1443862e67326", hash);
+        assertEquals("2e6feccf9cb68bf69d68687c7ceb7e88f6760895b84522e08b8a7d5fb6144d24", hash);
     }
 
 
@@ -213,7 +213,7 @@ public class YamlGeneration extends TestBase{
         Quantity diastolicQuantity = quantity(diastolic, mmHg);
         TypedQuantity typedQuantity = typedQuantity(diastolicBP, diastolicQuantity);
         String hash = printAndGetHash(typedQuantity, "typedQuantity");
-        assertEquals("6f445ad265d69253eafba7c38758b228af1e0013aebdee25c1126e8f424e630c", hash);
+        assertEquals("a1e200d9520c190e936113c168b9cac6747fdab46eb2df937c72aa315bfb14c7", hash);
     }
 
 

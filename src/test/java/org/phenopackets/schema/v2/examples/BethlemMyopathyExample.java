@@ -2,8 +2,6 @@ package org.phenopackets.schema.v2.examples;
 
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
-import com.google.protobuf.util.JsonFormat;
-import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
@@ -183,13 +181,5 @@ public class BethlemMyopathyExample {
                 .setMetaData(metaData)
                 .build();
     }
-
-    @Test
-    void printAsJson() throws Exception{
-        String s = JsonFormat.printer().print(rareDiseaseFamily());
-        System.out.println(s);
-    }
-
-
 
 }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import com.google.protobuf.Message;
+import com.google.protobuf.MessageOrBuilder;
 import com.google.protobuf.util.JsonFormat;
 
 import java.io.IOException;
@@ -22,6 +23,11 @@ public class FormatMapper {
         JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
         JsonNode node = JsonNodeFactory.instance.objectNode().set(label, jsonNodeTree);
         return new YAMLMapper().writeValueAsString(node);
+    }
+
+    public static String messageToYaml(MessageOrBuilder messageOrBuilder) throws IOException {
+        String jsonString = JsonFormat.printer().print(messageOrBuilder);
+        return FormatMapper.jsonToYaml(jsonString);
     }
 
     // parse JSON to YAML

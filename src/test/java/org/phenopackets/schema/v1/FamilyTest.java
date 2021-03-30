@@ -28,12 +28,8 @@ public class FamilyTest {
 
         String json = JsonFormat.printer().print(original);
         String asYaml = FormatMapper.jsonToYaml(json);
-        System.out.println(asYaml);
-
-        System.out.println(json);
 
         String asJson = FormatMapper.yamlToJson(asYaml);
-        System.out.println(asJson);
 
         Family.Builder familyBuilder = Family.newBuilder();
         JsonFormat.parser().merge(asJson, familyBuilder);

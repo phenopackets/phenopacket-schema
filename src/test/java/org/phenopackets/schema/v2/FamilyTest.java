@@ -18,8 +18,7 @@ public class FamilyTest {
     @Test
     void printFamilyAsYaml() throws IOException {
         Family family = TestExamples.rareDiseaseFamily();
-        String json = JsonFormat.printer().print(family);
-        System.out.println(FormatMapper.jsonToYaml(json));
+        System.out.println(FormatMapper.messageToYaml(family));
     }
 
     @Test
@@ -28,12 +27,7 @@ public class FamilyTest {
 
         String json = JsonFormat.printer().print(original);
         String asYaml = FormatMapper.jsonToYaml(json);
-        System.out.println(asYaml);
-
-        System.out.println(json);
-
         String asJson = FormatMapper.yamlToJson(asYaml);
-        System.out.println(asJson);
 
         Family.Builder familyBuilder = Family.newBuilder();
         JsonFormat.parser().merge(asJson, familyBuilder);

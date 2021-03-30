@@ -1,10 +1,10 @@
 package org.phenopackets.schema.v2;
 
 import com.google.protobuf.Timestamp;
-import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
 import org.phenopackets.schema.v2.examples.TestExamples;
+import org.phenopackets.schema.v2.io.FormatMapper;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
@@ -77,6 +77,6 @@ class InterpretationTest {
                 .setMetaData(metaData)
                 .build();
 
-        System.out.println(JsonFormat.printer().print(interpretation));
+        System.out.println(FormatMapper.messageToYaml(interpretation));
     }
 }

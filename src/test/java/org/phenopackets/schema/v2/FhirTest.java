@@ -5,8 +5,6 @@ import org.hl7.fhir.r4.model.Bundle;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.examples.TestExamples;
 
-import java.io.IOException;
-
 /**
  * 'Tests' of the FHIR representations of the example data from Toronto hackathon.
  *
@@ -15,14 +13,16 @@ import java.io.IOException;
 public class FhirTest {
 
     @Test
-    public void testCancerExample() throws IOException {
+    public void testCancerExample() {
         Bundle bundle = TestExamples.cancerBundle();
-        System.out.println(FhirContext.forR4().newJsonParser().setPrettyPrint(true).encodeResourceToString(bundle));
     }
 
     @Test
     public void testRareDiseaseExample() {
         Bundle bundle = TestExamples.rareDiseaseBundle();
-        System.out.println(FhirContext.forR4().newJsonParser().setPrettyPrint(true).encodeResourceToString(bundle));
+    }
+
+    private String toR4String(Bundle bundle) {
+        return FhirContext.forR4().newJsonParser().setPrettyPrint(true).encodeResourceToString(bundle);
     }
 }

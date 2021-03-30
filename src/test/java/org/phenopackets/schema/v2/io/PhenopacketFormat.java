@@ -27,8 +27,7 @@ public class PhenopacketFormat {
     }
 
     public static String toYaml(Phenopacket phenoPacket) throws IOException {
-        String jsonString = JsonFormat.printer().print(phenoPacket);
-        return FormatMapper.jsonToYaml(jsonString);
+        return FormatMapper.messageToYaml(phenoPacket);
     }
 
     public static Phenopacket fromYaml(String yamlString) throws IOException {

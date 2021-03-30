@@ -1,7 +1,6 @@
 package org.phenopackets.schema.v2.examples;
 
 import com.google.protobuf.Timestamp;
-import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
@@ -239,9 +238,4 @@ public class UrothelialCarcinomaExample {
         assertEquals(this.patientId, this.phenopacket.getSubject().getId());
     }
 
-    @Test
-    void printAsJson() throws Exception{
-        System.out.println(JsonFormat.printer()
-                .print(phenopacket));
-    }
 }
