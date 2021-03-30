@@ -21,8 +21,7 @@ circulating platelets is  150,000 to 450,000 platelets per microliter.
 **Example**
 
 There are several ontologies  that provide terms for units of measurement, including the
-`Units of measurement ontology <https://pubmed.ncbi.nlm.nih.gov/23060432/>`_
-(see also `UoM on OLS <https://www.ebi.ac.uk/ols/ontologies/uo>`_) and the
+`Units of measurement ontology <https://www.ebi.ac.uk/ols/ontologies/uo>`_ and the
 National Cancer Institute Thesaurus (NCIT),
 from the subhierarchy for `Unit of Measure (Code C25709) <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25709>`_.
 

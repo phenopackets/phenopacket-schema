@@ -8,7 +8,8 @@ This element is intended for complex measurements, such as blood pressure where 
 measurement.
 
 
-**Data model**
+Data model
+==========
 
 .. csv-table::
    :header: Field, Type, Status, Description
@@ -17,7 +18,8 @@ measurement.
    quantity, Quantity, required, the result of measurement
 
 
-**Example**
+Example
+=======
 
 The following example shows a ComplexQuantity message for diastolic blood pressure.
 The intended use case for a ComplexQuantity message is as a component of a :ref:`rstmeasurement`

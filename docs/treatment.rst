@@ -40,10 +40,6 @@ Data model
      - DrugType
      - optional
      - Context of the drug administration
-   * - stop_reason_id
-     - StopReason
-     - optional
-     - reason to stop taking the drug
 
 Example
 #######

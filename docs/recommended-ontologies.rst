@@ -1,8 +1,8 @@
 .. _rstrecommendedontologies:
 
-**********************
+======================
 Recommended Ontologies
-**********************
+======================
 
 The phenopacket schema can be used with any ontologies. The phenopacket can be compared to a hierarchical structure
 with "slots" for ontology terms and other data. Different use cases may require different ontology terms to cover
@@ -13,17 +13,17 @@ set of ontologies (to the extent possible). Here, we provide general recommendat
 to be useful. This list is incomplete and we would welcome feedback from the community about ontologies that should be
 added to this page.
 
-Units of measurement
-####################
+Units of Measurement Ontology
+=============================
 
 
 The
 `Units of measurement ontology <https://pubmed.ncbi.nlm.nih.gov/23060432/>`_
-(see also `UoM on OLS <https://www.ebi.ac.uk/ols/ontologies/uo>`_) provides terms for units commonly encountered in
+(denoted `UO <https://www.ebi.ac.uk/ols/ontologies/uo>`_) provides terms for units commonly encountered in
 medical data. The following table shows some typical examples.
 
 
-.. list-table:: ``Example terms from Units of measurement ontology``
+.. list-table:: Example terms from Units of measurement ontology
    :widths: 50 50
    :header-rows: 1
 
@@ -36,12 +36,16 @@ medical data. The following table shows some typical examples.
    * - millimetres of mercury
      - `UO:0000272 <https://www.ebi.ac.uk/ols/ontologies/uo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FUO_0000272>`_
 
-The National Cancer Institute's thesaurus provides a wide range of terms under
+
+The National Cancer Institute's Thesaurus
+=========================================
+
+The National Cancer Institute's thesaurus (NCIT) provides a wide range of terms under
 the subhierarchy for `Unit of Measure (NCIT:C25709) <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25709>`_.
-and for ``Schedule Frequency (NCIT:C64493) <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C64493>`_.
+and for `Schedule Frequency (NCIT:C64493) <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C64493>`_.
 Some typical terms are
 
-.. list-table:: ``Example terms from NCIT Unit of Measure and Schedule Frequency subhierarchies``
+.. list-table:: Example terms from NCIT Unit of Measure and Schedule Frequency subhierarchies
    :widths: 50 50
    :header-rows: 1
 
