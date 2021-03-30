@@ -1,8 +1,8 @@
-.. _rstfile:
+.. _rsthtsfile:
 
-================
+=======
 HtsFile
-================
+=======
 
 Phenopackets can be used to hold phenotypic information that can inform the analysis of
 sequencing data in `VCF format <https://www.ncbi.nlm.nih.gov/pubmed/21653522>`_ as well
@@ -84,17 +84,16 @@ This message is used for a file in one of the `HTS formats <https://samtools.git
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-        "uri": "file://data/genomes/germline_wgs.vcf.gz",
-        "description": "Matched normal germline sample",
-        "htsFormat": "VCF",
-        "genomeAssembly": "GRCh38",
-        "individualToSampleIdentifiers": {
-          "patient23456": "NA12345"
-        }
-    }
+    htsFile:
+        uri: "file://data/genomes/germline_wgs.vcf.gz"
+        description: "Matched normal germline sample"
+        htsFormat: "VCF"
+        genomeAssembly: "GRCh38"
+        individualToSampleIdentifiers:
+            patient23456: "NA12345"
+
 
 uri
 ~~~
@@ -104,7 +103,7 @@ description
 ~~~~~~~~~~~
 An arbitrary description of the file contents.
 
-The `File` message MUST have at least one of `path` and `uri` and usually should just have one of the two (in exceptional
+The `HtsFile` message MUST have at least one of `path` and `uri` and usually should just have one of the two (in exceptional
 cases the same file might be referenced on a local file system and on the network).
 
 hts_format

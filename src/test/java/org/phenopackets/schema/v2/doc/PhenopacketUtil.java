@@ -4,16 +4,11 @@ import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import org.phenopackets.schema.v1.core.*;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Date;
+import java.time.Period;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class PhenopacketUtil {
 
@@ -123,36 +118,111 @@ public class PhenopacketUtil {
         return Gene.newBuilder().setId(id).setSymbol(symbol).addAllAlternateIds(alternateIds).build();
     }
 
-    /**
-     * Contains a simple but incomplete format check, consider replacing with regex
-     * @param iso8601
-     * @return
-     */
-    public static Age age(String iso8601) {
-        Set<Character> allowableCharacters = Set.of('Y', 'M', 'D', 'H','S');
-        if (! iso8601.startsWith("P")) {
-            throw new RuntimeException("ISO8601 Age string must start with P, but we got '" + iso8601 +"'");
-        }
-        if (iso8601.length() < 2) {
-            throw new RuntimeException("ISO8601 Age string too short. We got '" + iso8601 +"'");
-        }
-        String a = iso8601.substring(1);
 
-        for (int i=0; i<a.length(); i++) {
-            char c = a.charAt(i);
-            if (Character.isDigit (c)) {
-                // fine
-            } else if (Character.isLetter(c)) {
-                if (! allowableCharacters.contains(c)) {
-                    throw new RuntimeException("Use of invalid character. We got '" + iso8601 +"'");
-                }
-            }
-        }
+    public static Age age(String iso8601) {
+        Period.parse(iso8601); // if no error thrown, the String is valid
         return Age.newBuilder().setIso8601Duration(iso8601).build();
     }
 
     public static AgeRange ageRange(String age1, String age2) {
         return AgeRange.newBuilder().setStart(age(age1)).setEnd(age(age2)).build();
+    }
+
+    public static ReferenceRange referenceRange(OntologyClass unit, double lower, double upper) {
+        return ReferenceRange.newBuilder().setUnit(unit).setLow(lower).setHigh(upper).build();
+    }
+
+    public static Value quantitativeValue(OntologyClass unit, double value, ReferenceRange referenceRange) {
+        Quantity quantity = Quantity.newBuilder()
+                .setValue(value)
+                .setUnitClass(unit)
+                .setReferenceRange(referenceRange)
+                .build();
+        return Value.newBuilder().setQuantity(quantity).build();
+    }
+
+    public static Value presentValue() {
+        String id = "NCIT:C25626";
+        String label = "Present";
+        OntologyClass present = OntologyClass.newBuilder().setId(id).setLabel(label).build();
+        return Value.newBuilder().setOntologyClass(present).build();
+    }
+
+
+    public static Measurement measurement(OntologyClass assay, Value value, TimeElement timeElement) {
+        return Measurement.newBuilder().setAssay(assay).setValue(value).setTimeObserved(timeElement).build();
+    }
+
+    public static ComplexQuantity complexQuantity(OntologyClass type, Quantity quantity) {
+        return ComplexQuantity.newBuilder().setType(type).setQuantity(quantity).build();
+    }
+
+    public static Quantity quantity(double value, OntologyClass unit) {
+        return Quantity.newBuilder().setValue(value).setUnitClass(unit).build();
+    }
+
+    public static Measurement bloodPressure(double systolic, double diastolic, TimeElement timeElement) {
+        OntologyClass systolicBP = ontologyClass("NCIT:C25298", "Systolic Blood Pressure");
+        OntologyClass diastolicBP = ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
+        OntologyClass mmHg = ontologyClass("NCIT:C49670", "Millimeter of Mercury");
+        Quantity systolicQuantity = quantity(systolic, mmHg);
+        Quantity diastolicQuantity = quantity(diastolic, mmHg);
+        ComplexQuantity systolicCC = complexQuantity(systolicBP, systolicQuantity);
+        ComplexQuantity diastolicCC = complexQuantity(diastolicBP, diastolicQuantity);
+        OntologyClass bloodPressureMeasurement = ontologyClass("CMO:0000003", "blood pressure measurement");
+        return Measurement.newBuilder()
+                .setAssay(bloodPressureMeasurement)
+                .addComplexQuantity(systolicCC)
+                .addComplexQuantity(diastolicCC)
+                .setTimeObserved(timeElement)
+                .build();
+    }
+
+    public static HtsFile vcfFile(String uri, String description,String genomeAssembly,Map<String,String> individualToSampleIdentifiers ) {
+        return HtsFile.newBuilder()
+                .setUri(uri)
+                .setDescription(description)
+                .setGenomeAssembly(genomeAssembly)
+                .setHtsFormat(HtsFile.HtsFormat.VCF)
+                .putAllIndividualToSampleIdentifiers(individualToSampleIdentifiers)
+                .build();
+    }
+
+    public static Individual individual(String id, Timestamp dob, Sex sex) {
+        return Individual.newBuilder()
+                .setId(id)
+                .setDateOfBirth(dob)
+                .setSex(sex)
+                .build();
+    }
+
+    public static TimeInterval timeInterval(String dateString1, String dateString2) throws ParseException {
+        Timestamp t1 = Timestamps.parse(dateString1);
+        Timestamp t2 = Timestamps.parse(dateString2);
+        return TimeInterval.newBuilder()
+                .setStart(t1)
+                .setEnd(t2)
+                .build();
+    }
+
+    public static DoseInterval doseInterval(TimeInterval timeInterval, Quantity quantity, OntologyClass schedule_frequency) {
+        return DoseInterval.newBuilder()
+                .setInterval(timeInterval)
+                .setQuantity(quantity)
+                .setScheduleFrequency(schedule_frequency)
+                .build();
+    }
+
+
+    public static Treatment treatment(OntologyClass agent,
+                                      OntologyClass route_of_administration,
+                                      List<DoseInterval> doseIntervalList,
+                                      DrugType drug_type) {
+       return Treatment.newBuilder()
+               .setAgent(agent)
+               .setRouteOfAdministration(route_of_administration)
+               .addAllDoseIntervals(doseIntervalList)
+               .setDrugType(drug_type).build();
     }
 
 

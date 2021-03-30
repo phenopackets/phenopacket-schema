@@ -18,6 +18,7 @@ building blocks.
 
    age
    biosample
+   complex-quantity
    disease
    dose-interval
    drug-type
@@ -25,12 +26,12 @@ building blocks.
    exposure
    externalreference
    gene
-   file
    gestational-age
    hormonetherapy
+   htsfile
    individual
-   interval
    karyotypicsex
+   measurement
    medical-action
    metadata
    ontologyclass
@@ -39,10 +40,12 @@ building blocks.
    procedure
    quantity
    radiotherapy
+   reference-range
    resource
    sex
    stop-reason
    time-element
+   time-interval
    treatment
    variant
    vital-status

@@ -52,14 +52,14 @@ we explain the element using the example of a human proband in a clinical invest
 
 The following example is typical but does not make use of all of the optional fields of this element.
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-      "id": "patient:0",
-      "dateOfBirth": "1998-01-01T00:00:00Z",
-      "sex": "MALE"
-  }
+  individual:
+    id: "patient:0"
+    dateOfBirth: "1998-01-01T00:00:00Z"
+    sex: "MALE"
 
+**Explanations**
 
 id
 ~~
@@ -99,35 +99,35 @@ the internally consistent `Individual.id`. As noted above, the data may have bee
 sources but given they know these relationships, they should provide the receiver with a consistent view of the data both
 for ease of use and to limit incorrect mapping.
 
-.. code-block:: json
+Thus, we would use the same id various elements.
 
-    "individual": {
-      "id": "patient23456",
-      "dateOfBirth": "1998-01-01T00:00:00Z",
-      "sex": "MALE"
-    }
+.. code-block:: yaml
 
-    "htsFile": {
-        "uri": "file://data/genomes/germline_wgs.vcf.gz",
-        "description": "Germline sample",
-        "htsFormat": "VCF",
-        "genomeAssembly": "GRCh38",
-        "individualToSampleIdentifiers": {
-          "patient23456": "NA12345"
-        }
-    }
+  individual:
+    id: "patient23456"
+    dateOfBirth: "1998-01-01T00:00:00Z"
+    sex: "MALE"
 
-    "pedigree": {
-        "persons": [
-            {
-                "familyId": "family 1",
-                "individualId": "patient23456",
-                "sex": "MALE",
-                "affectedStatus": "AFFECTED"
-            }
-        ]
-    }
+Assuming that this individual was sequenced, we might have the following :ref:`rsthtsfile` element.
 
+.. code-block:: yaml
+
+    htsFile:
+        uri: "file://data/genomes/germline_wgs.vcf.gz"
+        description: "Matched normal germline sample"
+        htsFormat: "VCF"
+        genomeAssembly: "GRCh38"
+        individualToSampleIdentifiers:
+            patient23456: "NA12345"
+
+
+
+We would also use ``patient23456`` as the ``individualId`` element within a :ref:`rstpedigree` element.
+
+
+
+Explanations
+############
 
 alternate_ids
 ~~~~~~~~~~~~~
