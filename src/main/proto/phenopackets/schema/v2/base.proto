@@ -370,12 +370,11 @@ message Biosample {
     // context of the server instance.
     string id = 1;
 
-    // TODO: issue #256
-    // The id of the parent biosample this biosample was derived from.
-    string derived_from_id = 18;
-
     // The id of the individual this biosample was derived from.
     string individual_id = 2;
+
+    // The id of the parent biosample this biosample was derived from.
+    string derived_from_id = 18;
 
     // The biosample's description. This attribute contains human readable text.
     // The "description" attributes should not contain any structured data.

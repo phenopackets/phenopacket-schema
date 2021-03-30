@@ -40,7 +40,7 @@ public class PhenopacketTest {
 
         PhenotypicFeature coronalCraniosynostosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0004440", "Coronal craniosynostosis"))
-                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463", "Childhood onset")))
+                .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
         PhenotypicFeature maxillaryHypoplasia = PhenotypicFeature.newBuilder()
@@ -66,19 +66,19 @@ public class PhenopacketTest {
 
         PhenotypicFeature broadHallux = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0010055", "Broad hallux"))
-                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463", "Childhood onset")))
+                .setClassOfOnset(ontologyClass("HP:0011463", "Childhood onset"))
                 .build();
 
         PhenotypicFeature proptosisCongenitalSevere = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
                 .setSeverity(ontologyClass("HP:0012828", "Severe"))
-                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003577", "Congenital onset")))
+                .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
         PhenotypicFeature proptosisCongenitalMild = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0000520", "Proptosis"))
                 .setSeverity(ontologyClass("HP:0012825", "Mild"))
-                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0003577", "Congenital onset")))
+                .setClassOfOnset(ontologyClass("HP:0003577", "Congenital onset"))
                 .build();
 
         PhenotypicFeature intellectualDisabilityOccasional = PhenotypicFeature.newBuilder()
@@ -97,7 +97,6 @@ public class PhenopacketTest {
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
-                .setPhenopacketSchemaVersion("v2.0")
                 .addResources(Resource.newBuilder()
                         .setId("hp")
                         .setName("human phenotype ontology")
@@ -157,16 +156,12 @@ public class PhenopacketTest {
 
     @Test
     void printRareDisease() throws IOException {
-        System.out.println(PhenopacketFormat.toYaml(TestExamples.rareDiseasePhenopacket()));
+        // TODO Add a RareDiseaseFamilyFormat class for this case...
+        System.out.println(PhenopacketFormat.toJson(TestExamples.rareDiseasePhenopacket()));
     }
 
     @Test
     void printBiosamples() throws IOException {
         System.out.println(PhenopacketFormat.toYaml(TestExamples.biosamplesPhenopacket()));
-    }
-
-    @Test
-    void printCovidCase() throws IOException {
-        System.out.println(PhenopacketFormat.toYaml(TestExamples.severeCovidCaseWithCardiacComplications()));
     }
 }

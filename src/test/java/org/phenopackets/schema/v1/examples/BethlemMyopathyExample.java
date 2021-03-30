@@ -42,7 +42,7 @@ public class BethlemMyopathyExample {
 
         PhenotypicFeature decreasedFetalMovement = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001558", "Decreased fetal movement"))
-                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011461", "Fetal onset")).build())
+                .setClassOfOnset(ontologyClass("HP:0011461", "Fetal onset"))
                 .addEvidence(citation)
                 .build();
 
@@ -55,14 +55,14 @@ public class BethlemMyopathyExample {
 
         PhenotypicFeature motorDelay = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001270","Motor delay"))
-                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463","Childhood onset")))
+                .setClassOfOnset(ontologyClass("HP:0011463","Childhood onset"))
                 .setSeverity(mild)
                 .build();
 
 
         PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011463", "Macroscopic hematuria"))
-                .setOnset(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
+                .setAgeOfOnset(Age.newBuilder().setAge("P14Y").build())
                 .addModifiers(ontologyClass("HP:0031796","Recurrent"))
                 .addEvidence(citation)
                 .build();
@@ -72,7 +72,7 @@ public class BethlemMyopathyExample {
         Individual proband = Individual.newBuilder()
                 .setSex(Sex.MALE)
                 .setId(PROBAND_ID)
-                .setAgeAtCollection(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
+                .setAgeAtCollection(Age.newBuilder().setAge("P14Y").build())
                 .build();
         return Phenopacket.newBuilder()
                 .setId(PROBAND_ID)

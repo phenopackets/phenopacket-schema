@@ -8,7 +8,7 @@ import com.google.common.hash.Hashing;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.JsonFormat;
-import org.phenopackets.schema.v1.core.TimeElement;
+import org.phenopackets.schema.v2.core.TimeElement;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,10 +16,6 @@ import java.time.Instant;
 
 
 public class TestBase {
-
-
-
-
 
     protected static String sha256(String originalString) {
         return Hashing.sha256()

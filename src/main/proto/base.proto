@@ -24,8 +24,6 @@ message MetaData {
     // records which are in some other relation with the record at hand. For example this might be a PubMed reference
     // to a study in which the individuals are reported.
     repeated ExternalReference external_references = 7;
-
-    // TODO: DUO tag?
 }
 
 // Information about when an update to a record occurred, who or what made the update and any pertinent information
@@ -104,9 +102,6 @@ message OntologyClass {
 // frequency
 // FHIR mapping: Condition (https://www.hl7.org/fhir/condition.html) or Observation (https://www.hl7.org/fhir/observation.html)
 message PhenotypicFeature {
-    // deleted oneof onset
-    reserved 6, 7, 9;
-
     // Free-text description of the phenotype. Note this is not a acceptable place to document/describe the phenotype -
     // the type and onset etc... fields should be used for this purpose.
     string description = 1;
@@ -132,122 +127,15 @@ message PhenotypicFeature {
     // the values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
-    TimeElement onset = 11;
-
-    TimeElement resolution = 12;
+    oneof onset {
+        Age age_of_onset = 6;
+        AgeRange age_range_of_onset = 7;
+        OntologyClass class_of_onset = 9;
+    }
 
     // Evidences for how the phenotype was determined.
     repeated Evidence evidence = 10;
 }
-
-// FHIR mapping: Observation (https://www.hl7.org/fhir/observation.html)
-message Measurement {
-    // Free-text description of the feature. Note this is not a acceptable place to document/describe the phenotype -
-    // the type and onset etc... fields should be used for this purpose.
-    string description = 1;
-
-    // An ontology class which describes the assay used to produce the measurement.
-    // For example "body temperature" (CMO:0000015) or
-    // "Platelets [#/volume] in Blood" (LOINC:26515-7)
-    // FHIR mapping: Observation.code
-    OntologyClass assay = 2;
-
-    // https://github.com/phenopackets/phenopacket-schema/issues/261
-    // e.g. type: Increased circulating antibody level (HP:0010702)
-    //      quantity: unit: Microgram per Milliliter (NCIT:C64572), value: 23456.0
-
-    //      type:  body temperature (CMO:0000015)
-    //      quantity: unit: Degrees Celsius (UO:0000027), value: 37.5
-    //                      Degree Celsius (NCIT:C42559), value: 37.5
-
-    //      type:  LOINC: 26515-7 Platelets [#/volume] in Blood
-    //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
-    Value value = 3;
-
-    repeated ComplexQuantity complex_quantity = 7;
-
-    // The time at which the measurement was made
-    TimeElement time_observed = 5;
-
-    // Clinical procedure performed on the subject in order to produce the measurement.
-    Procedure procedure = 8;
-}
-
-//
-message Value {
-    oneof value {
-        Quantity quantity = 1;
-        // for use with things such as categories 'red', 'yellow' or 'absent'/'present'
-        OntologyClass ontology_class = 2;
-    }
-}
-
-message Quantity {
-    // For instance, NCIT subhierarchy, Unit of Measure (Code C25709)
-    oneof unit_oneof {
-        OntologyClass unit_class = 1;
-        string unit_string = 4;
-    }
-    // the  value of the quantity in the units  e.g. 2.0 mg
-    double value = 2;
-
-    // Reference range for the quantity
-    // e.g. The normal range of platelets is 150,000 to 450,000 platelets/uL.
-    ReferenceRange reference_range = 3;
-}
-
-message ReferenceRange {
-    OntologyClass unit = 1;
-    double low = 2;
-    double high = 3;
-}
-
-// For complex measurements, such as blood pressure where more than one component quantity is required to describe the
-// measurement
-message ComplexQuantity {
-    // e.g. diastolic, systolic
-    OntologyClass type = 1;
-    // TODO should this be a complex Value? e.g. Value not Quantity.
-    // mm Hg
-    Quantity quantity = 2;
-}
-
-message Range {
-    OntologyClass unit = 1;
-    double low = 2;
-    double high = 3;
-}
-
-
-// An individual environmental exposure, observed as either present or absent (negated), with possible onset, modifiers
-// and frequency. Recommended ontology for use is ECTO http://purl.obolibrary.org/obo/ecto.owl
-message Exposure {
-    // Free-text description of the exposure. Note this is not a acceptable place to document/describe the exposure -
-    // the type and onset etc... fields should be used for this purpose.
-    string description = 1;
-
-    // The primary ontology class which describes the exposure.
-    OntologyClass type = 2;
-
-    // Flag to indicate whether the exposure occurred or not. Default is 'false', in other words the exposure has
-    // occurred. Therefore it is only required in cases to indicate that the exposure was deemed _not_ to have happened.
-    // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'type' field.
-    // *CAUTION* It is imperative to check this field for correct interpretation of the exposure!
-    bool negated = 3;
-
-    // Mechanism of the exposure e.g. subclasses of
-    OntologyClass route = 4;
-
-    // The amount an individual was exposed to the 'type' of exposure.
-    Value amount = 5;
-
-    // When the exposure occurred
-    TimeElement occurrence = 6;
-
-    // Evidences for how the exposure was determined.
-    repeated Evidence evidence = 7;
-}
-
 
 // FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
 message Evidence {
@@ -270,9 +158,6 @@ message ExternalReference {
 // An individual (or subject) typically corresponds to an individual human or another organism.
 // FHIR mapping: Patient (https://www.hl7.org/fhir/patient.html).
 message Individual {
-    // deleted oneof age_at_collection
-    reserved 4, 5, 10;
-
     // An identifier for the individual. This must be unique within the record.
     string id = 1;
 
@@ -290,11 +175,10 @@ message Individual {
     // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
     // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
     // See http://build.fhir.org/datatypes
-    TimeElement age_at_collection = 11;
-
-    // Vital status of the individual. If not present it is assumed that the individual is alive. If present it will
-    // default to 'false' i.e. the individual was alive when the data was collected.
-    VitalStatus vital_status = 9;
+    oneof age {
+        Age age_at_collection = 4;
+        AgeRange age_range_at_collection = 5;
+    }
 
     // The phenotypic sex of the individual
     Sex sex = 6;
@@ -302,27 +186,10 @@ message Individual {
     // The karyotypic sex of the individual
     KaryotypicSex karyotypic_sex = 7;
 
-    // Self-identified gender
-    OntologyClass gender = 12;
-
     // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
     // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
     // identifier of that organism, to its most specific level
     OntologyClass taxonomy = 8;
-}
-
-message VitalStatus {
-    // Default = false i.e. the individual is alive. MUST be true if
-    enum Status {
-        UNKNOWN_STATUS = 0;
-        ALIVE = 1;
-        DECEASED = 2;
-    }
-    Status status = 1;
-
-    TimeElement time_of_death = 2;
-
-    OntologyClass cause_of_death = 3;
 }
 
 // Sex of an individual
@@ -386,8 +253,6 @@ message Biosample {
     // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
     repeated PhenotypicFeature phenotypic_features = 5;
 
-    repeated Measurement measurements = 20;
-
     // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
     OntologyClass taxonomy = 6;
 
@@ -437,8 +302,6 @@ message Biosample {
     // another sample that is thought to contain a pathological finding
     // the default value is false
     bool is_control_sample = 16;
-
-    // preservation method
 }
 
 // A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the
@@ -449,27 +312,24 @@ message Biosample {
 // {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"UBERON:0003403": "skin of forearm"}} - a punch biopsy of the skin from the forearm
 // FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
 message Procedure {
+
+    //
     // FHIR mapping: Procedure.code
     OntologyClass code = 1;
 
     // FHIR mapping: Procedure.bodySite
     OntologyClass body_site = 2;
-
-    // When the procedure was performed.
-    TimeElement performed = 3;
-}
-
-message GestationalAge {
-    int32 weeks = 1;
-    int32 days = 2;
 }
 
 // See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
 // In FHIR this is represented as a UCUM measurement - http://unitsofmeasure.org/trac/
 message Age {
+
     // The :ref:`ISO 8601<metadata_date_time>` age of this object as ISO8601
-    // duration or time intervals. e.g. P40Y10M05D)
-    string iso8601duration = 1;
+    // duration or time intervals. The use of time intervals makes an additional
+    // anchor unnecessary (i.e. DOB and age can be represented as start-anchored
+    // time interval, e.g. 1967-11-21/P40Y10M05D)
+    string age = 1;
 }
 
 message AgeRange {
@@ -477,46 +337,19 @@ message AgeRange {
     Age end = 2;
 }
 
-message TimeInterval {
-    google.protobuf.Timestamp start = 1;
-    google.protobuf.Timestamp end = 2;
-}
-
-message TimeElement {
-    oneof element {
-        GestationalAge gestational_age = 6;
-        Age age = 1;
-        AgeRange age_range = 2;
-        OntologyClass ontology_class = 3;
-        google.protobuf.Timestamp timestamp = 4;
-        TimeInterval interval = 5;
-    }
-}
-
 // Message to indicate a disease (diagnosis) and its recorded onset.
 message Disease {
     // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
     OntologyClass term = 1;
 
-    // Flag to indicate whether the disease was observed or not. Default is 'false', in other words the disease was
-    // observed. Therefore it is only required in cases to indicate that the disease was looked for, but found to be
-    // absent.
-    // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'term' field.
-    // *CAUTION* It is imperative to check this field for correct interpretation of the disease!
-    bool excluded = 7;
-
     // The onset of the disease. The values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
     // FHIR mapping: Condition.onset
-    oneof onset_time {
-        Age age_of_onset = 2 [deprecated = true];
-        AgeRange age_range_of_onset = 3 [deprecated = true];
-        OntologyClass class_of_onset = 4 [deprecated = true];
+    oneof onset {
+        Age age_of_onset = 2;
+        AgeRange age_range_of_onset = 3;
+        OntologyClass class_of_onset = 4;
     }
-
-    TimeElement onset = 8;
-
-    TimeElement resolution = 9;
 
     // Disease staging, the extent to which a disease has developed.
     // For cancers, see https://www.cancer.gov/about-cancer/diagnosis-staging/staging
@@ -528,96 +361,7 @@ message Disease {
     // Valid values include child terms of NCIT:C48232 (Cancer TNM Finding)
     repeated OntologyClass tnm_finding = 6;
 
-    // The text term used to describe the primary site of disease, as categorized by the World Health Organization's
-    // (WHO) International Classification of Diseases for Oncology (ICD-O). This categorization groups cases into general
-    OntologyClass primary_site = 10;
-
-    // If donor has history of prior malignancy, indicate laterality of previous diagnosis. (Codelist reference: NCI CDE: 4122391)
-    OntologyClass laterality = 11;
 }
-
-//  Specimen storage, specimen type, specimen_processing
-
-// e.g. 50mg/ml 3 times daily for two weeks
-message DoseInterval {
-    Quantity quantity = 1;
-    OntologyClass schedule_frequency = 2;
-    TimeInterval interval = 3;  // related to issue #64 these could be an Interval/Period
-}
-
-message CumulativeDose {
-    Quantity quantity = 1;
-}
-
-// A simplified version of ODHSI-DRUG_EXPOSURE
-enum DrugType {
-    UNKNOWN_DRUG_TYPE = 0;
-    PRESCRIPTION = 1;
-    EHR_MEDICATION_LIST = 2;
-    ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
-}
-
-// treatment with an agent, such as a drug
-message Treatment {
-    OntologyClass agent = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
-    OntologyClass route_of_administration = 2; // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
-    repeated DoseInterval dose_intervals  = 3;
-    DrugType drug_type = 4;
-}
-
-// https://docs.icgc-argo.org/dictionary/
-// Chemotherapy
-message ChemoTherapyTreatment {
-    Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
-    CumulativeDose cumulative_dose = 2;
-}
-// HormoneTherapy
-message HormoneTherapyTreatment {
-    Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
-    CumulativeDose cumulative_dose = 2;
-}
-
-// RadiationTherapy
-message RadiationTherapyTreatment {
-    Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
-    OntologyClass body_site = 2;
-    // Indicates the total number of fractions delivered as part of treatment.
-    int32 fractions = 3;
-}
-
-message TherapeuticRegimen {
-    // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
-    oneof identifier {
-        ExternalReference external_reference = 1;
-        OntologyClass ontology_class = 2;
-    }
-    // possibly undefined;
-    TimeElement start_time = 3;
-    // end time can be empty which would indicate ongoing
-    TimeElement end_time = 4;
-
-    RegimenStatus status = 5;
-    enum RegimenStatus {
-        UNKNOWN = 0;
-        STARTED = 1;
-        COMPLETED = 2;
-        DISCONTINUED = 3;
-    }
-}
-
-// medication, procedure, other actions taken for clinical management
-message MedicalAction {
-    oneof action {
-        Procedure procedure = 1;
-        Treatment treatment = 2;
-        ChemoTherapyTreatment chemo_therapy = 3;
-        HormoneTherapyTreatment hormone_therapy = 4;
-        RadiationTherapyTreatment radiation_therapy = 5;
-        TherapeuticRegimen therapeutic_regimen = 6;
-    }
-    OntologyClass intention = 7;
-}
-
 
 // https://software.broadinstitute.org/gatk/documentation/article?id=11016
 message Pedigree {
@@ -703,7 +447,7 @@ message HgvsAllele {
 }
 
 // A single VCF allele.
-// For structural variation the INFO field should *NOT* contain the END, SVTYPE, SVLEN, MATEID or EVENTID fields.
+// For structural variation the INFO field should contain the relevant information e.g.
 // END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
 // See https://samtools.github.io/hts-specs/VCFv4.3.pdf
 message VcfAllele {
@@ -718,11 +462,6 @@ message VcfAllele {
     string ref = 6;
     string alt = 7;
     string info = 8;
-    int32 end = 9;
-    string sv_type = 10;
-    int32 sv_length = 11;
-    string mate_id = 12;
-    string event_id = 13;
 }
 
 // A single SPDI allele.

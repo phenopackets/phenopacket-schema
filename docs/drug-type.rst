@@ -10,17 +10,26 @@ the administration route (e.g., by mouth or intravenous), but rather about the s
 or related to a (generally one-time) procedure.
 
 
+DrugType is an enumeration.
 
 
 
-.. code-block:: json
+.. list-table:: Values  of the ``DrugType`` element
+   :widths: 50 50
+   :header-rows: 1
 
-    enum DrugType {
-        UNKNOWN_DRUG_TYPE = 0;
-        PRESCRIPTION = 1;
-        EHR_MEDICATION_LIST = 2;
-        ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
-    }
+   * - Item
+     - Value
+   * - UNKNOWN_DRUG_TYPE
+     - 0
+   * - PRESCRIPTION
+     - 1
+   * - EHR_MEDICATION_LIST
+     - 2
+   * - ADMINISTRATION_RELATED_TO_PROCEDURE
+     - 3
+
+
 
 
 This element does not intend to capture the medical reason for administering
@@ -36,5 +45,3 @@ a local anesthetic given before a skin biopsy or a sedative given to perform
 a bronchoscopy.
 
 
-These categories were adapted from information in
-`OMOP CDM <https://github.com/OHDSI/CommonDataModel/wiki/DRUG_EXPOSURE>`_.

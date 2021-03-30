@@ -2,7 +2,10 @@ package org.phenopackets.schema.v2.io;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import com.google.protobuf.Message;
+import com.google.protobuf.util.JsonFormat;
 
 import java.io.IOException;
 
@@ -12,6 +15,13 @@ import java.io.IOException;
 public class FormatMapper {
 
     private FormatMapper() {
+    }
+
+    public static String messageToYaml(Message message, String label) throws IOException {
+        String jsonString = JsonFormat.printer().print(message);
+        JsonNode jsonNodeTree = new ObjectMapper().readTree(jsonString);
+        JsonNode node = JsonNodeFactory.instance.objectNode().set(label, jsonNodeTree);
+        return new YAMLMapper().writeValueAsString(node);
     }
 
     // parse JSON to YAML

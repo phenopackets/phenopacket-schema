@@ -22,9 +22,6 @@ message Phenopacket {
     // Phenotypic features relating to the subject of the phenopacket
     repeated org.phenopackets.schema.v1.core.PhenotypicFeature phenotypic_features = 3;
 
-    // Quantifiable measurements related to the individual or biosample(s)
-    repeated org.phenopackets.schema.v1.core.Measurement measurements = 12;
-
     // Biosample(s) derived from the patient or a collection of biosamples in isolation
     repeated org.phenopackets.schema.v1.core.Biosample biosamples = 4;
 
@@ -40,12 +37,6 @@ message Phenopacket {
     // Field for disease identifiers - could be used for listing either diagnosed or suspected conditions. The
     // resources using these fields should define what this represents in their context.
     repeated org.phenopackets.schema.v1.core.Disease diseases = 7;
-
-    // A list of environmental exposures. The resources using these fields should define what this represents in their
-    // context.
-    repeated org.phenopackets.schema.v1.core.Exposure exposures = 11;
-
-    repeated org.phenopackets.schema.v1.core.MedicalAction medical_actions = 10;
 
     // Pointer to the relevant HTS file(s) for the patient
     repeated org.phenopackets.schema.v1.core.HtsFile hts_files = 8;
