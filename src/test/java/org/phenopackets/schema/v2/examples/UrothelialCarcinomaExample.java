@@ -163,7 +163,7 @@ public class UrothelialCarcinomaExample {
         return Biosample.newBuilder()
                 .setIndividualId(patientId)
                 .setId(sampleId)
-                .setAgeOfIndividualAtCollection(Age.newBuilder().setIso8601Duration(age))
+                .setIndividualAgeAtCollection(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration(age)).build())
                 .setSampledTissue(sampleType);
     }
 
