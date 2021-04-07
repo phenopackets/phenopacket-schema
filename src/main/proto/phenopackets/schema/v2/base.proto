@@ -403,12 +403,10 @@ message Biosample {
     // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
     OntologyClass taxonomy = 6;
 
-    // An age object describing the age of the individual this biosample was
-    // derived from at the time of collection. The Age object allows the encoding
-    // of the age either as ISO8601 duration or time interval (preferred), or
-    // as ontology term object.
+    // An TimeElement describing either the age of the individual this biosample was
+    // derived from at the time of collection, or the time itself.
     //See http://build.fhir.org/datatypes
-    TimeElement individual_age_at_collection = 17;
+    TimeElement time_of_collection = 17;
 
     // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
     // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
