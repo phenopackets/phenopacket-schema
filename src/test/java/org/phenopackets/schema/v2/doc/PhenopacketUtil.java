@@ -232,4 +232,35 @@ public class PhenopacketUtil {
     }
 
 
+    public static Biosample biosample(String id,
+                               String individualId,
+                               String description,
+                               OntologyClass sampledTissue ,
+                               TimeElement age,
+                               OntologyClass histologicalDiagnosis,
+                               OntologyClass tumorProgression,
+                               OntologyClass pathologicalStage,
+                                      List<OntologyClass> tnm,
+                               OntologyClass tumorGrade,
+                               Procedure procedure,
+                               HtsFile vcfFile) {
+    // assume abnormal sample
+        OntologyClass abnormalSample = ontologyClass("EFO:0009655", "abnormal sample");
+        return Biosample.newBuilder()
+                .setId(id)
+                .setIndividualId(individualId)
+                .setDescription(description)
+                .setSampledTissue(sampledTissue)
+                .setIndividualAgeAtCollection(age)
+                .setHistologicalDiagnosis(histologicalDiagnosis)
+                .setTumorProgression(tumorProgression)
+                .setPathologicalStage(pathologicalStage)
+                .addAllPathologicalTnmFinding(tnm)
+                .setTumorGrade(tumorGrade)
+                .setProcedure(procedure)
+                .addHtsFiles(vcfFile)
+                .setMaterialSample(abnormalSample)
+                .build() ;
+    }
+
 }

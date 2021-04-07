@@ -277,6 +277,48 @@ public class YamlGeneration extends TestBase{
     }
 
 
+    @Test
+    void urothelialCarcinomaBiosample() {
+        String id = "sample1";
+        String individualId = "patient1";
+        String description = "Additional information can go here";
+        OntologyClass sampledTissue = ontologyClass("UBERON_0001256","wall of urinary bladder");
+        Age age = age("P52Y2M");
+        TimeElement timeElement = TimeElement.newBuilder().setAge(age).build();
+        OntologyClass histologicalDiagnosis = ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma");
+        OntologyClass tumorProgression = ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm");
+        Procedure procedure = Procedure.newBuilder().setCode(ontologyClass("NCIT:C5189", "Radical Cystoprostatectomy")).build();
+        String uri = "file:///data/genomes/urothelial_ca_wgs.vcf.gz";
+        String htsDescription = "Urothelial carcinoma sample";
+        String genomeAssembly = "GRCh38";
+        Map<String,String> individualToSampleIdentifiers = Map.of("patient1", "NA12345");
+        HtsFile vcfFile = vcfFile(uri,htsDescription,genomeAssembly,individualToSampleIdentifiers);
+        OntologyClass stageII = ontologyClass("NCIT:C28054", "Stage II");
+        OntologyClass stageT2b = ontologyClass("NCIT:C48726", "T2b Stage Finding");
+        OntologyClass stageN0 = ontologyClass("NCIT:C48705", "N0 Stage Finding");
+        OntologyClass stageM0 = ontologyClass("NCIT:C48699", "M0 Stage Finding");
+        List<OntologyClass> tnm = List.of(stageT2b, stageN0, stageM0);
+        OntologyClass grade2 = ontologyClass("NCIT:C36136", "Grade 2 Lesion");
+
+        Biosample biosample = biosample(id,
+                individualId,
+                description,
+                sampledTissue,
+                timeElement,
+                histologicalDiagnosis,
+                tumorProgression,
+                stageII,
+                tnm,
+                grade2,
+                procedure,
+                vcfFile);
+        String hash = printAndGetHash(biosample, "biosample");
+        assertEquals("cd5972e589f24bce9662e8ed2f6b538c4ae353ef303f80ea1bd051e63b9a63fa", hash);
+
+
+    }
+
+
 
 }
 
