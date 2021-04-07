@@ -5,6 +5,7 @@ import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
 import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
 
 /**
@@ -274,6 +276,61 @@ public class YamlGeneration extends TestBase{
         Treatment treatment = treatment(agent, route_of_administration, doseIntervalList,drug_type);
         String hash = printAndGetHash(treatment, "treatment");
         assertEquals("99126a60a4a9a80024e93d99cd4515a245443d774f431af5dd500928ab7e8656", hash);
+    }
+
+
+    @Test
+    void urothelialCarcinomaBiosample() {
+        String id = "sample1";
+        String individualId = "patient1";
+        String description = "Additional information can go here";
+        OntologyClass sampledTissue = ontologyClass("UBERON_0001256","wall of urinary bladder");
+        Age age = age("P52Y2M");
+        TimeElement timeElement = TimeElement.newBuilder().setAge(age).build();
+        OntologyClass histologicalDiagnosis = ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma");
+        OntologyClass tumorProgression = ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm");
+        Procedure procedure = Procedure.newBuilder().setCode(ontologyClass("NCIT:C5189", "Radical Cystoprostatectomy")).build();
+        String uri = "file:///data/genomes/urothelial_ca_wgs.vcf.gz";
+        String htsDescription = "Urothelial carcinoma sample";
+        String genomeAssembly = "GRCh38";
+        Map<String,String> individualToSampleIdentifiers = Map.of("patient1", "NA12345");
+        HtsFile vcfFile = vcfFile(uri,htsDescription,genomeAssembly,individualToSampleIdentifiers);
+        OntologyClass stageII = ontologyClass("NCIT:C28054", "Stage II");
+        OntologyClass stageT2b = ontologyClass("NCIT:C48726", "T2b Stage Finding");
+        OntologyClass stageN0 = ontologyClass("NCIT:C48705", "N0 Stage Finding");
+        OntologyClass stageM0 = ontologyClass("NCIT:C48699", "M0 Stage Finding");
+        List<OntologyClass> tnm = List.of(stageT2b, stageN0, stageM0);
+        OntologyClass grade2 = ontologyClass("NCIT:C36136", "Grade 2 Lesion");
+
+        Biosample biosample = biosample(id,
+                individualId,
+                description,
+                sampledTissue,
+                timeElement,
+                histologicalDiagnosis,
+                tumorProgression,
+                stageII,
+                tnm,
+                grade2,
+                procedure,
+                vcfFile);
+        String hash = printAndGetHash(biosample, "biosample");
+        assertEquals("cd5972e589f24bce9662e8ed2f6b538c4ae353ef303f80ea1bd051e63b9a63fa", hash);
+    }
+
+    @Test
+    void testVariant() {
+        Variant variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
+    }
+
+    @Test
+    void testVariantInterpretation() {
+        Variant variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
+        VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(variant);
+        String hash = printAndGetHash(variantInterpretation, "variantInterpretation");
+        assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
     }
 
 

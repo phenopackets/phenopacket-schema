@@ -2,12 +2,16 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
+import org.phenopackets.schema.v2.GenomicInterpretation;
+import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
 import java.text.ParseException;
 import java.time.Period;
 import java.util.List;
 import java.util.Map;
+
+import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
 
 public class PhenopacketUtil {
 
@@ -231,5 +235,51 @@ public class PhenopacketUtil {
                .setDrugType(drug_type).build();
     }
 
+
+    public static Biosample biosample(String id,
+                               String individualId,
+                               String description,
+                               OntologyClass sampledTissue ,
+                               TimeElement age,
+                               OntologyClass histologicalDiagnosis,
+                               OntologyClass tumorProgression,
+                               OntologyClass pathologicalStage,
+                                      List<OntologyClass> tnm,
+                               OntologyClass tumorGrade,
+                               Procedure procedure,
+                               HtsFile vcfFile) {
+    // assume abnormal sample
+        OntologyClass abnormalSample = ontologyClass("EFO:0009655", "abnormal sample");
+        return Biosample.newBuilder()
+                .setId(id)
+                .setIndividualId(individualId)
+                .setDescription(description)
+                .setSampledTissue(sampledTissue)
+                .setIndividualAgeAtCollection(age)
+                .setHistologicalDiagnosis(histologicalDiagnosis)
+                .setTumorProgression(tumorProgression)
+                .setPathologicalStage(pathologicalStage)
+                .addAllPathologicalTnmFinding(tnm)
+                .setTumorGrade(tumorGrade)
+                .setProcedure(procedure)
+                .addHtsFiles(vcfFile)
+                .setMaterialSample(abnormalSample)
+                .build() ;
+    }
+
+    public static Variant heterozygousHgvsVariant(String hgvs) {
+        HgvsAllele hgvsAllele = HgvsAllele.newBuilder().setHgvs(hgvs).build();
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        return Variant.newBuilder()
+                .setHgvsAllele(hgvsAllele)
+                .setZygosity(heterozygous)
+                .build();
+    }
+
+    public static VariantInterpretation pathogenicVariantInterpretation(Variant variant) {
+        return VariantInterpretation.newBuilder()
+                .setVariantFindingValue(VariantInterpretation.VariantFinding.PATHOGENIC_VALUE)
+                .setVariant(variant).build();
+    }
 
 }

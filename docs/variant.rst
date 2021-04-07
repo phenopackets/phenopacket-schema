@@ -54,6 +54,21 @@ field. It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :
         }
     }
 
+HGVS Variant
+~~~~~~~~~~~~
+
+Variants can be represented using the `HGVS nomenclature <https://varnomen.hgvs.org/>`_ as follows.
+
+.. code-block:: yaml
+    variant:
+        hgvsAllele:
+            hgvs: "NM_001848.2:c.877G>A"
+        zygosity:
+            id: "GENO:0000135"
+            label: "heterozygous"
+
+
+
 .. _zygosity:
 
 zygosity
