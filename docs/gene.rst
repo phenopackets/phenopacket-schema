@@ -1,16 +1,16 @@
 .. _rstgene:
 
-====
+####
 Gene
-====
+####
 
 
 This element represents an identifier for a gene. It can be used to transmit the information that
 the gene is thought to play a causative role in the disease phenotypes being described in cases where
 the exact variant cannot be transmitted, either for privacy reasons or because it is unknown.
 
-**Data model**
-
+Data model
+##########
 
 .. list-table:: Definition  of the ``Gene`` element
    :widths: 25 25 50 50
@@ -34,7 +34,8 @@ the exact variant cannot be transmitted, either for privacy reasons or because i
      - Official gene symbol
 
 
-**Example**
+Example
+#######
 
 .. code-block:: yaml
 
@@ -53,6 +54,8 @@ Optionally, with alternative identifiers:
         - "ncbigene:307503"
     symbol: "ETF1"
 
+Explanations
+############
 
 id
 ~~

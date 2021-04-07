@@ -48,4 +48,5 @@ building blocks.
    time-interval
    treatment
    variant
+   variant-interpretation
    vital-status
