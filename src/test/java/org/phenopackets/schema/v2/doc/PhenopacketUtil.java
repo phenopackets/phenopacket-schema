@@ -290,4 +290,20 @@ public class PhenopacketUtil {
                 .build();
     }
 
+    public static GenomicInterpretation pathogenicGenomicInterpretationOfVariant(String id, String hgvs) {
+       HgvsAllele hgvsAllele = HgvsAllele.newBuilder().setHgvs(hgvs).build();
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        Variant v  = Variant.newBuilder()
+                .setHgvsAllele(hgvsAllele)
+                .setZygosity(heterozygous)
+                .build();
+        VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(v);
+        return GenomicInterpretation.newBuilder()
+                .setSubjectOrBiosampleId(id)
+                .setVariant(variantInterpretation)
+                .setStatus(GenomicInterpretation.Status.CONTRIBUTORY)
+                .build();
+
+    }
+
 }

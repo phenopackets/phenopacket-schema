@@ -27,6 +27,7 @@ building blocks.
    externalreference
    gene
    gene-interpretation
+   genomic-interpretation
    gestational-age
    hormonetherapy
    htsfile

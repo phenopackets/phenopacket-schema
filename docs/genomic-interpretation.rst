@@ -61,12 +61,19 @@ Example
 
 .. code-block:: yaml
 
-  gene:
-    id: "HGNC:347"
-    alternateIds:
-        - "ensembl:ENSRNOG00000019450"
-        - "ncbigene:307503"
-    symbol: "ETF1"
+  genomicInterpretation:
+    subjectOrBiosampleId: "subject 1"
+    status: "CONTRIBUTORY"
+    variant:
+        variantFinding: "PATHOGENIC"
+        variant:
+            hgvsAllele:
+                hgvs: "NM_001848.2:c.877G>A"
+            zygosity:
+                id: "GENO:0000135"
+            label: "heterozygous"
+
+
 
 Explanations
 ############
@@ -95,3 +102,8 @@ and the :ref:`rstinterpretation` object that contains the genomic interpretation
 would be used for a homozygous causative variant, and two would be used for compound heterozygous variants.
 In cancer, ``CONTRIBUTORY`` can be used for multiple variants, and the corresponding
 :ref:`rstinterpretation` object could classify them as ``ACTIONABLE``, for instance, if a targeted treatment is available for the variant.
+
+call
+~~~~
+
+TODO

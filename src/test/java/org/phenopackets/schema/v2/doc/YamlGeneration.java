@@ -6,6 +6,7 @@ import com.google.protobuf.util.Timestamps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.GeneInterpretation;
+import org.phenopackets.schema.v2.GenomicInterpretation;
 import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
@@ -341,6 +342,13 @@ public class YamlGeneration extends TestBase{
         Gene gene = gene(id, symbol);
         GeneInterpretation geneInterpretation = candidateGeneInterpretation(gene);
         String hash = printAndGetHash(geneInterpretation, "geneInterpretation");
+        assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
+    }
+
+    @Test
+    void testGenomicInterpretation() {
+       GenomicInterpretation interpretation = pathogenicGenomicInterpretationOfVariant("subject 1","NM_001848.2:c.877G>A");
+        String hash = printAndGetHash(interpretation, "genomicInterpretation");
         assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
     }
 
