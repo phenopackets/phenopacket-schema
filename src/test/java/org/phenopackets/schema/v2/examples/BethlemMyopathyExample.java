@@ -79,7 +79,7 @@ public class BethlemMyopathyExample {
                 .addPhenotypicFeatures(absentCranialNerveAbnormality)
                 .addPhenotypicFeatures(hematuria)
                 .addPhenotypicFeatures(motorDelay)
-                .addVariants(heterozygousCOL6A1Variant)
+//                .addVariants(heterozygousCOL6A1Variant)
                 .build();
     }
 

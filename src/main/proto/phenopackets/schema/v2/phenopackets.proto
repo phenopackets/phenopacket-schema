@@ -3,6 +3,7 @@ syntax = "proto3";
 package org.phenopackets.schema.v2;
 
 import "phenopackets/schema/v2/base.proto";
+import "phenopackets/schema/v2/interpretation.proto";
 
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2";
@@ -22,22 +23,13 @@ message Phenopacket {
     // Phenotypic features relating to the subject of the phenopacket
     repeated org.phenopackets.schema.v2.core.PhenotypicFeature phenotypic_features = 3;
 
-    // Quantifiable measurements related to the individual or biosample(s)
+    // Quantifiable measurements related to the individual
     repeated org.phenopackets.schema.v2.core.Measurement measurements = 12;
 
     // Biosample(s) derived from the patient or a collection of biosamples in isolation
     repeated org.phenopackets.schema.v2.core.Biosample biosamples = 4;
 
-    // Field for gene identifiers - could be used for listing either candidate genes or causative genes. The
-    // resources using these fields should define what this represents in their context. This could be used in order to
-    // obfuscate the specific causative/candidate variant.
-    repeated org.phenopackets.schema.v2.core.Gene genes = 5 [deprecated = true];
-
-    // https://github.com/phenopackets/phenopacket-schema/issues/257
-
-    // Field for genetic variants - could be used for listing either candidate variants or diagnosed causative
-    // variants. The resources using these fields should define what this represents in their context.
-    repeated org.phenopackets.schema.v2.core.Variant variants = 6 [deprecated = true];
+    repeated Interpretation interpretations = 13;
 
     // Field for disease identifiers - could be used for listing either diagnosed or suspected conditions. The
     // resources using these fields should define what this represents in their context.

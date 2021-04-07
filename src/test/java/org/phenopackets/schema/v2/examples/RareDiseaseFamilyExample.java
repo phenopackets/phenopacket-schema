@@ -91,9 +91,9 @@ class RareDiseaseFamilyExample {
                 .addPhenotypicFeatures(pneumoniaChildhoodOnset)
                 .addPhenotypicFeatures(cryptorchidismCongenitalOnset)
                 .addPhenotypicFeatures(chronicSinusitisAdultOnsetSevere)
-                .addVariants(het(NM_001361_403_C_T))
-                .addVariants(het(NM_001361_454_G_A))
-                .addVariants(hom(NM_001369_12599_dupA))
+//                .addVariants(het(NM_001361_403_C_T))
+//                .addVariants(het(NM_001361_454_G_A))
+//                .addVariants(hom(NM_001369_12599_dupA))
                 .addHtsFiles(patientVcf)
                 .build();
     }
@@ -127,9 +127,9 @@ class RareDiseaseFamilyExample {
                 .addPhenotypicFeatures(syndactylyCongenitalOnset)
                 .addPhenotypicFeatures(notPneumonia)
                 .addPhenotypicFeatures(notChronicSinusitis)
-                .addVariants(het(NM_001361_403_C_T))
-                .addVariants(het(NM_001361_454_G_A))
-                .addVariants(het(NM_001369_12599_dupA))
+//                .addVariants(het(NM_001361_403_C_T))
+//                .addVariants(het(NM_001361_454_G_A))
+//                .addVariants(het(NM_001369_12599_dupA))
                 .build();
     }
 
@@ -140,8 +140,8 @@ class RareDiseaseFamilyExample {
                 .build();
         return Phenopacket.newBuilder()
                 .setSubject(mother)
-                .addVariants(het(NM_001361_454_G_A))
-                .addVariants(het(NM_001369_12599_dupA))
+//                .addVariants(het(NM_001361_454_G_A))
+//                .addVariants(het(NM_001369_12599_dupA))
                 .build();
     }
 
@@ -152,8 +152,8 @@ class RareDiseaseFamilyExample {
                 .build();
         return Phenopacket.newBuilder()
                 .setSubject(father)
-                .addVariants(het(NM_001361_403_C_T))
-                .addVariants(het(NM_001369_12599_dupA))
+//                .addVariants(het(NM_001361_403_C_T))
+//                .addVariants(het(NM_001369_12599_dupA))
                 .build();
     }
 

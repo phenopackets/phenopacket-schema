@@ -2,30 +2,32 @@ package org.phenopackets.schema.v2;
 
 import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
-import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.core.Gene;
+import org.phenopackets.schema.v2.core.MetaData;
+import org.phenopackets.schema.v2.core.OntologyClass;
+import org.phenopackets.schema.v2.core.Resource;
 import org.phenopackets.schema.v2.examples.TestExamples;
 import org.phenopackets.schema.v2.io.FormatMapper;
 
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-class InterpretationTest {
+public class InterpretationTest {
 
     @Test
-    void interpretation() throws Exception {
+    public void interpretation() throws Exception {
+
         Diagnosis diagnosis = Diagnosis.newBuilder()
-                .setDisease(Disease.newBuilder()
-                        .setTerm(
-                            OntologyClass.newBuilder()
+                .setDisease(OntologyClass.newBuilder()
                             .setId("OMIM:263750")
                             .setLabel("Miller syndrome")
-                            .build()
-                        )
-                    .build())
+                )
                 .addGenomicInterpretations(
                         GenomicInterpretation.newBuilder()
-                                .setStatus(GenomicInterpretation.Status.CAUSATIVE)
-                                .setGene(Gene.newBuilder().setId("HGNC:2867").setSymbol("DHODH").build())
+                                .setStatus(GenomicInterpretation.Status.CONTRIBUTORY)
+                                .setGene(GeneInterpretation.newBuilder()
+                                        .setGeneFinding(GeneInterpretation.GeneFinding.CONTRIBUTORY)
+                                        .setGene(Gene.newBuilder().setId("HGNC:2867").setSymbol("DHODH")))
                                 .build()
                 )
                 .build();
@@ -71,12 +73,11 @@ class InterpretationTest {
 
         Interpretation interpretation = Interpretation.newBuilder()
                 .setId("SOLVERD:0000012456")
-                .setPhenopacket(TestExamples.rareDiseasePhenopacket())
                 .setResolutionStatus(Interpretation.ResolutionStatus.SOLVED)
-                .addDiagnosis(diagnosis)
-                .setMetaData(metaData)
+                .setDiagnosis(diagnosis)
                 .build();
 
-        System.out.println(FormatMapper.messageToYaml(interpretation));
+        Phenopacket phenopacketWithInterpretation = TestExamples.rareDiseasePhenopacket().toBuilder().addInterpretations(interpretation).build();
+        System.out.println(FormatMapper.messageToYaml(phenopacketWithInterpretation));
     }
 }

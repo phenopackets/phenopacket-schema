@@ -3,39 +3,46 @@ syntax = "proto3";
 package org.phenopackets.schema.v2;
 
 import "phenopackets/schema/v2/base.proto";
-import "phenopackets/schema/v2/phenopackets.proto";
 
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2";
 
 message Interpretation {
+
+    enum ProgressStatus {
+        UNKNOWN_PROGRESS = 0;
+        IN_PROGRESS = 1;
+        COMPLETED = 2;
+    }
+
     enum ResolutionStatus {
-        UNKNOWN = 0;
+        UNKNOWN_RESOLUTION = 0;
+        // rare disease outcome
         SOLVED = 1;
         UNSOLVED = 2;
-        IN_PROGRESS = 3;
+        // cancer outcome
+        ACTIONABLE = 3;
+        UNACTIONABLE = 4;
     }
+
     // id of the interpretation
     string id = 1;
+
+    ProgressStatus progress_status = 2;
+
     // status of the interpretation
-    ResolutionStatus resolution_status = 2;
-    // The individual or family which this interpretation is derived from
-    oneof subject {
-        org.phenopackets.schema.v2.Phenopacket phenopacket = 3;
-        org.phenopackets.schema.v2.Family family = 4;
-        // TODO: issue #269
-        org.phenopackets.schema.v2.core.Biosample biosample = 7;
-    }
+    ResolutionStatus resolution_status = 3;
+
     // The diagnosis made in this interpretation
-    repeated Diagnosis diagnosis = 5;
-    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v2.core.MetaData meta_data = 6;
-    // TODO string summary?
+    Diagnosis diagnosis = 4;
+
+    string summary = 5;
 }
 
 message Diagnosis {
-    // The disease/condition assigned to the diagnosis
-    org.phenopackets.schema.v2.core.Disease disease = 1;
+    // The disease/condition assigned to the diagnosis.Details about this disease may be contained in the `diseases`
+    // field in the Phenopacket.
+    org.phenopackets.schema.v2.core.OntologyClass disease = 1;
     // genomic features containing the status of their contribution towards the diagnosis
     repeated GenomicInterpretation genomic_interpretations = 2;
 }
@@ -43,15 +50,44 @@ message Diagnosis {
 // A statement about the contribution of a genomic element towards the observed phenotype. Note that this does not intend
 // to encode any knowledge or results of specific computations.
 message GenomicInterpretation {
+
+    // TODO: see issue #269 - DONE
+    // identifier for the subject of the interpretation. This MUST be the individual id or a biosample id.
+    string subject_or_biosample_id = 7;
+
     enum Status {
-        UNKNOWN = 0;
+        UNKNOWN_STATUS = 0;
         REJECTED = 1;
         CANDIDATE = 2;
-        CAUSATIVE = 3;
+        CONTRIBUTORY = 3;
     }
     Status status = 1;
+
+    // TODO: See issue #257 - DONE
+    // Gene or variant identified in subject or biosample and interpreted in relation to the disease diagnosis.
     oneof call {
-        org.phenopackets.schema.v2.core.Gene gene = 2;
-        org.phenopackets.schema.v2.core.Variant variant = 3;
+        GeneInterpretation gene = 2;
+        VariantInterpretation variant = 3;
     }
+}
+
+message GeneInterpretation {
+    enum GeneFinding {
+        CANDIDATE = 0;
+        CONTRIBUTORY = 1;
+    }
+    GeneFinding geneFinding = 1;
+    org.phenopackets.schema.v2.core.Gene gene = 2;
+}
+
+message VariantInterpretation {
+    enum VariantFinding {
+        UNKNOWN_SIGNIFICANCE = 0;
+        PATHOGENIC = 1;
+        LIKELY_PATHOGENIC = 2;
+        BENIGN = 3;
+        LIKELY_BENIGN = 4;
+    }
+    VariantFinding variantFinding = 1;
+    org.phenopackets.schema.v2.core.Variant variant = 2;
 }

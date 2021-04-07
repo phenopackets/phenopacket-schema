@@ -16,13 +16,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class FamilyTest {
 
     @Test
-    void printFamilyAsYaml() throws IOException {
+    public void printFamilyAsYaml() throws IOException {
         Family family = TestExamples.rareDiseaseFamily();
         System.out.println(FormatMapper.messageToYaml(family));
     }
 
     @Test
-    void roundTrippingFamily() throws IOException {
+    public void roundTrippingFamily() throws IOException {
         Family original = TestExamples.rareDiseaseFamily();
 
         String json = JsonFormat.printer().print(original);
