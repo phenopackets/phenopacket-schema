@@ -103,7 +103,9 @@ would be used for a homozygous causative variant, and two would be used for comp
 In cancer, ``CONTRIBUTORY`` can be used for multiple variants, and the corresponding
 :ref:`rstinterpretation` object could classify them as ``ACTIONABLE``, for instance, if a targeted treatment is available for the variant.
 
+
 call
 ~~~~
 
 TODO
+

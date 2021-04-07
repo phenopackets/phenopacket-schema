@@ -2,6 +2,7 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
+
 import org.phenopackets.schema.v2.GeneInterpretation;
 import org.phenopackets.schema.v2.GenomicInterpretation;
 import org.phenopackets.schema.v2.VariantInterpretation;

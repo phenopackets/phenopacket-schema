@@ -335,6 +335,7 @@ public class YamlGeneration extends TestBase{
         assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
     }
 
+
     @Test
     void testGeneInterpretation() {
         String id = "HGNC:347";
