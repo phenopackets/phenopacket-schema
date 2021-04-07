@@ -2,7 +2,6 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
-import org.phenopackets.schema.v2.GenomicInterpretation;
 import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
@@ -10,8 +9,6 @@ import java.text.ParseException;
 import java.time.Period;
 import java.util.List;
 import java.util.Map;
-
-import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
 
 public class PhenopacketUtil {
 
@@ -255,7 +252,7 @@ public class PhenopacketUtil {
                 .setIndividualId(individualId)
                 .setDescription(description)
                 .setSampledTissue(sampledTissue)
-                .setIndividualAgeAtCollection(age)
+                .setTimeOfCollection(age)
                 .setHistologicalDiagnosis(histologicalDiagnosis)
                 .setTumorProgression(tumorProgression)
                 .setPathologicalStage(pathologicalStage)
