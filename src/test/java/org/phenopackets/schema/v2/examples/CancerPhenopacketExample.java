@@ -32,9 +32,9 @@ class CancerPhenopacketExample {
         //Diagnosis - should this be under Disease, or is it a phenotype of the patient or the biosample?
         Disease esophagealCarcinoma = Disease.newBuilder()
                 .setTerm(ontologyClass("NCIT:C4024","Esophageal Squamous Cell Carcinoma"))
-                .addTnmFinding(ontologyClass("NCIT:C48724", "T2 Stage Finding"))
-                .addTnmFinding(ontologyClass("NCIT:C48706", "N1 Stage Finding"))
-                .addTnmFinding(ontologyClass("NCIT:C48699", "M0 Stage Finding"))
+                .addClinicalTnmFinding(ontologyClass("NCIT:C48724", "T2 Stage Finding"))
+                .addClinicalTnmFinding(ontologyClass("NCIT:C48706", "N1 Stage Finding"))
+                .addClinicalTnmFinding(ontologyClass("NCIT:C48699", "M0 Stage Finding"))
                 .build();
 
 

@@ -315,11 +315,16 @@ message VitalStatus {
         ALIVE = 1;
         DECEASED = 2;
     }
+    // ARGO donor::vital_status
     Status status = 1;
 
     TimeElement time_of_death = 2;
 
+    // ARGO donor::cause_of_death
     OntologyClass cause_of_death = 3;
+
+    // ARGO donor::survival_time
+    uint32 survival_time_in_days = 4;
 }
 
 // Sex of an individual
@@ -385,7 +390,8 @@ message Biosample {
     // FHIR mapping: Specimen.type
     OntologyClass sampled_tissue = 4;
 
-    // TODO: Issue #238
+    // TODO: Issue #238 e.g. RNA, DNA, Lung tissue, Cultured cells...
+    // Recommended use of EFO term to describe the sample.
     OntologyClass sample_type = 19;
 
     // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
@@ -407,7 +413,7 @@ message Biosample {
     // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
     // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
     // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
-    OntologyClass histological_diagnosis = 9 [deprecated = true];
+    OntologyClass histological_diagnosis = 9;
 
     // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
     // Most likely a child term of NCIT:C7062 (Neoplasm by Special Category)
@@ -416,11 +422,15 @@ message Biosample {
     // NCIT:C95606 (Second Primary Malignant Neoplasm)
     // NCIT:C3261 (Metastatic Neoplasm)
     // NCIT:C4813 (Recurrent Malignant Neoplasm)
-    OntologyClass tumor_progression = 10 [deprecated = true];
+    OntologyClass tumor_progression = 10;
 
     // Potentially a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent
     // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
-    OntologyClass tumor_grade = 11 [deprecated = true];
+    OntologyClass tumor_grade = 11; // TODO: e.g. Gleason score G1 (normal) - G4 (abnormal) this is
+
+    OntologyClass pathological_stage = 21;
+
+    repeated OntologyClass pathological_tnm_finding = 22;
 
     // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
     // NCIT:C25294 (Laboratory Procedure).
@@ -429,20 +439,19 @@ message Biosample {
 
     // Clinical procedure performed on the subject in order to extract the biosample.
     Procedure procedure = 13;
-    // TODO: link to sample and sub-sample use ICGC for guidance. Thread of procedure->sample->molecular sequence.
 
     // Pointer to the relevant HTS file(s) for the biosample.
     repeated HtsFile hts_files = 14;
 
-    // TODO: issue #257
-    // Field for variants relevant to this biosample.
-    repeated Variant variants = 15 [deprecated = true];
+    // TODO: issue #249 - #238 (tissue type)
+    //  Consider also an enum [NORMAL, TUMOUR] e.g. a DNA extraction from a control or cancer biopsy
+    //  see tumour_normal_designation from https://docs.icgc-argo.org/dictionary
 
-    // TODO: issue #249
     // if true, this sample is being use as a normal control, often in combination with
     // another sample that is thought to contain a pathological finding
     // the default value is false
-    bool is_control_sample = 16;
+    // Subclass of OBI:0000747 (material sample) e.g. EFO:0009654 (reference sample) or EFO:0009655 (abnormal sample)
+    OntologyClass material_sample = 16;
 
     // TODO issue #145 - could require biosample_storage and biosample_processing, but what ontology terms?
     // preservation method
@@ -510,7 +519,7 @@ message Disease {
     // absent.
     // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'term' field.
     // *CAUTION* It is imperative to check this field for correct interpretation of the disease!
-    bool excluded = 7;
+    bool excluded = 7; // TODO: enum {PRESENT, ABSENT}
 
     // The onset of the disease. The values of this will come from the HPO onset hierarchy
     // i.e. subclasses of HP:0003674
@@ -528,7 +537,7 @@ message Disease {
     // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
     // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
     // Valid values include child terms of NCIT:C48232 (Cancer TNM Finding)
-    repeated OntologyClass tnm_finding = 6 [deprecated = true];
+    repeated OntologyClass clinical_tnm_finding = 6;
 
     // The text term used to describe the primary site of disease, as categorized by the World Health Organization's
     // (WHO) International Classification of Diseases for Oncology (ICD-O). This categorization groups cases into general
@@ -544,7 +553,7 @@ message Disease {
 message DoseInterval {
     Quantity quantity = 1;
     OntologyClass schedule_frequency = 2;
-    TimeInterval interval = 3;  // related to issue #64 these could be an Interval/Period
+    TimeInterval interval = 3;
 }
 
 message CumulativeDose {
