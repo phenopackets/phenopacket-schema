@@ -2,6 +2,7 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
+import org.phenopackets.schema.v2.GeneInterpretation;
 import org.phenopackets.schema.v2.GenomicInterpretation;
 import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
@@ -280,6 +281,13 @@ public class PhenopacketUtil {
         return VariantInterpretation.newBuilder()
                 .setVariantFindingValue(VariantInterpretation.VariantFinding.PATHOGENIC_VALUE)
                 .setVariant(variant).build();
+    }
+
+    public static GeneInterpretation candidateGeneInterpretation(Gene gene) {
+        return GeneInterpretation.newBuilder()
+                .setGene(gene)
+                .setGeneFinding(GeneInterpretation.GeneFinding.CANDIDATE)
+                .build();
     }
 
 }

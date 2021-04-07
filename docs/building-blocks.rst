@@ -26,10 +26,12 @@ building blocks.
    exposure
    externalreference
    gene
+   gene-interpretation
    gestational-age
    hormonetherapy
    htsfile
    individual
+   interpretation
    karyotypicsex
    measurement
    medical-action

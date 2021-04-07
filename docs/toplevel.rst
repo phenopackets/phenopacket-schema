@@ -14,5 +14,4 @@ the information.
    phenopacket
    family
    cohort
-   interpretation
 
