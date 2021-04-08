@@ -92,14 +92,10 @@ message Biosample {
   // Pointer to the relevant HTS file(s) for the biosample.
   repeated HtsFile hts_files = 14;
 
-  // TODO: issue #249 - #238 (tissue type)
-  //  Consider also an enum [NORMAL, TUMOUR] e.g. a DNA extraction from a control or cancer biopsy
-  //  see tumour_normal_designation from https://docs.icgc-argo.org/dictionary
-
-  // if true, this sample is being use as a normal control, often in combination with
-  // another sample that is thought to contain a pathological finding
-  // the default value is false
-  // Subclass of OBI:0000747 (material sample) e.g. EFO:0009654 (reference sample) or EFO:0009655 (abnormal sample)
+  // This element can be used to specify the status of the sample. For instance, a status may be used as a normal
+  // control, often in combination with another sample that is thought to contain a pathological finding.
+  // We recommend use of ontology terms such as:
+  // EFO:0009654 (reference sample) or EFO:0009655 (abnormal sample)
   OntologyClass material_sample = 16;
 
   // TODO issue #145 - could require biosample_storage and biosample_processing, but what ontology terms?

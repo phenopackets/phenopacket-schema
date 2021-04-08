@@ -31,7 +31,6 @@ message Disease {
   // Valid values include child terms of NCIT:C28108 (Disease Stage Qualifier)
   repeated OntologyClass disease_stage = 5;
 
-  //TODO: Issue #250
   // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
   // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
   // Valid values include child terms of NCIT:C48232 (Cancer TNM Finding)
