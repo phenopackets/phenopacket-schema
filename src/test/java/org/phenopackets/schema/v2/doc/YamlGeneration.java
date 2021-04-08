@@ -5,7 +5,6 @@ import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;

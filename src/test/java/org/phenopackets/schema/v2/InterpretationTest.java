@@ -2,10 +2,7 @@ package org.phenopackets.schema.v2;
 
 import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
-import org.phenopackets.schema.v2.core.Gene;
-import org.phenopackets.schema.v2.core.MetaData;
-import org.phenopackets.schema.v2.core.OntologyClass;
-import org.phenopackets.schema.v2.core.Resource;
+import org.phenopackets.schema.v2.core.*;
 import org.phenopackets.schema.v2.examples.TestExamples;
 import org.phenopackets.schema.v2.io.FormatMapper;
 

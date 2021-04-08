@@ -1,0 +1,244 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+message MetaData {
+    // ISO8601 UTC timestamp for when this phenopacket was created in ISO "2018-03-01T00:00:00Z"
+    google.protobuf.Timestamp created = 1;
+    // some kind of identifier for the contributor/ program
+    // ARGO sample_registration::program_id
+    string created_by = 2;
+    // information about the person/organisation/network that has submitted this phenopacket
+    string submitted_by = 3;
+    // a listing of the ontologies and resources referenced in the phenopacket
+    repeated Resource resources = 4;
+    // An OPTIONAL list of Updates to the phenopacket.
+    repeated Update updates = 5;
+    // phenopacket-schema-version used to create this phenopacket
+    string phenopacket_schema_version = 6;
+    // External identifiers for this message. These are considered different representation of the same record, not
+    // records which are in some other relation with the record at hand. For example this might be a PubMed reference
+    // to a study in which the individuals are reported.
+    repeated ExternalReference external_references = 7;
+
+    // TODO: DUO tag?
+}
+
+// Information about when an update to a record occurred, who or what made the update and any pertinent information
+// regarding the content and/or reason for the update
+message Update {
+    // ISO8601 UTC timestamps at which this record was updated, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
+    // REQUIRED
+    google.protobuf.Timestamp timestamp = 1;
+    // Information about the person/organisation/network that has updated the phenopacket.
+    // OPTIONAL
+    string updated_by = 2;
+    // Textual comment about the changes made to the content and/or reason for the update.
+    // OPTIONAL
+    string comment = 3;
+}
+
+// Description of an external resource used for referencing an object. For example the resource may be an ontology such
+// as the HPO or SNOMED.
+// FHIR mapping: CodeSystem (http://www.hl7.org/fhir/codesystem.html)
+message Resource {
+    // for OBO Ontologies, the value of this string MUST always be the official
+    // OBO ID, which is always equivalent to the ID prefix in lower case.
+    // Examples: hp, go, mp, mondo
+    // Consult http://obofoundry.org for a complete list
+    // For other ontologies (e.g. SNOMED), use the prefix in identifiers.org
+    string id = 1;
+
+    // e.g. The Human Phenotype Ontology
+    // for OBO Ontologies, the value of this string SHOULD be the same as the title
+    // field on http://obofoundry.org
+    // however, this field is purely for information purposes and software
+    // should not encode any assumptions
+    string name = 2;
+
+    // For OBO ontologies, this should always be the PURL, e.g.
+    // http://purl.obolibrary.org/obo/hp.owl, http://purl.obolibrary.org/obo/hp.obo
+    string url = 3;
+
+    // for OBO ontologies, this should be the versionIRI
+    string version = 4;
+
+    // The prefix used in the CURIE of an OntologyClass e.g. HP, MP, ECO
+    // For example an HPO term will have a CURIE like this - HP:0012828 which should be used in combination with
+    // the iri_prefix to form a fully-resolvable IRI
+    string namespace_prefix = 5;
+
+    // Full IRI prefix which can be used with the namespace_prefix and the OntologyClass::id to resolve to an IRI for a
+    // term. Tools such as the curie-util (https://github.com/prefixcommons/curie-util) can utilise this to produce
+    // fully-resolvable IRIs for an OntologyClass.
+    // e.g. Using the HPO term encoding the concept of 'Severe'
+    //    OntologyClass:
+    //        id: 'HP:0012828'
+    //        label: 'Severe'
+    //    Resource:
+    //        namespace_prefix: 'HP'
+    //        iri_prefix: 'http://purl.obolibrary.org/obo/HP_'
+    // the term can be resolved to http://purl.obolibrary.org/obo/HP_0012828
+    string iri_prefix = 6;
+}
+
+// A class (aka term, concept) in an ontology.
+// FHIR mapping: CodeableConcept (http://www.hl7.org/fhir/datatypes.html#CodeableConcept)
+//   see also Coding (http://www.hl7.org/fhir/datatypes.html#Coding)
+message OntologyClass {
+    // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
+    // This is the primary key for the ontology class
+    // REQUIRED!
+    string id = 1;
+
+    // class label, aka name. E.g. "Abnormality of cardiovascular system"
+    string label = 2;
+}
+
+//
+message Value {
+    oneof value {
+        Quantity quantity = 1;
+        // for use with things such as categories 'red', 'yellow' or 'absent'/'present'
+        OntologyClass ontology_class = 2;
+    }
+}
+
+message ComplexValue {
+    // The quantities required to fully describe the complex value. For example the systolic and diastolic blood pressure
+    // quantities
+    repeated TypedQuantity typed_quantities = 1;
+}
+
+message Quantity {
+    // For instance, NCIT subhierarchy, Unit of Measure (Code C25709), https://www.ebi.ac.uk/ols/ontologies/uo
+    OntologyClass unit_class = 1;
+
+    // the  value of the quantity in the units  e.g. 2.0 mg
+    double value = 2;
+
+    // Reference range for the quantity
+    // e.g. The normal range of platelets is 150,000 to 450,000 platelets/uL.
+    ReferenceRange reference_range = 3;
+}
+
+// For complex measurements, such as blood pressure where more than one component quantity is required to describe the
+// measurement
+message TypedQuantity {
+    // e.g. diastolic, systolic
+    OntologyClass type = 1;
+    // e.g. mm Hg
+    Quantity quantity = 2;
+}
+
+message ReferenceRange {
+    OntologyClass unit = 1;
+    double low = 2;
+    double high = 3;
+}
+
+// FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
+message Evidence {
+    // The encoded evidence type using, for example the Evidence & Conclusion Ontology (ECO - http://purl.obolibrary.org/obo/eco.owl)
+    // FHIR mapping: Condition.evidence.code
+    OntologyClass evidence_code = 1;
+    // FHIR mapping: Condition.evidence.detail
+    ExternalReference reference = 2;
+}
+
+// FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
+message ExternalReference {
+    // e.g. ISBN, PMID:123456, DOI:...,
+    // FHIR mapping: Reference.identifier
+    string id = 1;
+    // FHIR mapping: Reference.display
+    string description = 2;
+}
+
+// Sex of an individual
+// FHIR mapping: AdministrativeGender (https://www.hl7.org/fhir/codesystem-administrative-gender.html)
+enum Sex {
+    // Not assessed / available.
+    UNKNOWN_SEX = 0;
+    // Female
+    FEMALE = 1;
+    // Male
+    MALE = 2;
+    // It is not possible, to accurately assess the applicability of MALE/FEMALE.
+    OTHER_SEX = 3;
+}
+
+// Karyotypic sex of the individual
+enum KaryotypicSex {
+    UNKNOWN_KARYOTYPE = 0;
+    XX = 1;
+    XY = 2;
+    XO = 3;
+    XXY = 4;
+    XXX = 5;
+    XXYY = 6;
+    XXXY = 7;
+    XXXX = 8;
+    XYY = 9;
+    OTHER_KARYOTYPE = 10;
+}
+
+
+// A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the
+// body site should be used. In cases where this is not possible, the body site should be indicated using a separate
+// ontology class.
+// e.g.
+// {"code":{"NCIT:C51585": "Biopsy of Soft Palate"}}
+// {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"UBERON:0003403": "skin of forearm"}} - a punch biopsy of the skin from the forearm
+// FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
+message Procedure {
+    // FHIR mapping: Procedure.code
+    OntologyClass code = 1;
+
+    // FHIR mapping: Procedure.bodySite
+    OntologyClass body_site = 2;
+
+    // When the procedure was performed.
+    TimeElement performed = 3;
+}
+
+message GestationalAge {
+    int32 weeks = 1;
+    int32 days = 2;
+}
+
+// See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
+// In FHIR this is represented as a UCUM measurement - http://unitsofmeasure.org/trac/
+message Age {
+    // The :ref:`ISO 8601<metadata_date_time>` age of this object as ISO8601
+    // duration or time intervals. e.g. P40Y10M05D)
+    string iso8601duration = 1;
+}
+
+message AgeRange {
+    Age start = 1;
+    Age end = 2;
+}
+
+message TimeInterval {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
+message TimeElement {
+    oneof element {
+        GestationalAge gestational_age = 6;
+        Age age = 1;
+        AgeRange age_range = 2;
+        OntologyClass ontology_class = 3;
+        google.protobuf.Timestamp timestamp = 4;
+        TimeInterval interval = 5;
+    }
+}
+

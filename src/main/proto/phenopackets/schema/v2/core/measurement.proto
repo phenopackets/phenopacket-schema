@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// FHIR mapping: Observation (https://www.hl7.org/fhir/observation.html)
+message Measurement {
+  // Free-text description of the feature. Note this is not a acceptable place to document/describe the phenotype -
+  // the type and onset etc... fields should be used for this purpose.
+  string description = 1;
+
+  // An ontology class which describes the assay used to produce the measurement.
+  // For example "body temperature" (CMO:0000015) or
+  // "Platelets [#/volume] in Blood" (LOINC:26515-7)
+  // FHIR mapping: Observation.code
+  OntologyClass assay = 2;
+
+  // https://github.com/phenopackets/phenopacket-schema/issues/261
+  // e.g. type: Increased circulating antibody level (HP:0010702)
+  //      quantity: unit: Microgram per Milliliter (NCIT:C64572), value: 23456.0
+
+  //      type:  body temperature (CMO:0000015)
+  //      quantity: unit: Degrees Celsius (UO:0000027), value: 37.5
+  //                      Degree Celsius (NCIT:C42559), value: 37.5
+
+  //      type:  LOINC: 26515-7 Platelets [#/volume] in Blood
+  //      value: quantity: unit: NCIT:C173275 (Count per Cubic Millimeter), value: 600,000
+  oneof measurement_value {
+    Value value = 3;
+    ComplexValue complex_value = 4;
+  }
+
+  // The time at which the measurement was made
+  TimeElement time_observed = 5;
+
+  // Clinical procedure performed on the subject in order to produce the measurement.
+  Procedure procedure = 6;
+}

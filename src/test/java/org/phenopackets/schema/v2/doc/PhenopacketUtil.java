@@ -2,7 +2,6 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
-import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
 import java.text.ParseException;
