@@ -7,6 +7,20 @@ import "google/protobuf/timestamp.proto";
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2.core";
 
+
+// A class (aka term, concept) in an ontology.
+// FHIR mapping: CodeableConcept (http://www.hl7.org/fhir/datatypes.html#CodeableConcept)
+//   see also Coding (http://www.hl7.org/fhir/datatypes.html#Coding)
+message OntologyClass {
+    // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
+    // This is the primary key for the ontology class
+    // REQUIRED!
+    string id = 1;
+
+    // class label, aka name. E.g. "Abnormality of cardiovascular system"
+    string label = 2;
+}
+
 message MetaData {
     // ISO8601 UTC timestamp for when this phenopacket was created in ISO "2018-03-01T00:00:00Z"
     google.protobuf.Timestamp created = 1;
@@ -27,21 +41,6 @@ message MetaData {
     repeated ExternalReference external_references = 7;
 
     // TODO: DUO tag?
-}
-
-// Information about when an update to a record occurred, who or what made the update and any pertinent information
-// regarding the content and/or reason for the update
-message Update {
-    // ISO8601 UTC timestamps at which this record was updated, in
-    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
-    // REQUIRED
-    google.protobuf.Timestamp timestamp = 1;
-    // Information about the person/organisation/network that has updated the phenopacket.
-    // OPTIONAL
-    string updated_by = 2;
-    // Textual comment about the changes made to the content and/or reason for the update.
-    // OPTIONAL
-    string comment = 3;
 }
 
 // Description of an external resource used for referencing an object. For example the resource may be an ontology such
@@ -88,17 +87,37 @@ message Resource {
     string iri_prefix = 6;
 }
 
-// A class (aka term, concept) in an ontology.
-// FHIR mapping: CodeableConcept (http://www.hl7.org/fhir/datatypes.html#CodeableConcept)
-//   see also Coding (http://www.hl7.org/fhir/datatypes.html#Coding)
-message OntologyClass {
-    // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
-    // This is the primary key for the ontology class
-    // REQUIRED!
-    string id = 1;
+// Information about when an update to a record occurred, who or what made the update and any pertinent information
+// regarding the content and/or reason for the update
+message Update {
+    // ISO8601 UTC timestamps at which this record was updated, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
+    // REQUIRED
+    google.protobuf.Timestamp timestamp = 1;
+    // Information about the person/organisation/network that has updated the phenopacket.
+    // OPTIONAL
+    string updated_by = 2;
+    // Textual comment about the changes made to the content and/or reason for the update.
+    // OPTIONAL
+    string comment = 3;
+}
 
-    // class label, aka name. E.g. "Abnormality of cardiovascular system"
-    string label = 2;
+// FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
+message ExternalReference {
+    // e.g. ISBN, PMID:123456, DOI:...,
+    // FHIR mapping: Reference.identifier
+    string id = 1;
+    // FHIR mapping: Reference.display
+    string description = 2;
+}
+
+// FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
+message Evidence {
+    // The encoded evidence type using, for example the Evidence & Conclusion Ontology (ECO - http://purl.obolibrary.org/obo/eco.owl)
+    // FHIR mapping: Condition.evidence.code
+    OntologyClass evidence_code = 1;
+    // FHIR mapping: Condition.evidence.detail
+    ExternalReference reference = 2;
 }
 
 //
@@ -141,24 +160,6 @@ message ReferenceRange {
     OntologyClass unit = 1;
     double low = 2;
     double high = 3;
-}
-
-// FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
-message Evidence {
-    // The encoded evidence type using, for example the Evidence & Conclusion Ontology (ECO - http://purl.obolibrary.org/obo/eco.owl)
-    // FHIR mapping: Condition.evidence.code
-    OntologyClass evidence_code = 1;
-    // FHIR mapping: Condition.evidence.detail
-    ExternalReference reference = 2;
-}
-
-// FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
-message ExternalReference {
-    // e.g. ISBN, PMID:123456, DOI:...,
-    // FHIR mapping: Reference.identifier
-    string id = 1;
-    // FHIR mapping: Reference.display
-    string description = 2;
 }
 
 // Sex of an individual
