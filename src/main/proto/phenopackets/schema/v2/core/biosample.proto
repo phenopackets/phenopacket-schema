@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+import "phenopackets/schema/v2/core/genome.proto";
+import "phenopackets/schema/v2/core/measurement.proto";
+import "phenopackets/schema/v2/core/phenotypic_feature.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// A Biosample refers to a unit of biological material from which the substrate
+// molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
+// sequencing, array hybridisation, mass-spectrometry) are extracted. Examples
+// would be a tissue biopsy, a single cell from a culture for single cell genome
+// sequencing or a protein fraction from a gradient centrifugation.
+// Several instances (e.g. technical replicates) or types of experiments (e.g.
+// genomic array as well as RNA-seq experiments) may refer to the same Biosample.
+// FHIR mapping: Specimen (http://www.hl7.org/fhir/specimen.html).
+message Biosample {
+  // biosamples SAMN08666232
+  // Human Cell Atlas
+
+  // The Biosample id This is unique in the
+  // context of the server instance.
+  string id = 1;
+
+  // The id of the individual this biosample was derived from.
+  string individual_id = 2;
+
+  // The id of the parent biosample this biosample was derived from.
+  string derived_from_id = 18;
+
+  // The biosample's description. This attribute contains human readable text.
+  // The "description" attributes should not contain any structured data.
+  string description = 3;
+
+  // UBERON class describing the tissue from which the specimen was collected.
+  // PDX-MI mapping: 'Specimen tumor tissue'
+  // FHIR mapping: Specimen.type
+  OntologyClass sampled_tissue = 4;
+
+  // TODO: Issue #238 e.g. RNA, DNA, Lung tissue, Cultured cells...
+  // Recommended use of EFO term to describe the sample.
+  OntologyClass sample_type = 19;
+
+  // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
+  repeated PhenotypicFeature phenotypic_features = 5;
+
+  // TODO: issue #261
+  repeated Measurement measurements = 20;
+
+  // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
+  OntologyClass taxonomy = 6;
+
+  // An TimeElement describing either the age of the individual this biosample was
+  // derived from at the time of collection, or the time itself.
+  //See http://build.fhir.org/datatypes
+  TimeElement time_of_collection = 17;
+
+  // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
+  // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
+  // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
+  OntologyClass histological_diagnosis = 9;
+
+  // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
+  // Most likely a child term of NCIT:C7062 (Neoplasm by Special Category)
+  // NCIT:C3677 (Benign Neoplasm)
+  // NCIT:C84509 (Primary Malignant Neoplasm)
+  // NCIT:C95606 (Second Primary Malignant Neoplasm)
+  // NCIT:C3261 (Metastatic Neoplasm)
+  // NCIT:C4813 (Recurrent Malignant Neoplasm)
+  OntologyClass tumor_progression = 10;
+
+  // Potentially a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent
+  // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
+  OntologyClass tumor_grade = 11; // TODO: e.g. Gleason score G1 (normal) - G4 (abnormal) this is
+
+  OntologyClass pathological_stage = 21;
+
+  repeated OntologyClass pathological_tnm_finding = 22;
+
+  // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
+  // NCIT:C25294 (Laboratory Procedure).
+  // e.g. NCIT:C68748 (HER2/Neu Positive), NCIT:C131711 (Human Papillomavirus-18 Positive)
+  repeated OntologyClass diagnostic_markers = 12;
+
+  // Clinical procedure performed on the subject in order to extract the biosample.
+  Procedure procedure = 13;
+
+  // Pointer to the relevant HTS file(s) for the biosample.
+  repeated HtsFile hts_files = 14;
+
+  // TODO: issue #249 - #238 (tissue type)
+  //  Consider also an enum [NORMAL, TUMOUR] e.g. a DNA extraction from a control or cancer biopsy
+  //  see tumour_normal_designation from https://docs.icgc-argo.org/dictionary
+
+  // if true, this sample is being use as a normal control, often in combination with
+  // another sample that is thought to contain a pathological finding
+  // the default value is false
+  // Subclass of OBI:0000747 (material sample) e.g. EFO:0009654 (reference sample) or EFO:0009655 (abnormal sample)
+  OntologyClass material_sample = 16;
+
+  // TODO issue #145 - could require biosample_storage and biosample_processing, but what ontology terms?
+  // preservation method
+}

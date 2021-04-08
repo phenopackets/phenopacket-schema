@@ -5,6 +5,7 @@ import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import org.phenopackets.schema.v2.GeneInterpretation;
 import org.phenopackets.schema.v2.GenomicInterpretation;
 import org.phenopackets.schema.v2.VariantInterpretation;
@@ -317,7 +318,7 @@ public class YamlGeneration extends TestBase{
                 procedure,
                 vcfFile);
         String hash = printAndGetHash(biosample, "biosample");
-        assertEquals("cd5972e589f24bce9662e8ed2f6b538c4ae353ef303f80ea1bd051e63b9a63fa", hash);
+        assertEquals("c2cc88bd31ceb0427665cdfb5dbf05de1b847ebc0ad2f314fec60745cdcde3b8", hash);
     }
 
     @Test
@@ -332,7 +333,7 @@ public class YamlGeneration extends TestBase{
         Variant variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
         VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(variant);
         String hash = printAndGetHash(variantInterpretation, "variantInterpretation");
-        assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
+        assertEquals("2939d8a67b2a3ebafe3d9b2a2fad0c09f00053317a9cb19daa1ebad88ed5e8e7", hash);
     }
 
 

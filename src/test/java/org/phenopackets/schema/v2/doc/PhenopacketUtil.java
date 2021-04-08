@@ -13,8 +13,6 @@ import java.time.Period;
 import java.util.List;
 import java.util.Map;
 
-import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
-
 public class PhenopacketUtil {
 
 
@@ -257,7 +255,7 @@ public class PhenopacketUtil {
                 .setIndividualId(individualId)
                 .setDescription(description)
                 .setSampledTissue(sampledTissue)
-                .setIndividualAgeAtCollection(age)
+                .setTimeOfCollection(age)
                 .setHistologicalDiagnosis(histologicalDiagnosis)
                 .setTumorProgression(tumorProgression)
                 .setPathologicalStage(pathologicalStage)

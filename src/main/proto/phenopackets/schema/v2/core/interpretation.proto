@@ -1,11 +1,12 @@
 syntax = "proto3";
 
-package org.phenopackets.schema.v2;
+package org.phenopackets.schema.v2.core;
 
-import "phenopackets/schema/v2/base.proto";
+import "phenopackets/schema/v2/core/base.proto";
+import "phenopackets/schema/v2/core/genome.proto";
 
 option java_multiple_files = true;
-option java_package = "org.phenopackets.schema.v2";
+option java_package = "org.phenopackets.schema.v2.core";
 
 message Interpretation {
 
@@ -42,7 +43,7 @@ message Interpretation {
 message Diagnosis {
     // The disease/condition assigned to the diagnosis.Details about this disease may be contained in the `diseases`
     // field in the Phenopacket.
-    org.phenopackets.schema.v2.core.OntologyClass disease = 1;
+    OntologyClass disease = 1;
     // genomic features containing the status of their contribution towards the diagnosis
     repeated GenomicInterpretation genomic_interpretations = 2;
 }
@@ -77,7 +78,7 @@ message GeneInterpretation {
         CONTRIBUTORY = 1;
     }
     GeneFinding geneFinding = 1;
-    org.phenopackets.schema.v2.core.Gene gene = 2;
+    Gene gene = 2;
 }
 
 message VariantInterpretation {
@@ -89,5 +90,5 @@ message VariantInterpretation {
         LIKELY_BENIGN = 4;
     }
     VariantFinding variantFinding = 1;
-    org.phenopackets.schema.v2.core.Variant variant = 2;
+    Variant variant = 2;
 }

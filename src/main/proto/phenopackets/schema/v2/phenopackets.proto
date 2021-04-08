@@ -2,8 +2,17 @@ syntax = "proto3";
 
 package org.phenopackets.schema.v2;
 
-import "phenopackets/schema/v2/base.proto";
-import "phenopackets/schema/v2/interpretation.proto";
+import "phenopackets/schema/v2/core/base.proto";
+import "phenopackets/schema/v2/core/biosample.proto";
+import "phenopackets/schema/v2/core/disease.proto";
+import "phenopackets/schema/v2/core/exposure.proto";
+import "phenopackets/schema/v2/core/genome.proto";
+import "phenopackets/schema/v2/core/interpretation.proto";
+import "phenopackets/schema/v2/core/individual.proto";
+import "phenopackets/schema/v2/core/measurement.proto";
+import "phenopackets/schema/v2/core/medical_action.proto";
+import "phenopackets/schema/v2/core/pedigree.proto";
+import "phenopackets/schema/v2/core/phenotypic_feature.proto";
 
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2";
@@ -18,34 +27,34 @@ message Phenopacket {
     string id = 1;
 
     // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
-    org.phenopackets.schema.v2.core.Individual subject = 2;
+    core.Individual subject = 2;
 
     // Phenotypic features relating to the subject of the phenopacket
-    repeated org.phenopackets.schema.v2.core.PhenotypicFeature phenotypic_features = 3;
+    repeated core.PhenotypicFeature phenotypic_features = 3;
 
     // Quantifiable measurements related to the individual
-    repeated org.phenopackets.schema.v2.core.Measurement measurements = 12;
+    repeated core.Measurement measurements = 12;
 
     // Biosample(s) derived from the patient or a collection of biosamples in isolation
-    repeated org.phenopackets.schema.v2.core.Biosample biosamples = 4;
+    repeated core.Biosample biosamples = 4;
 
-    repeated Interpretation interpretations = 13;
+    repeated core.Interpretation interpretations = 13;
 
     // Field for disease identifiers - could be used for listing either diagnosed or suspected conditions. The
     // resources using these fields should define what this represents in their context.
-    repeated org.phenopackets.schema.v2.core.Disease diseases = 7;
+    repeated core.Disease diseases = 7;
 
     // A list of environmental exposures. The resources using these fields should define what this represents in their
     // context.
-    repeated org.phenopackets.schema.v2.core.Exposure exposures = 11;
+    repeated core.Exposure exposures = 11;
 
-    repeated org.phenopackets.schema.v2.core.MedicalAction medical_actions = 10;
+    repeated core.MedicalAction medical_actions = 10;
 
     // Pointer to the relevant HTS file(s) for the patient
-    repeated org.phenopackets.schema.v2.core.HtsFile hts_files = 8;
+    repeated core.HtsFile hts_files = 8;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v2.core.MetaData meta_data = 9;
+    core.MetaData meta_data = 9;
 }
 
 // Phenotype, sample and pedigree data required for a genomic diagnosis.
@@ -65,16 +74,19 @@ message Family {
     // the cohort.
     repeated Phenopacket relatives = 3;
 
+    // flag to indicate that the parents of the proband are consanguinous
+    bool consanguinous_parents = 7;
+
     // The pedigree defining the relations between the proband and their relatives. Pedigree.individual_id should
     // map to the PhenoPacket.Individual.id
-    org.phenopackets.schema.v2.core.Pedigree pedigree = 4;
+    core.Pedigree pedigree = 4;
 
     // Pointer to the relevant HTS file(s) for the family. These should be files relating to one or more of the family
     // members e.g a multi-sample VCF
-    repeated org.phenopackets.schema.v2.core.HtsFile hts_files = 5;
+    repeated core.HtsFile hts_files = 5;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v2.core.MetaData meta_data = 6;
+    core.MetaData meta_data = 6;
 }
 
 // A group of individuals related in some phenotypic or genotypic aspect.
@@ -83,7 +95,7 @@ message Cohort {
     string description = 2;
     repeated Phenopacket members = 3;
     // Pointer to the relevant HTS file(s) for the cohort
-    repeated org.phenopackets.schema.v2.core.HtsFile hts_files = 4;
+    repeated core.HtsFile hts_files = 4;
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    org.phenopackets.schema.v2.core.MetaData meta_data = 5;
+    core.MetaData meta_data = 5;
 }

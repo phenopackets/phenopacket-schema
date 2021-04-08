@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// A file in one of the HTS formats (https://samtools.github.io/hts-specs)
+message HtsFile {
+
+  enum HtsFormat {
+    UNKNOWN = 0;
+    SAM = 1;
+    BAM = 2;
+    CRAM = 3;
+    VCF = 4;
+    BCF = 5;
+    GVCF = 6;
+    FASTQ = 7;
+  }
+
+  // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
+  string uri = 1;
+  // description of the file contents
+  string description = 2;
+  // format of the HTS file
+  HtsFormat hts_format = 3;
+  // Genome assembly the contents of this file was called against. We recommend using the Genome Reference Consortium
+  // nomenclature e.g. GRCh37, GRCh38
+  string genome_assembly = 4;
+  // A map of identifiers mapping an individual to a sample in the file. The key values must correspond to the
+  // Individual::id for the individuals in the message, the values must map to the samples in the file.
+  map<string, string> individual_to_sample_identifiers = 5;
+}
+
+// Gene identifier
+message Gene {
+  // The official gene identifier as designated by the organism gene nomenclature committee e.g. HGNC:3477 or MGI:2385071
+  // Preferentially this should be a CURIE, however it is acceptable to use another equivalent resource identifier
+  // such as ENSG00000120705, uc003ldc.6
+  // https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477
+  string id = 1;
+
+  repeated string alternate_ids = 2;
+  // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
+  string symbol = 3;
+}
+
+// A variant allele. Alleles can be listed using HGVS, VCF, SPDI or ISCN notation.
+// SPDI format is the exchange standard used for ClinVar, dbSNP and soon the EVA
+// Tools for interconversion between SPDI, HGVS and VCF exist at https://api.ncbi.nlm.nih.gov/variation/v0/
+message Variant {
+
+  // AlleleDescriptor
+
+  oneof allele {
+    //        VrsAlleleDigest allele_digest = 1;
+    HgvsAllele hgvs_allele = 2;
+    VcfAllele vcf_allele = 3;
+    SpdiAllele spdi_allele = 4;
+    IscnAllele iscn_allele = 5;
+  }
+  // Zygosity of the allele using GENO ontology
+  core.OntologyClass zygosity = 6;
+}
+
+// A single HGVS allele.
+// It is recommended that the string is validated using the VariantValidator - https://variantvalidator.org/
+// See http://varnomen.hgvs.org/recommendations/DNA/variant/alleles/
+message HgvsAllele {
+  string id = 1;
+  // e.g., NM_000226.3:c.470T>G
+  string hgvs = 2;
+}
+
+// A single VCF allele.
+// For structural variation the INFO field should *NOT* contain the END, SVTYPE, SVLEN, MATEID or EVENTID fields.
+// END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
+// See https://samtools.github.io/hts-specs/VCFv4.3.pdf
+message VcfAllele {
+  // The value of the VCF spec fileformat field: e.g VCFv4.1, VCFv4.2, VCFv4.3
+  string vcf_version = 1;
+  // Genome assembly the allele was called against. We recommend using the Genome Reference Consortium
+  // nomenclature e.g. GRCh37, GRCh38
+  string genome_assembly = 2;
+  string id = 3;
+  string chr = 4;
+  int32 pos = 5;
+  string ref = 6;
+  string alt = 7;
+  string info = 8;
+  int32 end = 9;
+  string sv_type = 10;
+  int32 sv_length = 11;
+  string mate_id = 12;
+  string event_id = 13;
+}
+
+// A single SPDI allele.
+// The SPDI notation uses four fields and is written out as four elements delimited by colons S:P:D:I, where
+// S = SequenceId
+// P = Position , a 0-based coordinate for where the Deleted Sequence starts
+// D = DeletedSequence , sequence for the deletion, can be empty
+// I = InsertedSequence , sequence for the insertion, can be empty
+// The SPDI notation represents variation as deletion of a sequence (D) at a given position (P) in reference sequence (S)
+// followed by insertion of a replacement sequence (I) at that same position. Position 0 indicates a deletion that
+// starts immediately before the first nucleotide, and position 1 represents a deletion interval that starts between the
+// first and second residues, and so on. Either the deleted or the inserted interval can be empty, resulting a pure
+// insertion or deletion.
+// The deleted and inserted sequences in SPDI are all written on the positive strand for two-stranded molecules.
+// See https://www.ncbi.nlm.nih.gov/variation/notation/
+message SpdiAllele {
+  string id = 1;
+  string seq_id = 2;
+  int32 position = 3;
+  string deleted_sequence = 4;
+  string inserted_sequence = 5;
+}
+
+// See https://www.humpath.com/spip.php?article13862
+message IscnAllele {
+  string id = 1;
+  // an ICSN code such as del(6)(q23q24) , t(8;9;11)(q12;p24;p12), +15
+  string iscn = 2;
+}

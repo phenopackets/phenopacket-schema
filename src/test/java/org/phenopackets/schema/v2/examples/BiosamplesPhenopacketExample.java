@@ -79,7 +79,7 @@ class BiosamplesPhenopacketExample {
                 .setId("SAMN05324082")
                 .setIndividualId("SAMN05324082-individual")
                 .setDescription("THP-1; 6 hours; DMSO; Replicate 1")
-                .setIndividualAgeAtCollection(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P1Y")))
+                .setTimeOfCollection(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P1Y")))
                 .setTaxonomy(ontologyClass("NCBITaxon:9606", "Homo sapiens"))
                 .setSampledTissue(ontologyClass("UBERON:0000178", "peripheral blood"))
                 .setHistologicalDiagnosis(ontologyClass("EFO:0000221", "Acute Monocytic Leukemia"))

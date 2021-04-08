@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// medication, procedure, other actions taken for clinical management
+message MedicalAction {
+  oneof action {
+    Procedure procedure = 1;
+    Treatment treatment = 2;
+    ChemoTherapyTreatment chemo_therapy = 3;
+    HormoneTherapyTreatment hormone_therapy = 4;
+    RadiationTherapyTreatment radiation_therapy = 5;
+    TherapeuticRegimen therapeutic_regimen = 6;
+  }
+  OntologyClass intention = 7;
+}
+
+// treatment with an agent, such as a drug
+message Treatment {
+  OntologyClass agent = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  OntologyClass route_of_administration = 2; // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
+  repeated DoseInterval dose_intervals  = 3;
+  DrugType drug_type = 4;
+}
+
+// e.g. 50mg/ml 3 times daily for two weeks
+message DoseInterval {
+  Quantity quantity = 1;
+  OntologyClass schedule_frequency = 2;
+  TimeInterval interval = 3;
+}
+
+message CumulativeDose {
+  Quantity quantity = 1;
+}
+
+// A simplified version of ODHSI-DRUG_EXPOSURE
+enum DrugType {
+  UNKNOWN_DRUG_TYPE = 0;
+  PRESCRIPTION = 1;
+  EHR_MEDICATION_LIST = 2;
+  ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
+}
+
+// https://docs.icgc-argo.org/dictionary/
+// Chemotherapy
+message ChemoTherapyTreatment {
+  Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  CumulativeDose cumulative_dose = 2;
+}
+// HormoneTherapy
+message HormoneTherapyTreatment {
+  Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  CumulativeDose cumulative_dose = 2;
+}
+
+// RadiationTherapy
+message RadiationTherapyTreatment {
+  Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  OntologyClass body_site = 2;
+  // Indicates the total number of fractions delivered as part of treatment.
+  int32 fractions = 3;
+}
+
+message TherapeuticRegimen {
+  // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
+  oneof identifier {
+    ExternalReference external_reference = 1;
+    OntologyClass ontology_class = 2;
+  }
+  // possibly undefined;
+  TimeElement start_time = 3;
+  // end time can be empty which would indicate ongoing
+  TimeElement end_time = 4;
+
+  RegimenStatus status = 5;
+  enum RegimenStatus {
+    UNKNOWN = 0;
+    STARTED = 1;
+    COMPLETED = 2;
+    DISCONTINUED = 3;
+  }
+}
+
+
+
