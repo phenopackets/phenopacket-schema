@@ -14,16 +14,8 @@ message Interpretation {
         UNKNOWN_PROGRESS = 0;
         IN_PROGRESS = 1;
         COMPLETED = 2;
-    }
-
-    enum ResolutionStatus {
-        UNKNOWN_RESOLUTION = 0;
-        // rare disease outcome
-        SOLVED = 1;
-        UNSOLVED = 2;
-        // cancer outcome
-        ACTIONABLE = 3;
-        UNACTIONABLE = 4;
+        SOLVED = 3;
+        UNSOLVED = 4;
     }
 
     // id of the interpretation
@@ -31,13 +23,10 @@ message Interpretation {
 
     ProgressStatus progress_status = 2;
 
-    // status of the interpretation
-    ResolutionStatus resolution_status = 3;
-
     // The diagnosis made in this interpretation
-    Diagnosis diagnosis = 4;
+    Diagnosis diagnosis = 3;
 
-    string summary = 5;
+    string summary = 4;
 }
 
 message Diagnosis {
@@ -52,33 +41,25 @@ message Diagnosis {
 // to encode any knowledge or results of specific computations.
 message GenomicInterpretation {
 
-    // TODO: see issue #269 - DONE
-    // identifier for the subject of the interpretation. This MUST be the individual id or a biosample id.
+    // identifier for the subject of the interpretation. This MUST be the individual id or a biosample id of the
+    // enclosing phenopacket.
     string subject_or_biosample_id = 7;
 
-    enum Status {
+    enum InterpretationStatus {
         UNKNOWN_STATUS = 0;
         REJECTED = 1;
         CANDIDATE = 2;
         CONTRIBUTORY = 3;
+        ACTIONABLE = 4;
     }
-    Status status = 1;
+    InterpretationStatus interpretation_status = 1;
 
-    // TODO: See issue #257 - DONE
-    // Gene or variant identified in subject or biosample and interpreted in relation to the disease diagnosis.
+    // Gene or variant identified in subject or biosample and interpreted in relation to the disease diagnosis. In this
+    // context athe 'gene' is a proxy for an unspecified alteration in the indicated gene.
     oneof call {
-        GeneInterpretation gene = 2;
-        VariantInterpretation variant = 3;
+        Gene gene = 2;
+        VariantInterpretation variant_interpretation = 3;
     }
-}
-
-message GeneInterpretation {
-    enum GeneFinding {
-        CANDIDATE = 0;
-        CONTRIBUTORY = 1;
-    }
-    GeneFinding geneFinding = 1;
-    Gene gene = 2;
 }
 
 message VariantInterpretation {

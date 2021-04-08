@@ -21,12 +21,14 @@ public class InterpretationTest {
                 )
                 .addGenomicInterpretations(
                         GenomicInterpretation.newBuilder()
-                                .setStatus(GenomicInterpretation.Status.CONTRIBUTORY)
-                                .setGene(GeneInterpretation.newBuilder()
-                                        .setGeneFinding(GeneInterpretation.GeneFinding.CONTRIBUTORY)
-                                        .setGene(Gene.newBuilder().setId("HGNC:2867").setSymbol("DHODH")))
-                                .build()
-                )
+                                .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
+                                .setGene(Gene.newBuilder().setId("HGNC:2867").setSymbol("DHODH")))
+                .addGenomicInterpretations(
+                        GenomicInterpretation.newBuilder()
+                                .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
+                                .setVariantInterpretation(VariantInterpretation.newBuilder()
+                                .setVariant(Variant.newBuilder().setHgvsAllele(HgvsAllele.newBuilder().setHgvs("")))
+                                .setVariantFinding(VariantInterpretation.VariantFinding.PATHOGENIC)))
                 .build();
 
 
@@ -70,7 +72,7 @@ public class InterpretationTest {
 
         Interpretation interpretation = Interpretation.newBuilder()
                 .setId("SOLVERD:0000012456")
-                .setResolutionStatus(Interpretation.ResolutionStatus.SOLVED)
+                .setProgressStatus(Interpretation.ProgressStatus.SOLVED)
                 .setDiagnosis(diagnosis)
                 .build();
 

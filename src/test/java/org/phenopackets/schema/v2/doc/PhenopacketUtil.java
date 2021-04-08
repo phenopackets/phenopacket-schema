@@ -2,10 +2,6 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
-
-import org.phenopackets.schema.v2.GeneInterpretation;
-import org.phenopackets.schema.v2.GenomicInterpretation;
-import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
 import java.text.ParseException;
@@ -282,10 +278,11 @@ public class PhenopacketUtil {
                 .setVariant(variant).build();
     }
 
-    public static GeneInterpretation candidateGeneInterpretation(Gene gene) {
-        return GeneInterpretation.newBuilder()
+    public static GenomicInterpretation candidateGeneInterpretation(String id, Gene gene) {
+        return GenomicInterpretation.newBuilder()
+                .setSubjectOrBiosampleId(id)
                 .setGene(gene)
-                .setGeneFinding(GeneInterpretation.GeneFinding.CANDIDATE)
+                .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CANDIDATE)
                 .build();
     }
 
@@ -299,8 +296,8 @@ public class PhenopacketUtil {
         VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(v);
         return GenomicInterpretation.newBuilder()
                 .setSubjectOrBiosampleId(id)
-                .setVariant(variantInterpretation)
-                .setStatus(GenomicInterpretation.Status.CONTRIBUTORY)
+                .setVariantInterpretation(variantInterpretation)
+                .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
                 .build();
 
     }

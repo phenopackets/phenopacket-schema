@@ -5,10 +5,6 @@ import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import org.phenopackets.schema.v2.GeneInterpretation;
-import org.phenopackets.schema.v2.GenomicInterpretation;
-import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
@@ -25,13 +21,14 @@ import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
  * we calculate a Hash value and assert equality. If there is any upstream change, the assertion will fail,
  * which will be a warning to update the documentation.
  */
-public class YamlGeneration extends TestBase{
+public class YamlGeneration extends TestBase {
 
     /**
      * Print out the YAML string we will use for documentation and calculate and return the sha2356 hash
      * Comment out the print statement if documentation is finalized.
+     *
      * @param message an element of the Phenopacket
-     * @param label the label we will put on this element for generating YAML
+     * @param label   the label we will put on this element for generating YAML
      * @return a sha256 hash
      */
     private String printAndGetHash(Message message, String label) {
@@ -66,7 +63,7 @@ public class YamlGeneration extends TestBase{
 
     @Test
     void vitalStatusDeceasedYaml() throws ParseException {
-        OntologyClass causeOfDeath = ontologyClass("NCIT:C36263","Metastatic Malignant Neoplasm");
+        OntologyClass causeOfDeath = ontologyClass("NCIT:C36263", "Metastatic Malignant Neoplasm");
         TimeElement timeOfDeath = timeElementFromDateString("2015-10-01T10:54:20.021Z");
         VitalStatus deceased = vitalStatusDeceased(causeOfDeath, timeOfDeath);
         String hash = printAndGetHash(deceased, "vitalStatus");
@@ -83,7 +80,7 @@ public class YamlGeneration extends TestBase{
 
     @Test
     void gestationalAgeYaml() {
-        GestationalAge gestationalAge = gestationalAge(33,2);
+        GestationalAge gestationalAge = gestationalAge(33, 2);
         String hash = printAndGetHash(gestationalAge, "gestationalAge");
         assertEquals("2163baf411b84c60284e5bfe86a65a035fbacd6e3f9d23478e6ad900786fc49b", hash);
     }
@@ -152,7 +149,7 @@ public class YamlGeneration extends TestBase{
         Age age = age(validAge);
         String hash = printAndGetHash(age, "age");
         assertEquals("3515fa76f5944a3b7b630a10ca76e110f4059ae6f90d82b8d78d18fcea96527b", hash);
-        Assertions.assertThrows(RuntimeException.class, () ->{
+        Assertions.assertThrows(RuntimeException.class, () -> {
             String invalidAge = "25Y3M2D";
             Age age2 = age(invalidAge);
         });
@@ -169,7 +166,7 @@ public class YamlGeneration extends TestBase{
 
     @Test
     void testReferenceRange() {
-        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316","cells per microliter");
+        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316", "cells per microliter");
         double lower = 150_000;
         double upper = 450_000;
         ReferenceRange referenceRange = referenceRange(cellsPerMicroliter, lower, upper);
@@ -179,8 +176,8 @@ public class YamlGeneration extends TestBase{
 
     @Test
     void testPlateletMeasurement() throws ParseException {
-        OntologyClass loinc = ontologyClass("LOINC:26515-7","Platelets [#/volume] in Blood");
-        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316","cells per microliter");
+        OntologyClass loinc = ontologyClass("LOINC:26515-7", "Platelets [#/volume] in Blood");
+        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316", "cells per microliter");
         double lower = 150_000;
         double upper = 450_000;
         ReferenceRange referenceRange = referenceRange(cellsPerMicroliter, lower, upper);
@@ -193,7 +190,7 @@ public class YamlGeneration extends TestBase{
 
     @Test
     void testNitrituriaMeasurement() throws ParseException {
-        OntologyClass loinc = ontologyClass("LOINC:5802-4","Nitrite [Presence] in Urine by Test strip");
+        OntologyClass loinc = ontologyClass("LOINC:5802-4", "Nitrite [Presence] in Urine by Test strip");
         Value present = presentValue();
         TimeElement time = timeElementFromDateString("2021-01-01T10:54:20.021Z");
         Measurement measurement = measurement(loinc, present, time);
@@ -204,7 +201,7 @@ public class YamlGeneration extends TestBase{
     @Test
     void testBloodPressure() throws ParseException {
         TimeElement time = timeElementFromDateString("2021-01-01T10:54:20.021Z");
-        Measurement bloodPressure = bloodPressure(125,75, time);
+        Measurement bloodPressure = bloodPressure(125, 75, time);
         String hash = printAndGetHash(bloodPressure, "measurement");
         assertEquals("2e6feccf9cb68bf69d68687c7ceb7e88f6760895b84522e08b8a7d5fb6144d24", hash);
     }
@@ -226,10 +223,10 @@ public class YamlGeneration extends TestBase{
     void htsFileTest() {
         String uri = "file://data/genomes/germline_wgs.vcf.gz";
         String description = "Matched normal germline sample";
-                //"htsFormat": "VCF",
+        //"htsFormat": "VCF",
         String genomeAssembly = "GRCh38";
-        Map<String,String> individualToSampleIdentifiers = Map.of("patient23456", "NA12345");
-        HtsFile vcfFile = vcfFile(uri,description,genomeAssembly,individualToSampleIdentifiers);
+        Map<String, String> individualToSampleIdentifiers = Map.of("patient23456", "NA12345");
+        HtsFile vcfFile = vcfFile(uri, description, genomeAssembly, individualToSampleIdentifiers);
         String hash = printAndGetHash(vcfFile, "htsFile");
         assertEquals("ec4ab02f2dc2b0fc46ec62ec5b401ebf97d34cf0178e021d70c71e14cd84e2cd", hash);
     }
@@ -253,7 +250,7 @@ public class YamlGeneration extends TestBase{
         assertEquals("261af4635f6bda84278b76f19382bfca9d23556dbcb62d1feb24db76d12c578b", hash);
     }
 
-    private DoseInterval doseIntervalExample()  throws ParseException {
+    private DoseInterval doseIntervalExample() throws ParseException {
         String start = "2020-03-15T13:00:00Z";
         String end = "2020-03-25T09:00:00Z";
         TimeInterval timeInterval = timeInterval(start, end);
@@ -271,12 +268,12 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void treatmentTest() throws ParseException  {
+    void treatmentTest() throws ParseException {
         OntologyClass agent = ontologyClass("DrugCentral:1610", "losartan");  // for instance, DrugCentral, RxNorm Drugbank concept
-        OntologyClass route_of_administration = ontologyClass("NCIT:C38288","Oral Route of Administration"); // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
+        OntologyClass route_of_administration = ontologyClass("NCIT:C38288", "Oral Route of Administration"); // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
         List<DoseInterval> doseIntervalList = List.of(doseIntervalExample());
         DrugType drug_type = DrugType.PRESCRIPTION;
-        Treatment treatment = treatment(agent, route_of_administration, doseIntervalList,drug_type);
+        Treatment treatment = treatment(agent, route_of_administration, doseIntervalList, drug_type);
         String hash = printAndGetHash(treatment, "treatment");
         assertEquals("99126a60a4a9a80024e93d99cd4515a245443d774f431af5dd500928ab7e8656", hash);
     }
@@ -287,7 +284,7 @@ public class YamlGeneration extends TestBase{
         String id = "sample1";
         String individualId = "patient1";
         String description = "Additional information can go here";
-        OntologyClass sampledTissue = ontologyClass("UBERON_0001256","wall of urinary bladder");
+        OntologyClass sampledTissue = ontologyClass("UBERON_0001256", "wall of urinary bladder");
         Age age = age("P52Y2M");
         TimeElement timeElement = TimeElement.newBuilder().setAge(age).build();
         OntologyClass histologicalDiagnosis = ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma");
@@ -296,8 +293,8 @@ public class YamlGeneration extends TestBase{
         String uri = "file:///data/genomes/urothelial_ca_wgs.vcf.gz";
         String htsDescription = "Urothelial carcinoma sample";
         String genomeAssembly = "GRCh38";
-        Map<String,String> individualToSampleIdentifiers = Map.of("patient1", "NA12345");
-        HtsFile vcfFile = vcfFile(uri,htsDescription,genomeAssembly,individualToSampleIdentifiers);
+        Map<String, String> individualToSampleIdentifiers = Map.of("patient1", "NA12345");
+        HtsFile vcfFile = vcfFile(uri, htsDescription, genomeAssembly, individualToSampleIdentifiers);
         OntologyClass stageII = ontologyClass("NCIT:C28054", "Stage II");
         OntologyClass stageT2b = ontologyClass("NCIT:C48726", "T2b Stage Finding");
         OntologyClass stageN0 = ontologyClass("NCIT:C48705", "N0 Stage Finding");
@@ -336,25 +333,22 @@ public class YamlGeneration extends TestBase{
         assertEquals("2939d8a67b2a3ebafe3d9b2a2fad0c09f00053317a9cb19daa1ebad88ed5e8e7", hash);
     }
 
-
     @Test
-    void testGeneInterpretation() {
+    void testGenomicInterpretationGene() {
         String id = "HGNC:347";
         String symbol = "ETF1";
         Gene gene = gene(id, symbol);
-        GeneInterpretation geneInterpretation = candidateGeneInterpretation(gene);
-        String hash = printAndGetHash(geneInterpretation, "geneInterpretation");
-        assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
+        GenomicInterpretation geneInterpretation = candidateGeneInterpretation("subject 1", gene);
+        String hash = printAndGetHash(geneInterpretation, "genomicInterpretation");
+        assertEquals("2ec3fb6072a74b05444915302f8cac2e5b9d5ca7dff42708206717ce63b7d721", hash);
     }
 
     @Test
-    void testGenomicInterpretation() {
-       GenomicInterpretation interpretation = pathogenicGenomicInterpretationOfVariant("subject 1","NM_001848.2:c.877G>A");
+    void testGenomicInterpretationVariant() {
+        GenomicInterpretation interpretation = pathogenicGenomicInterpretationOfVariant("subject 1", "NM_001848.2:c.877G>A");
         String hash = printAndGetHash(interpretation, "genomicInterpretation");
-        assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
+        assertEquals("6447729b640818ff7dd942d4cf637912b7de96400d211c122b351f28a21914e4", hash);
     }
-
-
 
 }
 
