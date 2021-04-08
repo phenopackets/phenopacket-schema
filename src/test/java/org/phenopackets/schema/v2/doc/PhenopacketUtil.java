@@ -2,6 +2,10 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
+
+import org.phenopackets.schema.v2.GeneInterpretation;
+import org.phenopackets.schema.v2.GenomicInterpretation;
+import org.phenopackets.schema.v2.VariantInterpretation;
 import org.phenopackets.schema.v2.core.*;
 
 import java.text.ParseException;
@@ -276,6 +280,29 @@ public class PhenopacketUtil {
         return VariantInterpretation.newBuilder()
                 .setVariantFindingValue(VariantInterpretation.VariantFinding.PATHOGENIC_VALUE)
                 .setVariant(variant).build();
+    }
+
+    public static GeneInterpretation candidateGeneInterpretation(Gene gene) {
+        return GeneInterpretation.newBuilder()
+                .setGene(gene)
+                .setGeneFinding(GeneInterpretation.GeneFinding.CANDIDATE)
+                .build();
+    }
+
+    public static GenomicInterpretation pathogenicGenomicInterpretationOfVariant(String id, String hgvs) {
+       HgvsAllele hgvsAllele = HgvsAllele.newBuilder().setHgvs(hgvs).build();
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        Variant v  = Variant.newBuilder()
+                .setHgvsAllele(hgvsAllele)
+                .setZygosity(heterozygous)
+                .build();
+        VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(v);
+        return GenomicInterpretation.newBuilder()
+                .setSubjectOrBiosampleId(id)
+                .setVariant(variantInterpretation)
+                .setStatus(GenomicInterpretation.Status.CONTRIBUTORY)
+                .build();
+
     }
 
 }

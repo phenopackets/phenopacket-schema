@@ -59,7 +59,7 @@ Data model
      - :ref:`rstontologyclass`
      - optional
      - Species of the sampled individual
-   * - individual_age_at_collection
+   * - time_of_collection
      - :ref:`rsttimeelement`
      - recommended
      - Age of the proband at the time the sample was taken
@@ -105,7 +105,7 @@ Example
 
 The staging system most often used for
 bladder cancer is the American Joint Committee on Cancer (AJCC) TNM system. The overall
-stage is assigned based on the T, N, and M categories (Cancer stage grouping). FOr instance, stage II (pathological staging)
+stage is assigned based on the T, N, and M categories (Cancer stage grouping). For instance, stage II (pathological staging)
 is defined as T2a or T2b, N0, and M0, meaning the cancer has spread
 into the  wall of the bladder.
 
@@ -141,7 +141,7 @@ into the  wall of the bladder.
     materialSample:
         id: "EFO:0009655"
         label: "abnormal sample"
-    individualAgeAtCollection:
+    timeOfCollection:
         age:
             iso8601duration: "P52Y2M"
     pathologicalStage:
