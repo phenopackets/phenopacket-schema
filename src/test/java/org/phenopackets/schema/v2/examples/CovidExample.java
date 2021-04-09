@@ -56,7 +56,7 @@ class CovidExample {
         // after attending a party
         Individual patient = Individual.newBuilder().setId("P123542")
                 .setSex(Sex.MALE)
-                .setAgeAtEncounter(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P70Y")))
+                .setTimeAtEncounter(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P70Y")))
                 .setVitalStatus(VitalStatus.newBuilder()
                         .setStatus(VitalStatus.Status.DECEASED)
                         .setTimeOfDeath(parseLocalDate("2020-03-28"))
