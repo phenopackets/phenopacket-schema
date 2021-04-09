@@ -238,21 +238,21 @@ this example, a BRAF variant is interpreted as being actionable in this sense.
 
 .. code-block:: yaml
 
-interpretation:
-  id: "Arbitrary interpretation id"
-  progressStatus: "COMPLETED"
-  diagnosis:
-    disease:
-      id: "NCIT:C3224"
-      label: "Melanoma"
-    genomicInterpretations:
-    - interpretationStatus: "ACTIONABLE"
-      variantInterpretation:
-        variantFinding: "PATHOGENIC"
-        variant:
-          hgvsAllele:
-            hgvs: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"
-      subjectOrBiosampleId: "biosample id"
+ interpretation:
+    id: "Arbitrary interpretation id"
+    progressStatus: "COMPLETED"
+    diagnosis:
+        disease:
+            id: "NCIT:C3224"
+            label: "Melanoma"
+        genomicInterpretations:
+            - interpretationStatus: "ACTIONABLE"
+            variantInterpretation:
+                variantFinding: "PATHOGENIC"
+                variant:
+                    hgvsAllele:
+                        hgvs: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"
+            subjectOrBiosampleId: "biosample id"
 
 The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstbiosample`
 that is contained in the enclosing phenopacket, representing a biopsy from
