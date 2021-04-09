@@ -1,8 +1,8 @@
 .. _rstexternalreference:
 
-=================
+#################
 ExternalReference
-=================
+#################
 
 
 This element encodes information about an external reference. One typical use case for this elements is
@@ -10,7 +10,8 @@ to provide a reference to a published article by showing its PubMed identifier a
 an :ref:`rstevidence` element.
 
 
-**Data model**
+Data model
+##########
 
 
  .. list-table:: Definition of the ``ExternalReference`` element
@@ -31,7 +32,8 @@ an :ref:`rstevidence` element.
       - An application specific description
 
 
-**Example**
+Example
+#######
 
 .. code-block:: yaml
 
@@ -40,6 +42,8 @@ an :ref:`rstevidence` element.
         description: "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation"
 
 
+Explanations
+############
 
 id
 ~~

@@ -1,8 +1,8 @@
 .. _rstresource:
 
-========
+########
 Resource
-========
+########
 
 
 The ``Resource`` element is a description of an external resource used for referencing an object. For example the resource
@@ -13,7 +13,8 @@ known as :ref:`rstidentifierresolution`.
 
 The :ref:`rstmetadata` element uses one resource element to describe each resource that is referenced in the Phenopacket.
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
    :header: Field, Type, Status, Description
@@ -25,7 +26,8 @@ The :ref:`rstmetadata` element uses one resource element to describe each resour
    version, string, required, 2018-03-08
    iri_prefix, string, required, Internationalized Resource Identifier such as ``http://purl.obolibrary.org/obo/HP_``
 
-**Example**
+Example
+#######
 
 For an ontology, the url SHALL point to the obo or owl file, e.g. This information can also be found at the EBI
 `Ontology Lookup Service <https://www.ebi.ac.uk/ols/ontologies>`_
@@ -71,6 +73,9 @@ when present. For example the UniProt Knowledgebase (https://registry.identifier
 
 Using this :ref:`rstresource` definition it is possible for software to resolve the identifier `uniprot:Q8H0D3` to
 https://purl.uniprot.org/uniprot/Q8H0D3
+
+Explanations
+############
 
 id
 ~~

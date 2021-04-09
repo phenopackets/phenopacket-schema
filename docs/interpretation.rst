@@ -1,11 +1,14 @@
 .. _rstinterpretation:
 
+##############
 Interpretation
-==============
+##############
+
 This message intends to represent the interpretation of a genomic analysis, such as the report from
 a diagnostic laboratory.
 
-**Data model**
+Data model
+##########
 
  .. list-table::
     :widths: 25 50 50 50
@@ -19,133 +22,63 @@ a diagnostic laboratory.
       - string
       - required
       - Arbitrary identifier
-    * - resolution_status
-      - :ref:`rstresolutionstatus`
+    * - progress_status
+      - :ref:`rstprogressstatus`
       - required
-      - The current status of work on the case
-    * - phenopacket_or_family
-      - :ref:`rstphenopacket` or :ref:`rstfamily` element
-      - required
-      - The subject of this interpretation
+      - The current resolution status
     * - diagnosis
       - :ref:`rstdiagnosis`
       - repeated
       - One or more diagnoses, if made
-    * - meta_data
-      - See :ref:`rstmetadata`
-      - required
-      - Metadata about this interpretation
+    * - summary
+      - string
+      - optional
+      - Additional data about this interpretation
 
-**Example**
 
-.. code-block:: json
 
-  {
-  "id": "SOLVERD:0000123456",
-  "resolutionStatus": "SOLVED",
-  "phenopacket": {
-    "id": "SOLVERD:0000234567",
-    "subject": {
-      "id": "SOLVERD:0000345678",
-      "dateOfBirth": "1998-01-01T00:00:00Z",
-      "sex": "MALE"
-    },
-    "phenotypicFeatures": [{
-      "type": {
-        "id": "HP:0001159",
-        "label": "Syndactyly"
-      },
-      "classOfOnset": {
-        "id": "HP:0003577",
-        "label": "Congenital onset"
-      }
-    }, {
-      "type": {
-        "id": "HP:0002090",
-        "label": "Pneumonia"
-      },
-      "classOfOnset": {
-        "id": "HP:0011463",
-        "label": "Childhood onset"
-      }
-    }, {
-      "type": {
-        "id": "HP:0000028",
-        "label": "Cryptorchidism"
-      },
-      "classOfOnset": {
-        "id": "HP:0003577",
-        "label": "Congenital onset"
-      }
-    }, {
-      "type": {
-        "id": "HP:0011109",
-        "label": "Chronic sinusitis"
-      },
-      "severity": {
-        "id": "HP:0012828",
-        "label": "Severe"
-      },
-      "classOfOnset": {
-        "id": "HP:0003581",
-        "label": "Adult onset"
-      }
-    }],
-    "variants": [{
-      "hgvsAllele": {
-        "hgvs": "NM_001361.4:c.403C\u003eT"
-      },
-      "zygosity": {
-        "id": "GENO:0000135",
-        "label": "heterozygous"
-      }
-    }, {
-      "hgvsAllele": {
-        "hgvs": "NM_001361.4:c.454G\u003eA"
-      },
-      "zygosity": {
-        "id": "GENO:0000135",
-        "label": "heterozygous"
-      }
-    }, {
-      "hgvsAllele": {
-        "hgvs": "NM_001369.2:c.12599dupA"
-      },
-      "zygosity": {
-        "id": "GENO:0000136",
-        "label": "homozygous"
-      }
-    }]
-  },
-  "diagnosis": [{
-    "disease": {
-      "term": {
-        "id": "OMIM:263750",
-        "label": "Miller syndrome"
-      }
-    },
-    "genomicInterpretations": [{
-      "status": "CAUSATIVE",
-      "gene": {
-        "id": "HGNC:2867",
-        "symbol": "DHODH"
-      }
-    }]
-  }]
- }
+Example
+#######
+
+In this example, a case with id ``CONSORTIUM:0000123456`` is reported to be
+solved. The diagnosis is Miller syndrome, and the supporting interpretation
+states the involved gene. For privacy reasons, the variant was not reported, but the
+intended meaning is that a relevant variant in the names gene was found.
+
+
+.. code-block:: yaml
+
+  interpretation:
+  id: "CONSORTIUM:0000123456"
+  progressStatus: "SOLVED"
+  diagnosis:
+    disease:
+      id: "OMIM:263750"
+      label: "Miller syndrome"
+    genomicInterpretations:
+    - interpretationStatus: "CONTRIBUTORY"
+      gene:
+        id: "HGNC:2867"
+        symbol: "DHODH"
+
+
+
+Explanations
+############
 
 id
 ~~
 The id has the same interpretation as the **id** element in the :ref:`rstindividual` element.
 
-.. _rstresolutionstatus:
 
-Resolution_status
-~~~~~~~~~~~~~~~~~
 
-The interpretation has a **ResolutionStatus** that refers to the status of the attempted diagnosis.
+.. _rstprogressstatus:
 
-**Data model**
+ProgressStatus
+~~~~~~~~~~~~~~
+
+The interpretation has a **ProgressStatus** that refers to the status of the attempted diagnosis.
+
 
 Implementation note - this is an enumerated type, therefore the values represented below are the only legal values. The
 value of this type SHALL NOT be null, instead it SHALL use the 0 (zero) ordinal element as the default value, should none
@@ -154,33 +87,12 @@ be specified.
 .. csv-table::
    :header: Name, Ordinal, Description
 
-    UNKNOWN, 0, No information is available about the diagnosis
-    SOLVED, 1, The interpretation is considered to be a definitive diagnosis
-    UNSOLVED, 2, No definitive diagnosis was found
-    IN_PROGRESS, 3, No diagnosis has been found to date but additional differential diagnostic work is in progress.
+    UNKNOWN_PROGRESS, 0, No information is available about the diagnosis
+    IN_PROGRESS, 1, No diagnosis has been found to date but additional differential diagnostic work is in progress.
+    COMPLETED, 2, The work on the interpretation is complete.
+    SOLVED, 3, The interpretation is complete and also  considered to be a definitive diagnosis
+    UNSOLVED, 4, The interpretation is complete but no definitive diagnosis was found
 
-**Example**
-
-.. code-block:: json
-
- {
-    "resolutionStatus": "SOLVED"
- }
-
-
-phenopacket_or_family
-~~~~~~~~~~~~~~~~~~~~~
-
-This element refers to the :ref:`rstphenopacket` or :ref:`rstfamily` element for whom the interpretation is being made.
-
-diagnosis
-~~~~~~~~~
-This refers to the diagnosis (or if applicable to the diagnoses) made. See :ref:`rstdiagnosis`, below.
-
-meta_data
-~~~~~~~~~
-This element contains structured definitions of the resources and ontologies used within the phenopacket.
-See :ref:`rstmetadata` for further information.
 
 
 .. _rstdiagnosis:
@@ -211,102 +123,137 @@ The element is optional because if the **resolution_status** is **UNSOLVED** the
       - repeated
       - The genomic elements assessed as being responsible for the disease or empty
 
-**Example**
+Examples of the intended usage of the Interpretation element
+############################################################
 
-.. code-block:: json
+Candidate genes
+~~~~~~~~~~~~~~~
 
- {
-    "disease": {
-      "term": {
-        "id": "OMIM:263750",
-        "label": "Miller syndrome"
-      }
-    },
-    "genomicInterpretations": [{
-      "status": "CAUSATIVE",
-      "gene": {
-        "id": "HGNC:2867",
-        "symbol": "DHODH"
-      }
-    }]
- }
+Research consortia may exchange information about candidate genes in which an undisclosed
+variant was found that was assessed to be possibly related to a disease or phenotype but
+for which insufficient evidence is available to be certain. The intention is often to find
+other researchers with similar cases in order to subsequently share detailed information in
+a collaborative project.
 
-The *genomic_interpretations* should be used if the genetic findings were used to help make the diagnosis, but can be
-omitted if genetic/genomic analysis was not contributory or were not performed.
-
-.. _rstgenomicinterpretation:
-
-GenomicInterpretation
-~~~~~~~~~~~~~~~~~~~~~
-A statement about the contribution of a genomic element towards the observed phenotype. Note that this does not intend
-to encode any knowledge or results of specific computations.
-
-**Data model**
- .. list-table::
-    :widths: 25 50 50 50
-    :header-rows: 1
-
-    * - Field
-      - Type
-      - Status
-      - Example
-    * - status
-      - :ref:`rstgenomicinterpretationstatus`
-      - required
-      - How the `call` of this :ref:`rstgenomicinterpretation` was interpreted
-    * - call
-      - :ref:`rstgene` or :ref:`rstvariant`
-      - required
-      - The gene or variant contributing to the diagnosis
-
-**Example**
-
-.. code-block:: json
-
-    {
-      "status": "CAUSATIVE",
-      "gene": {
-        "id": "HGNC:2867",
-        "symbol": "DHODH"
-      }
-    }
+In this case, the gene should be marked as ``CANDIDATE``. Here is an example of an interpretation
+with the hypothetical gene YFG42.
 
 
-A gene can be listed as **CAUSATIVE**. Alternatively, or additionally, a variant may be listed as
-**CAUSATIVE**. Note that the intended semantics is different from the
-`ACMG interpretation of sequence variants <https://www.ncbi.nlm.nih.gov/pubmed/27993330>`_, which
-classifies variants with respect to their pathogenicity. The Interpretation element classifies
-variants as being responsible or not for the phenotypic and disease observations in the proband.
-A variant can be pathogenic according to the ACMG guidelines but not be causative for the particular
-disease being investigated (for instance, a heterozygous variant associated with an autosomal recessive disease
-may be found in a proband with causative variants in another gene).
+
+.. code-block:: yaml
+
+  interpretation:
+  id: "CONSORTIUM:0000123456"
+  progressStatus: "SOLVED"
+  diagnosis:
+    disease:
+      id: "OMIM:263750"
+      label: "Miller syndrome"
+    genomicInterpretations:
+    - interpretationStatus: "CONTRIBUTORY"
+      gene:
+        id: "HGNC:2867"
+        symbol: "DHODH"
 
 
-.. _rstgenomicinterpretationstatus:
+Diagnostic finding in an autosomal dominant disease
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GenomicInterpretation Status
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The ``Interpretation`` element might be used in this way to report a laboratory finding in a diagnostic
+setting or in a published case report. The following example shows how the variant
+`NM_000138.4(FBN1):c.6751T>A (p.Cys2251Ser) <https://www.ncbi.nlm.nih.gov/clinvar/variation/519780/>`_
+would be reported.
 
-An enumeration describing the status of a :ref:`rstgenomicinterpretation`
+.. code-block:: yaml
 
-**Data model**
+    interpretation:
+        id: "interpretation id"
+        progressStatus: "SOLVED"
+        diagnosis:
+            disease:
+                id: "OMIM:154700"
+                label: "Marfan syndrome"
+            genomicInterpretations:
+                - interpretationStatus: "CONTRIBUTORY"
+                variantInterpretation:
+                    variantFinding: "PATHOGENIC"
+                        variant:
+                            hgvsAllele:
+                                hgvs: "NM_000138.4(FBN1):c.6751T>A"
+                    zygosity:
+                        id: "GENO:0000135"
+                        label: "heterozygous"
+            subjectOrBiosampleId: "subject 1"
 
-Implementation note - this is an enumerated type, therefore the values represented below are the only legal values. The
-value of this type SHALL NOT be null, instead it SHALL use the 0 (zero) ordinal element as the default value, should none
-be specified.
+The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstindividual` of the enclosing phenopacket
+to indicate that the genomic interpretation refers to a germline variant.
 
-.. csv-table::
-   :header: Name, Ordinal, Description
+Diagnostic finding in an autosomal recessive disease
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    UNKNOWN, 0,  It is not known how this genomic element contributes to the diagnosis
-    REJECTED, 1, The genomic element has been investigated and ruled-out
-    CANDIDATE, 2, The genomic element is under investigation
-    CAUSATIVE, 3, The genomic element has been judged to be contributing to the diagnosis
+For homozygous variants, the ``zygosity`` would be set to homozygous. The following example
+shows a finding of compound heterozygous variants.
 
-**Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-      "status": "CAUSATIVE"
-    }
+    interpretation:
+        id: "Arbitrary interpretation id"
+        progressStatus: "SOLVED"
+        diagnosis:
+            disease:
+                id: "OMIM: 219700"
+                label: "Cystic fibrosis"
+            genomicInterpretations:
+                - interpretationStatus: "CONTRIBUTORY"
+                variantInterpretation:
+                    variantFinding: "PATHOGENIC"
+                        variant:
+                            hgvsAllele:
+                                hgvs: "NM_000492.3(CFTR):c.1477C>T (p.Gln493Ter)"
+                        zygosity:
+                            id: "GENO:0000135"
+                            label: "heterozygous"
+                subjectOrBiosampleId: "subject 1"
+                - interpretationStatus: "CONTRIBUTORY"
+                variantInterpretation:
+                variantFinding: "PATHOGENIC"
+                variant:
+                    hgvsAllele:
+                        hgvs: "NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)"
+                    zygosity:
+                        id: "GENO:0000135"
+                        label: "heterozygous"
+                subjectOrBiosampleId: "subject 1"
+
+The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstindividual` of the enclosing phenopacket
+to indicate that the genomic interpretation refers to a germline variant.
+
+Diagnostic finding in a cancer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cancer cases are not generally solved by genomic analysis. Instead, the intention is often to
+identify actionable variants that represent potential indications for targeted therapy. In
+this example, a BRAF variant is interpreted as being actionable in this sense.
+
+.. code-block:: yaml
+
+interpretation:
+  id: "Arbitrary interpretation id"
+  progressStatus: "COMPLETED"
+  diagnosis:
+    disease:
+      id: "NCIT:C3224"
+      label: "Melanoma"
+    genomicInterpretations:
+    - interpretationStatus: "ACTIONABLE"
+      variantInterpretation:
+        variantFinding: "PATHOGENIC"
+        variant:
+          hgvsAllele:
+            hgvs: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"
+      subjectOrBiosampleId: "biosample id"
+
+The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstbiosample`
+that is contained in the enclosing phenopacket, representing a biopsy from
+a melanoma sample taken from the subject of the phenopacket.

@@ -278,14 +278,6 @@ public class PhenopacketUtil {
                 .setVariant(variant).build();
     }
 
-    public static GenomicInterpretation candidateGeneInterpretation(String id, Gene gene) {
-        return GenomicInterpretation.newBuilder()
-                .setSubjectOrBiosampleId(id)
-                .setGene(gene)
-                .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CANDIDATE)
-                .build();
-    }
-
     public static GenomicInterpretation pathogenicGenomicInterpretationOfVariant(String id, String hgvs) {
        HgvsAllele hgvsAllele = HgvsAllele.newBuilder().setHgvs(hgvs).build();
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
@@ -299,7 +291,24 @@ public class PhenopacketUtil {
                 .setVariantInterpretation(variantInterpretation)
                 .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
                 .build();
+    }
 
+
+    public static Disease diseaseWithOnset(OntologyClass diseaseTerm, String onset) {
+        TimeElement onsetTimeElement = TimeElement.newBuilder()
+                .setAge(Age.newBuilder().setIso8601Duration(onset).build()).build();
+        return Disease.newBuilder()
+                .setOnset(onsetTimeElement)
+                .setTerm(diseaseTerm).build();
+    }
+
+    public static MetaData metadata(String created, String createdBy,List<Resource> resourceList,ExternalReference ref ) throws ParseException {
+        Timestamp t = Timestamps.parse(created);
+        return MetaData.newBuilder()
+                .setCreated(t)
+                .setCreatedBy(createdBy)
+                .addAllResources(resourceList)
+                .addExternalReferences(ref).build();
     }
 
 }
