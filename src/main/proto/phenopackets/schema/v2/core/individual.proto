@@ -15,7 +15,7 @@ message Individual {
   reserved 4, 5, 10;
 
   // An identifier for the individual. This must be unique within the record.
-  // ARGO donor::submitter_donor_id
+  // ARGO mapping donor::submitter_donor_id
   string id = 1;
 
   // An optional list of alternative identifiers for this individual. This field is provided
@@ -36,11 +36,11 @@ message Individual {
 
   // Vital status of the individual. If not present it is assumed that the individual is alive. If present it will
   // default to 'false' i.e. the individual was alive when the data was collected.
-  // ARGO donor::vital_status
+  // ARGO mapping donor::vital_status
   VitalStatus vital_status = 9;
 
   // The phenotypic sex of the individual
-  // ARGO sample_registration::gender (this is complicated as ARGO only have male/female/other which maps to the phenopacket Sex field)
+  // ARGO mapping sample_registration::gender (this is complicated as ARGO only have male/female/other which maps to the phenopacket Sex field)
   Sex sex = 6;
 
   // The karyotypic sex of the individual
@@ -66,9 +66,9 @@ message VitalStatus {
 
   TimeElement time_of_death = 2;
 
-  // ARGO donor::cause_of_death
+  // ARGO mapping donor::cause_of_death
   OntologyClass cause_of_death = 3;
 
-  // ARGO donor::survival_time
+  // ARGO mapping donor::survival_time
   uint32 survival_time_in_days = 4;
 }
