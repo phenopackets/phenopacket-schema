@@ -98,6 +98,12 @@ message Biosample {
   // EFO:0009654 (reference sample) or EFO:0009655 (abnormal sample)
   OntologyClass material_sample = 16;
 
-  // TODO issue #145 - could require biosample_storage and biosample_processing, but what ontology terms?
-  // preservation method
+  // Field to represent how the sample was processed.
+  // ARGO mapping specimen::specimen_processing
+  OntologyClass sample_processing = 23;
+
+  // Field to represent how the sample was stored
+  // ARGO mapping specimen::specimen_storage
+  OntologyClass sample_storage = 24;
+
 }
