@@ -33,12 +33,12 @@ message Phenopacket {
     repeated core.PhenotypicFeature phenotypic_features = 3;
 
     // Quantifiable measurements related to the individual
-    repeated core.Measurement measurements = 12;
+    repeated core.Measurement measurements = 4;
 
     // Biosample(s) derived from the patient or a collection of biosamples in isolation
-    repeated core.Biosample biosamples = 4;
+    repeated core.Biosample biosamples = 5;
 
-    repeated core.Interpretation interpretations = 13;
+    repeated core.Interpretation interpretations = 6;
 
     // Field for disease identifiers - could be used for listing either diagnosed or suspected conditions. The
     // resources using these fields should define what this represents in their context.
@@ -46,15 +46,15 @@ message Phenopacket {
 
     // A list of environmental exposures. The resources using these fields should define what this represents in their
     // context.
-    repeated core.Exposure exposures = 11;
+    repeated core.Exposure exposures = 8;
 
-    repeated core.MedicalAction medical_actions = 10;
+    repeated core.MedicalAction medical_actions = 9;
 
     // Pointer to the relevant HTS file(s) for the patient
-    repeated core.HtsFile hts_files = 8;
+    repeated core.HtsFile hts_files = 10;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
-    core.MetaData meta_data = 9;
+    core.MetaData meta_data = 11;
 }
 
 // Phenotype, sample and pedigree data required for a genomic diagnosis.

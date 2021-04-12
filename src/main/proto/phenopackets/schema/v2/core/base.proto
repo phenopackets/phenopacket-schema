@@ -39,8 +39,6 @@ message MetaData {
     // records which are in some other relation with the record at hand. For example this might be a PubMed reference
     // to a study in which the individuals are reported.
     repeated ExternalReference external_references = 7;
-
-    // TODO: DUO tag?
 }
 
 // Description of an external resource used for referencing an object. For example the resource may be an ontology such

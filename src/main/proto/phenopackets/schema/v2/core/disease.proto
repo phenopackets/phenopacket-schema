@@ -18,7 +18,7 @@ message Disease {
   // absent.
   // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'term' field.
   // *CAUTION* It is imperative to check this field for correct interpretation of the disease!
-  bool excluded = 2; // TODO: enum {PRESENT, ABSENT}
+  bool excluded = 2;
 
   // The onset of the disease. The values of this will come from the HPO onset hierarchy
   // i.e. subclasses of HP:0003674

@@ -3,13 +3,11 @@ package org.phenopackets.schema.v2.doc;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
-import jdk.jshell.Diag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
-import java.lang.ref.Reference;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * we calculate a Hash value and assert equality. If there is any upstream change, the assertion will fail,
  * which will be a warning to update the documentation.
  */
-public class YamlGeneration extends TestBase{
+public class YamlGenerationTest extends TestBase {
 
     /**
      * Print out the YAML string we will use for documentation and calculate and return the sha2356 hash
@@ -44,7 +42,7 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void ontologyClassHpoNeutropenia() {
+    public void ontologyClassHpoNeutropenia() {
         String id = "HP:0001875";
         String label = "Neutropenia";
         OntologyClass neutropenia = PhenopacketUtil.ontologyClass(id, label);
@@ -53,7 +51,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void ontologyClassHpoSevere() {
+    public void ontologyClassHpoSevere() {
         String id = "HP:0012828";
         String label = "Severe";
         OntologyClass severe = PhenopacketUtil.ontologyClass(id, label);
@@ -63,7 +61,7 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void vitalStatusDeceasedYaml() throws ParseException {
+    public void vitalStatusDeceasedYaml() throws ParseException {
         OntologyClass causeOfDeath = PhenopacketUtil.ontologyClass("NCIT:C36263","Metastatic Malignant Neoplasm");
         TimeElement timeOfDeath = PhenopacketUtil.timeElementFromDateString("2015-10-01T10:54:20.021Z");
         VitalStatus deceased = PhenopacketUtil.vitalStatusDeceased(causeOfDeath, timeOfDeath);
@@ -72,7 +70,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void vitalStatusAliveYaml() {
+    public void vitalStatusAliveYaml() {
         VitalStatus alive = PhenopacketUtil.vitalStatusAlive();
         String hash = printAndGetHash(alive, "vitalStatus");
         assertEquals("f12616d0a7fa92173179263efef56c22b1b12128deb7057a245d738f2e18ed19", hash);
@@ -80,35 +78,35 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void gestationalAgeYaml() {
+    public void gestationalAgeYaml() {
         GestationalAge gestationalAge = PhenopacketUtil.gestationalAge(33,2);
         String hash = printAndGetHash(gestationalAge, "gestationalAge");
         assertEquals("2163baf411b84c60284e5bfe86a65a035fbacd6e3f9d23478e6ad900786fc49b", hash);
     }
 
     @Test
-    void testHpoResource() {
+    public void testHpoResource() {
         Resource hpoResource = PhenopacketUtil.hpoResource("2018-03-08");
         String hash = printAndGetHash(hpoResource, "resource");
         assertEquals("43a5457bd16282effa6d0ce656c4730c3525c7651765c6c253ce58a696c7db18", hash);
     }
 
     @Test
-    void testHgncResource() {
+    public void testHgncResource() {
         Resource hgncResource = PhenopacketUtil.hgncResource("2019-08-08");
         String hash = printAndGetHash(hgncResource, "resource");
         assertEquals("e554b02a815eb1a92884c10440ff18171e05bbbd896e28ee9346e486d32a92b0", hash);
     }
 
     @Test
-    void testUniprotResource() {
+    public void testUniprotResource() {
         Resource uniprotResource = PhenopacketUtil.uniprotResource("2019_07");
         String hash = printAndGetHash(uniprotResource, "resource");
         assertEquals("10a8a1697ee43a21da4b74da68740735522211c01cd9b56008848b3579304c76", hash);
     }
 
     @Test
-    void testExternalReference() {
+    public void testExternalReference() {
         String id = "PMID:30962759";
         String description = "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation";
         ExternalReference externalReference = PhenopacketUtil.externalReference(id, description);
@@ -117,7 +115,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testEvidence() {
+    public void testEvidence() {
         String evidenceId = "PMID:30962759";
         String description = "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation";
         Evidence evidence = PhenopacketUtil.evidenceWithEcoAuthorStatement(evidenceId, description);
@@ -126,7 +124,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testGene() {
+    public void testGene() {
         String id = "HGNC:347";
         String symbol = "ETF1";
         Gene gene = PhenopacketUtil.gene(id, symbol);
@@ -135,7 +133,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testGeneWithAltIds() {
+    public void testGeneWithAltIds() {
         String id = "HGNC:347";
         String symbol = "ETF1";
         List<String> alternateIds = List.of("ensembl:ENSRNOG00000019450", "ncbigene:307503");
@@ -145,7 +143,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testAge() {
+    public void testAge() {
         String validAge = "P25Y3M2D";
         Age age = PhenopacketUtil.age(validAge);
         String hash = printAndGetHash(age, "age");
@@ -157,7 +155,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testAgeRange() {
+    public void testAgeRange() {
         String bottom = "P45Y";
         String top = "P49Y";
         AgeRange ageRange = PhenopacketUtil.ageRange(bottom, top);
@@ -166,7 +164,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testReferenceRange() {
+    public void testReferenceRange() {
         OntologyClass cellsPerMicroliter = PhenopacketUtil.ontologyClass("UO:0000316","cells per microliter");
         double lower = 150_000;
         double upper = 450_000;
@@ -176,7 +174,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testPlateletMeasurement() throws ParseException {
+    public void testPlateletMeasurement() throws ParseException {
         OntologyClass loinc = PhenopacketUtil.ontologyClass("LOINC:26515-7","Platelets [#/volume] in Blood");
         OntologyClass cellsPerMicroliter = PhenopacketUtil.ontologyClass("UO:0000316","cells per microliter");
         double lower = 150_000;
@@ -190,7 +188,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testNitrituriaMeasurement() throws ParseException {
+    public void testNitrituriaMeasurement() throws ParseException {
         OntologyClass loinc = PhenopacketUtil.ontologyClass("LOINC:5802-4","Nitrite [Presence] in Urine by Test strip");
         Value present = PhenopacketUtil.presentValue();
         TimeElement time = PhenopacketUtil.timeElementFromDateString("2021-01-01T10:54:20.021Z");
@@ -200,7 +198,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testBloodPressure() throws ParseException {
+    public void testBloodPressure() throws ParseException {
         TimeElement time = PhenopacketUtil.timeElementFromDateString("2021-01-01T10:54:20.021Z");
         Measurement bloodPressure = PhenopacketUtil.bloodPressure(125,75, time);
         String hash = printAndGetHash(bloodPressure, "measurement");
@@ -209,7 +207,7 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void diastolicBP() {
+    public void diastolicBP() {
         OntologyClass diastolicBP = PhenopacketUtil.ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
         OntologyClass mmHg = PhenopacketUtil.ontologyClass("NCIT:C49670", "Millimeter of Mercury");
         double diastolic = 70;
@@ -221,7 +219,7 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void htsFileTest() {
+    public void htsFileTest() {
         String uri = "file://data/genomes/germline_wgs.vcf.gz";
         String description = "Matched normal germline sample";
                 //"htsFormat": "VCF",
@@ -233,7 +231,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void individualTest() throws ParseException {
+    public void individualTest() throws ParseException {
         String id = "patient:0";
         Timestamp dob = Timestamps.parse("1998-01-01T00:00:00Z");
         Sex male = Sex.MALE;
@@ -243,7 +241,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void timeIntervalTest() throws ParseException {
+    public void timeIntervalTest() throws ParseException {
         String start = "2020-03-15T13:00:00Z";
         String end = "2020-03-25T09:00:00Z";
         TimeInterval timeInterval = PhenopacketUtil.timeInterval(start, end);
@@ -262,14 +260,14 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void doseIntervalTest() throws ParseException {
+    public void doseIntervalTest() throws ParseException {
         DoseInterval doseInterval = doseIntervalExample();
         String hash = printAndGetHash(doseInterval, "doseInterval");
         assertEquals("21cfbe01d59fcae44b0012571c6f06fd62ae0d0465bb22081473f82523ac4ae1", hash);
     }
 
     @Test
-    void treatmentTest() throws ParseException  {
+    public void treatmentTest() throws ParseException  {
         OntologyClass agent = PhenopacketUtil.ontologyClass("DrugCentral:1610", "losartan");  // for instance, DrugCentral, RxNorm Drugbank concept
         OntologyClass route_of_administration = PhenopacketUtil.ontologyClass("NCIT:C38288","Oral Route of Administration"); // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
         List<DoseInterval> doseIntervalList = List.of(doseIntervalExample());
@@ -281,7 +279,7 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void urothelialCarcinomaBiosample() {
+    public void urothelialCarcinomaBiosample() {
         String id = "sample1";
         String individualId = "patient1";
         String description = "Additional information can go here";
@@ -316,18 +314,18 @@ public class YamlGeneration extends TestBase{
                 procedure,
                 vcfFile);
         String hash = printAndGetHash(biosample, "biosample");
-        assertEquals("c2cc88bd31ceb0427665cdfb5dbf05de1b847ebc0ad2f314fec60745cdcde3b8", hash);
+        assertEquals("012a36657c4b16663f0d6aca2ca80f549cd9f7b836bf826603080b9579d77295", hash);
     }
 
     @Test
-    void testVariant() {
+    public void testVariant() {
         Variant variant = PhenopacketUtil.heterozygousHgvsVariant("NM_001848.2:c.877G>A");
         String hash = printAndGetHash(variant, "variant");
         assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
     }
 
     @Test
-    void testVariantInterpretation() {
+    public void testVariantInterpretation() {
         Variant variant = PhenopacketUtil.heterozygousHgvsVariant("NM_001848.2:c.877G>A");
         VariantInterpretation variantInterpretation = PhenopacketUtil.pathogenicVariantInterpretation(variant);
         String hash = printAndGetHash(variantInterpretation, "variantInterpretation");
@@ -337,16 +335,16 @@ public class YamlGeneration extends TestBase{
 
 
     @Test
-    void testGenomicInterpretation() {
+    public void testGenomicInterpretation() {
        GenomicInterpretation interpretation = PhenopacketUtil.pathogenicGenomicInterpretationOfVariant("subject 1","NM_001848.2:c.877G>A");
         String hash = printAndGetHash(interpretation, "genomicInterpretation");
-        assertEquals("6447729b640818ff7dd942d4cf637912b7de96400d211c122b351f28a21914e4", hash);
+        assertEquals("da6dd5623ae93a14034462b599f9345d4c779dec631ddea22d33f6f22fdce9bc", hash);
     }
 
 
 
     @Test
-    void testDisease() {
+    public void testDisease() {
         OntologyClass diseaseTerm = PhenopacketUtil.ontologyClass("OMIM:164400","Spinocerebellar ataxia 1");
         Disease disease = PhenopacketUtil.diseaseWithOnset(diseaseTerm, "P38Y7M");
         String hash = printAndGetHash(disease, "disease");
@@ -354,7 +352,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testMetadata() throws ParseException {
+    public void testMetadata() throws ParseException {
         Resource hp = PhenopacketUtil.resource(   "hp",
                 "human phenotype ontology",
                 "HP",
@@ -384,7 +382,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testInterpretationOfPathogenicVar() {
+    public void testInterpretationOfPathogenicVar() {
         OntologyClass miller = PhenopacketUtil.ontologyClass("OMIM:263750", "Miller syndrome");
         Gene dhodh = PhenopacketUtil.gene("HGNC:2867", "DHODH");
         GenomicInterpretation genomicInterpretation = GenomicInterpretation.newBuilder()
@@ -405,7 +403,7 @@ public class YamlGeneration extends TestBase{
     }
 
     @Test
-    void testInterpretationFbn1() {
+    public void testInterpretationFbn1() {
         GenomicInterpretation variantInterpretation = PhenopacketUtil.pathogenicGenomicInterpretationOfVariant("subject 1","NM_000138.4(FBN1):c.6751T>A");
         OntologyClass marfan = PhenopacketUtil.ontologyClass("OMIM:154700", "Marfan syndrome");
         Diagnosis diagnosis = Diagnosis.newBuilder()
@@ -418,11 +416,11 @@ public class YamlGeneration extends TestBase{
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("85348b78728155402dee9f0ea29964270f42da0ec7989777bd6b4da53bd255d0", hash);
+        assertEquals("1c325f7bc4cc7c642c5ef0170c0d6e9820ffc090dc23782ec251bb2872b8f132", hash);
     }
 
     @Test
-    void testInterpretationCftr() {
+    public void testInterpretationCftr() {
         GenomicInterpretation v1 = PhenopacketUtil.pathogenicGenomicInterpretationOfVariant("subject 1","NM_000492.3(CFTR):c.1477C>T (p.Gln493Ter)");
         GenomicInterpretation v2 = PhenopacketUtil.pathogenicGenomicInterpretationOfVariant("subject 1","NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)");
 
@@ -438,13 +436,13 @@ public class YamlGeneration extends TestBase{
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("c60c0a791273fa5239d53b348949aeace74dae359f07c8baf85e0b2ba9672f36", hash);
+        assertEquals("d36f5f902e9b9d8cfd648d8f61d48eb1e1a5e99a852e0e9fd411097949e81e42", hash);
     }
 
 
 
     @Test
-    void testInterpretationBraf() {
+    public void testInterpretationBraf() {
         Variant brafVar = Variant.newBuilder()
                 .setHgvsAllele(HgvsAllele.newBuilder()
                         .setHgvs("NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)")).build();
@@ -467,11 +465,9 @@ public class YamlGeneration extends TestBase{
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("80b036252189c8fa3b6afd6c4038659282cb0e4207dff5db8a8d444760579fa2", hash);
+        assertEquals("abcd87e963f7cbed1034b3c8f51df1a83aebe56ca65a3841a46ec0fb93b915e7", hash);
 
     }
-
-
-
+    
 }
 
