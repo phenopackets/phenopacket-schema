@@ -9,6 +9,7 @@ option java_package = "org.phenopackets.schema.v2.core";
 
 // medication, procedure, other actions taken for clinical management
 message MedicalAction {
+  // ARGO mapping treatment::treatment_type
   oneof action {
     Procedure procedure = 1;
     Treatment treatment = 2;
@@ -25,6 +26,9 @@ message MedicalAction {
   repeated OntologyClass adverse_events = 9;
   // ARGO mapping treatment::treatment_outcome
   OntologyClass treatment_termination_reason = 10;
+
+  // ARGO mapping treatment::is_primary_treatment (missing)
+
 }
 
 // treatment with an agent, such as a drug
@@ -57,21 +61,33 @@ enum DrugType {
 // https://docs.icgc-argo.org/dictionary/
 // Chemotherapy
 message ChemoTherapyTreatment {
+  // ARGO mapping chemotherapy::drug_rxnormcui
+  // ARGO mapping chemotherapy::drug_name
   Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  // ARGO mapping chemotherapy::cumulative_drug_dosage
   CumulativeDose cumulative_dose = 2;
 }
 // HormoneTherapy
 message HormoneTherapyTreatment {
+  // ARGO mapping hormone_therapy::drug_rxnormcui
+  // ARGO mapping hormone_therapy::drug_name
   Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  // ARGO mapping hormone_therapy::cumulative_drug_dosage
   CumulativeDose cumulative_dose = 2;
 }
 
 // RadiationTherapy
 message RadiationTherapyTreatment {
+  // ARGO mapping radiation::radiation_therapy_modality
+  // ARGO mapping radiation::radiation_therapy_dosage
   Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  // ARGO mapping radiation::anatomical_site_irradiated
   OntologyClass body_site = 2;
   // Indicates the total number of fractions delivered as part of treatment.
+  // ARGO mapping radiation::radiation_therapy_fractions
   int32 fractions = 3;
+
+  // ARGO mapping radiation::radiation_therapy_type (missing)
 }
 
 message TherapeuticRegimen {
