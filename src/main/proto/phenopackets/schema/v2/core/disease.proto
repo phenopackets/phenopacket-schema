@@ -10,7 +10,7 @@ option java_package = "org.phenopackets.schema.v2.core";
 // Message to indicate a disease (diagnosis) and its recorded onset.
 message Disease {
   // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
-  // ARGO mapping primary_diagnosis::cancer_type_code
+  // ARGO mapping primary_diagnosis::submitter_primary_diagnosis_id
   OntologyClass term = 1;
 
   // Flag to indicate whether the disease was observed or not. Default is 'false', in other words the disease was

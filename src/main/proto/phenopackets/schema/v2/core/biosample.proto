@@ -66,6 +66,7 @@ message Biosample {
   // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
   // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
   // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
+  // ARGO mapping specimen::tumour_histological_type
   OntologyClass histological_diagnosis = 9;
 
   // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
