@@ -43,7 +43,7 @@ Example
 In this example, a case with id ``CONSORTIUM:0000123456`` is reported to be
 solved. The diagnosis is Miller syndrome, and the supporting interpretation
 states the involved gene. For privacy reasons, the variant was not reported, but the
-intended meaning is that a relevant variant in the names gene was found.
+intended meaning is that a relevant variant in the named gene was found.
 
 
 .. code-block:: yaml
