@@ -26,7 +26,6 @@ building blocks.
    exposure
    externalreference
    gene
-   gene-interpretation
    genomic-interpretation
    gestational-age
    hormonetherapy

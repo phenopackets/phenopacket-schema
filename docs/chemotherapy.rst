@@ -1,13 +1,14 @@
 .. _rstchemotherapy:
 
-============
+############
 Chemotherapy
-============
+############
 
 
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``Chemotherapy`` element
@@ -28,6 +29,7 @@ Chemotherapy
      - The anatomical site where radiation therapy was administered.
 
 
-**Example**
+Example
+#######
 
 This element is under discussion.

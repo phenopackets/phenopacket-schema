@@ -1,13 +1,14 @@
 .. _rstmetadata:
 
-========
+########
 MetaData
-========
+########
 
 
 This element contains structured definitions of the resources and ontologies used within the phenopacket. It is considered to be a required element of a valid Phenopacket and application Q/C software should check this.
 
-**Data model**
+Data model
+##########
 
   .. list-table:: Definition of the ``MetaData`` element
     :widths: 25 25 50 50
@@ -51,39 +52,39 @@ terms are used in the Phenopacket. For instance, if a MONDO term is used to spec
 HPO terms are used to specify the phenotypes of a patient, then the `MetaData` element MUST have
 one `Resource` element each for MONDO and HPO.
 
-**Example**
+Example
+#######
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-    "created": "2019-07-21T00:25:54.662Z",
-    "createdBy": "Peter R.",
-    "resources": [{
-      "id": "hp",
-      "name": "human phenotype ontology",
-      "url": "http://purl.obolibrary.org/obo/hp.owl",
-      "version": "2018-03-08",
-      "namespacePrefix": "HP",
-      "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
-    }, {
-      "id": "geno",
-      "name": "Genotype Ontology",
-      "url": "http://purl.obolibrary.org/obo/geno.owl",
-      "version": "19-03-2018",
-      "namespacePrefix": "GENO",
-      "iriPrefix": "http://purl.obolibrary.org/obo/GENO_"
-    }, {
-      "id": "pubmed",
-      "name": "PubMed",
-      "namespacePrefix": "PMID",
-      "iriPrefix": "https://www.ncbi.nlm.nih.gov/pubmed/"
-    }],
-    "externalReferences": [{
-      "id": "PMID:30808312",
-      "description": "Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report. BMC Neurol. 2019;19(1):32."
-    }]
-  }
+  metadata:
+    created: "2019-07-21T00:25:54.662Z"
+    createdBy: "Peter R."
+    resources:
+        - id: "hp"
+        name: "human phenotype ontology"
+        url: "http://purl.obolibrary.org/obo/hp.owl"
+        version: "2018-03-08"
+        namespacePrefix: "HP"
+        iriPrefix: "hp"
+        - id: "geno"
+        name: "Genotype Ontology"
+        url: "http://purl.obolibrary.org/obo/geno.owl"
+        version: "19-03-2018"
+        namespacePrefix: "GENO"
+        iriPrefix: "geno"
+        - id: "pubmed"
+        name: "PubMed"
+        url: "https://www.ncbi.nlm.nih.gov/pubmed/"
+        namespacePrefix: "PMID"
+    externalReferences:
+        - id: "PMID:30808312"
+        description: "Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report. BMC Neurol. 2019;19(1):32."
 
+
+
+Explanations
+############
 
 created
 ~~~~~~~

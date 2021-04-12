@@ -1,8 +1,8 @@
 .. _rstfamily:
 
-======
+######
 Family
-======
+######
 
 Phenotype, sample and pedigree data required for a genomic diagnosis.
 This element is equivalent to the Genomics England
@@ -20,7 +20,8 @@ necessary to include Phenopacket elements for them. Instead, their status as una
 with the :ref:`rstpedigree` element.
 
 
-**Data model**
+Data model
+##########
 
 
  .. list-table:: Definition of the ``Family`` element
@@ -57,6 +58,8 @@ with the :ref:`rstpedigree` element.
      - Metadata about ontologies and references used in this message
 
 
+Explanations
+############
 
 id
 ~~
