@@ -60,7 +60,7 @@ message Variant {
     HgvsAllele hgvs_allele = 2;
     VcfAllele vcf_allele = 3;
     SpdiAllele spdi_allele = 4;
-    IscnAllele iscn_allele = 5;
+    IscnKaryotype iscn_karyotype = 5;
   }
   // Zygosity of the allele using GENO ontology
   core.OntologyClass zygosity = 6;
@@ -120,7 +120,7 @@ message SpdiAllele {
 }
 
 // See https://www.humpath.com/spip.php?article13862
-message IscnAllele {
+message IscnKaryotype {
   string id = 1;
   // an ICSN code such as del(6)(q23q24) , t(8;9;11)(q12;p24;p12), +15
   string iscn = 2;

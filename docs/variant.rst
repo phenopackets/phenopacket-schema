@@ -216,7 +216,7 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
 
 .. _iscn:
 
-IscnAllele
+IscnKaryotype
 ~~~~~~~~~~
 This element can be used to describe cytogenetic anomalies according to the
 `International System for Human Cytogenetic Nomenclature (ISCN) <https://www.ncbi.nlm.nih.gov/pubmed/?term=18428230>`_,
