@@ -32,8 +32,4 @@ message Exposure {
   // When the exposure occurred
   TimeElement occurrence = 6;
 
-  // Evidences for how the exposure was determined.
-  repeated Evidence evidence = 7;
-
-  OntologyClass class = 8;
 }
