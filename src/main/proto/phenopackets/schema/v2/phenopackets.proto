@@ -5,7 +5,6 @@ package org.phenopackets.schema.v2;
 import "phenopackets/schema/v2/core/base.proto";
 import "phenopackets/schema/v2/core/biosample.proto";
 import "phenopackets/schema/v2/core/disease.proto";
-import "phenopackets/schema/v2/core/exposure.proto";
 import "phenopackets/schema/v2/core/genome.proto";
 import "phenopackets/schema/v2/core/interpretation.proto";
 import "phenopackets/schema/v2/core/individual.proto";
@@ -43,10 +42,6 @@ message Phenopacket {
     // Field for disease identifiers - could be used for listing either diagnosed or suspected conditions. The
     // resources using these fields should define what this represents in their context.
     repeated core.Disease diseases = 7;
-
-    // A list of environmental exposures. The resources using these fields should define what this represents in their
-    // context.
-    repeated core.Exposure exposures = 8;
 
     repeated core.MedicalAction medical_actions = 9;
 
