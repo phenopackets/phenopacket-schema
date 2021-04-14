@@ -8,7 +8,7 @@ option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2.core";
 
 // An individual environmental exposure, observed as either present or absent (negated), with possible onset, modifiers
-// and frequency. Recommended ontology for use is ECTO http://purl.obolibrary.org/obo/ecto.owl
+// and frequency. Recommended ontology for use is ECTO http://obofoundry.org/ontology/ecto
 message Exposure {
   // Free-text description of the exposure. Note this is not a acceptable place to document/describe the exposure -
   // the type and onset etc... fields should be used for this purpose.
@@ -23,7 +23,7 @@ message Exposure {
   // *CAUTION* It is imperative to check this field for correct interpretation of the exposure!
   bool negated = 3;
 
-  // Mechanism of the exposure e.g. subclasses of
+  // Mechanism of the exposure e.g. subclasses of 'route' in ExO. See http://purl.obolibrary.org/obo/ExO_0000055
   OntologyClass route = 4;
 
   // The amount an individual was exposed to the 'type' of exposure.
