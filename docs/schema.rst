@@ -32,3 +32,8 @@ The diagram below shows an overview of the schema elements.
    The yellow represents an Interpretation and its sub-elements. Blue are the top-level elements used to describe an individual or group of individuals and the green elements are components of those. Lines between elements indicate composition.
 
 The schema is defined in protobuf. You can find out more in the section ':ref:`rstprotobuf`'.
+
+.. figure:: graph/phenopacket-schema-v2.svg
+
+  Version 2.0 of the schema
+
