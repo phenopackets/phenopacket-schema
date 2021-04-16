@@ -1,0 +1,1218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg width="2454pt" height="1217pt" viewBox="0.00 0.00 2453.90 1217.00" xmlns="http://www.w3.org/2000/svg">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1213)">
+<title>phenopacket_schema_v2</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1213 2449.9027,-1213 2449.9027,4 -4,4"/>
+<!-- OntologyClass -->
+<g id="node1" class="node">
+<title>OntologyClass</title>
+<polygon fill="none" stroke="#000000" points="870.9827,-.5 870.9827,-45.3 934.8227,-45.3 934.8227,-.5 870.9827,-.5"/>
+<text text-anchor="middle" x="902.9027" y="-34.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">OntologyClass</text>
+<polyline fill="none" stroke="#000000" points="870.9827,-27.7 934.8227,-27.7 "/>
+<text text-anchor="start" x="878.9827" y="-16.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">+ id: String</text>
+<text text-anchor="start" x="878.9827" y="-6.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> + label: String</text>
+</g>
+<!-- Value -->
+<g id="node4" class="node">
+<title>Value</title>
+<polygon fill="none" stroke="#000000" points="717.7147,-317.5 717.7147,-353.5 844.0907,-353.5 844.0907,-317.5 717.7147,-317.5"/>
+<text text-anchor="middle" x="780.9027" y="-342.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Value</text>
+<polyline fill="none" stroke="#000000" points="717.7147,-335.9 844.0907,-335.9 "/>
+<text text-anchor="middle" x="780.9027" y="-324.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">value: {Quantity | OntologyClass}</text>
+</g>
+<!-- OntologyClass&#45;&gt;Value -->
+<g id="edge6" class="edge">
+<title>OntologyClass-&gt;Value</title>
+<path fill="none" stroke="#000000" d="M894.1287,-45.3814C872.2883,-101.343 815.5319,-246.7697 791.6945,-307.8481"/>
+<polygon fill="#000000" stroke="#000000" points="788.4064,-306.6465 788.0312,-317.2346 794.9274,-309.1915 788.4064,-306.6465"/>
+</g>
+<!-- TypedQuantity -->
+<g id="node6" class="node">
+<title>TypedQuantity</title>
+<polygon fill="none" stroke="#000000" points="862.1271,-313.1 862.1271,-357.9 943.6783,-357.9 943.6783,-313.1 862.1271,-313.1"/>
+<text text-anchor="middle" x="902.9027" y="-346.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">TypedQuantity</text>
+<polyline fill="none" stroke="#000000" points="862.1271,-340.3 943.6783,-340.3 "/>
+<text text-anchor="start" x="870.1271" y="-329.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">type: OntologyClass</text>
+<text text-anchor="start" x="870.1271" y="-319.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> quantity: Quantity</text>
+</g>
+<!-- OntologyClass&#45;&gt;TypedQuantity -->
+<g id="edge9" class="edge">
+<title>OntologyClass-&gt;TypedQuantity</title>
+<path fill="none" stroke="#000000" d="M902.9027,-45.3814C902.9027,-99.7719 902.9027,-238.6747 902.9027,-302.5083"/>
+<polygon fill="#000000" stroke="#000000" points="899.4028,-302.8022 902.9027,-312.8023 906.4028,-302.8023 899.4028,-302.8022"/>
+</g>
+<!-- Quantity -->
+<g id="node7" class="node">
+<title>Quantity</title>
+<polygon fill="none" stroke="#000000" points="529.6079,-202.5 529.6079,-256.9 656.1975,-256.9 656.1975,-202.5 529.6079,-202.5"/>
+<text text-anchor="middle" x="592.9027" y="-245.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Quantity</text>
+<polyline fill="none" stroke="#000000" points="529.6079,-239.3 656.1975,-239.3 "/>
+<text text-anchor="start" x="537.6079" y="-228.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">unit_class: OntologyClass</text>
+<text text-anchor="start" x="537.6079" y="-218.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> value: double</text>
+<text text-anchor="start" x="537.6079" y="-208.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> reference_range: ReferenceRange</text>
+</g>
+<!-- OntologyClass&#45;&gt;Quantity -->
+<g id="edge11" class="edge">
+<title>OntologyClass-&gt;Quantity</title>
+<path fill="none" stroke="#000000" d="M870.6574,-28.0651C815.5826,-37.4017 706.3771,-58.3124 675.9027,-81.8 673.3852,-83.7403 636.485,-150.383 612.7418,-193.5398"/>
+<polygon fill="#000000" stroke="#000000" points="609.6429,-191.9115 607.8921,-202.3607 615.777,-195.2841 609.6429,-191.9115"/>
+</g>
+<!-- ReferenceRange -->
+<g id="node8" class="node">
+<title>ReferenceRange</title>
+<polygon fill="none" stroke="#000000" points="543.7911,-91.9 543.7911,-146.3 624.0143,-146.3 624.0143,-91.9 543.7911,-91.9"/>
+<text text-anchor="middle" x="583.9027" y="-135.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">ReferenceRange</text>
+<polyline fill="none" stroke="#000000" points="543.7911,-128.7 624.0143,-128.7 "/>
+<text text-anchor="start" x="551.7911" y="-117.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">unit: OntologyClass</text>
+<text text-anchor="start" x="551.7911" y="-107.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> low: double</text>
+<text text-anchor="start" x="551.7911" y="-98.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> high: double</text>
+</g>
+<!-- OntologyClass&#45;&gt;ReferenceRange -->
+<g id="edge13" class="edge">
+<title>OntologyClass-&gt;ReferenceRange</title>
+<path fill="none" stroke="#000000" d="M870.668,-26.0235C819.5074,-31.8569 717.3788,-47.1062 637.9027,-81.8 634.672,-83.2103 631.4336,-84.8244 628.2364,-86.5726"/>
+<polygon fill="#000000" stroke="#000000" points="626.213,-83.7025 619.376,-91.7962 629.768,-89.7326 626.213,-83.7025"/>
+</g>
+<!-- Procedure -->
+<g id="node10" class="node">
+<title>Procedure</title>
+<polygon fill="none" stroke="#000000" points="910.4599,-428.5 910.4599,-482.9 1011.3455,-482.9 1011.3455,-428.5 910.4599,-428.5"/>
+<text text-anchor="middle" x="960.9027" y="-471.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Procedure</text>
+<polyline fill="none" stroke="#000000" points="910.4599,-465.3 1011.3455,-465.3 "/>
+<text text-anchor="start" x="918.4599" y="-454.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">code: OntologyClass</text>
+<text text-anchor="start" x="918.4599" y="-444.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> body_site: OntologyClass</text>
+<text text-anchor="start" x="918.4599" y="-434.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> performed: TimeElement</text>
+</g>
+<!-- OntologyClass&#45;&gt;Procedure -->
+<g id="edge14" class="edge">
+<title>OntologyClass-&gt;Procedure</title>
+<path fill="none" stroke="#000000" d="M908.6703,-45.4717C911.36,-56.4021 914.4915,-69.7413 916.9027,-81.8 936.432,-179.4713 942.2813,-203.9633 952.9027,-303 957.0935,-342.0771 959.1127,-387.0252 960.0704,-417.9854"/>
+<polygon fill="#000000" stroke="#000000" points="956.5815,-418.4249 960.3667,-428.3205 963.5786,-418.2242 956.5815,-418.4249"/>
+</g>
+<!-- Evidence -->
+<g id="node18" class="node">
+<title>Evidence</title>
+<polygon fill="none" stroke="#000000" points="1202.9027,-437.7 1202.9027,-473.7 1256.9027,-473.7 1256.9027,-437.7 1202.9027,-437.7"/>
+<text text-anchor="middle" x="1229.7847" y="-453.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Evidence</text>
+</g>
+<!-- OntologyClass&#45;&gt;Evidence -->
+<g id="edge5" class="edge">
+<title>OntologyClass-&gt;Evidence</title>
+<path fill="none" stroke="#000000" d="M934.9885,-31.9554C961.6577,-40.8832 999.121,-56.8551 1023.9027,-81.8 1123.2928,-181.8445 1086.4077,-248.2595 1160.9027,-368 1174.5345,-389.9114 1192.6613,-412.7644 1206.9147,-429.6469"/>
+<polygon fill="#000000" stroke="#000000" points="1204.4056,-432.0981 1213.564,-437.4248 1209.7263,-427.5494 1204.4056,-432.0981"/>
+</g>
+<!-- Biosample -->
+<g id="node21" class="node">
+<title>Biosample</title>
+<polygon fill="none" stroke="#000000" points="1077.7999,-692.9 1077.7999,-920.1 1250.0055,-920.1 1250.0055,-692.9 1077.7999,-692.9"/>
+<text text-anchor="middle" x="1163.9027" y="-908.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Biosample</text>
+<polyline fill="none" stroke="#000000" points="1077.7999,-902.5 1250.0055,-902.5 "/>
+<text text-anchor="start" x="1085.7999" y="-891.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
+<text text-anchor="start" x="1085.7999" y="-881.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> individual_id: String</text>
+<text text-anchor="start" x="1085.7999" y="-872.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> derived_from_id: String</text>
+<text text-anchor="start" x="1085.7999" y="-862.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> description: String</text>
+<text text-anchor="start" x="1085.7999" y="-852.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> sampled_tissue: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-843.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> sample_type: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-833.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> phenotypic_features: PhenotypicFeature [0..*]</text>
+<text text-anchor="start" x="1085.7999" y="-824.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> measurements: Measurement [0..*]</text>
+<text text-anchor="start" x="1085.7999" y="-814.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> taxonomy: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-804.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> time_of_collection: TimeElement</text>
+<text text-anchor="start" x="1085.7999" y="-795.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> histological_diagnosis: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-785.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> tumor_progression: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-776.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> tumor_grade: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-766.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> pathological_stage: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-756.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> pathological_tnm_finding: OntologyClass [0..*]</text>
+<text text-anchor="start" x="1085.7999" y="-747.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> diagnostic_markers: OntologyClass [0..*]</text>
+<text text-anchor="start" x="1085.7999" y="-737.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> procedure: Procedure</text>
+<text text-anchor="start" x="1085.7999" y="-728.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> hts_files: HtsFile [0..*]</text>
+<text text-anchor="start" x="1085.7999" y="-718.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> material_sample: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-708.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> sample_processing: OntologyClass</text>
+<text text-anchor="start" x="1085.7999" y="-699.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> sample_storage: OntologyClass</text>
+</g>
+<!-- OntologyClass&#45;&gt;Biosample -->
+<g id="edge23" class="edge">
+<title>OntologyClass-&gt;Biosample</title>
+<path fill="none" stroke="#000000" d="M917.9605,-45.4642C924.6679,-56.1677 932.2998,-69.321 937.9027,-81.8 992.5731,-203.5651 938.2009,-270.0776 1028.9027,-368 1057.898,-399.3036 1092.0763,-370.0347 1117.9027,-404 1150.2953,-446.6009 1160.4312,-580.7902 1163.325,-682.6217"/>
+<polygon fill="#000000" stroke="#000000" points="1159.8278,-682.7782 1163.5905,-692.6823 1166.8253,-682.5934 1159.8278,-682.7782"/>
+</g>
+<!-- PhenotypicFeature -->
+<g id="node22" class="node">
+<title>PhenotypicFeature</title>
+<polygon fill="none" stroke="#000000" points="1241.0219,-548.7 1241.0219,-651.1 1360.7835,-651.1 1360.7835,-548.7 1241.0219,-548.7"/>
+<text text-anchor="middle" x="1300.9027" y="-639.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">PhenotypicFeature</text>
+<polyline fill="none" stroke="#000000" points="1241.0219,-633.5 1360.7835,-633.5 "/>
+<text text-anchor="start" x="1249.0219" y="-622.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">description: String</text>
+<text text-anchor="start" x="1249.0219" y="-612.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> type: OntologyClass</text>
+<text text-anchor="start" x="1249.0219" y="-603.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> negated: Boolean</text>
+<text text-anchor="start" x="1249.0219" y="-593.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> severity: OntologyClass</text>
+<text text-anchor="start" x="1249.0219" y="-583.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> modifiers: OntologyClass [0..*]</text>
+<text text-anchor="start" x="1249.0219" y="-574.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> onset: TimeElement</text>
+<text text-anchor="start" x="1249.0219" y="-564.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> resolution: TimeElement</text>
+<text text-anchor="start" x="1249.0219" y="-555.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> evidence Evidence [0..*]</text>
+</g>
+<!-- OntologyClass&#45;&gt;PhenotypicFeature -->
+<g id="edge85" class="edge">
+<title>OntologyClass-&gt;PhenotypicFeature</title>
+<path fill="none" stroke="#000000" d="M935.0623,-23.9857C1048.8433,-28.1314 1427.5875,-44.6383 1465.9027,-81.8 1511.6571,-126.177 1521.9508,-316.1326 1484.9027,-368 1456.2282,-408.1442 1415.699,-370.053 1379.9027,-404 1359.6964,-423.1623 1335.6605,-488.537 1319.4508,-538.5476"/>
+<polygon fill="#000000" stroke="#000000" points="1316.0357,-537.7355 1316.3166,-548.3266 1322.7017,-539.872 1316.0357,-537.7355"/>
+</g>
+<!-- Measurement -->
+<g id="node24" class="node">
+<title>Measurement</title>
+<polygon fill="none" stroke="#000000" points="651.3979,-563.1 651.3979,-636.7 820.4075,-636.7 820.4075,-563.1 651.3979,-563.1"/>
+<text text-anchor="middle" x="735.9027" y="-625.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Measurement</text>
+<polyline fill="none" stroke="#000000" points="651.3979,-619.1 820.4075,-619.1 "/>
+<text text-anchor="start" x="659.3979" y="-607.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">description: String</text>
+<text text-anchor="start" x="659.3979" y="-598.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> assay: OntologyClass</text>
+<text text-anchor="start" x="659.3979" y="-588.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> measurement_value: { Value | ComplexValue}</text>
+<text text-anchor="start" x="659.3979" y="-579.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> time_observed: TimeElement</text>
+<text text-anchor="start" x="659.3979" y="-569.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> procedure: Procedure</text>
+</g>
+<!-- OntologyClass&#45;&gt;Measurement -->
+<g id="edge53" class="edge">
+<title>OntologyClass-&gt;Measurement</title>
+<path fill="none" stroke="#000000" d="M879.1808,-45.5096C834.7239,-89.8037 740.5097,-193.2967 708.9027,-303 684.1819,-388.8022 705.0419,-493.7957 721.2755,-553.1475"/>
+<polygon fill="#000000" stroke="#000000" points="717.9627,-554.2966 724.0367,-562.9774 724.7019,-552.4035 717.9627,-554.2966"/>
+</g>
+<!-- Disease -->
+<g id="node25" class="node">
+<title>Disease</title>
+<polygon fill="none" stroke="#000000" points="1388.7999,-404.5 1388.7999,-506.9 1545.0055,-506.9 1545.0055,-404.5 1388.7999,-404.5"/>
+<text text-anchor="middle" x="1466.9027" y="-495.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Disease</text>
+<polyline fill="none" stroke="#000000" points="1388.7999,-489.3 1545.0055,-489.3 "/>
+<text text-anchor="start" x="1396.7999" y="-478.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">term: OntologyClass</text>
+<text text-anchor="start" x="1396.7999" y="-468.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> excluded: Boolean</text>
+<text text-anchor="start" x="1396.7999" y="-458.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> onset: TimeElement</text>
+<text text-anchor="start" x="1396.7999" y="-449.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> resolution: TimeElement</text>
+<text text-anchor="start" x="1396.7999" y="-439.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> disease_stage: OntologyClass [0..*]</text>
+<text text-anchor="start" x="1396.7999" y="-430.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> clinical_tnm_finding: OntologyClass [0..*]</text>
+<text text-anchor="start" x="1396.7999" y="-420.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> primary_site: OntologyClass</text>
+<text text-anchor="start" x="1396.7999" y="-410.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> laterality:OntologyClass</text>
+</g>
+<!-- OntologyClass&#45;&gt;Disease -->
+<g id="edge29" class="edge">
+<title>OntologyClass-&gt;Disease</title>
+<path fill="none" stroke="#000000" d="M934.841,-23.5031C1055.4486,-26.1052 1478.362,-38.2915 1517.9027,-81.8 1603.4518,-175.9338 1551.0165,-245.1859 1517.9027,-368 1515.4184,-377.2136 1511.7014,-386.4555 1507.3846,-395.301"/>
+<polygon fill="#000000" stroke="#000000" points="1504.1852,-393.8681 1502.6955,-404.3577 1510.4014,-397.0866 1504.1852,-393.8681"/>
+</g>
+<!-- Variant -->
+<g id="node28" class="node">
+<title>Variant</title>
+<polygon fill="none" stroke="#000000" points="2203.2527,-96.7 2203.2527,-141.5 2414.5527,-141.5 2414.5527,-96.7 2203.2527,-96.7"/>
+<text text-anchor="middle" x="2308.9027" y="-130.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Variant</text>
+<polyline fill="none" stroke="#000000" points="2203.2527,-123.9 2414.5527,-123.9 "/>
+<text text-anchor="start" x="2211.2527" y="-112.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">allele: {HgvsAllele | VcfAllele | SpdiAllele | IscnKaryotype}</text>
+<text text-anchor="start" x="2211.2527" y="-103.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> zygosity: OntologyClass</text>
+</g>
+<!-- OntologyClass&#45;&gt;Variant -->
+<g id="edge32" class="edge">
+<title>OntologyClass-&gt;Variant</title>
+<path fill="none" stroke="#000000" d="M934.9554,-23.2594C1108.5062,-25.3736 1937.1177,-37.6541 2188.9027,-81.8 2204.9185,-84.6081 2221.7801,-88.9427 2237.6374,-93.6769"/>
+<polygon fill="#000000" stroke="#000000" points="2236.7775,-97.0742 2247.3645,-96.6662 2238.8338,-90.383 2236.7775,-97.0742"/>
+</g>
+<!-- Individual -->
+<g id="node33" class="node">
+<title>Individual</title>
+<polygon fill="none" stroke="#000000" points="1993.2515,-543.9 1993.2515,-655.9 2118.5539,-655.9 2118.5539,-543.9 1993.2515,-543.9"/>
+<text text-anchor="middle" x="2055.9027" y="-644.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Individual</text>
+<polyline fill="none" stroke="#000000" points="1993.2515,-638.3 2118.5539,-638.3 "/>
+<text text-anchor="start" x="2001.2515" y="-627.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
+<text text-anchor="start" x="2001.2515" y="-617.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> alternate_ids: String [0..*]</text>
+<text text-anchor="start" x="2001.2515" y="-607.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> date_of_birth: Timestamp</text>
+<text text-anchor="start" x="2001.2515" y="-598.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> time_at_encounter: TimeElement</text>
+<text text-anchor="start" x="2001.2515" y="-588.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> vital_status: VitalStatus</text>
+<text text-anchor="start" x="2001.2515" y="-579.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> sex: Sex</text>
+<text text-anchor="start" x="2001.2515" y="-569.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> karyotypic_sex: KaryotypicSex</text>
+<text text-anchor="start" x="2001.2515" y="-559.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> gender: OntologyClass</text>
+<text text-anchor="start" x="2001.2515" y="-550.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> taxonomy: OntologyClass</text>
+</g>
+<!-- OntologyClass&#45;&gt;Individual -->
+<g id="edge41" class="edge">
+<title>OntologyClass-&gt;Individual</title>
+<path fill="none" stroke="#000000" d="M934.8563,-23.0911C1109.108,-24.3264 1940.586,-32.7683 2042.9027,-81.8 2122.3565,-119.8755 2174.9027,-141.5941 2174.9027,-229.7 2174.9027,-229.7 2174.9027,-229.7 2174.9027,-335.5 2174.9027,-412.3653 2190.5226,-438.7725 2155.9027,-507.4 2148.5372,-522.0007 2137.8547,-535.4625 2126.1845,-547.3355"/>
+<polygon fill="#000000" stroke="#000000" points="2123.5317,-545.0336 2118.8113,-554.5188 2128.4165,-550.0475 2123.5317,-545.0336"/>
+</g>
+<!-- VitalStatus -->
+<g id="node34" class="node">
+<title>VitalStatus</title>
+<polygon fill="none" stroke="#000000" points="1945.1375,-423.7 1945.1375,-487.7 2064.6679,-487.7 2064.6679,-423.7 1945.1375,-423.7"/>
+<text text-anchor="middle" x="2004.9027" y="-476.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VitalStatus</text>
+<polyline fill="none" stroke="#000000" points="1945.1375,-470.1 2064.6679,-470.1 "/>
+<text text-anchor="start" x="1953.1375" y="-458.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">status: Status</text>
+<text text-anchor="start" x="1953.1375" y="-449.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> time_of_death: TimeElement</text>
+<text text-anchor="start" x="1953.1375" y="-439.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> cause_of_death: OntologyClass</text>
+<text text-anchor="start" x="1953.1375" y="-430.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> survival_time_in_days: Integer</text>
+</g>
+<!-- OntologyClass&#45;&gt;VitalStatus -->
+<g id="edge43" class="edge">
+<title>OntologyClass-&gt;VitalStatus</title>
+<path fill="none" stroke="#000000" d="M935.1025,-23.3794C1113.2953,-26.1854 1971.934,-41.7575 2009.9027,-81.8 2095.6826,-172.2653 2049.9545,-337.4058 2021.7484,-414.2811"/>
+<polygon fill="#000000" stroke="#000000" points="2018.4701,-413.0556 2018.2371,-423.6478 2025.0247,-415.5127 2018.4701,-413.0556"/>
+</g>
+<!-- Diagnosis -->
+<g id="node37" class="node">
+<title>Diagnosis</title>
+<polygon fill="none" stroke="#000000" points="1734.8199,-433.3 1734.8199,-478.1 1926.9855,-478.1 1926.9855,-433.3 1734.8199,-433.3"/>
+<text text-anchor="middle" x="1830.9027" y="-466.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Diagnosis</text>
+<polyline fill="none" stroke="#000000" points="1734.8199,-460.5 1926.9855,-460.5 "/>
+<text text-anchor="start" x="1742.8199" y="-449.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">disease: OntologyClass</text>
+<text text-anchor="start" x="1742.8199" y="-439.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> genomic_interpretations: GenomicInterpretation [0..n]</text>
+</g>
+<!-- OntologyClass&#45;&gt;Diagnosis -->
+<g id="edge46" class="edge">
+<title>OntologyClass-&gt;Diagnosis</title>
+<path fill="none" stroke="#000000" d="M934.8698,-23.8779C1058.7354,-27.9241 1502.6776,-44.9048 1552.9027,-81.8 1624.7438,-134.5743 1579.1664,-193.7053 1629.9027,-267 1675.3302,-332.6256 1746.8598,-392.8213 1791.2122,-426.8163"/>
+<polygon fill="#000000" stroke="#000000" points="1789.3531,-429.7993 1799.4347,-433.0571 1793.5852,-424.2234 1789.3531,-429.7993"/>
+</g>
+<!-- MedicalAction -->
+<g id="node42" class="node">
+<title>MedicalAction</title>
+<polygon fill="none" stroke="#000000" points="150.4819,-764.9 150.4819,-848.1 621.3235,-848.1 621.3235,-764.9 150.4819,-764.9"/>
+<text text-anchor="middle" x="385.9027" y="-836.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">MedicalAction</text>
+<polyline fill="none" stroke="#000000" points="150.4819,-830.5 621.3235,-830.5 "/>
+<text text-anchor="start" x="158.4819" y="-819.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">action: {Procedure | Treatment | ChemoTherapyTreatment | HormoneTherapyTreatment | RadiationTherapyTreatment | TherapeuticRegimen}</text>
+<text text-anchor="start" x="158.4819" y="-809.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> treatment_reason: OntologyClass</text>
+<text text-anchor="start" x="158.4819" y="-800.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> treatment_intent: OntologyClass</text>
+<text text-anchor="start" x="158.4819" y="-790.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> response_to_treatment: OntologyClass</text>
+<text text-anchor="start" x="158.4819" y="-780.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> adverse_events: OntologyClass [0..*]</text>
+<text text-anchor="start" x="158.4819" y="-771.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> treatment_termination_reason: OntologyClass</text>
+</g>
+<!-- OntologyClass&#45;&gt;MedicalAction -->
+<g id="edge58" class="edge">
+<title>OntologyClass-&gt;MedicalAction</title>
+<path fill="none" stroke="#000000" d="M870.8929,-23.3188C711.4834,-26.2463 10.9027,-49.3701 10.9027,-229.7 10.9027,-229.7 10.9027,-229.7 10.9027,-455.7 10.9027,-545.2988 -23.1072,-584.1649 29.9027,-656.4 65.99,-705.5753 121.3608,-738.7543 177.7615,-761.0965"/>
+<polygon fill="#000000" stroke="#000000" points="176.5977,-764.3988 187.1874,-764.728 179.1143,-757.8668 176.5977,-764.3988"/>
+</g>
+<!-- Treatment -->
+<g id="node43" class="node">
+<title>Treatment</title>
+<polygon fill="none" stroke="#000000" points="176.3559,-423.7 176.3559,-487.7 323.4495,-487.7 323.4495,-423.7 176.3559,-423.7"/>
+<text text-anchor="middle" x="249.9027" y="-476.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Treatment</text>
+<polyline fill="none" stroke="#000000" points="176.3559,-470.1 323.4495,-470.1 "/>
+<text text-anchor="start" x="184.3559" y="-458.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">agent: OntologyClass</text>
+<text text-anchor="start" x="184.3559" y="-449.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> route_of_administration: OntologyClass</text>
+<text text-anchor="start" x="184.3559" y="-439.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> dose_intervals: DoseInterval [0..*]</text>
+<text text-anchor="start" x="184.3559" y="-430.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> drug_type: DrugType</text>
+</g>
+<!-- OntologyClass&#45;&gt;Treatment -->
+<g id="edge65" class="edge">
+<title>OntologyClass-&gt;Treatment</title>
+<path fill="none" stroke="#000000" d="M870.5905,-23.992C756.2675,-28.1592 375.6966,-44.73 336.9027,-81.8 243.9064,-170.6638 332.7828,-245.3892 293.9027,-368 288.9186,-383.7176 281.4129,-400.0875 274.0052,-414.3694"/>
+<polygon fill="#000000" stroke="#000000" points="270.7934,-412.9541 269.1789,-423.4252 276.9709,-416.2464 270.7934,-412.9541"/>
+</g>
+<!-- RadiationTherapyTreatment -->
+<g id="node46" class="node">
+<title>RadiationTherapyTreatment</title>
+<polygon fill="none" stroke="#000000" points="372.5859,-572.7 372.5859,-627.1 479.2195,-627.1 479.2195,-572.7 372.5859,-572.7"/>
+<text text-anchor="middle" x="425.9027" y="-615.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">RadiationTherapyTreatment</text>
+<polyline fill="none" stroke="#000000" points="372.5859,-609.5 479.2195,-609.5 "/>
+<text text-anchor="start" x="380.5859" y="-598.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">treatment: Treatment</text>
+<text text-anchor="start" x="380.5859" y="-588.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> body_site: OntologyClass</text>
+<text text-anchor="start" x="380.5859" y="-579.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> fractions: Integer</text>
+</g>
+<!-- OntologyClass&#45;&gt;RadiationTherapyTreatment -->
+<g id="edge77" class="edge">
+<title>OntologyClass-&gt;RadiationTherapyTreatment</title>
+<path fill="none" stroke="#000000" d="M870.9596,-24.7797C767.9898,-31.106 449.4032,-52.8614 413.9027,-81.8 266.9237,-201.6114 341.1037,-322.6682 383.9027,-507.4 388.3617,-526.6463 396.9598,-546.7598 405.2211,-563.2966"/>
+<polygon fill="#000000" stroke="#000000" points="402.3179,-565.3032 410.0125,-572.5864 408.5392,-562.0945 402.3179,-565.3032"/>
+</g>
+<!-- TherapeuticRegimen -->
+<g id="node47" class="node">
+<title>TherapeuticRegimen</title>
+<polygon fill="none" stroke="#000000" points="393.0763,-428.5 393.0763,-482.9 644.7291,-482.9 644.7291,-428.5 393.0763,-428.5"/>
+<text text-anchor="middle" x="518.9027" y="-471.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">TherapeuticRegimen</text>
+<polyline fill="none" stroke="#000000" points="393.0763,-465.3 644.7291,-465.3 "/>
+<text text-anchor="start" x="401.0763" y="-454.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">identifier: {ExternalReference | OntologyClass} start_time: TimeElement</text>
+<text text-anchor="start" x="401.0763" y="-444.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> end_time: TimeElement</text>
+<text text-anchor="start" x="401.0763" y="-434.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> status: RegimenStatus</text>
+</g>
+<!-- OntologyClass&#45;&gt;TherapeuticRegimen -->
+<g id="edge79" class="edge">
+<title>OntologyClass-&gt;TherapeuticRegimen</title>
+<path fill="none" stroke="#000000" d="M870.8858,-23.325C784.2134,-25.1014 547.5854,-34.2922 488.9027,-81.8 386.1562,-164.9805 350.2753,-249.0255 407.9027,-368 418.6758,-390.2416 438.1294,-408.5481 457.7751,-422.5767"/>
+<polygon fill="#000000" stroke="#000000" points="455.9516,-425.5698 466.1817,-428.326 459.9032,-419.7919 455.9516,-425.5698"/>
+</g>
+<!-- DoseInterval -->
+<g id="node50" class="node">
+<title>DoseInterval</title>
+<polygon fill="none" stroke="#000000" points="417.0303,-308.3 417.0303,-362.7 550.7751,-362.7 550.7751,-308.3 417.0303,-308.3"/>
+<text text-anchor="middle" x="483.9027" y="-351.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">DoseInterval</text>
+<polyline fill="none" stroke="#000000" points="417.0303,-345.1 550.7751,-345.1 "/>
+<text text-anchor="start" x="425.0303" y="-333.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">quantity: Quantity</text>
+<text text-anchor="start" x="425.0303" y="-324.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> schedule_frequency: OntologyClass</text>
+<text text-anchor="start" x="425.0303" y="-314.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> interval: TimeInterval</text>
+</g>
+<!-- OntologyClass&#45;&gt;DoseInterval -->
+<g id="edge69" class="edge">
+<title>OntologyClass-&gt;DoseInterval</title>
+<path fill="none" stroke="#000000" d="M870.894,-23.5018C790.4402,-25.6952 582.7769,-35.7883 534.9027,-81.8 476.02,-138.3918 475.0459,-242.5368 479.4299,-298.1649"/>
+<polygon fill="#000000" stroke="#000000" points="475.9582,-298.6395 480.3302,-308.2901 482.9307,-298.0194 475.9582,-298.6395"/>
+</g>
+<!-- MetaData -->
+<g id="node2" class="node">
+<title>MetaData</title>
+<polygon fill="none" stroke="#000000" points="1319.0595,-760.1 1319.0595,-852.9 1482.7459,-852.9 1482.7459,-760.1 1319.0595,-760.1"/>
+<text text-anchor="middle" x="1400.9027" y="-841.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">MetaData</text>
+<polyline fill="none" stroke="#000000" points="1319.0595,-835.3 1482.7459,-835.3 "/>
+<text text-anchor="start" x="1327.0595" y="-824.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">created: google.protobuf.Timestamp</text>
+<text text-anchor="start" x="1327.0595" y="-814.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> created_by: String</text>
+<text text-anchor="start" x="1327.0595" y="-804.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> submitted_by: String</text>
+<text text-anchor="start" x="1327.0595" y="-795.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> resources: Resource [0..*]</text>
+<text text-anchor="start" x="1327.0595" y="-785.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> updates: Update [0..*]</text>
+<text text-anchor="start" x="1327.0595" y="-776.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> phenopacket_schema_version: String</text>
+<text text-anchor="start" x="1327.0595" y="-766.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> external_references: ExternalReference [0..*]</text>
+</g>
+<!-- Phenopacket -->
+<g id="node55" class="node">
+<title>Phenopacket</title>
+<polygon fill="none" stroke="#000000" points="1185.7047,-957.1 1185.7047,-1078.7 1352.1007,-1078.7 1352.1007,-957.1 1185.7047,-957.1"/>
+<text text-anchor="middle" x="1268.9027" y="-1067.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Phenopacket</text>
+<polyline fill="none" stroke="#000000" points="1185.7047,-1061.1 1352.1007,-1061.1 "/>
+<text text-anchor="start" x="1193.7047" y="-1049.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String [1..1]</text>
+<text text-anchor="start" x="1193.7047" y="-1040.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> subject: Individual [1..1]</text>
+<text text-anchor="start" x="1193.7047" y="-1030.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> phenotypic_features: PhenotypicFeature [0..*]</text>
+<text text-anchor="start" x="1193.7047" y="-1021.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> measurements: Measurement [0..*]</text>
+<text text-anchor="start" x="1193.7047" y="-1011.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> biosamples: Biosample [0..*]</text>
+<text text-anchor="start" x="1193.7047" y="-1001.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> interpretations: interpretation [0..*]</text>
+<text text-anchor="start" x="1193.7047" y="-992.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> diseases: Disease [0..*]</text>
+<text text-anchor="start" x="1193.7047" y="-982.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> medical_actions: MedicalAction [0..*]</text>
+<text text-anchor="start" x="1193.7047" y="-973.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> hts_files: HtsFile [0..*]</text>
+<text text-anchor="start" x="1193.7047" y="-963.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> meta_data: MetaData [1..1]</text>
+</g>
+<!-- MetaData&#45;&gt;Phenopacket -->
+<g id="edge96" class="edge">
+<title>MetaData-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M1371.7713,-853.1543C1354.3523,-881.0511 1331.8886,-917.0271 1312.3989,-948.2401"/>
+<polygon fill="#000000" stroke="#000000" points="1309.315,-946.5707 1306.9874,-956.9067 1315.2526,-950.2782 1309.315,-946.5707"/>
+</g>
+<!-- Family -->
+<g id="node56" class="node">
+<title>Family</title>
+<polygon fill="none" stroke="#000000" points="1349.1367,-1115.7 1349.1367,-1208.5 1472.6687,-1208.5 1472.6687,-1115.7 1349.1367,-1115.7"/>
+<text text-anchor="middle" x="1410.9027" y="-1197.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Family</text>
+<polyline fill="none" stroke="#000000" points="1349.1367,-1190.9 1472.6687,-1190.9 "/>
+<text text-anchor="start" x="1357.1367" y="-1179.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String [1..1]</text>
+<text text-anchor="start" x="1357.1367" y="-1170.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> proband: Phenopacket [1..1]</text>
+<text text-anchor="start" x="1357.1367" y="-1160.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> relatives: Phenopacket [0..*]</text>
+<text text-anchor="start" x="1357.1367" y="-1150.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> consanguinous_parents: Boolean</text>
+<text text-anchor="start" x="1357.1367" y="-1141.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> pedigree: Pedigree [1..1]</text>
+<text text-anchor="start" x="1357.1367" y="-1131.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> hts_files: HtsFile [0..*]</text>
+<text text-anchor="start" x="1357.1367" y="-1122.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> meta_data: MetaData [1..1]</text>
+</g>
+<!-- MetaData&#45;&gt;Family -->
+<g id="edge100" class="edge">
+<title>MetaData-&gt;Family</title>
+<path fill="none" stroke="#000000" d="M1402.21,-852.9885C1404.0329,-917.8113 1407.3354,-1035.2474 1409.3029,-1105.2138"/>
+<polygon fill="#000000" stroke="#000000" points="1405.8152,-1105.7025 1409.595,-1115.6001 1412.8124,-1105.5056 1405.8152,-1105.7025"/>
+</g>
+<!-- Cohort -->
+<g id="node57" class="node">
+<title>Cohort</title>
+<polygon fill="none" stroke="#000000" points="1213.0287,-1125.3 1213.0287,-1198.9 1324.7767,-1198.9 1324.7767,-1125.3 1213.0287,-1125.3"/>
+<text text-anchor="middle" x="1268.9027" y="-1187.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Cohort</text>
+<polyline fill="none" stroke="#000000" points="1213.0287,-1181.3 1324.7767,-1181.3 "/>
+<text text-anchor="start" x="1221.0287" y="-1170.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String [1..1]</text>
+<text text-anchor="start" x="1221.0287" y="-1160.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> description: String [0..1]</text>
+<text text-anchor="start" x="1221.0287" y="-1150.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> members: Phenopacket [0..*]</text>
+<text text-anchor="start" x="1221.0287" y="-1141.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> hts_files: HtsFile [0..*]</text>
+<text text-anchor="start" x="1221.0287" y="-1131.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> meta_data: MetaData [1..1]</text>
+</g>
+<!-- MetaData&#45;&gt;Cohort -->
+<g id="edge103" class="edge">
+<title>MetaData-&gt;Cohort</title>
+<path fill="none" stroke="#000000" d="M1403.3826,-853.3675C1404.3657,-910.1917 1399.4074,-1007.2731 1360.9027,-1079.2 1353.1718,-1093.6412 1341.894,-1106.8293 1329.8652,-1118.2311"/>
+<polygon fill="#000000" stroke="#000000" points="1327.3558,-1115.782 1322.3035,-1125.0946 1332.0605,-1120.9652 1327.3558,-1115.782"/>
+</g>
+<!-- Resource -->
+<g id="node3" class="node">
+<title>Resource</title>
+<polygon fill="none" stroke="#000000" points="1450.9171,-558.3 1450.9171,-641.5 1550.8883,-641.5 1550.8883,-558.3 1450.9171,-558.3"/>
+<text text-anchor="middle" x="1500.9027" y="-630.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Resource</text>
+<polyline fill="none" stroke="#000000" points="1450.9171,-623.9 1550.8883,-623.9 "/>
+<text text-anchor="start" x="1458.9171" y="-612.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
+<text text-anchor="start" x="1458.9171" y="-603.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> name: String</text>
+<text text-anchor="start" x="1458.9171" y="-593.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> url: String</text>
+<text text-anchor="start" x="1458.9171" y="-583.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> version: String</text>
+<text text-anchor="start" x="1458.9171" y="-574.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> namespace_prefix: String</text>
+<text text-anchor="start" x="1458.9171" y="-564.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> iri_prefix: string</text>
+</g>
+<!-- Resource&#45;&gt;MetaData -->
+<g id="edge1" class="edge">
+<title>Resource-&gt;MetaData</title>
+<path fill="none" stroke="#000000" d="M1480.6662,-641.7086C1465.4858,-673.0713 1444.5504,-716.3239 1427.9367,-750.6476"/>
+<polygon fill="#000000" stroke="#000000" points="1424.5803,-749.5487 1423.3738,-760.0746 1430.881,-752.5984 1424.5803,-749.5487"/>
+</g>
+<!-- Value&#45;&gt;Measurement -->
+<g id="edge54" class="edge">
+<title>Value-&gt;Measurement</title>
+<path fill="none" stroke="#000000" d="M762.2296,-353.6448C750.4489,-366.4567 736.2921,-384.7188 729.9027,-404 713.6712,-452.9811 718.7755,-512.675 725.6337,-553.2016"/>
+<polygon fill="#000000" stroke="#000000" points="722.1937,-553.8483 727.4032,-563.0739 729.0839,-552.6132 722.1937,-553.8483"/>
+</g>
+<!-- ComplexValue -->
+<g id="node5" class="node">
+<title>ComplexValue</title>
+<polygon fill="none" stroke="#000000" points="738.5763,-437.7 738.5763,-473.7 855.2291,-473.7 855.2291,-437.7 738.5763,-437.7"/>
+<text text-anchor="middle" x="796.9027" y="-462.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">ComplexValue</text>
+<polyline fill="none" stroke="#000000" points="738.5763,-456.1 855.2291,-456.1 "/>
+<text text-anchor="start" x="746.5763" y="-444.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">typed_quantity: TypedQuantity</text>
+</g>
+<!-- ComplexValue&#45;&gt;Measurement -->
+<g id="edge55" class="edge">
+<title>ComplexValue-&gt;Measurement</title>
+<path fill="none" stroke="#000000" d="M789.177,-473.963C780.7457,-493.894 766.9199,-526.5773 755.466,-553.6535"/>
+<polygon fill="#000000" stroke="#000000" points="752.1989,-552.3933 751.5263,-562.9668 758.6458,-555.1205 752.1989,-552.3933"/>
+</g>
+<!-- TypedQuantity&#45;&gt;ComplexValue -->
+<g id="edge8" class="edge">
+<title>TypedQuantity-&gt;ComplexValue</title>
+<path fill="none" stroke="#000000" d="M882.9649,-358.1087C864.9906,-378.4908 838.5695,-408.4514 819.7496,-429.7924"/>
+<polygon fill="#000000" stroke="#000000" points="816.9315,-427.6963 812.9424,-437.5115 822.1817,-432.3263 816.9315,-427.6963"/>
+</g>
+<!-- Quantity&#45;&gt;Value -->
+<g id="edge7" class="edge">
+<title>Quantity-&gt;Value</title>
+<path fill="none" stroke="#000000" d="M641.3173,-256.9461C671.8484,-274.128 710.8449,-296.0739 739.855,-312.3998"/>
+<polygon fill="#000000" stroke="#000000" points="738.4682,-315.6355 748.8995,-317.4897 741.9013,-309.5351 738.4682,-315.6355"/>
+</g>
+<!-- Quantity&#45;&gt;TypedQuantity -->
+<g id="edge10" class="edge">
+<title>Quantity-&gt;TypedQuantity</title>
+<path fill="none" stroke="#000000" d="M656.2245,-241.9391C710.0569,-253.6487 788.6166,-273.86 852.9027,-303 856.1117,-304.4546 859.3511,-306.0968 862.5562,-307.851"/>
+<polygon fill="#000000" stroke="#000000" points="861.0412,-311.0191 871.4438,-313.0286 864.5649,-304.9706 861.0412,-311.0191"/>
+</g>
+<!-- CumulativeDose -->
+<g id="node49" class="node">
+<title>CumulativeDose</title>
+<polygon fill="none" stroke="#000000" points="66.6827,-437.7 66.6827,-473.7 141.1227,-473.7 141.1227,-437.7 66.6827,-437.7"/>
+<text text-anchor="middle" x="103.9027" y="-462.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">CumulativeDose</text>
+<polyline fill="none" stroke="#000000" points="66.6827,-456.1 141.1227,-456.1 "/>
+<text text-anchor="start" x="74.6827" y="-444.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">quantity: Quantity</text>
+</g>
+<!-- Quantity&#45;&gt;CumulativeDose -->
+<g id="edge71" class="edge">
+<title>Quantity-&gt;CumulativeDose</title>
+<path fill="none" stroke="#000000" d="M529.3671,-233.9908C396.6335,-243.6019 99.7029,-268.7319 69.9027,-303 39.2763,-338.2181 65.087,-394.9609 85.3665,-428.4617"/>
+<polygon fill="#000000" stroke="#000000" points="82.6069,-430.6487 90.8882,-437.2572 88.5354,-426.9268 82.6069,-430.6487"/>
+</g>
+<!-- Quantity&#45;&gt;DoseInterval -->
+<g id="edge68" class="edge">
+<title>Quantity-&gt;DoseInterval</title>
+<path fill="none" stroke="#000000" d="M564.8325,-256.9461C551.0815,-270.2934 534.3686,-286.5157 519.7089,-300.7449"/>
+<polygon fill="#000000" stroke="#000000" points="516.9945,-298.502 512.2566,-307.9785 521.87,-303.525 516.9945,-298.502"/>
+</g>
+<!-- ReferenceRange&#45;&gt;Quantity -->
+<g id="edge12" class="edge">
+<title>ReferenceRange-&gt;Quantity</title>
+<path fill="none" stroke="#000000" d="M586.1274,-146.4393C587.2524,-160.2645 588.6349,-177.2537 589.857,-192.2723"/>
+<polygon fill="#000000" stroke="#000000" points="586.3727,-192.6087 590.6723,-202.2919 593.3497,-192.0409 586.3727,-192.6087"/>
+</g>
+<!-- Sex -->
+<g id="node9" class="node">
+<title>Sex</title>
+<polygon fill="none" stroke="#000000" points="2202.9911,-423.7 2202.9911,-487.7 2292.8143,-487.7 2292.8143,-423.7 2202.9911,-423.7"/>
+<text text-anchor="middle" x="2247.9027" y="-476.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Sex &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="2202.9911,-470.1 2292.8143,-470.1 "/>
+<text text-anchor="start" x="2210.9911" y="-458.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN_SEX</text>
+<text text-anchor="start" x="2210.9911" y="-449.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = FEMALE</text>
+<text text-anchor="start" x="2210.9911" y="-439.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = MALE</text>
+<text text-anchor="start" x="2210.9911" y="-430.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = OTHER_SEX</text>
+</g>
+<!-- Sex&#45;&gt;Individual -->
+<g id="edge39" class="edge">
+<title>Sex-&gt;Individual</title>
+<path fill="none" stroke="#000000" d="M2212.5657,-487.7976C2204.8975,-494.4406 2196.7347,-501.276 2188.9027,-507.4 2169.3318,-522.7029 2147.4325,-538.4579 2127.1414,-552.5312"/>
+<polygon fill="#000000" stroke="#000000" points="2125.1002,-549.6873 2118.8563,-558.2468 2129.0751,-555.4492 2125.1002,-549.6873"/>
+</g>
+<!-- Person -->
+<g id="node53" class="node">
+<title>Person</title>
+<polygon fill="none" stroke="#000000" points="2189.0367,-558.3 2189.0367,-641.5 2306.7687,-641.5 2306.7687,-558.3 2189.0367,-558.3"/>
+<text text-anchor="middle" x="2247.9027" y="-630.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Person</text>
+<polyline fill="none" stroke="#000000" points="2189.0367,-623.9 2306.7687,-623.9 "/>
+<text text-anchor="start" x="2197.0367" y="-612.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">family_id: String</text>
+<text text-anchor="start" x="2197.0367" y="-603.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> individual_id: String</text>
+<text text-anchor="start" x="2197.0367" y="-593.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> paternal_id: String</text>
+<text text-anchor="start" x="2197.0367" y="-583.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> maternal_id: String</text>
+<text text-anchor="start" x="2197.0367" y="-574.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> sex: Sex</text>
+<text text-anchor="start" x="2197.0367" y="-564.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> affected_status: AffectedStatus</text>
+</g>
+<!-- Sex&#45;&gt;Person -->
+<g id="edge83" class="edge">
+<title>Sex-&gt;Person</title>
+<path fill="none" stroke="#000000" d="M2247.9027,-487.7027C2247.9027,-505.367 2247.9027,-527.7395 2247.9027,-547.8509"/>
+<polygon fill="#000000" stroke="#000000" points="2244.4028,-548.1248 2247.9027,-558.1248 2251.4028,-548.1249 2244.4028,-548.1248"/>
+</g>
+<!-- Procedure&#45;&gt;Biosample -->
+<g id="edge25" class="edge">
+<title>Procedure-&gt;Biosample</title>
+<path fill="none" stroke="#000000" d="M990.0546,-483.0796C999.3108,-491.2652 1009.7782,-500.0184 1019.9027,-507.4 1045.0313,-525.7211 1060.5981,-519.0188 1079.9027,-543.4 1089.3869,-555.3784 1110.2493,-620.6473 1128.8091,-683.1731"/>
+<polygon fill="#000000" stroke="#000000" points="1125.4557,-684.1757 1131.6473,-692.7731 1132.1684,-682.1911 1125.4557,-684.1757"/>
+</g>
+<!-- Procedure&#45;&gt;Measurement -->
+<g id="edge57" class="edge">
+<title>Procedure-&gt;Measurement</title>
+<path fill="none" stroke="#000000" d="M929.1073,-483.0261C919.0596,-491.2094 907.7447,-499.9748 896.9027,-507.4 894.6757,-508.9252 850.687,-534.1867 809.2562,-557.9234"/>
+<polygon fill="#000000" stroke="#000000" points="807.4076,-554.9487 800.4701,-562.9563 810.887,-561.0227 807.4076,-554.9487"/>
+</g>
+<!-- Procedure&#45;&gt;MedicalAction -->
+<g id="edge59" class="edge">
+<title>Procedure-&gt;MedicalAction</title>
+<path fill="none" stroke="#000000" d="M924.0601,-483.1206C905.0258,-498.9251 882.7425,-520.2254 867.9027,-543.4 839.3293,-588.0214 867.3394,-618.9034 829.9027,-656.4 776.3267,-710.0617 702.9199,-744.5454 631.22,-766.7027"/>
+<polygon fill="#000000" stroke="#000000" points="630.1372,-763.3734 621.5747,-769.6132 632.1595,-770.075 630.1372,-763.3734"/>
+</g>
+<!-- GestationalAge -->
+<g id="node11" class="node">
+<title>GestationalAge</title>
+<polygon fill="none" stroke="#000000" points="1258.0231,-207.3 1258.0231,-252.1 1323.7823,-252.1 1323.7823,-207.3 1258.0231,-207.3"/>
+<text text-anchor="middle" x="1290.9027" y="-240.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">GestationalAge</text>
+<polyline fill="none" stroke="#000000" points="1258.0231,-234.5 1323.7823,-234.5 "/>
+<text text-anchor="start" x="1266.0231" y="-223.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">days: Integer</text>
+<text text-anchor="start" x="1266.0231" y="-213.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> weeks: Integer</text>
+</g>
+<!-- TimeElement -->
+<g id="node15" class="node">
+<title>TimeElement</title>
+<polygon fill="none" stroke="#000000" points="1170.2139,-317.5 1170.2139,-353.5 1475.5915,-353.5 1475.5915,-317.5 1170.2139,-317.5"/>
+<text text-anchor="middle" x="1322.9027" y="-342.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">TimeElement</text>
+<polyline fill="none" stroke="#000000" points="1170.2139,-335.9 1475.5915,-335.9 "/>
+<text text-anchor="middle" x="1322.9027" y="-324.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">element: {GestationalAge | Age | AgeRange | Timestamp | TimeInterval | OntologyClass }</text>
+</g>
+<!-- GestationalAge&#45;&gt;TimeElement -->
+<g id="edge16" class="edge">
+<title>GestationalAge-&gt;TimeElement</title>
+<path fill="none" stroke="#000000" d="M1297.689,-252.1375C1302.5967,-268.3633 1309.2587,-290.3895 1314.5022,-307.7261"/>
+<polygon fill="#000000" stroke="#000000" points="1311.1564,-308.7539 1317.4017,-317.3123 1317.8567,-306.7273 1311.1564,-308.7539"/>
+</g>
+<!-- Age -->
+<g id="node12" class="node">
+<title>Age</title>
+<polygon fill="none" stroke="#000000" points="1363.1275,-101.1 1363.1275,-137.1 1456.6779,-137.1 1456.6779,-101.1 1363.1275,-101.1"/>
+<text text-anchor="middle" x="1409.9027" y="-125.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Age</text>
+<polyline fill="none" stroke="#000000" points="1363.1275,-119.5 1456.6779,-119.5 "/>
+<text text-anchor="start" x="1371.1275" y="-108.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">iso8601Duration: String</text>
+</g>
+<!-- AgeRange -->
+<g id="node13" class="node">
+<title>AgeRange</title>
+<polygon fill="none" stroke="#000000" points="1417.9027,-207.3 1417.9027,-252.1 1471.9027,-252.1 1471.9027,-207.3 1417.9027,-207.3"/>
+<text text-anchor="middle" x="1444.7847" y="-240.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">AgeRange</text>
+<polyline fill="none" stroke="#000000" points="1417.9027,-234.5 1471.6667,-234.5 "/>
+<text text-anchor="start" x="1425.9027" y="-223.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">start: Age</text>
+<text text-anchor="start" x="1425.9027" y="-213.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> end: Age</text>
+</g>
+<!-- Age&#45;&gt;AgeRange -->
+<g id="edge18" class="edge">
+<title>Age-&gt;AgeRange</title>
+<path fill="none" stroke="#000000" d="M1415.6822,-137.3633C1420.8408,-153.6645 1428.514,-177.9119 1434.703,-197.4691"/>
+<polygon fill="#000000" stroke="#000000" points="1431.4289,-198.7238 1437.783,-207.2018 1438.1027,-196.6118 1431.4289,-198.7238"/>
+</g>
+<!-- Age&#45;&gt;TimeElement -->
+<g id="edge17" class="edge">
+<title>Age-&gt;TimeElement</title>
+<path fill="none" stroke="#000000" d="M1402.6858,-137.3352C1391.615,-165.2753 1369.7426,-220.347 1350.9027,-267 1345.4364,-280.5359 1339.3065,-295.5506 1334.1789,-308.0648"/>
+<polygon fill="#000000" stroke="#000000" points="1330.8702,-306.9086 1330.3134,-317.4888 1337.3466,-309.5651 1330.8702,-306.9086"/>
+</g>
+<!-- AgeRange&#45;&gt;TimeElement -->
+<g id="edge19" class="edge">
+<title>AgeRange-&gt;TimeElement</title>
+<path fill="none" stroke="#000000" d="M1420.3167,-252.3314C1414.9401,-257.2063 1409.2559,-262.3041 1403.9027,-267 1387.0432,-281.7893 1367.8952,-298.0081 1352.4508,-310.9502"/>
+<polygon fill="#000000" stroke="#000000" points="1350.1702,-308.2948 1344.7436,-317.3944 1354.6604,-313.6649 1350.1702,-308.2948"/>
+</g>
+<!-- TimeInterval -->
+<g id="node14" class="node">
+<title>TimeInterval</title>
+<polygon fill="none" stroke="#000000" points="1169.9083,-207.3 1169.9083,-252.1 1239.8971,-252.1 1239.8971,-207.3 1169.9083,-207.3"/>
+<text text-anchor="middle" x="1204.9027" y="-240.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">TimeInterval</text>
+<polyline fill="none" stroke="#000000" points="1169.9083,-234.5 1239.8971,-234.5 "/>
+<text text-anchor="start" x="1177.9083" y="-223.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">start: Timestamp</text>
+<text text-anchor="start" x="1177.9083" y="-213.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> end: Timestamp</text>
+</g>
+<!-- TimeInterval&#45;&gt;TimeElement -->
+<g id="edge22" class="edge">
+<title>TimeInterval-&gt;TimeElement</title>
+<path fill="none" stroke="#000000" d="M1229.9274,-252.1375C1249.0391,-269.2732 1275.3658,-292.878 1295.1274,-310.5964"/>
+<polygon fill="#000000" stroke="#000000" points="1292.8357,-313.2425 1302.6177,-317.3123 1297.5087,-308.0307 1292.8357,-313.2425"/>
+</g>
+<!-- TimeInterval&#45;&gt;DoseInterval -->
+<g id="edge70" class="edge">
+<title>TimeInterval-&gt;DoseInterval</title>
+<path fill="none" stroke="#000000" d="M1169.5213,-232.3293C1052.101,-241.2715 676.1328,-271.6955 558.9027,-303 556.589,-303.6178 554.2545,-304.2954 551.912,-305.0222"/>
+<polygon fill="#000000" stroke="#000000" points="550.6347,-301.759 542.269,-308.2601 552.863,-308.3949 550.6347,-301.759"/>
+</g>
+<!-- TimeElement&#45;&gt;Procedure -->
+<g id="edge15" class="edge">
+<title>TimeElement-&gt;Procedure</title>
+<path fill="none" stroke="#000000" d="M1217.9977,-353.5302C1144.7833,-367.1803 1054.2661,-386.5038 1019.9027,-404 1010.8002,-408.6345 1001.9672,-414.991 994.027,-421.6626"/>
+<polygon fill="#000000" stroke="#000000" points="991.5892,-419.1459 986.4076,-428.3872 996.2212,-424.3943 991.5892,-419.1459"/>
+</g>
+<!-- TimeElement&#45;&gt;Biosample -->
+<g id="edge27" class="edge">
+<title>TimeElement-&gt;Biosample</title>
+<path fill="none" stroke="#000000" d="M1317.9898,-353.5665C1307.3621,-392.0141 1281.9067,-480.6106 1265.9027,-507.4 1254.6158,-526.2932 1242.5479,-524.138 1231.9027,-543.4 1208.3571,-586.0045 1192.7451,-637.0052 1182.4964,-682.7131"/>
+<polygon fill="#000000" stroke="#000000" points="1179.0331,-682.168 1180.326,-692.6836 1185.873,-683.6569 1179.0331,-682.168"/>
+</g>
+<!-- TimeElement&#45;&gt;PhenotypicFeature -->
+<g id="edge86" class="edge">
+<title>TimeElement-&gt;PhenotypicFeature</title>
+<path fill="none" stroke="#000000" d="M1321.3905,-353.6733C1318.2703,-391.172 1310.994,-478.6209 1306.009,-538.5308"/>
+<polygon fill="#000000" stroke="#000000" points="1302.5095,-538.3811 1305.1681,-548.6369 1309.4854,-538.9616 1302.5095,-538.3811"/>
+</g>
+<!-- TimeElement&#45;&gt;Measurement -->
+<g id="edge56" class="edge">
+<title>TimeElement-&gt;Measurement</title>
+<path fill="none" stroke="#000000" d="M1212.0146,-353.5424C1087.2819,-373.8373 901.9027,-404 901.9027,-404 864.1405,-435.1635 893.4786,-468.3819 863.9027,-507.4 854.5248,-519.7718 828.3964,-539.2986 802.172,-557.2294"/>
+<polygon fill="#000000" stroke="#000000" points="799.9925,-554.4783 793.6754,-562.9838 803.9178,-560.2741 799.9925,-554.4783"/>
+</g>
+<!-- TimeElement&#45;&gt;Disease -->
+<g id="edge30" class="edge">
+<title>TimeElement-&gt;Disease</title>
+<path fill="none" stroke="#000000" d="M1344.7732,-353.7558C1359.0183,-365.6466 1378.4608,-381.8756 1397.6435,-397.8879"/>
+<polygon fill="#000000" stroke="#000000" points="1395.6235,-400.7608 1405.5433,-404.482 1400.1092,-395.3869 1395.6235,-400.7608"/>
+</g>
+<!-- TimeElement&#45;&gt;Individual -->
+<g id="edge37" class="edge">
+<title>TimeElement-&gt;Individual</title>
+<path fill="none" stroke="#000000" d="M1453.2522,-353.5623C1550.5412,-368.1067 1669.6887,-388.5943 1687.9027,-404 1725.2847,-435.6185 1689.9439,-474.1718 1725.9027,-507.4 1763.2612,-541.9216 1897.9229,-571.5921 1983.247,-587.4922"/>
+<polygon fill="#000000" stroke="#000000" points="1982.6721,-590.9451 1993.1408,-589.3155 1983.9408,-584.0611 1982.6721,-590.9451"/>
+</g>
+<!-- TimeElement&#45;&gt;VitalStatus -->
+<g id="edge42" class="edge">
+<title>TimeElement-&gt;VitalStatus</title>
+<path fill="none" stroke="#000000" d="M1475.9587,-348.3791C1643.5311,-363.148 1894.1188,-387.4484 1935.9027,-404 1944.5897,-407.4411 1953.1428,-412.278 1961.1107,-417.6253"/>
+<polygon fill="#000000" stroke="#000000" points="1959.3258,-420.6505 1969.5058,-423.5862 1963.3784,-414.9429 1959.3258,-420.6505"/>
+</g>
+<!-- TimeElement&#45;&gt;TherapeuticRegimen -->
+<g id="edge80" class="edge">
+<title>TimeElement-&gt;TherapeuticRegimen</title>
+<path fill="none" stroke="#000000" d="M1220.5857,-353.5353C1189.3004,-358.6697 1154.7469,-363.9591 1122.9027,-368 948.9,-390.08 902.8948,-375.0488 729.9027,-404 696.1918,-409.6417 659.9062,-417.768 627.0934,-425.9128"/>
+<polygon fill="#000000" stroke="#000000" points="625.8758,-422.6098 617.0284,-428.4384 627.5795,-429.3993 625.8758,-422.6098"/>
+</g>
+<!-- Update -->
+<g id="node16" class="node">
+<title>Update</title>
+<polygon fill="none" stroke="#000000" points="1378.9027,-581.9 1378.9027,-617.9 1432.9027,-617.9 1432.9027,-581.9 1378.9027,-581.9"/>
+<text text-anchor="middle" x="1405.4531" y="-597.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Update</text>
+</g>
+<!-- Update&#45;&gt;MetaData -->
+<g id="edge2" class="edge">
+<title>Update-&gt;MetaData</title>
+<path fill="none" stroke="#000000" d="M1405.4589,-618.2344C1404.7516,-647.4608 1403.3397,-705.8015 1402.274,-749.8343"/>
+<polygon fill="#000000" stroke="#000000" points="1398.7749,-749.7613 1402.0318,-759.8431 1405.7728,-749.9307 1398.7749,-749.7613"/>
+</g>
+<!-- ExternalReference -->
+<g id="node17" class="node">
+<title>ExternalReference</title>
+<polygon fill="none" stroke="#000000" points="1038.1443,-317.5 1038.1443,-353.5 1113.6611,-353.5 1113.6611,-317.5 1038.1443,-317.5"/>
+<text text-anchor="middle" x="1075.9027" y="-333.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">ExternalReference</text>
+</g>
+<!-- ExternalReference&#45;&gt;MetaData -->
+<g id="edge3" class="edge">
+<title>ExternalReference-&gt;MetaData</title>
+<path fill="none" stroke="#000000" d="M1101.7115,-353.5156C1117.8903,-366.0115 1138.044,-383.9651 1150.9027,-404 1214.5377,-503.1485 1167.5803,-557.6959 1231.9027,-656.4 1256.1965,-693.6794 1292.1252,-727.3823 1324.6157,-753.3632"/>
+<polygon fill="#000000" stroke="#000000" points="1322.7702,-756.3646 1332.7928,-759.7996 1327.0998,-750.8642 1322.7702,-756.3646"/>
+</g>
+<!-- ExternalReference&#45;&gt;Evidence -->
+<g id="edge4" class="edge">
+<title>ExternalReference-&gt;Evidence</title>
+<path fill="none" stroke="#000000" d="M1104.4303,-353.5115C1112.0337,-358.2622 1120.2596,-363.3573 1127.9027,-368 1154.808,-384.3436 1165.1679,-383.3197 1188.9027,-404 1197.4114,-411.4138 1205.4431,-420.7778 1212.1049,-429.4932"/>
+<polygon fill="#000000" stroke="#000000" points="1209.2981,-431.5843 1218.043,-437.5656 1214.9368,-427.4364 1209.2981,-431.5843"/>
+</g>
+<!-- ExternalReference&#45;&gt;TherapeuticRegimen -->
+<g id="edge78" class="edge">
+<title>ExternalReference-&gt;TherapeuticRegimen</title>
+<path fill="none" stroke="#000000" d="M1037.905,-346.5735C1013.7148,-353.3658 981.638,-361.8996 952.9027,-368 854.697,-388.8485 828.2923,-384.0378 729.9027,-404 698.3008,-410.4117 664.2728,-418.3072 632.964,-425.9803"/>
+<polygon fill="#000000" stroke="#000000" points="631.7721,-422.6693 622.9008,-428.4616 633.448,-429.4657 631.7721,-422.6693"/>
+</g>
+<!-- Evidence&#45;&gt;PhenotypicFeature -->
+<g id="edge87" class="edge">
+<title>Evidence-&gt;PhenotypicFeature</title>
+<path fill="none" stroke="#000000" d="M1238.8949,-473.963C1247.0315,-490.4884 1259.4846,-515.7804 1271.1016,-539.3744"/>
+<polygon fill="#000000" stroke="#000000" points="1268.1142,-541.2306 1275.6716,-548.656 1274.3943,-538.1385 1268.1142,-541.2306"/>
+</g>
+<!-- KaryotypicSex -->
+<g id="node19" class="node">
+<title>KaryotypicSex</title>
+<polygon fill="none" stroke="#000000" points="2082.9099,-437.7 2082.9099,-473.7 2146.8955,-473.7 2146.8955,-437.7 2082.9099,-437.7"/>
+<text text-anchor="middle" x="2114.9027" y="-453.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">KaryotypicSex</text>
+</g>
+<!-- KaryotypicSex&#45;&gt;Individual -->
+<g id="edge40" class="edge">
+<title>KaryotypicSex-&gt;Individual</title>
+<path fill="none" stroke="#000000" d="M2107.4303,-473.963C2101.1357,-489.3475 2091.7323,-512.3298 2082.6749,-534.4667"/>
+<polygon fill="#000000" stroke="#000000" points="2079.372,-533.2969 2078.8244,-543.8776 2085.8507,-535.9477 2079.372,-533.2969"/>
+</g>
+<!-- Timestamp -->
+<g id="node20" class="node">
+<title>Timestamp</title>
+<polygon fill="none" stroke="#000000" points="1233.9027,-101.1 1233.9027,-137.1 1287.9027,-137.1 1287.9027,-101.1 1233.9027,-101.1"/>
+<text text-anchor="middle" x="1260.8995" y="-116.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Timestamp</text>
+</g>
+<!-- Timestamp&#45;&gt;TimeInterval -->
+<g id="edge20" class="edge">
+<title>Timestamp-&gt;TimeInterval</title>
+<path fill="none" stroke="#000000" d="M1251.6554,-137.3633C1243.2881,-153.8888 1230.7858,-178.5808 1220.8147,-198.2738"/>
+<polygon fill="#000000" stroke="#000000" points="1217.6889,-196.6992 1216.2942,-207.2018 1223.934,-199.8613 1217.6889,-196.6992"/>
+</g>
+<!-- Timestamp&#45;&gt;TimeElement -->
+<g id="edge21" class="edge">
+<title>Timestamp-&gt;TimeElement</title>
+<path fill="none" stroke="#000000" d="M1287.1152,-137.2282C1303.6819,-150.3785 1323.6517,-169.7806 1332.9027,-192.4 1348.251,-229.9281 1340.0332,-277.5991 1332.0158,-307.3343"/>
+<polygon fill="#000000" stroke="#000000" points="1328.6197,-306.4806 1329.2273,-317.058 1335.3484,-308.4103 1328.6197,-306.4806"/>
+</g>
+<!-- Biosample&#45;&gt;Phenopacket -->
+<g id="edge91" class="edge">
+<title>Biosample-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M1220.3982,-920.2444C1225.0456,-929.6012 1229.651,-938.8733 1234.0676,-947.7654"/>
+<polygon fill="#000000" stroke="#000000" points="1231.0125,-949.4827 1238.5956,-956.8818 1237.2818,-946.3687 1231.0125,-949.4827"/>
+</g>
+<!-- PhenotypicFeature&#45;&gt;Biosample -->
+<g id="edge24" class="edge">
+<title>PhenotypicFeature-&gt;Biosample</title>
+<path fill="none" stroke="#000000" d="M1266.8615,-651.2351C1260.0382,-661.5248 1252.5981,-672.7446 1244.9417,-684.2908"/>
+<polygon fill="#000000" stroke="#000000" points="1241.9437,-682.4787 1239.3341,-692.7472 1247.7776,-686.3473 1241.9437,-682.4787"/>
+</g>
+<!-- PhenotypicFeature&#45;&gt;Phenopacket -->
+<g id="edge89" class="edge">
+<title>PhenotypicFeature-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M1296.9788,-651.155C1291.2994,-725.3431 1280.7664,-862.9296 1274.3409,-946.8634"/>
+<polygon fill="#000000" stroke="#000000" points="1270.8326,-946.8393 1273.5589,-957.0773 1277.8121,-947.3737 1270.8326,-946.8393"/>
+</g>
+<!-- HtsFile -->
+<g id="node23" class="node">
+<title>HtsFile</title>
+<polygon fill="none" stroke="#000000" points="876.5119,-563.1 876.5119,-636.7 1071.2935,-636.7 1071.2935,-563.1 876.5119,-563.1"/>
+<text text-anchor="middle" x="973.9027" y="-625.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">HtsFile</text>
+<polyline fill="none" stroke="#000000" points="876.5119,-619.1 1071.2935,-619.1 "/>
+<text text-anchor="start" x="884.5119" y="-607.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">uri: String</text>
+<text text-anchor="start" x="884.5119" y="-598.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> description: String</text>
+<text text-anchor="start" x="884.5119" y="-588.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> hts_format: HtsFormat</text>
+<text text-anchor="start" x="884.5119" y="-579.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> genome_assembly: String</text>
+<text text-anchor="start" x="884.5119" y="-569.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> individual_to_sample_identifiers: Map&lt;String, String&gt;</text>
+</g>
+<!-- HtsFile&#45;&gt;Biosample -->
+<g id="edge26" class="edge">
+<title>HtsFile-&gt;Biosample</title>
+<path fill="none" stroke="#000000" d="M1010.6967,-636.8314C1027.1761,-653.5975 1046.7247,-673.7999 1063.9027,-692.4 1066.1812,-694.8672 1068.4808,-697.3716 1070.7938,-699.9035"/>
+<polygon fill="#000000" stroke="#000000" points="1068.4483,-702.5267 1077.7649,-707.5717 1073.6279,-697.8179 1068.4483,-702.5267"/>
+</g>
+<!-- HtsFile&#45;&gt;Phenopacket -->
+<g id="edge95" class="edge">
+<title>HtsFile-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M998.3182,-636.8162C1008.2009,-653.2427 1018.9063,-673.185 1025.9027,-692.4 1061.2136,-789.3785 1006.2685,-838.5716 1068.9027,-920.6 1095.3121,-955.187 1137.2297,-978.1785 1175.8829,-993.0808"/>
+<polygon fill="#000000" stroke="#000000" points="1175.0353,-996.4995 1185.6283,-996.6974 1177.4708,-989.9368 1175.0353,-996.4995"/>
+</g>
+<!-- HtsFile&#45;&gt;Family -->
+<g id="edge99" class="edge">
+<title>HtsFile-&gt;Family</title>
+<path fill="none" stroke="#000000" d="M972.9767,-637.1428C972.9065,-699.2338 979.1266,-826.3782 1025.9027,-920.6 1069.1807,-1007.7757 1092.3279,-1031.0368 1176.9027,-1079.2 1239.1113,-1114.6263 1267.5878,-1088.232 1333.9027,-1115.2 1335.7513,-1115.9518 1337.6069,-1116.745 1339.464,-1117.5737"/>
+<polygon fill="#000000" stroke="#000000" points="1338.2045,-1120.8504 1348.7384,-1121.985 1341.2112,-1114.529 1338.2045,-1120.8504"/>
+</g>
+<!-- HtsFile&#45;&gt;Cohort -->
+<g id="edge102" class="edge">
+<title>HtsFile-&gt;Cohort</title>
+<path fill="none" stroke="#000000" d="M962.9341,-636.8372C939.4282,-724.2258 894.3248,-946.286 997.9027,-1079.2 1023.2124,-1111.6782 1131.2728,-1137.1247 1203.0567,-1150.8506"/>
+<polygon fill="#000000" stroke="#000000" points="1202.4578,-1154.2993 1212.9326,-1152.7091 1203.7524,-1147.42 1202.4578,-1154.2993"/>
+</g>
+<!-- Measurement&#45;&gt;Biosample -->
+<g id="edge28" class="edge">
+<title>Measurement-&gt;Biosample</title>
+<path fill="none" stroke="#000000" d="M812.4205,-636.8359C884.0469,-671.4107 991.3071,-723.1864 1068.49,-760.4433"/>
+<polygon fill="#000000" stroke="#000000" points="1067.2219,-763.7176 1077.7491,-764.9128 1070.2649,-757.4136 1067.2219,-763.7176"/>
+</g>
+<!-- Measurement&#45;&gt;Phenopacket -->
+<g id="edge90" class="edge">
+<title>Measurement-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M760.1214,-636.9501C804.6773,-702.504 905.7873,-839.6355 1021.9027,-920.6 1068.4218,-953.0367 1127.2854,-976.7707 1175.8795,-992.6743"/>
+<polygon fill="#000000" stroke="#000000" points="1174.8634,-996.024 1185.4547,-995.7508 1177.0048,-989.3595 1174.8634,-996.024"/>
+</g>
+<!-- Disease&#45;&gt;Phenopacket -->
+<g id="edge93" class="edge">
+<title>Disease-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M1535.4166,-507.1912C1545.3792,-517.9825 1554.1876,-530.1552 1559.9027,-543.4 1604.5927,-646.9699 1496.6107,-915.074 1491.9027,-920.6 1458.789,-959.4666 1407.2266,-983.3226 1362.021,-997.678"/>
+<polygon fill="#000000" stroke="#000000" points="1360.7219,-994.4152 1352.1826,-1000.6867 1362.769,-1001.1092 1360.7219,-994.4152"/>
+</g>
+<!-- HtsFormat -->
+<g id="node26" class="node">
+<title>HtsFormat</title>
+<polygon fill="none" stroke="#000000" points="1029.3955,-404.5 1029.3955,-506.9 1108.4099,-506.9 1108.4099,-404.5 1029.3955,-404.5"/>
+<text text-anchor="middle" x="1068.9027" y="-495.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">HtsFormat &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="1029.3955,-489.3 1108.4099,-489.3 "/>
+<text text-anchor="start" x="1037.3955" y="-478.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN</text>
+<text text-anchor="start" x="1037.3955" y="-468.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = SAM</text>
+<text text-anchor="start" x="1037.3955" y="-458.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = BAM</text>
+<text text-anchor="start" x="1037.3955" y="-449.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = CRAM</text>
+<text text-anchor="start" x="1037.3955" y="-439.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = VCF</text>
+<text text-anchor="start" x="1037.3955" y="-430.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 5 = BCF</text>
+<text text-anchor="start" x="1037.3955" y="-420.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 6 = GVCF</text>
+<text text-anchor="start" x="1037.3955" y="-410.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 7 = FASTQ</text>
+</g>
+<!-- HtsFormat&#45;&gt;HtsFile -->
+<g id="edge31" class="edge">
+<title>HtsFormat-&gt;HtsFile</title>
+<path fill="none" stroke="#000000" d="M1035.1417,-506.9455C1024.9771,-522.3744 1013.894,-539.1973 1003.9849,-554.2384"/>
+<polygon fill="#000000" stroke="#000000" points="1000.8807,-552.5882 998.302,-562.8644 1006.7262,-556.4393 1000.8807,-552.5882"/>
+</g>
+<!-- Gene -->
+<g id="node27" class="node">
+<title>Gene</title>
+<polygon fill="none" stroke="#000000" points="1638.9135,-202.5 1638.9135,-256.9 1740.8919,-256.9 1740.8919,-202.5 1638.9135,-202.5"/>
+<text text-anchor="middle" x="1689.9027" y="-245.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Gene</text>
+<polyline fill="none" stroke="#000000" points="1638.9135,-239.3 1740.8919,-239.3 "/>
+<text text-anchor="start" x="1646.9135" y="-228.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
+<text text-anchor="start" x="1646.9135" y="-218.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> alternate_ids: String [0..*]</text>
+<text text-anchor="start" x="1646.9135" y="-208.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> symbol: String</text>
+</g>
+<!-- GenomicInterpretation -->
+<g id="node38" class="node">
+<title>GenomicInterpretation</title>
+<polygon fill="none" stroke="#000000" points="1749.5871,-308.3 1749.5871,-362.7 1900.2183,-362.7 1900.2183,-308.3 1749.5871,-308.3"/>
+<text text-anchor="middle" x="1824.9027" y="-351.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">GenomicInterpretation</text>
+<polyline fill="none" stroke="#000000" points="1749.5871,-345.1 1900.2183,-345.1 "/>
+<text text-anchor="start" x="1757.5871" y="-333.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">subject_or_biosample_id: String</text>
+<text text-anchor="start" x="1757.5871" y="-324.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> interpretation_status: InterpretationStatus</text>
+<text text-anchor="middle" x="1824.9027" y="-314.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> call: {Gene | VariantInterpretation}</text>
+</g>
+<!-- Gene&#45;&gt;GenomicInterpretation -->
+<g id="edge49" class="edge">
+<title>Gene-&gt;GenomicInterpretation</title>
+<path fill="none" stroke="#000000" d="M1724.6685,-256.9461C1742.0121,-270.5383 1763.1599,-287.112 1781.5523,-301.5262"/>
+<polygon fill="#000000" stroke="#000000" points="1779.7556,-304.5648 1789.7854,-307.9785 1784.0735,-299.0552 1779.7556,-304.5648"/>
+</g>
+<!-- VariantInterpretation -->
+<g id="node40" class="node">
+<title>VariantInterpretation</title>
+<polygon fill="none" stroke="#000000" points="1884.7979,-207.3 1884.7979,-252.1 2001.0075,-252.1 2001.0075,-207.3 1884.7979,-207.3"/>
+<text text-anchor="middle" x="1942.9027" y="-240.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariantInterpretation</text>
+<polyline fill="none" stroke="#000000" points="1884.7979,-234.5 2001.0075,-234.5 "/>
+<text text-anchor="start" x="1892.7979" y="-223.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">variantFinding: VariantFinding</text>
+<text text-anchor="start" x="1892.7979" y="-213.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> varant: Variant</text>
+</g>
+<!-- Variant&#45;&gt;VariantInterpretation -->
+<g id="edge52" class="edge">
+<title>Variant-&gt;VariantInterpretation</title>
+<path fill="none" stroke="#000000" d="M2234.3959,-141.6149C2168.9253,-161.3992 2074.4585,-189.9457 2010.9811,-209.1277"/>
+<polygon fill="#000000" stroke="#000000" points="2009.6287,-205.88 2001.0686,-212.1231 2011.6536,-212.5807 2009.6287,-205.88"/>
+</g>
+<!-- HgvsAllele -->
+<g id="node29" class="node">
+<title>HgvsAllele</title>
+<polygon fill="none" stroke="#000000" points="2319.9027,-4.9 2319.9027,-40.9 2373.9027,-40.9 2373.9027,-4.9 2319.9027,-4.9"/>
+<text text-anchor="middle" x="2346.6195" y="-20.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">HgvsAllele</text>
+</g>
+<!-- HgvsAllele&#45;&gt;Variant -->
+<g id="edge33" class="edge">
+<title>HgvsAllele-&gt;Variant</title>
+<path fill="none" stroke="#000000" d="M2339.7552,-40.9945C2334.6407,-53.9422 2327.6184,-71.7197 2321.5653,-87.0436"/>
+<polygon fill="#000000" stroke="#000000" points="2318.176,-86.0973 2317.7573,-96.6838 2324.6864,-88.669 2318.176,-86.0973"/>
+</g>
+<!-- VcfAllele -->
+<g id="node30" class="node">
+<title>VcfAllele</title>
+<polygon fill="none" stroke="#000000" points="2391.9027,-4.9 2391.9027,-40.9 2445.9027,-40.9 2445.9027,-4.9 2391.9027,-4.9"/>
+<text text-anchor="middle" x="2418.6711" y="-20.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VcfAllele</text>
+</g>
+<!-- VcfAllele&#45;&gt;Variant -->
+<g id="edge34" class="edge">
+<title>VcfAllele-&gt;Variant</title>
+<path fill="none" stroke="#000000" d="M2398.2125,-40.9945C2382.4204,-54.8054 2360.3449,-74.1115 2342.0931,-90.0735"/>
+<polygon fill="#000000" stroke="#000000" points="2339.7578,-87.4661 2334.5344,-96.6838 2344.366,-92.7353 2339.7578,-87.4661"/>
+</g>
+<!-- SpdiAllele -->
+<g id="node31" class="node">
+<title>SpdiAllele</title>
+<polygon fill="none" stroke="#000000" points="2165.9027,-4.9 2165.9027,-40.9 2219.9027,-40.9 2219.9027,-4.9 2165.9027,-4.9"/>
+<text text-anchor="middle" x="2192.5115" y="-20.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">SpdiAllele</text>
+</g>
+<!-- SpdiAllele&#45;&gt;Variant -->
+<g id="edge35" class="edge">
+<title>SpdiAllele-&gt;Variant</title>
+<path fill="none" stroke="#000000" d="M2214.7214,-40.9945C2231.4492,-54.8671 2254.8625,-74.2839 2274.1594,-90.2871"/>
+<polygon fill="#000000" stroke="#000000" points="2271.9411,-92.9944 2281.8728,-96.6838 2276.4096,-87.6061 2271.9411,-92.9944"/>
+</g>
+<!-- IscnKaryotype -->
+<g id="node32" class="node">
+<title>IscnKaryotype</title>
+<polygon fill="none" stroke="#000000" points="2238.3579,-4.9 2238.3579,-40.9 2301.4475,-40.9 2301.4475,-4.9 2238.3579,-4.9"/>
+<text text-anchor="middle" x="2269.9027" y="-20.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">IscnKaryotype</text>
+</g>
+<!-- IscnKaryotype&#45;&gt;Variant -->
+<g id="edge36" class="edge">
+<title>IscnKaryotype-&gt;Variant</title>
+<path fill="none" stroke="#000000" d="M2277.2383,-40.9945C2282.4874,-53.9422 2289.6944,-71.7197 2295.9068,-87.0436"/>
+<polygon fill="#000000" stroke="#000000" points="2292.8143,-88.7314 2299.815,-96.6838 2299.3015,-86.1015 2292.8143,-88.7314"/>
+</g>
+<!-- Individual&#45;&gt;Phenopacket -->
+<g id="edge88" class="edge">
+<title>Individual-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M1993.0872,-630.9484C1961.647,-647.5647 1923.629,-669.3312 1891.9027,-692.4 1770.7576,-780.4867 1775.433,-848.9399 1643.9027,-920.6 1554.977,-969.0483 1440.9405,-994.1645 1362.0886,-1006.6351"/>
+<polygon fill="#000000" stroke="#000000" points="1361.5178,-1003.1817 1352.169,-1008.1667 1362.586,-1010.0997 1361.5178,-1003.1817"/>
+</g>
+<!-- VitalStatus&#45;&gt;Individual -->
+<g id="edge38" class="edge">
+<title>VitalStatus-&gt;Individual</title>
+<path fill="none" stroke="#000000" d="M2016.2212,-487.7027C2021.1029,-501.5054 2027.0014,-518.183 2032.7405,-534.4101"/>
+<polygon fill="#000000" stroke="#000000" points="2029.4582,-535.6266 2036.0923,-543.8873 2036.0576,-533.2925 2029.4582,-535.6266"/>
+</g>
+<!-- Interpretation -->
+<g id="node35" class="node">
+<title>Interpretation</title>
+<polygon fill="none" stroke="#000000" points="1606.5795,-567.9 1606.5795,-631.9 1725.2259,-631.9 1725.2259,-567.9 1606.5795,-567.9"/>
+<text text-anchor="middle" x="1665.9027" y="-620.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Interpretation</text>
+<polyline fill="none" stroke="#000000" points="1606.5795,-614.3 1725.2259,-614.3 "/>
+<text text-anchor="start" x="1614.5795" y="-603.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
+<text text-anchor="start" x="1614.5795" y="-593.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> progress_status: ProgressStatus</text>
+<text text-anchor="start" x="1614.5795" y="-583.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> diagnosis: Diagnosis</text>
+<text text-anchor="start" x="1614.5795" y="-574.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> summary: String</text>
+</g>
+<!-- Interpretation&#45;&gt;Phenopacket -->
+<g id="edge92" class="edge">
+<title>Interpretation-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M1668.3916,-631.9897C1671.4846,-695.7505 1668.9183,-839.2372 1592.9027,-920.6 1561.373,-954.3475 1446.2987,-983.3529 1362.2306,-1000.7056"/>
+<polygon fill="#000000" stroke="#000000" points="1361.4964,-997.2833 1352.3978,-1002.7116 1362.8956,-1004.142 1361.4964,-997.2833"/>
+</g>
+<!-- ProgressStatus -->
+<g id="node36" class="node">
+<title>ProgressStatus</title>
+<polygon fill="none" stroke="#000000" points="1563.3211,-418.9 1563.3211,-492.5 1678.4843,-492.5 1678.4843,-418.9 1563.3211,-418.9"/>
+<text text-anchor="middle" x="1620.9027" y="-481.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">ProgressStatus &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="1563.3211,-474.9 1678.4843,-474.9 "/>
+<text text-anchor="start" x="1571.3211" y="-463.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN_PROGRESS</text>
+<text text-anchor="start" x="1571.3211" y="-454.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = IN_PROGRESS</text>
+<text text-anchor="start" x="1571.3211" y="-444.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = COMPLETED</text>
+<text text-anchor="start" x="1571.3211" y="-434.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = SOLVED</text>
+<text text-anchor="start" x="1571.3211" y="-425.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = UNSOLVED</text>
+</g>
+<!-- ProgressStatus&#45;&gt;Interpretation -->
+<g id="edge44" class="edge">
+<title>ProgressStatus-&gt;Interpretation</title>
+<path fill="none" stroke="#000000" d="M1632.4913,-492.8351C1638.7127,-512.7714 1646.4028,-537.4136 1652.8363,-558.0294"/>
+<polygon fill="#000000" stroke="#000000" points="1649.5615,-559.2849 1655.8816,-567.7882 1656.2437,-557.1996 1649.5615,-559.2849"/>
+</g>
+<!-- Diagnosis&#45;&gt;Interpretation -->
+<g id="edge45" class="edge">
+<title>Diagnosis-&gt;Interpretation</title>
+<path fill="none" stroke="#000000" d="M1805.1214,-478.2313C1779.828,-500.3362 1740.7485,-534.4893 1710.4249,-560.9902"/>
+<polygon fill="#000000" stroke="#000000" points="1707.7481,-558.6814 1702.5215,-567.8973 1712.3545,-563.9522 1707.7481,-558.6814"/>
+</g>
+<!-- GenomicInterpretation&#45;&gt;Diagnosis -->
+<g id="edge47" class="edge">
+<title>GenomicInterpretation-&gt;Diagnosis</title>
+<path fill="none" stroke="#000000" d="M1826.2642,-362.7752C1827.1527,-380.576 1828.3179,-403.9186 1829.2582,-422.755"/>
+<polygon fill="#000000" stroke="#000000" points="1825.7738,-423.1568 1829.768,-432.9699 1832.7651,-422.8078 1825.7738,-423.1568"/>
+</g>
+<!-- InterpretationStatus -->
+<g id="node39" class="node">
+<title>InterpretationStatus</title>
+<polygon fill="none" stroke="#000000" points="1758.9583,-192.9 1758.9583,-266.5 1866.8471,-266.5 1866.8471,-192.9 1758.9583,-192.9"/>
+<text text-anchor="middle" x="1812.9027" y="-255.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">InterpretationStatus &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="1758.9583,-248.9 1866.8471,-248.9 "/>
+<text text-anchor="start" x="1766.9583" y="-237.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN_STATUS</text>
+<text text-anchor="start" x="1766.9583" y="-228.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = REJECTED</text>
+<text text-anchor="start" x="1766.9583" y="-218.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = CANDIDATE</text>
+<text text-anchor="start" x="1766.9583" y="-208.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = CONTRIBUTORY</text>
+<text text-anchor="start" x="1766.9583" y="-199.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = ACTIONABLE</text>
+</g>
+<!-- InterpretationStatus&#45;&gt;GenomicInterpretation -->
+<g id="edge48" class="edge">
+<title>InterpretationStatus-&gt;GenomicInterpretation</title>
+<path fill="none" stroke="#000000" d="M1817.0997,-266.7037C1818.2434,-276.7873 1819.4834,-287.7204 1820.6312,-297.84"/>
+<polygon fill="#000000" stroke="#000000" points="1817.1812,-298.4798 1821.786,-308.0216 1824.1366,-297.6908 1817.1812,-298.4798"/>
+</g>
+<!-- VariantInterpretation&#45;&gt;GenomicInterpretation -->
+<g id="edge50" class="edge">
+<title>VariantInterpretation-&gt;GenomicInterpretation</title>
+<path fill="none" stroke="#000000" d="M1917.8779,-252.1375C1901.8951,-266.4678 1880.8664,-285.3224 1862.8513,-301.4749"/>
+<polygon fill="#000000" stroke="#000000" points="1860.4475,-298.9292 1855.3385,-308.2109 1865.1205,-304.1411 1860.4475,-298.9292"/>
+</g>
+<!-- VariantFinding -->
+<g id="node41" class="node">
+<title>VariantFinding</title>
+<polygon fill="none" stroke="#000000" points="1866.7715,-82.3 1866.7715,-155.9 2001.0339,-155.9 2001.0339,-82.3 1866.7715,-82.3"/>
+<text text-anchor="middle" x="1933.9027" y="-144.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariantFinding &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="1866.7715,-138.3 2001.0339,-138.3 "/>
+<text text-anchor="start" x="1874.7715" y="-127.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNCERTAIN_SIGNIFICANCE</text>
+<text text-anchor="start" x="1874.7715" y="-117.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = PATHOGENIC</text>
+<text text-anchor="start" x="1874.7715" y="-107.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = LIKELY_PATHOGENIC</text>
+<text text-anchor="start" x="1874.7715" y="-98.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = BENIGN</text>
+<text text-anchor="start" x="1874.7715" y="-88.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = LIKELY_BENIGN</text>
+</g>
+<!-- VariantFinding&#45;&gt;VariantInterpretation -->
+<g id="edge51" class="edge">
+<title>VariantFinding-&gt;VariantInterpretation</title>
+<path fill="none" stroke="#000000" d="M1936.8995,-155.9282C1937.9782,-169.1833 1939.187,-184.0381 1940.2356,-196.9246"/>
+<polygon fill="#000000" stroke="#000000" points="1936.7728,-197.5249 1941.0724,-207.2081 1943.7497,-196.9571 1936.7728,-197.5249"/>
+</g>
+<!-- MedicalAction&#45;&gt;Phenopacket -->
+<g id="edge94" class="edge">
+<title>MedicalAction-&gt;Phenopacket</title>
+<path fill="none" stroke="#000000" d="M538.6099,-848.1264C622.096,-870.4637 727.4556,-897.9728 821.9027,-920.6 943.6203,-949.7606 1084.8742,-979.8915 1175.4858,-998.7474"/>
+<polygon fill="#000000" stroke="#000000" points="1174.956,-1002.212 1185.459,-1000.8198 1176.3802,-995.3584 1174.956,-1002.212"/>
+</g>
+<!-- Treatment&#45;&gt;MedicalAction -->
+<g id="edge60" class="edge">
+<title>Treatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#000000" d="M284.5273,-487.8057C299.3118,-503.2816 315.5186,-522.9135 325.9027,-543.4 344.3999,-579.8929 365.5856,-689.0553 377.1815,-754.7434"/>
+<polygon fill="#000000" stroke="#000000" points="373.7866,-755.6481 378.9584,-764.8949 380.6818,-754.4412 373.7866,-755.6481"/>
+</g>
+<!-- ChemoTherapyTreatment -->
+<g id="node44" class="node">
+<title>ChemoTherapyTreatment</title>
+<polygon fill="none" stroke="#000000" points="186.8027,-577.5 186.8027,-622.3 317.0027,-622.3 317.0027,-577.5 186.8027,-577.5"/>
+<text text-anchor="middle" x="251.9027" y="-611.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">ChemoTherapyTreatment</text>
+<polyline fill="none" stroke="#000000" points="186.8027,-604.7 317.0027,-604.7 "/>
+<text text-anchor="start" x="194.8027" y="-593.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">treatment: Treatment</text>
+<text text-anchor="start" x="194.8027" y="-583.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> cumulative_dose: CumulativeDose</text>
+</g>
+<!-- Treatment&#45;&gt;ChemoTherapyTreatment -->
+<g id="edge72" class="edge">
+<title>Treatment-&gt;ChemoTherapyTreatment</title>
+<path fill="none" stroke="#000000" d="M250.3465,-487.7027C250.6739,-511.3035 251.1178,-543.3089 251.4477,-567.0969"/>
+<polygon fill="#000000" stroke="#000000" points="247.952,-567.4381 251.5904,-577.3885 254.9513,-567.3409 247.952,-567.4381"/>
+</g>
+<!-- HormoneTherapyTreatment -->
+<g id="node45" class="node">
+<title>HormoneTherapyTreatment</title>
+<polygon fill="none" stroke="#000000" points="38.8027,-577.5 38.8027,-622.3 169.0027,-622.3 169.0027,-577.5 38.8027,-577.5"/>
+<text text-anchor="middle" x="103.9027" y="-611.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">HormoneTherapyTreatment</text>
+<polyline fill="none" stroke="#000000" points="38.8027,-604.7 169.0027,-604.7 "/>
+<text text-anchor="start" x="46.8027" y="-593.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">treatment: Treatment</text>
+<text text-anchor="start" x="46.8027" y="-583.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> cumulative_dose: CumulativeDose</text>
+</g>
+<!-- Treatment&#45;&gt;HormoneTherapyTreatment -->
+<g id="edge74" class="edge">
+<title>Treatment-&gt;HormoneTherapyTreatment</title>
+<path fill="none" stroke="#000000" d="M217.5005,-487.7027C192.5288,-512.3666 158.2635,-546.2093 133.9127,-570.2599"/>
+<polygon fill="#000000" stroke="#000000" points="131.3504,-567.8713 126.6951,-577.3885 136.2694,-572.8516 131.3504,-567.8713"/>
+</g>
+<!-- Treatment&#45;&gt;RadiationTherapyTreatment -->
+<g id="edge76" class="edge">
+<title>Treatment-&gt;RadiationTherapyTreatment</title>
+<path fill="none" stroke="#000000" d="M290.2011,-487.7598C310.8388,-504.2702 336.3127,-524.7915 358.9027,-543.4 367.7136,-550.658 377.1145,-558.5144 386.0029,-565.9951"/>
+<polygon fill="#000000" stroke="#000000" points="383.7533,-568.6765 393.6542,-572.4479 388.2662,-563.3254 383.7533,-568.6765"/>
+</g>
+<!-- ChemoTherapyTreatment&#45;&gt;MedicalAction -->
+<g id="edge61" class="edge">
+<title>ChemoTherapyTreatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#000000" d="M266.4981,-622.4031C287.186,-654.2995 325.5961,-713.5198 353.274,-756.1934"/>
+<polygon fill="#000000" stroke="#000000" points="350.4543,-758.278 358.8324,-764.7633 356.3272,-754.4689 350.4543,-758.278"/>
+</g>
+<!-- HormoneTherapyTreatment&#45;&gt;MedicalAction -->
+<g id="edge62" class="edge">
+<title>HormoneTherapyTreatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#000000" d="M132.9369,-622.3553C146.5286,-632.7932 162.9774,-645.3201 177.9027,-656.4 224.7348,-691.1665 278.0923,-729.6485 319.0392,-758.9436"/>
+<polygon fill="#000000" stroke="#000000" points="317.1488,-761.8946 327.3192,-764.8633 321.2199,-756.2002 317.1488,-761.8946"/>
+</g>
+<!-- RadiationTherapyTreatment&#45;&gt;MedicalAction -->
+<g id="edge63" class="edge">
+<title>RadiationTherapyTreatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#000000" d="M420.591,-627.3349C414.3218,-659.7153 403.7612,-714.2605 395.9357,-754.6796"/>
+<polygon fill="#000000" stroke="#000000" points="392.474,-754.1462 394.0093,-764.6292 399.3464,-755.4768 392.474,-754.1462"/>
+</g>
+<!-- TherapeuticRegimen&#45;&gt;MedicalAction -->
+<g id="edge64" class="edge">
+<title>TherapeuticRegimen-&gt;MedicalAction</title>
+<path fill="none" stroke="#000000" d="M518.4631,-482.9797C516.9993,-522.5333 511.0861,-597.513 487.9027,-656.4 473.6163,-692.6881 449.2986,-728.9764 427.9904,-756.7807"/>
+<polygon fill="#000000" stroke="#000000" points="425.1612,-754.7173 421.7807,-764.7584 430.685,-759.017 425.1612,-754.7173"/>
+</g>
+<!-- RegimenStatus -->
+<g id="node48" class="node">
+<title>RegimenStatus</title>
+<polygon fill="none" stroke="#000000" points="568.2843,-303.5 568.2843,-367.5 661.5211,-367.5 661.5211,-303.5 568.2843,-303.5"/>
+<text text-anchor="middle" x="614.9027" y="-356.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">RegimenStatus &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="568.2843,-349.9 661.5211,-349.9 "/>
+<text text-anchor="start" x="576.2843" y="-338.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN</text>
+<text text-anchor="start" x="576.2843" y="-329.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = STARTED</text>
+<text text-anchor="start" x="576.2843" y="-319.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = COMPLETED</text>
+<text text-anchor="middle" x="614.9027" y="-309.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = DISCONTINUED</text>
+</g>
+<!-- RegimenStatus&#45;&gt;TherapeuticRegimen -->
+<g id="edge81" class="edge">
+<title>RegimenStatus-&gt;TherapeuticRegimen</title>
+<path fill="none" stroke="#000000" d="M589.1764,-367.7114C576.194,-383.9665 560.4184,-403.7189 547.1059,-420.3871"/>
+<polygon fill="#000000" stroke="#000000" points="544.2975,-418.2952 540.7916,-428.2932 549.7671,-422.6636 544.2975,-418.2952"/>
+</g>
+<!-- CumulativeDose&#45;&gt;ChemoTherapyTreatment -->
+<g id="edge73" class="edge">
+<title>CumulativeDose-&gt;ChemoTherapyTreatment</title>
+<path fill="none" stroke="#000000" d="M122.647,-473.963C147.5289,-498.2061 191.7751,-541.3162 221.4756,-570.2541"/>
+<polygon fill="#000000" stroke="#000000" points="219.0876,-572.8141 228.6925,-577.2858 223.9725,-567.8004 219.0876,-572.8141"/>
+</g>
+<!-- CumulativeDose&#45;&gt;HormoneTherapyTreatment -->
+<g id="edge75" class="edge">
+<title>CumulativeDose-&gt;HormoneTherapyTreatment</title>
+<path fill="none" stroke="#000000" d="M103.9027,-473.963C103.9027,-497.3168 103.9027,-538.1788 103.9027,-567.014"/>
+<polygon fill="#000000" stroke="#000000" points="100.4028,-567.0386 103.9027,-577.0386 107.4028,-567.0387 100.4028,-567.0386"/>
+</g>
+<!-- DoseInterval&#45;&gt;Treatment -->
+<g id="edge66" class="edge">
+<title>DoseInterval-&gt;Treatment</title>
+<path fill="none" stroke="#000000" d="M430.8044,-362.7752C398.4973,-379.3706 356.8132,-400.7827 321.6025,-418.8696"/>
+<polygon fill="#000000" stroke="#000000" points="319.6252,-415.9504 312.3294,-423.6329 322.8237,-422.177 319.6252,-415.9504"/>
+</g>
+<!-- DrugType -->
+<g id="node51" class="node">
+<title>DrugType</title>
+<polygon fill="none" stroke="#000000" points="78.6679,-303.5 78.6679,-367.5 285.1375,-367.5 285.1375,-303.5 78.6679,-303.5"/>
+<text text-anchor="middle" x="181.9027" y="-356.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">DrugType &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="78.6679,-349.9 285.1375,-349.9 "/>
+<text text-anchor="start" x="86.6679" y="-338.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN_DRUG_TYPE</text>
+<text text-anchor="start" x="86.6679" y="-329.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = PRESCRIPTION</text>
+<text text-anchor="start" x="86.6679" y="-319.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = EHR_MEDICATION_LIST</text>
+<text text-anchor="start" x="86.6679" y="-309.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = ADMINISTRATION_RELATED_TO_PROCEDURE</text>
+</g>
+<!-- DrugType&#45;&gt;Treatment -->
+<g id="edge67" class="edge">
+<title>DrugType-&gt;Treatment</title>
+<path fill="none" stroke="#000000" d="M200.1254,-367.7114C208.2812,-382.128 217.9933,-399.2955 226.6642,-414.6227"/>
+<polygon fill="#000000" stroke="#000000" points="223.6593,-416.4193 231.6296,-423.3997 229.752,-412.9726 223.6593,-416.4193"/>
+</g>
+<!-- Pedigree -->
+<g id="node52" class="node">
+<title>Pedigree</title>
+<polygon fill="none" stroke="#000000" points="1742.0231,-999.9 1742.0231,-1035.9 1827.7823,-1035.9 1827.7823,-999.9 1742.0231,-999.9"/>
+<text text-anchor="middle" x="1784.9027" y="-1024.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Pedigree</text>
+<polyline fill="none" stroke="#000000" points="1742.0231,-1018.3 1827.7823,-1018.3 "/>
+<text text-anchor="start" x="1750.0231" y="-1007.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">persons: Person [0..*]</text>
+</g>
+<!-- Pedigree&#45;&gt;Family -->
+<g id="edge98" class="edge">
+<title>Pedigree-&gt;Family</title>
+<path fill="none" stroke="#000000" d="M1742.0001,-1034.4416C1678.6118,-1058.8817 1559.1733,-1104.9326 1482.4097,-1134.5297"/>
+<polygon fill="#000000" stroke="#000000" points="1480.8734,-1131.3708 1472.8021,-1138.234 1483.3917,-1137.9021 1480.8734,-1131.3708"/>
+</g>
+<!-- Person&#45;&gt;Pedigree -->
+<g id="edge82" class="edge">
+<title>Person-&gt;Pedigree</title>
+<path fill="none" stroke="#000000" d="M2201.8158,-641.5076C2106.4777,-727.5796 1890.0626,-922.9608 1812.8891,-992.6336"/>
+<polygon fill="#000000" stroke="#000000" points="1810.0975,-990.4386 1805.0203,-999.7376 1814.7883,-995.6344 1810.0975,-990.4386"/>
+</g>
+<!-- AffectedStatus -->
+<g id="node54" class="node">
+<title>AffectedStatus</title>
+<polygon fill="none" stroke="#000000" points="2310.7371,-428.5 2310.7371,-482.9 2403.0683,-482.9 2403.0683,-428.5 2310.7371,-428.5"/>
+<text text-anchor="middle" x="2356.9027" y="-471.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">AffectedStatus &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="2310.7371,-465.3 2403.0683,-465.3 "/>
+<text text-anchor="start" x="2318.7371" y="-454.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = MISSING</text>
+<text text-anchor="start" x="2318.7371" y="-444.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = UNAFFECTED</text>
+<text text-anchor="start" x="2318.7371" y="-434.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = AFFECTED</text>
+</g>
+<!-- AffectedStatus&#45;&gt;Person -->
+<g id="edge84" class="edge">
+<title>AffectedStatus-&gt;Person</title>
+<path fill="none" stroke="#000000" d="M2336.144,-483.1623C2321.8958,-502.0118 2302.5751,-527.5719 2285.6445,-549.97"/>
+<polygon fill="#000000" stroke="#000000" points="2282.7669,-547.9726 2279.5289,-558.0605 2288.3511,-552.1937 2282.7669,-547.9726"/>
+</g>
+<!-- Phenopacket&#45;&gt;Family -->
+<g id="edge97" class="edge">
+<title>Phenopacket-&gt;Family</title>
+<path fill="none" stroke="#000000" d="M1329.1234,-1079.0538C1338.6407,-1088.7185 1348.4225,-1098.6519 1357.7633,-1108.1373"/>
+<polygon fill="#000000" stroke="#000000" points="1355.2982,-1110.6223 1364.8085,-1115.2917 1360.2858,-1105.7107 1355.2982,-1110.6223"/>
+</g>
+<!-- Phenopacket&#45;&gt;Cohort -->
+<g id="edge101" class="edge">
+<title>Phenopacket-&gt;Cohort</title>
+<path fill="none" stroke="#000000" d="M1268.9027,-1079.0538C1268.9027,-1091.0429 1268.9027,-1103.4455 1268.9027,-1114.8936"/>
+<polygon fill="#000000" stroke="#000000" points="1265.4028,-1115.0995 1268.9027,-1125.0995 1272.4028,-1115.0996 1265.4028,-1115.0995"/>
+</g>
+</g>
+</svg>
