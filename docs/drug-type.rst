@@ -1,8 +1,8 @@
 .. _rstdrugtype:
 
-=========
+#########
 Drug Type
-=========
+#########
 
 
 Drugs can be administered in different contexts. This element does not intend to capture information about

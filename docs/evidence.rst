@@ -1,14 +1,15 @@
 .. _rstevidence:
 
-========
+########
 Evidence
-========
+########
 
 This element intends to represent the evidence for an assertion such as an observation of a :ref:`rstphenotypicfeature`.
 We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <http://purl.obolibrary.org/obo/eco.owl>`_
 
 
-**Data model**
+Data model
+##########
 
  .. list-table:: Definition the ``Evidence`` element
     :widths: 25 25 50 50
@@ -28,7 +29,8 @@ We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <ht
       - Representation of the source of the evidence
 
 
-**Example**
+Example
+#######
 
 .. code-block:: yaml
 
@@ -40,6 +42,9 @@ We recommend the use of terms from the `Evidence & Conclusion Ontology (ECO) <ht
             id: "PMID:30962759"
             description: "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation"
 
+
+Explanations
+############
 
 evidence_code
 ~~~~~~~~~~~~~

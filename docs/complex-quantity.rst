@@ -1,15 +1,15 @@
 .. _rstcomplexquantity:
 
-================
+################
 Complex Quantity
-================
+################
 
 This element is intended for complex measurements, such as blood pressure where more than one component quantity is required to describe the
 measurement.
 
 
 Data model
-==========
+##########
 
 .. csv-table::
    :header: Field, Type, Status, Description
@@ -19,7 +19,7 @@ Data model
 
 
 Example
-=======
+#######
 
 The following example shows a ComplexQuantity message for diastolic blood pressure.
 The intended use case for a ComplexQuantity message is as a component of a :ref:`rstmeasurement`

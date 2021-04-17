@@ -24,7 +24,6 @@ building blocks.
    dose-interval
    drug-type
    evidence
-   exposure
    externalreference
    gene
    genomic-interpretation
