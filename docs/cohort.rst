@@ -1,8 +1,8 @@
 .. _rstcohort:
 
-======
+######
 Cohort
-======
+######
 
 
 This element describes a group of individuals related in some phenotypic or genotypic aspect. For instance, a cohort
@@ -13,7 +13,8 @@ We recommend using the :ref:`rstfamily` element to describe families being inves
 disease.
 
 
-**Data model**
+Data model
+##########
 
 .. list-table:: Definition of the ``Cohort`` element
    :widths: 25 25 50 50
@@ -44,6 +45,8 @@ disease.
      - required
      - Metadata related to the ontologies and references used in this message
 
+Explanations
+############
 
 id
 ~~
