@@ -468,6 +468,40 @@ public class YamlGenerationTest extends TestBase {
         assertEquals("abcd87e963f7cbed1034b3c8f51df1a83aebe56ca65a3841a46ec0fb93b915e7", hash);
 
     }
+
+    @Test
+    public void aclarubicinTest() throws ParseException {
+        OntologyClass aclarubicin = ontologyClass("DrugCentral:80","aclarubicin");
+        OntologyClass intravenous = ontologyClass("NCIT:C38276","Intravenous Route of Administration");
+        OntologyClass mgPerKgPerDose = ontologyClass("NCIT:C124458","Milligram per Kilogram per Dose");
+        Timestamp t1 = Timestamps.parse("2020-07-10T00:00:00Z");
+        Timestamp t2 = Timestamps.parse("2020-08-10T00:00:00Z");
+        OntologyClass mgPerKg = ontologyClass("EFO:0002902","milligram per kilogram");
+        Quantity quantity = quantity(100, mgPerKgPerDose);
+        OntologyClass every3weeks = ontologyClass("NCIT:C64535", "Every Three Weeks");
+        DoseInterval di = DoseInterval.newBuilder()
+                .setInterval(TimeInterval.newBuilder().setStart(t1).setEnd(t2))
+                .setQuantity(quantity)
+                .setScheduleFrequency(every3weeks)
+                .build();
+        Treatment treatment = Treatment.newBuilder()
+                .setAgent(aclarubicin)
+                .setDrugType(DrugType.EHR_MEDICATION_LIST)
+                .addDoseIntervals(di)
+                .setRouteOfAdministration(intravenous)
+                .build();
+        Quantity cumulativeQuantity = quantity(200, mgPerKg);
+        CumulativeDose cumulativeDose = CumulativeDose.newBuilder()
+                .setQuantity(cumulativeQuantity).build();
+        ChemoTherapyTreatment chemo = ChemoTherapyTreatment.newBuilder()
+                .setTreatment(treatment)
+                .setCumulativeDose(cumulativeDose)
+                .build();
+        String hash = printAndGetHash(chemo, "chemotherapyTreatment");
+        assertEquals("e63a9a6eac9b3c30fd85f7f0274ae7c0e49d167cb4f0496394e01131b2901f04", hash);
+
+
+    }
     
 }
 

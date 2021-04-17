@@ -18,6 +18,7 @@ building blocks.
 
    age
    biosample
+   chemotherapytreatment
    complex-quantity
    disease
    dose-interval
