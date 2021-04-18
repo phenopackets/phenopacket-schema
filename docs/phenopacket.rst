@@ -34,22 +34,26 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
       - List of :ref:`phenotypicfeature`
       - recommended
       - Phenotypic features observed in the proband
+    * - measurements
+      - List of :ref:`rstmeasurement`
+      - recommended
+      - Measurements performed in the proband
     * - biosamples
       - :ref:`rstbiosample`
       - optional
       - samples (e.g., biopsies), if any
-    * - genes
-      - :ref:`rstgene`
+    * - interpretations
+      - List of :ref:`rstinterpretation`
       - optional
-      - Gene deemed to be relevant to the case (application specific)
-    * - variants
-      - List of :ref:`rstvariant`
-      - optional
-      - Variants identified in the proband
+      - Interpretations related to this phenopacket
     * - diseases
       - List of :ref:`rstdisease`
       - optional
       - Disease(s) diagnosed in the proband
+    * - medical_actions
+      - List of :ref:`rstmedicalaction`
+      - optional
+      - Medical actions performed
     * - hts_files
       - List of :ref:`rstfile`
       - optional
@@ -59,7 +63,10 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
       - required
       - Information about ontologies and references used in the phenopacket
 
+Examples
+########
 
+TODO link to several longer examples.
 
 
 Explanations
@@ -83,29 +90,41 @@ phenotypic_features
 This is a list of phenotypic findings observed in the subject. See :ref:`phenotypicfeature` for further information.
 
 
+measurements
+~~~~~~~~~~~~
+
+A list of measurements performed in the patient. In contrast to :ref:`phenotypicfeature`, which
+relies on an :ref:`rstontologyclass` to specify the observation, the :ref:`rstmeasurement` can
+be used to report quanititative as well as ordinal or categorical measurements.
+
+
+
 biosamples
 ~~~~~~~~~~
 
 This field describes samples that have been derived from the patient who is the object of the Phenopacket.
 or a collection of biosamples in isolation. See :ref:`rstbiosample` for further information.
 
-genes
-~~~~~
-This is a field for gene identifiers and can be used for listing either candidate genes or causative genes. The
-resources using these fields should define what this represents in their context. This could be used in order to
-obfuscate the specific causative/candidate variant to maintain patient privacy. See :ref:`rstgene` for further information.
+interpretations
+~~~~~~~~~~~~~~~
 
-variants
-~~~~~~~~
-This is a field for genetic variants and can be used for listing either candidate variants or diagnosed causative
-variants. The resources using these fields should define what this represents in their context.
-See :ref:`rstvariant` for further information.
+An optional list of :ref:`rstinterpretation` related to the phenopacket. These elements
+are intended to represent interpretations of disease or phenotypic findings based on
+genomic findings and must relate either to a genetic or genomic investigation of organismal
+origin (e.g., germline DNA derived from a blood sample) or from a :ref:`rstbiosample`.
+
 
 diseases
 ~~~~~~~~
 This is a field for disease identifiers and can be used for listing either diagnosed or suspected conditions. The
 resources using these fields should define what this represents in their context.
 See :ref:`rstdisease` for further information.
+
+medical_actions
+~~~~~~~~~~~~~~~
+
+A list of treatments or other medical actions performed for the person represented by this
+phenopacket. See :ref:`rstmedicalaction` for details.
 
 
 hts_files
