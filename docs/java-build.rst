@@ -1,8 +1,8 @@
 .. _rstjavabuild:
 
-==========
+##########
 Java Build
-==========
+##########
 
 Most users of phenopackets-schema in Java should use maven central to include the phenopackets-schema package.
 

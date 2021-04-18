@@ -1,8 +1,8 @@
 .. _rstpedigree:
 
-========
+########
 Pedigree
-========
+########
 
 
 
@@ -16,7 +16,8 @@ The information in this element can be used by programs for analysis of a multi-
 sequences of members of a family, some of whom are affected by a Mendelian disease.
 
 
-**Data model**
+Data model
+##########
 
 .. list-table::
    :widths: 25 25 50 50
@@ -75,7 +76,8 @@ Person
      - see text
 
 
-**Example**
+Example
+#######
 
 .. code-block:: json
 

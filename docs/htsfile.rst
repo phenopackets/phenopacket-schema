@@ -1,8 +1,8 @@
 .. _rsthtsfile:
 
-=======
+#######
 HtsFile
-=======
+#######
 
 Phenopackets can be used to hold phenotypic information that can inform the analysis of
 sequencing data in `VCF format <https://www.ncbi.nlm.nih.gov/pubmed/21653522>`_ as well

@@ -1,14 +1,15 @@
 .. _rstindividual:
 
-==========
+##########
 Individual
-==========
+##########
 
 The subject of the Phenopacket is represented by an *Individual* element.
 This element intends to represent an individual human or other organism. In this documentation,
 we explain the element using the example of a human proband in a clinical investigation.
 
-**Data model**
+Data model
+##########
 
  .. list-table::
     :widths: 25 50 50 50
@@ -48,7 +49,8 @@ we explain the element using the example of a human proband in a clinical invest
       - an :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
 
 
-**Example**
+Example
+#######
 
 The following example is typical but does not make use of all of the optional fields of this element.
 
@@ -59,7 +61,8 @@ The following example is typical but does not make use of all of the optional fi
     dateOfBirth: "1998-01-01T00:00:00Z"
     sex: "MALE"
 
-**Explanations**
+Explanations
+############
 
 id
 ~~

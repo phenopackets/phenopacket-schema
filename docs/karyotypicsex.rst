@@ -1,12 +1,13 @@
 .. _rstkaryotypicsex:
 
-=============
+#############
 KaryotypicSex
-=============
+#############
 
 This enumeration represents the chromosomal sex of an individual.
 
-**Data model**
+Data model
+##########
 
 Implementation note - this is an enumerated type, therefore the values represented below are the only legal values. The
 value of this type SHALL NOT be null, instead it SHALL use the 0 (zero) ordinal element as the default value, should none

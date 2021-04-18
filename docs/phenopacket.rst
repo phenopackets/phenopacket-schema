@@ -1,8 +1,8 @@
 .. _rstphenopacket:
 
-===========
+###########
 Phenopacket
-===========
+###########
 
 A Phenopacket is an anonymous phenotypic description of an individual or biosample with potential genes of interest
 and/or diagnoses. It can be used for multiple use cases. For instance, it can be used to describe the
@@ -62,7 +62,8 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
 
 
 
-
+Explanations
+############
 
 id
 ~~
