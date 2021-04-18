@@ -619,6 +619,29 @@ public class YamlGenerationTest extends TestBase {
         String hash = printAndGetHash(value, "value");
         assertEquals("5d3e517e1c4ae82b477cc4993be973a38858a14a91cea21fcf23f4aa509d6343", hash);
     }
+
+    @Test
+    public void testComplexValue(){
+        OntologyClass diastolic = ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
+        OntologyClass systolic = ontologyClass("NCIT:C25298", "Systolic Blood Pressure");
+        OntologyClass mmHg = ontologyClass("NCIT:C49670" ,"Millimeter of Mercury");
+        Quantity mmHg70 = Quantity.newBuilder()
+        .setValue(70)
+        .setUnitClass(mmHg)
+        .build();
+        Quantity mmHg120 = Quantity.newBuilder()
+                .setValue(120)
+                .setUnitClass(mmHg)
+                .build();
+
+        ComplexValue complexValue = ComplexValue.newBuilder()
+                .addTypedQuantities(TypedQuantity.newBuilder().setType(systolic).setQuantity(mmHg120).build())
+                .addTypedQuantities(TypedQuantity.newBuilder().setType(diastolic).setQuantity(mmHg70).build())
+                .build();
+        String hash = printAndGetHash(complexValue, "complexValue");
+        assertEquals("5d3e517e1c4ae82b477cc4993be973a38858a14a91cea21fcf23f4aa509d6343", hash);
+
+    }
     
 }
 
