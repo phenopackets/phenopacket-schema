@@ -499,7 +499,22 @@ public class YamlGenerationTest extends TestBase {
                 .build();
         String hash = printAndGetHash(chemo, "chemotherapyTreatment");
         assertEquals("e63a9a6eac9b3c30fd85f7f0274ae7c0e49d167cb4f0496394e01131b2901f04", hash);
+    }
 
+    @Test
+    public void phenotypicFeatureTest() {
+        Age onset = age("P6M");
+        Age resolution = age("P4Y2M");
+        OntologyClass infantileSpasms = ontologyClass("HP:0012469", "Infantile spasms");
+        OntologyClass recurrent = ontologyClass("HP:0031796", "Recurrent");
+        PhenotypicFeature phenotypicFeature = PhenotypicFeature.newBuilder()
+                .setOnset(TimeElement.newBuilder().setAge(onset))
+                .setResolution(TimeElement.newBuilder().setAge(resolution))
+                .setType(infantileSpasms)
+                .addModifiers(recurrent)
+                .build();
+        String hash = printAndGetHash(phenotypicFeature, "phenotypicFeature");
+        assertEquals("02daef889dd1a62229b48b669004f9f3da325bfa952c27e30743eeb2774320fe", hash);
 
     }
     

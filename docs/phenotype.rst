@@ -1,8 +1,8 @@
 .. _rstphenotypicfeature:
 
-=================
+#################
 PhenotypicFeature
-=================
+#################
 
 
 This element is intended to be used to describe a phenotype that characterizes the subject of the Phenopacket.
@@ -13,7 +13,8 @@ An individual phenotypic feature, observed as either present or absent (negated)
 frequency.
 
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
    :header: Field, Type, Status, Description
@@ -21,29 +22,39 @@ frequency.
     description, string, optional, human-readable verbiage **NOT** for structured text
     type, :ref:`rstontologyclass`, required, term denoting the phenotypic feature
     negated, boolean, optional, defaults to `false`
-    severity, :ref:`rstontologyclass`, optional, description of the severity of the feature described in `type` representing `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
-    modifier, list of :ref:`rstontologyclass`, optional, representing one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
-    onset, :ref:`rstontologyclass`, optional, Age at which the features was first observed, e.g., `HP:0011462  <https://hpo.jax.org/app/browse/term/HP:0011462>`_
+    severity, :ref:`rstontologyclass`, optional, description of the severity of the feature described in `type`. For instance terms from `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
+    modifiers, list of :ref:`rstontologyclass`, optional, For instance one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
+    onset, :ref:`rsttimeelement`, optional, Age or time at which the feature was first observed.
+    resolution, :ref:`rsttimeelement`, optional, Age or time at which the feature resolved or abated.
     evidence, :ref:`Evidence <rstevidence>`, recommended, the evidence for an assertion of the observation of a `type`
 
-**Example**
+Example
+#######
 
-.. code-block:: json
+The following example specifies recurrent
+`Infantile spasms <https://hpo.jax.org/app/browse/term/HP:0012469>`_, which had onset
+at age 6 months and resolved at age 4 years and 2 months.
 
-    {
-        "type": {
-          "id": "HP:0000520",
-          "label": "Proptosis"
-        },
-        "severity": {
-            id": "HP:0012825",
-            "label": "Mild"
-        }
-        "classOfOnset": {
-          "id": "HP:0003577",
-          "label": "Congenital onset"
-        }
-    }
+.. code-block:: yaml
+
+    phenotypicFeature:
+        type:
+            id: "HP:0012469"
+            label: "Infantile spasms"
+        modifiers:
+            - id: "HP:0031796"
+            label: "Recurrent"
+        onset:
+            age:
+                iso8601duration: "P6M"
+        resolution:
+            age:
+                iso8601duration: "P4Y2M"
+
+
+Explanations
+############
+
 
 description
 ~~~~~~~~~~~
@@ -70,8 +81,8 @@ This  element is an :ref:`ontology class <rstontologyclass>` that describes the 
 `Severity (HP:0012824) <https://hpo.jax.org/app/browse/term/HP:0012824>`_ or
 `SNOMED:272141005-Severities <https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.96&code=272141005>`_
    
-modifier
-~~~~~~~~
+modifiers
+~~~~~~~~~
 This element is a list of :ref:`ontology class <rstontologyclass>` elements that can be empty or contain one or more
 ontology terms that are intended
 to provide  more expressive or precise descriptions of a phenotypic feature, including attributes such as
@@ -83,6 +94,13 @@ onset
 ~~~~~
 This element can be used to describe the age at which a phenotypic feature was first noticed or diagnosed.
 For many medical use cases, either the Age sub-element or an :ref:`ontology class <rstontologyclass>` (e.g., from the HPO `Onset (HP:0003674) <https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
+
+
+resolution
+~~~~~~~~~~
+This element can be used to describe the age or time when a phenotypic feature resolved (disappeared, got better).
+In the example shown above, infantile spasms no longer occured after the age of 4 years and 2 months.
+
 
 evidence
 ~~~~~~~~
