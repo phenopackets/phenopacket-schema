@@ -1,15 +1,16 @@
 .. _rstreferencerange:
 
-===============
+###############
 Reference Range
-===============
+###############
 
 This elements is provided to support the :ref:`rstmeasurement` element, which can be used to report a numerical
 value such as `LOINC:26515-7 <https://loinc.org/26515-7/>`_, Platelets [#/volume] in Blood. The normal range for
 circulating platelets is  150,000 to 450,000 platelets per microliter.
 
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
    :header: Field, Type, Status, Description
@@ -18,7 +19,9 @@ circulating platelets is  150,000 to 450,000 platelets per microliter.
    low, double, required, lower range of normal
    high, double, required, upper range of normal
 
-**Example**
+
+Example
+#######
 
 There are several ontologies  that provide terms for units of measurement, including the
 `Units of measurement ontology <https://www.ebi.ac.uk/ols/ontologies/uo>`_ and the

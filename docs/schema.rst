@@ -1,8 +1,8 @@
 .. _rstschema:
 
-==================
+##################
 Phenopacket Schema
-==================
+##################
 
 The goal of the `phenopacket-schema <https://github.com/phenopackets/phenopacket-schema>`_ is to define a machine-readable
 phenotypic description of a patient/sample in the context of rare disease, common/complex disease, or cancer. It aims to
