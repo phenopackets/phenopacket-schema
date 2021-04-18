@@ -639,8 +639,26 @@ public class YamlGenerationTest extends TestBase {
                 .addTypedQuantities(TypedQuantity.newBuilder().setType(diastolic).setQuantity(mmHg70).build())
                 .build();
         String hash = printAndGetHash(complexValue, "complexValue");
-        assertEquals("5d3e517e1c4ae82b477cc4993be973a38858a14a91cea21fcf23f4aa509d6343", hash);
+        assertEquals("ebf63191574582f5cd431bcbf1d6683468409f45b9c5dda083005f7f59af27ac", hash);
+    }
 
+    @Test
+    public void pedigreeTest() {
+        Pedigree.Person person1A =
+                affectedPerson("family 1", "kindred 1A","FATHER","MOTHER",Sex.MALE);
+        Pedigree.Person person1B =
+                affectedPerson("family 1", "kindred 1B","FATHER","MOTHER",Sex.MALE);
+        Pedigree.Person mother = unaffectedPerson("family 1", "MOTHER", "0","0",Sex.FEMALE);
+        Pedigree.Person father = unaffectedPerson("family 1", "FATHER", "0","0",Sex.MALE);
+
+       Pedigree pedigree = Pedigree.newBuilder()
+               .addPersons(person1A)
+               .addPersons(person1B)
+               .addPersons(mother)
+               .addPersons(father)
+               .build();
+        String hash = printAndGetHash(pedigree, "pedigree");
+        assertEquals("ebf63191574582f5cd431bcbf1d6683468409f45b9c5dda083005f7f59af27ac", hash);
     }
     
 }

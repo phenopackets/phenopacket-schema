@@ -17,6 +17,7 @@ Data model
 
     code, :ref:`rstontologyclass`, required, clinical procedure performed
     body_site, :ref:`rstontologyclass`, optional, specific body site where the procedure was performed
+    performed, :ref:`rsttimeelement`, optional, age/time when the procedure was performed
 
 Example
 #######
