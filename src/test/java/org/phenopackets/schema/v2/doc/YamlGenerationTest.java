@@ -515,7 +515,22 @@ public class YamlGenerationTest extends TestBase {
                 .build();
         String hash = printAndGetHash(phenotypicFeature, "phenotypicFeature");
         assertEquals("02daef889dd1a62229b48b669004f9f3da325bfa952c27e30743eeb2774320fe", hash);
+    }
 
+    @Test
+    public void testProcedure() {
+        OntologyClass code = ontologyClass("NCIT:C28743", "Punch Biopsy");
+        OntologyClass bodySite = ontologyClass("UBERON:0003403", "skin of forearm");
+        TimeElement timeElement = TimeElement.newBuilder()
+                .setAge(Age.newBuilder().setIso8601Duration("P25Y"))
+                .build();
+       Procedure procedure = Procedure.newBuilder()
+               .setCode(code)
+               .setBodySite(bodySite)
+               .setPerformed(timeElement)
+               .build();
+        String hash = printAndGetHash(procedure, "procedure");
+        assertEquals("81b3970984ee1f7f9a33e3ed0b1f2e4211862aa622c355ab8571513756767e9c", hash);
     }
     
 }
