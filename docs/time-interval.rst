@@ -1,8 +1,8 @@
 .. _rsttimeinterval:
 
-************
+############
 TimeInterval
-************
+############
 
 An time interval is meant to denote an interval of time whose begin and end is defined
 by `Timestamps <https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/Timestamp>`_.
@@ -58,7 +58,8 @@ end
 The date and time of the end of the interval.
 
 
-**Privacy concerns**
+Privacy concerns
+################
 
 In some cases it may be desirable to shift all specific dates in a phenopacket by the same random amount. For instance, we
 might shift all dates by 2 years. In this case the above interval element would be represented as follows

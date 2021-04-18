@@ -1,5 +1,6 @@
 package org.phenopackets.schema.v2.doc;
 
+import com.google.errorprone.annotations.Var;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
@@ -531,6 +532,92 @@ public class YamlGenerationTest extends TestBase {
                .build();
         String hash = printAndGetHash(procedure, "procedure");
         assertEquals("81b3970984ee1f7f9a33e3ed0b1f2e4211862aa622c355ab8571513756767e9c", hash);
+    }
+
+    @Test
+    public void spdiVariantTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        SpdiAllele spdiAllele = SpdiAllele.newBuilder()
+                .setId("clinvar:13294")
+                .setSeqId("NC_000010.10")
+                .setPosition(123256214)
+                .setDeletedSequence("T")
+                .setInsertedSequence("G")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setSpdiAllele(spdiAllele)
+                .setZygosity(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("4752d835e75e16d4874e30759e0796466e74f1a09616cbbfcf7ca167ea5327e3", hash);
+    }
+
+    @Test
+    public void hgvsVariantTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        HgvsAllele hgvsAllele = HgvsAllele.newBuilder()
+                .setHgvs("NM_000226.3:c.470T>G")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setHgvsAllele(hgvsAllele)
+                .setZygosity(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("cc8f5d4b797c5c3d872e8b8e1bf8ebaa3a6e73afe1b6f31c2c86502163547f97", hash);
+    }
+
+    @Test
+    public void vcfAlleleTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        VcfAllele vcfAllele = VcfAllele.newBuilder()
+                .setGenomeAssembly("GRCh38")
+                .setId(".")
+                .setChr("2")
+                .setPos(134327882)
+                .setRef("A")
+                .setAlt("T")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setVcfAllele(vcfAllele)
+                .setZygosity(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("2d959f56c61bc18d1543b16ef82e53dd62516ee17c542370aecb98dce8e4500a", hash);
+    }
+
+    @Test
+    public void iscnVariantTest() {
+        IscnKaryotype iscnKaryotype = IscnKaryotype.newBuilder()
+                .setIscn("t(8;9;11)(q12;p24;p12)")
+                .setId("id:A")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setIscnKaryotype(iscnKaryotype)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("37115e75b26bc88e6346a2c9220c88c4767fed79e9760e4fe80c3ed575b0fc14", hash);
+    }
+
+    @Test
+    public void testValue() {
+        OntologyClass loinc = ontologyClass("LOINC:26515-7","Platelets [#/volume] in Blood");
+        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316","cells per microliter");
+        double lower = 150_000;
+        double upper = 450_000;
+        ReferenceRange referenceRange = referenceRange(cellsPerMicroliter, lower, upper);
+        Value value = quantitativeValue(cellsPerMicroliter, 24_000, referenceRange);
+        String hash = printAndGetHash(value, "value");
+        assertEquals("66ac76834270d3459e54e2c1e20fa7a7b16fc5f9457a9bcd5a478334054c44e1", hash);
+    }
+
+    @Test
+    public void testOrdinalValue() {
+        OntologyClass present = ontologyClass("NCIT:C25626","Present");
+        Value value = Value.newBuilder()
+                .setOntologyClass(present)
+                .build();
+        String hash = printAndGetHash(value, "value");
+        assertEquals("5d3e517e1c4ae82b477cc4993be973a38858a14a91cea21fcf23f4aa509d6343", hash);
     }
     
 }

@@ -49,6 +49,7 @@ building blocks.
    time-element
    time-interval
    treatment
+   value
    variant
    variant-interpretation
    vital-status
