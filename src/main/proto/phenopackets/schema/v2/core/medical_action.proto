@@ -18,14 +18,22 @@ message MedicalAction {
     RadiationTherapyTreatment radiation_therapy = 5;
     TherapeuticRegimen therapeutic_regimen = 6;
   }
+  // The condition or disease that this treatment was intended to address.
+  // FHIR mapping Procedure::reasonCode
+  OntologyClass treatment_target = 7;
+
+  // Whether the intention of the treatment was curative, palliative,
   // ARGO mapping treatment::treatment_intent
-  OntologyClass treatment_intent = 7;
+  OntologyClass treatment_intent = 8;
+
   // ARGO mapping treatment::response_to_treatment
-  OntologyClass response_to_treatment = 8;
+  OntologyClass response_to_treatment = 9;
+
   // ARGO mapping treatment::adverse_events
-  repeated OntologyClass adverse_events = 9;
+  repeated OntologyClass adverse_events = 10;
+
   // ARGO mapping treatment::treatment_outcome
-  OntologyClass treatment_termination_reason = 10;
+  OntologyClass treatment_termination_reason = 11;
 
   // ARGO mapping treatment::is_primary_treatment (missing)
 

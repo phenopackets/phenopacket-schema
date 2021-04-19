@@ -116,7 +116,7 @@ Health Organization's (WHO) International Classification of Diseases for Oncolog
 
 laterality
 ~~~~~~~~~~
-If donor has history of prior malignancy, indicate laterality of previous diagnosis.
+The term used to indicate laterality of diagnosis, if applicable.
 
 
 

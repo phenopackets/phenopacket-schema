@@ -1,9 +1,13 @@
 // Generated using https://edotor.net/
 // See https://graphviz.gitlab.io/
+// Note the OntologyClass and TimeElement edges are commented-out for greater clarity of the output
 digraph phenopacket_schema_v2 {
     fontname = "Bitstream Vera Sans"
     fontsize = 8
     rankdir = BT
+    splines = "true"
+
+    label = "Phenopacket schema v2.0"
 
     node [
     fontname = "Bitstream Vera Sans"
@@ -18,16 +22,17 @@ digraph phenopacket_schema_v2 {
 
     // base.proto
     subgraph base {
-        OntologyClass [
+
+    OntologyClass [
     label = "{OntologyClass | + id: String\l + label: String\l}"
     ]
 
-    MetaData [
-    label = "{MetaData| created: google.protobuf.Timestamp\l created_by: String\l submitted_by: String\l resources: Resource [0..*]\l updates: Update [0..*]\l phenopacket_schema_version: String\l external_references: ExternalReference [0..*]\l}"
+    ExternalReference [
+    label = "{ExternalReference| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
     ]
 
-    Resource [
-    label = "{Resource| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
+    Evidence [
+    label = "{Evidence| evidence_code: OntologyClass\l reference: ExternalReference\l}"
     ]
 
     Value [
@@ -52,6 +57,10 @@ digraph phenopacket_schema_v2 {
 
     Sex [
     label = "{Sex \<enum\>| 0 = UNKNOWN_SEX\l 1 = FEMALE\l 2 = MALE\l 3 = OTHER_SEX\l}"
+    ]
+
+    KaryotypicSex [
+    label = "{KaryotypicSex \<enum\>| 0 = UNKNOWN_KARYOTYPE\l 1 = XX\l 2 = XY\l 3 = XO\l 4 = XXY\l 5 = XXX\l 6 = XXYY\l 7 = XXXY\l 8 = XXXX\l 9 = XYY\l 10 = OTHER_KARYOTYPE\l}"
     ]
 
     Procedure [
@@ -79,28 +88,23 @@ digraph phenopacket_schema_v2 {
     ]
 
     // base.proto
-        OntologyClass
-    Resource -> MetaData
-    Update -> MetaData
-    ExternalReference -> MetaData
-    ExternalReference -> Evidence
-    OntologyClass -> Evidence
+    OntologyClass
 
-    OntologyClass -> Value
+    //    OntologyClass -> Value
     Quantity -> Value
 
     TypedQuantity -> ComplexValue
-    OntologyClass -> TypedQuantity
+    //    OntologyClass -> TypedQuantity
     Quantity -> TypedQuantity
-    OntologyClass -> Quantity
+    //    OntologyClass -> Quantity
     ReferenceRange -> Quantity
-    OntologyClass -> ReferenceRange
+    //    OntologyClass -> ReferenceRange
 
     Sex
     KaryotypicSex
 
-    OntologyClass -> Procedure
-    TimeElement -> Procedure
+    //    OntologyClass -> Procedure
+    //    TimeElement -> Procedure
 
     GestationalAge -> TimeElement
     Age -> TimeElement
@@ -116,11 +120,11 @@ digraph phenopacket_schema_v2 {
     label = "{Biosample| id: String\l individual_id: String\l derived_from_id: String\l description: String\l sampled_tissue: OntologyClass\l sample_type: OntologyClass\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l taxonomy: OntologyClass\l time_of_collection: TimeElement\l histological_diagnosis: OntologyClass\l tumor_progression: OntologyClass\l tumor_grade: OntologyClass\l pathological_stage: OntologyClass\l pathological_tnm_finding: OntologyClass [0..*]\l diagnostic_markers: OntologyClass [0..*]\l procedure: Procedure\l hts_files: HtsFile [0..*]\l material_sample: OntologyClass\l sample_processing: OntologyClass\l sample_storage: OntologyClass\l}"
     ]
 
-    OntologyClass -> Biosample
+    //    OntologyClass -> Biosample
     PhenotypicFeature -> Biosample
     Procedure -> Biosample
     HtsFile -> Biosample
-    TimeElement -> Biosample
+    //    TimeElement -> Biosample
     Measurement -> Biosample
 
 
@@ -128,8 +132,8 @@ digraph phenopacket_schema_v2 {
     Disease [
     label = "{Disease| term: OntologyClass\l excluded: Boolean\l onset: TimeElement\l resolution: TimeElement\l disease_stage: OntologyClass [0..*]\l clinical_tnm_finding: OntologyClass [0..*]\l primary_site: OntologyClass\l laterality:OntologyClass\l}"
     ]
-    OntologyClass -> Disease
-    TimeElement -> Disease
+    //    OntologyClass -> Disease
+    //    TimeElement -> Disease
 
     // genome.proto
     HtsFile [
@@ -141,16 +145,33 @@ digraph phenopacket_schema_v2 {
     ]
 
     Gene [
-    label= "{Gene| id: String\l alternate_ids: String [0..*]\l symbol: String\l}"
+    label = "{Gene| id: String\l alternate_ids: String [0..*]\l symbol: String\l}"
     ]
 
     Variant [
     label = "{Variant| allele: \{\HgvsAllele \| VcfAllele \| SpdiAllele \| IscnKaryotype\}\l zygosity: OntologyClass\l}"
     ]
+
+    HgvsAllele [
+    label = "{HgvsAllele| id: String\l hgvs: String\l}"
+    ]
+
+    VcfAllele [
+    label = "{VcfAllele| id: String\l genome_assembly: String\l chr: String\l pos: Integer\l ref: String\l alt: String\l info: String\l end: String\l sv_type: String\l sv_length: String\l mate_id: String\l event_id: String\l}"
+    ]
+
+    SpdiAllele [
+    label = "{SpdiAllele| id: String\l seq_id: String\l position: Integer\l deleted_sequence: String\l inserted_sequence: String\l }"
+    ]
+
+    IscnKaryotype [
+    label = "{IscnKaryotype| id: String\l iscn: String\l}"
+    ]
+
     subgraph genomeProto {
     HtsFormat -> HtsFile
     Gene
-    OntologyClass -> Variant
+    //    OntologyClass -> Variant
     HgvsAllele -> Variant
     VcfAllele -> Variant
     SpdiAllele -> Variant
@@ -165,18 +186,18 @@ digraph phenopacket_schema_v2 {
     VitalStatus [
     label = "{VitalStatus| status: Status\l time_of_death: TimeElement\l cause_of_death: OntologyClass\l survival_time_in_days: Integer\l}"
     ]
-    TimeElement -> Individual
+    //    TimeElement -> Individual
     VitalStatus -> Individual
     Sex -> Individual
     KaryotypicSex -> Individual
-    OntologyClass -> Individual
+    //    OntologyClass -> Individual
 
-    TimeElement -> VitalStatus
-    OntologyClass -> VitalStatus
+    //    TimeElement -> VitalStatus
+    //    OntologyClass -> VitalStatus
 
     // interpretation.proto
     Interpretation [
-    label= "{Interpretation| id: String\l progress_status: ProgressStatus\l  diagnosis: Diagnosis\l summary: String\l}"
+    label = "{Interpretation| id: String\l progress_status: ProgressStatus\l  diagnosis: Diagnosis\l summary: String\l}"
     ]
 
     ProgressStatus [
@@ -208,7 +229,7 @@ digraph phenopacket_schema_v2 {
     ProgressStatus -> Interpretation
     Diagnosis -> Interpretation
 
-    OntologyClass -> Diagnosis
+    //    OntologyClass -> Diagnosis
     GenomicInterpretation -> Diagnosis
 
     InterpretationStatus -> GenomicInterpretation
@@ -224,16 +245,16 @@ digraph phenopacket_schema_v2 {
     label = "{Measurement|  description: String\l assay: OntologyClass\l measurement_value: \{ Value \| ComplexValue\}\l time_observed: TimeElement\l procedure: Procedure\l }"
     ]
     subgraph measurementProto {
-    OntologyClass -> Measurement
+    //    OntologyClass -> Measurement
     Value -> Measurement
     ComplexValue -> Measurement
-    TimeElement -> Measurement
+    //    TimeElement -> Measurement
     Procedure -> Measurement
     }
 
     // medical_action.proto
     MedicalAction [
-    label = "{MedicalAction| action: \{\Procedure \| Treatment \| ChemoTherapyTreatment \| HormoneTherapyTreatment \| RadiationTherapyTreatment \| TherapeuticRegimen\}\l treatment_reason: OntologyClass\l treatment_intent: OntologyClass\l response_to_treatment: OntologyClass\l adverse_events: OntologyClass [0..*]\l treatment_termination_reason: OntologyClass\l}"
+    label = "{MedicalAction| action: \{\Procedure \| Treatment \| ChemoTherapyTreatment \| HormoneTherapyTreatment \| RadiationTherapyTreatment \| TherapeuticRegimen\}\l treatment_target: OntologyClass\l treatment_intent: OntologyClass\l response_to_treatment: OntologyClass\l adverse_events: OntologyClass [0..*]\l treatment_termination_reason: OntologyClass\l}"
     ]
 
     Treatment [
@@ -272,7 +293,7 @@ digraph phenopacket_schema_v2 {
     ]
 
     subgraph medicalActionProto {
-    OntologyClass -> MedicalAction
+    //    OntologyClass -> MedicalAction
     Procedure -> MedicalAction
     Treatment -> MedicalAction
     ChemoTherapyTreatment -> MedicalAction
@@ -280,12 +301,12 @@ digraph phenopacket_schema_v2 {
     RadiationTherapyTreatment -> MedicalAction
     TherapeuticRegimen -> MedicalAction
 
-    OntologyClass -> Treatment
+    //    OntologyClass -> Treatment
     DoseInterval -> Treatment
     DrugType -> Treatment
 
     Quantity -> DoseInterval
-    OntologyClass -> DoseInterval
+    //    OntologyClass -> DoseInterval
     TimeInterval -> DoseInterval
 
     Quantity -> CumulativeDose
@@ -297,11 +318,11 @@ digraph phenopacket_schema_v2 {
     CumulativeDose -> HormoneTherapyTreatment
 
     Treatment -> RadiationTherapyTreatment
-    OntologyClass -> RadiationTherapyTreatment
+    //    OntologyClass -> RadiationTherapyTreatment
 
     ExternalReference -> TherapeuticRegimen
-    OntologyClass -> TherapeuticRegimen
-    TimeElement -> TherapeuticRegimen
+    //    OntologyClass -> TherapeuticRegimen
+    //    TimeElement -> TherapeuticRegimen
     RegimenStatus -> TherapeuticRegimen
     }
 
@@ -329,8 +350,8 @@ digraph phenopacket_schema_v2 {
     PhenotypicFeature [
     label = "{PhenotypicFeature| description: String\l type: OntologyClass\l negated: Boolean\l severity: OntologyClass\l modifiers: OntologyClass [0..*]\l onset: TimeElement\l resolution: TimeElement\l evidence Evidence [0..*]\l}"
     ]
-    OntologyClass -> PhenotypicFeature
-    TimeElement -> PhenotypicFeature
+    //    OntologyClass -> PhenotypicFeature
+    //    TimeElement -> PhenotypicFeature
     Evidence -> PhenotypicFeature
 
     // phenopackets.proto
@@ -345,7 +366,26 @@ digraph phenopacket_schema_v2 {
     Cohort [
     label = "{Cohort| id: String [1..1]\l description: String [0..1]\l members: Phenopacket [0..*]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
     ]
+
+    MetaData [
+    label = "{MetaData| created: google.protobuf.Timestamp\l created_by: String\l submitted_by: String\l resources: Resource [0..*]\l updates: Update [0..*]\l phenopacket_schema_version: String\l external_references: ExternalReference [0..*]\l}"
+    ]
+
+    Resource [
+    label = "{Resource| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
+    ]
+
+    Update [
+    label = "{Update| timestamp: Timestamp\l updated_by: String\l comment: String\l}"
+    ]
+
     subgraph phenopacketsProto {
+    Resource -> MetaData
+    Update -> MetaData
+    ExternalReference -> MetaData
+    ExternalReference -> Evidence
+    //    OntologyClass -> Evidence
+
     Individual -> Phenopacket
     PhenotypicFeature -> Phenopacket
     Measurement -> Phenopacket

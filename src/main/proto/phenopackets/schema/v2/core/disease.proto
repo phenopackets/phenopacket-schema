@@ -47,6 +47,6 @@ message Disease {
   // (WHO) International Classification of Diseases for Oncology (ICD-O). This categorization groups cases into general
   OntologyClass primary_site = 7;
 
-  // If donor has history of prior malignancy, indicate laterality of previous diagnosis. (Codelist reference: NCI CDE: 4122391)
+  // The term used to indicate laterality of diagnosis, if applicable. (Codelist reference: NCI CDE: 4122391)
   OntologyClass laterality = 8;
 }
