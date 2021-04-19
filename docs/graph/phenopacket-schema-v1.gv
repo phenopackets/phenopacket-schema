@@ -1,134 +1,254 @@
 // Generated using https://edotor.net/
 // See https://graphviz.gitlab.io/
-graph phenopacket_schema_v1 {
-    splines=true # use splines for edges, if needed to avoid overlap
-    engine=dot
-    bgcolor="#ffffff00"
+// Note the OntologyClass, Age and AgeRange edges are commented-out for greater clarity of the output
+digraph phenopacket_schema_v1 {
 
-#edge [penwidth=0.75,arrowsize=0.6]
-#edge [color=black, fontsize=8, forcelabels=true]
+    label = "Phenopacket schema v1.0"
+
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    rankdir = BT
+    splines = "true"
+
 
     node [
-        color="black",
-        style="filled,solid",
-        fontname="Calibri"
-        fontsize=16,
-        fontcolor="white"
-    ];
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    shape = "record"
+    ]
 
+    edge [
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    ]
+
+    // base.proto
     subgraph base {
-        label = "Base types";
-        node[fillcolor=aquamarine4]
 
-        # nodes
-        Age;
-        Biosample;
-        Disease;
-        Evidence;
-        ExternalReference;
-        Gene;
-        HtsFile;
-        Individual;
-        KaryotypicSex;
-        MetaData;
-        OntologyClass;
-        Pedigree;
-        PhenotypicFeature;
-        Procedure;
-        Resource;
-        Sex;
-        Variant;
+    OntologyClass [
+    label = "{OntologyClass | + id: String\l + label: String\l}"
+    ]
 
-        # edges
-        subgraph metadata {
-            MetaData -- Resource;
-        }
+    ExternalReference [
+    label = "{ExternalReference| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
+    ]
 
-        subgraph pedigree {
-            Person;
-            AffectedStatus;
+    Evidence [
+    label = "{Evidence| evidence_code: OntologyClass\l reference: ExternalReference\l}"
+    ]
 
-            Pedigree -- Person;
-            Person -- Sex
-            Person -- AffectedStatus
-        }
+    Sex [
+    label = "{Sex \<enum\>| 0 = UNKNOWN_SEX\l 1 = FEMALE\l 2 = MALE\l 3 = OTHER_SEX\l}"
+    ]
 
-        Evidence -- ExternalReference;
-        Evidence -- OntologyClass;
+    KaryotypicSex [
+    label = "{KaryotypicSex \<enum\>| 0 = UNKNOWN_KARYOTYPE\l 1 = XX\l 2 = XY\l 3 = XO\l 4 = XXY\l 5 = XXX\l 6 = XXYY\l 7 = XXXY\l 8 = XXXX\l 9 = XYY\l 10 = OTHER_KARYOTYPE\l}"
+    ]
 
-        Individual -- Sex;
-        Individual -- KaryotypicSex;
-        Individual -- Age;
+    Procedure [
+    label = "{Procedure| code: OntologyClass\l body_site: OntologyClass\l}"
+    ]
 
-        PhenotypicFeature -- OntologyClass;
-        PhenotypicFeature -- Age;
-        PhenotypicFeature -- Evidence;
+    Age [
+    label = "{Age| iso8601Duration: String\l}"
+    ]
 
-        Biosample -- OntologyClass;
-        Biosample -- PhenotypicFeature;
-        Biosample -- Age;
-        Biosample -- Procedure;
-        Biosample -- HtsFile;
-        Biosample -- Variant
+    AgeRange [
+    label = "{AgeRange| start: Age\l end: Age\l}"
+    ]
 
-        Procedure -- OntologyClass;
-        Variant -- OntologyClass
-
+    //    OntologyClass -> Procedure
     }
 
-# Top-level types
-    subgraph topleveltypes {
-        label = "Top-level types";
-        node [fillcolor="deepskyblue4"];
 
-        # nodes
-        Phenopacket # [fillcolor="goldenrod1"];
-        Cohort;
-        Family;
+    // biosample.proto
+    Biosample [
+    label = "{Biosample| id: String\l individual_id: String\l description: String\l sampled_tissue: OntologyClass\l phenotypic_features: PhenotypicFeature [0..*]\l taxonomy: OntologyClass\l individual_age_at_collection: \{ Age \| AgeRange\}\l histological_diagnosis: OntologyClass\l tumor_progression: OntologyClass\l tumor_grade: OntologyClass\l diagnostic_markers: OntologyClass [0..*]\l procedure: Procedure\l hts_files: HtsFile [0..*]\l variants: Variant [0..*]\l is_control_sample: Boolean\l}"
+    ]
 
-        # edges
-        Phenopacket -- Individual;
-        Phenopacket -- PhenotypicFeature;
-        Phenopacket -- Biosample;
-        Phenopacket -- Gene;
-        Phenopacket -- Disease;
-        Phenopacket -- Variant;
-        Phenopacket -- HtsFile;
-        Phenopacket -- MetaData;
+    PhenotypicFeature -> Biosample
+    Procedure -> Biosample
+    HtsFile -> Biosample
+    Variant -> Biosample
+    // OntologyClass -> Biosample
+    // Age -> Biosample
+    // AgeRange -> Biosample
 
-        Cohort -- Phenopacket;
-        Cohort -- HtsFile;
-        Cohort -- MetaData;
 
-        Family -- Phenopacket;
-        Family -- Pedigree;
-        Family -- HtsFile;
-        Family -- MetaData;
+    // individual.proto
+    Individual [
+    label = "{Individual| id: String\l alternate_ids: String [0..*]\l date_of_birth: Timestamp\l age: \{ Age \| AgeRange\}\l sex: Sex\l karyotypic_sex: KaryotypicSex\l taxonomy: OntologyClass\l}"
+    ]
 
+    Sex -> Individual
+    KaryotypicSex -> Individual
+    // OntologyClass -> Individual
+    // Age -> Individual
+    // AgeRange -> Individual
+
+    // disease.proto
+    Disease [
+    label = "{Disease| term: OntologyClass\l onset: \{ Age \| AgeRange \| OntologyClass \}\l disease_stage: OntologyClass [0..*]\l tnm_finding: OntologyClass [0..*]\l}"
+    ]
+    // OntologyClass -> Disease
+    // Age -> Disease
+    // AgeRange -> Disease
+
+    // genome.proto
+    HtsFile [
+    label = "{HtsFile| uri: String\l description: String\l hts_format: HtsFormat\l genome_assembly: String\l individual_to_sample_identifiers: Map\<String, String\>\l}"
+    ]
+
+    HtsFormat [
+    label = "{HtsFormat \<enum\>| 0 = UNKNOWN\l 1 = SAM\l 2 = BAM\l 3 = CRAM\l 4 = VCF\l 5 = BCF\l 6 = GVCF\l 7 = FASTQ\l }"
+    ]
+
+    Gene [
+    label = "{Gene| id: String\l alternate_ids: String [0..*]\l symbol: String\l}"
+    ]
+
+    Variant [
+    label = "{Variant| allele: \{\HgvsAllele \| VcfAllele \| SpdiAllele \| IscnKaryotype\}\l zygosity: OntologyClass\l}"
+    ]
+
+    HgvsAllele [
+    label = "{HgvsAllele| id: String\l hgvs: String\l}"
+    ]
+
+    VcfAllele [
+    label = "{VcfAllele| id: String\l genome_assembly: String\l chr: String\l pos: Integer\l ref: String\l alt: String\l info: String\l}"
+    ]
+
+    SpdiAllele [
+    label = "{SpdiAllele| id: String\l seq_id: String\l position: Integer\l deleted_sequence: String\l inserted_sequence: String\l}"
+    ]
+
+    IscnAllele [
+    label = "{IscnAllele| id: String\l iscn: String\l}"
+    ]
+
+    subgraph genomeProto {
+    HtsFormat -> HtsFile
+    Gene
+    //    OntologyClass -> Variant
+    HgvsAllele -> Variant
+    VcfAllele -> Variant
+    SpdiAllele -> Variant
+    IscnAllele -> Variant
     }
 
-    subgraph interpret {
-            label = "Interpretation types";
-            node [fillcolor="darkorange"];
+    // interpretation.proto
+    Interpretation [
+    label = "{Interpretation| id: String\l resolution_status: ResolutionStatus\l  phenopacket_or_family: \{ Phenopacket \| Family \}\l diagnosis: Diagnosis\l meta_data: MetaData\l}"
+    ]
 
-            # nodes
-            Interpretation;
-            ResolutionStatus;
-            GenomicInterpretation;
-            Diagnosis;
+    ResolutionStatus [
+    label = "{ResolutionStatus \<enum\>| 0 = UNKNOWN\l 1 = SOLVED\l  2 = UNSOLVED\l 3 = IN_PROGRESS\l}"
+    ]
 
-            # edges
-            Interpretation -- Phenopacket;
-            Interpretation -- Family;
-            Interpretation -- MetaData;
+    Diagnosis [
+    label = "{Diagnosis| disease: OntologyClass\l genomic_interpretations: GenomicInterpretation [0..n]\l}"
+    ]
 
-            Interpretation -- Diagnosis;
-            Interpretation -- ResolutionStatus;
+    GenomicInterpretation [
+    label = "{GenomicInterpretation| status: Status\l call: \{Gene \| Variant\}\l}"
+    ]
 
-            Diagnosis -- Disease;
-            Diagnosis -- GenomicInterpretation;
+    Status [
+    label = "{InterpretationStatus \<enum\>| 0 = UNKNOWN_STATUS\l 1 =        REJECTED\l 2 = CANDIDATE\l 3 = CAUSATIVE\l}"
+    ]
 
-            GenomicInterpretation -- Variant;
-            GenomicInterpretation -- Gene;
+    subgraph interpretationProto {
+    ResolutionStatus -> Interpretation
+    Phenopacket -> Interpretation
+    Family -> Interpretation
+    Diagnosis -> Interpretation
+
+    //    OntologyClass -> Diagnosis
+    Disease -> Diagnosis
+    GenomicInterpretation -> Diagnosis
+
+    Status -> GenomicInterpretation
+    Gene -> GenomicInterpretation
+    Variant -> GenomicInterpretation
     }
+
+
+    // pedigree.proto
+    Pedigree [
+    label = "{Pedigree| persons: Person [0..*]\l}"
+    ]
+
+    Person [
+    label = "{Person| family_id: String\l individual_id: String\l paternal_id: String\l maternal_id: String\l sex: Sex\l affected_status: AffectedStatus\l}"
+    ]
+
+    AffectedStatus [
+    label = "{AffectedStatus \<enum\>| 0 = MISSING\l 1 = UNAFFECTED\l 2 = AFFECTED\l}"
+    ]
+
+    subgraph pedigreeProto {
+    Person -> Pedigree
+
+    Sex -> Person
+    AffectedStatus -> Person
+    }
+
+    PhenotypicFeature [
+    label = "{PhenotypicFeature| description: String\l type: OntologyClass\l negated: Boolean\l severity: OntologyClass\l modifiers: OntologyClass [0..*]\l onset: \{ Age \| AgeRange \| OntologyClass \}\l evidence Evidence [0..*]\l}"
+    ]
+    //    OntologyClass -> PhenotypicFeature
+    Evidence -> PhenotypicFeature
+
+    // phenopackets.proto
+    Phenopacket [
+    label = "{Phenopacket| id: String [1..1]\l subject: Individual [1..1]\l phenotypic_features: PhenotypicFeature [0..*]\l biosamples: Biosample [0..*]\l genes: Gene [0..*]\l variants: Variant [0..*]\l diseases: Disease [0..*]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+    ]
+
+    Family [
+    label = "{Family| id: String [1..1]\l proband: Phenopacket [1..1]\l relatives: Phenopacket [0..*]\l consanguinous_parents: Boolean\l pedigree: Pedigree [1..1]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+    ]
+
+    Cohort [
+    label = "{Cohort| id: String [1..1]\l description: String [0..1]\l members: Phenopacket [0..*]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+    ]
+
+    MetaData [
+    label = "{MetaData| created: google.protobuf.Timestamp\l created_by: String\l submitted_by: String\l resources: Resource [0..*]\l updates: Update [0..*]\l phenopacket_schema_version: String\l external_references: ExternalReference [0..*]\l}"
+    ]
+
+    Resource [
+    label = "{Resource| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
+    ]
+
+    Update [
+    label = "{Update| timestamp: Timestamp\l updated_by: String\l comment: String\l}"
+    ]
+
+    subgraph phenopacketsProto {
+    Resource -> MetaData
+    Update -> MetaData
+    ExternalReference -> MetaData
+    ExternalReference -> Evidence
+    //    OntologyClass -> Evidence
+
+    Individual -> Phenopacket
+    PhenotypicFeature -> Phenopacket
+    Biosample -> Phenopacket
+    Gene -> Phenopacket
+    Variant -> Phenopacket
+    Disease -> Phenopacket
+    HtsFile -> Phenopacket
+    MetaData -> Phenopacket
+
+    Phenopacket -> Family
+    Pedigree -> Family
+    HtsFile -> Family
+    MetaData -> Family
+
+    Phenopacket -> Cohort
+    HtsFile -> Cohort
+    MetaData -> Cohort
+    }
+
 }

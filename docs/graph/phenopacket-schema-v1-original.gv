@@ -1,0 +1,134 @@
+// Generated using https://edotor.net/
+// See https://graphviz.gitlab.io/
+graph phenopacket_schema_v1 {
+    splines=true # use splines for edges, if needed to avoid overlap
+    engine=dot
+    bgcolor="#ffffff00"
+
+#edge [penwidth=0.75,arrowsize=0.6]
+#edge [color=black, fontsize=8, forcelabels=true]
+
+    node [
+        color="black",
+        style="filled,solid",
+        fontname="Calibri"
+        fontsize=16,
+        fontcolor="white"
+    ];
+
+    subgraph base {
+        label = "Base types";
+        node[fillcolor=aquamarine4]
+
+        # nodes
+        Age;
+        Biosample;
+        Disease;
+        Evidence;
+        ExternalReference;
+        Gene;
+        HtsFile;
+        Individual;
+        KaryotypicSex;
+        MetaData;
+        OntologyClass;
+        Pedigree;
+        PhenotypicFeature;
+        Procedure;
+        Resource;
+        Sex;
+        Variant;
+
+        # edges
+        subgraph metadata {
+            MetaData -- Resource;
+        }
+
+        subgraph pedigree {
+            Person;
+            AffectedStatus;
+
+            Pedigree -- Person;
+            Person -- Sex
+            Person -- AffectedStatus
+        }
+
+        Evidence -- ExternalReference;
+        Evidence -- OntologyClass;
+
+        Individual -- Sex;
+        Individual -- KaryotypicSex;
+        Individual -- Age;
+
+        PhenotypicFeature -- OntologyClass;
+        PhenotypicFeature -- Age;
+        PhenotypicFeature -- Evidence;
+
+        Biosample -- OntologyClass;
+        Biosample -- PhenotypicFeature;
+        Biosample -- Age;
+        Biosample -- Procedure;
+        Biosample -- HtsFile;
+        Biosample -- Variant
+
+        Procedure -- OntologyClass;
+        Variant -- OntologyClass
+
+    }
+
+# Top-level types
+    subgraph topleveltypes {
+        label = "Top-level types";
+        node [fillcolor="deepskyblue4"];
+
+        # nodes
+        Phenopacket # [fillcolor="goldenrod1"];
+        Cohort;
+        Family;
+
+        # edges
+        Phenopacket -- Individual;
+        Phenopacket -- PhenotypicFeature;
+        Phenopacket -- Biosample;
+        Phenopacket -- Gene;
+        Phenopacket -- Disease;
+        Phenopacket -- Variant;
+        Phenopacket -- HtsFile;
+        Phenopacket -- MetaData;
+
+        Cohort -- Phenopacket;
+        Cohort -- HtsFile;
+        Cohort -- MetaData;
+
+        Family -- Phenopacket;
+        Family -- Pedigree;
+        Family -- HtsFile;
+        Family -- MetaData;
+
+    }
+
+    subgraph interpret {
+            label = "Interpretation types";
+            node [fillcolor="darkorange"];
+
+            # nodes
+            Interpretation;
+            ResolutionStatus;
+            GenomicInterpretation;
+            Diagnosis;
+
+            # edges
+            Interpretation -- Phenopacket;
+            Interpretation -- Family;
+            Interpretation -- MetaData;
+
+            Interpretation -- Diagnosis;
+            Interpretation -- ResolutionStatus;
+
+            Diagnosis -- Disease;
+            Diagnosis -- GenomicInterpretation;
+
+            GenomicInterpretation -- Variant;
+            GenomicInterpretation -- Gene;
+    }
+}
