@@ -657,7 +657,7 @@ public class YamlGenerationTest extends TestBase {
                .addPersons(father)
                .build();
         String hash = printAndGetHash(pedigree, "pedigree");
-        assertEquals("e7090185a8f2ac0d825d551442555299d114d041b4ddd437cb77a323af6c6836", hash);
+        assertEquals("1c72e4e36a4619febade1adb01cda5a4caf63eecbd39e743dbc442deb05739fa", hash);
     }
 
     @Test
