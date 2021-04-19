@@ -169,7 +169,7 @@ Medications
 chemical structures, biological activities, regulatory data, pharmacology and drug formulations
 
 
-.. list-table:: Example terms from LOINC
+.. list-table:: Example terms from DrugCentral
    :widths: 50 50
    :header-rows: 1
 
