@@ -10,6 +10,7 @@ import "phenopackets/schema/v2/core/interpretation.proto";
 import "phenopackets/schema/v2/core/individual.proto";
 import "phenopackets/schema/v2/core/measurement.proto";
 import "phenopackets/schema/v2/core/medical_action.proto";
+import "phenopackets/schema/v2/core/meta_data.proto";
 import "phenopackets/schema/v2/core/pedigree.proto";
 import "phenopackets/schema/v2/core/phenotypic_feature.proto";
 
