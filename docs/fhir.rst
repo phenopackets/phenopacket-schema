@@ -1,8 +1,8 @@
 .. _rstfhir:
 
-=========================
+#########################
 FHIR Implementation Guide
-=========================
+#########################
 
 Phenopacket on FHIR is a Fast Healthcare Interoperability Resources (FHIR) Implementation Guide (IG) based on the Phenopacket standard. It is meant to be conceptually equivalent but not directly interoperable. The guide is hosted at:
 

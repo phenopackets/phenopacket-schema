@@ -1,9 +1,9 @@
 
 .. _rstontologies:
 
-~~~~~~~~~~
+##########
 Ontologies
-~~~~~~~~~~
+##########
 
 
 A terminology is a set of prefered or official terms in a domain. One of the  most important terminologies for information

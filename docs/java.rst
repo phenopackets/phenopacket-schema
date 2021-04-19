@@ -1,8 +1,8 @@
 .. _rstjava:
 
-=================================
+#################################
 Working with Phenopackets in Java
-=================================
+#################################
 
 
 Here we provide some guidance on how to work with Phenopackets in Java. The sections on

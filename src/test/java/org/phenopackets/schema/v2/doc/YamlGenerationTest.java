@@ -1,5 +1,6 @@
 package org.phenopackets.schema.v2.doc;
 
+import com.google.errorprone.annotations.Var;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -467,6 +469,209 @@ public class YamlGenerationTest extends TestBase {
         String hash = printAndGetHash(interpretation, "interpretation");
         assertEquals("abcd87e963f7cbed1034b3c8f51df1a83aebe56ca65a3841a46ec0fb93b915e7", hash);
 
+    }
+
+    @Test
+    public void aclarubicinTest() throws ParseException {
+        OntologyClass aclarubicin = ontologyClass("DrugCentral:80","aclarubicin");
+        OntologyClass intravenous = ontologyClass("NCIT:C38276","Intravenous Route of Administration");
+        OntologyClass mgPerKgPerDose = ontologyClass("NCIT:C124458","Milligram per Kilogram per Dose");
+        Timestamp t1 = Timestamps.parse("2020-07-10T00:00:00Z");
+        Timestamp t2 = Timestamps.parse("2020-08-10T00:00:00Z");
+        OntologyClass mgPerKg = ontologyClass("EFO:0002902","milligram per kilogram");
+        Quantity quantity = quantity(100, mgPerKgPerDose);
+        OntologyClass every3weeks = ontologyClass("NCIT:C64535", "Every Three Weeks");
+        DoseInterval di = DoseInterval.newBuilder()
+                .setInterval(TimeInterval.newBuilder().setStart(t1).setEnd(t2))
+                .setQuantity(quantity)
+                .setScheduleFrequency(every3weeks)
+                .build();
+        Treatment treatment = Treatment.newBuilder()
+                .setAgent(aclarubicin)
+                .setDrugType(DrugType.EHR_MEDICATION_LIST)
+                .addDoseIntervals(di)
+                .setRouteOfAdministration(intravenous)
+                .build();
+        Quantity cumulativeQuantity = quantity(200, mgPerKg);
+        CumulativeDose cumulativeDose = CumulativeDose.newBuilder()
+                .setQuantity(cumulativeQuantity).build();
+        ChemoTherapyTreatment chemo = ChemoTherapyTreatment.newBuilder()
+                .setTreatment(treatment)
+                .setCumulativeDose(cumulativeDose)
+                .build();
+        String hash = printAndGetHash(chemo, "chemotherapyTreatment");
+        assertEquals("e63a9a6eac9b3c30fd85f7f0274ae7c0e49d167cb4f0496394e01131b2901f04", hash);
+    }
+
+    @Test
+    public void phenotypicFeatureTest() {
+        Age onset = age("P6M");
+        Age resolution = age("P4Y2M");
+        OntologyClass infantileSpasms = ontologyClass("HP:0012469", "Infantile spasms");
+        OntologyClass recurrent = ontologyClass("HP:0031796", "Recurrent");
+        PhenotypicFeature phenotypicFeature = PhenotypicFeature.newBuilder()
+                .setOnset(TimeElement.newBuilder().setAge(onset))
+                .setResolution(TimeElement.newBuilder().setAge(resolution))
+                .setType(infantileSpasms)
+                .addModifiers(recurrent)
+                .build();
+        String hash = printAndGetHash(phenotypicFeature, "phenotypicFeature");
+        assertEquals("02daef889dd1a62229b48b669004f9f3da325bfa952c27e30743eeb2774320fe", hash);
+    }
+
+    @Test
+    public void testProcedure() {
+        OntologyClass code = ontologyClass("NCIT:C28743", "Punch Biopsy");
+        OntologyClass bodySite = ontologyClass("UBERON:0003403", "skin of forearm");
+        TimeElement timeElement = TimeElement.newBuilder()
+                .setAge(Age.newBuilder().setIso8601Duration("P25Y"))
+                .build();
+       Procedure procedure = Procedure.newBuilder()
+               .setCode(code)
+               .setBodySite(bodySite)
+               .setPerformed(timeElement)
+               .build();
+        String hash = printAndGetHash(procedure, "procedure");
+        assertEquals("81b3970984ee1f7f9a33e3ed0b1f2e4211862aa622c355ab8571513756767e9c", hash);
+    }
+
+    @Test
+    public void spdiVariantTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        SpdiAllele spdiAllele = SpdiAllele.newBuilder()
+                .setId("clinvar:13294")
+                .setSeqId("NC_000010.10")
+                .setPosition(123256214)
+                .setDeletedSequence("T")
+                .setInsertedSequence("G")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setSpdiAllele(spdiAllele)
+                .setZygosity(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("4752d835e75e16d4874e30759e0796466e74f1a09616cbbfcf7ca167ea5327e3", hash);
+    }
+
+    @Test
+    public void hgvsVariantTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        HgvsAllele hgvsAllele = HgvsAllele.newBuilder()
+                .setHgvs("NM_000226.3:c.470T>G")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setHgvsAllele(hgvsAllele)
+                .setZygosity(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("cc8f5d4b797c5c3d872e8b8e1bf8ebaa3a6e73afe1b6f31c2c86502163547f97", hash);
+    }
+
+    @Test
+    public void vcfAlleleTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        VcfAllele vcfAllele = VcfAllele.newBuilder()
+                .setGenomeAssembly("GRCh38")
+                .setId(".")
+                .setChr("2")
+                .setPos(134327882)
+                .setRef("A")
+                .setAlt("T")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setVcfAllele(vcfAllele)
+                .setZygosity(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("2d959f56c61bc18d1543b16ef82e53dd62516ee17c542370aecb98dce8e4500a", hash);
+    }
+
+    @Test
+    public void iscnVariantTest() {
+        IscnKaryotype iscnKaryotype = IscnKaryotype.newBuilder()
+                .setIscn("t(8;9;11)(q12;p24;p12)")
+                .setId("id:A")
+                .build();
+        Variant variant = Variant.newBuilder()
+                .setIscnKaryotype(iscnKaryotype)
+                .build();
+        String hash = printAndGetHash(variant, "variant");
+        assertEquals("37115e75b26bc88e6346a2c9220c88c4767fed79e9760e4fe80c3ed575b0fc14", hash);
+    }
+
+    @Test
+    public void testValue() {
+        OntologyClass loinc = ontologyClass("LOINC:26515-7","Platelets [#/volume] in Blood");
+        OntologyClass cellsPerMicroliter = ontologyClass("UO:0000316","cells per microliter");
+        double lower = 150_000;
+        double upper = 450_000;
+        ReferenceRange referenceRange = referenceRange(cellsPerMicroliter, lower, upper);
+        Value value = quantitativeValue(cellsPerMicroliter, 24_000, referenceRange);
+        String hash = printAndGetHash(value, "value");
+        assertEquals("66ac76834270d3459e54e2c1e20fa7a7b16fc5f9457a9bcd5a478334054c44e1", hash);
+    }
+
+    @Test
+    public void testOrdinalValue() {
+        OntologyClass present = ontologyClass("NCIT:C25626","Present");
+        Value value = Value.newBuilder()
+                .setOntologyClass(present)
+                .build();
+        String hash = printAndGetHash(value, "value");
+        assertEquals("5d3e517e1c4ae82b477cc4993be973a38858a14a91cea21fcf23f4aa509d6343", hash);
+    }
+
+    @Test
+    public void testComplexValue(){
+        OntologyClass diastolic = ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
+        OntologyClass systolic = ontologyClass("NCIT:C25298", "Systolic Blood Pressure");
+        OntologyClass mmHg = ontologyClass("NCIT:C49670" ,"Millimeter of Mercury");
+        Quantity mmHg70 = Quantity.newBuilder()
+        .setValue(70)
+        .setUnitClass(mmHg)
+        .build();
+        Quantity mmHg120 = Quantity.newBuilder()
+                .setValue(120)
+                .setUnitClass(mmHg)
+                .build();
+
+        ComplexValue complexValue = ComplexValue.newBuilder()
+                .addTypedQuantities(TypedQuantity.newBuilder().setType(systolic).setQuantity(mmHg120).build())
+                .addTypedQuantities(TypedQuantity.newBuilder().setType(diastolic).setQuantity(mmHg70).build())
+                .build();
+        String hash = printAndGetHash(complexValue, "complexValue");
+        assertEquals("ebf63191574582f5cd431bcbf1d6683468409f45b9c5dda083005f7f59af27ac", hash);
+    }
+
+    @Test
+    public void pedigreeTest() {
+        Pedigree.Person person1A =
+                affectedPerson("family 1", "kindred 1A","FATHER","MOTHER",Sex.MALE);
+        Pedigree.Person person1B =
+                affectedPerson("family 1", "kindred 1B","FATHER","MOTHER",Sex.MALE);
+        Pedigree.Person mother = unaffectedPerson("family 1", "MOTHER", "0","0",Sex.FEMALE);
+        Pedigree.Person father = unaffectedPerson("family 1", "FATHER", "0","0",Sex.MALE);
+
+       Pedigree pedigree = Pedigree.newBuilder()
+               .addPersons(person1A)
+               .addPersons(person1B)
+               .addPersons(mother)
+               .addPersons(father)
+               .build();
+        String hash = printAndGetHash(pedigree, "pedigree");
+        assertEquals("ebf63191574582f5cd431bcbf1d6683468409f45b9c5dda083005f7f59af27ac", hash);
+    }
+
+    @Test
+    public void testUpdate() throws ParseException {
+        Timestamp ts = Timestamps.parse("2018-06-10T10:59:06Z");
+        Update update = Update.newBuilder()
+                .setTimestamp(ts)
+                .setUpdatedBy("Julius J.")
+                .setComment("added phenotypic features to individual patient:1")
+                .build();
+        String hash = printAndGetHash(update, "update");
+        assertEquals("1147417812354796ba5dcde1a7a8f23abb9b8c58a0d02c42be85c84028db1ab7", hash);
     }
     
 }

@@ -1,8 +1,8 @@
 .. _rsttimeelement:
 
-============
+############
 Time Element
-============
+############
 
 This element intends to bundle all of the various ways of denoting time or age in
 phenopackets schema. Starting with version 2, other elements will be required to
@@ -15,7 +15,8 @@ phenotypic abnormality such as an episode of fever occurring one day before admi
 to the hospital.
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``TimeElement`` element
@@ -26,6 +27,10 @@ to the hospital.
      - Type
      - Status
      - Description
+   * - gestational_age
+     - :ref:`rstgestationalage`
+     - (one of the options)
+     - measure of the age of a pregnancy
    * - age
      - :ref:`rstage`
      - (one of the options)
@@ -47,6 +52,25 @@ to the hospital.
      - (one of the options)
      - indicates an interval of time
 
+Example
+#######
+
+The following shows a TimeElement with the :ref:`rstage` option.
+
+.. code-block:: yaml
+
+    timeElement:
+        age:
+            iso8601duration: "P25Y"
+
+Explanations
+############
+
+gestational_age
+~~~~~~~~~~~~~~~
+
+A measure of the age of a pregnancy. Gestation, defined as the time between conception and birth,
+is measured in weeks and days from the first day of the last menstrual period.
 
 age
 ~~~

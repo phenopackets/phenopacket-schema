@@ -1,16 +1,16 @@
 .. _rsthormonetherapy:
 
-===============
+###############
 Hormone therapy
-===============
+###############
 
-Hormone therapy for cancer blocks the production or utilization of hormones that cancer cells are dependent on.
-
-
-
+Hormone therapy for cancer blocks the production or utilization of hormones that
+cancer cells are dependent on.
 
 
-**Data model**
+
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``Hormonetherapy`` element
@@ -32,7 +32,8 @@ Hormone therapy for cancer blocks the production or utilization of hormones that
 
 
 
-**Example**
+Example
+#######
 
 This example represents treatment with tamoxifen, 20 mg a day by mouth, administered over a time period of
 5 years from 2015 to 2020 with a total cumulative dose of 36500 mg.

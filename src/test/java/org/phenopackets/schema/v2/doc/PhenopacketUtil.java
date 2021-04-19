@@ -311,4 +311,24 @@ public class PhenopacketUtil {
                 .addExternalReferences(ref).build();
     }
 
+    public static Pedigree.Person affectedPerson(String familyId, String individualId, String paternalId, String maternalId, Sex sex) {
+        return Pedigree.Person.newBuilder()
+                .setFamilyId(familyId)
+                .setIndividualId(individualId)
+                .setPaternalId(paternalId)
+                .setMaternalId(maternalId)
+                .setAffectedStatus(Pedigree.Person.AffectedStatus.AFFECTED)
+                .setSex(sex).build();
+    }
+    public static Pedigree.Person unaffectedPerson(String familyId, String individualId, String paternalId, String maternalId, Sex sex) {
+        return Pedigree.Person.newBuilder()
+                .setFamilyId(familyId)
+                .setIndividualId(individualId)
+                .setPaternalId(paternalId)
+                .setMaternalId(maternalId)
+                .setAffectedStatus(Pedigree.Person.AffectedStatus.UNAFFECTED)
+                .setSex(sex).build();
+    }
+
+
 }

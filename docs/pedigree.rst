@@ -1,8 +1,8 @@
 .. _rstpedigree:
 
-========
+########
 Pedigree
-========
+########
 
 
 
@@ -16,7 +16,8 @@ The information in this element can be used by programs for analysis of a multi-
 sequences of members of a family, some of whom are affected by a Mendelian disease.
 
 
-**Data model**
+Data model
+##########
 
 .. list-table::
    :widths: 25 25 50 50
@@ -75,47 +76,37 @@ Person
      - see text
 
 
-**Example**
+Example
+#######
 
-.. code-block:: json
+.. code-block:: yaml
 
- {
-    "persons": [
-        {
-            "familyId": "family 1",
-            "individualId": "kindred 1A",
-            "paternalId": "FATHER",
-            "maternalId": "MOTHER",
-            "sex": "MALE",
-            "affectedStatus": "AFFECTED"
-        },
-        {
-            "familyId": "family 1",
-            "individualId": "kindred 1B",
-            "paternalId": "FATHER",
-            "maternalId": "MOTHER",
-            "sex": "FEMALE",
-            "affectedStatus": "AFFECTED"
-        },
-        {
-            "familyId": "family 1",
-            "individual_id": "MOTHER",
-            "paternalId": "0",
-            "maternalId": "0",
-            "sex": "FEMALE",
-            "affectedStatus": "UNAFFECTED"
-        },
-        {
-            "familyId": "family 1",
-            "individualId": "FATHER",
-            "sex": "MALE",
-            "paternalId": "0",
-            "maternalId": "0",
-            "affectedStatus": "UNAFFECTED"
-        }
-    ]
- }
-
+ pedigree:
+  persons:
+  - familyId: "family 1"
+    individualId: "kindred 1A"
+    paternalId: "FATHER"
+    maternalId: "MOTHER"
+    sex: "MALE"
+    affectedStatus: "AFFECTED"
+  - familyId: "family 1"
+    individualId: "kindred 1B"
+    paternalId: "FATHER"
+    maternalId: "MOTHER"
+    sex: "MALE"
+    affectedStatus: "AFFECTED"
+  - familyId: "family 1"
+    individualId: "MOTHER"
+    paternalId: "0"
+    maternalId: "0"
+    sex: "FEMALE"
+    affectedStatus: "UNAFFECTED"
+  - familyId: "family 1"
+    individualId: "FATHER"
+    paternalId: "0"
+    maternalId: "0"
+    sex: "MALE"
+    affectedStatus: "UNAFFECTED"
 
 .. _rstaffectedstatus:
 

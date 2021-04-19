@@ -1,8 +1,8 @@
 .. _rstdoseinterval:
 
-*************
+#############
 Dose Interval
-*************
+#############
 
 This element represents a block of time in which the dosage of a medication was
 constant. For example, to represent a period of  30 mg twice a day for an interval of 10 days, we would
@@ -12,10 +12,11 @@ element to represent `twice a day`, and an :ref:`rstinterval` element to represe
 
 
 
-**Data model**
+Data model
+##########
 
 
-.. list-table:: Definition  of the ``Quantity`` element
+.. list-table:: Definition  of the ``DoseInterval`` element
    :widths: 25 25 50 50
    :header-rows: 1
 

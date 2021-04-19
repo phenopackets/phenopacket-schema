@@ -1,6 +1,6 @@
-=====================================================
+#####################################################
 Welcome to the documentation for phenopackets-schema!
-=====================================================
+#####################################################
 
 The goal of the phenopacket-schema is to define the phenotypic description of a patient/sample in the context
 of rare disease, common/complex disease, or cancer. The schema as well as source code in Java, C++, and Python

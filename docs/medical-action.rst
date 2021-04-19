@@ -1,8 +1,8 @@
 .. _rstmedicalaction:
 
-==============
+##############
 Medical action
-==============
+##############
 
 This element describes medications, procedures, other actions taken
 for clinical management. The element is a list of options.

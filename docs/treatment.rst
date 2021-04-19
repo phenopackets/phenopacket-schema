@@ -1,8 +1,8 @@
 .. _rsttreatment:
 
-*********
+#########
 Treatment
-*********
+#########
 
 
 
@@ -74,7 +74,7 @@ Explanations
 ############
 
 agent
-~~~~
+~~~~~
 An ontology term representing the therapeutic agent. This can be
 a term from `DrugCentral <http://drugcentral.org/>`_,
 `RxNorm <https://www.nlm.nih.gov/research/umls/rxnorm/index.html>`_,

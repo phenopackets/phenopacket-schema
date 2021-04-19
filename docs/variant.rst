@@ -1,8 +1,8 @@
 .. _rstvariant:
 
-=======
+#######
 Variant
-=======
+#######
 
 This element should be used to describe candidate variants or diagnosed causative
 variants. There is currently no standard variant nomenclature that can represent all kinds
@@ -27,7 +27,8 @@ field. It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :
 
 *n.b.* phase information for alleles are not represented in this model.
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
    :header: Field, Type, Status, Description
@@ -36,23 +37,9 @@ field. It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :
     zygosity, :ref:`rstontologyclass` , recommended, See :ref:`zygosity` below
 
 
-**Example**
+Examples
+########
 
-.. code-block:: json
-
-    {
-        "spdiAllele": {
-          "id": "clinvar:13294"
-          "seqId": "NC_000010.10",
-          "position": 123256214,
-          "deletedSequence": "T",
-          "insertedSequence": "G"
-        },
-        "zygosity": {
-          "id": "GENO:0000135",
-          "label": "heterozygous"
-        }
-    }
 
 HGVS Variant
 ~~~~~~~~~~~~
@@ -69,26 +56,19 @@ Variants can be represented using the `HGVS nomenclature <https://varnomen.hgvs.
 
 
 
-.. _zygosity:
-
-zygosity
-~~~~~~~~
-The zygosity of the variant as determined in all of the samples represented in this Phenopacket is represented using a list of
-terms taken from the `Genotype Ontology (GENO) <https://www.ebi.ac.uk/ols/ontologies/geno>`_. For instance, if a variant
-affects one of two alleles at a certain locus, we could record the zygosity using the term
-`heterozygous (GENO:0000135) <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.
-
 
 .. _allele:
 
 allele
-~~~~~~
+######
+
 The allele element is required and can be one and only one of ``HgvsAllele``, ``VcfAlelle``, ``SpdiAllele`` or ``IcsnAllele``.
 
 .. _hgvs:
 
 HgvsAllele
 ~~~~~~~~~~
+
 This element is used to describe an allele according to the nomenclature of the
 `Human Genome Variation Society (HGVS) <http://www.hgvs.org/>`_. For instance,
 ``NM_000226.3:c.470T>G`` indicates that a T at position 470 of the sequence represented by version 3 of
@@ -109,12 +89,14 @@ HGVS nomenclature.
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-        "id": "",
-        "hgvs": "NM_000226.3:c.470T>G"
-    }
+    variant:
+        hgvsAllele:
+            hgvs: "NM_000226.3:c.470T>G"
+        zygosity:
+            id: "GENO:0000135"
+            label: "heterozygous"
 
 .. _vcf:
 
@@ -148,17 +130,20 @@ Phenopacket will report the contents of the info field for single nucleotide and
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-        "genome_assembly": "GRCh38",
-        "id": ".",
-        "chr": "2",
-        "pos": 134327882,
-        "ref": "A",
-        "alt": "<DUP>",
-        "info": "END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;",
-    }
+    variant:
+        vcfAllele:
+            genomeAssembly: "GRCh38"
+            id: "."
+            chr: "2"
+            pos: 134327882
+            ref: "A"
+            alt: "T"
+        zygosity:
+            id: "GENO:0000135"
+            label: "heterozygous"
+
 
 .. _spdi:
 
@@ -204,15 +189,18 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-        "id": 1,
-        "seqId": "NC_000001.10",
-        "position": 12346,
-        "deletedSequence": "",
-        "insertedSequence": "T"
-    }
+    variant:
+        spdiAllele:
+            id: "clinvar:13294"
+            seqId: "NC_000010.10"
+            position: 123256214
+            deletedSequence: "T"
+            insertedSequence: "G"
+        zygosity:
+            id: "GENO:0000135"
+            label: "heterozygous"
 
 .. _iscn:
 
@@ -236,9 +224,21 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 
 **Example**
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-      "id": "ISCN:12345",
-      "iscn": "t(8;9;11)(q12;p24;p12)"
-    }
+    variant:
+        iscnKaryotype:
+            id: "id:A"
+            iscn: "t(8;9;11)(q12;p24;p12)"
+
+
+.. _zygosity:
+
+zygosity
+########
+
+The zygosity of the variant as determined in all of the samples represented in this Phenopacket is represented using a list of
+terms taken from the `Genotype Ontology (GENO) <https://www.ebi.ac.uk/ols/ontologies/geno>`_. For instance, if a variant
+affects one of two alleles at a certain locus, we could record the zygosity using the term
+`heterozygous (GENO:0000135) <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.
+

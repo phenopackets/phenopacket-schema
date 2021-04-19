@@ -18,12 +18,12 @@ building blocks.
 
    age
    biosample
-   complex-quantity
+   chemotherapytreatment
+   complex-value
    disease
    dose-interval
    drug-type
    evidence
-   exposure
    externalreference
    gene
    genomic-interpretation
@@ -49,6 +49,8 @@ building blocks.
    time-element
    time-interval
    treatment
+   update
+   value
    variant
    variant-interpretation
    vital-status

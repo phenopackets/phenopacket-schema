@@ -1,8 +1,8 @@
 .. _rstgestationalage:
 
-===============
+###############
 Gestational Age
-===============
+###############
 
 
 Gestational age (or menstrual age) is the time elapsed between the first day of the last normal menstrual period and
@@ -15,7 +15,8 @@ Gestational age is conventionally expressed as completed weeks. Therefore, a 25-
 25-week fetus. Gestational age is often reported as W+D. For instance, 33 weeks and 2 days could be reported as 33+2.
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``GestationalAge`` element

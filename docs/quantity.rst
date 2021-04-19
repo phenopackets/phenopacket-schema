@@ -1,8 +1,8 @@
 .. _rstquantity:
 
-========
+########
 Quantity
-========
+########
 
 This element is meant to denote quantities of items such as medications. The unit of a dose
 can be expressed with NCIT terms such as
@@ -14,7 +14,8 @@ The value should be expressed as a number.
 
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``Quantity`` element
@@ -36,7 +37,8 @@ The value should be expressed as a number.
 
 
 
-**Examples**
+Examples
+########
 
 The following message could be used to represent the quantity corresponding to a 15 mg tablet of Meloxicam.
 
@@ -55,6 +57,9 @@ The following message could be used to represent the quantity corresponding to a
     id: "NCIT:C44278"
     label: "Unit"
   value: 5000
+
+Explanations
+############
 
 unit
 ~~~~

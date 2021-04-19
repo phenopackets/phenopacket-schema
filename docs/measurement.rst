@@ -1,14 +1,15 @@
 .. _rstmeasurement:
 
-===========
+###########
 Measurement
-===========
+###########
 
 The measurement element is used to record individual measurements. It can capture
 quantitative, ordinal (e.g., absent/present), or categorical measurements.
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``Quantity`` element
@@ -44,7 +45,8 @@ quantitative, ordinal (e.g., absent/present), or categorical measurements.
      - optional
      - Clinical procdure performed to acquire the sample used for the measurement
 
-**Examples**
+Examples
+########
 
 The following example shows measurement of platelet count. The result is abnormally low, but in
 general this element can be used to represent normal or abnormal measurements.
@@ -126,7 +128,8 @@ consists of two measurements (systolic and diastolic), that are represented as a
                     label: "Millimeter of Mercury"
                 value: 75.0
 
-**Explanations**
+Explanations
+############
 
 
 description

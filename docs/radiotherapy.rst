@@ -1,15 +1,16 @@
 .. _rstradiotherapy:
 
-============
+############
 Radiotherapy
-============
+############
 
 Radiation therapy (or radiotherapy) uses ionizing radiation, generally as part of cancer treatment to control
 or kill malignant cells.
 
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``Radiotherapy`` element
@@ -38,6 +39,8 @@ or kill malignant cells.
      - The total number of fractions delivered as part of treatment.
 
 
+Explanations
+############
 
 modality
 ~~~~~~~~

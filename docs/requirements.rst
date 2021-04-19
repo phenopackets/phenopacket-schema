@@ -1,8 +1,8 @@
 .. _rstrequirements:
 
-==================
+##################
 Requirement Levels
-==================
+##################
 
 
 The schema is formally defined using `protobuf3 <rstprotobuf>`_. In protobuf3, all elements are optional, and so there is no mechanism
