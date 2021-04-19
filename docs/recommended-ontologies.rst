@@ -88,7 +88,7 @@ Genes
 The HUGO Gene Nomenclature Committee (HGNC) provides standard names, symbols, and IDs for human genes.
 
 
-.. list-table:: Example terms from UBERON
+.. list-table:: Example terms from HGNC
    :widths: 50 50
    :header-rows: 1
 
