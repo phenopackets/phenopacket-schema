@@ -1,6 +1,5 @@
 package org.phenopackets.schema.v2.doc;
 
-import com.google.errorprone.annotations.Var;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -659,7 +657,7 @@ public class YamlGenerationTest extends TestBase {
                .addPersons(father)
                .build();
         String hash = printAndGetHash(pedigree, "pedigree");
-        assertEquals("ebf63191574582f5cd431bcbf1d6683468409f45b9c5dda083005f7f59af27ac", hash);
+        assertEquals("e7090185a8f2ac0d825d551442555299d114d041b4ddd437cb77a323af6c6836", hash);
     }
 
     @Test
