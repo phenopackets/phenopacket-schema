@@ -88,7 +88,7 @@ Genes
 The HUGO Gene Nomenclature Committee (HGNC) provides standard names, symbols, and IDs for human genes.
 
 
-.. list-table:: Example terms from UBERON
+.. list-table:: Example terms from HGNC
    :widths: 50 50
    :header-rows: 1
 
@@ -169,7 +169,7 @@ Medications
 chemical structures, biological activities, regulatory data, pharmacology and drug formulations
 
 
-.. list-table:: Example terms from LOINC
+.. list-table:: Example terms from DrugCentral
    :widths: 50 50
    :header-rows: 1
 
