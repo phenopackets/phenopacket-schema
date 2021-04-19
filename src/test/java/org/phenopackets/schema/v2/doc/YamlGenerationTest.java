@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -659,6 +660,18 @@ public class YamlGenerationTest extends TestBase {
                .build();
         String hash = printAndGetHash(pedigree, "pedigree");
         assertEquals("ebf63191574582f5cd431bcbf1d6683468409f45b9c5dda083005f7f59af27ac", hash);
+    }
+
+    @Test
+    public void testUpdate() throws ParseException {
+        Timestamp ts = Timestamps.parse("2018-06-10T10:59:06Z");
+        Update update = Update.newBuilder()
+                .setTimestamp(ts)
+                .setUpdatedBy("Julius J.")
+                .setComment("added phenotypic features to individual patient:1")
+                .build();
+        String hash = printAndGetHash(update, "update");
+        assertEquals("1147417812354796ba5dcde1a7a8f23abb9b8c58a0d02c42be85c84028db1ab7", hash);
     }
     
 }
