@@ -23,17 +23,27 @@ was created (or if the status is unknown).
      - required
      - one of UNKNOWN_STATUS, ALIVE, DECEASED.
    * - time_of_death
-     - TimeElement
+     - :ref:`rsttimelement`
      - optional
      - Should be left blank if patient not known to be deceased
    * - cause_of_death
-     - OntologyClass
+     - :ref:`rstontologyclass`
      - optional
      - Should be left blank if patient not known to be deceased
 
 The vital status is commonly collected in cohort studies on cancer.
 
 The following shows how the element can be used to report the time and cause of death.
+
+Status
+~~~~~~
+
+.. csv-table::
+   :header: Name, Ordinal, Description
+
+    UNKNOWN_STATUS, 0, Not assessed or not available.
+    ALIVE, 1, Alive. Maps to `NCIT:C37987 <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C37987>`_
+    DECEASED, 2, Dead. Maps to `NCIT:C28554 <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C28554>`_
 
 
 .. code-block:: yaml
