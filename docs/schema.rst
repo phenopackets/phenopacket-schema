@@ -47,27 +47,57 @@ disease, as well as catering for the original use-case for rare-disease.
 Additions
 ~~~~~~~~~
 
+The following elements and their sub-elements were added to the 2.0 schema. Other additional fields have been added
+throughout the schema.
+
 Measurements
 ------------
 
 Added a new :ref:`rstmeasurement` message for capturing quantitative, ordinal (e.g., absent/present), or categorical
-measurements. This element is available in the :ref:`rstphenopacket` and :ref:`rstbiosample` top-level elements.
+measurements. This element is available as a repeated field in the :ref:`rstphenopacket` and :ref:`rstbiosample`
+top-level elements.
 
 Medical actions
 ---------------
 
+The :ref:`rstmedicalaction` was added to capture medications, procedures, other actions taken for clinical management.
+This element is available as a repeated field in the :ref:`rstphenopacket`.
+
 Time element
 ------------
 
-Biosample
----------
+The :ref:`rsttimeelement` was added to collect the various ways of expressing time or age throughout the schema. In
+general where there was an `onset` or `start` time, a `resolution` or `end` :ref:`rsttimeelement` has been added.
+
+
+Non-breaking Changes
+~~~~~~~~~~~~~~~~~~~~
+
+The .proto files in the schema have been re-organised into more self-contained logical groups extracted from the `base.proto`
+file. These files are all organised into a `v2` package which lives alongside the `v1` package. For some language bindings
+it may be required to fix import paths for code created with the previous version to compile against the latest release,
+but otherwise code using v1.0 of the schema should work identically.
 
 
 Breaking Changes
 ~~~~~~~~~~~~~~~~
 
+Time in Individual, Biosample, Disease, Phenotypic Feature
+----------------------------------------------------------
+
+The :ref:`rsttimeelement` replaces the onset `oneof` in :ref:`rstphenotypicfeature` and :ref:`rstdisease`, the `time_of_collection` field in
+:ref:`rstbiosample`. The :ref:`rstindividual` `age` field has been replaced with a `time_at_encounter` `:ref:`rsttimeelement`
+and :ref:`rstbiosample` `individual_age_at_collection` has been replaced with a `time_of_collection` `:ref:`rsttimeelement`.
+
 Gene and Variant contexts
 -------------------------
 
+In :ref:`rstphenopacket` and :ref:`rstbiosample` the `genes` and `variants` fields have been removed. In the case of the
+:ref:`rstphenopacket` these have been replaced with the updated :ref:`rstinterpretation`.
+
 Interpretation
 --------------
+
+The v2.0 :ref:`rstinterpretation` is now a sub-element of a `phenopacket`, rather than an enclosing element. The change
+allows for better semantics on the :ref:`rstgene` and :ref:`rstvariant` types and their relationship to an :ref:`rstindividual`
+or :ref:`rstbiosample` in the context of a :ref:`rstdiagnosis` based on a :ref:`rstgenomincinterpretation`.
