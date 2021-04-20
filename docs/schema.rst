@@ -31,7 +31,8 @@ The diagram below shows an overview of the schema elements.
 
 .. figure:: graph/phenopacket-schema-v1.svg
 
-   Version 1.0 of the schema. Lines between elements indicate composition.
+   Version 1.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass links have been
+   omitted for legibility.
 
 
 Version 2.0
@@ -39,7 +40,8 @@ Version 2.0
 
 .. figure:: graph/phenopacket-schema-v2.svg
 
-   Version 2.0 of the schema. Lines between elements indicate composition.
+   Version 2.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
+   links have been omitted for legibility.
 
 Version 2.0 includes significant changes and additions to the model to enable better representation of cancer and common
 disease, as well as catering for the original use-case for rare-disease.
