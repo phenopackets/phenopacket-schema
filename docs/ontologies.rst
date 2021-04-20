@@ -18,9 +18,9 @@ The phenopacket schema requires the use of a common ontology, a logically define
 sophisticated algorithmic analysis over medically relevant abnormalities.
 The `National Cancer institute's Thesaurus (NCIt) <http://www.obofoundry.org/ontology/ncit.html>`_ is used for
 cancer biosamples, and is the de facto standard for cancer knowledge representation and regulatory submission.
-The `Human Phenotype Ontology (HPO) <http://www.human-phenotype-ontology.org>`_  was built
- for genomic diagnostics, translational research, genomic matchmaking, and
-systems biology applications in the field of rare disease and other fields of medicine.
+The `Human Phenotype Ontology (HPO) <http://www.human-phenotype-ontology.org>`_  was built for genomic diagnostics,
+translational research, genomic matchmaking, and systems biology applications in the field of rare disease and other
+fields of medicine.
 The HPO is developed in the context of
 the `Monarch Initiative <https://monarchinitiative.org/>`_, an international team of
 computer scientists, clinicians, and biologists in the United States, Europe, and Australia;
