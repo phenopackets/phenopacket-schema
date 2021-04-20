@@ -50,11 +50,17 @@ Additions
 Measurements
 ------------
 
+Added a new :ref:`rstmeasurement` message for capturing quantitative, ordinal (e.g., absent/present), or categorical
+measurements. This element is available in the :ref:`rstphenopacket` and :ref:`rstbiosample` top-level elements.
+
 Medical actions
 ---------------
 
 Time element
 ------------
+
+Biosample
+---------
 
 
 Breaking Changes
