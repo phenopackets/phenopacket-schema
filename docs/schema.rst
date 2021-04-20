@@ -86,8 +86,8 @@ Time in Individual, Biosample, Disease, Phenotypic Feature
 ----------------------------------------------------------
 
 The :ref:`rsttimeelement` replaces the onset `oneof` in :ref:`rstphenotypicfeature` and :ref:`rstdisease`, the `time_of_collection` field in
-:ref:`rstbiosample`. The :ref:`rstindividual` `age` field has been replaced with a `time_at_encounter` `:ref:`rsttimeelement`
-and :ref:`rstbiosample` `individual_age_at_collection` has been replaced with a `time_of_collection` `:ref:`rsttimeelement`.
+:ref:`rstbiosample`. The :ref:`rstindividual` `age` field has been replaced with a `time_at_encounter` :ref:`rsttimeelement`
+and :ref:`rstbiosample` `individual_age_at_collection` has been replaced with a `time_of_collection` :ref:`rsttimeelement`.
 
 Gene and Variant contexts
 -------------------------
