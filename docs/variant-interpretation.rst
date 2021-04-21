@@ -21,14 +21,24 @@ Data model
      - Status
      - Description
    * - variantFinding
-     - enum VariantFinding
+     - enum :ref:`rstvariantfinding`
      - required
-     - one of the five ACMG pathogenicity categories
+     - one of the five ACMG pathogenicity categories, default is UNCERTAIN_SIGNIFICANCE
    * - variant
-     - Variant
+     - :ref:`rstvariant`
      - required
      - a genetic/genomic variant
 
+
+.. _rstvariantfinding:
+.. csv-table:: Definition  of the ``VariantFinding`` enumeration
+   :header: Name, Ordinal, Description
+
+    UNCERTAIN_SIGNIFICANCE, 0, There is not enough information at this time to support a more definitive classification of this variant
+    PATHOGENIC, 1,  This variant directly contributes to the development of disease
+    LIKELY_PATHOGENIC, 2, There is a high likelihood (greater than 90% certainty) that this variant is disease-causing
+    LIKELY_BENIGN, 3, This variant is not expected to have a major effect on disease; however, the scientific evidence is currently insufficient to prove this conclusively
+    BENIGN, 4, This variant does not cause disease
 
 
 Example
@@ -63,5 +73,4 @@ The ACMG has recommended a five-tier classification system (`Richards et al., 20
 
 variant
 ~~~~~~~
-
-See :ref:`rstvariant` for more information.
+The subject of the variant interpretation. See :ref:`rstvariant` for more information.

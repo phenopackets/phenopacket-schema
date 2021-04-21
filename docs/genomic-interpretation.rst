@@ -1,4 +1,4 @@
-.. _rstgenomincinterpretation:
+.. _rstgenomicinterpretation:
 
 #####################
 GenomicInterpretation
@@ -25,8 +25,8 @@ Data model
      - string
      - required
      - The id of the patient or biosample that is the subject being interpreted
-   * - status
-     - enum Status
+   * - interpretation_status
+     - enum :ref:`rstinterpretationstatus`
      - required
      - status of the interpretation
    * - call
@@ -34,26 +34,15 @@ Data model
      - required
      - represents the interpretation
 
+.. _rstinterpretationstatus:
+.. csv-table:: Definition  of the ``InterpretationStatus`` enumeration
+    :header: Name, Ordinal, Description
 
-
- // TODO: see issue #269 - DONE
-    // identifier for the subject of the interpretation. This MUST be the individual id or a biosample id.
-    string subject_or_biosample_id = 7;
-
-    enum Status {
-        UNKNOWN_STATUS = 0;
-        REJECTED = 1;
-        CANDIDATE = 2;
-        CONTRIBUTORY = 3;
-    }
-    Status status = 1;
-
-    // TODO: See issue #257 - DONE
-    // Gene or variant identified in subject or biosample and interpreted in relation to the disease diagnosis.
-    oneof call {
-        GeneInterpretation gene = 2;
-        VariantInterpretation variant = 3;
-    }
+    UNKNOWN_STATUS, 0, No information is available about the status
+    REJECTED, 1, The variant or gene reported here is interpreted *not* to be related to the diagnosis
+    CANDIDATE, 2, The variant or gene reported here is interpreted to *possibly* be related to the diagnosis
+    CONTRIBUTORY, 3, The variant or gene reported here is interpreted to be related to the diagnosis
+    ACTIONABLE, 4, The variant or gene reported here is interpreted to be related to the diagnosis and clinically actionable by some treatment
 
 Example
 #######
@@ -85,8 +74,8 @@ Each genomic interpretation is based on a genomic finding in the germline DNA of
 referenced in the phenopacket or of a :ref:`rstbiosample` derived from the individual.
 The id used here must therefore match with the Individual.id or with the Biosample.id element.
 
-status
-~~~~~~
+interpretation_status
+~~~~~~~~~~~~~~~~~~~~~
 
 This is an enumeration that describes the conclusion made about the genomic interpretation.
 
@@ -107,5 +96,5 @@ In cancer, ``CONTRIBUTORY`` can be used for multiple variants, and the correspon
 call
 ~~~~
 
-TODO
+Either an :ref:`rstgene` or a :ref:`rstvariantinterpretation` representing the genomic subject of the interpretation.
 

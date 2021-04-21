@@ -67,8 +67,8 @@ message VariantInterpretation {
         UNCERTAIN_SIGNIFICANCE = 0;
         PATHOGENIC = 1;
         LIKELY_PATHOGENIC = 2;
-        BENIGN = 3;
-        LIKELY_BENIGN = 4;
+        LIKELY_BENIGN = 3;
+        BENIGN = 4;
     }
     VariantFinding variantFinding = 1;
     Variant variant = 2;
