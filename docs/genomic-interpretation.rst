@@ -37,6 +37,7 @@ GenomicInterpretation
      - represents the interpretation
 
 .. _rstinterpretationstatus:
+
 InterpretationStatus
 ~~~~~~~~~~~~~~~~~~~~
 .. csv-table:: Definition  of the ``InterpretationStatus`` enumeration

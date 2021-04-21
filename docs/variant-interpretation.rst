@@ -33,6 +33,7 @@ VariantInterpretation
 
 
 .. _rstvariantfinding:
+
 VariantFinding
 ~~~~~~~~~~~~~~
 .. csv-table:: Definition  of the ``VariantFinding`` enumeration
