@@ -13,6 +13,8 @@ for examples.
 Data model
 ##########
 
+GenomicInterpretation
+~~~~~~~~~~~~~~~~~~~~~
 .. list-table:: Definition  of the ``GenomicInterpretation`` element
    :widths: 25 25 50 50
    :header-rows: 1
@@ -30,11 +32,13 @@ Data model
      - required
      - status of the interpretation
    * - call
-     - oneof :ref:`rstgeneinterpretation` or :ref:`rstvariantinterpretation`
+     - oneof :ref:`rstgene` or :ref:`rstvariantinterpretation`
      - required
      - represents the interpretation
 
 .. _rstinterpretationstatus:
+InterpretationStatus
+~~~~~~~~~~~~~~~~~~~~
 .. csv-table:: Definition  of the ``InterpretationStatus`` enumeration
     :header: Name, Ordinal, Description
 
@@ -96,5 +100,5 @@ In cancer, ``CONTRIBUTORY`` can be used for multiple variants, and the correspon
 call
 ~~~~
 
-Either an :ref:`rstgene` or a :ref:`rstvariantinterpretation` representing the genomic subject of the interpretation.
+Either an :ref:`rstgene` or a :ref:`rstvariantinterpretation` representing the subject of the genomic interpretation.
 

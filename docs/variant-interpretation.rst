@@ -12,6 +12,8 @@ the American College of Medical Genetics (ACMG) variant interpretation guideline
 Data model
 ##########
 
+VariantInterpretation
+~~~~~~~~~~~~~~~~~~~~~
 .. list-table:: Definition  of the ``VariantInterpretation`` element
    :widths: 25 25 50 50
    :header-rows: 1
@@ -31,6 +33,8 @@ Data model
 
 
 .. _rstvariantfinding:
+VariantFinding
+~~~~~~~~~~~~~~
 .. csv-table:: Definition  of the ``VariantFinding`` enumeration
    :header: Name, Ordinal, Description
 
