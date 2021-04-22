@@ -8,8 +8,8 @@ This element describes medications, procedures, other actions taken
 for clinical management. The element is a list of options.
 
 
-**Data model**
-
+Data model
+##########
 
 .. list-table:: Definition  of the ``MedicalAction`` element
    :widths: 25 25 25 75
@@ -43,6 +43,7 @@ for clinical management. The element is a list of options.
      - :ref:`rstontologyclass`
      - 0..1
      - The reason that the treatment was stopped.
+
 
 action
 ~~~~~~
