@@ -16,7 +16,7 @@ message MedicalAction {
     ChemoTherapyTreatment chemo_therapy = 3;
     HormoneTherapyTreatment hormone_therapy = 4;
     RadiationTherapyTreatment radiation_therapy = 5;
-    TherapeuticRegimen therapeutic_regimen = 6;
+    TherapeuticRegimenTreatment therapeutic_regimen = 6;
   }
   // The condition or disease that this treatment was intended to address.
   // FHIR mapping Procedure::reasonCode
@@ -98,7 +98,7 @@ message RadiationTherapyTreatment {
   // ARGO mapping radiation::radiation_therapy_type (missing)
 }
 
-message TherapeuticRegimen {
+message TherapeuticRegimenTreatment {
   // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
   oneof identifier {
     ExternalReference external_reference = 1;
@@ -109,9 +109,10 @@ message TherapeuticRegimen {
   // end time can be empty which would indicate ongoing
   TimeElement end_time = 4;
 
-  RegimenStatus status = 5;
+  RegimenStatus regimen_status = 5;
+
   enum RegimenStatus {
-    UNKNOWN = 0;
+    UNKNOWN_STATUS = 0;
     STARTED = 1;
     COMPLETED = 2;
     DISCONTINUED = 3;

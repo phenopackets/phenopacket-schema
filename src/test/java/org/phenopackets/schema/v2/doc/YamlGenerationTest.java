@@ -277,6 +277,21 @@ public class YamlGenerationTest extends TestBase {
         assertEquals("99126a60a4a9a80024e93d99cd4515a245443d774f431af5dd500928ab7e8656", hash);
     }
 
+    @Test
+    public void therapeuticRegimenTreatmentTest() throws ParseException {
+        ExternalReference externalReference = ExternalReference.newBuilder()
+                .setId("NCT04576091")
+                .setReference("https://clinicaltrials.gov/ct2/show/NCT04576091")
+                .setDescription("Testing the Addition of an Anti-cancer Drug, BAY1895344, With Radiation Therapy to the Usual Pembrolizumab Treatment for Recurrent Head and Neck Cancer")
+                .build();
+
+        TherapeuticRegimenTreatment therapeuticRegimenTreatment = TherapeuticRegimenTreatment.newBuilder().setExternalReference(externalReference)
+                .setStartTime(TimeElement.newBuilder().setTimestamp(Timestamps.parse("2020-03-15T13:00:00Z")))
+                .setRegimenStatus(TherapeuticRegimenTreatment.RegimenStatus.STARTED)
+                .build();
+        String hash = printAndGetHash(therapeuticRegimenTreatment, "therapeuticRegimenTreatment");
+        assertEquals("152bb717e6d8586928f033407b20f113d8715f7cc07704ef42aaf5d2e79f8796", hash);
+    }
 
     @Test
     public void urothelialCarcinomaBiosample() {
@@ -438,8 +453,6 @@ public class YamlGenerationTest extends TestBase {
         String hash = printAndGetHash(interpretation, "interpretation");
         assertEquals("1746eeeaf427759370dbf62f581d4517561656e315d345bf660af9f33c243446", hash);
     }
-
-
 
     @Test
     public void testInterpretationBraf() {
