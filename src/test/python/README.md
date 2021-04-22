@@ -1,3 +1,8 @@
+VRS Python Build
+================
+
+To build `vrs_pb2.py`, run `make` in this directory.
+
 Phenopackets Python Example
 ===========================
 
