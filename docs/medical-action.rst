@@ -1,7 +1,7 @@
 .. _rstmedicalaction:
 
 ##############
-Medical action
+MedicalAction
 ##############
 
 This element describes medications, procedures, other actions taken
