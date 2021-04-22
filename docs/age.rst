@@ -55,10 +55,10 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   start, :ref:`rstage`, required, An Age message
-   end, :ref:`rstage`, required, An Age message
+   start, :ref:`rstage`, 1..1, An Age message
+   end, :ref:`rstage`, 1..1, An Age message
 
 
 Example
