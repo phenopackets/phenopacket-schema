@@ -16,7 +16,7 @@ Data model
 ##########
 
  .. list-table::
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
@@ -73,24 +73,24 @@ Data model
      - RECOMMENDED Indicates primary, metastatic, recurrent
    * - tumor_grade
      - :ref:`rstontologyclass`
-     - 0..*
-     - RECOMMENDED List of terms representing the tumor grade
+     - 0..1
+     - Term representing the tumor grade
    * - pathological_stage
      - :ref:`rstontologyclass`
      - 0..1
-     - Pathological stage, if applicable
+     - RECOMMENDED. Pathological stage, if applicable
    * - pathological_tnm_finding
      - :ref:`rstontologyclass` (List)
      - 0..*
-     - Pathological TNM findings, if applicable
+     - RECOMMENDED. Pathological TNM findings, if applicable
    * - diagnostic_markers
      - :ref:`rstontologyclass` (List)
      - 0..*
-     - Clinically relevant biomarkers RECOMMENDED
+     - RECOMMENDED Clinically relevant biomarkers
    * - procedure
      - :ref:`rstprocedure`
-     - 1..1
-     - The procedure used to extract the biosample REQUIRED
+     - 0..1
+     - RECOMMENDED. The procedure used to extract the biosample
    * - hts_files
      - :ref:`rsthtsfile` (List)
      - 0..*
@@ -98,7 +98,7 @@ Data model
    * - material_sample
      - :ref:`rstontologyclass`
      - 0..1
-     - status of specimen (tumor tissue, normal control, etc.) RECOMMENDED
+     - RECOMMENDED. Status of specimen (tumor tissue, normal control, etc.)
    * - sample_processing
      - :ref:`rstontologyclass`
      - 0..1
