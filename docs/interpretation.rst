@@ -115,7 +115,7 @@ The element is optional because if the **resolution_status** is **UNSOLVED** the
       - Status
       - Description
     * - disease
-      - :ref:`rstdisease`
+      - :ref:`rstontologyclass`
       - required
       - The diagnosed condition
     * - genomic_interpretations
