@@ -26,8 +26,13 @@ message ExternalReference {
     // e.g. ISBN, PMID:123456, DOI:...,
     // FHIR mapping: Reference.identifier
     string id = 1;
+    // A full or partial URL pointing to the external reference if no commonly resolvable identifier can be used in the
+    // `id` field
+    // FHIR mapping Reference.reference
+    string reference = 2;
+    // Human readable title or display string for the reference
     // FHIR mapping: Reference.display
-    string description = 2;
+    string description = 3;
 }
 
 // FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)

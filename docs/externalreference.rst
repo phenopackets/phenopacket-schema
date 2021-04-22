@@ -24,8 +24,12 @@ Data model
       - Description
     * - id
       - string
-      - 1..1
-      - An application specific identifier. REQUIRED.
+      - 0..1
+      - An application specific identifier. RECOMMENDED.
+    * - reference
+      - string
+      - 0..1
+      - An application specific identifier. RECOMMENDED.
     * - description
       - string
       - 0..1
@@ -41,6 +45,10 @@ Example
         id: "PMID:30962759"
         description: "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation"
 
+    externalReference:
+        id: "PMID:30962759"
+        reference: "https://pubmed.ncbi.nlm.nih.gov/30962759"
+        description: "Recurrent Erythema Nodosum in a Child with a SHOC2 Gene Mutation"
 
 Explanations
 ############
@@ -54,6 +62,11 @@ relevant identifier.
 It is RECOMMENDED to use a :ref:`rstcurie` identifier. If one is used, it is RECOMMENDED that the corresponding
 :ref:`rstresource` be provided in the :ref:`rstmetadata` element. For the above example, one would provide
 an :ref:`rstresource` for PubMed (see the :ref:`rstmetadata` for this example).
+
+reference
+~~~~~~~~~
+It is RECOMMENDED that a full or partial URL/URI is provided for systems to resolve an external reference, especially in
+the absence of a CURIE identifier.
 
 description
 ~~~~~~~~~~~
