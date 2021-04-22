@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
 
 option java_multiple_files = true;
-option java_package = "org.ga4gh.vrsatil.v1";
+option java_package = "org.ga4gh.vrsatile.v1";
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#value-object-descriptor
 message ValueObjectDescriptor {
