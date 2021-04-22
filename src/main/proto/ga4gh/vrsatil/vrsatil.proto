@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package org.ga4gh.vrsatil.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+option java_multiple_files = true;
+option java_package = "org.ga4gh.vrsatil.v1";
+
+// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#value-object-descriptor
+message ValueObjectDescriptor {
+  string id = 1;
+  string type = 2; // blagh remove?
+  oneof value_or_id {
+    string value_id = 3;
+    google.protobuf.Any value = 4; // hmm.
+  }
+  string label = 5;
+  string description = 6;
+  repeated string xrefs = 7;
+  repeated string alternate_labels = 8;
+  repeated Extension extensions = 9;
+}
+
+// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#extension
+message Extension {
+  string name = 1;
+  repeated google.protobuf.Any value = 2;
+}
+
+// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#expression
+message Expression {
+  string syntax = 1;
+  string value = 2;
+  string version = 3;
+}
+
+message VariationDescriptor {
+  ValueObjectDescriptor valueObjectDescriptor = 1;
+  // The molecular context of this variant. Must be one of “genomic”, “transcript”, or “protein”.
+  MoleculeContext molecule_context = 2;
+  // The structural variant type associated with this variant. We RECOMMEND a descendent term of SO:0001537.
+  string structural_type = 3;
+  // Typically HGVS or ISCN nomenclature expressions. Other systems relevant to the description of variation MAY be used.
+  repeated Expression expressions = 4;
+  // A specific gene context that applies to this variant.
+  // TODO: just make this a GeneDescriptor - easier to handle and more consistent. Can still just represent a curie with a gene descriptor
+  oneof gene_context {
+    string curie = 5;
+    GeneDescriptor gene_descriptor = 6;
+  }
+  // A Sequence corresponding to a “ref allele”, as used in HGVS, SPDI, and VCF variation formats. Useful for validation.
+  string ref_allele_seq = 7;
+  LocationDescriptor location_descriptor = 8;
+  SequenceDescriptor sequence_descriptor = 9;
+  // We RECOMMEND that the allelic_state of variant be described by terms from the Genotype Ontology (GENO). These SHOULD descend from concept GENO:0000875.
+  string allelic_state = 10;
+}
+
+enum MoleculeContext {
+  genomic = 0;
+  transcript = 1;
+  protein = 3;
+}
+
+// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#gene-descriptor
+message GeneDescriptor {
+  ValueObjectDescriptor valueObjectDescriptor = 1;
+}
+
+// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#location-descriptor
+message LocationDescriptor {
+  ValueObjectDescriptor valueObjectDescriptor = 1;
+  SequenceDescriptor sequence_descriptor = 2;
+}
+
+// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#sequence-descriptor
+message SequenceDescriptor {
+  ValueObjectDescriptor valueObjectDescriptor = 1;
+  // CURIE MUST be SO:0000348 (nucleic acid), SO:0001407 (peptidyl), or a descendent of one of these concepts.
+  string residue_type = 2;
+}
