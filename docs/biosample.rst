@@ -21,84 +21,92 @@ Data model
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - id
      - string
-     - required
-     - arbitrary identifier
+     - 1..1
+     - REQUIRED arbitrary identifier
    * - individual_id
      - string
-     - recommended
-     - arbitrary identifier
+     - 0..1
+     - RECOMMENDED arbitrary identifier
    * - derived_from_id
      - string
-     - optional
+     - 0..1
      - id of the biosample from which the current biosample was derived (if applicable)
    * - description
      - string
-     - optional
+     - 0..1
      - arbitrary text
    * - sampled_tissue
      - :ref:`rstontologyclass`
-     - optional
+     - 0..1
      - Tissue from which the sample was taken
    * - sample_type
      - :ref:`rstontologyclass`
-     - optional
+     - 0..1
      - type of material, e.g., RNA, DNA, Cultured cells
    * - phenotypic_features
      - :ref:`rstphenotypicfeature` (List)
-     - recommended
-     - List of phenotypic abnormalities of the sample
+     - 0..*
+     - RECOMMENDED List of phenotypic abnormalities of the sample
    * - measurements
      - :ref:`rstmeasurement` (List)
-     - optional
+     - 0..*
      - List of measurements of the sample
    * - taxonomy
      - :ref:`rstontologyclass`
-     - optional
+     - 0..1
      - Species of the sampled individual
    * - time_of_collection
      - :ref:`rsttimeelement`
-     - recommended
-     - Age of the proband at the time the sample was taken
+     - 0..1
+     - RECOMMENDED Age of the proband at the time the sample was taken
    * - histological_diagnosis
      - :ref:`rstontologyclass`
-     - recommended
-     - Disease diagnosis that was inferred from the histological examination
+     - 0..1
+     - RECOMMENDED Disease diagnosis that was inferred from the histological examination
    * - tumor_progression
      - :ref:`rstontologyclass`
-     - recommended
-     - Indicates primary, metastatic, recurrent
+     - 0..1
+     - RECOMMENDED Indicates primary, metastatic, recurrent
    * - tumor_grade
      - :ref:`rstontologyclass`
-     - recommended
-     - List of terms representing the tumor grade
+     - 0..*
+     - RECOMMENDED List of terms representing the tumor grade
    * - pathological_stage
      - :ref:`rstontologyclass`
-     - optional
+     - 0..1
      - Pathological stage, if applicable
    * - pathological_tnm_finding
      - :ref:`rstontologyclass` (List)
-     - optional
+     - 0..*
      - Pathological TNM findings, if applicable
    * - diagnostic_markers
-     - :ref:`rstontologyclass`
-     - recommended
-     - Clinically relevant biomarkers
+     - :ref:`rstontologyclass` (List)
+     - 0..*
+     - Clinically relevant biomarkers RECOMMENDED
    * - procedure
      - :ref:`rstprocedure`
-     - required
-     - The procedure used to extract the biosample
+     - 1..1
+     - The procedure used to extract the biosample REQUIRED
    * - hts_files
-     - :ref:`rstfile`
-     - optional
+     - :ref:`rsthtsfile` (List)
+     - 0..*
      - list of high-throughput sequencing files derived from the biosample
    * - material_sample
      - :ref:`rstontologyclass`
-     - recommended
-     - status of specimen (tumor tissue, normal control, etc.)
+     - 0..1
+     - status of specimen (tumor tissue, normal control, etc.) RECOMMENDED
+   * - sample_processing
+     - :ref:`rstontologyclass`
+     - 0..1
+     - how the specimen was processed
+   * - sample_storage
+     - :ref:`rstontologyclass`
+     - 0..1
+     - how the specimen was stored
 
 Example
 #######
@@ -190,20 +198,15 @@ sample_type
 RNA, DNA, Cultured cells. We recommend use of EFO term to describe the sample,
 for instance, `genomic DNA (EFO:0008479) <https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0008479>`_.
 
-
 phenotypic_features
 ~~~~~~~~~~~~~~~~~~~
 The phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
 See :ref:`rstphenotypicfeature` for further information.
 
-
 measurements
 ~~~~~~~~~~~~
 Measurements (usually quantitative) performed on the sample.
 See :ref:`rstmeasurement` for further information.
-
-
-
 
 taxonomy
 ~~~~~~~~
@@ -265,7 +268,7 @@ describes what type of file is meant (e.g., BAM file), which genome assembly was
 as well as a map of samples and individuals represented in that file. It also contains a
 URI element which refers to a file on a given file system or a resource on the web.
 
-See :ref:`rstfile` for further information.
+See :ref:`rsthtsfile` for further information.
 
 material_sample
 ~~~~~~~~~~~~~~~
@@ -277,3 +280,13 @@ We recommend use of ontology terms such as
 
 - `reference sample (EFO:0009654) <https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009654>`_.
 - `abnormal sample (EFO:0009655) <https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009655>`_.
+
+sample_processing
+~~~~~~~~~~~~~~~~~
+
+The technique used to process the sample.
+
+sample_storage
+~~~~~~~~~~~~~~
+
+How the sample was stored.

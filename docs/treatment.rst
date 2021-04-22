@@ -33,11 +33,11 @@ Data model
      - recommended
      - How was the drug administered?
    * - dose_intervals
-     - DoseInterval (list)
+     - :ref:`rstdoseinterval` (List)
      - recommended
      - dosages
    * - drug_type
-     - DrugType
+     - :ref:`rstdrugtype`
      - optional
      - Context of the drug administration
 

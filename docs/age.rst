@@ -13,12 +13,12 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   age, string, required, An ISO8601 string represent age
+   iso8601duration, string, 1..1, An ISO8601 string represent age
 
 
-If the Age message is used, the ``age`` value must be present.
+If the Age message is used, the ``iso8601duration`` value must be present.
 
 
 Example
@@ -55,10 +55,10 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   start, :ref:`rstage`, required, An Age message
-   end, :ref:`rstage`, required, An Age message
+   start, :ref:`rstage`, 1..1, An Age message
+   end, :ref:`rstage`, 1..1, An Age message
 
 
 Example
