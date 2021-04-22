@@ -15,20 +15,20 @@ Data model
 
 
  .. list-table:: Definition of the ``ExternalReference`` element
-    :widths: 25 25 50 50
+    :widths: 25 25 25 75
     :header-rows: 1
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - id
       - string
-      - required
-      - An application specific identifier
+      - 1..1
+      - An application specific identifier. REQUIRED.
     * - description
       - string
-      - optional
+      - 0..1
       - An application specific description
 
 

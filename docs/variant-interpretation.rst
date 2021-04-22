@@ -22,8 +22,8 @@ VariantInterpretation
      - Type
      - Status
      - Description
-   * - variantFinding
-     - enum :ref:`rstvariantfinding`
+   * - acmgPathogenicityClassification
+     - enum :ref:`acmgPathogenicityClassification`
      - required
      - one of the five ACMG pathogenicity categories, default is UNCERTAIN_SIGNIFICANCE
    * - variant
@@ -32,17 +32,17 @@ VariantInterpretation
      - a genetic/genomic variant
 
 
-.. _rstvariantfinding:
+.. _rstacmgPathogenicityClassification:
 
-VariantFinding
+AcmgPathogenicityClassification
 ~~~~~~~~~~~~~~
-.. csv-table:: Definition  of the ``VariantFinding`` enumeration
+.. csv-table:: Definition  of the ``AcmgPathogenicityClassification`` enumeration
    :header: Name, Ordinal, Description
 
     UNCERTAIN_SIGNIFICANCE, 0, There is not enough information at this time to support a more definitive classification of this variant
     PATHOGENIC, 1,  This variant directly contributes to the development of disease
     LIKELY_PATHOGENIC, 2, There is a high likelihood (greater than 90% certainty) that this variant is disease-causing
-    LIKELY_BENIGN, 3, This variant is not expected to have a major effect on disease; however, the scientific evidence is currently insufficient to prove this conclusively
+    LIKELY_BENIGN, 3, This variant is not expected to have a major effect on disease. However, the scientific evidence is currently insufficient to prove this conclusively
     BENIGN, 4, This variant does not cause disease
 
 
@@ -54,7 +54,7 @@ The following element shows how to denote an interpretation of a variant as path
 .. code-block:: yaml
 
   variantInterpretation:
-    variantFinding: "PATHOGENIC"
+    acmgPathogenicityClassification: "PATHOGENIC"
     variant:
         hgvsAllele:
             hgvs: "NM_001848.2:c.877G>A"
@@ -65,7 +65,7 @@ The following element shows how to denote an interpretation of a variant as path
 Explanations
 ############
 
-variantFinding
+acmgPathogenicityClassification
 ~~~~~~~~~~~~~~
 The ACMG has recommended a five-tier classification system (`Richards et al., 2015 <https://pubmed.ncbi.nlm.nih.gov/25741868/>`_).
 

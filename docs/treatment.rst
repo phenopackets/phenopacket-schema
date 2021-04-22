@@ -17,28 +17,28 @@ Data model
 
 
 .. list-table:: Definition  of the ``Treatment`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - agent
      - OntologyClass
-     - required
-     - The drug.
+     - 1..1
+     - The drug or therapeutic agent. REQUIRED.
    * - route_of_administration
      - OntologyClass
-     - recommended
-     - How was the drug administered?
+     - 0..1
+     - How was the drug administered. RECOMMENDED.
    * - dose_intervals
      - :ref:`rstdoseinterval` (List)
-     - recommended
-     - dosages
+     - 0..*
+     - dosages. RECOMMENDED.
    * - drug_type
      - :ref:`rstdrugtype`
-     - optional
+     - 0..1
      - Context of the drug administration
 
 Example

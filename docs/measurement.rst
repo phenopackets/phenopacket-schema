@@ -13,36 +13,32 @@ Data model
 
 
 .. list-table:: Definition  of the ``Quantity`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - description
      - string
-     - optional
+     - 0..1
      - free text.
    * - assay
-     - OntologyClass
-     - required
-     - Class that describes the assay used to produce the measurement
-   * - value
-     - Value
-     - required
-     - The result of the measurement
-   * - complex_quantity
-     - ComplexQuantity
-     - optional
-     - List of ComplexQuantity elements
+     - :ref:`rstontologyclass`
+     - 1..1
+     - Class that describes the assay used to produce the measurement. REQUIRED.
+   * - measurement_value
+     - one of :ref:`rstvalue` or :ref:`rstcomplexvalue`
+     - 1..1
+     - The result of the measurement. REQUIRED.
    * - time_observed
-     - TimeElement
-     - recommend
-     - Time at which measurement was performed
+     - :ref:`rsttimeelement`
+     - 0..1
+     - Time at which measurement was performed. RECOMMENDED.
    * - procedure
-     - :ref:`Procedure`
-     - optional
+     - :ref:`rstprocedure`
+     - 0..1
      - Clinical procdure performed to acquire the sample used for the measurement
 
 Examples
@@ -110,7 +106,7 @@ consists of two measurements (systolic and diastolic), that are represented as a
             label: "blood pressure measurement"
         timeObserved:
             timestamp: "2021-01-01T10:54:20.021Z"
-        complexQuantity:
+        complexValue:
             - type:
                 id: "NCIT:C25298"
                 label: "Systolic Blood Pressure"
@@ -153,8 +149,8 @@ This element represents the result of the measurement. The measurement can
 be quantitative, such as `LOINC:2472-9 <https://loinc.org/2472-9/>`_ (IgM [Mass/volume] in Serum or Plasma)
 or ordinal or categorical.
 
-complex_quantity
-~~~~~~~~~~~~~~~~
+complex_value
+~~~~~~~~~~~~~
 
 This is intended to represent measurements that consist of a tightly coupled group of related quanitities.
 For instance, blood pressure represents a measurement of systolic and diastolic blood pressure.

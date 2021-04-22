@@ -1,7 +1,7 @@
 .. _rstdrugtype:
 
 #########
-Drug Type
+DrugType
 #########
 
 

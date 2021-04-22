@@ -12,44 +12,44 @@ Data model
 ##########
 
  .. list-table::
-    :widths: 25 50 50 50
+    :widths: 25 25 25 75
     :header-rows: 1
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - id
       - string
-      - required
-      - An arbitrary identifier
+      - 1..1
+      - An arbitrary identifier. REQUIRED.
     * - alternate_ids
       - a list of :ref:`rstcurie`
-      - optional
+      - 0..*
       - A list of alternative identifiers for the individual
     * - date_of_birth
       - timestamp
-      - optional
+      - 0..1
       - A timestamp either exact or imprecise
     * - time_at_encounter
       - :ref:`rsttimelement`
-      - recommended
-      - The age or age range of the individual
+      - 0..1
+      - The age or age range of the individual. RECOMMENDED.
     * - vital_status
       - :ref:`rstvitalstatus`
-      - recommended
-      - The age or age range of the individual
+      - 0..1
+      - The age or age range of the individual. RECOMMENDED.
     * - sex
       - :ref:`rstsex`
-      - recommended
+      - 0..1
       - Observed apparent sex of the individual
     * - karyotypic_sex
       - :ref:`rstkaryotypicsex`
-      - optional
+      - 0..1
       - The karyotypic sex of the individual
     * - taxonomy
       - :ref:`rstontologyclass`
-      - optional
+      - 0..1
       - an :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
 
 
@@ -168,7 +168,7 @@ was to protect privacy of study participants).
 
 vital_status
 ~~~~~~~~~~~~
-This element can be used to report whether the individual is living or dead at the timepoint when the phenopacket
+The :ref:`rstvitalstatus` can be used to report whether the individual is living or dead at the timepoint when the phenopacket
 was created (or if the status is unknown).
 
 sex

@@ -19,7 +19,7 @@ is mature. The VR-Spec will be the recommended option in some settings.
 - See: https://vr-spec.readthedocs.io/en/1.0rc/
 - See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
 
-The ``Variant`` element itself is an optional element of a ``Phenopacket``  or ``Biosample``. If it is present,
+The ``Variant`` element itself is an element of a :ref:`rstvariantinterpretation`. If it is present,
 the Phenopacket standard has the following requirements.
 
 Alleles can refer to external sources, for example the ClinGen allele registry, ClinVar, dbSNP, dbVAR etc. using the ``id``
@@ -31,10 +31,10 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    allele, :ref:`Allele`, required, one of the Allele types described below
-    zygosity, :ref:`rstontologyclass` , recommended, See :ref:`zygosity` below
+    allele, :ref:`Allele`, 1..1, one of the Allele types described below. REQUIRED.
+    zygosity, :ref:`rstontologyclass` , 0..1, See :ref:`zygosity` below. RECOMMENDED.
 
 
 Examples
@@ -82,10 +82,10 @@ HGVS nomenclature.
 **Data model**
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    id, string, recommended, An arbitrary identifier
-    hgvs, string, required, NM_000226.3:c.470T>G
+    id, string, 0..1, An arbitrary identifier. RECOMMENDED.
+    hgvs, string, 1..1, NM_000226.3:c.470T>G. REQUIRED.
 
 **Example**
 
@@ -118,15 +118,19 @@ Phenopacket will report the contents of the info field for single nucleotide and
 **Data model**
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    genome_assembly, string, required, The reference genome identifier e.g. GRCh38
-    id, string, recommended, An arbitrary identifier
-    chr, string, required, A chromosome identifier e.g. chr2 or 2
-    pos, int32, required, The 1-based genomic position e.g. 134327882
-    ref, string, required, The reference base(s)
-    alt, string, required, The alternate base(s)
-    info, string, optional, Relevant parts of the INFO field
+    genome_assembly, string, 1..1, The reference genome identifier e.g. GRCh38. REQUIRED.
+    id, string, 0..1, An arbitrary identifier
+    chr, string, 1..1, A chromosome identifier e.g. chr2 or 2. REQUIRED.
+    pos, int32, 1..1, The 1-based genomic position e.g. 134327882. REQUIRED.
+    ref, string, 1..1, The reference base(s). REQUIRED.
+    alt, string, 1..1, The alternate base(s). REQUIRED.
+    end, int32, 0..1, The `END` field for this allele, if present in the VCF record. RECOMMENDED.
+    sv_type, string, 0..1, The `SV_TYPE` field for this allele, if present in the VCF record.
+    sv_length, int32, 0..1, The `SV_LEN` field for this allele, if present in the VCF record.
+    mate_id, string, 0..1, The `MATE_ID` field for this allele, if present in the VCF record.
+    event_id, string, 0..1, The `EVENT_ID` field for this allele, if present in the VCF record.
 
 **Example**
 
@@ -179,13 +183,13 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
 **Data model**
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    id, string, recommended, An arbitrary identifier
-    seq_id, string, required, Seq1
-    position, int32, required, 4
-    deleted_sequence, string, required, A
-    inserted_sequence, string, required, G
+    id, string, 0..1, An arbitrary identifier. RECOMMENDED.
+    seq_id, string, 1..1, Seq1. REQUIRED.
+    position, int32, 1..1, 4. REQUIRED.
+    deleted_sequence, 1..1, required, A. REQUIRED.
+    inserted_sequence, 1..1, required, G. REQUIRED.
 
 **Example**
 
@@ -217,10 +221,10 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 **Data model**
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   id, string, recommended, An arbitrary identifier
-   iscn, string, required, t(8;9;11)(q12;p24;p12)
+   id, string, 0..1, An arbitrary identifier. RECOMMENDED.
+   iscn, string, 1..1, t(8;9;11)(q12;p24;p12). REQUIRED.
 
 **Example**
 

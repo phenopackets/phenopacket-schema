@@ -13,17 +13,17 @@ Data model
 
 
 .. list-table:: Definition  of the ``Value`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - value
-     - one of quantity (:ref:`rstquantity`) or ontology_class (:ref:`rstontologyclass`)
-     - required
-     - the outcome (value) of a measurement
+     - {:ref:`rstquantity` | :ref:`rstontologyclass`}
+     - 1..1
+     - the outcome (value) of a measurement. REQUIRED.
 
 Examples
 ########

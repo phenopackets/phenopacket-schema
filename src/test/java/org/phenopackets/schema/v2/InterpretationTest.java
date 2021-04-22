@@ -28,7 +28,7 @@ public class InterpretationTest {
                                 .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
                                 .setVariantInterpretation(VariantInterpretation.newBuilder()
                                 .setVariant(Variant.newBuilder().setHgvsAllele(HgvsAllele.newBuilder().setHgvs("")))
-                                .setVariantFinding(VariantInterpretation.VariantFinding.PATHOGENIC)))
+                                .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)))
                 .build();
 
 
@@ -76,7 +76,10 @@ public class InterpretationTest {
                 .setDiagnosis(diagnosis)
                 .build();
 
-        Phenopacket phenopacketWithInterpretation = TestExamples.rareDiseasePhenopacket().toBuilder().addInterpretations(interpretation).build();
+        Phenopacket phenopacketWithInterpretation = TestExamples.rareDiseasePhenopacket().toBuilder()
+                .addInterpretations(interpretation)
+                .mergeMetaData(metaData)
+                .build();
         System.out.println(FormatMapper.messageToYaml(phenopacketWithInterpretation));
     }
 }

@@ -20,48 +20,48 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Definition
     * - id
       - string
-      - required
-      - arbitrary identifier
+      - 1..1
+      - arbitrary identifier. REQUIRED.
     * - subject
       - :ref:`rstindividual`
-      - recommended
-      - The proband
+      - 0..1
+      - The proband. RECOMMENDED.
     * - phenotypic_features
       - List of :ref:`phenotypicfeature`
-      - recommended
-      - Phenotypic features observed in the proband
+      - 0..*
+      - Phenotypic features observed in the proband. RECOMMENDED.
     * - measurements
       - List of :ref:`rstmeasurement`
-      - recommended
+      - 0..*
       - Measurements performed in the proband
     * - biosamples
       - :ref:`rstbiosample`
-      - optional
+      - 0..*
       - samples (e.g., biopsies), if any
     * - interpretations
       - List of :ref:`rstinterpretation`
-      - optional
+      - 0..*
       - Interpretations related to this phenopacket
     * - diseases
       - List of :ref:`rstdisease`
-      - optional
+      - 0..*
       - Disease(s) diagnosed in the proband
     * - medical_actions
       - List of :ref:`rstmedicalaction`
-      - optional
+      - 0..*
       - Medical actions performed
     * - hts_files
       - List of :ref:`rstfile`
-      - optional
+      - 0..*
       - VCF or other high-throughput sequencing files
     * - meta_data
       - :ref:`rstmetadata`
-      - required
-      - Information about ontologies and references used in the phenopacket
+      - 1..1
+      - Information about ontologies and references used in the phenopacket. REQUIRED.
 
 Examples
 ########

@@ -655,7 +655,7 @@
 <polygon fill="none" stroke="#000000" points="534.0608,-325.7 534.0608,-370.5 650.2704,-370.5 650.2704,-325.7 534.0608,-325.7"/>
 <text text-anchor="middle" x="592.1656" y="-359.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariantInterpretation</text>
 <polyline fill="none" stroke="#000000" points="534.0608,-352.9 650.2704,-352.9 "/>
-<text text-anchor="start" x="542.0608" y="-341.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">variantFinding: VariantFinding</text>
+<text text-anchor="start" x="542.0608" y="-341.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">acmgPathogenicityClassification: AcmgPathogenicityClassification</text>
 <text text-anchor="start" x="542.0608" y="-332.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> varant: Variant</text>
 </g>
 <!-- Variant&#45;&gt;VariantInterpretation -->
@@ -840,11 +840,11 @@
 <path fill="none" stroke="#000000" d="M614.8099,-370.7094C634.8962,-390.7649 664.5406,-420.3637 687.5921,-443.3797"/>
 <polygon fill="#000000" stroke="#000000" points="685.2747,-446.0118 694.8242,-450.6007 690.2206,-441.0582 685.2747,-446.0118"/>
 </g>
-<!-- VariantFinding -->
+<!-- AcmgPathogenicityClassification -->
 <g id="node38" class="node">
-<title>VariantFinding</title>
+<title>AcmgPathogenicityClassification</title>
 <polygon fill="none" stroke="#000000" points="430.0344,-195.9 430.0344,-269.5 564.2968,-269.5 564.2968,-195.9 430.0344,-195.9"/>
-<text text-anchor="middle" x="497.1656" y="-258.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariantFinding &lt;enum&gt;</text>
+<text text-anchor="middle" x="497.1656" y="-258.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">AcmgPathogenicityClassification &lt;enum&gt;</text>
 <polyline fill="none" stroke="#000000" points="430.0344,-251.9 564.2968,-251.9 "/>
 <text text-anchor="start" x="438.0344" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNCERTAIN_SIGNIFICANCE</text>
 <text text-anchor="start" x="438.0344" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = PATHOGENIC</text>
@@ -852,9 +852,9 @@
 <text text-anchor="start" x="438.0344" y="-211.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = BENIGN</text>
 <text text-anchor="start" x="438.0344" y="-202.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = LIKELY_BENIGN</text>
 </g>
-<!-- VariantFinding&#45;&gt;VariantInterpretation -->
+<!-- AcmgPathogenicityClassification&#45;&gt;VariantInterpretation -->
 <g id="edge30" class="edge">
-<title>VariantFinding-&gt;VariantInterpretation</title>
+<title>AcmgPathogenicityClassification-&gt;VariantInterpretation</title>
 <path fill="none" stroke="#000000" d="M527.4854,-269.5306C540.2225,-285.0028 554.8644,-302.7888 566.9925,-317.5213"/>
 <polygon fill="#000000" stroke="#000000" points="564.3857,-319.8617 573.4436,-325.3577 569.7901,-315.4127 564.3857,-319.8617"/>
 </g>

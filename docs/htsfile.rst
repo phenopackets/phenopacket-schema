@@ -22,33 +22,33 @@ HtsFile
 This message is used for information about a high-throughput file.
 
 .. list-table::
-    :widths: 25 50 50 50
+    :widths: 25 25 25 75
     :header-rows: 1
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - uri
       - string
-      - required
-      - A valid URI e.g. file://data/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
+      - 1..1
+      - A valid URI e.g. file://data/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444. REQUIRED.
     * - description
       - string
-      - optional
+      - 0..1
       - arbitrary description of the file
     * - hts_format
       - :ref:`rsthtsformat`
-      - required
-      - VCF
+      - 1..1
+      - The format of the HTS file e.g. VCF. REQUIRED.
     * - genome_assembly
       - string
-      - required
-      - e.g. GRCh38
+      - 1..1
+      - The genome assembly against which the file was called e.g. GRCh38. REQUIRED.
     * - individual_to_sample_identifiers
       - a map of string key: value
-      - recommended
-      - The mapping between the Individual.id or Biosample.id to the sample identifier in the HTS file
+      - 0..1
+      - The mapping between the Individual.id or Biosample.id to the sample identifier in the HTS file. RECOMMENDED.
 
 
 .. _rsthtsformat:
@@ -57,29 +57,17 @@ HtsFormat
 ~~~~~~~~~
 This message is used for a file in one of the `HTS formats <https://samtools.github.io/hts-specs>`_.
 
+.. csv-table:: Definition  of the ``HtsFormat`` enumeration
+   :header: Name, Ordinal, Description
 
-.. list-table::
-    :widths: 25 100
-    :header-rows: 1
-
-    * - Field
-      - Description
-    * - UNKNOWN
-      - An HTS file of unknown type.
-    * - SAM
-      - A SAM format file
-    * - BAM
-      - A BAM format file
-    * - CRAM
-      - A CRAM format file
-    * - VCF
-      - A VCF format file
-    * - BCF
-      - A BCF format file
-    * - GVCF
-      - A GVCF format file
-    * - FASTQ
-      - A FASTQ format file
+    UNKNOWN, 0, An HTS file of unknown type
+    SAM, 1,  A SAM format file
+    BAM, 2, A BAM format file
+    CRAM, 3, A CRAM format file
+    VCF, 4, A VCF format file
+    BCF, 5, A BCF format file
+    GVCF, 6, A GVCF format file
+    FASTQ, 7, A FASTQ format file
 
 
 **Example**

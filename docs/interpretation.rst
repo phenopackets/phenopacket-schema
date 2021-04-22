@@ -11,28 +11,28 @@ Data model
 ##########
 
  .. list-table::
-    :widths: 25 50 50 50
+    :widths: 25 25 25 75
     :header-rows: 1
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - id
       - string
-      - required
-      - Arbitrary identifier
+      - 1..1
+      - Arbitrary identifier. REQUIRED.
     * - progress_status
       - :ref:`rstprogressstatus`
-      - required
-      - The current resolution status
+      - 1..1
+      - The current resolution status. REQUIRED.
     * - diagnosis
       - :ref:`rstdiagnosis`
-      - repeated
+      - 0..*
       - One or more diagnoses, if made
     * - summary
       - string
-      - optional
+      - 0..1
       - Additional data about this interpretation
 
 
@@ -176,7 +176,7 @@ would be reported.
             genomicInterpretations:
                 - interpretationStatus: "CONTRIBUTORY"
                 variantInterpretation:
-                    variantFinding: "PATHOGENIC"
+                    acmgPathogenicityClassification: "PATHOGENIC"
                         variant:
                             hgvsAllele:
                                 hgvs: "NM_000138.4(FBN1):c.6751T>A"
@@ -207,7 +207,7 @@ shows a finding of compound heterozygous variants.
             genomicInterpretations:
                 - interpretationStatus: "CONTRIBUTORY"
                 variantInterpretation:
-                    variantFinding: "PATHOGENIC"
+                    acmgPathogenicityClassification: "PATHOGENIC"
                         variant:
                             hgvsAllele:
                                 hgvs: "NM_000492.3(CFTR):c.1477C>T (p.Gln493Ter)"
@@ -217,13 +217,13 @@ shows a finding of compound heterozygous variants.
                 subjectOrBiosampleId: "subject 1"
                 - interpretationStatus: "CONTRIBUTORY"
                 variantInterpretation:
-                variantFinding: "PATHOGENIC"
-                variant:
-                    hgvsAllele:
-                        hgvs: "NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)"
-                    zygosity:
-                        id: "GENO:0000135"
-                        label: "heterozygous"
+                    acmgPathogenicityClassification: "PATHOGENIC"
+                    variant:
+                        hgvsAllele:
+                            hgvs: "NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)"
+                        zygosity:
+                            id: "GENO:0000135"
+                            label: "heterozygous"
                 subjectOrBiosampleId: "subject 1"
 
 The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstindividual` of the enclosing phenopacket
@@ -248,7 +248,7 @@ this example, a BRAF variant is interpreted as being actionable in this sense.
         genomicInterpretations:
             - interpretationStatus: "ACTIONABLE"
             variantInterpretation:
-                variantFinding: "PATHOGENIC"
+                acmgPathogenicityClassification: "PATHOGENIC"
                 variant:
                     hgvsAllele:
                         hgvs: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"

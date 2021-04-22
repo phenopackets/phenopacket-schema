@@ -13,24 +13,24 @@ Data model
 
 
 .. list-table:: Definition  of the ``Update`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - timestamp
      - `ISO8601 UTC timestamp <https://en.wikipedia.org/wiki/ISO_8601>`_
-     - required
-     - ISO8601 UTC timestamp at which this record was updated
+     - 1..1
+     - ISO8601 UTC timestamp at which this record was updated. REQUIRED.
    * - updated_by
      - string
-     - optional
-     - Information about the person/organisation/network that has updated the phenopacket
+     - 0..1
+     - Information about the person/organisation/network that has updated the phenopacket.
    * - comment
      - string
-     - required
+     - 0..1
      - Textual comment about the changes made to the content and/or reason for the update.
 
 

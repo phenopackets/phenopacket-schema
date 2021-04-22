@@ -19,7 +19,7 @@ was created (or if the status is unknown).
      - Status
      - Description
    * - status
-     - enum
+     - :ref:`rststatus`
      - required
      - one of UNKNOWN_STATUS, ALIVE, DECEASED.
    * - time_of_death
@@ -30,10 +30,16 @@ was created (or if the status is unknown).
      - :ref:`rstontologyclass`
      - optional
      - Should be left blank if patient not known to be deceased
+   * - survival_time_in_days
+     - integer
+     - optional
+     - Number of days the patient was alive after their primary diagnosis
 
 The vital status is commonly collected in cohort studies on cancer.
 
 The following shows how the element can be used to report the time and cause of death.
+
+.. _rststatus:
 
 Status
 ~~~~~~

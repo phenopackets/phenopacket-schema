@@ -274,7 +274,7 @@ public class PhenopacketUtil {
 
     public static VariantInterpretation pathogenicVariantInterpretation(Variant variant) {
         return VariantInterpretation.newBuilder()
-                .setVariantFindingValue(VariantInterpretation.VariantFinding.PATHOGENIC_VALUE)
+                .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)
                 .setVariant(variant).build();
     }
 
