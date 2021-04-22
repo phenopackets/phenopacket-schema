@@ -23,7 +23,7 @@ VariantInterpretation
      - Status
      - Description
    * - acmgPathogenicityClassification
-     - enum :ref:`acmgPathogenicityClassification`
+     - :ref:`rstacmgPathogenicityClassification`
      - required
      - one of the five ACMG pathogenicity categories, default is UNCERTAIN_SIGNIFICANCE
    * - variant
