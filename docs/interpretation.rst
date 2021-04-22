@@ -112,15 +112,15 @@ The element is optional because if the **resolution_status** is **UNSOLVED** the
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - disease
       - :ref:`rstontologyclass`
-      - required
-      - The diagnosed condition
+      - 1..1
+      - The diagnosed condition. REQUIRED.
     * - genomic_interpretations
       - :ref:`rstgenomicinterpretation`
-      - repeated
+      - 0..*
       - The genomic elements assessed as being responsible for the disease or empty
 
 Examples of the intended usage of the Interpretation element
