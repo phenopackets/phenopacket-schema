@@ -70,13 +70,15 @@ option java_package = "org.ga4gh.vrs";
 // Variation types; commented out as inheritance is not supported by protobuf
 
 // The root class of all Variation types
-//message Variation {
-//    oneof variation {
-//        MolecularVariation molecular = 1;
-//        SystemicVariation systemic = 2;
-//        UtilityVariation utility = 3;
-//    }
-//}
+message Variation {
+    oneof variation {
+        Allele allele = 1;
+        Haplotype haplotype = 2;
+        CopyNumber copy_number = 3;
+        // Text text =
+        // VariationSet variation_set =
+    }
+}
 
 // A variation on a contiguous molecule.
 message MolecularVariation {
