@@ -174,15 +174,15 @@ would be reported.
                 id: "OMIM:154700"
                 label: "Marfan syndrome"
             genomicInterpretations:
-                - interpretationStatus: "CONTRIBUTORY"
+                - interpretationStatus: "CAUSATIVE"
                 variantInterpretation:
                     acmgPathogenicityClassification: "PATHOGENIC"
-                        variant:
-                            hgvsAllele:
-                                hgvs: "NM_000138.4(FBN1):c.6751T>A"
-                    zygosity:
-                        id: "GENO:0000135"
-                        label: "heterozygous"
+                    variant:
+                        hgvsAllele:
+                            hgvs: "NM_000138.4(FBN1):c.6751T>A"
+                        zygosity:
+                            id: "GENO:0000135"
+                            label: "heterozygous"
             subjectOrBiosampleId: "subject 1"
 
 The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstindividual` of the enclosing phenopacket
@@ -246,9 +246,10 @@ this example, a BRAF variant is interpreted as being actionable in this sense.
             id: "NCIT:C3224"
             label: "Melanoma"
         genomicInterpretations:
-            - interpretationStatus: "ACTIONABLE"
+            - interpretationStatus: "CONTRIBUTORY"
             variantInterpretation:
                 acmgPathogenicityClassification: "PATHOGENIC"
+                therapeuticActionability: "ACTIONABLE"
                 variant:
                     hgvsAllele:
                         hgvs: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"

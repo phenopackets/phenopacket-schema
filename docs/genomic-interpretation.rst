@@ -47,7 +47,7 @@ InterpretationStatus
     REJECTED, 1, The variant or gene reported here is interpreted *not* to be related to the diagnosis
     CANDIDATE, 2, The variant or gene reported here is interpreted to *possibly* be related to the diagnosis
     CONTRIBUTORY, 3, The variant or gene reported here is interpreted to be related to the diagnosis
-    ACTIONABLE, 4, The variant or gene reported here is interpreted to be related to the diagnosis and clinically actionable by some treatment
+    CAUSATIVE, 4, The variant or gene reported here is interpreted to be causative of the diagnosis
 
 Example
 #######
@@ -88,14 +88,15 @@ This is an enumeration that describes the conclusion made about the genomic inte
 - REJECTED: the variant or gene reported here is interpreted *not* to be related to the diagnosis
 - CANDIDATE: the variant or gene reported here is interpreted to *possibly* be related to the diagnosis
 - CONTRIBUTORY: the variant or gene reported here is interpreted to be related to the diagnosis
+- CAUSATIVE: the variant or gene reported here is interpreted to be causative of the diagnosis
 
-There are several situations in which one should use ``CONTRIBUTORY``. In an autosomal dominant
-Mendelian disease, one variant is causative. In this case, one would classify it as ``CONTRIBUTORY``
-and the :ref:`rstinterpretation` object that contains the genomic interpretation would use
-``SOLVED``. In the case of an autosomal recessive disease, one ``CONTRIBUTORY`` genomic interpretation
-would be used for a homozygous causative variant, and two would be used for compound heterozygous variants.
-In cancer, ``CONTRIBUTORY`` can be used for multiple variants, and the corresponding
-:ref:`rstinterpretation` object could classify them as ``ACTIONABLE``, for instance, if a targeted treatment is available for the variant.
+In an autosomal dominant Mendelian disease, one variant is causative. In this case, one would classify it as ``CAUSATIVE``
+and the :ref:`rstinterpretation` object that contains the genomic interpretation would use ``SOLVED``. Similarly in the
+case of an autosomal recessive disease, one would classify a homozygous variant as ``CAUSATIVE``. There are several
+situations in which one should use ``CONTRIBUTORY``. In the case of an autosomal recessive disease, two ``CONTRIBUTORY``
+genomic interpretations would be used for compound heterozygous variants.
+In cancer, ``CONTRIBUTORY`` can be used for multiple variants, and the corresponding :ref:`rstinterpretation` object
+could classify them as ``ACTIONABLE``, for instance, if a targeted treatment is available for the variant.
 
 
 call

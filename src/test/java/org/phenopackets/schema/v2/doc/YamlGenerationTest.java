@@ -461,10 +461,11 @@ public class YamlGenerationTest extends TestBase {
                         .setHgvs("NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)")).build();
         VariantInterpretation v1 = VariantInterpretation.newBuilder()
                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)
+                .setTherapeuticActionability(TherapeuticActionability.ACTIONABLE)
                 .setVariant(brafVar).build();
         GenomicInterpretation genomicInterpretation = GenomicInterpretation.newBuilder()
                 .setVariantInterpretation(v1)
-                .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.ACTIONABLE)
+                .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
                 .setSubjectOrBiosampleId("biosample id")
                 .build();
         OntologyClass melanoma = ontologyClass("NCIT:C3224", "Melanoma");
@@ -478,7 +479,7 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("83b9db27b28c48109e19ccb27753f2cc86ffd3e06a2b6bc77c7afab6b1c6534a", hash);
+        assertEquals("72205f6bbb57aae693dc170f0c573026a8c41a3809b0202c68b2ed7f7530185b", hash);
     }
 
     @Test
