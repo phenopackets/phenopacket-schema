@@ -86,34 +86,6 @@ message ReferenceRange {
     double high = 3;
 }
 
-// Sex of an individual
-// FHIR mapping: AdministrativeGender (https://www.hl7.org/fhir/codesystem-administrative-gender.html)
-enum Sex {
-    // Not assessed / available.
-    UNKNOWN_SEX = 0;
-    // Female
-    FEMALE = 1;
-    // Male
-    MALE = 2;
-    // It is not possible, to accurately assess the applicability of MALE/FEMALE.
-    OTHER_SEX = 3;
-}
-
-// Karyotypic sex of the individual
-enum KaryotypicSex {
-    UNKNOWN_KARYOTYPE = 0;
-    XX = 1;
-    XY = 2;
-    XO = 3;
-    XXY = 4;
-    XXX = 5;
-    XXYY = 6;
-    XXXY = 7;
-    XXXX = 8;
-    XYY = 9;
-    OTHER_KARYOTYPE = 10;
-}
-
 
 // A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the
 // body site should be used. In cases where this is not possible, the body site should be indicated using a separate
