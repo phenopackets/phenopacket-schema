@@ -1,7 +1,7 @@
 .. _rstchemotherapytreatment:
 
 #####################
-ChemotherapyTreatment
+ChemoTherapyTreatment
 #####################
 
 Chemotherapy refers to treatment of cancer with drugs that are sufficiently toxic to
@@ -12,28 +12,26 @@ part of treatment with chemotherapy. For instance, cardiac side effect risk incr
 greater cumulative doses of antrhacycline.
 
 
-
-
 Data model
 ##########
 
 
-.. list-table:: Definition  of the ``ChemotherapyTreatment`` element
-   :widths: 25 25 50 50
+.. list-table:: Definition  of the ``ChemoTherapyTreatment`` element
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - treatment
      - Treatment
-     - required
-     - The modality of radiation therapy (e.g., electron, photon,...)
+     - 1..1
+     - The modality of radiation therapy (e.g., electron, photon,...). REQUIRED.
    * - cumulative_dose
      - CumulativeDose
-     - required
-     - The anatomical site where radiation therapy was administered.
+     - 1..1
+     - The anatomical site where radiation therapy was administered. REQUIRED.
 
 
 Example
@@ -45,7 +43,7 @@ for a cumulative dose of 200 mg/kg.
 
 .. code-block:: yaml
 
-    chemotherapyTreatment:
+    chemoTherapyTreatment:
         treatment:
             agent:
                 id: "DrugCentral:80"

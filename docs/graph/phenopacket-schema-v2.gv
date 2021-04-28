@@ -213,15 +213,15 @@ digraph phenopacket_schema_v2 {
     ]
 
     InterpretationStatus [
-    label = "{InterpretationStatus \<enum\>| 0 = UNKNOWN_STATUS\l 1 =        REJECTED\l 2 = CANDIDATE\l 3 = CONTRIBUTORY\l 4 = ACTIONABLE\l}"
+    label = "{InterpretationStatus \<enum\>| 0 = UNKNOWN_STATUS\l 1 = REJECTED\l 2 = CANDIDATE\l 3 = CONTRIBUTORY\l 4 = ACTIONABLE\l}"
     ]
 
     VariantInterpretation [
-    label = "{VariantInterpretation| variantFinding: VariantFinding\l varant: Variant\l}"
+    label = "{VariantInterpretation| acmgPathogenicityClassification: AcmgPathogenicityClassification\l varant: Variant\l}"
     ]
 
-    VariantFinding [
-    label = "{VariantFinding \<enum\>|  0 = UNCERTAIN_SIGNIFICANCE\l 1 =       PATHOGENIC\l 2 = LIKELY_PATHOGENIC\l 3 = BENIGN\l 4 = LIKELY_BENIGN\l}"
+    AcmgPathogenicityClassification [
+    label = "{AcmgPathogenicityClassification \<enum\>|  0 = UNCERTAIN_SIGNIFICANCE\l 1 = PATHOGENIC\l 2 = LIKELY_PATHOGENIC\l 3 = BENIGN\l 4 = LIKELY_BENIGN\l}"
     ]
 
     subgraph interpretationProto {
@@ -236,7 +236,7 @@ digraph phenopacket_schema_v2 {
     Gene -> GenomicInterpretation
     VariantInterpretation -> GenomicInterpretation
 
-    VariantFinding -> VariantInterpretation
+    AcmgPathogenicityClassification -> VariantInterpretation
     Variant -> VariantInterpretation
     }
 

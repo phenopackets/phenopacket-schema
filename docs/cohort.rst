@@ -22,28 +22,28 @@ Data model
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - id
      - string
-     - required
-     - arbitrary identifier
+     - 1..1
+     - An arbitrary identifier for the cohort. REQUIRED
    * - description
      - string
-     - optional
-     - arbitrary text
+     - 0..1
+     - text description of the cohort
    * - members
      - :ref:`rstphenopacket`
-     - required
-     - Phenopackets that represent members of the cohort
+     - 1..*
+     - Phenopackets that represent members of the cohort. REQUIRED
    * - hts_files
      - :ref:`rstfile`
-     - optional
+     - 0..*
      - High-throughput sequencing files obtained from members of the cohort
    * - meta_data
      - :ref:`rstmetadata`
-     - required
-     - Metadata related to the ontologies and references used in this message
+     - 1..1
+     - Metadata related to the ontologies and references used in this message. REQUIRED
 
 Explanations
 ############

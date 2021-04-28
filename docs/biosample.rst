@@ -16,7 +16,7 @@ Data model
 ##########
 
  .. list-table::
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
@@ -26,11 +26,11 @@ Data model
    * - id
      - string
      - 1..1
-     - REQUIRED arbitrary identifier
+     - Arbitrary identifier. REQUIRED.
    * - individual_id
      - string
      - 0..1
-     - RECOMMENDED arbitrary identifier
+     - Arbitrary identifier. RECOMMENDED.
    * - derived_from_id
      - string
      - 0..1
@@ -50,7 +50,7 @@ Data model
    * - phenotypic_features
      - :ref:`rstphenotypicfeature` (List)
      - 0..*
-     - RECOMMENDED List of phenotypic abnormalities of the sample
+     - List of phenotypic abnormalities of the sample. RECOMMENDED.
    * - measurements
      - :ref:`rstmeasurement` (List)
      - 0..*
@@ -62,35 +62,35 @@ Data model
    * - time_of_collection
      - :ref:`rsttimeelement`
      - 0..1
-     - RECOMMENDED Age of the proband at the time the sample was taken
+     - Age of the proband at the time the sample was taken. RECOMMENDED.
    * - histological_diagnosis
      - :ref:`rstontologyclass`
      - 0..1
-     - RECOMMENDED Disease diagnosis that was inferred from the histological examination
+     - Disease diagnosis that was inferred from the histological examination. RECOMMENDED.
    * - tumor_progression
      - :ref:`rstontologyclass`
      - 0..1
-     - RECOMMENDED Indicates primary, metastatic, recurrent
+     - Indicates primary, metastatic, recurrent. RECOMMENDED.
    * - tumor_grade
      - :ref:`rstontologyclass`
-     - 0..*
-     - RECOMMENDED List of terms representing the tumor grade
+     - 0..1
+     - Term representing the tumor grade
    * - pathological_stage
      - :ref:`rstontologyclass`
      - 0..1
-     - Pathological stage, if applicable
+     - Pathological stage, if applicable. RECOMMENDED.
    * - pathological_tnm_finding
      - :ref:`rstontologyclass` (List)
      - 0..*
-     - Pathological TNM findings, if applicable
+     - Pathological TNM findings, if applicable. RECOMMENDED.
    * - diagnostic_markers
      - :ref:`rstontologyclass` (List)
      - 0..*
-     - Clinically relevant biomarkers RECOMMENDED
+     - Clinically relevant biomarkers. RECOMMENDED.
    * - procedure
      - :ref:`rstprocedure`
-     - 1..1
-     - The procedure used to extract the biosample REQUIRED
+     - 0..1
+     - The procedure used to extract the biosample. RECOMMENDED.
    * - hts_files
      - :ref:`rsthtsfile` (List)
      - 0..*
@@ -98,7 +98,7 @@ Data model
    * - material_sample
      - :ref:`rstontologyclass`
      - 0..1
-     - status of specimen (tumor tissue, normal control, etc.) RECOMMENDED
+     - Status of specimen (tumor tissue, normal control, etc.). RECOMMENDED.
    * - sample_processing
      - :ref:`rstontologyclass`
      - 0..1

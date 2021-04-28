@@ -19,21 +19,25 @@ Data model
 
 
 .. list-table:: Definition  of the ``Quantity`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - unit
      - OntologyClass
-     - required
-     - The kind of unit.
+     - 1..1
+     - The kind of unit. REQUIRED.
    * - value
      - double
-     - required
-     - the  value of the quantity in the units  e.g. 2.0 mg
+     - 1..1
+     - the value of the quantity in the units  e.g. 2.0 mg. REQUIRED.
+   * - reference_range
+     - :ref:`rstreferencerange`
+     - 0..1
+     - the normal range for the `value`
 
 
 
@@ -57,6 +61,21 @@ The following message could be used to represent the quantity corresponding to a
     id: "NCIT:C44278"
     label: "Unit"
   value: 5000
+
+The following example shows a quantity for a platelet count per microliter, with a reference range.
+ // TODO: issue #289
+.. code-block:: yaml
+
+  unit:
+    id: "UO:0000316"
+    label: "cells per microliter"
+  value: 300000.0
+  referenceRange:
+    unit:
+      id: "UO:0000316"
+      label: "cells per microliter"
+    low: 150000.0
+    high: 450000.0
 
 Explanations
 ############

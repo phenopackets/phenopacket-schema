@@ -25,37 +25,37 @@ Data model
 
 
  .. list-table:: Definition of the ``Family`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - id
      - string
-     - required
-     - application-specific identifier
+     - 1..1
+     - application-specific identifier. REQUIRED.
    * - proband
      - :ref:`rstphenopacket`
-     - required
-     - The proband (index patient) in the family
+     - 1..1
+     - The proband (index patient) in the family. REQUIRED.
    * - relatives
      - :ref:`rstphenopacket` (list)
-     - optional
+     - 0..*
      - list of Phenopackets for family members other than the proband
    * - pedigree
      - :ref:`rstpedigree`
-     - required
-     - representation of the pedigree
+     - 1..1
+     - representation of the pedigree. REQUIRED.
    * - hts_files
      - :ref:`rstfile` (list)
-     - optional
+     - 0..*
      - list of high-throughput sequencing files
    * - meta_data
      - :ref:`rstmetadata`
-     - required
-     - Metadata about ontologies and references used in this message
+     - 1..1
+     - Metadata about ontologies and references used in this message. REQUIRED.
 
 
 Explanations

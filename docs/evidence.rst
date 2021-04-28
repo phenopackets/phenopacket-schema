@@ -21,11 +21,11 @@ Data model
       - Description
     * - evidence_code
       - :ref:`rstontologyclass`
-      - required
-      - An ontology class that represents the evidence type
+      - 1..1
+      - An ontology class that represents the evidence type. REQUIRED.
     * - reference
       - :ref:`rstexternalreference`
-      - optional
+      - 0..1
       - Representation of the source of the evidence
 
 

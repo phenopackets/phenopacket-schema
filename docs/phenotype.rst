@@ -17,16 +17,16 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
     description, string, optional, human-readable verbiage **NOT** for structured text
-    type, :ref:`rstontologyclass`, required, term denoting the phenotypic feature
-    negated, boolean, optional, defaults to `false`
-    severity, :ref:`rstontologyclass`, optional, description of the severity of the feature described in `type`. For instance terms from `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
-    modifiers, list of :ref:`rstontologyclass`, optional, For instance one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
-    onset, :ref:`rsttimeelement`, optional, Age or time at which the feature was first observed.
-    resolution, :ref:`rsttimeelement`, optional, Age or time at which the feature resolved or abated.
-    evidence, :ref:`Evidence <rstevidence>`, recommended, the evidence for an assertion of the observation of a `type`
+    type, :ref:`rstontologyclass`, 1..1, term denoting the phenotypic feature. REQUIRED.
+    negated, boolean, 0..1, defaults to `false`
+    severity, :ref:`rstontologyclass`, 0..1, description of the severity of the feature described in `type`. For instance terms from `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
+    modifiers, list of :ref:`rstontologyclass`, 0..*, For instance one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
+    onset, :ref:`rsttimeelement`, 0..1, Age or time at which the feature was first observed.
+    resolution, :ref:`rsttimeelement`, 0..1, Age or time at which the feature resolved or abated.
+    evidence, :ref:`Evidence <rstevidence>`, 0..*, the evidence for an assertion of the observation of a `type`. RECOMMENDED.
 
 Example
 #######

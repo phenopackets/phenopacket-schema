@@ -20,12 +20,12 @@ Data model
 
 
 .. list-table:: Definition  of the ``TimeElement`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - gestational_age
      - :ref:`rstgestationalage`
@@ -48,7 +48,7 @@ Data model
      - (one of the options)
      - indicates a specific time
    * - interval
-     - :ref:`rstinterval`
+     - :ref:`rsttimeinterval`
      - (one of the options)
      - indicates an interval of time
 
@@ -70,7 +70,7 @@ gestational_age
 ~~~~~~~~~~~~~~~
 
 A measure of the age of a pregnancy. Gestation, defined as the time between conception and birth,
-is measured in weeks and days from the first day of the last menstrual period.
+is measured in weeks and days from the first day of the last menstrual period. See :ref:`rstgestationalage`.
 
 age
 ~~~
@@ -86,7 +86,7 @@ ontology_class
 
 If an ``OntologyClass`` is used to represent the age of onset of a phenotypic feature,
 then terms for age of onset can be chosen
-from the `Onset subhierarchy of the HPO <https://hpo.jax.org/app/browse/term/HP:0003674>`_.
+from the `Onset subhierarchy of the HPO <https://hpo.jax.org/app/browse/term/HP:0003674>`_. See :ref:`rstontologyclass`.
 
 
 timestamp
@@ -96,7 +96,7 @@ by the same amount to help preserve privacy if desired.
 
 interval
 ~~~~~~~~
-This element can be used to represent a specific interval of time. See :ref:`rstinterval`.
+This element can be used to represent a specific interval of time. See :ref:`rsttimeinterval`.
 
 
 

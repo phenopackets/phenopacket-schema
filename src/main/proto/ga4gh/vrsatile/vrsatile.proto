@@ -11,11 +11,12 @@ option java_package = "org.ga4gh.vrsatile.v1";
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#value-object-descriptor
 message ValueObjectDescriptor {
   string id = 1;
-  string type = 2; // blagh remove?
-  oneof value_or_id {
-    string value_id = 3;
-    google.protobuf.Any value = 4; // hmm.
-  }
+  // TODO: I think this should be part of the Descriptor types below.
+  //  there is no enforced typing and this is going to make consumer's lives horrible
+//  oneof value_or_id {
+//    string value_id = 3;
+//    google.protobuf.Any value = 4; // hmm.
+//  }
   string label = 5;
   string description = 6;
   repeated string xrefs = 7;
@@ -37,6 +38,7 @@ message Expression {
 }
 
 message VariationDescriptor {
+//  Variation variation = 1;
   ValueObjectDescriptor valueObjectDescriptor = 1;
   // The molecular context of this variant. Must be one of “genomic”, “transcript”, or “protein”.
   MoleculeContext molecule_context = 2;
@@ -66,18 +68,21 @@ enum MoleculeContext {
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#gene-descriptor
 message GeneDescriptor {
+//  Gene gene = 1;
   ValueObjectDescriptor valueObjectDescriptor = 1;
 }
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#location-descriptor
 message LocationDescriptor {
-  ValueObjectDescriptor valueObjectDescriptor = 1;
-  SequenceDescriptor sequence_descriptor = 2;
+//  org.ga4gh.vrs.Location location = 1;
+  ValueObjectDescriptor valueObjectDescriptor = 2;
+  SequenceDescriptor sequence_descriptor = 3;
 }
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#sequence-descriptor
 message SequenceDescriptor {
-  ValueObjectDescriptor valueObjectDescriptor = 1;
+//  Sequence sequence = 1;
+  ValueObjectDescriptor valueObjectDescriptor = 2;
   // CURIE MUST be SO:0000348 (nucleic acid), SO:0001407 (peptidyl), or a descendent of one of these concepts.
-  string residue_type = 2;
+  string residue_type = 3;
 }

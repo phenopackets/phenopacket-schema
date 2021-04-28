@@ -13,25 +13,25 @@ Data model
 ##########
 
 .. list-table:: Definition  of the ``Gene`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - id
      - string
-     - required
-     - Official identifier of the gene
+     - 1..1
+     - Official identifier of the gene. REQUIRED.
    * - alternate_ids
      - repeated string
-     - optional
+     - 0..*
      - Alternative identifier(s) of the gene
    * - symbol
      - string
-     - required
-     - Official gene symbol
+     - 1..1
+     - Official gene symbol. REQUIRED.
 
 
 Example

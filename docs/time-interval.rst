@@ -15,21 +15,21 @@ Data model
 
 
 .. list-table:: Definition  of the ``TimeInterval`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - start
      - Timestamp
-     - required
-     - begin of interval
+     - 1..1
+     - begin of interval. REQUIRED.
    * - end
      - Timestamp
-     - required
-     - end of interval
+     - 1..1
+     - end of interval. REQUIRED.
 
 
 Example

@@ -20,22 +20,21 @@ Data model
 
 
 .. list-table:: Definition  of the ``GestationalAge`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - weeks
      - int32
-     - required
-     - Completed weeks of gestation according to the above definition.
+     - 1..1
+     - Completed weeks of gestation according to the above definition. REQUIRED.
    * - days
      - int32
-     - recommended
-     - If available
-
+     - 0..1
+     - RECOMMENDED, If available
 
 
 The following shows how the element can be used to report the gestational age of 33 weeks and 2 days.

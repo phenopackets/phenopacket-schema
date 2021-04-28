@@ -1,7 +1,7 @@
 .. _rstdoseinterval:
 
 #############
-Dose Interval
+DoseInterval
 #############
 
 This element represents a block of time in which the dosage of a medication was
@@ -22,20 +22,20 @@ Data model
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - quantity
      - Quantity
-     - required
-     - Amount administered in one dose
+     - 1..1
+     - Amount administered in one dose. REQUIRED.
    * - schedule_frequency
      - OntologyClass
-     - required
-     - how often doses are administered per day (or other indicated duration)
+     - 1..1
+     - how often doses are administered per day (or other indicated duration). REQUIRED.
    * - interval
      - Interval
-     - required
-     - The specific interval over which the dosage was administered in the indicated quantity.
+     - 1..1
+     - The specific interval over which the dosage was administered in the indicated quantity. REQUIRED.
 
 
 Example

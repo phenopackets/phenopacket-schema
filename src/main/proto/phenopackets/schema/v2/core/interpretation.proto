@@ -4,6 +4,7 @@ package org.phenopackets.schema.v2.core;
 
 import "phenopackets/schema/v2/core/base.proto";
 import "phenopackets/schema/v2/core/genome.proto";
+import "ga4gh/vrsatil/vrsatil.proto";
 
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2.core";
@@ -59,17 +60,24 @@ message GenomicInterpretation {
     oneof call {
         Gene gene = 3;
         VariantInterpretation variant_interpretation = 4;
+//        ga4gh.vrsatil.v1.VariationDescriptor vrsatil = 5;
     }
 }
 
+enum AcmgPathogenicityClassification {
+    UNCERTAIN_SIGNIFICANCE = 0;
+    PATHOGENIC = 1;
+    LIKELY_PATHOGENIC = 2;
+    LIKELY_BENIGN = 3;
+    BENIGN = 4;
+}
+//
+//message VrsatilInterpretation {
+//    AcmgPathogenicityClassification variantFinding = 1;
+//    org.ga4gh.vrsatil.v1.VariationDescriptor variation_descriptor = 2;
+//}
+
 message VariantInterpretation {
-    enum VariantFinding {
-        UNCERTAIN_SIGNIFICANCE = 0;
-        PATHOGENIC = 1;
-        LIKELY_PATHOGENIC = 2;
-        LIKELY_BENIGN = 3;
-        BENIGN = 4;
-    }
-    VariantFinding variantFinding = 1;
+    AcmgPathogenicityClassification acmgPathogenicityClassification = 1;
     Variant variant = 2;
 }

@@ -1,7 +1,7 @@
-.. _rstcomplexquantity:
+.. _rstcomplexvalue:
 
 #############
-Complex Value
+ComplexValue
 #############
 
 This element is intended for complex measurements, such as blood pressure where more than one component quantity is required to describe the
@@ -14,14 +14,14 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   typed_quantities, TypedQuantity, required, list of quantities required to fully describe the complex value.
+   typed_quantities, :ref:`rsttypedquantity`, 1..*, list of quantities required to fully describe the complex value. REQUIRED.
 
 .. _rsttypedquantity:
 
 ##############
-Typed Quantity
+TypedQuantity
 ##############
 
 The Complex Value element consists of a list of ``TypedQuantity`` elements.
@@ -30,10 +30,10 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   type, OntologyClass, required, :ref:`rstontologyclass` to describe the type of the measurement.
-   quantity, Quantity, required, :ref:`rstquantity` denoting the outcome of the measurement
+   type, OntologyClass, 1..1, :ref:`rstontologyclass` to describe the type of the measurement. REQUIRED.
+   quantity, Quantity, 1..1, :ref:`rstquantity` denoting the outcome of the measurement. REQUIRED.
 
 
 

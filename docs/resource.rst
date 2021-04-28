@@ -17,14 +17,14 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   id, string, required, hp
-   name, string, required, human phenotype ontology
-   namespace_prefix, string, required, HP
-   url, string, required, Uniform Resource Locator of the resource
-   version, string, required, 2018-03-08
-   iri_prefix, string, required, Internationalized Resource Identifier such as ``http://purl.obolibrary.org/obo/HP_``
+   id, string, 1..1, Resource identifier. e.g. `hp`. REQUIRED.
+   name, string, 1..1, Formal name of the resource or ontology e.g. human phenotype ontology. REQUIRED.
+   namespace_prefix, 1..1, required, Namespace prefix of the resource e.g `HP`. REQUIRED.
+   url, string, 1..1, Uniform Resource Locator of the resource. REQUIRED.
+   version, string, 1..1, The version string for the ontology or resource 2018-03-08. REQUIRED.
+   iri_prefix, string, 1..1, Internationalized Resource Identifier such as ``http://purl.obolibrary.org/obo/HP_``. REQUIRED.
 
 Example
 #######

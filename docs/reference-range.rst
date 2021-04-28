@@ -29,8 +29,7 @@ National Cancer Institute Thesaurus (NCIT),
 from the subhierarchy for `Unit of Measure (Code C25709) <https://www.ebi.ac.uk/ols/ontologies/ncit/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FNCIT_C25709>`_.
 
 
-The following example
-shows the reference range for platelet count per microliter.
+The following example shows the reference range for platelet count per microliter.
 
 .. code-block:: yaml
 

@@ -16,19 +16,16 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
-   :align: left
+   :header: Field, Type, Multiplicity, Description
 
-   term, :ref:`rstontologyclass`, required, An ontology class that represents the disease
-   excluded, bool, required, Flag to indicate whether the disease was observed or not.
-   onset, :ref:`rsttimeelement`, optional, an element representing the age of onset of the disease
-   resolution, :ref:`rsttimeelement`, optional, an element representing the age of resolution (abatement) of the disease
-   disease_stage, :ref:`rstontologyclass`, optional, List of terms representing the disease stage e.g. AJCC stage group.
-   clinical_tnm_finding, :ref:`rstontologyclass`, optional, List of terms representing the tumor TNM score
-   primary_site, :ref:`rstontologyclass`, optional, the primary site of disease
-   laterality, :ref:`rstontologyclass`, optional, laterality (left or right) of the primary site of sites if applicable
-
-
+   term, :ref:`rstontologyclass`, 1..1, An ontology class that represents the disease. REQUIRED.
+   excluded, boolean, 1..1, Flag to indicate whether the disease was observed or not. REQUIRED.
+   onset, :ref:`rsttimeelement`, 0..1, an element representing the age of onset of the disease
+   resolution, :ref:`rsttimeelement`, 0..1, an element representing the age of resolution (abatement) of the disease
+   disease_stage, :ref:`rstontologyclass` (List), 0..*, List of terms representing the disease stage e.g. AJCC stage group.
+   clinical_tnm_finding, :ref:`rstontologyclass` (List), 0..*, List of terms representing the tumor TNM score
+   primary_site, :ref:`rstontologyclass`, 0..1, the primary site of disease
+   laterality, :ref:`rstontologyclass`, 0..1, laterality (left or right) of the primary site of sites if applicable
 
 
 

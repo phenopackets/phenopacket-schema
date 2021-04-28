@@ -16,7 +16,7 @@ Data model
 GenomicInterpretation
 ~~~~~~~~~~~~~~~~~~~~~
 .. list-table:: Definition  of the ``GenomicInterpretation`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
@@ -25,16 +25,16 @@ GenomicInterpretation
      - Description
    * - subject_or_biosample_id
      - string
-     - required
-     - The id of the patient or biosample that is the subject being interpreted
+     - 1..1
+     - The id of the patient or biosample that is the subject being interpreted. REQUIRED.
    * - interpretation_status
      - enum :ref:`rstinterpretationstatus`
-     - required
-     - status of the interpretation
+     - 1..1
+     - status of the interpretation. REQUIRED.
    * - call
      - oneof :ref:`rstgene` or :ref:`rstvariantinterpretation`
-     - required
-     - represents the interpretation
+     - 1..1
+     - represents the interpretation. REQUIRED.
 
 .. _rstinterpretationstatus:
 
@@ -59,7 +59,7 @@ Example
     subjectOrBiosampleId: "subject 1"
     status: "CONTRIBUTORY"
     variant:
-        variantFinding: "PATHOGENIC"
+        acmgPathogenicityClassification: "PATHOGENIC"
         variant:
             hgvsAllele:
                 hgvs: "NM_001848.2:c.877G>A"

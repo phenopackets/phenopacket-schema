@@ -13,11 +13,11 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    code, :ref:`rstontologyclass`, required, clinical procedure performed
-    body_site, :ref:`rstontologyclass`, optional, specific body site where the procedure was performed
-    performed, :ref:`rsttimeelement`, optional, age/time when the procedure was performed
+    code, :ref:`rstontologyclass`, 1..1, clinical procedure performed. REQUIRED.
+    body_site, :ref:`rstontologyclass`, 0..*, specific body site where the procedure was performed
+    performed, :ref:`rsttimeelement`, 0..*, age/time when the procedure was performed
 
 Example
 #######
@@ -45,6 +45,7 @@ Explanations
 ############
 
 .. _procedurecode:
+
 code
 ~~~~
 This element is an :ref:`rstontologyclass` that represents clinical procedure performed on a subject. For instance,

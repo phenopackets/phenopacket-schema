@@ -18,10 +18,10 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    id, string, required, a CURIE-style identifier e.g. HP:0001875
-    label, string, required, human-readable class name e.g. Neutropenia
+    id, string, 1..1, a CURIE-style identifier e.g. HP:0001875. REQUIRED.
+    label, string, 1..1, human-readable class name e.g. Neutropenia. REQUIRED.
 
 
 Example

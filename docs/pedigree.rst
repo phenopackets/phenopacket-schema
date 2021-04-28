@@ -20,17 +20,17 @@ Data model
 ##########
 
 .. list-table::
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - persons
      - list of :ref:`rstperson`
-     - required
-     - list of family members in this pedigree
+     - 1..*
+     - list of family members in this pedigree. REQUIRED.
 
 
 The pedigree is simply a list of Person objects. These objects are meant to reflect the elements of
