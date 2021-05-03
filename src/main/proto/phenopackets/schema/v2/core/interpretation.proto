@@ -4,7 +4,7 @@ package org.phenopackets.schema.v2.core;
 
 import "phenopackets/schema/v2/core/base.proto";
 import "phenopackets/schema/v2/core/genome.proto";
-import "ga4gh/vrsatil/vrsatil.proto";
+import "ga4gh/vrsatile/v1/vrsatile.proto";
 
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2.core";
@@ -51,7 +51,7 @@ message GenomicInterpretation {
         REJECTED = 1;
         CANDIDATE = 2;
         CONTRIBUTORY = 3;
-        ACTIONABLE = 4;
+        CAUSATIVE = 4;
     }
     InterpretationStatus interpretation_status = 2;
 
@@ -60,7 +60,7 @@ message GenomicInterpretation {
     oneof call {
         Gene gene = 3;
         VariantInterpretation variant_interpretation = 4;
-//        ga4gh.vrsatil.v1.VariationDescriptor vrsatil = 5;
+//        VrsatileInterpretation vrsatile_interpretation = 5;
     }
 }
 
@@ -71,13 +71,21 @@ enum AcmgPathogenicityClassification {
     LIKELY_BENIGN = 3;
     BENIGN = 4;
 }
-//
-//message VrsatilInterpretation {
-//    AcmgPathogenicityClassification variantFinding = 1;
-//    org.ga4gh.vrsatil.v1.VariationDescriptor variation_descriptor = 2;
-//}
+
+enum TherapeuticActionability {
+    UNKNOWN_ACTIONABILITY = 0;
+    NOT_ACTIONABLE = 1;
+    ACTIONABLE = 2;
+}
 
 message VariantInterpretation {
-    AcmgPathogenicityClassification acmgPathogenicityClassification = 1;
-    Variant variant = 2;
+    AcmgPathogenicityClassification acmg_pathogenicity_classification = 1;
+    TherapeuticActionability therapeutic_actionability = 2;
+    Variant variant = 3;
 }
+//
+//message VrsatileInterpretation {
+//    AcmgPathogenicityClassification acmg_pathogenicity_classification = 1;
+//    TherapeuticActionability therapeutic_actionability = 2;
+//    org.ga4gh.vrsatile.v1.VariationDescriptor variation_descriptor = 3;
+//}

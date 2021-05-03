@@ -46,6 +46,7 @@ building blocks.
    resource
    sex
    stop-reason
+   therapeutic-regimen
    time-element
    time-interval
    treatment

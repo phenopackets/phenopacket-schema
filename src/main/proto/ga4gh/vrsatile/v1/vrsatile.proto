@@ -1,8 +1,7 @@
 syntax = "proto3";
 
-package org.ga4gh.vrsatil.v1;
+package org.ga4gh.vrsatile.v1;
 
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
 
 option java_multiple_files = true;
