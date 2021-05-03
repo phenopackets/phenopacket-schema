@@ -23,7 +23,7 @@ message Expression {
 
 message VariationDescriptor {
   string id = 1;
-  Variation variation = 2;
+  org.ga4gh.vrs.v1.Variation variation = 2;
   string label = 3;
   string description = 4;
   // A specific gene context that applies to this variant.
@@ -42,11 +42,9 @@ message VariationDescriptor {
   string structural_type = 11;
   // A Sequence corresponding to a “ref allele”, describing the sequence expected at a SequenceLocation reference.
   string vrs_ref_allele_seq = 12;
-  LocationDescriptor location_descriptor = 13;
-  SequenceDescriptor sequence_descriptor = 14;
   // We RECOMMEND that the allelic_state of variant be described by terms from the Genotype Ontology (GENO).
   // These SHOULD descend from concept GENO:0000875.
-  string allelic_state = 15;
+  string allelic_state = 13;
 }
 
 enum MoleculeContext {
@@ -68,19 +66,4 @@ message GeneDescriptor {
   repeated string xrefs = 4;
   // Takes the place of alternate_labels field in a generic descriptor
   repeated string alternate_symbols = 5;
-}
-
-// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#location-descriptor
-message LocationDescriptor {
-  org.ga4gh.vrs.Location location = 1;
-  ValueObjectDescriptor valueObjectDescriptor = 2;
-  SequenceDescriptor sequence_descriptor = 3;
-}
-
-// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#sequence-descriptor
-message SequenceDescriptor {
-//  Sequence sequence = 1;
-  ValueObjectDescriptor valueObjectDescriptor = 2;
-  // CURIE MUST be SO:0000348 (nucleic acid), SO:0001407 (peptidyl), or a descendent of one of these concepts.
-  string residue_type = 3;
 }
