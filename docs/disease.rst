@@ -45,14 +45,16 @@ See :ref:`rstcancerexample` for a usage of the Disease element that includes inf
 term
 ~~~~
 
-In the phenopacket schema, the disease element denotes the diagnosis by means of an ontology class. For rare
-diseases, we recommend using a term from  `Online Mendelian Inheritance in Man (OMIM) <https://omim.org/>`_ (e.g.,
-OMIM:101600), `Orphanet <https://www.orpha.net/consor/cgi-bin/index.php>`_ (e.g., Orphanet:710), or
-`MONDO <https://github.com/monarch-initiative/mondo>`_ (e.g., MONDO:0007043). There are many other
-ontologies and terminologies that can be used including `Disease Ontology <http://disease-ontology.org/>`_,
-`SNOMED <http://www.snomed.org/>`_, and `ICD <https://www.who.int/classifications/icd/en/>`_.
-For cancers, we recommend using terms from domain-specific ontologies, such as
+In the phenopacket schema, the disease element denotes the diagnosis by means of an ontology class. 
+
+For interoperability purposes as described in the Ontologies section, we recommend the use of the Mondo disease ontology 
+`MONDO <https://mondo.monarchinitiative.org/>`_ (e.g., MONDO:0007043)
+
+For rare diseases, use of terms from the  `Online Mendelian Inheritance in Man (OMIM) <https://omim.org/>`_ (e.g.,
+OMIM:101600), or `Orphanet <https://www.orpha.net/consor/cgi-bin/index.php>`_ (e.g., Orphanet:710) are also suitable. For cancer, use of terms from the `National Cancer institute's Thesaurus (NCIt) is suitable, see <http://www.obofoundry.org/ontology/ncit.html>`_ or
 `NCIthesaurus <https://ncit.nci.nih.gov/ncitbrowser/>`_ (e.g., NCIT:C9049).
+
+Other options for terminologies and ontologies are listed in the Ontologies section.
 
 disease_stage
 ~~~~~~~~~~~
