@@ -3,25 +3,10 @@ syntax = "proto3";
 package org.ga4gh.vrsatile.v1;
 
 import "google/protobuf/any.proto";
+import "ga4gh/vrs/v1/vrs.proto";
 
 option java_multiple_files = true;
 option java_package = "org.ga4gh.vrsatile.v1";
-
-// https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#value-object-descriptor
-message ValueObjectDescriptor {
-  string id = 1;
-  // TODO: I think this should be part of the Descriptor types below.
-  //  there is no enforced typing and this is going to make consumer's lives horrible
-//  oneof value_or_id {
-//    string value_id = 3;
-//    google.protobuf.Any value = 4; // hmm.
-//  }
-  string label = 5;
-  string description = 6;
-  repeated string xrefs = 7;
-  repeated string alternate_labels = 8;
-  repeated Extension extensions = 9;
-}
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#extension
 message Extension {
@@ -37,26 +22,31 @@ message Expression {
 }
 
 message VariationDescriptor {
-//  Variation variation = 1;
-  ValueObjectDescriptor valueObjectDescriptor = 1;
-  // The molecular context of this variant. Must be one of “genomic”, “transcript”, or “protein”.
-  MoleculeContext molecule_context = 2;
-  // The structural variant type associated with this variant. We RECOMMEND a descendent term of SO:0001537.
-  string structural_type = 3;
-  // Typically HGVS or ISCN nomenclature expressions. Other systems relevant to the description of variation MAY be used.
-  repeated Expression expressions = 4;
+  string id = 1;
+  Variation variation = 2;
+  string label = 3;
+  string description = 4;
   // A specific gene context that applies to this variant.
-  // TODO: just make this a GeneDescriptor - easier to handle and more consistent. Can still just represent a curie with a gene descriptor
-  oneof gene_context {
-    string curie = 5;
-    GeneDescriptor gene_descriptor = 6;
-  }
-  // A Sequence corresponding to a “ref allele”, as used in HGVS, SPDI, and VCF variation formats. Useful for validation.
-  string ref_allele_seq = 7;
-  LocationDescriptor location_descriptor = 8;
-  SequenceDescriptor sequence_descriptor = 9;
-  // We RECOMMEND that the allelic_state of variant be described by terms from the Genotype Ontology (GENO). These SHOULD descend from concept GENO:0000875.
-  string allelic_state = 10;
+  GeneDescriptor gene_context = 5;
+  // HGVS, SPDI, and gnomAD-style strings should be represented as Expressions
+  repeated Expression expressions = 6;
+  // Allele registry, ClinVar, or other related IDs should be included as xrefs
+  repeated string xrefs = 7;
+  // Common aliases for a variant, e.g. EGFR vIII, are alternate labels
+  repeated string alternate_labels = 8;
+  repeated Extension extensions = 9;
+  // The molecular context of this variant. Must be one of “genomic”, “transcript”, or “protein”.
+  MoleculeContext molecule_context = 10;
+  // The structural variant type associated with this variant, such as a substitution, deletion, or fusion.
+  // We RECOMMEND using a descendent term of SO:0001537.
+  string structural_type = 11;
+  // A Sequence corresponding to a “ref allele”, describing the sequence expected at a SequenceLocation reference.
+  string vrs_ref_allele_seq = 12;
+  LocationDescriptor location_descriptor = 13;
+  SequenceDescriptor sequence_descriptor = 14;
+  // We RECOMMEND that the allelic_state of variant be described by terms from the Genotype Ontology (GENO).
+  // These SHOULD descend from concept GENO:0000875.
+  string allelic_state = 15;
 }
 
 enum MoleculeContext {
@@ -67,13 +57,22 @@ enum MoleculeContext {
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#gene-descriptor
 message GeneDescriptor {
-//  Gene gene = 1;
-  ValueObjectDescriptor valueObjectDescriptor = 1;
+  // The official gene identifier as designated by the organism gene nomenclature committee e.g. HGNC:3477 or MGI:2385071
+  // This should be a CURIE linking the reference to a namespace where it can be retrieved.
+  // Takes place of value_id field in a generic descriptor
+  string gene_id = 1;
+  // The primary gene symbol. Takes the place of the label field in a generic descriptor
+  string symbol = 2;
+  string description = 3;
+  // Alternate IDs may be placed in xrefs
+  repeated string xrefs = 4;
+  // Takes the place of alternate_labels field in a generic descriptor
+  repeated string alternate_symbols = 5;
 }
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#location-descriptor
 message LocationDescriptor {
-//  org.ga4gh.vrs.Location location = 1;
+  org.ga4gh.vrs.Location location = 1;
   ValueObjectDescriptor valueObjectDescriptor = 2;
   SequenceDescriptor sequence_descriptor = 3;
 }
