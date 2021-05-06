@@ -32,8 +32,8 @@ Data model
 .. csv-table::
    :header: Field, Type, Multiplicity, Description
 
-   type, OntologyClass, 1..1, :ref:`rstontologyclass` to describe the type of the measurement. REQUIRED.
-   quantity, Quantity, 1..1, :ref:`rstquantity` denoting the outcome of the measurement. REQUIRED.
+   type, :ref:`rstontologyclass`, 1..1, OntologyClass to describe the type of the measurement. REQUIRED.
+   quantity, :ref:`rstquantity`, 1..1, Quantity denoting the outcome of the measurement. REQUIRED.
 
 
 

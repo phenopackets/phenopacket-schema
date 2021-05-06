@@ -22,11 +22,11 @@ Data model
      - Multiplicity
      - Description
    * - modality
-     - OntologyClass
+     - :ref:`rstontologyclass`
      - 1..1
      - The modality of radiation therapy (e.g., electron, photon,...). REQUIRED.
    * - body_site
-     - OntologyClass
+     - :ref:`rstontologyclass`
      - 1..1
      - The anatomical site where radiation therapy was administered. REQUIRED.
    * - dosage

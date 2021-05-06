@@ -27,7 +27,7 @@ Data model
      - Multiplicity
      - Description
    * - unit
-     - OntologyClass
+     - :ref:`rstontologyclass`
      - 1..1
      - The kind of unit. REQUIRED.
    * - value

@@ -25,11 +25,11 @@ Data model
      - Multiplicity
      - Description
    * - agent
-     - OntologyClass
+     - :ref:`rstontologyclass`
      - 1..1
      - The drug or therapeutic agent. REQUIRED.
    * - route_of_administration
-     - OntologyClass
+     - :ref:`rstontologyclass`
      - 0..1
      - How was the drug administered. RECOMMENDED.
    * - dose_intervals

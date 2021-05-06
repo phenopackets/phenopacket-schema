@@ -15,7 +15,7 @@ Data model
 .. csv-table::
    :header: Field, Type, Status, Description
 
-   unit, OntologyClass, required, Ontology term describing the unit.
+   unit, :ref:`rstontologyclass`, required, Ontology term describing the unit.
    low, double, required, lower range of normal
    high, double, required, upper range of normal
 

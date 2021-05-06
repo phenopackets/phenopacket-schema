@@ -11,40 +11,40 @@ Data model
 ##########
 
   .. list-table:: Definition of the ``MetaData`` element
-    :widths: 25 25 50 50
+    :widths: 25 25 25 75
     :header-rows: 1
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - created
       - A Timestamp
-      - required
+      - 1..1
       - Representation of the time when this object was created, e.g., 2019-04-01T15:10:17.808Z
     * - created_by
       - string
-      - required
+      - 1..1
       - Name of person who created the phenopacket
     * - submitted_by
       - string
-      - optional
+      - 0..1
       - Name of person who submitted the phenopacket
     * - resources
       - list of :ref:`rstresource`
-      - required
+      - 1..*
       - Ontologies used to create the phenopacket
     * - updates
       - list of :ref:`rstupdate`
-      - optional
+      - 0..*
       - List of updates to the phenopacket
     * - phenopacket_schema_version
       - string
-      - optional
+      - 1..1
       - schema version of the current phenopacket
     * - external_references
       - List of :ref:`rstexternalreference`
-      - optional
+      - 0..*
       - (See text)
 
 The `MetaData` element MUST have one :ref:`rstresource` element for each ontology or terminology whose

@@ -29,7 +29,7 @@ Data model
      - 1..1
      - Class that describes the assay used to produce the measurement. REQUIRED.
    * - measurement_value
-     - one of :ref:`rstvalue` or :ref:`rstcomplexvalue`
+     - one of {:ref:`rstvalue` | :ref:`rstcomplexvalue`}
      - 1..1
      - The result of the measurement. REQUIRED.
    * - time_observed

@@ -23,11 +23,11 @@ Data model
      - Multiplicity
      - Description
    * - start
-     - Timestamp
+     - google.protobuf.Timestamp
      - 1..1
      - begin of interval. REQUIRED.
    * - end
-     - Timestamp
+     - google.protobuf.Timestamp
      - 1..1
      - end of interval. REQUIRED.
 

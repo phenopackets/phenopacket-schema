@@ -25,15 +25,15 @@ Data model
      - Multiplicity
      - Description
    * - quantity
-     - Quantity
+     - :ref:`rstquantity`
      - 1..1
      - Amount administered in one dose. REQUIRED.
    * - schedule_frequency
-     - OntologyClass
+     - :ref:`rstontologyclass`
      - 1..1
      - how often doses are administered per day (or other indicated duration). REQUIRED.
    * - interval
-     - Interval
+     - :ref:`rsttimeinterval`
      - 1..1
      - The specific interval over which the dosage was administered in the indicated quantity. REQUIRED.
 

@@ -32,7 +32,7 @@ GenomicInterpretation
      - 1..1
      - status of the interpretation. REQUIRED.
    * - call
-     - oneof :ref:`rstgene` or :ref:`rstvariantinterpretation`
+     - oneof {:ref:`rstgene` | :ref:`rstvariantinterpretation`}
      - 1..1
      - represents the interpretation. REQUIRED.
 
