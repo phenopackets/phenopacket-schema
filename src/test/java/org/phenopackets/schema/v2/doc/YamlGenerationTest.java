@@ -42,7 +42,7 @@ public class YamlGenerationTest extends TestBase {
 
 
     @Test
-    public void ontologyClassHpoNeutropenia() {
+    public void testOntologyClassHpoNeutropenia() {
         String id = "HP:0001875";
         String label = "Neutropenia";
         OntologyClass neutropenia = ontologyClass(id, label);
@@ -51,7 +51,7 @@ public class YamlGenerationTest extends TestBase {
     }
 
     @Test
-    public void ontologyClassHpoSevere() {
+    public void testOntologyClassHpoSevere() {
         String id = "HP:0012828";
         String label = "Severe";
         OntologyClass severe = ontologyClass(id, label);
@@ -61,7 +61,7 @@ public class YamlGenerationTest extends TestBase {
 
 
     @Test
-    public void vitalStatusDeceasedYaml() throws ParseException {
+    public void testVitalStatusDeceasedYaml() throws ParseException {
         OntologyClass causeOfDeath = ontologyClass("NCIT:C36263","Metastatic Malignant Neoplasm");
         TimeElement timeOfDeath = timeElementFromDateString("2015-10-01T10:54:20.021Z");
         VitalStatus deceased = vitalStatusDeceased(causeOfDeath, timeOfDeath);
@@ -70,7 +70,7 @@ public class YamlGenerationTest extends TestBase {
     }
 
     @Test
-    public void vitalStatusAliveYaml() {
+    public void testVitalStatusAliveYaml() {
         VitalStatus alive = vitalStatusAlive();
         String hash = printAndGetHash(alive, "vitalStatus");
         assertEquals("f12616d0a7fa92173179263efef56c22b1b12128deb7057a245d738f2e18ed19", hash);
@@ -78,7 +78,7 @@ public class YamlGenerationTest extends TestBase {
 
 
     @Test
-    public void gestationalAgeYaml() {
+    public void testGestationalAgeYaml() {
         GestationalAge gestationalAge = gestationalAge(33,2);
         String hash = printAndGetHash(gestationalAge, "gestationalAge");
         assertEquals("2163baf411b84c60284e5bfe86a65a035fbacd6e3f9d23478e6ad900786fc49b", hash);
@@ -184,7 +184,7 @@ public class YamlGenerationTest extends TestBase {
         TimeElement time = timeElementFromDateString("2020-10-01T10:54:20.021Z");
         Measurement measurement = measurement(loinc, value, time);
         String hash = printAndGetHash(measurement, "measurement");
-        assertEquals("0dc085d5e2a532951b4f4b11401d841de39df27e36f1b7ac4cb60db9643bad62", hash);
+        assertEquals("778bab574f0d800b496bc15c81203340a8b67b78c2673639858d556d07a23bc9", hash);
     }
 
     @Test
@@ -202,19 +202,19 @@ public class YamlGenerationTest extends TestBase {
         TimeElement time = timeElementFromDateString("2021-01-01T10:54:20.021Z");
         Measurement bloodPressure = bloodPressure(125,75, time);
         String hash = printAndGetHash(bloodPressure, "measurement");
-        assertEquals("2e6feccf9cb68bf69d68687c7ceb7e88f6760895b84522e08b8a7d5fb6144d24", hash);
+        assertEquals("9e4f8826a32f65d0a2f908e9bb250ca679027cbc1ae26b55fb4ab107cc45b720", hash);
     }
 
 
     @Test
-    public void diastolicBP() {
+    public void testDiastolicBP() {
         OntologyClass diastolicBP = ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
         OntologyClass mmHg = ontologyClass("NCIT:C49670", "Millimeter of Mercury");
         double diastolic = 70;
         Quantity diastolicQuantity = quantity(diastolic, mmHg);
         TypedQuantity typedQuantity = typedQuantity(diastolicBP, diastolicQuantity);
         String hash = printAndGetHash(typedQuantity, "typedQuantity");
-        assertEquals("a1e200d9520c190e936113c168b9cac6747fdab46eb2df937c72aa315bfb14c7", hash);
+        assertEquals("4b33a72b945732b6a8b7b274f8491b371774fc11013b26d9fdab6667b4ca9c4b", hash);
     }
 
 
@@ -263,7 +263,7 @@ public class YamlGenerationTest extends TestBase {
     public void doseIntervalTest() throws ParseException {
         DoseInterval doseInterval = doseIntervalExample();
         String hash = printAndGetHash(doseInterval, "doseInterval");
-        assertEquals("21cfbe01d59fcae44b0012571c6f06fd62ae0d0465bb22081473f82523ac4ae1", hash);
+        assertEquals("c7b7e0426e45c78dce3bcbc1af2f76ad23ecd389ff9a776acc925820803685cf", hash);
     }
 
     @Test
@@ -274,7 +274,7 @@ public class YamlGenerationTest extends TestBase {
         DrugType drug_type = DrugType.PRESCRIPTION;
         Treatment treatment = treatment(agent, route_of_administration, doseIntervalList,drug_type);
         String hash = printAndGetHash(treatment, "treatment");
-        assertEquals("99126a60a4a9a80024e93d99cd4515a245443d774f431af5dd500928ab7e8656", hash);
+        assertEquals("fc8e1afecd319222f1abdc756e9ed74220decc65104e9902e31374f96d3b7285", hash);
     }
 
     @Test
@@ -294,7 +294,7 @@ public class YamlGenerationTest extends TestBase {
     }
 
     @Test
-    public void urothelialCarcinomaBiosample() {
+    public void testUrothelialCarcinomaBiosample() {
         String id = "sample1";
         String individualId = "patient1";
         String description = "Additional information can go here";
@@ -504,14 +504,41 @@ public class YamlGenerationTest extends TestBase {
                 .setRouteOfAdministration(intravenous)
                 .build();
         Quantity cumulativeQuantity = quantity(200, mgPerKg);
-        CumulativeDose cumulativeDose = CumulativeDose.newBuilder()
-                .setQuantity(cumulativeQuantity).build();
         ChemoTherapyTreatment chemo = ChemoTherapyTreatment.newBuilder()
                 .setTreatment(treatment)
-                .setCumulativeDose(cumulativeDose)
+                .setCumulativeDose(cumulativeQuantity)
                 .build();
         String hash = printAndGetHash(chemo, "chemoTherapyTreatment");
-        assertEquals("b63559c8dacbaf9665abd46a6ee6ee18b424952ea1270a6d833afbe13eb59676", hash);
+        assertEquals("2e386cea39ba4f50887d255af6cce4fd7369af5ca928b2695220e7fc7f909baf", hash);
+    }
+
+    @Test
+    public void tamoxifenHormoneTherapyTest() throws ParseException {
+        OntologyClass tamoxifen = ontologyClass("DrugCentral:2561","tamoxifen");
+        OntologyClass oral = ontologyClass("NCIT:C38288","Oral Route of Administration");
+        OntologyClass milligram = ontologyClass("NCIT:C28253","Milligram");
+        Timestamp t1 = Timestamps.parse("2020-03-15T13:00:00Z");
+        Timestamp t2 = Timestamps.parse("2020-03-25T09:00:00Z");
+        Quantity quantity = quantity(20, milligram);
+        OntologyClass onceDaily = ontologyClass("NCIT:C125004", "Once Daily");
+        DoseInterval di = DoseInterval.newBuilder()
+                .setInterval(TimeInterval.newBuilder().setStart(t1).setEnd(t2))
+                .setQuantity(quantity)
+                .setScheduleFrequency(onceDaily)
+                .build();
+        Treatment treatment = Treatment.newBuilder()
+                .setAgent(tamoxifen)
+                .setDrugType(DrugType.PRESCRIPTION)
+                .addDoseIntervals(di)
+                .setRouteOfAdministration(oral)
+                .build();
+        Quantity cumulativeQuantity = quantity(36500, milligram);
+        HormoneTherapyTreatment hormone = HormoneTherapyTreatment.newBuilder()
+                .setTreatment(treatment)
+                .setCumulativeDose(cumulativeQuantity)
+                .build();
+        String hash = printAndGetHash(hormone, "hormoneTherapyTreatment");
+        assertEquals("c03145d8374b8ed147c1d2374f74008c470082929e3028224564be10617f3e17", hash);
     }
 
     @Test
@@ -619,7 +646,7 @@ public class YamlGenerationTest extends TestBase {
         ReferenceRange referenceRange = referenceRange(cellsPerMicroliter, lower, upper);
         Value value = quantitativeValue(cellsPerMicroliter, 24_000, referenceRange);
         String hash = printAndGetHash(value, "value");
-        assertEquals("66ac76834270d3459e54e2c1e20fa7a7b16fc5f9457a9bcd5a478334054c44e1", hash);
+        assertEquals("0d0e5332689a1b7221b9d307510c81995c395fae3a85ee78e9b9bde35903270e", hash);
     }
 
     @Test
@@ -637,21 +664,15 @@ public class YamlGenerationTest extends TestBase {
         OntologyClass diastolic = ontologyClass("NCIT:C25299", "Diastolic Blood Pressure");
         OntologyClass systolic = ontologyClass("NCIT:C25298", "Systolic Blood Pressure");
         OntologyClass mmHg = ontologyClass("NCIT:C49670" ,"Millimeter of Mercury");
-        Quantity mmHg70 = Quantity.newBuilder()
-        .setValue(70)
-        .setUnitClass(mmHg)
-        .build();
-        Quantity mmHg120 = Quantity.newBuilder()
-                .setValue(120)
-                .setUnitClass(mmHg)
-                .build();
+        Quantity mmHg70 = quantity(70, mmHg);
+        Quantity mmHg120 = quantity(120, mmHg);
 
         ComplexValue complexValue = ComplexValue.newBuilder()
-                .addTypedQuantities(TypedQuantity.newBuilder().setType(systolic).setQuantity(mmHg120).build())
-                .addTypedQuantities(TypedQuantity.newBuilder().setType(diastolic).setQuantity(mmHg70).build())
+                .addTypedQuantities(TypedQuantity.newBuilder().setType(systolic).setQuantity(mmHg120))
+                .addTypedQuantities(TypedQuantity.newBuilder().setType(diastolic).setQuantity(mmHg70))
                 .build();
         String hash = printAndGetHash(complexValue, "complexValue");
-        assertEquals("ebf63191574582f5cd431bcbf1d6683468409f45b9c5dda083005f7f59af27ac", hash);
+        assertEquals("06b89f577323d1a9215f422cbae4939b009c9fb961d248fe92e148abe957ad2a", hash);
     }
 
     @Test

@@ -1,7 +1,7 @@
 .. _rstreferencerange:
 
 ###############
-Reference Range
+ReferenceRange
 ###############
 
 This elements is provided to support the :ref:`rstmeasurement` element, which can be used to report a numerical

@@ -61,7 +61,7 @@ message ComplexValue {
 
 message Quantity {
     // For instance, NCIT subhierarchy, Unit of Measure (Code C25709), https://www.ebi.ac.uk/ols/ontologies/uo
-    OntologyClass unit_class = 1;
+    OntologyClass unit = 1;
 
     // the  value of the quantity in the units  e.g. 2.0 mg
     double value = 2;

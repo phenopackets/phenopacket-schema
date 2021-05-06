@@ -63,7 +63,7 @@ The following message could be used to represent the quantity corresponding to a
   value: 5000
 
 The following example shows a quantity for a platelet count per microliter, with a reference range.
- // TODO: issue #289
+
 .. code-block:: yaml
 
   unit:

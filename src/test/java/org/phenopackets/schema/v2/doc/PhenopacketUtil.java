@@ -133,8 +133,8 @@ public class PhenopacketUtil {
 
     public static Value quantitativeValue(OntologyClass unit, double value, ReferenceRange referenceRange) {
         Quantity quantity = Quantity.newBuilder()
+                .setUnit(unit)
                 .setValue(value)
-                .setUnitClass(unit)
                 .setReferenceRange(referenceRange)
                 .build();
         return Value.newBuilder().setQuantity(quantity).build();
@@ -157,7 +157,7 @@ public class PhenopacketUtil {
     }
 
     public static Quantity quantity(double value, OntologyClass unit) {
-        return Quantity.newBuilder().setValue(value).setUnitClass(unit).build();
+        return Quantity.newBuilder().setValue(value).setUnit(unit).build();
     }
 
     public static Measurement bloodPressure(double systolic, double diastolic, TimeElement timeElement) {

@@ -27,11 +27,11 @@ Data model
    * - treatment
      - Treatment
      - 1..1
-     - The modality of radiation therapy (e.g., electron, photon,...). REQUIRED.
+     - Details of how the treatment was administered. REQUIRED.
    * - cumulative_dose
-     - CumulativeDose
+     - :ref:`rstquantity`
      - 1..1
-     - The anatomical site where radiation therapy was administered. REQUIRED.
+     - The cumulative dose administered during the period of the treatment. REQUIRED.
 
 
 Example
@@ -53,7 +53,7 @@ for a cumulative dose of 200 mg/kg.
                 label: "Intravenous Route of Administration"
             doseIntervals:
                 - quantity:
-                    unitClass:
+                    unit:
                         id: "NCIT:C124458"
                         label: "Milligram per Kilogram per Dose"
                     value: 100.0
@@ -65,11 +65,10 @@ for a cumulative dose of 200 mg/kg.
                     end: "2020-08-10T00:00:00Z"
             drugType: "EHR_MEDICATION_LIST"
         cumulativeDose:
-            quantity:
-                unitClass:
-                    id: "EFO:0002902"
-                    label: "milligram per kilogram"
-                value: 200.0
+            unit:
+                id: "EFO:0002902"
+                label: "milligram per kilogram"
+            value: 200.0
 
 
 

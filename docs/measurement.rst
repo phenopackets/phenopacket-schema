@@ -55,7 +55,7 @@ general this element can be used to represent normal or abnormal measurements.
             label: "Platelets [#/volume] in Blood"
         value:
             quantity:
-                unitClass:
+                unit:
                     id: "UO:0000316"
                     label: "cells per microliter"
                 value: 24000.0
@@ -102,27 +102,28 @@ consists of two measurements (systolic and diastolic), that are represented as a
 
     measurement:
         assay:
-            id: "CMO:0000003"
-            label: "blood pressure measurement"
-        timeObserved:
-            timestamp: "2021-01-01T10:54:20.021Z"
+          id: "CMO:0000003"
+          label: "blood pressure measurement"
         complexValue:
-            - type:
-                id: "NCIT:C25298"
-                label: "Systolic Blood Pressure"
+          typedQuantities:
+          - type:
+              id: "NCIT:C25298"
+              label: "Systolic Blood Pressure"
             quantity:
-                unitClass:
-                    id: "NCIT:C49670"
-                    label: "Millimeter of Mercury"
+                unit:
+                  id: "NCIT:C49670"
+                  label: "Millimeter of Mercury"
                 value: 125.0
-            - type:
-                id: "NCIT:C25299"
-                label: "Diastolic Blood Pressure"
+          - type:
+              id: "NCIT:C25299"
+              label: "Diastolic Blood Pressure"
             quantity:
-                unitClass:
-                    id: "NCIT:C49670"
-                    label: "Millimeter of Mercury"
-                value: 75.0
+              unit:
+                id: "NCIT:C49670"
+                label: "Millimeter of Mercury"
+              value: 75.0
+        timeObserved:
+          timestamp: "2021-01-01T10:54:20.021Z"
 
 Explanations
 ############

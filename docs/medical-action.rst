@@ -20,7 +20,7 @@ Data model
      - Multiplicity
      - Description
    * - action
-     - one of Procedure, Treatment, Chemotherapy, Hormonetherapy, Radiotherapy or TherapeuticRegimen.
+     - one of {:ref:`rstprocedure` | :ref:`rsttreatment` | :ref:`rstchemotherapytreatment` | :ref:`rsthormonetherapytreatment` | :ref:`rstradiotherapy` | :ref:`rsttherapeuticregimen`}
      - 1..1
      - One of a list of medical actions. REQUIRED.
    * - treatment_target

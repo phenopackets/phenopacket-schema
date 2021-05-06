@@ -54,7 +54,7 @@ message that contains two or more components (e.g., systolic and diastolic blood
             id: "NCIT:C25298"
             label: "Systolic Blood Pressure"
           quantity:
-            unitClass:
+            unit:
                 id: "NCIT:C49670"
                 label: "Millimeter of Mercury"
           value: 120.0
@@ -62,7 +62,7 @@ message that contains two or more components (e.g., systolic and diastolic blood
             id: "NCIT:C25299"
             label: "Diastolic Blood Pressure"
           quantity:
-            unitClass:
+            unit:
                 id: "NCIT:C49670"
                 label: "Millimeter of Mercury"
             value: 70.0

@@ -35,7 +35,7 @@ The following example shows a Value used for a quantitative measurement.
 
     value:
         quantity:
-            unitClass:
+            unit:
                 id: "UO:0000316"
                 label: "cells per microliter"
             value: 24000.0

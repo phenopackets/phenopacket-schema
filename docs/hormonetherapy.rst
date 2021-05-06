@@ -23,11 +23,11 @@ Data model
    * - treatment
      - Treatment
      - 1..1
-     - The modality of radiation therapy (e.g., electron, photon,...). REQUIRED.
+     - Details of how the treatment was administered. REQUIRED.
    * - cumulative_dose
-     - CumulativeDose
+     - :ref:`rstquantity`
      - 1..1
-     - The anatomical site where radiation therapy was administered. REQUIRED.
+     - The cumulative dose administered during the period of the treatment. REQUIRED.
 
 
 
@@ -42,7 +42,7 @@ This example represents treatment with tamoxifen, 20 mg a day by mouth, administ
     treatment:
         agent:
             id: "DrugCentral:2561"
-            label: "Tamoxifen"
+            label: "tamoxifen"
         routeOfAdministration:
             id: "NCIT:C38288"
             label: "Oral Route of Administration"
@@ -60,11 +60,10 @@ This example represents treatment with tamoxifen, 20 mg a day by mouth, administ
             end: "2020-03-25T09:00:00Z"
         drugType: "PRESCRIPTION"
     cumulativeDose:
-        quantity:
-            unit:
-                id: "NCIT:C28253"
-                label: "Milligram"
-            value: 36500.0
+        unit:
+            id: "NCIT:C28253"
+            label: "Milligram"
+        value: 36500.0
 
 
 

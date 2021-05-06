@@ -48,7 +48,7 @@ of 30 mg was given twice a day.
 
   doseInterval:
     quantity:
-        unitClass:
+        unit:
             id: "UO:0000022"
             label: "milligram"
         value: 30.0

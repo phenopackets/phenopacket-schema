@@ -57,7 +57,7 @@ The following example describes twice daily dosing of 30 mg of losartan given or
             label: "Oral Route of Administration"
         doseIntervals:
             - quantity:
-                unitClass:
+                unit:
                     id: "UO:0000022"
                     label: "milligram"
                 value: 30.0
