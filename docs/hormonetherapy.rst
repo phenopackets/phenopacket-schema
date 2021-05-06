@@ -21,7 +21,7 @@ Data model
      - Multiplicity
      - Description
    * - treatment
-     - Treatment
+     - :ref:`rsttreatment`
      - 1..1
      - Details of how the treatment was administered. REQUIRED.
    * - cumulative_dose
