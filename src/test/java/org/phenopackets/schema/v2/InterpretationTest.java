@@ -1,6 +1,8 @@
 package org.phenopackets.schema.v2;
 
 import com.google.protobuf.Timestamp;
+import org.ga4gh.vrsatile.v1.GeneDescriptor;
+import org.ga4gh.vrsatile.v1.VariationDescriptor;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
 import org.phenopackets.schema.v2.examples.TestExamples;
@@ -22,12 +24,12 @@ public class InterpretationTest {
                 .addGenomicInterpretations(
                         GenomicInterpretation.newBuilder()
                                 .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
-                                .setGene(Gene.newBuilder().setId("HGNC:2867").setSymbol("DHODH")))
+                                .setGene(GeneDescriptor.newBuilder().setValueId("HGNC:2867").setSymbol("DHODH")))
                 .addGenomicInterpretations(
                         GenomicInterpretation.newBuilder()
                                 .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
                                 .setVariantInterpretation(VariantInterpretation.newBuilder()
-                                .setVariant(Variant.newBuilder().setHgvsAllele(HgvsAllele.newBuilder().setHgvs("")))
+                                .setVariant(VariationDescriptor.newBuilder().setDescription(""))
                                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)))
                 .build();
 

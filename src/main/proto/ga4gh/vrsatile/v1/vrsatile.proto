@@ -4,6 +4,7 @@ package org.ga4gh.vrsatile.v1;
 
 import "google/protobuf/any.proto";
 import "ga4gh/vrs/v1/vrs.proto";
+import "phenopackets/schema/v2/core/base.proto";
 
 option java_multiple_files = true;
 option java_package = "org.ga4gh.vrsatile.v1";
@@ -21,6 +22,18 @@ message Expression {
   string version = 3;
 }
 
+message VcfRecord {
+  string genome_assembly = 1;
+  string chrom = 2;
+  uint64 pos = 3;
+  string id = 4;
+  string ref = 5;
+  string alt = 6;
+  string qual = 7;
+  string filter = 8;
+  string info = 9;
+}
+
 message VariationDescriptor {
   string id = 1;
   org.ga4gh.vrs.v1.Variation variation = 2;
@@ -30,21 +43,23 @@ message VariationDescriptor {
   GeneDescriptor gene_context = 5;
   // HGVS, SPDI, and gnomAD-style strings should be represented as Expressions
   repeated Expression expressions = 6;
+  // VCF Records can be represented as VcfRecords
+  repeated VcfRecord vcf_record = 7;
   // Allele registry, ClinVar, or other related IDs should be included as xrefs
-  repeated string xrefs = 7;
+  repeated string xrefs = 8;
   // Common aliases for a variant, e.g. EGFR vIII, are alternate labels
-  repeated string alternate_labels = 8;
-  repeated Extension extensions = 9;
+  repeated string alternate_labels = 9;
+  repeated Extension extensions = 10;
   // The molecular context of this variant. Must be one of “genomic”, “transcript”, or “protein”.
-  MoleculeContext molecule_context = 10;
+  MoleculeContext molecule_context = 11;
   // The structural variant type associated with this variant, such as a substitution, deletion, or fusion.
   // We RECOMMEND using a descendent term of SO:0001537.
-  string structural_type = 11;
+  string structural_type = 12;
   // A Sequence corresponding to a “ref allele”, describing the sequence expected at a SequenceLocation reference.
-  string vrs_ref_allele_seq = 12;
+  string vrs_ref_allele_seq = 13;
   // We RECOMMEND that the allelic_state of variant be described by terms from the Genotype Ontology (GENO).
   // These SHOULD descend from concept GENO:0000875.
-  string allelic_state = 13;
+  org.phenopackets.schema.v2.core.OntologyClass allelic_state = 14;
 }
 
 enum MoleculeContext {

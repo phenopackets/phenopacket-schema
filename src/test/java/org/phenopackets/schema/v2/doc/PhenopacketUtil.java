@@ -2,7 +2,11 @@ package org.phenopackets.schema.v2.doc;
 
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
+import org.ga4gh.vrs.v1.Variation;
+import org.ga4gh.vrsatile.v1.VariationDescriptor;
 import org.phenopackets.schema.v2.core.*;
+
+import org.ga4gh.vrsatile.v1.GeneDescriptor;
 
 import java.text.ParseException;
 import java.time.Period;
@@ -109,12 +113,12 @@ public class PhenopacketUtil {
         return Evidence.newBuilder().setEvidenceCode(evidenceCode).setReference(extRef).build();
     }
 
-    public static Gene gene(String id, String symbol) {
-        return Gene.newBuilder().setId(id).setSymbol(symbol).build();
+    public static GeneDescriptor geneDescriptor(String id, String symbol) {
+        return GeneDescriptor.newBuilder().setValueId(id).setSymbol(symbol).build();
     }
 
-    public static Gene gene(String id, String symbol, List<String> alternateIds) {
-        return Gene.newBuilder().setId(id).setSymbol(symbol).addAllAlternateIds(alternateIds).build();
+    public static GeneDescriptor geneDescriptor(String id, String symbol, List<String> alternateIds) {
+        return GeneDescriptor.newBuilder().setValueId(id).setSymbol(symbol).addAllAlternateIds(alternateIds).build();
     }
 
 
@@ -263,27 +267,25 @@ public class PhenopacketUtil {
                 .build() ;
     }
 
-    public static Variant heterozygousHgvsVariant(String hgvs) {
-        HgvsAllele hgvsAllele = HgvsAllele.newBuilder().setHgvs(hgvs).build();
+    public static VariationDescriptor heterozygousHgvsVariant(String hgvs) {
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
-        return Variant.newBuilder()
-                .setHgvsAllele(hgvsAllele)
-                .setZygosity(heterozygous)
+        return VariationDescriptor.newBuilder()
+                .setDescription(hgvs)
+                .setAllelicState(heterozygous)
                 .build();
     }
 
-    public static VariantInterpretation pathogenicVariantInterpretation(Variant variant) {
+    public static VariantInterpretation pathogenicVariantInterpretation(VariationDescriptor variant) {
         return VariantInterpretation.newBuilder()
                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)
                 .setVariant(variant).build();
     }
 
     public static GenomicInterpretation pathogenicGenomicInterpretationOfVariant(String id, String hgvs) {
-       HgvsAllele hgvsAllele = HgvsAllele.newBuilder().setHgvs(hgvs).build();
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
-        Variant v  = Variant.newBuilder()
-                .setHgvsAllele(hgvsAllele)
-                .setZygosity(heterozygous)
+        VariationDescriptor v = VariationDescriptor.newBuilder()
+                .setDescription(hgvs)
+                .setAllelicState(heterozygous)
                 .build();
         VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(v);
         return GenomicInterpretation.newBuilder()
