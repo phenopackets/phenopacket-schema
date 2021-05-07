@@ -49,15 +49,14 @@ HGVS Variant
 Variants can be represented using the `HGVS nomenclature <https://varnomen.hgvs.org/>`_ as follows.
 
 .. code-block:: yaml
-    variant:
-        hgvsAllele:
-            hgvs: "NM_001848.2:c.877G>A"
-        zygosity:
-            id: "GENO:0000135"
-            label: "heterozygous"
-
-
-
+    variationDescriptor:
+      id: "clinvar:13294"
+      expressions:
+      - syntax: "hgvsc"
+        value: "NM_000226.3:c.470T>G"
+      allelicState:
+        id: "GENO:0000135"
+        label: "heterozygous"
 
 .. _allele:
 

@@ -578,8 +578,8 @@ public class YamlGenerationTest extends TestBase {
                 ))
                 .setAllelicState(heterozygous)
                 .build();
-        String hash = printAndGetHash(variant, "variant");
-        assertEquals("cc8f5d4b797c5c3d872e8b8e1bf8ebaa3a6e73afe1b6f31c2c86502163547f97", hash);
+        String hash = printAndGetHash(variant, "variationDescriptor");
+        assertEquals("0bb3c05b62b1c02518f1ae31eec93c902864943518cadb1d612ef2ba2b9d6577", hash);
     }
 
     @Test
