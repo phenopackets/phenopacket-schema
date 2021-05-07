@@ -195,17 +195,14 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
 **Example**
 
 .. code-block:: yaml
-
-    variant:
-        spdiAllele:
-            id: "clinvar:13294"
-            seqId: "NC_000010.10"
-            position: 123256214
-            deletedSequence: "T"
-            insertedSequence: "G"
-        zygosity:
-            id: "GENO:0000135"
-            label: "heterozygous"
+    variationDescriptor:
+      id: "clinvar:13294"
+      expressions:
+      - syntax: "spdi"
+        value: "NC_000010.10:123256214:T:G"
+      allelicState:
+        id: "GENO:0000135"
+        label: "heterozygous"
 
 .. _iscn:
 
