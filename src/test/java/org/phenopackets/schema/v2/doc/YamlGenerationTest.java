@@ -613,7 +613,7 @@ public class YamlGenerationTest extends TestBase {
                 ))
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("37115e75b26bc88e6346a2c9220c88c4767fed79e9760e4fe80c3ed575b0fc14", hash);
+        assertEquals("5590011c3938ac7cdff15f7859b41bbcfc9b23cc17bebfbcdb726e77c6ff04b1", hash);
     }
 
     @Test

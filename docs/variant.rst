@@ -230,12 +230,11 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 **Example**
 
 .. code-block:: yaml
-
-    variant:
-        iscnKaryotype:
-            id: "id:A"
-            iscn: "t(8;9;11)(q12;p24;p12)"
-
+    variationDescriptor:
+      id: "id:A"
+      expressions:
+      - syntax: "iscn"
+        value: "t(8;9;11)(q12;p24;p12)"
 
 .. _zygosity:
 
