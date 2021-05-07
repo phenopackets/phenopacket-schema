@@ -38,6 +38,7 @@ public class YamlGenerationTest extends TestBase {
     private String printAndGetHash(Message message, String label) {
         try {
             String yamlString = messageToYaml(message, label);
+            System.out.println(sha256(yamlString));
             System.out.println(yamlString);
             return sha256(yamlString);
         } catch (IOException e) {
@@ -340,7 +341,7 @@ public class YamlGenerationTest extends TestBase {
     @Test
     public void testVariant() {
         VariationDescriptor variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
-        String hash = printAndGetHash(variant, "variant");
+        String hash = printAndGetHash(variant, "variationDescriptor");
         assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
     }
 
@@ -562,7 +563,7 @@ public class YamlGenerationTest extends TestBase {
                 ))
                 .setAllelicState(heterozygous)
                 .build();
-        String hash = printAndGetHash(variant, "variant");
+        String hash = printAndGetHash(variant, "variationDescriptor");
         assertEquals("4752d835e75e16d4874e30759e0796466e74f1a09616cbbfcf7ca167ea5327e3", hash);
     }
 
@@ -597,7 +598,7 @@ public class YamlGenerationTest extends TestBase {
                 .addAllVcfRecord(Collections.singletonList(vcfRecord))
                 .setAllelicState(heterozygous)
                 .build();
-        String hash = printAndGetHash(variant, "variant");
+        String hash = printAndGetHash(variant, "variationDescriptor");
         assertEquals("2d959f56c61bc18d1543b16ef82e53dd62516ee17c542370aecb98dce8e4500a", hash);
     }
 
@@ -611,7 +612,7 @@ public class YamlGenerationTest extends TestBase {
                         .build()
                 ))
                 .build();
-        String hash = printAndGetHash(variant, "variant");
+        String hash = printAndGetHash(variant, "variationDescriptor");
         assertEquals("37115e75b26bc88e6346a2c9220c88c4767fed79e9760e4fe80c3ed575b0fc14", hash);
     }
 

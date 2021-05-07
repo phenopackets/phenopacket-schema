@@ -4,6 +4,8 @@
 Variant
 #######
 
+.. todo: update Variant to talk about VRSATILE, VRS, and VariationDescriptor
+
 This element should be used to describe candidate variants or diagnosed causative
 variants. There is currently no standard variant nomenclature that can represent all kinds
 of genetic variation that is relevant to human medicine, science, and model organisms. Therefore,
