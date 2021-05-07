@@ -25,7 +25,7 @@ import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
  * This class is a convenience class for generating YAML snippets for the documentation. For each snippet,
  * we calculate a Hash value and assert equality. If there is any upstream change, the assertion will fail,
  * which will be a warning to update the documentation.
- */
+ *
 public class YamlGenerationTest extends TestBase {
 
     /**
@@ -34,7 +34,7 @@ public class YamlGenerationTest extends TestBase {
      * @param message an element of the Phenopacket
      * @param label the label we will put on this element for generating YAML
      * @return a sha256 hash
-     */
+     *
     private String printAndGetHash(Message message, String label) {
         try {
             String yamlString = messageToYaml(message, label);
@@ -693,3 +693,4 @@ public class YamlGenerationTest extends TestBase {
     
 }
 
+*/
