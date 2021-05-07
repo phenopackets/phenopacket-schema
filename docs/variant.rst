@@ -4,6 +4,8 @@
 Variant
 #######
 
+.. todo: update Variant to talk about VRSATILE, VRS, and VariationDescriptor
+
 This element should be used to describe candidate variants or diagnosed causative
 variants. There is currently no standard variant nomenclature that can represent all kinds
 of genetic variation that is relevant to human medicine, science, and model organisms. Therefore,
@@ -47,15 +49,14 @@ HGVS Variant
 Variants can be represented using the `HGVS nomenclature <https://varnomen.hgvs.org/>`_ as follows.
 
 .. code-block:: yaml
-    variant:
-        hgvsAllele:
-            hgvs: "NM_001848.2:c.877G>A"
-        zygosity:
-            id: "GENO:0000135"
-            label: "heterozygous"
-
-
-
+    variationDescriptor:
+      id: "clinvar:13294"
+      expressions:
+      - syntax: "hgvsc"
+        value: "NM_000226.3:c.470T>G"
+      allelicState:
+        id: "GENO:0000135"
+        label: "heterozygous"
 
 .. _allele:
 
@@ -194,17 +195,14 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
 **Example**
 
 .. code-block:: yaml
-
-    variant:
-        spdiAllele:
-            id: "clinvar:13294"
-            seqId: "NC_000010.10"
-            position: 123256214
-            deletedSequence: "T"
-            insertedSequence: "G"
-        zygosity:
-            id: "GENO:0000135"
-            label: "heterozygous"
+    variationDescriptor:
+      id: "clinvar:13294"
+      expressions:
+      - syntax: "spdi"
+        value: "NC_000010.10:123256214:T:G"
+      allelicState:
+        id: "GENO:0000135"
+        label: "heterozygous"
 
 .. _iscn:
 
@@ -229,12 +227,11 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 **Example**
 
 .. code-block:: yaml
-
-    variant:
-        iscnKaryotype:
-            id: "id:A"
-            iscn: "t(8;9;11)(q12;p24;p12)"
-
+    variationDescriptor:
+      id: "id:A"
+      expressions:
+      - syntax: "iscn"
+        value: "t(8;9;11)(q12;p24;p12)"
 
 .. _zygosity:
 

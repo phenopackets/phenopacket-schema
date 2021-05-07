@@ -3,12 +3,17 @@ package org.phenopackets.schema.v2.doc;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
+import org.ga4gh.vrsatile.v1.Expression;
+import org.ga4gh.vrsatile.v1.GeneDescriptor;
+import org.ga4gh.vrsatile.v1.VariationDescriptor;
+import org.ga4gh.vrsatile.v1.VcfRecord;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +25,7 @@ import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
  * This class is a convenience class for generating YAML snippets for the documentation. For each snippet,
  * we calculate a Hash value and assert equality. If there is any upstream change, the assertion will fail,
  * which will be a warning to update the documentation.
- */
+ *
 public class YamlGenerationTest extends TestBase {
 
     /**
@@ -29,10 +34,11 @@ public class YamlGenerationTest extends TestBase {
      * @param message an element of the Phenopacket
      * @param label the label we will put on this element for generating YAML
      * @return a sha256 hash
-     */
+     *
     private String printAndGetHash(Message message, String label) {
         try {
             String yamlString = messageToYaml(message, label);
+            System.out.println(sha256(yamlString));
             System.out.println(yamlString);
             return sha256(yamlString);
         } catch (IOException e) {
@@ -127,7 +133,7 @@ public class YamlGenerationTest extends TestBase {
     public void testGene() {
         String id = "HGNC:347";
         String symbol = "ETF1";
-        Gene gene = gene(id, symbol);
+        GeneDescriptor gene = geneDescriptor(id, symbol);
         String hash = printAndGetHash(gene, "gene");
         assertEquals("7b80f285c6a5d4b6479db01c58b9d6820f47853d7d6607f542e2f9d83a332e51", hash);
     }
@@ -137,7 +143,7 @@ public class YamlGenerationTest extends TestBase {
         String id = "HGNC:347";
         String symbol = "ETF1";
         List<String> alternateIds = List.of("ensembl:ENSRNOG00000019450", "ncbigene:307503");
-        Gene gene = gene(id, symbol, alternateIds);
+        GeneDescriptor gene = geneDescriptor(id, symbol, alternateIds);
         String hash = printAndGetHash(gene, "gene");
         assertEquals("c8f8dd3459738139cb9e5ba033d0bad4ba23dfbfea0d4df9cc4dac53010223d2", hash);
     }
@@ -334,14 +340,14 @@ public class YamlGenerationTest extends TestBase {
 
     @Test
     public void testVariant() {
-        Variant variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
-        String hash = printAndGetHash(variant, "variant");
+        VariationDescriptor variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
+        String hash = printAndGetHash(variant, "variationDescriptor");
         assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
     }
 
     @Test
     public void testVariantInterpretation() {
-        Variant variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
+        VariationDescriptor variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
         VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(variant);
         String hash = printAndGetHash(variantInterpretation, "variantInterpretation");
         assertEquals("e6e343647c3d015fc4f7131fe5eb920d29b4182024e32ee2f19b9721c35e0a52", hash);
@@ -399,7 +405,7 @@ public class YamlGenerationTest extends TestBase {
     @Test
     public void testInterpretationOfPathogenicVar() {
         OntologyClass miller = ontologyClass("OMIM:263750", "Miller syndrome");
-        Gene dhodh = gene("HGNC:2867", "DHODH");
+        GeneDescriptor dhodh = geneDescriptor("HGNC:2867", "DHODH");
         GenomicInterpretation genomicInterpretation = GenomicInterpretation.newBuilder()
                 .setGene(dhodh)
                 .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
@@ -456,9 +462,8 @@ public class YamlGenerationTest extends TestBase {
 
     @Test
     public void testInterpretationBraf() {
-        Variant brafVar = Variant.newBuilder()
-                .setHgvsAllele(HgvsAllele.newBuilder()
-                        .setHgvs("NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)")).build();
+        VariationDescriptor brafVar = VariationDescriptor.newBuilder()
+                .setDescription("NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)").build();
         VariantInterpretation v1 = VariantInterpretation.newBuilder()
                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)
                 .setTherapeuticActionability(TherapeuticActionability.ACTIONABLE)
@@ -576,65 +581,66 @@ public class YamlGenerationTest extends TestBase {
     @Test
     public void spdiVariantTest() {
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
-        SpdiAllele spdiAllele = SpdiAllele.newBuilder()
+        VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("clinvar:13294")
-                .setSeqId("NC_000010.10")
-                .setPosition(123256214)
-                .setDeletedSequence("T")
-                .setInsertedSequence("G")
+                .addAllExpressions( Collections.singletonList(Expression.newBuilder()
+                        .setSyntax("spdi")
+                        .setValue("NC_000010.10:123256214:T:G")
+                        .build()
+                ))
+                .setAllelicState(heterozygous)
                 .build();
-        Variant variant = Variant.newBuilder()
-                .setSpdiAllele(spdiAllele)
-                .setZygosity(heterozygous)
-                .build();
-        String hash = printAndGetHash(variant, "variant");
-        assertEquals("4752d835e75e16d4874e30759e0796466e74f1a09616cbbfcf7ca167ea5327e3", hash);
+        String hash = printAndGetHash(variant, "variationDescriptor");
+        assertEquals("1927c9c99dc211fd87599e52afa7061c7d44bd62325c488ff721eaa36bbe1125", hash);
     }
 
     @Test
     public void hgvsVariantTest() {
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
-        HgvsAllele hgvsAllele = HgvsAllele.newBuilder()
-                .setHgvs("NM_000226.3:c.470T>G")
+        VariationDescriptor variant = VariationDescriptor.newBuilder()
+                .setId("clinvar:13294")
+                .addAllExpressions(Collections.singletonList( Expression.newBuilder()
+                        .setSyntax("hgvsc")
+                        .setValue("NM_000226.3:c.470T>G").build()
+                ))
+                .setAllelicState(heterozygous)
                 .build();
-        Variant variant = Variant.newBuilder()
-                .setHgvsAllele(hgvsAllele)
-                .setZygosity(heterozygous)
-                .build();
-        String hash = printAndGetHash(variant, "variant");
-        assertEquals("cc8f5d4b797c5c3d872e8b8e1bf8ebaa3a6e73afe1b6f31c2c86502163547f97", hash);
+        String hash = printAndGetHash(variant, "variationDescriptor");
+        assertEquals("0bb3c05b62b1c02518f1ae31eec93c902864943518cadb1d612ef2ba2b9d6577", hash);
     }
 
     @Test
     public void vcfAlleleTest() {
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
-        VcfAllele vcfAllele = VcfAllele.newBuilder()
+        VcfRecord vcfRecord = VcfRecord.newBuilder()
                 .setGenomeAssembly("GRCh38")
                 .setId(".")
-                .setChr("2")
+                .setChrom("2")
                 .setPos(134327882)
                 .setRef("A")
                 .setAlt("T")
                 .build();
-        Variant variant = Variant.newBuilder()
-                .setVcfAllele(vcfAllele)
-                .setZygosity(heterozygous)
+        VariationDescriptor variant = VariationDescriptor.newBuilder()
+                .setId("clinvar:13294")
+                .addAllVcfRecord(Collections.singletonList(vcfRecord))
+                .setAllelicState(heterozygous)
                 .build();
-        String hash = printAndGetHash(variant, "variant");
+        String hash = printAndGetHash(variant, "variationDescriptor");
         assertEquals("2d959f56c61bc18d1543b16ef82e53dd62516ee17c542370aecb98dce8e4500a", hash);
     }
 
     @Test
     public void iscnVariantTest() {
-        IscnKaryotype iscnKaryotype = IscnKaryotype.newBuilder()
-                .setIscn("t(8;9;11)(q12;p24;p12)")
+        VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("id:A")
+                .addAllExpressions(Collections.singletonList(Expression.newBuilder()
+                        .setSyntax("iscn")
+                        .setValue("t(8;9;11)(q12;p24;p12)")
+                        .build()
+                ))
                 .build();
-        Variant variant = Variant.newBuilder()
-                .setIscnKaryotype(iscnKaryotype)
-                .build();
-        String hash = printAndGetHash(variant, "variant");
-        assertEquals("37115e75b26bc88e6346a2c9220c88c4767fed79e9760e4fe80c3ed575b0fc14", hash);
+        String hash = printAndGetHash(variant, "variationDescriptor");
+        assertEquals("5590011c3938ac7cdff15f7859b41bbcfc9b23cc17bebfbcdb726e77c6ff04b1", hash);
     }
 
     @Test
@@ -708,3 +714,4 @@ public class YamlGenerationTest extends TestBase {
     
 }
 
+*/

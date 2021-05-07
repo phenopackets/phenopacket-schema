@@ -2,6 +2,8 @@ package org.phenopackets.schema.v2.examples;
 
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
+import org.ga4gh.vrsatile.v1.Expression;
+import org.ga4gh.vrsatile.v1.VariationDescriptor;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
@@ -23,25 +25,30 @@ class RareDiseaseFamilyExample {
     private static final String FATHER_ID = "FATHER";
 
     // Alleles
-    private static final HgvsAllele NM_001361_403_C_T = hgvs("NM_001361.4:c.403C>T");
-    private static final HgvsAllele NM_001361_454_G_A = hgvs("NM_001361.4:c.454G>A");
-    private static final HgvsAllele NM_001369_12599_dupA = hgvs("NM_001369.2:c.12599dupA");
+    private static final Expression NM_001361_403_C_T = hgvsc("NM_001361.4:c.403C>T");
+    private static final Expression NM_001361_454_G_A = hgvsc("NM_001361.4:c.454G>A");
+    private static final Expression NM_001369_12599_dupA = hgvsc("NM_001369.2:c.12599dupA");
 
-    private static HgvsAllele hgvs(String value) {
-        return HgvsAllele.newBuilder().setHgvs(value).build();
-    }
-
-    private static Variant het(HgvsAllele allele) {
-        return Variant.newBuilder()
-                .setHgvsAllele(allele)
-                .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
+    private static Expression hgvsc(String value) {
+        return Expression.newBuilder()
+                .setSyntax("hgvsc")
+                .setValue(value)
                 .build();
     }
 
-    private static Variant hom(HgvsAllele allele) {
-        return Variant.newBuilder()
-                .setHgvsAllele(allele)
-                .setZygosity(ontologyClass("GENO:0000136", "homozygous"))
+    private static VariationDescriptor het(Expression hgvs_expression) {
+        return VariationDescriptor.newBuilder()
+                .setDescription(hgvs_expression.getValue())
+                .setExpressions(0, hgvs_expression)
+                .setAllelicState(ontologyClass("GENO:0000135", "heterozygous"))
+                .build();
+    }
+
+    private static VariationDescriptor hom(Expression hgvs_expression) {
+        return VariationDescriptor.newBuilder()
+                .setDescription(hgvs_expression.getValue())
+                .setExpressions(0, hgvs_expression)
+                .setAllelicState(ontologyClass("GENO:0000136", "homozygous"))
                 .build();
     }
 
