@@ -40,7 +40,7 @@ Example
 .. code-block:: yaml
 
   gene:
-    id: "HGNC:347"
+    valueId: "HGNC:347"
     symbol: "ETF1"
 
 Optionally, with alternative identifiers:
@@ -48,7 +48,7 @@ Optionally, with alternative identifiers:
 .. code-block:: yaml
 
   gene:
-    id: "HGNC:347"
+    valueId: "HGNC:347"
     alternateIds:
         - "ensembl:ENSRNOG00000019450"
         - "ncbigene:307503"
@@ -57,8 +57,8 @@ Optionally, with alternative identifiers:
 Explanations
 ############
 
-id
-~~
+value_id
+~~~~~~~~
 The id represents the accession number of comparable identifier for the gene.
 
 It SHOULD be a :ref:`rstcurie` identifier with a prefix that is used by the official organism gene nomenclature committee. In
