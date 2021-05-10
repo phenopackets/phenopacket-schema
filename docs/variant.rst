@@ -1,8 +1,8 @@
 .. _rstvariant:
 
-#######
-Variant
-#######
+###################
+VariationDescriptor
+###################
 
 .. todo: update Variant to talk about VRSATILE, VRS, and VariationDescriptor
 
@@ -33,7 +33,25 @@ Data model
 ##########
 
 .. csv-table::
-   :header: Field, Type, Multiplicity, Description
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Multiplicity
+     - Description
+   * - id
+     - string
+     - 1..1
+     - Official identifier of the gene. REQUIRED.
+   * - alternate_ids
+     - repeated string
+     - 0..*
+     - Alternative identifier(s) of the gene
+   * - symbol
+     - string
+     - 1..1
+     - Official gene symbol. REQUIRED.
+
 
     allele, :ref:`Allele`, 1..1, one of the Allele types described below. REQUIRED.
     zygosity, :ref:`rstontologyclass` , 0..1, See :ref:`zygosity` below. RECOMMENDED.

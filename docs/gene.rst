@@ -1,8 +1,8 @@
 .. _rstgene:
 
-####
-Gene
-####
+##############
+GeneDescriptor
+##############
 
 
 This element represents an identifier for a gene. It can be used to transmit the information that
@@ -12,7 +12,7 @@ the exact variant cannot be transmitted, either for privacy reasons or because i
 Data model
 ##########
 
-.. list-table:: Definition  of the ``Gene`` element
+.. list-table:: Definition  of the ``GeneDescriptor`` element
    :widths: 25 25 25 75
    :header-rows: 1
 
