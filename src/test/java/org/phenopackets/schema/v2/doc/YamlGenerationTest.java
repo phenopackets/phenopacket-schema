@@ -13,7 +13,6 @@ import org.phenopackets.schema.v2.core.*;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +24,7 @@ import static org.phenopackets.schema.v2.doc.PhenopacketUtil.*;
  * This class is a convenience class for generating YAML snippets for the documentation. For each snippet,
  * we calculate a Hash value and assert equality. If there is any upstream change, the assertion will fail,
  * which will be a warning to update the documentation.
- *
+ */
 public class YamlGenerationTest extends TestBase {
 
     /**
@@ -34,7 +33,7 @@ public class YamlGenerationTest extends TestBase {
      * @param message an element of the Phenopacket
      * @param label the label we will put on this element for generating YAML
      * @return a sha256 hash
-     *
+     */
     private String printAndGetHash(Message message, String label) {
         try {
             String yamlString = messageToYaml(message, label);
@@ -135,7 +134,7 @@ public class YamlGenerationTest extends TestBase {
         String symbol = "ETF1";
         GeneDescriptor gene = geneDescriptor(id, symbol);
         String hash = printAndGetHash(gene, "gene");
-        assertEquals("7b80f285c6a5d4b6479db01c58b9d6820f47853d7d6607f542e2f9d83a332e51", hash);
+        assertEquals("c76c7df3649fd7729cd9d26d8f7138ad830e67443d3908f311fad25d756358cf", hash);
     }
 
     @Test
@@ -145,7 +144,7 @@ public class YamlGenerationTest extends TestBase {
         List<String> alternateIds = List.of("ensembl:ENSRNOG00000019450", "ncbigene:307503");
         GeneDescriptor gene = geneDescriptor(id, symbol, alternateIds);
         String hash = printAndGetHash(gene, "gene");
-        assertEquals("c8f8dd3459738139cb9e5ba033d0bad4ba23dfbfea0d4df9cc4dac53010223d2", hash);
+        assertEquals("79291b961fd18cf50ab8c2c1e73c0ca9f67d95da39a8e2acfaae61c10ca3f439", hash);
     }
 
     @Test
@@ -342,7 +341,7 @@ public class YamlGenerationTest extends TestBase {
     public void testVariant() {
         VariationDescriptor variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("a60dcb71cf83b9072696716c7514c57cc6e33ca933e6bb82172fa38d3c07bf22", hash);
+        assertEquals("c13da8dbf04ba4901222caeb383b55d3563bee1423b50010cb6c0d6aa4103dce", hash);
     }
 
     @Test
@@ -350,7 +349,7 @@ public class YamlGenerationTest extends TestBase {
         VariationDescriptor variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
         VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(variant);
         String hash = printAndGetHash(variantInterpretation, "variantInterpretation");
-        assertEquals("e6e343647c3d015fc4f7131fe5eb920d29b4182024e32ee2f19b9721c35e0a52", hash);
+        assertEquals("6c92324e13149f23fb51a2293bc4cd6ff6e35d08049962f2ce9b0201f926bfb9", hash);
     }
 
 
@@ -359,7 +358,7 @@ public class YamlGenerationTest extends TestBase {
     public void testGenomicInterpretation() {
        GenomicInterpretation interpretation = pathogenicGenomicInterpretationOfVariant("subject 1","NM_001848.2:c.877G>A");
         String hash = printAndGetHash(interpretation, "genomicInterpretation");
-        assertEquals("8060daad92d638609ca92d9afd5acea93900add3d4b372e1ab1bd41f5e22ce58", hash);
+        assertEquals("38cf1beda98826344f2fd51ce0c4cb815f5b9f73f878a4c192366aba1af66da9", hash);
     }
 
 
@@ -420,7 +419,7 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("efe7dadc657af67d286b2e99a7ace745e7c0529f0fca0eab61928a6f1fd65e12", hash);
+        assertEquals("9a7e47ee22437d73f2d36fdd910c557ce635d62d56ea4847a7496572dc9bef2e", hash);
     }
 
     @Test
@@ -437,7 +436,7 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("42c542aea0919728f578be1119e62924817bc595c77a266e62460ed5269f7c1c", hash);
+        assertEquals("05b9042817c2c7d76f1547a31289048e5d84d42346ff28134797b2a212bb2507", hash);
     }
 
     @Test
@@ -457,13 +456,12 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("1746eeeaf427759370dbf62f581d4517561656e315d345bf660af9f33c243446", hash);
+        assertEquals("7eb5fd737098f5d1be72f88a584ad80d9fac06869b2e0cceca6e8a75a520b821", hash);
     }
 
     @Test
     public void testInterpretationBraf() {
-        VariationDescriptor brafVar = VariationDescriptor.newBuilder()
-                .setDescription("NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)").build();
+        VariationDescriptor brafVar = heterozygousHgvsVariant("NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)");
         VariantInterpretation v1 = VariantInterpretation.newBuilder()
                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)
                 .setTherapeuticActionability(TherapeuticActionability.ACTIONABLE)
@@ -484,7 +482,7 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("72205f6bbb57aae693dc170f0c573026a8c41a3809b0202c68b2ed7f7530185b", hash);
+        assertEquals("4d3e6cae96c3dc4c75878eb05fa91e7ef89d668548bf3a1a4d7cfcf6f7458551", hash);
     }
 
     @Test
@@ -583,7 +581,7 @@ public class YamlGenerationTest extends TestBase {
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
         VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("clinvar:13294")
-                .addAllExpressions( Collections.singletonList(Expression.newBuilder()
+                .addAllExpressions(List.of(Expression.newBuilder()
                         .setSyntax("spdi")
                         .setValue("NC_000010.10:123256214:T:G")
                         .build()
@@ -599,14 +597,13 @@ public class YamlGenerationTest extends TestBase {
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
         VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("clinvar:13294")
-                .addAllExpressions(Collections.singletonList( Expression.newBuilder()
-                        .setSyntax("hgvsc")
-                        .setValue("NM_000226.3:c.470T>G").build()
-                ))
+                .addExpressions(Expression.newBuilder()
+                        .setSyntax("hgvs")
+                        .setValue("NM_000226.3:c.470T>G"))
                 .setAllelicState(heterozygous)
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("0bb3c05b62b1c02518f1ae31eec93c902864943518cadb1d612ef2ba2b9d6577", hash);
+        assertEquals("04f2791c3744028efa2957108c88c66d630d39102fb83c23ccdeda5f15465ce6", hash);
     }
 
     @Test
@@ -614,26 +611,53 @@ public class YamlGenerationTest extends TestBase {
         OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
         VcfRecord vcfRecord = VcfRecord.newBuilder()
                 .setGenomeAssembly("GRCh38")
-                .setId(".")
-                .setChrom("2")
-                .setPos(134327882)
-                .setRef("A")
-                .setAlt("T")
+                .setId("rs121918506")
+                .setChrom("10")
+                .setPos(121496701)
+                .setRef("T")
+                .setAlt("G")
                 .build();
         VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("clinvar:13294")
-                .addAllVcfRecord(Collections.singletonList(vcfRecord))
+                .addAllVcfRecord(List.of(vcfRecord))
                 .setAllelicState(heterozygous)
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("2d959f56c61bc18d1543b16ef82e53dd62516ee17c542370aecb98dce8e4500a", hash);
+        assertEquals("2bef515e8bc4f4d312808f6dac73312918ef6716b795eea4f625927ff71b436b", hash);
+    }
+
+    @Test
+    public void variationDescriptorTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        VcfRecord vcfRecord = VcfRecord.newBuilder()
+                .setGenomeAssembly("GRCh38")
+                .setId("rs121918506")
+                .setChrom("10")
+                .setPos(121496701)
+                .setRef("T")
+                .setAlt("G")
+                .build();
+        VariationDescriptor variant = VariationDescriptor.newBuilder()
+                .setId("clinvar:13294")
+                .setGeneContext(geneDescriptor("HGNC:3689", "FGFR2"))
+                .addAllVcfRecord(List.of(vcfRecord))
+                .addExpressions(Expression.newBuilder()
+                        .setSyntax("hgvs")
+                        .setValue("NM_000141.5:c.1694A>C"))
+                .addExpressions(Expression.newBuilder()
+                        .setSyntax("hgvs")
+                        .setValue("NP_000132.3:p.Glu565Ala"))
+                .setAllelicState(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variationDescriptor");
+        assertEquals("394eeba5766b9e72425c68d62902bb55e304236f24d04d7e1d13631004124e7c", hash);
     }
 
     @Test
     public void iscnVariantTest() {
         VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("id:A")
-                .addAllExpressions(Collections.singletonList(Expression.newBuilder()
+                .addAllExpressions(List.of(Expression.newBuilder()
                         .setSyntax("iscn")
                         .setValue("t(8;9;11)(q12;p24;p12)")
                         .build()
@@ -713,5 +737,3 @@ public class YamlGenerationTest extends TestBase {
     }
     
 }
-
-*/

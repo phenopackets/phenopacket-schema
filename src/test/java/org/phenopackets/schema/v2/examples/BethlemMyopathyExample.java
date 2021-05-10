@@ -3,11 +3,13 @@ package org.phenopackets.schema.v2.examples;
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
 import org.ga4gh.vrs.v1.Number;
+import org.ga4gh.vrs.v1.*;
+import org.ga4gh.vrsatile.v1.Expression;
+import org.ga4gh.vrsatile.v1.GeneDescriptor;
+import org.ga4gh.vrsatile.v1.VariationDescriptor;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
-import org.ga4gh.vrsatile.v1.*;
-import org.ga4gh.vrs.v1.*;
 
 import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
 
@@ -32,8 +34,9 @@ public class BethlemMyopathyExample {
     private static final VariationDescriptor heterozygousCOL6A1Variant = VariationDescriptor.newBuilder()
             .setId("id:1")
             .setVariation(Variation.newBuilder().setAllele(c_877G_to_A))
-            .setDescription("NM_001848.2:c.877G>A")
-            .setGeneContext(GeneDescriptor.newBuilder().setSymbol("COL6A1").setValueId("HGNC:2211").build())
+            .addExpressions(Expression.newBuilder().setSyntax("hgvs").setValue("NM_001848.2:c.877G>A"))
+            .setAllelicState(ontologyClass("GENO:0000135", "heterozygous"))
+            .setGeneContext(GeneDescriptor.newBuilder().setSymbol("COL6A1").setValueId("HGNC:2211"))
             .setVrsRefAlleleSeq("G")
             .setDescription("Heterozygous 877G>A transition in COL6A1")
             .build();
