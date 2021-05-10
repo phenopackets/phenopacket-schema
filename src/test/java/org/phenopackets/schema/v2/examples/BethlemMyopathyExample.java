@@ -2,7 +2,7 @@ package org.phenopackets.schema.v2.examples;
 
 import com.google.common.collect.ImmutableList;
 import com.google.protobuf.Timestamp;
-import org.ga4gh.vrs.v1.Integer;
+import org.ga4gh.vrs.v1.Number;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
@@ -23,8 +23,8 @@ public class BethlemMyopathyExample {
             .setSequenceLocation(SequenceLocation.newBuilder()
                     .setSequenceInterval(
                             SequenceInterval.newBuilder()
-                                    .setStartInteger(Integer.newBuilder().setValue(876))
-                                    .setEndInteger(Integer.newBuilder().setValue(877))
+                                    .setStartNumber(Number.newBuilder().setValue(876))
+                                    .setEndNumber(Number.newBuilder().setValue(877))
                     ).setSequenceId("NM_001848.2"))
             .build();
 
