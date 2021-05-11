@@ -176,6 +176,28 @@ class CovidExample {
                                 .build())
                         .build());
 
+        Measurement initialBloodLymphocyteCount = Measurement.newBuilder()
+                .setAssay(ontologyClass("NCIT:C113237", "Absolute Blood Lymphocyte Count"))
+                .setValue(Value.newBuilder()
+                        .setQuantity(Quantity.newBuilder()
+                                .setUnit(ontologyClass("NCIT:C67245", "Thousand Cells"))
+                                .setValue(1.4)
+                        .setReferenceRange(ReferenceRange.newBuilder().setUnit(ontologyClass("NCIT:C67245", "Thousand Cells")).setHigh(4.5).setLow(1.0)))
+                )
+                .setTimeObserved(TimeElement.newBuilder().setInterval(TimeInterval.newBuilder().setStart(parseIsoLocalDate("2019-09-01")).setEnd(parseIsoLocalDate("2020-03-01"))))
+                .build();
+
+        Measurement hoD0bloodLymphocyteCount = Measurement.newBuilder()
+                .setAssay(ontologyClass("NCIT:C113237", "Absolute Blood Lymphocyte Count"))
+                .setValue(Value.newBuilder()
+                        .setQuantity(Quantity.newBuilder()
+                                .setUnit(ontologyClass("NCIT:C67245", "Thousand Cells"))
+                                .setValue(0.7)
+                                .setReferenceRange(ReferenceRange.newBuilder().setUnit(ontologyClass("NCIT:C67245", "Thousand Cells")).setHigh(4.5).setLow(1.0)))
+                )
+                .setTimeObserved(returnToHospitalTime)
+                .build();
+
         Resource ncit = Resource.newBuilder()
                 .setId("ncit")
                 .setName("NCI Thesaurus OBO Edition")
@@ -191,10 +213,33 @@ class CovidExample {
                 .setNamespacePrefix("MONDO")
                 .build();
 
+        Resource doi = Resource.newBuilder()
+                .setId("doi")
+                .setName("Digital Object Identifier")
+                .setUrl("http://dx.doi.org")
+                .setNamespacePrefix("DOI")
+                .build();
+
+        Resource pubmed = Resource.newBuilder()
+                .setId("pubmed")
+                .setName("PubMed")
+                .setUrl("https://pubmed.ncbi.nlm.nih.gov/")
+                .setNamespacePrefix("PUBMED")
+                .build();
+
+        ExternalReference article = ExternalReference.newBuilder()
+                .setId("DOI:10.1016/j.jaccas.2020.04.001")
+                .setReference("PMID:32292915")
+                .setDescription("The Imperfect Cytokine Storm: Severe COVID-19 With ARDS in a Patient on Durable LVAD Support")
+                .build();
+
         MetaData metaData = MetaData.newBuilder()
                 .setPhenopacketSchemaVersion("v2.0")
                 .addResources(ncit)
                 .addResources(mondo)
+                .addResources(doi)
+                .addResources(pubmed)
+                .addExternalReferences(article)
                 .build();
 
         return Phenopacket.newBuilder()
@@ -209,6 +254,8 @@ class CovidExample {
                 .addPhenotypicFeatures(diarrhea)
                 .addPhenotypicFeatures(dyspnea)
                 .addPhenotypicFeatures(acuteRespiratoryFailure)
+                .addMeasurements(initialBloodLymphocyteCount)
+                .addMeasurements(hoD0bloodLymphocyteCount)
                 .addMedicalActions(lvadImplant)
                 .addMedicalActions(nasalOxygenAdministered)
                 .addMedicalActions(hydroxychloroquineAdministered)
