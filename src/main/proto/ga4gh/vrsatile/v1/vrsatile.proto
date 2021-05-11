@@ -50,7 +50,8 @@ message VariationDescriptor {
   // Common aliases for a variant, e.g. EGFR vIII, are alternate labels
   repeated string alternate_labels = 9;
   repeated Extension extensions = 10;
-  // The molecular context of this variant. Must be one of “genomic”, “transcript”, or “protein”.
+  // The molecular context of the vrs variation. Must be one of “genomic”, “transcript”, or “protein”.
+  // Defaults to "unspecified_molecule_context"
   MoleculeContext molecule_context = 11;
   // The structural variant type associated with this variant, such as a substitution, deletion, or fusion.
   // We RECOMMEND using a descendent term of SO:0001537.
@@ -63,9 +64,10 @@ message VariationDescriptor {
 }
 
 enum MoleculeContext {
-  genomic = 0;
-  transcript = 1;
-  protein = 2;
+  unspecified_molecule_context = 0;
+  genomic = 1;
+  transcript = 2;
+  protein = 3;
 }
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#gene-descriptor
