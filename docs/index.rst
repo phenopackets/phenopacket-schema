@@ -28,5 +28,5 @@ use `this link <https://phenopackets-schema.readthedocs.io/en/1.0.0/>`_.
    building-blocks
    recommended-ontologies
    working
-
+   examples
 
