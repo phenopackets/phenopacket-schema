@@ -4,7 +4,9 @@ import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.io.FormatMapper;
 
+import java.io.IOException;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,8 +32,13 @@ public class UrothelialCarcinomaExample {
     public UrothelialCarcinomaExample() {
         MetaData metaData = buildMetaData();
 
-        PhenotypicFeature hematuria = PhenotypicFeature.newBuilder().setType(ontologyClass("HP:0000790","Hematuria")).build();
-        PhenotypicFeature dsyuria = PhenotypicFeature.newBuilder().setType(ontologyClass("HP:0100518","Dysuria")).setSeverity(ontologyClass("HP:0012828","Severe")).build();
+        PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
+                .setType(ontologyClass("HP:0000790","Hematuria"))
+                .build();
+        PhenotypicFeature dsyuria = PhenotypicFeature.newBuilder()
+                .setType(ontologyClass("HP:0100518","Dysuria"))
+                .setSeverity(ontologyClass("HP:0012828","Severe"))
+                .build();
 
         this.phenopacket = Phenopacket.newBuilder()
                 .setId("example case")
@@ -93,7 +100,6 @@ public class UrothelialCarcinomaExample {
     }
 
     private MetaData buildMetaData() {
-
         long millis  = System.currentTimeMillis();
         Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
                 .setNanos((int) ((millis % 1000) * 1000000)).build();
@@ -238,4 +244,8 @@ public class UrothelialCarcinomaExample {
         assertEquals(this.patientId, this.phenopacket.getSubject().getId());
     }
 
+    @Test
+    public void testInfiltratingUrothelialCarcinomaExample() throws IOException {
+        System.out.println(FormatMapper.messageToYaml(phenopacket));
+    }
 }
