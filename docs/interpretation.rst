@@ -49,17 +49,17 @@ intended meaning is that a relevant variant in the named gene was found.
 .. code-block:: yaml
 
   interpretation:
-  id: "CONSORTIUM:0000123456"
-  progressStatus: "SOLVED"
-  diagnosis:
-    disease:
-      id: "OMIM:263750"
-      label: "Miller syndrome"
-    genomicInterpretations:
-    - interpretationStatus: "CONTRIBUTORY"
-      gene:
-        id: "HGNC:2867"
-        symbol: "DHODH"
+    id: "CONSORTIUM:0000123456"
+    progressStatus: "SOLVED"
+    diagnosis:
+      disease:
+        id: "OMIM:263750"
+        label: "Miller syndrome"
+      genomicInterpretations:
+      - interpretationStatus: "CONTRIBUTORY"
+        gene:
+          valueId: "HGNC:2867"
+          symbol: "DHODH"
 
 
 
@@ -143,17 +143,17 @@ with the hypothetical gene YFG42.
 .. code-block:: yaml
 
   interpretation:
-  id: "CONSORTIUM:0000123456"
-  progressStatus: "SOLVED"
-  diagnosis:
-    disease:
-      id: "OMIM:263750"
-      label: "Miller syndrome"
-    genomicInterpretations:
-    - interpretationStatus: "CONTRIBUTORY"
-      gene:
-        id: "HGNC:2867"
-        symbol: "DHODH"
+    id: "CONSORTIUM:0000123456"
+    progressStatus: "SOLVED"
+    diagnosis:
+      disease:
+        id: "OMIM:263750"
+        label: "Miller syndrome"
+      genomicInterpretations:
+      - interpretationStatus: "CONTRIBUTORY"
+        gene:
+          valueId: "HGNC:2867"
+          symbol: "DHODH"
 
 
 Diagnostic finding in an autosomal dominant disease
@@ -167,23 +167,24 @@ would be reported.
 .. code-block:: yaml
 
     interpretation:
-        id: "interpretation id"
-        progressStatus: "SOLVED"
-        diagnosis:
-            disease:
-                id: "OMIM:154700"
-                label: "Marfan syndrome"
-            genomicInterpretations:
-                - interpretationStatus: "CAUSATIVE"
-                variantInterpretation:
-                    acmgPathogenicityClassification: "PATHOGENIC"
-                    variant:
-                        hgvsAllele:
-                            hgvs: "NM_000138.4(FBN1):c.6751T>A"
-                        zygosity:
-                            id: "GENO:0000135"
-                            label: "heterozygous"
-            subjectOrBiosampleId: "subject 1"
+      id: "Arbitrary interpretation id"
+      progressStatus: "SOLVED"
+      diagnosis:
+        disease:
+          id: "OMIM:154700"
+          label: "Marfan syndrome"
+        genomicInterpretations:
+        - subjectOrBiosampleId: "subject 1"
+          interpretationStatus: "CONTRIBUTORY"
+          variantInterpretation:
+            acmgPathogenicityClassification: "PATHOGENIC"
+            variant:
+              expressions:
+              - syntax: "hgvs"
+                value: "NM_000138.4(FBN1):c.6751T>A"
+              allelicState:
+                id: "GENO:0000135"
+                label: "heterozygous"
 
 The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstindividual` of the enclosing phenopacket
 to indicate that the genomic interpretation refers to a germline variant.
@@ -198,33 +199,35 @@ shows a finding of compound heterozygous variants.
 .. code-block:: yaml
 
     interpretation:
-        id: "Arbitrary interpretation id"
-        progressStatus: "SOLVED"
-        diagnosis:
-            disease:
-                id: "OMIM: 219700"
-                label: "Cystic fibrosis"
-            genomicInterpretations:
-                - interpretationStatus: "CONTRIBUTORY"
-                variantInterpretation:
-                    acmgPathogenicityClassification: "PATHOGENIC"
-                        variant:
-                            hgvsAllele:
-                                hgvs: "NM_000492.3(CFTR):c.1477C>T (p.Gln493Ter)"
-                        zygosity:
-                            id: "GENO:0000135"
-                            label: "heterozygous"
-                subjectOrBiosampleId: "subject 1"
-                - interpretationStatus: "CONTRIBUTORY"
-                variantInterpretation:
-                    acmgPathogenicityClassification: "PATHOGENIC"
-                    variant:
-                        hgvsAllele:
-                            hgvs: "NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)"
-                        zygosity:
-                            id: "GENO:0000135"
-                            label: "heterozygous"
-                subjectOrBiosampleId: "subject 1"
+      id: "Arbitrary interpretation id"
+      progressStatus: "SOLVED"
+      diagnosis:
+        disease:
+          id: "OMIM: 219700"
+          label: "Cystic fibrosis"
+        genomicInterpretations:
+        - subjectOrBiosampleId: "subject 1"
+          interpretationStatus: "CONTRIBUTORY"
+          variantInterpretation:
+            acmgPathogenicityClassification: "PATHOGENIC"
+            variant:
+              expressions:
+              - syntax: "hgvs"
+                value: "NM_000492.3(CFTR):c.1477C>T (p.Gln493Ter)"
+              allelicState:
+                id: "GENO:0000135"
+                label: "heterozygous"
+        - subjectOrBiosampleId: "subject 1"
+          interpretationStatus: "CONTRIBUTORY"
+          variantInterpretation:
+            acmgPathogenicityClassification: "PATHOGENIC"
+            variant:
+              expressions:
+              - syntax: "hgvs"
+                value: "NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)"
+              allelicState:
+                id: "GENO:0000135"
+                label: "heterozygous"
 
 The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstindividual` of the enclosing phenopacket
 to indicate that the genomic interpretation refers to a germline variant.
@@ -239,21 +242,25 @@ this example, a BRAF variant is interpreted as being actionable in this sense.
 .. code-block:: yaml
 
  interpretation:
-    id: "Arbitrary interpretation id"
-    progressStatus: "COMPLETED"
-    diagnosis:
-        disease:
-            id: "NCIT:C3224"
-            label: "Melanoma"
-        genomicInterpretations:
-            - interpretationStatus: "CONTRIBUTORY"
-            variantInterpretation:
-                acmgPathogenicityClassification: "PATHOGENIC"
-                therapeuticActionability: "ACTIONABLE"
-                variant:
-                    hgvsAllele:
-                        hgvs: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"
-            subjectOrBiosampleId: "biosample id"
+  id: "Arbitrary interpretation id"
+  progressStatus: "COMPLETED"
+  diagnosis:
+    disease:
+      id: "NCIT:C3224"
+      label: "Melanoma"
+    genomicInterpretations:
+    - subjectOrBiosampleId: "biosample id"
+      interpretationStatus: "CONTRIBUTORY"
+      variantInterpretation:
+        acmgPathogenicityClassification: "PATHOGENIC"
+        therapeuticActionability: "ACTIONABLE"
+        variant:
+          expressions:
+          - syntax: "hgvs"
+            value: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"
+          allelicState:
+            id: "GENO:0000135"
+            label: "heterozygous"
 
 The ``subjectOrBiosampleId`` is set to the id of the :ref:`rstbiosample`
 that is contained in the enclosing phenopacket, representing a biopsy from

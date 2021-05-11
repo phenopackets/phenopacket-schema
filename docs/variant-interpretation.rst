@@ -68,14 +68,16 @@ The following element shows how to denote an interpretation of a variant as path
 
 .. code-block:: yaml
 
-  variantInterpretation:
-    acmgPathogenicityClassification: "PATHOGENIC"
-    variant:
-        hgvsAllele:
-            hgvs: "NM_001848.2:c.877G>A"
-        zygosity:
-            id: "GENO:0000135"
-            label: "heterozygous"
+    variantInterpretation:
+      acmgPathogenicityClassification: "PATHOGENIC"
+      variant:
+        expressions:
+        - syntax: "hgvs"
+          value: "NM_001848.2:c.877G>A"
+        allelicState:
+          id: "GENO:0000135"
+          label: "heterozygous"
+
 
 Explanations
 ############

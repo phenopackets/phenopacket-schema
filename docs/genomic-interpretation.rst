@@ -56,15 +56,16 @@ Example
 .. code-block:: yaml
 
   genomicInterpretation:
-    subjectOrBiosampleId: "subject 1"
-    status: "CONTRIBUTORY"
-    variant:
+      subjectOrBiosampleId: "subject 1"
+      interpretationStatus: "CONTRIBUTORY"
+      variantInterpretation:
         acmgPathogenicityClassification: "PATHOGENIC"
         variant:
-            hgvsAllele:
-                hgvs: "NM_001848.2:c.877G>A"
-            zygosity:
-                id: "GENO:0000135"
+          expressions:
+          - syntax: "hgvs"
+            value: "NM_001848.2:c.877G>A"
+          allelicState:
+            id: "GENO:0000135"
             label: "heterozygous"
 
 

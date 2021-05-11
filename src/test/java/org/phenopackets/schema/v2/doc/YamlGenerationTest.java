@@ -414,12 +414,12 @@ public class YamlGenerationTest extends TestBase {
                 .addGenomicInterpretations(genomicInterpretation)
                 .build();
         Interpretation interpretation = Interpretation.newBuilder()
-                .setId("SOLVERD:0000123456")
+                .setId("CONSORTIUM:0000123456")
                 .setProgressStatus(Interpretation.ProgressStatus.SOLVED)
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("9a7e47ee22437d73f2d36fdd910c557ce635d62d56ea4847a7496572dc9bef2e", hash);
+        assertEquals("9c26eb6490ff530da11b2d7b984ea81ad51d2b7622f11a4606da950ed8cd32f2", hash);
     }
 
     @Test
