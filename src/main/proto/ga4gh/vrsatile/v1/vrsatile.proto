@@ -43,8 +43,9 @@ message VariationDescriptor {
   GeneDescriptor gene_context = 5;
   // HGVS, SPDI, and gnomAD-style strings should be represented as Expressions
   repeated Expression expressions = 6;
-  // VCF Records can be represented as VcfRecords
-  repeated VcfRecord vcf_record = 7;
+  // A VCF Record of the variant. This SHOULD be a single allele, the VCF genotype (GT) field should be represented in
+  // the allelic_state
+  VcfRecord vcf_record = 7;
   // Allele registry, ClinVar, or other related IDs should be included as xrefs
   repeated string xrefs = 8;
   // Common aliases for a variant, e.g. EGFR vIII, are alternate labels

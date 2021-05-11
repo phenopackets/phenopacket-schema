@@ -619,11 +619,11 @@ public class YamlGenerationTest extends TestBase {
                 .build();
         VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("clinvar:13294")
-                .addAllVcfRecord(List.of(vcfRecord))
+                .setVcfRecord(vcfRecord)
                 .setAllelicState(heterozygous)
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("2bef515e8bc4f4d312808f6dac73312918ef6716b795eea4f625927ff71b436b", hash);
+        assertEquals("262ff8123368594c2fdc36eec5857287bde62c1d9ffd6ff4e24fce67eb05bc26", hash);
     }
 
     @Test
@@ -640,7 +640,7 @@ public class YamlGenerationTest extends TestBase {
         VariationDescriptor variant = VariationDescriptor.newBuilder()
                 .setId("clinvar:13294")
                 .setGeneContext(geneDescriptor("HGNC:3689", "FGFR2"))
-                .addAllVcfRecord(List.of(vcfRecord))
+                .setVcfRecord(vcfRecord)
                 .addExpressions(Expression.newBuilder()
                         .setSyntax("hgvs")
                         .setValue("NM_000141.5:c.1694A>C"))
@@ -650,7 +650,7 @@ public class YamlGenerationTest extends TestBase {
                 .setAllelicState(heterozygous)
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("394eeba5766b9e72425c68d62902bb55e304236f24d04d7e1d13631004124e7c", hash);
+        assertEquals("052e319393b9a0a00ff889826984e21ed4f60e389eafc2cb4b16e48542d11313", hash);
     }
 
     @Test
