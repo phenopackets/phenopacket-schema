@@ -139,7 +139,7 @@ Prostate adenocarcinoma was discovered as an incidental finding. The tumor was f
       procedure:
         code:
           id: "NCIT:C15189"
-          label: "Biopsy"`
+          label: "Biopsy"
 
 Biosample 3: Left ureter
 ~~~~~~~~~~~~~~~~~~~~~~~~

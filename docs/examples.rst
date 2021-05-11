@@ -11,7 +11,7 @@ available in the ``src/test/org/phenopackets/schema/v2/examples``.
 
    Complete example: Rare Disease <rd-example>
    Complete example: Cancer <cancer-example>
-
+   Complete example: COVID-19 case report <covid19-example>
 
 
 Each example has a corresponding explanation of how to create the Phenopacket using Java.

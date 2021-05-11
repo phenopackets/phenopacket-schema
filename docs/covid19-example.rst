@@ -19,24 +19,19 @@ number of seconds that have elapsed since the Unix epoch, minus leap seconds;
 the Unix epoch is 00:00:00 UTC on 1 January 1970. Thus, 1585353600 corresponds
 to Saturday March 28, 2020 00:00:00 (AM).
 
-.. code-block:: json
+.. code-block:: yaml
 
-   subject {
-    id: "P123542"
-    age_at_collection {
-        age: "P70Y"
-    }
-    sex: MALE
-    vital_status {
-        status: DECEASED
-        time_of_death {
-            timestamp {
-                seconds: 1585353600
-            }
-        }
-        cause_of_death {
-            id: "MONDO:0100096"
-            label: "COVID-19"
-        }
-    }
-  }
+   subject:
+      id: "P123542"
+      sex: "MALE"
+      timeAtEncounter:
+        age:
+          iso8601duration: "P70Y"
+      vitalStatus:
+        status: "DECEASED"
+        timeOfDeath:
+          timestamp: "2020-03-28T00:00:00Z"
+        causeOfDeath:
+          id: "MONDO:0100096"
+          label: "COVID-19"
+

@@ -1,9 +1,12 @@
 package org.phenopackets.schema.v2.examples;
 
 import com.google.protobuf.Timestamp;
+import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.io.FormatMapper;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 
@@ -246,5 +249,11 @@ class CovidExample {
 
     private static Timestamp timestampFrom(LocalDate localDateStart) {
         return Timestamp.newBuilder().setSeconds(localDateStart.atStartOfDay().toEpochSecond(ZoneOffset.UTC)).build();
+    }
+
+    @Test
+    public void testCovidExample() throws IOException {
+        Phenopacket phenopacket = severeCovidCaseWithCardiacComplications();
+        System.out.println(FormatMapper.messageToYaml(phenopacket));
     }
 }
