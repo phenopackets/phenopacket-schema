@@ -49,10 +49,12 @@ public class BethlemMyopathyExample {
     static Phenopacket proband() {
 
         OntologyClass mild = OntologyClass.newBuilder().setId("HP:0012825").setLabel("Mild").build();
+
         OntologyClass evidenceCode = OntologyClass.newBuilder().
                 setId("ECO:0000033").
                 setLabel("author statement supported by traceable reference").
                 build();
+
         Evidence citation = Evidence.newBuilder().
                 setReference(ExternalReference.newBuilder().
                         setId("PMID:30808312").
@@ -67,7 +69,6 @@ public class BethlemMyopathyExample {
                 .addEvidence(citation)
                 .build();
 
-
         PhenotypicFeature absentCranialNerveAbnormality = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0031910", "Abnormal cranial nerve physiology"))
                 .setNegated(true)
@@ -80,14 +81,12 @@ public class BethlemMyopathyExample {
                 .setSeverity(mild)
                 .build();
 
-
         PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011463", "Macroscopic hematuria"))
                 .setOnset(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
                 .addModifiers(ontologyClass("HP:0031796","Recurrent"))
                 .addEvidence(citation)
                 .build();
-
 
 
         Individual proband = Individual.newBuilder()
