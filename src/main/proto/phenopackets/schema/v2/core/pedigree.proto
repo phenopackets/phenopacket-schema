@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package org.phenopackets.schema.v2.core;
 
-import "phenopackets/schema/v2/core/base.proto";
 import "phenopackets/schema/v2/core/individual.proto";
 
 option java_multiple_files = true;
