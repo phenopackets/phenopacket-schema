@@ -55,7 +55,7 @@ message VariationDescriptor {
   MoleculeContext molecule_context = 11;
   // The structural variant type associated with this variant, such as a substitution, deletion, or fusion.
   // We RECOMMEND using a descendent term of SO:0001537.
-  string structural_type = 12;
+  org.phenopackets.schema.v2.core.OntologyClass structural_type = 12;
   // A Sequence corresponding to a “ref allele”, describing the sequence expected at a SequenceLocation reference.
   string vrs_ref_allele_seq = 13;
   // We RECOMMEND that the allelic_state of variant be described by terms from the Genotype Ontology (GENO).

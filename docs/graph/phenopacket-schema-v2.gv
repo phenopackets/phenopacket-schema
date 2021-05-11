@@ -1,6 +1,6 @@
 // Generated using https://edotor.net/
-// See https://graphviz.gitlab.io/
-// Note the OntologyClass and TimeElement edges are commented-out for greater clarity of the output
+ // See https://graphviz.gitlab.io/
+ // Note the OntologyClass and TimeElement edges are commented-out for greater clarity of the output
 digraph phenopacket_schema_v2 {
     fontname = "Bitstream Vera Sans"
     fontsize = 8
@@ -104,7 +104,7 @@ digraph phenopacket_schema_v2 {
     KaryotypicSex
 
     //    OntologyClass -> Procedure
-    //    TimeElement -> Procedure
+ //    TimeElement -> Procedure
 
     GestationalAge -> TimeElement
     Age -> TimeElement
@@ -133,7 +133,7 @@ digraph phenopacket_schema_v2 {
     label = "{Disease| term: OntologyClass\l excluded: Boolean\l onset: TimeElement\l resolution: TimeElement\l disease_stage: OntologyClass [0..*]\l clinical_tnm_finding: OntologyClass [0..*]\l primary_site: OntologyClass\l laterality:OntologyClass\l}"
     ]
     //    OntologyClass -> Disease
-    //    TimeElement -> Disease
+ //    TimeElement -> Disease
 
     // genome.proto
     HtsFile [
@@ -144,38 +144,10 @@ digraph phenopacket_schema_v2 {
     label = "{HtsFormat \<enum\>| 0 = UNKNOWN\l 1 = SAM\l 2 = BAM\l 3 = CRAM\l 4 = VCF\l 5 = BCF\l 6 = GVCF\l 7 = FASTQ\l }"
     ]
 
-    Gene [
-    label = "{Gene| id: String\l alternate_ids: String [0..*]\l symbol: String\l}"
-    ]
-
-    Variant [
-    label = "{Variant| allele: \{\HgvsAllele \| VcfAllele \| SpdiAllele \| IscnKaryotype\}\l zygosity: OntologyClass\l}"
-    ]
-
-    HgvsAllele [
-    label = "{HgvsAllele| id: String\l hgvs: String\l}"
-    ]
-
-    VcfAllele [
-    label = "{VcfAllele| id: String\l genome_assembly: String\l chr: String\l pos: Integer\l ref: String\l alt: String\l info: String\l end: String\l sv_type: String\l sv_length: String\l mate_id: String\l event_id: String\l}"
-    ]
-
-    SpdiAllele [
-    label = "{SpdiAllele| id: String\l seq_id: String\l position: Integer\l deleted_sequence: String\l inserted_sequence: String\l }"
-    ]
-
-    IscnKaryotype [
-    label = "{IscnKaryotype| id: String\l iscn: String\l}"
-    ]
-
     subgraph genomeProto {
     HtsFormat -> HtsFile
-    Gene
+    GeneDescriptor
     //    OntologyClass -> Variant
-    HgvsAllele -> Variant
-    VcfAllele -> Variant
-    SpdiAllele -> Variant
-    IscnKaryotype -> Variant
     }
 
     // individual.proto
@@ -193,9 +165,12 @@ digraph phenopacket_schema_v2 {
     //    OntologyClass -> Individual
 
     //    TimeElement -> VitalStatus
-    //    OntologyClass -> VitalStatus
+ //    OntologyClass -> VitalStatus
 
     // interpretation.proto
+    subgraph interpretationProto {
+    label = "interpretation"
+
     Interpretation [
     label = "{Interpretation| id: String\l progress_status: ProgressStatus\l  diagnosis: Diagnosis\l summary: String\l}"
     ]
@@ -209,7 +184,7 @@ digraph phenopacket_schema_v2 {
     ]
 
     GenomicInterpretation [
-    label = "{GenomicInterpretation| subject_or_biosample_id: String\l interpretation_status: InterpretationStatus\l call: \{Gene \| VariantInterpretation\}}"
+    label = "{GenomicInterpretation| subject_or_biosample_id: String\l interpretation_status: InterpretationStatus\l call: \{GeneDescriptor \| VariantInterpretation\}}"
     ]
 
     InterpretationStatus [
@@ -217,15 +192,17 @@ digraph phenopacket_schema_v2 {
     ]
 
     VariantInterpretation [
-    label = "{VariantInterpretation| acmgPathogenicityClassification: AcmgPathogenicityClassification\l varant: Variant\l}"
+    label = "{VariantInterpretation| acmgPathogenicityClassification: AcmgPathogenicityClassification\l variant: VariationDescriptor\l}"
     ]
 
     AcmgPathogenicityClassification [
     label = "{AcmgPathogenicityClassification \<enum\>|  0 = UNCERTAIN_SIGNIFICANCE\l 1 = PATHOGENIC\l 2 = LIKELY_PATHOGENIC\l 3 = BENIGN\l 4 = LIKELY_BENIGN\l}"
     ]
 
-    subgraph interpretationProto {
-    label = "interpretation"
+    TherapeuticActionability [
+    label = "{TherapeuticActionability \<enum\>|  0 = UNKNOWN_ACTIONABILITY\l 1 = NOT_ACTIONABLE\l 2 = ACTIONABLE\l}"
+    ]
+
     ProgressStatus -> Interpretation
     Diagnosis -> Interpretation
 
@@ -233,26 +210,66 @@ digraph phenopacket_schema_v2 {
     GenomicInterpretation -> Diagnosis
 
     InterpretationStatus -> GenomicInterpretation
-    Gene -> GenomicInterpretation
+    GeneDescriptor -> GenomicInterpretation
     VariantInterpretation -> GenomicInterpretation
 
     AcmgPathogenicityClassification -> VariantInterpretation
-    Variant -> VariantInterpretation
+    TherapeuticActionability -> VariantInterpretation
+    VariationDescriptor -> VariantInterpretation
     }
 
+    // org.ga4gh.vrsatile.proto
+   subgraph vrsatileProto {
+    GeneDescriptor [
+    label = "{GeneDescriptor| value_id: String\l symbol: String\l description: String\l alternate_ids: String [0..*]\l xrefs: String [0..*]\l alternate_symbols: String [0..*]\l}"
+    ]
+
+    VariationDescriptor [
+    label = "{VariationDescriptor| id: String\l variation: Variation\l description: String\l gene_context: GeneDescriptor\l expressions: Expression [0..*]\l vcf_record: VcfRecord\l xrefs: String [0..*]\l alternate_labels: String [0..*]\l extensions: Extension [0..*]\l molecule_context: MoleculeContext\l structural_type: OntologyClass\l vrs_ref_allele_seq: String\l zygosity: OntologyClass\l}"
+    ]
+
+    VcfRecord [
+    label = "{VcfRecord| id: String\l genome_assembly: String\l chrom: String\l pos: Integer\l ref: String\l alt: String\l qual: String\l filter: String\l info: String\l}"
+    ]
+
+    Expression [
+    label = "{Expression| syntax: String\l value: String\l version: String\l}"
+    ]
+
+    Extension [
+    label = "{Extension| name: String\l value: Any\l}"
+    ]
+
+    MoleculeContext [
+    label = "{MoleculeContext \<enum\>| 0 = unspecified_molecule_context\l 1 = genomic\l 2 = transcript\l 3 = protein\l}"
+    ]
+
+    Variation [
+    label = "{Variation| See GA4GH VRS \l}"
+    ]
+
+    Expression -> VariationDescriptor
+    Extension -> VariationDescriptor
+    MoleculeContext -> VariationDescriptor
+    VcfRecord -> VariationDescriptor
+    Variation -> VariationDescriptor
+    }
+
+
     // measurement.proto
+    subgraph measurementProto {
     Measurement [
     label = "{Measurement|  description: String\l assay: OntologyClass\l measurement_value: \{ Value \| ComplexValue\}\l time_observed: TimeElement\l procedure: Procedure\l }"
     ]
-    subgraph measurementProto {
     //    OntologyClass -> Measurement
-    Value -> Measurement
+        Value -> Measurement
     ComplexValue -> Measurement
     //    TimeElement -> Measurement
-    Procedure -> Measurement
+        Procedure -> Measurement
     }
 
     // medical_action.proto
+    subgraph medicalActionProto {
     MedicalAction [
     label = "{MedicalAction| action: \{\Procedure \| Treatment \| ChemoTherapyTreatment \| HormoneTherapyTreatment \| RadiationTherapyTreatment \| TherapeuticRegimen\}\l treatment_target: OntologyClass\l treatment_intent: OntologyClass\l response_to_treatment: OntologyClass\l adverse_events: OntologyClass [0..*]\l treatment_termination_reason: OntologyClass\l}"
     ]
@@ -292,7 +309,7 @@ digraph phenopacket_schema_v2 {
     label = "{DrugType \<enum\>| 0 = UNKNOWN_DRUG_TYPE\l 1 = PRESCRIPTION\l 2 = EHR_MEDICATION_LIST\l 3 = ADMINISTRATION_RELATED_TO_PROCEDURE\l}"
     ]
 
-    subgraph medicalActionProto {
+
     //    OntologyClass -> MedicalAction
     Procedure -> MedicalAction
     Treatment -> MedicalAction
@@ -322,11 +339,12 @@ digraph phenopacket_schema_v2 {
 
     ExternalReference -> TherapeuticRegimen
     //    OntologyClass -> TherapeuticRegimen
-    //    TimeElement -> TherapeuticRegimen
+ //    TimeElement -> TherapeuticRegimen
     RegimenStatus -> TherapeuticRegimen
     }
 
     // pedigree.proto
+    subgraph pedigreeProto {
     Pedigree [
     label = "{Pedigree| persons: Person [0..*]\l}"
     ]
@@ -339,7 +357,6 @@ digraph phenopacket_schema_v2 {
     label = "{AffectedStatus \<enum\>| 0 = MISSING\l 1 = UNAFFECTED\l 2 = AFFECTED\l}"
     ]
 
-    subgraph pedigreeProto {
     Person -> Pedigree
 
     Sex -> Person
@@ -351,10 +368,11 @@ digraph phenopacket_schema_v2 {
     label = "{PhenotypicFeature| description: String\l type: OntologyClass\l negated: Boolean\l severity: OntologyClass\l modifiers: OntologyClass [0..*]\l onset: TimeElement\l resolution: TimeElement\l evidence Evidence [0..*]\l}"
     ]
     //    OntologyClass -> PhenotypicFeature
-    //    TimeElement -> PhenotypicFeature
+ //    TimeElement -> PhenotypicFeature
     Evidence -> PhenotypicFeature
 
     // phenopackets.proto
+    subgraph phenopacketsProto {
     Phenopacket [
     label = "{Phenopacket| id: String [1..1]\l subject: Individual [1..1]\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l biosamples: Biosample [0..*]\l interpretations: interpretation [0..*]\l diseases: Disease [0..*]\l medical_actions: MedicalAction [0..*]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
     ]
@@ -379,7 +397,6 @@ digraph phenopacket_schema_v2 {
     label = "{Update| timestamp: Timestamp\l updated_by: String\l comment: String\l}"
     ]
 
-    subgraph phenopacketsProto {
     Resource -> MetaData
     Update -> MetaData
     ExternalReference -> MetaData
