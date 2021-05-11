@@ -7,9 +7,13 @@ import org.ga4gh.vrs.v1.*;
 import org.ga4gh.vrsatile.v1.Expression;
 import org.ga4gh.vrsatile.v1.GeneDescriptor;
 import org.ga4gh.vrsatile.v1.VariationDescriptor;
+import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.io.FormatMapper;
+
+import java.io.IOException;
 
 import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
 
@@ -154,7 +158,7 @@ public class BethlemMyopathyExample {
     /**
      * Example taken from PMID:30808312
      */
-    static Family rareDiseaseFamily() {
+    static Family bethlemMyopathyFamily() {
 
         long millis  = System.currentTimeMillis();
         Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
@@ -201,4 +205,9 @@ public class BethlemMyopathyExample {
                 .build();
     }
 
+    @Test
+    void testBethlemMyopathyExample() throws IOException {
+        Family example = bethlemMyopathyFamily();
+        System.out.println(FormatMapper.messageToYaml(example));
+    }
 }
