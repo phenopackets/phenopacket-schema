@@ -3,7 +3,6 @@ syntax = "proto3";
 package org.phenopackets.schema.v2.core;
 
 import "phenopackets/schema/v2/core/base.proto";
-import "phenopackets/schema/v2/core/genome.proto";
 import "ga4gh/vrsatile/v1/vrsatile.proto";
 
 option java_multiple_files = true;
@@ -60,7 +59,6 @@ message GenomicInterpretation {
     oneof call {
         org.ga4gh.vrsatile.v1.GeneDescriptor gene = 3;
         VariantInterpretation variant_interpretation = 4;
-//        VrsatileInterpretation vrsatile_interpretation = 5;
     }
 }
 
