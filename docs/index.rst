@@ -1,5 +1,5 @@
 #####################################################
-Welcome to the documentation for phenopackets-schema!
+Welcome to the documentation for the phenopacket-schema!
 #####################################################
 
 The goal of the phenopacket-schema is to define the phenotypic description of a patient/sample in the context
@@ -15,7 +15,7 @@ Version 2 is currently being finalized by the
 `Global Alliance for Genomics and Health (GA4GH) <https://www.ga4gh.org/>`_ Clinical & Phenotypic Data Capture workstream.
 
 To see the documentation for version 1, which was approved by GA4GH in 2019,
-use `this link <https://phenopackets-schema.readthedocs.io/en/1.0.0/>`_.
+use `this link <https://phenopacket-schema.readthedocs.io/en/1.0.0/>`_.
 
 
 .. toctree::

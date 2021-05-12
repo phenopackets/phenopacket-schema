@@ -4,13 +4,13 @@
 Java Build
 ##########
 
-Most users of phenopackets-schema in Java should use maven central to include the phenopackets-schema package.
+Most users of phenopacket-schema in Java should use maven central to include the phenopacket-schema package.
 
 
 
 Setting up the Java build
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-To include the phenopackets-schema package from maven central, add the following to the pom file
+To include the phenopacket-schema package from maven central, add the following to the pom file
 
 Define the phenopackets.version in the properties section of the pom.xml file.
 
@@ -33,10 +33,10 @@ Then put the following stanza into the ``dependencies`` section of the maven pom
   </dependency>
 
 
-Building phenopackets-schema locally
+Building phenopacket-schema locally
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Users can also download phenopackets-schema from its
+Users can also download phenopacket-schema from its
 `GitHub repository <https://github.com/phenopackets/phenopacket-schema>`_
 and install it locally. ::
 
