@@ -1,7 +1,7 @@
 .. _rstvitalstatus:
 
 ============
-Vital status
+VitalStatus
 ============
 This element can be used to report whether the individual is living or dead at the timepoint when the phenopacket
 was created (or if the status is unknown).
@@ -23,7 +23,7 @@ was created (or if the status is unknown).
      - 1..1
      - one of UNKNOWN_STATUS, ALIVE, DECEASED. REQUIRED.
    * - time_of_death
-     - :ref:`rsttimelement`
+     - :ref:`rsttimeelement`
      - 0..1
      - Should be left blank if patient not known to be deceased
    * - cause_of_death
