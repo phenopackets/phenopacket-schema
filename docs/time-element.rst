@@ -1,7 +1,7 @@
 .. _rsttimeelement:
 
 ############
-Time Element
+TimeElement
 ############
 
 This element intends to bundle all of the various ways of denoting time or age in
