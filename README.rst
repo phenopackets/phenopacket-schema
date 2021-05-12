@@ -9,8 +9,9 @@ Phenopacket schema
 .. |Maven Central| image:: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg
   :target: https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema
 
-.. |Documentation| image:: https://readthedocs.org/projects/phenopackets-schema/badge/?version=latest
-  :target: https://phenopackets-schema.readthedocs.io/en/latest
+.. |Documentation| image:: https://readthedocs.org/projects/phenopacket-schema/badge/?version=v2
+    :target: https://phenopacket-schema.readthedocs.io/en/v2/?badge=v2
+    :alt: Documentation Status
 
 This has been produced as part of the `GA4GH`_ `Clinical Phenotype Data Capture Workstream`_ and it merges the existing `GA4GH metadata-schemas`_ work with a more focused model from the `phenopacket-reference-implementation`_.
 
