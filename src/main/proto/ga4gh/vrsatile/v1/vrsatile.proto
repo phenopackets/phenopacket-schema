@@ -79,11 +79,12 @@ message GeneDescriptor {
   string value_id = 1;
   // The primary gene symbol. Takes the place of the label field in a generic descriptor
   string symbol = 2;
+  // A free-text description of the value object
   string description = 3;
   // Alternate IDs (should be CURIE) for the same concept may be placed in alternate_ids
   repeated string alternate_ids = 4;
-  // Related concept IDs (e.g. gene ortholog IDs) may be placed in xrefs
-  repeated string xrefs = 5;
   // Takes the place of alternate_labels field in a generic descriptor
-  repeated string alternate_symbols = 6;
+  repeated string alternate_symbols = 5;
+  // Related concept IDs (e.g. gene ortholog IDs) may be placed in xrefs
+  repeated string xrefs = 6;
 }

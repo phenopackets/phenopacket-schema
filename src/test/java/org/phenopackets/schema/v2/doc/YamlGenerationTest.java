@@ -130,21 +130,36 @@ public class YamlGenerationTest extends TestBase {
 
     @Test
     public void testGene() {
-        String id = "HGNC:347";
+        String id = "HGNC:3477";
         String symbol = "ETF1";
         GeneDescriptor gene = geneDescriptor(id, symbol);
-        String hash = printAndGetHash(gene, "gene");
-        assertEquals("c76c7df3649fd7729cd9d26d8f7138ad830e67443d3908f311fad25d756358cf", hash);
+        String hash = printAndGetHash(gene, "geneDescriptor");
+        assertEquals("470bc709c0c2b94e4dacf7283c78e05c66e0dc2b80d3eef7bd5706bcce7a3124", hash);
     }
 
     @Test
     public void testGeneWithAltIds() {
-        String id = "HGNC:347";
+        String id = "HGNC:3477";
         String symbol = "ETF1";
-        List<String> alternateIds = List.of("ensembl:ENSRNOG00000019450", "ncbigene:307503");
+        List<String> alternateIds = List.of("ensembl:ENSG00000120705", "ncbigene:2107", "ucsc:uc003ldc.6", "OMIM:600285");
         GeneDescriptor gene = geneDescriptor(id, symbol, alternateIds);
-        String hash = printAndGetHash(gene, "gene");
-        assertEquals("79291b961fd18cf50ab8c2c1e73c0ca9f67d95da39a8e2acfaae61c10ca3f439", hash);
+        String hash = printAndGetHash(gene, "geneDescriptor");
+        assertEquals("0cc93a9df29cd1a3c199a5df80dbe53513559516b05e6a308236f1a0a87cd730", hash);
+    }
+
+    @Test
+    public void testGeneWithAltIdsXrefs() {
+        String id = "HGNC:3477";
+        String symbol = "ETF1";
+        GeneDescriptor gene = GeneDescriptor.newBuilder()
+                .setValueId(id)
+                .setSymbol(symbol)
+                .addAllAlternateIds(List.of("ensembl:ENSG00000120705", "ncbigene:2107", "ucsc:uc003ldc.6", "OMIM:600285"))
+                .addAllAlternateSymbols(List.of("SUP45L1", "ERF1", "ERF", "eRF1", "TB3-1", "RF1"))
+                .addAllXrefs(List.of("VGNC:97422", "MGI:2385071", "RGD:1305712", "ensembl:ENSRNOG00000019450", "ncbigene:307503"))
+                .build();
+        String hash = printAndGetHash(gene, "geneDescriptor");
+        assertEquals("527fa8315ca5e9c37a26942b9d45d50bdfe43d73e30ee187243ed00350c83990", hash);
     }
 
     @Test
