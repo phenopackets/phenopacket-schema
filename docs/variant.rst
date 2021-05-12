@@ -34,7 +34,7 @@ This value is stored in the Variation Descriptor ``alleleic_state`` field.
 Data model
 ##########
 
-.. csv-table::
+.. list-table::
    :widths: 25 25 25 50
    :header-rows: 1
 
