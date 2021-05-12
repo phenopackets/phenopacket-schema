@@ -4,30 +4,32 @@
 VariationDescriptor
 ###################
 
-.. todo: update Variant to talk about VRSATILE, VRS, and VariationDescriptor
+Variation Descriptors are part of the `VRSATILE framework <https://vrsatile.readthedocs.io>`_, a set of
+conventions extending the GA4GH `Variation Representation Specification (VRS) <https://vrs.ga4gh.org>`_.
+Descriptors allow for the complemetary use of human-readable labels, descriptions, alternate contexts,
+and identifier cross-references alongside the precise computable representation of variation concepts
+provided by VRS.
 
-This element should be used to describe candidate variants or diagnosed causative
-variants. There is currently no standard variant nomenclature that can represent all kinds
-of genetic variation that is relevant to human medicine, science, and model organisms. Therefore,
-we represent variants using the keyword ``oneof``, which is used in protobuf for an item
-with many  optional fields where at most one field will be set at the same time. Variant messages
-contain an allele and the zygosity of the allele.
+Consequently, many forms and formats of variation can be used in variation descriptors, including `HGVS
+descriptions <https://varnomen.hgvs.org>`_, `VCF Records <https://samtools.github.io/hts-specs/VCFv4.3.pdf>`_,
+and `SPDI alleles <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7523648/>`_. We recommend the use of VRS
+Variation objects for representing variants when possible.
 
-Alleles can be listed using HGVS, VCF, SPDI or ISCN notation. The phenopacket schema will
-implement the `GA4GH Variation Representation Specification  <https://github.com/ga4gh/vr-spec>`_ once that
-is mature. The VR-Spec will be the recommended option in some settings.
+The Variation Descriptor should be used to describe candidate variants or diagnosed causative
+variants. The ``VariationDescriptor`` element itself is an element of a :ref:`rstvariantinterpretation`.
+If it is present, the Phenopacket standard has the following requirements.
 
+A variation can refer to an external source, for example the ClinGen allele registry, ClinVar, dbSNP, dbVAR etc.
+using the ``id`` field. It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :ref:`rstresource`.
+When indicating multiple alternate ids for a variation, use the ``alternate_ids`` field.
 
-- See: https://vr-spec.readthedocs.io/en/1.0rc/
-- See: https://github.com/ga4gh-beacon/specification/blob/master/beacon.yaml
+Multiple alleles *in-cis* can be modeled as a VRS `Haplotype <https://https://vrs.ga4gh.org/en/latest/terms_and_model.html#haplotype>`_.
 
-The ``Variant`` element itself is an element of a :ref:`rstvariantinterpretation`. If it is present,
-the Phenopacket standard has the following requirements.
-
-Alleles can refer to external sources, for example the ClinGen allele registry, ClinVar, dbSNP, dbVAR etc. using the ``id``
-field. It is RECOMMENDED to use a :ref:`rstcurie` identifier and corresponding :ref:`rstresource`.
-
-*n.b.* phase information for alleles are not represented in this model.
+The zygosity of the variant as determined in all of the samples represented in this Phenopacket is represented
+using a list of terms taken from the `Genotype Ontology (GENO) <https://www.ebi.ac.uk/ols/ontologies/geno>`_.
+For instance, if a variant affects one of two alleles at a certain locus, we could record the zygosity using the
+term `heterozygous (GENO:0000135) <https://www.ebi.ac.uk/ols/ontologies/geno/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGENO_0000135>`_.
+This value is stored in the Variation Descriptor ``alleleic_state`` field.
 
 Data model
 ##########
