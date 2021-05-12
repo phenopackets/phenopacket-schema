@@ -79,5 +79,5 @@ enum TherapeuticActionability {
 message VariantInterpretation {
     AcmgPathogenicityClassification acmg_pathogenicity_classification = 1;
     TherapeuticActionability therapeutic_actionability = 2;
-    org.ga4gh.vrsatile.v1.VariationDescriptor variant = 3;
+    org.ga4gh.vrsatile.v1.VariationDescriptor variation_descriptor = 3;
 }

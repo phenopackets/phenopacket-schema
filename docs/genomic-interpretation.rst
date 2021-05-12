@@ -60,7 +60,7 @@ Example
       interpretationStatus: "CONTRIBUTORY"
       variantInterpretation:
         acmgPathogenicityClassification: "PATHOGENIC"
-        variant:
+        variationDescriptor:
           expressions:
           - syntax: "hgvs"
             value: "NM_001848.2:c.877G>A"

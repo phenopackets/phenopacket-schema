@@ -747,7 +747,7 @@
 <text text-anchor="middle" x="535.1656" y="-407.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariantInterpretation</text>
 <polyline fill="none" stroke="#000000" points="418.6324,-400.9 651.6988,-400.9 "/>
 <text text-anchor="start" x="426.6324" y="-389.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">acmgPathogenicityClassification: AcmgPathogenicityClassification</text>
-<text text-anchor="start" x="426.6324" y="-380.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> variant: VariationDescriptor</text>
+<text text-anchor="start" x="426.6324" y="-380.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> variationDescriptor: VariationDescriptor</text>
 </g>
 <!-- VariantInterpretation&#45;&gt;GenomicInterpretation -->
 <g id="edge25" class="edge">

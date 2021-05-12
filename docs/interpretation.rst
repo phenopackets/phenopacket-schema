@@ -178,7 +178,7 @@ would be reported.
           interpretationStatus: "CONTRIBUTORY"
           variantInterpretation:
             acmgPathogenicityClassification: "PATHOGENIC"
-            variant:
+            variationDescriptor:
               expressions:
               - syntax: "hgvs"
                 value: "NM_000138.4(FBN1):c.6751T>A"
@@ -210,7 +210,7 @@ shows a finding of compound heterozygous variants.
           interpretationStatus: "CONTRIBUTORY"
           variantInterpretation:
             acmgPathogenicityClassification: "PATHOGENIC"
-            variant:
+            variationDescriptor:
               expressions:
               - syntax: "hgvs"
                 value: "NM_000492.3(CFTR):c.1477C>T (p.Gln493Ter)"
@@ -221,7 +221,7 @@ shows a finding of compound heterozygous variants.
           interpretationStatus: "CONTRIBUTORY"
           variantInterpretation:
             acmgPathogenicityClassification: "PATHOGENIC"
-            variant:
+            variationDescriptor:
               expressions:
               - syntax: "hgvs"
                 value: "NM_000492.3(CFTR):c.1521_1523delCTT (p.Phe508delPhe)"
@@ -254,7 +254,7 @@ this example, a BRAF variant is interpreted as being actionable in this sense.
       variantInterpretation:
         acmgPathogenicityClassification: "PATHOGENIC"
         therapeuticActionability: "ACTIONABLE"
-        variant:
+        variationDescriptor:
           expressions:
           - syntax: "hgvs"
             value: "NM_001374258.1(BRAF):c.1919T>A (p.Val640Glu)"

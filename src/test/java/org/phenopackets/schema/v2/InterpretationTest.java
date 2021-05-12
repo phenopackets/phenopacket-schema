@@ -29,7 +29,7 @@ public class InterpretationTest {
                         GenomicInterpretation.newBuilder()
                                 .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
                                 .setVariantInterpretation(VariantInterpretation.newBuilder()
-                                .setVariant(VariationDescriptor.newBuilder().setDescription(""))
+                                .setVariationDescriptor(VariationDescriptor.newBuilder().setDescription(""))
                                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)))
                 .build();
 

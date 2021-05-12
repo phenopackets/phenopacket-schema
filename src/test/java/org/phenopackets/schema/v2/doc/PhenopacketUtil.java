@@ -274,10 +274,10 @@ public class PhenopacketUtil {
                 .build();
     }
 
-    public static VariantInterpretation pathogenicVariantInterpretation(VariationDescriptor variant) {
+    public static VariantInterpretation pathogenicVariantInterpretation(VariationDescriptor variationDescriptor) {
         return VariantInterpretation.newBuilder()
                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)
-                .setVariant(variant).build();
+                .setVariationDescriptor(variationDescriptor).build();
     }
 
     public static GenomicInterpretation pathogenicGenomicInterpretationOfVariant(String id, String hgvs) {

@@ -364,7 +364,7 @@ public class YamlGenerationTest extends TestBase {
         VariationDescriptor variant = heterozygousHgvsVariant("NM_001848.2:c.877G>A");
         VariantInterpretation variantInterpretation = pathogenicVariantInterpretation(variant);
         String hash = printAndGetHash(variantInterpretation, "variantInterpretation");
-        assertEquals("6c92324e13149f23fb51a2293bc4cd6ff6e35d08049962f2ce9b0201f926bfb9", hash);
+        assertEquals("022bb0a7917e593a3c99ee2faf1f3929846586dbc44e54475089ff652c320a9b", hash);
     }
 
 
@@ -373,7 +373,7 @@ public class YamlGenerationTest extends TestBase {
     public void testGenomicInterpretation() {
        GenomicInterpretation interpretation = pathogenicGenomicInterpretationOfVariant("subject 1","NM_001848.2:c.877G>A");
         String hash = printAndGetHash(interpretation, "genomicInterpretation");
-        assertEquals("38cf1beda98826344f2fd51ce0c4cb815f5b9f73f878a4c192366aba1af66da9", hash);
+        assertEquals("d5a0e967b72787cb7e00d9dc45fe4e44b4378eb0930bbde296fa19ca7074612b", hash);
     }
 
 
@@ -451,7 +451,7 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("05b9042817c2c7d76f1547a31289048e5d84d42346ff28134797b2a212bb2507", hash);
+        assertEquals("fe0c29d992624b1e0bc2fac5e1e93a0a2867d571fa7c402f3ac07f21344f528b", hash);
     }
 
     @Test
@@ -471,7 +471,7 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("7eb5fd737098f5d1be72f88a584ad80d9fac06869b2e0cceca6e8a75a520b821", hash);
+        assertEquals("f3aff8216d727064107c8c7ec5111504083283d11181741cd10d13766cab0d07", hash);
     }
 
     @Test
@@ -480,7 +480,7 @@ public class YamlGenerationTest extends TestBase {
         VariantInterpretation v1 = VariantInterpretation.newBuilder()
                 .setAcmgPathogenicityClassification(AcmgPathogenicityClassification.PATHOGENIC)
                 .setTherapeuticActionability(TherapeuticActionability.ACTIONABLE)
-                .setVariant(brafVar).build();
+                .setVariationDescriptor(brafVar).build();
         GenomicInterpretation genomicInterpretation = GenomicInterpretation.newBuilder()
                 .setVariantInterpretation(v1)
                 .setInterpretationStatus(GenomicInterpretation.InterpretationStatus.CONTRIBUTORY)
@@ -497,7 +497,7 @@ public class YamlGenerationTest extends TestBase {
                 .setDiagnosis(diagnosis)
                 .build();
         String hash = printAndGetHash(interpretation, "interpretation");
-        assertEquals("4d3e6cae96c3dc4c75878eb05fa91e7ef89d668548bf3a1a4d7cfcf6f7458551", hash);
+        assertEquals("bf735e3ae546260eb35e1baf2867fd9d71e58275358dc6a4dcf1f6d12ada40dd", hash);
     }
 
     @Test

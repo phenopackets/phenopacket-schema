@@ -70,7 +70,7 @@ The following element shows how to denote an interpretation of a variant as path
 
     variantInterpretation:
       acmgPathogenicityClassification: "PATHOGENIC"
-      variant:
+      variationDescriptor:
         expressions:
         - syntax: "hgvs"
           value: "NM_001848.2:c.877G>A"
@@ -98,6 +98,6 @@ therapeutic_actionability
 An enumeration flagging the variant as being a candidate for treatment/ clinical intervention of the disorder caused by
 this variant, which could improve the clinical outcome.
 
-variant
-~~~~~~~
+variation_descriptor
+~~~~~~~~~~~~~~~~~~~~
 The subject of the variant interpretation. See :ref:`rstvariant` for more information.
