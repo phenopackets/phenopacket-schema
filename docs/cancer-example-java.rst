@@ -49,7 +49,7 @@ In the present case, the patient was found to have hematuria and severe dysuria,
 
 HtsFile
 ~~~~~~~
-We use three :ref:`HtsFile <rstfile>` objects in this Phenopacket. One represents the pair normal germline
+We use three :ref:`HtsFile <rsthtsfile>` objects in this Phenopacket. One represents the pair normal germline
 whole-genome sequence (WGS) VCF file, one one each represents somatic WGS data from the bladder carcinoma
 specimen and from the metastasis specimen. All three packets are created analogously. Here is the
 code for the bladder carcinoma WGS file.

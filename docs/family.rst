@@ -49,7 +49,7 @@ Data model
      - 1..1
      - representation of the pedigree. REQUIRED.
    * - hts_files
-     - :ref:`rstfile` (list)
+     - :ref:`rsthtsfile` (list)
      - 0..*
      - list of high-throughput sequencing files
    * - meta_data
@@ -95,7 +95,7 @@ files MUST be merged/multi-sample files with appropriate genotype information. F
 identifiers MUST each map to a ``Pedigree.individual_id`` referenced in the ``pedigree`` field, in order that linkage
 analysis can be performed on the sample.
 
-See :ref:`rstfile` for further information.
+See :ref:`rsthtsfile` for further information.
 
 
 meta_data

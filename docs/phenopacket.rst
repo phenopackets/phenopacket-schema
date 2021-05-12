@@ -55,7 +55,7 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
       - 0..*
       - Medical actions performed
     * - hts_files
-      - List of :ref:`rstfile`
+      - List of :ref:`rsthtsfile`
       - 0..*
       - VCF or other high-throughput sequencing files
     * - meta_data
@@ -134,7 +134,7 @@ describes what type of file is meant (e.g., BAM file), which genome assembly was
 as well as a map of samples and individuals represented in that file. It also contains a
 URI element which refers to a file on a given file system or a resource on the web.
 
-See :ref:`rstfile` for further information.
+See :ref:`rsthtsfile` for further information.
 
 
 meta_data

@@ -37,7 +37,7 @@ Data model
      - 1..*
      - Phenopackets that represent members of the cohort. REQUIRED
    * - hts_files
-     - :ref:`rstfile`
+     - :ref:`rsthtsfile`
      - 0..*
      - High-throughput sequencing files obtained from members of the cohort
    * - meta_data
@@ -70,7 +70,7 @@ Each element describes what type of file is meant (e.g., BAM file), which genome
 as well as a map of samples and individuals represented in that file. It also contains a
 URI element which refers to a file on a given file system or a resource on the web.
 
-See :ref:`rstfile` for further information.
+See :ref:`rsthtsfile` for further information.
 
 meta_data
 ~~~~~~~~

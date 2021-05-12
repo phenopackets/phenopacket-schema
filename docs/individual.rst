@@ -32,7 +32,7 @@ Data model
       - 0..1
       - A timestamp either exact or imprecise
     * - time_at_encounter
-      - :ref:`rsttimelement`
+      - :ref:`rsttimeelement`
       - 0..1
       - The age or age range of the individual. RECOMMENDED.
     * - vital_status
