@@ -11,28 +11,28 @@ was created (or if the status is unknown).
 
 
 .. list-table:: Definition  of the ``VitalStatus`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 50
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - status
      - :ref:`rststatus`
-     - required
-     - one of UNKNOWN_STATUS, ALIVE, DECEASED.
+     - 1..1
+     - one of UNKNOWN_STATUS, ALIVE, DECEASED. REQUIRED.
    * - time_of_death
      - :ref:`rsttimelement`
-     - optional
+     - 0..1
      - Should be left blank if patient not known to be deceased
    * - cause_of_death
      - :ref:`rstontologyclass`
-     - optional
+     - 0..1
      - Should be left blank if patient not known to be deceased
    * - survival_time_in_days
      - integer
-     - optional
+     - 0..1
      - Number of days the patient was alive after their primary diagnosis
 
 The vital status is commonly collected in cohort studies on cancer.
