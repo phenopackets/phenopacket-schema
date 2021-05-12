@@ -47,7 +47,7 @@ Data model
      - 1..1
      - Descriptor ID; MUST be unique within document. REQUIRED.
    * - variation
-     - Variation
+     - :ref:`rstvariation`
      - 0..1
      - The VRS ``Variation`` object
    * - label
@@ -99,39 +99,171 @@ Data model
      - 0..1
      - See :ref:`allelic_state` below. RECOMMENDED.
 
+
+.. _rstvcfrecord:
+
+VcfRecord
+~~~~~~~~~
+
+This element is used to describe variants using the
+`Variant Call Format <https://samtools.github.io/hts-specs/VCFv4.3.pdf>`_, which is in near universal use
+for exome, genome, and other Next-Generation-Sequencing-based variant calling. It is an appropriate
+option to use for variants reported according to their chromosomal location as derived from a VCF file.
+
+In the Phenopacket format, it is expected that one ``VcfRecord`` message described a single allele (in contrast to
+the actual VCF format that allows multiple alleles at the same position to be reported on the same line; to report
+these in Phenopacket format, two ``VariantDescriptor`` messages would be required). In general the ``VcfRecord`` should
+be used only for the purposes of reporting variants of specific interest, such as in the :ref:`rstvariantinterpretation`,
+for cases requiring larger numbers of variants in VCF format, the :ref:`rsthtsfile` should be used.
+
+For structural variation the INFO field should contain the relevant information .
+In general, the ``info`` field should only be used to report structural variants and it is not expected that the
+Phenopacket will report the contents of the info field for single nucleotide and other small variants.
+
+.. list-table::
+   :widths: 25 25 25 50
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Multiplicity
+     - Description
+   * - genome_assembly
+     - string
+     - 1..1
+     - Identifier for the genome assembly used to call the allele. REQUIRED.
+   * - chrom
+     - string
+     - 1..1
+     - Chromosome or contig identifier. REQUIRED.
+   * - pos
+     - int
+     - 1..1
+     - The reference position, with the 1st base having position 1. REQUIRED.
+   * - id
+     - string
+     - 0..1
+     - Identifier: Semicolon-separated list of unique identifiers where available. If this is a dbSNP variant thers  number(s)  should  be  used.
+   * - ref
+     - string
+     - 1..1
+     - Reference base. REQUIRED.
+   * - alt
+     - string
+     - 1..1
+     - Alternate base. REQUIRED.
+   * - qual
+     - string
+     - 0..1
+     - Quality: Phred-scaled quality score for the assertion made in ALT.
+   * - filter
+     - string
+     - 0..1
+     - Filter status: PASS if this position has passed all filters.
+   * - info
+     - string
+     - 0..1
+     - Additional information: Semicolon-separated series of additional information fields
+
+
+.. _rstextension:
+
+Extension
+~~~~~~~~~
+
+The Extension class provides a means to extend descriptions with other attributes unique to a content provider.
+These extensions are not expected to be natively understood by all users, but may be used for pre-negotiated exchange of message attributes when needed.
+
+.. list-table::
+   :widths: 25 25 25 50
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Multiplicity
+     - Description
+   * - name
+     - string
+     - 1..1
+     - A name for the Extension. REQUIRED.
+   * - value
+     - google.protobuf.Any
+     - 1..*
+     - Any primitive or structured object. REQUIRED.
+
+
+.. _rstexpression:
+
+Expression
+~~~~~~~~~~
+
+The Expression class is designed to enable descriptions based on a specified nomenclature or syntax for representing an
+object. Common examples of expressions for the description of molecular variation include the HGVS and ISCN nomenclatures.
+
+We RECOMMEND the use one of the following values in the ``syntax`` field: ``hgvs``, ``iscn``, ``spdi``
+
+.. list-table::
+   :widths: 25 25 25 50
+   :header-rows: 1
+
+   * - Field
+     - Type
+     - Multiplicity
+     - Description
+   * - syntax
+     - string
+     - 1..1
+     - A name for the expression syntax. REQUIRED.
+   * - value
+     - string
+     - 1..1
+     - The concept expression as a string. REQUIRED.
+   * - version
+     - string
+     - 0..1
+     - An optional version of the expression syntax.
+
+
+.. _rstmoleculecontext:
+
+MoleculeContext
+~~~~~~~~~~~~~~~
+
+The molecular context of the variant. Default is ``unspecified_molecule_context``.
+
+.. list-table::
+   :widths: 25 25 25 50
+   :header-rows: 1
+
+   * - Name
+     - Ordinal
+     - Description
+   * - unspecified_molecule_context
+     - 0
+     - Default
+   * - genomic
+     - 1
+     - :ref:`rstvariation` is a genomic variation
+   * - transcript
+     - 2
+     - :ref:`rstvariation` is a transcript variation
+   * - protein
+     - 3
+     - :ref:`rstvariation` is a protein variation
+
 Examples
 ########
 
+In these examples we will show how the ClinVar allele `13294 <https://www.ncbi.nlm.nih.gov/clinvar/variation/13294/>`_
+can be represented using a ``VariationDescriptor``. While it is possible to combine all these in a single message, we
+have separated them for clarity.
 
-HGVS Variant
-~~~~~~~~~~~~
+HGVS
+~~~~
 
 Variants can be represented using the `HGVS nomenclature <https://varnomen.hgvs.org/>`_ as follows.
 
-.. code-block:: yaml
-    variationDescriptor:
-      id: "clinvar:13294"
-      expressions:
-      - syntax: "hgvsc"
-        value: "NM_000226.3:c.470T>G"
-      allelicState:
-        id: "GENO:0000135"
-        label: "heterozygous"
-
-.. _allele:
-
-allele
-######
-
-The allele element is required and can be one and only one of ``HgvsAllele``, ``VcfAlelle``, ``SpdiAllele`` or ``IcsnAllele``.
-
-.. _hgvs:
-
-HgvsAllele
-~~~~~~~~~~
-
-This element is used to describe an allele according to the nomenclature of the
-`Human Genome Variation Society (HGVS) <http://www.hgvs.org/>`_. For instance,
+For example, the `Human Genome Variation Society (HGVS) <http://www.hgvs.org/>`_ expression
 ``NM_000226.3:c.470T>G`` indicates that a T at position 470 of the sequence represented by version 3 of
 NM_000226 (which is the mRNA of the human keratin 9 gene `KRT9 <https://www.ncbi.nlm.nih.gov/nuccore/NM_000226.3>`_).
 
@@ -140,71 +272,35 @@ We recommend using a tool such as `VariantValidator <https://variantvalidator.or
 `HGVS recommendations <http://varnomen.hgvs.org/recommendations/DNA/variant/alleles/>`_ for details about the
 HGVS nomenclature.
 
-**Data model**
-
-.. csv-table::
-   :header: Field, Type, Multiplicity, Description
-
-    id, string, 0..1, An arbitrary identifier. RECOMMENDED.
-    hgvs, string, 1..1, NM_000226.3:c.470T>G. REQUIRED.
-
 **Example**
 
 .. code-block:: yaml
+    variationDescriptor:
+      id: "clinvar:13294"
+      expressions:
+      - syntax: "hgvs"
+        value: "NM_000226.3:c.470T>G"
+      allelicState:
+        id: "GENO:0000135"
+        label: "heterozygous"
 
-    variant:
-        hgvsAllele:
-            hgvs: "NM_000226.3:c.470T>G"
-        zygosity:
-            id: "GENO:0000135"
-            label: "heterozygous"
-
-.. _vcf:
-
-VcfAllele
-~~~~~~~~~
-This element is used to describe variants using the
-`Variant Call Format <https://samtools.github.io/hts-specs/VCFv4.3.pdf>`_, which is in near universal use
-for exome, genome, and other Next-Generation-Sequencing-based variant calling. It is an appropriate
-option to use for variants reported according to their chromosomal location as derived from a VCF file.
-
-In the Phenopacket format, it is expected that one ``VcfAllele`` message described a single allele (in contrast to
-the actual VCF format that allows multiple alleles at the same position to be reported on the same line; to report
-these in Phenopacket format, two ``variant`` messages would be required).
-
-For structural variation the INFO field should contain the relevant information .
-In general, the ``info`` field should only be used to report structural variants and it is not expected that the
-Phenopacket will report the contents of the info field for single nucleotide and other small variants.
-
-**Data model**
-
-.. csv-table::
-   :header: Field, Type, Multiplicity, Description
-
-    genome_assembly, string, 1..1, The reference genome identifier e.g. GRCh38. REQUIRED.
-    id, string, 0..1, An arbitrary identifier
-    chr, string, 1..1, A chromosome identifier e.g. chr2 or 2. REQUIRED.
-    pos, int32, 1..1, The 1-based genomic position e.g. 134327882. REQUIRED.
-    ref, string, 1..1, The reference base(s). REQUIRED.
-    alt, string, 1..1, The alternate base(s). REQUIRED.
-    end, int32, 0..1, The `END` field for this allele, if present in the VCF record. RECOMMENDED.
-    sv_type, string, 0..1, The `SV_TYPE` field for this allele, if present in the VCF record.
-    sv_length, int32, 0..1, The `SV_LEN` field for this allele, if present in the VCF record.
-    mate_id, string, 0..1, The `MATE_ID` field for this allele, if present in the VCF record.
-    event_id, string, 0..1, The `EVENT_ID` field for this allele, if present in the VCF record.
-
-**Example**
+VCF
+~~~
 
 .. code-block:: yaml
 
-    variant:
-        vcfAllele:
+    variationDescriptor:
+        id: "clinvar:13294"
+        vcfRecord:
             genomeAssembly: "GRCh38"
-            id: "."
-            chr: "2"
-            pos: 134327882
-            ref: "A"
-            alt: "T"
+            chrom: "10"
+            pos: 121496701
+            id: "rs121918506"
+            ref: "T"
+            alt: "G"
+            qual: "."
+            filter: "."
+            info: "."
         zygosity:
             id: "GENO:0000135"
             label: "heterozygous"
@@ -212,12 +308,12 @@ Phenopacket will report the contents of the info field for single nucleotide and
 
 .. _spdi:
 
-SpdiAllele
-~~~~~~~~~~
-This option can be used as an alternative to the VcfAllele, and describes variants using the
-`Sequence Position Deletion Insertion (SPDI) notation <https://www.ncbi.nlm.nih.gov/variation/notation/>`_. We
-recommend that users familiarize themselves with this relatively new notation, which
-differs in important ways from other standards such as VCF and HGVS.
+SPDI
+~~~~
+The `Sequence Position Deletion Insertion (SPDI) notation <https://www.ncbi.nlm.nih.gov/variation/notation/>`_ is a
+relatively new notation which uses the same normalisation protocol as `VRS <https://vrs.ga4gh.org/en/stable/>`. We
+recommend that users familiarize themselves with this relatively new notation, which differs in important ways from other
+standards such as VCF and HGVS.
 
 Tools for interconversion between SPDI, HGVS and VCF exist at the `NCBI <https://api.ncbi.nlm.nih.gov/variation/v0/>`_.
 
@@ -241,17 +337,6 @@ insertion or deletion.
 
 Note that the deleted and inserted sequences in SPDI are all written on the positive strand for two-stranded molecules.
 
-**Data model**
-
-.. csv-table::
-   :header: Field, Type, Multiplicity, Description
-
-    id, string, 0..1, An arbitrary identifier. RECOMMENDED.
-    seq_id, string, 1..1, Seq1. REQUIRED.
-    position, int32, 1..1, 4. REQUIRED.
-    deleted_sequence, 1..1, required, A. REQUIRED.
-    inserted_sequence, 1..1, required, G. REQUIRED.
-
 **Example**
 
 .. code-block:: yaml
@@ -259,30 +344,21 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
       id: "clinvar:13294"
       expressions:
       - syntax: "spdi"
-        value: "NC_000010.10:123256214:T:G"
+        value: "NC_000010.11:121496700:T:G"
       allelicState:
         id: "GENO:0000135"
         label: "heterozygous"
 
 .. _iscn:
 
-IscnKaryotype
-~~~~~~~~~~
-This element can be used to describe cytogenetic anomalies according to the
-`International System for Human Cytogenetic Nomenclature (ISCN) <https://www.ncbi.nlm.nih.gov/pubmed/?term=18428230>`_,
+ISCN
+~~~~
+The `International System for Human Cytogenetic Nomenclature (ISCN) <https://www.ncbi.nlm.nih.gov/pubmed/?term=18428230>`_,
 an international standard for human chromosome nomenclature, which includes band names, symbols and
 abbreviated terms used in the description of human chromosome and chromosome abnormalities.
 
 For example
 del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
-
-**Data model**
-
-.. csv-table::
-   :header: Field, Type, Multiplicity, Description
-
-   id, string, 0..1, An arbitrary identifier. RECOMMENDED.
-   iscn, string, 1..1, t(8;9;11)(q12;p24;p12). REQUIRED.
 
 **Example**
 
