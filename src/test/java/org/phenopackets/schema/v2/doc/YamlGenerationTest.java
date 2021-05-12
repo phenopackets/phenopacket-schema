@@ -3,10 +3,9 @@ package org.phenopackets.schema.v2.doc;
 import com.google.protobuf.Message;
 import com.google.protobuf.Timestamp;
 import com.google.protobuf.util.Timestamps;
-import org.ga4gh.vrsatile.v1.Expression;
-import org.ga4gh.vrsatile.v1.GeneDescriptor;
-import org.ga4gh.vrsatile.v1.VariationDescriptor;
-import org.ga4gh.vrsatile.v1.VcfRecord;
+import org.ga4gh.vrs.v1.Number;
+import org.ga4gh.vrs.v1.*;
+import org.ga4gh.vrsatile.v1.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.core.*;
@@ -598,13 +597,13 @@ public class YamlGenerationTest extends TestBase {
                 .setId("clinvar:13294")
                 .addAllExpressions(List.of(Expression.newBuilder()
                         .setSyntax("spdi")
-                        .setValue("NC_000010.10:123256214:T:G")
+                        .setValue("NC_000010.11:121496700:T:G")
                         .build()
                 ))
                 .setAllelicState(heterozygous)
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("1927c9c99dc211fd87599e52afa7061c7d44bd62325c488ff721eaa36bbe1125", hash);
+        assertEquals("5378f067be48fc0c7848e86b3fe220746675a4a3612346e83aad0724a0ca17c1", hash);
     }
 
     @Test
@@ -639,6 +638,32 @@ public class YamlGenerationTest extends TestBase {
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
         assertEquals("262ff8123368594c2fdc36eec5857287bde62c1d9ffd6ff4e24fce67eb05bc26", hash);
+    }
+
+    @Test
+    public void vrsAlleleTest() {
+        OntologyClass heterozygous = ontologyClass("GENO:0000135", "heterozygous");
+        Allele allele = Allele.newBuilder()
+                .setSequenceLocation(SequenceLocation.newBuilder()
+                        .setSequenceId("NC_000010.11")
+                        .setSequenceInterval(SequenceInterval.newBuilder()
+                                .setStartNumber(Number.newBuilder().setValue(121496700))
+                                .setEndNumber(Number.newBuilder().setValue(121496700))
+                        ))
+                .setLiteralSequenceExpression(LiteralSequenceExpression.newBuilder().setSequence("G"))
+                .build();
+        Variation variation = Variation.newBuilder()
+                .setAllele(allele)
+                .build();
+        VariationDescriptor variant = VariationDescriptor.newBuilder()
+                .setId("clinvar:13294")
+                .setVariation(variation)
+                .setVrsRefAlleleSeq("T")
+                .setMoleculeContext(MoleculeContext.genomic)
+                .setAllelicState(heterozygous)
+                .build();
+        String hash = printAndGetHash(variant, "variationDescriptor");
+        assertEquals("0afa11f44b60a77294d4e14572e6901b6fdfae57e4078f9cf21716d77041a8a6", hash);
     }
 
     @Test

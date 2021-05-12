@@ -47,7 +47,7 @@ Data model
      - 1..1
      - Descriptor ID; MUST be unique within document. REQUIRED.
    * - variation
-     - :ref:`rstvariation`
+     - :ref:`rstvrsvariation`
      - 0..1
      - The VRS ``Variation`` object
    * - label
@@ -99,6 +99,14 @@ Data model
      - 0..1
      - See :ref:`allelic_state` below. RECOMMENDED.
 
+
+.. _rstvrsvariation:
+
+Variation
+~~~~~~~~~
+
+`VRS <https://vrs.ga4gh.org/en/stable/>`_ is a GA4GH standard which provides a computable representation of variation, be it
+a genomic, transcript or protein variation.
 
 .. _rstvcfrecord:
 
@@ -258,6 +266,35 @@ In these examples we will show how the ClinVar allele `13294 <https://www.ncbi.n
 can be represented using a ``VariationDescriptor``. While it is possible to combine all these in a single message, we
 have separated them for clarity.
 
+VRS
+~~~
+Here we're representing the genomic variation using VRS, however VRS is capable of representing the variation in genomic,
+transcript or protein coordinates.
+
+**Example**
+
+.. code-block:: yaml
+
+    variationDescriptor:
+      id: "clinvar:13294"
+      variation:
+        allele:
+          sequenceLocation:
+            sequenceId: "NC_000010.11"
+            sequenceInterval:
+              startNumber:
+                value: 1.214967E8
+              endNumber:
+                value: 1.214967E8
+          literalSequenceExpression:
+            sequence: "G"
+      moleculeContext: "genomic"
+      vrsRefAlleleSeq: "T"
+      allelicState:
+        id: "GENO:0000135"
+        label: "heterozygous"
+
+
 HGVS
 ~~~~
 
@@ -275,6 +312,7 @@ HGVS nomenclature.
 **Example**
 
 .. code-block:: yaml
+
     variationDescriptor:
       id: "clinvar:13294"
       expressions:
@@ -311,7 +349,7 @@ VCF
 SPDI
 ~~~~
 The `Sequence Position Deletion Insertion (SPDI) notation <https://www.ncbi.nlm.nih.gov/variation/notation/>`_ is a
-relatively new notation which uses the same normalisation protocol as `VRS <https://vrs.ga4gh.org/en/stable/>`. We
+relatively new notation which uses the same normalisation protocol as `VRS <https://vrs.ga4gh.org/en/stable/>`_. We
 recommend that users familiarize themselves with this relatively new notation, which differs in important ways from other
 standards such as VCF and HGVS.
 
