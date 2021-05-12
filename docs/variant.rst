@@ -12,7 +12,8 @@ provided by VRS.
 
 Consequently, many forms and formats of variation can be used in variation descriptors, including `HGVS
 descriptions <https://varnomen.hgvs.org>`_, `VCF Records <https://samtools.github.io/hts-specs/VCFv4.3.pdf>`_,
-and `SPDI <https://>`_. We recommend the use of VRS Variation objects for representing variants when possible.
+and `SPDI alleles <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7523648/>`_. We recommend the use of VRS
+Variation objects for representing variants when possible.
 
 The Variation Descriptor should be used to describe candidate variants or diagnosed causative
 variants. The ``VariationDescriptor`` element itself is an element of a :ref:`rstvariantinterpretation`.

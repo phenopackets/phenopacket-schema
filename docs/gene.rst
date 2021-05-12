@@ -5,9 +5,13 @@ GeneDescriptor
 ##############
 
 
-This element represents an identifier for a gene. It can be used to transmit the information that
-the gene is thought to play a causative role in the disease phenotypes being described in cases where
-the exact variant cannot be transmitted, either for privacy reasons or because it is unknown.
+This element represents an identifier for a gene, using the Gene Descriptor from the
+`VRSATILE Framework <https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#gene-descriptor>`_.
+Gene Descriptors can be used to transmit the information that the gene is thought to play a
+causative role in the disease phenotypes being described in cases where the exact variant cannot
+be transmitted, either for privacy reasons or because it is unknown.
+
+Gene Descriptors may also be used to contextualize variants described in a :ref:`rstvariant`.
 
 Data model
 ##########
