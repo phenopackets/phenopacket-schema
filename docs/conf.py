@@ -46,9 +46,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'phenopackets-schema'
-copyright = u'2021, Julius OB Jacobsen, Peter N Robinson, Christopher J Mungall'
-author = u'Julius OB Jacobsen, Peter N Robinson, Christopher J Mungall'
+project = u'phenopacket-schema'
+copyright = u'2021, Julius OB Jacobsen, Peter N Robinson'
+author = u'Julius OB Jacobsen, Peter N Robinson'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -84,6 +84,7 @@ todo_include_todos = True
 # a list of builtin themes.
 #
 html_theme = "sphinx_rtd_theme"
+html_logo = 'images/GA-logo.png'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -115,7 +116,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'phenopackets-schema'
+htmlhelp_basename = 'phenopacket-schema'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -142,8 +143,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'phenopackets-schema.tex', u'Phenopackets-schema Documentation',
-     u'Julius OB Jacobsen, Peter N Robinson, Christopher J Mungall', 'manual'),
+    (master_doc, 'phenopacket-schema.tex', u'Phenopacket-schema Documentation',
+     u'Julius OB Jacobsen & Peter N Robinson', 'manual'),
 ]
 
 
@@ -152,7 +153,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'phenopackets-schema', u'Phenopackets-schema Documentation',
+    (master_doc, 'phenopacket-schema', u'Phenopacket-schema Documentation',
      [author], 1)
 ]
 
@@ -163,8 +164,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'phenopackets-schema', u'Phenopackets-schema Documentation',
-     author, 'phenopackets-schema', 'Schema for Phenopackets.',
+    (master_doc, 'phenopacket-schema', u'Phenopacket-schema Documentation',
+     author, 'phenopacket-schema', 'Schema for Phenopackets.',
      'Miscellaneous'),
 ]
 
