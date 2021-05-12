@@ -161,7 +161,7 @@ in order to protect the privacy of the individual. Instead, the ``Age`` element 
 time_at_encounter
 ~~~~~~~~~~~~~~~~~
 An object describing when the encounter with the patient happened or the the age of the individual at the time of collection
-of biospecimens or phenotypic observations reported in the current Phenopacket. It is specified using either an :ref:`rsttimelement`,
+of biospecimens or phenotypic observations reported in the current Phenopacket. It is specified using either an :ref:`rsttimeelement`,
 which can represent an time in several different ways, either precisely or within a range. For example an :ref:`rstage`
 or an :ref:`AgeRange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
 was to protect privacy of study participants).
