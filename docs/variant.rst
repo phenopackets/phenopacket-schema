@@ -47,7 +47,7 @@ Data model
      - 1..1
      - Descriptor ID; MUST be unique within document. REQUIRED.
    * - variation
-     - :ref:`rstvariation`
+     - Variation
      - 0..1
      - The VRS ``Variation`` object
 
