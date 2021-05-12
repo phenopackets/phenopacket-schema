@@ -325,6 +325,8 @@ HGVS nomenclature.
 VCF
 ~~~
 
+**Example**
+
 .. code-block:: yaml
 
     variationDescriptor:
@@ -378,6 +380,7 @@ Note that the deleted and inserted sequences in SPDI are all written on the posi
 **Example**
 
 .. code-block:: yaml
+
     variationDescriptor:
       id: "clinvar:13294"
       expressions:
@@ -401,6 +404,7 @@ del(6)(q23q24) describes a deletion from band q23 to q24 on chromosome 6.
 **Example**
 
 .. code-block:: yaml
+
     variationDescriptor:
       id: "id:A"
       expressions:
