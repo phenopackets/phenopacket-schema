@@ -43,15 +43,7 @@ Data model
     label, string, 0..1, A primary label for the variation
     description, string, 0..1, A free-text description of the variation
     gene_context, :ref:`rstgene`, 0..1, A specific gene context that applies to this variant.
-    expressions, :ref:`rstexpression`, 0..*, HGVS, SPDI, and gnomAD-style strings should be represented as Expressions
-    vcf_record, :ref:`rstvcfrecord`, 0..*, A VCF Record of the variant. This SHOULD be a single allele, the VCF genotype (GT) field should be represented in the allelic_state
-    xrefs, string, 0..*, List of CURIEs representing associated concepts. Allele registry, ClinVar, or other related IDs should be included as xrefs
-    alternate_labels, string, 0..*, Common aliases for a variant, e.g. EGFR vIII, are alternate labels
-    extensions, :ref:`rstextension`, 0..*, List of resource-specific Extensions needed to describe the variation
-    molecule_context, :ref:`rstmoleculecontext`, 1..1, The molecular context of the vrs variation.
-    structural_type, :ref:`rstontologyclass`, 0..1, The structural variant type associated with this variant, such as a substitution, deletion, or fusion. We RECOMMEND using a descendent term of SO:0001537.
-    vrs_ref_allele_seq, string, 0..1, A Sequence corresponding to a “ref allele”, describing the sequence expected at a SequenceLocation reference.
-    allelic_state, :ref:`rstontologyclass` , 0..1, See :ref:`allelic_state` below. RECOMMENDED.
+
 
 
 Examples
