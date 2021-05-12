@@ -192,7 +192,7 @@ digraph phenopacket_schema_v2 {
     ]
 
     VariantInterpretation [
-    label = "{VariantInterpretation| acmgPathogenicityClassification: AcmgPathogenicityClassification\l variationDescriptor: VariationDescriptor\l}"
+    label = "{VariantInterpretation| acmg_pathogenicity_classification: AcmgPathogenicityClassification\l therapeutic_actionability: TherapeuticActionability\l variation_descriptor: VariationDescriptor\l}"
     ]
 
     AcmgPathogenicityClassification [

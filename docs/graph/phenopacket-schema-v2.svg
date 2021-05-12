@@ -7,11 +7,11 @@
 <!-- OntologyClass -->
 <g id="node1" class="node">
 <title>OntologyClass</title>
-<polygon fill="none" stroke="#000000" points="35.2456,-51.7 35.2456,-96.5 99.0856,-96.5 99.0856,-51.7 35.2456,-51.7"/>
-<text text-anchor="middle" x="67.1656" y="-85.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">OntologyClass</text>
-<polyline fill="none" stroke="#000000" points="35.2456,-78.9 99.0856,-78.9 "/>
-<text text-anchor="start" x="43.2456" y="-67.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">+ id: String</text>
-<text text-anchor="start" x="43.2456" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> + label: String</text>
+<polygon fill="none" stroke="#000000" points="32.2456,-51.7 32.2456,-96.5 96.0856,-96.5 96.0856,-51.7 32.2456,-51.7"/>
+<text text-anchor="middle" x="64.1656" y="-85.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">OntologyClass</text>
+<polyline fill="none" stroke="#000000" points="32.2456,-78.9 96.0856,-78.9 "/>
+<text text-anchor="start" x="40.2456" y="-67.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">+ id: String</text>
+<text text-anchor="start" x="40.2456" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> + label: String</text>
 </g>
 <!-- ExternalReference -->
 <g id="node2" class="node">
@@ -743,161 +743,162 @@
 <!-- VariantInterpretation -->
 <g id="node32" class="node">
 <title>VariantInterpretation</title>
-<polygon fill="none" stroke="#000000" points="418.6324,-373.7 418.6324,-418.5 651.6988,-418.5 651.6988,-373.7 418.6324,-373.7"/>
-<text text-anchor="middle" x="535.1656" y="-407.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariantInterpretation</text>
-<polyline fill="none" stroke="#000000" points="418.6324,-400.9 651.6988,-400.9 "/>
-<text text-anchor="start" x="426.6324" y="-389.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">acmgPathogenicityClassification: AcmgPathogenicityClassification</text>
-<text text-anchor="start" x="426.6324" y="-380.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> variationDescriptor: VariationDescriptor</text>
+<polygon fill="none" stroke="#000000" points="412.748,-368.9 412.748,-423.3 651.5832,-423.3 651.5832,-368.9 412.748,-368.9"/>
+<text text-anchor="middle" x="532.1656" y="-412.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariantInterpretation</text>
+<polyline fill="none" stroke="#000000" points="412.748,-405.7 651.5832,-405.7 "/>
+<text text-anchor="start" x="420.748" y="-394.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">acmg_pathogenicity_classification: AcmgPathogenicityClassification</text>
+<text text-anchor="start" x="420.748" y="-384.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> therapeutic_actionability: TherapeuticActionability</text>
+<text text-anchor="start" x="420.748" y="-375.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> variation_descriptor: VariationDescriptor</text>
 </g>
 <!-- VariantInterpretation&#45;&gt;GenomicInterpretation -->
 <g id="edge25" class="edge">
 <title>VariantInterpretation-&gt;GenomicInterpretation</title>
-<path fill="none" stroke="#000000" d="M567.9127,-418.7094C597.5894,-439.199 641.6934,-469.6495 675.318,-492.8648"/>
-<polygon fill="#000000" stroke="#000000" points="673.408,-495.7992 683.6257,-498.6007 677.3851,-490.0388 673.408,-495.7992"/>
+<path fill="none" stroke="#000000" d="M572.2055,-423.3103C601.9021,-443.4916 642.5479,-471.1137 674.1828,-492.6122"/>
+<polygon fill="#000000" stroke="#000000" points="672.6118,-495.7763 682.85,-498.5023 676.5464,-489.9867 672.6118,-495.7763"/>
 </g>
 <!-- AcmgPathogenicityClassification -->
 <g id="node33" class="node">
 <title>AcmgPathogenicityClassification</title>
-<polygon fill="none" stroke="#000000" points="459.0004,-205.5 459.0004,-279.1 611.3308,-279.1 611.3308,-205.5 459.0004,-205.5"/>
-<text text-anchor="middle" x="535.1656" y="-267.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">AcmgPathogenicityClassification &lt;enum&gt;</text>
-<polyline fill="none" stroke="#000000" points="459.0004,-261.5 611.3308,-261.5 "/>
-<text text-anchor="start" x="467.0004" y="-250.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNCERTAIN_SIGNIFICANCE</text>
-<text text-anchor="start" x="467.0004" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = PATHOGENIC</text>
-<text text-anchor="start" x="467.0004" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = LIKELY_PATHOGENIC</text>
-<text text-anchor="start" x="467.0004" y="-221.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = BENIGN</text>
-<text text-anchor="start" x="467.0004" y="-211.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = LIKELY_BENIGN</text>
+<polygon fill="none" stroke="#000000" points="456.0004,-205.5 456.0004,-279.1 608.3308,-279.1 608.3308,-205.5 456.0004,-205.5"/>
+<text text-anchor="middle" x="532.1656" y="-267.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">AcmgPathogenicityClassification &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="456.0004,-261.5 608.3308,-261.5 "/>
+<text text-anchor="start" x="464.0004" y="-250.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNCERTAIN_SIGNIFICANCE</text>
+<text text-anchor="start" x="464.0004" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = PATHOGENIC</text>
+<text text-anchor="start" x="464.0004" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = LIKELY_PATHOGENIC</text>
+<text text-anchor="start" x="464.0004" y="-221.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = BENIGN</text>
+<text text-anchor="start" x="464.0004" y="-211.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = LIKELY_BENIGN</text>
 </g>
 <!-- AcmgPathogenicityClassification&#45;&gt;VariantInterpretation -->
 <g id="edge26" class="edge">
 <title>AcmgPathogenicityClassification-&gt;VariantInterpretation</title>
-<path fill="none" stroke="#000000" d="M535.1656,-279.1389C535.1656,-304.685 535.1656,-338.4143 535.1656,-363.0853"/>
-<polygon fill="#000000" stroke="#000000" points="531.6657,-363.3869 535.1656,-373.3869 538.6657,-363.3869 531.6657,-363.3869"/>
+<path fill="none" stroke="#000000" d="M532.1656,-279.1389C532.1656,-303.1367 532.1656,-334.356 532.1656,-358.5037"/>
+<polygon fill="#000000" stroke="#000000" points="528.6657,-358.713 532.1656,-368.7131 535.6657,-358.7131 528.6657,-358.713"/>
 </g>
 <!-- TherapeuticActionability -->
 <g id="node34" class="node">
 <title>TherapeuticActionability</title>
-<polygon fill="none" stroke="#000000" points="629.71,-215.1 629.71,-269.5 766.6212,-269.5 766.6212,-215.1 629.71,-215.1"/>
-<text text-anchor="middle" x="698.1656" y="-258.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">TherapeuticActionability &lt;enum&gt;</text>
-<polyline fill="none" stroke="#000000" points="629.71,-251.9 766.6212,-251.9 "/>
-<text text-anchor="start" x="637.71" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN_ACTIONABILITY</text>
-<text text-anchor="start" x="637.71" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = NOT_ACTIONABLE</text>
-<text text-anchor="start" x="637.71" y="-221.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = ACTIONABLE</text>
+<polygon fill="none" stroke="#000000" points="626.71,-215.1 626.71,-269.5 763.6212,-269.5 763.6212,-215.1 626.71,-215.1"/>
+<text text-anchor="middle" x="695.1656" y="-258.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">TherapeuticActionability &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="626.71,-251.9 763.6212,-251.9 "/>
+<text text-anchor="start" x="634.71" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNKNOWN_ACTIONABILITY</text>
+<text text-anchor="start" x="634.71" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = NOT_ACTIONABLE</text>
+<text text-anchor="start" x="634.71" y="-221.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = ACTIONABLE</text>
 </g>
 <!-- TherapeuticActionability&#45;&gt;VariantInterpretation -->
 <g id="edge27" class="edge">
 <title>TherapeuticActionability-&gt;VariantInterpretation</title>
-<path fill="none" stroke="#000000" d="M670.1836,-269.817C655.4032,-284.2602 636.9039,-302.1935 620.1656,-318 603.0113,-334.1994 583.6573,-352.0174 567.7552,-366.5389"/>
-<polygon fill="#000000" stroke="#000000" points="565.2822,-364.0573 560.2508,-373.3812 569.9985,-369.23 565.2822,-364.0573"/>
+<path fill="none" stroke="#000000" d="M667.1836,-269.817C652.4032,-284.2602 633.9039,-302.1935 617.1656,-318 601.7802,-332.529 584.6254,-348.3599 569.7785,-361.9468"/>
+<polygon fill="#000000" stroke="#000000" points="567.2683,-359.4994 562.2466,-368.8285 571.99,-364.6672 567.2683,-359.4994"/>
 </g>
 <!-- VariationDescriptor -->
 <g id="node35" class="node">
 <title>VariationDescriptor</title>
-<polygon fill="none" stroke="#000000" points="306.846,-167.1 306.846,-317.5 441.4852,-317.5 441.4852,-167.1 306.846,-167.1"/>
-<text text-anchor="middle" x="374.1656" y="-306.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariationDescriptor</text>
-<polyline fill="none" stroke="#000000" points="306.846,-299.9 441.4852,-299.9 "/>
-<text text-anchor="start" x="314.846" y="-288.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
-<text text-anchor="start" x="314.846" y="-279.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> variation: Variation</text>
-<text text-anchor="start" x="314.846" y="-269.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> description: String</text>
-<text text-anchor="start" x="314.846" y="-259.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> gene_context: GeneDescriptor</text>
-<text text-anchor="start" x="314.846" y="-250.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> expressions: Expression [0..*]</text>
-<text text-anchor="start" x="314.846" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> vcf_record: VcfRecord</text>
-<text text-anchor="start" x="314.846" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> xrefs: String [0..*]</text>
-<text text-anchor="start" x="314.846" y="-221.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> alternate_labels: String [0..*]</text>
-<text text-anchor="start" x="314.846" y="-211.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> extensions: Extension [0..*]</text>
-<text text-anchor="start" x="314.846" y="-202.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> molecule_context: MoleculeContext</text>
-<text text-anchor="start" x="314.846" y="-192.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> structural_type: OntologyClass</text>
-<text text-anchor="start" x="314.846" y="-183.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> vrs_ref_allele_seq: String</text>
-<text text-anchor="start" x="314.846" y="-173.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> zygosity: OntologyClass</text>
+<polygon fill="none" stroke="#000000" points="303.846,-167.1 303.846,-317.5 438.4852,-317.5 438.4852,-167.1 303.846,-167.1"/>
+<text text-anchor="middle" x="371.1656" y="-306.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VariationDescriptor</text>
+<polyline fill="none" stroke="#000000" points="303.846,-299.9 438.4852,-299.9 "/>
+<text text-anchor="start" x="311.846" y="-288.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
+<text text-anchor="start" x="311.846" y="-279.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> variation: Variation</text>
+<text text-anchor="start" x="311.846" y="-269.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> description: String</text>
+<text text-anchor="start" x="311.846" y="-259.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> gene_context: GeneDescriptor</text>
+<text text-anchor="start" x="311.846" y="-250.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> expressions: Expression [0..*]</text>
+<text text-anchor="start" x="311.846" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> vcf_record: VcfRecord</text>
+<text text-anchor="start" x="311.846" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> xrefs: String [0..*]</text>
+<text text-anchor="start" x="311.846" y="-221.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> alternate_labels: String [0..*]</text>
+<text text-anchor="start" x="311.846" y="-211.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> extensions: Extension [0..*]</text>
+<text text-anchor="start" x="311.846" y="-202.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> molecule_context: MoleculeContext</text>
+<text text-anchor="start" x="311.846" y="-192.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> structural_type: OntologyClass</text>
+<text text-anchor="start" x="311.846" y="-183.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> vrs_ref_allele_seq: String</text>
+<text text-anchor="start" x="311.846" y="-173.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> zygosity: OntologyClass</text>
 </g>
 <!-- VariationDescriptor&#45;&gt;VariantInterpretation -->
 <g id="edge28" class="edge">
 <title>VariationDescriptor-&gt;VariantInterpretation</title>
-<path fill="none" stroke="#000000" d="M441.5714,-309.7209C444.466,-312.5271 447.3397,-315.2965 450.1656,-318 467.2144,-334.3105 486.5599,-352.1374 502.4836,-366.636"/>
-<polygon fill="#000000" stroke="#000000" points="500.2455,-369.3315 510.0008,-373.465 504.9525,-364.1502 500.2455,-369.3315"/>
+<path fill="none" stroke="#000000" d="M438.5714,-309.7209C441.466,-312.5271 444.3397,-315.2965 447.1656,-318 462.333,-332.5106 479.3182,-348.2214 494.0947,-361.7211"/>
+<polygon fill="#000000" stroke="#000000" points="491.8507,-364.4115 501.5991,-368.561 496.5661,-359.2379 491.8507,-364.4115"/>
 </g>
 <!-- VcfRecord -->
 <g id="node36" class="node">
 <title>VcfRecord</title>
-<polygon fill="none" stroke="#000000" points="430.7272,-18.1 430.7272,-130.1 531.604,-130.1 531.604,-18.1 430.7272,-18.1"/>
-<text text-anchor="middle" x="481.1656" y="-118.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VcfRecord</text>
-<polyline fill="none" stroke="#000000" points="430.7272,-112.5 531.604,-112.5 "/>
-<text text-anchor="start" x="438.7272" y="-101.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
-<text text-anchor="start" x="438.7272" y="-91.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> genome_assembly: String</text>
-<text text-anchor="start" x="438.7272" y="-82.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> chrom: String</text>
-<text text-anchor="start" x="438.7272" y="-72.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> pos: Integer</text>
-<text text-anchor="start" x="438.7272" y="-62.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> ref: String</text>
-<text text-anchor="start" x="438.7272" y="-53.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> alt: String</text>
-<text text-anchor="start" x="438.7272" y="-43.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> qual: String</text>
-<text text-anchor="start" x="438.7272" y="-34.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> filter: String</text>
-<text text-anchor="start" x="438.7272" y="-24.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> info: String</text>
+<polygon fill="none" stroke="#000000" points="427.7272,-18.1 427.7272,-130.1 528.604,-130.1 528.604,-18.1 427.7272,-18.1"/>
+<text text-anchor="middle" x="478.1656" y="-118.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">VcfRecord</text>
+<polyline fill="none" stroke="#000000" points="427.7272,-112.5 528.604,-112.5 "/>
+<text text-anchor="start" x="435.7272" y="-101.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
+<text text-anchor="start" x="435.7272" y="-91.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> genome_assembly: String</text>
+<text text-anchor="start" x="435.7272" y="-82.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> chrom: String</text>
+<text text-anchor="start" x="435.7272" y="-72.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> pos: Integer</text>
+<text text-anchor="start" x="435.7272" y="-62.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> ref: String</text>
+<text text-anchor="start" x="435.7272" y="-53.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> alt: String</text>
+<text text-anchor="start" x="435.7272" y="-43.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> qual: String</text>
+<text text-anchor="start" x="435.7272" y="-34.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> filter: String</text>
+<text text-anchor="start" x="435.7272" y="-24.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> info: String</text>
 </g>
 <!-- VcfRecord&#45;&gt;VariationDescriptor -->
 <g id="edge32" class="edge">
 <title>VcfRecord-&gt;VariationDescriptor</title>
-<path fill="none" stroke="#000000" d="M445.5361,-130.1082C439.7057,-139.2735 433.5552,-148.9417 427.4093,-158.6028"/>
-<polygon fill="#000000" stroke="#000000" points="424.4321,-156.7622 422.0177,-167.0783 430.3383,-160.5195 424.4321,-156.7622"/>
+<path fill="none" stroke="#000000" d="M442.5361,-130.1082C436.7057,-139.2735 430.5552,-148.9417 424.4093,-158.6028"/>
+<polygon fill="#000000" stroke="#000000" points="421.4321,-156.7622 419.0177,-167.0783 427.3383,-160.5195 421.4321,-156.7622"/>
 </g>
 <!-- Expression -->
 <g id="node37" class="node">
 <title>Expression</title>
-<polygon fill="none" stroke="#000000" points="549.5012,-46.9 549.5012,-101.3 614.83,-101.3 614.83,-46.9 549.5012,-46.9"/>
-<text text-anchor="middle" x="582.1656" y="-90.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Expression</text>
-<polyline fill="none" stroke="#000000" points="549.5012,-83.7 614.83,-83.7 "/>
-<text text-anchor="start" x="557.5012" y="-72.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">syntax: String</text>
-<text text-anchor="start" x="557.5012" y="-62.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> value: String</text>
-<text text-anchor="start" x="557.5012" y="-53.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> version: String</text>
+<polygon fill="none" stroke="#000000" points="546.5012,-46.9 546.5012,-101.3 611.83,-101.3 611.83,-46.9 546.5012,-46.9"/>
+<text text-anchor="middle" x="579.1656" y="-90.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Expression</text>
+<polyline fill="none" stroke="#000000" points="546.5012,-83.7 611.83,-83.7 "/>
+<text text-anchor="start" x="554.5012" y="-72.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">syntax: String</text>
+<text text-anchor="start" x="554.5012" y="-62.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> value: String</text>
+<text text-anchor="start" x="554.5012" y="-53.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> version: String</text>
 </g>
 <!-- Expression&#45;&gt;VariationDescriptor -->
 <g id="edge29" class="edge">
 <title>Expression-&gt;VariationDescriptor</title>
-<path fill="none" stroke="#000000" d="M566.3788,-101.422C559.3973,-111.6523 550.4319,-122.6973 540.1656,-130.6 506.0271,-156.8786 486.1551,-142.9197 450.1656,-166.6 450.0781,-166.6576 449.9906,-166.7153 449.9031,-166.7731"/>
-<polygon fill="#000000" stroke="#000000" points="447.9985,-163.8337 441.8301,-172.4478 452.024,-169.5604 447.9985,-163.8337"/>
+<path fill="none" stroke="#000000" d="M563.3788,-101.422C556.3973,-111.6523 547.4319,-122.6973 537.1656,-130.6 503.0271,-156.8786 483.1551,-142.9197 447.1656,-166.6 447.0781,-166.6576 446.9906,-166.7153 446.9031,-166.7731"/>
+<polygon fill="#000000" stroke="#000000" points="444.9985,-163.8337 438.8301,-172.4478 449.024,-169.5604 444.9985,-163.8337"/>
 </g>
 <!-- Extension -->
 <g id="node38" class="node">
 <title>Extension</title>
-<polygon fill="none" stroke="#000000" points="116.6128,-51.7 116.6128,-96.5 173.7184,-96.5 173.7184,-51.7 116.6128,-51.7"/>
-<text text-anchor="middle" x="145.1656" y="-85.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Extension</text>
-<polyline fill="none" stroke="#000000" points="116.6128,-78.9 173.7184,-78.9 "/>
-<text text-anchor="start" x="124.6128" y="-67.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">name: String</text>
-<text text-anchor="start" x="124.6128" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> value: Any</text>
+<polygon fill="none" stroke="#000000" points="113.6128,-51.7 113.6128,-96.5 170.7184,-96.5 170.7184,-51.7 113.6128,-51.7"/>
+<text text-anchor="middle" x="142.1656" y="-85.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Extension</text>
+<polyline fill="none" stroke="#000000" points="113.6128,-78.9 170.7184,-78.9 "/>
+<text text-anchor="start" x="121.6128" y="-67.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">name: String</text>
+<text text-anchor="start" x="121.6128" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> value: Any</text>
 </g>
 <!-- Extension&#45;&gt;VariationDescriptor -->
 <g id="edge30" class="edge">
 <title>Extension-&gt;VariationDescriptor</title>
-<path fill="none" stroke="#000000" d="M157.189,-96.7735C163.8286,-107.8683 172.8246,-120.8897 183.1656,-130.6 216.4678,-161.8708 260.0467,-188.1931 297.168,-207.4162"/>
-<polygon fill="#000000" stroke="#000000" points="295.9573,-210.7274 306.4563,-212.1492 299.1355,-204.4905 295.9573,-210.7274"/>
+<path fill="none" stroke="#000000" d="M154.189,-96.7735C160.8286,-107.8683 169.8246,-120.8897 180.1656,-130.6 213.4678,-161.8708 257.0467,-188.1931 294.168,-207.4162"/>
+<polygon fill="#000000" stroke="#000000" points="292.9573,-210.7274 303.4563,-212.1492 296.1355,-204.4905 292.9573,-210.7274"/>
 </g>
 <!-- MoleculeContext -->
 <g id="node39" class="node">
 <title>MoleculeContext</title>
-<polygon fill="none" stroke="#000000" points="192.0368,-42.1 192.0368,-106.1 318.2944,-106.1 318.2944,-42.1 192.0368,-42.1"/>
-<text text-anchor="middle" x="255.1656" y="-94.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">MoleculeContext &lt;enum&gt;</text>
-<polyline fill="none" stroke="#000000" points="192.0368,-88.5 318.2944,-88.5 "/>
-<text text-anchor="start" x="200.0368" y="-77.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = unspecified_molecule_context</text>
-<text text-anchor="start" x="200.0368" y="-67.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = genomic</text>
-<text text-anchor="start" x="200.0368" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = transcript</text>
-<text text-anchor="start" x="200.0368" y="-48.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = protein</text>
+<polygon fill="none" stroke="#000000" points="189.0368,-42.1 189.0368,-106.1 315.2944,-106.1 315.2944,-42.1 189.0368,-42.1"/>
+<text text-anchor="middle" x="252.1656" y="-94.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">MoleculeContext &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="189.0368,-88.5 315.2944,-88.5 "/>
+<text text-anchor="start" x="197.0368" y="-77.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = unspecified_molecule_context</text>
+<text text-anchor="start" x="197.0368" y="-67.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = genomic</text>
+<text text-anchor="start" x="197.0368" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = transcript</text>
+<text text-anchor="start" x="197.0368" y="-48.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = protein</text>
 </g>
 <!-- MoleculeContext&#45;&gt;VariationDescriptor -->
 <g id="edge31" class="edge">
 <title>MoleculeContext-&gt;VariationDescriptor</title>
-<path fill="none" stroke="#000000" d="M277.8287,-106.133C288.461,-121.1613 301.6807,-139.8465 314.8859,-158.5113"/>
-<polygon fill="#000000" stroke="#000000" points="312.106,-160.6422 320.7389,-166.7842 317.8205,-156.5993 312.106,-160.6422"/>
+<path fill="none" stroke="#000000" d="M274.8287,-106.133C285.461,-121.1613 298.6807,-139.8465 311.8859,-158.5113"/>
+<polygon fill="#000000" stroke="#000000" points="309.106,-160.6422 317.7389,-166.7842 314.8205,-156.5993 309.106,-160.6422"/>
 </g>
 <!-- Variation -->
 <g id="node40" class="node">
 <title>Variation</title>
-<polygon fill="none" stroke="#000000" points="336.0616,-56.1 336.0616,-92.1 412.2696,-92.1 412.2696,-56.1 336.0616,-56.1"/>
-<text text-anchor="middle" x="374.1656" y="-80.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Variation</text>
-<polyline fill="none" stroke="#000000" points="336.0616,-74.5 412.2696,-74.5 "/>
-<text text-anchor="start" x="344.0616" y="-63.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">See GA4GH VRS </text>
+<polygon fill="none" stroke="#000000" points="333.0616,-56.1 333.0616,-92.1 409.2696,-92.1 409.2696,-56.1 333.0616,-56.1"/>
+<text text-anchor="middle" x="371.1656" y="-80.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Variation</text>
+<polyline fill="none" stroke="#000000" points="333.0616,-74.5 409.2696,-74.5 "/>
+<text text-anchor="start" x="341.0616" y="-63.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">See GA4GH VRS </text>
 </g>
 <!-- Variation&#45;&gt;VariationDescriptor -->
 <g id="edge33" class="edge">
 <title>Variation-&gt;VariationDescriptor</title>
-<path fill="none" stroke="#000000" d="M374.1656,-92.1003C374.1656,-107.9658 374.1656,-132.3096 374.1656,-156.8107"/>
-<polygon fill="#000000" stroke="#000000" points="370.6657,-156.925 374.1656,-166.925 377.6657,-156.9251 370.6657,-156.925"/>
+<path fill="none" stroke="#000000" d="M371.1656,-92.1003C371.1656,-107.9658 371.1656,-132.3096 371.1656,-156.8107"/>
+<polygon fill="#000000" stroke="#000000" points="367.6657,-156.925 371.1656,-166.925 374.6657,-156.9251 367.6657,-156.925"/>
 </g>
 <!-- MedicalAction&#45;&gt;Phenopacket -->
 <g id="edge69" class="edge">
