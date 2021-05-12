@@ -51,7 +51,6 @@ Data model
     molecule_context, :ref:`rstmoleculecontext`, 1..1, The molecular context of the vrs variation.
     structural_type, :ref:`rstontologyclass`, 0..1, The structural variant type associated with this variant, such as a substitution, deletion, or fusion. We RECOMMEND using a descendent term of SO:0001537.
     vrs_ref_allele_seq, string, 0..1, A Sequence corresponding to a “ref allele”, describing the sequence expected at a SequenceLocation reference.
-
     allelic_state, :ref:`rstontologyclass` , 0..1, See :ref:`allelic_state` below. RECOMMENDED.
 
 
