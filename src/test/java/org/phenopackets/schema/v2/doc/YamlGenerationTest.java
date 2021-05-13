@@ -663,7 +663,7 @@ public class YamlGenerationTest extends TestBase {
                 .setAllelicState(heterozygous)
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("0afa11f44b60a77294d4e14572e6901b6fdfae57e4078f9cf21716d77041a8a6", hash);
+        assertEquals("80ee7a5c411a1403545130ae6896c11c896379206f406f06dae29501bd3f08db", hash);
     }
 
     @Test

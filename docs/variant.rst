@@ -105,8 +105,9 @@ Data model
 Variation
 ~~~~~~~~~
 
-`VRS <https://vrs.ga4gh.org/en/stable/>`_ is a GA4GH standard which provides a computable representation of variation, be it
-a genomic, transcript or protein variation.
+`VRS <https://vrs.ga4gh.org/en/stable/>`_ is a GA4GH standard which provides a computable representation of variation,
+be it a genomic, transcript or protein variation. VRS also provides mechanisms for representing haplotypes and systemic
+variation such as Copy Number Variants (CNVs).
 
 .. _rstvcfrecord:
 
@@ -283,9 +284,9 @@ transcript or protein coordinates.
             sequenceId: "NC_000010.11"
             sequenceInterval:
               startNumber:
-                value: 1.214967E8
+                value: "121496700"
               endNumber:
-                value: 1.214967E8
+                value: "121496700"
           literalSequenceExpression:
             sequence: "G"
       moleculeContext: "genomic"
