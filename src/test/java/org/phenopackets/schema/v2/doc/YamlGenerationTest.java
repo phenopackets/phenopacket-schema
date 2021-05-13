@@ -648,7 +648,7 @@ public class YamlGenerationTest extends TestBase {
                         .setSequenceId("NC_000010.11")
                         .setSequenceInterval(SequenceInterval.newBuilder()
                                 .setStartNumber(Number.newBuilder().setValue(121496700))
-                                .setEndNumber(Number.newBuilder().setValue(121496700))
+                                .setEndNumber(Number.newBuilder().setValue(121496701))
                         ))
                 .setLiteralSequenceExpression(LiteralSequenceExpression.newBuilder().setSequence("G"))
                 .build();
@@ -663,7 +663,7 @@ public class YamlGenerationTest extends TestBase {
                 .setAllelicState(heterozygous)
                 .build();
         String hash = printAndGetHash(variant, "variationDescriptor");
-        assertEquals("80ee7a5c411a1403545130ae6896c11c896379206f406f06dae29501bd3f08db", hash);
+        assertEquals("18deba344e498ec22380d98a063822994c7e6f6e9b16840ce79f8f9a4b3a054f", hash);
     }
 
     @Test

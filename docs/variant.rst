@@ -286,7 +286,7 @@ transcript or protein coordinates.
               startNumber:
                 value: "121496700"
               endNumber:
-                value: "121496700"
+                value: "121496701"
           literalSequenceExpression:
             sequence: "G"
       moleculeContext: "genomic"
