@@ -29,6 +29,7 @@ Version 1.0
 
 The diagram below shows an overview of the schema elements.
 
+.. role:: color-base
 
 .. figure:: graph/phenopacket-schema-v1-overview.svg
 
