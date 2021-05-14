@@ -92,6 +92,13 @@ Time element
 The :ref:`rsttimeelement` was added to collect the various ways of expressing time or age throughout the schema. In
 general where there was an `onset` or `start` time, a `resolution` or `end` :ref:`rsttimeelement` has been added.
 
+VRS / VRSATILE
+--------------
+
+The :ref:`rstgene` and :ref:`rstvariant` replace the v1.0 ``Gene`` and ``Variant messages. The new messages are based on
+the `VRS <https://vrs.ga4gh.org>`_  and `VRSATILE <https://vrsatile.readthedocs.io/en/latest/>`_ schemas defined by the
+`GA4GH GKS group <https://ga4gh-gks.github.io/>`_
+
 
 Non-breaking Changes
 ~~~~~~~~~~~~~~~~~~~~
@@ -111,6 +118,8 @@ Time in Individual, Biosample, Disease, Phenotypic Feature
 The :ref:`rsttimeelement` replaces the onset `oneof` in :ref:`rstphenotypicfeature` and :ref:`rstdisease`, the `time_of_collection` field in
 :ref:`rstbiosample`. The :ref:`rstindividual` `age` field has been replaced with a `time_at_encounter` :ref:`rsttimeelement`
 and :ref:`rstbiosample` `individual_age_at_collection` has been replaced with a `time_of_collection` :ref:`rsttimeelement`.
+:ref:`rstphenotypicfeature` 'negated' field was renamed to 'excluded' to be in line with :ref:`rstdisease` when indicating
+an absent phenotype.
 
 Gene and Variant contexts
 -------------------------
@@ -122,5 +131,6 @@ Interpretation
 --------------
 
 The v2.0 :ref:`rstinterpretation` is now a sub-element of a `phenopacket`, rather than an enclosing element. The change
-allows for better semantics on the :ref:`rstgene` and :ref:`rstvariant` types and their relationship to an :ref:`rstindividual`
-or :ref:`rstbiosample` in the context of a :ref:`rstdiagnosis` based on a :ref:`rstgenomincinterpretation`.
+allows for better semantics on the ``Gene`` (now replaced by :ref:`rstgene`) and ``Variant`` (now replaced by :ref:`rstvariant`)
+types and their relationship to an :ref:`rstindividual` or :ref:`rstbiosample` in the context of a :ref:`rstdiagnosis`
+based on a :ref:`rstgenomincinterpretation`.
