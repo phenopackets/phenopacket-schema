@@ -39,13 +39,13 @@ The diagram below shows an overview of the schema elements.
 
 .. figure:: graph/phenopacket-schema-v1-overview.svg
 
-   Version 1.0 overview of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
-   links have been omitted for legibility. The colour scheme is: :color-base:`base classes`, :color-interpretation:`interpretation classes`,
+   Overview of v1.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
+   links have been omitted for legibility. The colour scheme represents: :color-base:`base classes`, :color-interpretation:`interpretation classes`,
    :color-genomic-vrs:`genomic classes`, :color-pedigree:`pedigree classes`, :color-top-level:`top-level classes`
 
 .. figure:: graph/phenopacket-schema-v1.svg
 
-   Version 1.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass links have been
+   Detailed view of v1.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass links have been
    omitted for legibility.
 
 
@@ -54,14 +54,14 @@ Version 2.0
 
 .. figure:: graph/phenopacket-schema-v2-overview.svg
 
-   Version 2.0 overview of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
-   links have been omitted for legibility. The colour scheme is: :color-base:`base classes`, :color-interpretation:`interpretation classes`,
+   Overview of v2.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
+   links have been omitted for legibility. The colour scheme represents: :color-base:`base classes`, :color-interpretation:`interpretation classes`,
    :color-measurement:`measurement classes`, :color-genomic-vrs:`genomic/vrs classes`, :color-pedigree:`pedigree classes`,
    :color-top-level:`top-level classes`, :color-medical-action:`medical-action classes`
 
 .. figure:: graph/phenopacket-schema-v2.svg
 
-   Version 2.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
+   Detailed view of v2.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
    links have been omitted for legibility.
 
 Version 2.0 includes significant changes and additions to the model to enable better representation of cancer and common
