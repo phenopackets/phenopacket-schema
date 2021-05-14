@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg width="1629pt" height="566pt" viewBox="0.00 0.00 1629.43 565.60" xmlns="http://www.w3.org/2000/svg">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 561.6)">
+<title>phenopacket_schema_v2_overview</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-561.6 1625.4268,-561.6 1625.4268,4 -4,4"/>
+<text text-anchor="middle" x="810.7134" y="-6.4" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Phenopacket schema v2.0</text>
+<!-- OntologyClass -->
+<g id="node1" class="node">
+<title>OntologyClass</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="36.4268" cy="-35.6" rx="36.3538" ry="18"/>
+<text text-anchor="middle" x="36.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">OntologyClass</text>
+</g>
+<!-- ExternalReference -->
+<g id="node2" class="node">
+<title>ExternalReference</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="987.4268" cy="-179.6" rx="43.0686" ry="18"/>
+<text text-anchor="middle" x="987.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">ExternalReference</text>
+</g>
+<!-- Evidence -->
+<g id="node3" class="node">
+<title>Evidence</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="984.4268" cy="-251.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="984.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Evidence</text>
+</g>
+<!-- ExternalReference&#45;&gt;Evidence -->
+<g id="edge62" class="edge">
+<title>ExternalReference-&gt;Evidence</title>
+<path fill="none" stroke="#444444" d="M986.6698,-197.7686C986.349,-205.469 985.9674,-214.6257 985.6109,-223.1834"/>
+<polygon fill="#444444" stroke="#444444" points="982.1135,-223.0497 985.194,-233.1867 989.1074,-223.3411 982.1135,-223.0497"/>
+</g>
+<!-- TherapeuticRegimen -->
+<g id="node46" class="node">
+<title>TherapeuticRegimen</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="891.4268" cy="-251.6" rx="47.7442" ry="18"/>
+<text text-anchor="middle" x="891.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">TherapeuticRegimen</text>
+</g>
+<!-- ExternalReference&#45;&gt;TherapeuticRegimen -->
+<g id="edge53" class="edge">
+<title>ExternalReference-&gt;TherapeuticRegimen</title>
+<path fill="none" stroke="#444444" d="M966.1213,-195.5791C952.9149,-205.484 935.7554,-218.3536 921.2142,-229.2595"/>
+<polygon fill="#444444" stroke="#444444" points="918.9048,-226.6165 913.0047,-235.4166 923.1048,-232.2165 918.9048,-226.6165"/>
+</g>
+<!-- MetaData -->
+<g id="node57" class="node">
+<title>MetaData</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1062.4268" cy="-395.6" rx="27.4962" ry="18"/>
+<text text-anchor="middle" x="1062.4268" y="-393.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">MetaData</text>
+</g>
+<!-- ExternalReference&#45;&gt;MetaData -->
+<g id="edge61" class="edge">
+<title>ExternalReference-&gt;MetaData</title>
+<path fill="none" stroke="#444444" d="M1000.6177,-197.181C1007.5806,-207.3224 1015.6495,-220.6068 1020.4268,-233.6 1037.1952,-279.206 1023.3063,-295.106 1037.4268,-341.6 1040.2625,-350.9368 1044.4089,-360.7348 1048.5128,-369.3827"/>
+<polygon fill="#444444" stroke="#444444" points="1045.4865,-371.159 1053.0561,-378.5719 1051.7615,-368.0565 1045.4865,-371.159"/>
+</g>
+<!-- PhenotypicFeature -->
+<g id="node14" class="node">
+<title>PhenotypicFeature</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="870.4268" cy="-323.6" rx="43.6022" ry="18"/>
+<text text-anchor="middle" x="870.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">PhenotypicFeature</text>
+</g>
+<!-- Evidence&#45;&gt;PhenotypicFeature -->
+<g id="edge58" class="edge">
+<title>Evidence-&gt;PhenotypicFeature</title>
+<path fill="none" stroke="#444444" d="M964.5695,-264.1414C947.5654,-274.8809 922.75,-290.5538 902.8655,-303.1124"/>
+<polygon fill="#444444" stroke="#444444" points="900.989,-300.1579 894.4031,-308.4571 904.727,-306.0763 900.989,-300.1579"/>
+</g>
+<!-- Procedure -->
+<g id="node4" class="node">
+<title>Procedure</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="798.4268" cy="-251.6" rx="27.5159" ry="18"/>
+<text text-anchor="middle" x="798.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Procedure</text>
+</g>
+<!-- Biosample -->
+<g id="node13" class="node">
+<title>Biosample</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="751.4268" cy="-395.6" rx="28.5687" ry="18"/>
+<text text-anchor="middle" x="751.4268" y="-393.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Biosample</text>
+</g>
+<!-- Procedure&#45;&gt;Biosample -->
+<g id="edge9" class="edge">
+<title>Procedure-&gt;Biosample</title>
+<path fill="none" stroke="#444444" d="M796.0936,-269.5808C793.363,-288.0336 788.0786,-317.3887 779.4268,-341.6 776.0342,-351.0939 771.278,-361.0167 766.6469,-369.7282"/>
+<polygon fill="#444444" stroke="#444444" points="763.5034,-368.1807 761.7414,-378.628 769.6339,-371.5598 763.5034,-368.1807"/>
+</g>
+<!-- Measurement -->
+<g id="node16" class="node">
+<title>Measurement</title>
+<ellipse fill="#4da8d4" stroke="#444444" cx="736.4268" cy="-323.6" rx="34.2495" ry="18"/>
+<text text-anchor="middle" x="736.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Measurement</text>
+</g>
+<!-- Procedure&#45;&gt;Measurement -->
+<g id="edge36" class="edge">
+<title>Procedure-&gt;Measurement</title>
+<path fill="none" stroke="#444444" d="M784.667,-267.5791C776.5933,-276.9551 766.2319,-288.9877 757.1826,-299.4965"/>
+<polygon fill="#444444" stroke="#444444" points="754.4511,-297.3048 750.578,-307.1664 759.7555,-301.8725 754.4511,-297.3048"/>
+</g>
+<!-- MedicalAction -->
+<g id="node41" class="node">
+<title>MedicalAction</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="980.4268" cy="-395.6" rx="36.8479" ry="18"/>
+<text text-anchor="middle" x="980.4268" y="-393.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">MedicalAction</text>
+</g>
+<!-- Procedure&#45;&gt;MedicalAction -->
+<g id="edge37" class="edge">
+<title>Procedure-&gt;MedicalAction</title>
+<path fill="none" stroke="#444444" d="M820.3788,-262.9215C824.9873,-265.2007 829.8412,-267.5301 834.4268,-269.6 873.3173,-287.1549 890.663,-278.2655 923.4268,-305.6 943.8084,-322.6041 959.2519,-348.8282 968.8884,-368.5907"/>
+<polygon fill="#444444" stroke="#444444" points="965.7432,-370.1276 973.1487,-377.7045 972.0846,-367.1632 965.7432,-370.1276"/>
+</g>
+<!-- Sex -->
+<g id="node5" class="node">
+<title>Sex</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="253.4268" cy="-323.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="253.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Sex</text>
+</g>
+<!-- Individual -->
+<g id="node19" class="node">
+<title>Individual</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="529.4268" cy="-395.6" rx="28.0374" ry="18"/>
+<text text-anchor="middle" x="529.4268" y="-393.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Individual</text>
+</g>
+<!-- Sex&#45;&gt;Individual -->
+<g id="edge14" class="edge">
+<title>Sex-&gt;Individual</title>
+<path fill="none" stroke="#444444" d="M274.3144,-335.3081C279.164,-337.6673 284.3851,-339.9316 289.4268,-341.6 376.4173,-370.3873 405.2812,-349.2859 492.4268,-377.6 494.3631,-378.2291 496.3268,-378.9412 498.2878,-379.7101"/>
+<polygon fill="#444444" stroke="#444444" points="497.3655,-383.1256 507.9316,-383.9055 500.158,-376.7067 497.3655,-383.1256"/>
+</g>
+<!-- Person -->
+<g id="node52" class="node">
+<title>Person</title>
+<ellipse fill="#8bc751" stroke="#444444" cx="253.4268" cy="-395.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="253.4268" y="-393.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Person</text>
+</g>
+<!-- Sex&#45;&gt;Person -->
+<g id="edge56" class="edge">
+<title>Sex-&gt;Person</title>
+<path fill="none" stroke="#444444" d="M253.4268,-341.7686C253.4268,-349.469 253.4268,-358.6257 253.4268,-367.1834"/>
+<polygon fill="#444444" stroke="#444444" points="249.9269,-367.1867 253.4268,-377.1867 256.9269,-367.1868 249.9269,-367.1867"/>
+</g>
+<!-- KaryotypicSex -->
+<g id="node6" class="node">
+<title>KaryotypicSex</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="484.4268" cy="-323.6" rx="36.8497" ry="18"/>
+<text text-anchor="middle" x="484.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">KaryotypicSex</text>
+</g>
+<!-- KaryotypicSex&#45;&gt;Individual -->
+<g id="edge15" class="edge">
+<title>KaryotypicSex-&gt;Individual</title>
+<path fill="none" stroke="#444444" d="M495.3201,-341.0292C500.8166,-349.8237 507.5858,-360.6543 513.6408,-370.3423"/>
+<polygon fill="#444444" stroke="#444444" points="510.6757,-372.2021 518.9438,-378.8271 516.6117,-368.4921 510.6757,-372.2021"/>
+</g>
+<!-- GestationalAge -->
+<g id="node7" class="node">
+<title>GestationalAge</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1254.4268" cy="-107.6" rx="37.883" ry="18"/>
+<text text-anchor="middle" x="1254.4268" y="-105.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">GestationalAge</text>
+</g>
+<!-- TimeElement -->
+<g id="node8" class="node">
+<title>TimeElement</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1322.4268" cy="-179.6" rx="34.2578" ry="18"/>
+<text text-anchor="middle" x="1322.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">TimeElement</text>
+</g>
+<!-- GestationalAge&#45;&gt;TimeElement -->
+<g id="edge1" class="edge">
+<title>GestationalAge-&gt;TimeElement</title>
+<path fill="none" stroke="#444444" d="M1270.1983,-124.2992C1279.0775,-133.7007 1290.3115,-145.5956 1300.0838,-155.9427"/>
+<polygon fill="#444444" stroke="#444444" points="1297.7978,-158.6197 1307.2086,-163.4866 1302.8869,-153.8133 1297.7978,-158.6197"/>
+</g>
+<!-- Age -->
+<g id="node9" class="node">
+<title>Age</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1405.4268" cy="-35.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="1405.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Age</text>
+</g>
+<!-- Age&#45;&gt;TimeElement -->
+<g id="edge2" class="edge">
+<title>Age-&gt;TimeElement</title>
+<path fill="none" stroke="#444444" d="M1413.2253,-53.1099C1420.4737,-72.2298 1428.3691,-103.1194 1415.4268,-125.6 1403.8993,-145.6233 1381.7849,-158.9065 1362.0126,-167.287"/>
+<polygon fill="#444444" stroke="#444444" points="1360.5716,-164.0929 1352.551,-171.0153 1363.1379,-170.6055 1360.5716,-164.0929"/>
+</g>
+<!-- AgeRange -->
+<g id="node10" class="node">
+<title>AgeRange</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1377.4268" cy="-107.6" rx="28.5462" ry="18"/>
+<text text-anchor="middle" x="1377.4268" y="-105.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">AgeRange</text>
+</g>
+<!-- Age&#45;&gt;AgeRange -->
+<g id="edge3" class="edge">
+<title>Age-&gt;AgeRange</title>
+<path fill="none" stroke="#444444" d="M1398.6488,-53.0292C1395.4396,-61.2813 1391.5333,-71.3262 1387.9511,-80.5377"/>
+<polygon fill="#444444" stroke="#444444" points="1384.602,-79.4931 1384.2395,-90.0818 1391.126,-82.0303 1384.602,-79.4931"/>
+</g>
+<!-- AgeRange&#45;&gt;TimeElement -->
+<g id="edge4" class="edge">
+<title>AgeRange-&gt;TimeElement</title>
+<path fill="none" stroke="#444444" d="M1364.9465,-123.9379C1358.0134,-133.0139 1349.2431,-144.4951 1341.471,-154.6694"/>
+<polygon fill="#444444" stroke="#444444" points="1338.5286,-152.7557 1335.2395,-162.8271 1344.0913,-157.005 1338.5286,-152.7557"/>
+</g>
+<!-- Timestamp -->
+<g id="node11" class="node">
+<title>Timestamp</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1236.4268" cy="-35.6" rx="29.6034" ry="18"/>
+<text text-anchor="middle" x="1236.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Timestamp</text>
+</g>
+<!-- Timestamp&#45;&gt;TimeElement -->
+<g id="edge6" class="edge">
+<title>Timestamp-&gt;TimeElement</title>
+<path fill="none" stroke="#444444" d="M1258.0314,-48.2568C1272.4669,-57.8221 1290.7088,-72.2512 1301.4268,-89.6 1312.971,-108.286 1318.1737,-132.7231 1320.5161,-151.4174"/>
+<polygon fill="#444444" stroke="#444444" points="1317.0399,-151.8277 1321.5683,-161.406 1324.0014,-151.0943 1317.0399,-151.8277"/>
+</g>
+<!-- TimeInterval -->
+<g id="node12" class="node">
+<title>TimeInterval</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1165.4268" cy="-107.6" rx="33.2126" ry="18"/>
+<text text-anchor="middle" x="1165.4268" y="-105.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">TimeInterval</text>
+</g>
+<!-- Timestamp&#45;&gt;TimeInterval -->
+<g id="edge5" class="edge">
+<title>Timestamp-&gt;TimeInterval</title>
+<path fill="none" stroke="#444444" d="M1221.0209,-51.2229C1211.4773,-60.9009 1199.0448,-73.5085 1188.3575,-84.3464"/>
+<polygon fill="#444444" stroke="#444444" points="1185.8237,-81.9311 1181.2943,-91.509 1190.8079,-86.8462 1185.8237,-81.9311"/>
+</g>
+<!-- TimeInterval&#45;&gt;TimeElement -->
+<g id="edge7" class="edge">
+<title>TimeInterval-&gt;TimeElement</title>
+<path fill="none" stroke="#444444" d="M1191.001,-119.3283C1217.1529,-131.3215 1257.974,-150.042 1287.1808,-163.4362"/>
+<polygon fill="#444444" stroke="#444444" points="1286.0537,-166.7698 1296.6025,-167.757 1288.9717,-160.407 1286.0537,-166.7698"/>
+</g>
+<!-- DoseInterval -->
+<g id="node49" class="node">
+<title>DoseInterval</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="1163.4268" cy="-179.6" rx="32.7003" ry="18"/>
+<text text-anchor="middle" x="1163.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">DoseInterval</text>
+</g>
+<!-- TimeInterval&#45;&gt;DoseInterval -->
+<g id="edge46" class="edge">
+<title>TimeInterval-&gt;DoseInterval</title>
+<path fill="none" stroke="#444444" d="M1164.9221,-125.7686C1164.7082,-133.469 1164.4539,-142.6257 1164.2162,-151.1834"/>
+<polygon fill="#444444" stroke="#444444" points="1160.7174,-151.0934 1163.9383,-161.1867 1167.7147,-151.2878 1160.7174,-151.0934"/>
+</g>
+<!-- Phenopacket -->
+<g id="node54" class="node">
+<title>Phenopacket</title>
+<ellipse fill="#faa634" stroke="#444444" cx="663.4268" cy="-467.6" rx="32.6983" ry="18"/>
+<text text-anchor="middle" x="663.4268" y="-465.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Phenopacket</text>
+</g>
+<!-- Biosample&#45;&gt;Phenopacket -->
+<g id="edge66" class="edge">
+<title>Biosample-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M733.6187,-410.1703C721.0239,-420.4751 703.9273,-434.4632 689.7606,-446.0542"/>
+<polygon fill="#444444" stroke="#444444" points="687.3375,-443.5145 681.8142,-452.5558 691.7702,-448.9322 687.3375,-443.5145"/>
+</g>
+<!-- PhenotypicFeature&#45;&gt;Biosample -->
+<g id="edge8" class="edge">
+<title>PhenotypicFeature-&gt;Biosample</title>
+<path fill="none" stroke="#444444" d="M845.77,-338.5184C826.9964,-349.8772 801.0775,-365.5593 781.1563,-377.6124"/>
+<polygon fill="#444444" stroke="#444444" points="779.2166,-374.6952 772.4726,-382.8664 782.8403,-380.6843 779.2166,-374.6952"/>
+</g>
+<!-- PhenotypicFeature&#45;&gt;Phenopacket -->
+<g id="edge64" class="edge">
+<title>PhenotypicFeature-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M858.2131,-341.2591C843.7424,-361.0891 817.9691,-393.1614 789.4268,-413.6 762.7463,-432.7054 728.2537,-446.8955 702.1045,-455.9227"/>
+<polygon fill="#444444" stroke="#444444" points="700.8967,-452.6361 692.5247,-459.1292 703.1186,-459.2741 700.8967,-452.6361"/>
+</g>
+<!-- HtsFile -->
+<g id="node15" class="node">
+<title>HtsFile</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="325.4268" cy="-323.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="325.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">HtsFile</text>
+</g>
+<!-- HtsFile&#45;&gt;Biosample -->
+<g id="edge10" class="edge">
+<title>HtsFile-&gt;Biosample</title>
+<path fill="none" stroke="#444444" d="M346.242,-335.5387C351.0954,-337.8859 356.3363,-340.087 361.4268,-341.6 496.0752,-381.6195 537.0625,-353.3708 675.4268,-377.6 688.3657,-379.8657 702.3951,-382.9943 714.837,-386.0082"/>
+<polygon fill="#444444" stroke="#444444" points="714.3076,-389.4828 724.8559,-388.4914 715.9917,-382.6884 714.3076,-389.4828"/>
+</g>
+<!-- HtsFile&#45;&gt;Phenopacket -->
+<g id="edge70" class="edge">
+<title>HtsFile-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M339.7179,-339.0011C361.4128,-362.0457 402.0704,-403.8437 420.4268,-413.6 484.9122,-447.8735 570.143,-460.4286 620.6353,-465.0039"/>
+<polygon fill="#444444" stroke="#444444" points="620.6044,-468.5136 630.8626,-465.8641 621.1911,-461.5382 620.6044,-468.5136"/>
+</g>
+<!-- Family -->
+<g id="node55" class="node">
+<title>Family</title>
+<ellipse fill="#faa634" stroke="#444444" cx="481.4268" cy="-539.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="481.4268" y="-537.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Family</text>
+</g>
+<!-- HtsFile&#45;&gt;Family -->
+<g id="edge74" class="edge">
+<title>HtsFile-&gt;Family</title>
+<path fill="none" stroke="#444444" d="M322.7744,-341.6166C319.0393,-374.0792 316.0146,-442.9709 349.4268,-485.6 372.4493,-514.9733 414.1212,-528.4775 444.5004,-534.6169"/>
+<polygon fill="#444444" stroke="#444444" points="444.2581,-538.1308 454.7259,-536.4952 445.5228,-531.246 444.2581,-538.1308"/>
+</g>
+<!-- Cohort -->
+<g id="node56" class="node">
+<title>Cohort</title>
+<ellipse fill="#faa634" stroke="#444444" cx="663.4268" cy="-539.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="663.4268" y="-537.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Cohort</text>
+</g>
+<!-- HtsFile&#45;&gt;Cohort -->
+<g id="edge77" class="edge">
+<title>HtsFile-&gt;Cohort</title>
+<path fill="none" stroke="#444444" d="M331.7758,-341.3755C339.6967,-361.3123 354.9888,-393.4824 377.4268,-413.6 452.5032,-480.9125 569.2977,-516.8962 627.6754,-531.5636"/>
+<polygon fill="#444444" stroke="#444444" points="626.9917,-534.9995 637.5371,-533.9772 628.6559,-528.2002 626.9917,-534.9995"/>
+</g>
+<!-- Measurement&#45;&gt;Biosample -->
+<g id="edge11" class="edge">
+<title>Measurement-&gt;Biosample</title>
+<path fill="none" stroke="#444444" d="M740.212,-341.7686C741.8588,-349.6734 743.8253,-359.1128 745.6484,-367.8635"/>
+<polygon fill="#444444" stroke="#444444" points="742.2288,-368.6106 747.6949,-377.6866 749.0817,-367.1829 742.2288,-368.6106"/>
+</g>
+<!-- Measurement&#45;&gt;Phenopacket -->
+<g id="edge65" class="edge">
+<title>Measurement-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M727.4756,-341.2572C714.8195,-366.2227 691.5985,-412.0285 676.8664,-441.0891"/>
+<polygon fill="#444444" stroke="#444444" points="673.6232,-439.7462 672.2233,-450.2481 679.8667,-442.9114 673.6232,-439.7462"/>
+</g>
+<!-- Disease -->
+<g id="node17" class="node">
+<title>Disease</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="456.4268" cy="-395.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="456.4268" y="-393.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Disease</text>
+</g>
+<!-- Disease&#45;&gt;Phenopacket -->
+<g id="edge68" class="edge">
+<title>Disease-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M477.8743,-407.0145C482.6039,-409.3363 487.634,-411.6592 492.4268,-413.6 536.5501,-431.4676 588.9697,-447.2557 624.0339,-457.0741"/>
+<polygon fill="#444444" stroke="#444444" points="623.3142,-460.5064 633.8857,-459.8034 625.1831,-453.7605 623.3142,-460.5064"/>
+</g>
+<!-- HtsFormat -->
+<g id="node18" class="node">
+<title>HtsFormat</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="325.4268" cy="-251.6" rx="28.5678" ry="18"/>
+<text text-anchor="middle" x="325.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">HtsFormat</text>
+</g>
+<!-- HtsFormat&#45;&gt;HtsFile -->
+<g id="edge12" class="edge">
+<title>HtsFormat-&gt;HtsFile</title>
+<path fill="none" stroke="#444444" d="M325.4268,-269.7686C325.4268,-277.469 325.4268,-286.6257 325.4268,-295.1834"/>
+<polygon fill="#444444" stroke="#444444" points="321.9269,-295.1867 325.4268,-305.1867 328.9269,-295.1868 321.9269,-295.1867"/>
+</g>
+<!-- Individual&#45;&gt;Phenopacket -->
+<g id="edge63" class="edge">
+<title>Individual-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M550.9562,-407.168C572.4734,-418.7295 605.8374,-436.6564 630.6456,-449.9862"/>
+<polygon fill="#444444" stroke="#444444" points="629.2266,-453.197 639.6922,-454.847 632.5398,-447.0307 629.2266,-453.197"/>
+</g>
+<!-- VitalStatus -->
+<g id="node20" class="node">
+<title>VitalStatus</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="400.4268" cy="-323.6" rx="29.5959" ry="18"/>
+<text text-anchor="middle" x="400.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">VitalStatus</text>
+</g>
+<!-- VitalStatus&#45;&gt;Individual -->
+<g id="edge13" class="edge">
+<title>VitalStatus-&gt;Individual</title>
+<path fill="none" stroke="#444444" d="M422.3099,-335.8138C443.3785,-347.573 475.4276,-365.4609 498.9816,-378.6073"/>
+<polygon fill="#444444" stroke="#444444" points="497.4291,-381.749 507.8669,-383.5666 500.8407,-375.6367 497.4291,-381.749"/>
+</g>
+<!-- Interpretation -->
+<g id="node21" class="node">
+<title>Interpretation</title>
+<ellipse fill="#63498b" stroke="#444444" cx="632.4268" cy="-395.6" rx="34.2486" ry="18"/>
+<text text-anchor="middle" x="632.4268" y="-393.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Interpretation</text>
+</g>
+<!-- Interpretation&#45;&gt;Phenopacket -->
+<g id="edge67" class="edge">
+<title>Interpretation-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M640.0898,-413.3978C643.6185,-421.5936 647.8827,-431.4976 651.7956,-440.5855"/>
+<polygon fill="#444444" stroke="#444444" points="648.6827,-442.2062 655.8521,-450.007 655.1121,-439.438 648.6827,-442.2062"/>
+</g>
+<!-- ProgressStatus -->
+<g id="node22" class="node">
+<title>ProgressStatus</title>
+<ellipse fill="#63498b" stroke="#444444" cx="648.4268" cy="-323.6" rx="36.3381" ry="18"/>
+<text text-anchor="middle" x="648.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">ProgressStatus</text>
+</g>
+<!-- ProgressStatus&#45;&gt;Interpretation -->
+<g id="edge16" class="edge">
+<title>ProgressStatus-&gt;Interpretation</title>
+<path fill="none" stroke="#444444" d="M644.3894,-341.7686C642.6327,-349.6734 640.5351,-359.1128 638.5905,-367.8635"/>
+<polygon fill="#444444" stroke="#444444" points="635.1603,-367.1654 636.4076,-377.6866 641.9936,-368.684 635.1603,-367.1654"/>
+</g>
+<!-- Diagnosis -->
+<g id="node23" class="node">
+<title>Diagnosis</title>
+<ellipse fill="#63498b" stroke="#444444" cx="566.4268" cy="-323.6" rx="27.5185" ry="18"/>
+<text text-anchor="middle" x="566.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Diagnosis</text>
+</g>
+<!-- Diagnosis&#45;&gt;Interpretation -->
+<g id="edge17" class="edge">
+<title>Diagnosis-&gt;Interpretation</title>
+<path fill="none" stroke="#444444" d="M580.7478,-339.2229C589.473,-348.7413 600.7958,-361.0934 610.6181,-371.8087"/>
+<polygon fill="#444444" stroke="#444444" points="608.1092,-374.2513 617.4465,-379.2579 613.2693,-369.5213 608.1092,-374.2513"/>
+</g>
+<!-- GenomicInterpretation -->
+<g id="node24" class="node">
+<title>GenomicInterpretation</title>
+<ellipse fill="#63498b" stroke="#444444" cx="537.4268" cy="-251.6" rx="50.8633" ry="18"/>
+<text text-anchor="middle" x="537.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">GenomicInterpretation</text>
+</g>
+<!-- GenomicInterpretation&#45;&gt;Diagnosis -->
+<g id="edge18" class="edge">
+<title>GenomicInterpretation-&gt;Diagnosis</title>
+<path fill="none" stroke="#444444" d="M544.7448,-269.7686C548.0471,-277.9677 552.0145,-287.8176 555.6475,-296.8376"/>
+<polygon fill="#444444" stroke="#444444" points="552.4286,-298.2141 559.4114,-306.1823 558.9217,-295.5988 552.4286,-298.2141"/>
+</g>
+<!-- InterpretationStatus -->
+<g id="node25" class="node">
+<title>InterpretationStatus</title>
+<ellipse fill="#63498b" stroke="#444444" cx="537.4268" cy="-179.6" rx="45.1665" ry="18"/>
+<text text-anchor="middle" x="537.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">InterpretationStatus</text>
+</g>
+<!-- InterpretationStatus&#45;&gt;GenomicInterpretation -->
+<g id="edge19" class="edge">
+<title>InterpretationStatus-&gt;GenomicInterpretation</title>
+<path fill="none" stroke="#444444" d="M537.4268,-197.7686C537.4268,-205.469 537.4268,-214.6257 537.4268,-223.1834"/>
+<polygon fill="#444444" stroke="#444444" points="533.9269,-223.1867 537.4268,-233.1867 540.9269,-223.1868 533.9269,-223.1867"/>
+</g>
+<!-- VariantInterpretation -->
+<g id="node26" class="node">
+<title>VariantInterpretation</title>
+<ellipse fill="#63498b" stroke="#444444" cx="426.4268" cy="-179.6" rx="47.7458" ry="18"/>
+<text text-anchor="middle" x="426.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">VariantInterpretation</text>
+</g>
+<!-- VariantInterpretation&#45;&gt;GenomicInterpretation -->
+<g id="edge21" class="edge">
+<title>VariantInterpretation-&gt;GenomicInterpretation</title>
+<path fill="none" stroke="#444444" d="M450.5122,-195.2229C466.2583,-205.4366 487.0348,-218.9133 504.3259,-230.1291"/>
+<polygon fill="#444444" stroke="#444444" points="502.7109,-233.2533 513.0052,-235.7589 506.5202,-227.3806 502.7109,-233.2533"/>
+</g>
+<!-- AcmgPathogenicityClassification -->
+<g id="node27" class="node">
+<title>AcmgPathogenicityClassification</title>
+<ellipse fill="#63498b" stroke="#444444" cx="426.4268" cy="-107.6" rx="70.6113" ry="18"/>
+<text text-anchor="middle" x="426.4268" y="-105.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">AcmgPathogenicityClassification</text>
+</g>
+<!-- AcmgPathogenicityClassification&#45;&gt;VariantInterpretation -->
+<g id="edge22" class="edge">
+<title>AcmgPathogenicityClassification-&gt;VariantInterpretation</title>
+<path fill="none" stroke="#444444" d="M426.4268,-125.7686C426.4268,-133.469 426.4268,-142.6257 426.4268,-151.1834"/>
+<polygon fill="#444444" stroke="#444444" points="422.9269,-151.1867 426.4268,-161.1867 429.9269,-151.1868 422.9269,-151.1867"/>
+</g>
+<!-- TherapeuticActionability -->
+<g id="node28" class="node">
+<title>TherapeuticActionability</title>
+<ellipse fill="#63498b" stroke="#444444" cx="570.4268" cy="-107.6" rx="55.0287" ry="18"/>
+<text text-anchor="middle" x="570.4268" y="-105.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">TherapeuticActionability</text>
+</g>
+<!-- TherapeuticActionability&#45;&gt;VariantInterpretation -->
+<g id="edge23" class="edge">
+<title>TherapeuticActionability-&gt;VariantInterpretation</title>
+<path fill="none" stroke="#444444" d="M540.2397,-122.6936C518.252,-133.6874 488.3028,-148.662 464.6455,-160.4907"/>
+<polygon fill="#444444" stroke="#444444" points="462.9694,-157.4155 455.5904,-165.0182 466.1,-163.6765 462.9694,-157.4155"/>
+</g>
+<!-- GeneDescriptor -->
+<g id="node29" class="node">
+<title>GeneDescriptor</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="639.4268" cy="-179.6" rx="38.3918" ry="18"/>
+<text text-anchor="middle" x="639.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">GeneDescriptor</text>
+</g>
+<!-- GeneDescriptor&#45;&gt;GenomicInterpretation -->
+<g id="edge20" class="edge">
+<title>GeneDescriptor-&gt;GenomicInterpretation</title>
+<path fill="none" stroke="#444444" d="M617.7953,-194.8693C603.5849,-204.9002 584.76,-218.1884 568.9016,-229.3825"/>
+<polygon fill="#444444" stroke="#444444" points="566.5961,-226.7258 560.4448,-235.352 570.6329,-232.4445 566.5961,-226.7258"/>
+</g>
+<!-- VariationDescriptor -->
+<g id="node30" class="node">
+<title>VariationDescriptor</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="291.4268" cy="-107.6" rx="45.6752" ry="18"/>
+<text text-anchor="middle" x="291.4268" y="-105.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">VariationDescriptor</text>
+</g>
+<!-- VariationDescriptor&#45;&gt;VariantInterpretation -->
+<g id="edge24" class="edge">
+<title>VariationDescriptor-&gt;VariantInterpretation</title>
+<path fill="none" stroke="#444444" d="M318.7461,-122.1703C339.1963,-133.0771 367.3829,-148.1099 389.7885,-160.0595"/>
+<polygon fill="#444444" stroke="#444444" points="388.2142,-163.1866 398.6848,-164.8043 391.5084,-157.0101 388.2142,-163.1866"/>
+</g>
+<!-- VcfRecord -->
+<g id="node31" class="node">
+<title>VcfRecord</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="365.4268" cy="-35.6" rx="29.0683" ry="18"/>
+<text text-anchor="middle" x="365.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">VcfRecord</text>
+</g>
+<!-- VcfRecord&#45;&gt;VariationDescriptor -->
+<g id="edge28" class="edge">
+<title>VcfRecord-&gt;VariationDescriptor</title>
+<path fill="none" stroke="#444444" d="M349.7333,-50.8693C339.9436,-60.3945 327.135,-72.8569 316.0172,-83.6743"/>
+<polygon fill="#444444" stroke="#444444" points="313.3747,-81.362 308.6482,-90.8441 318.2562,-86.3791 313.3747,-81.362"/>
+</g>
+<!-- Expression -->
+<g id="node32" class="node">
+<title>Expression</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="442.4268" cy="-35.6" rx="29.5904" ry="18"/>
+<text text-anchor="middle" x="442.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Expression</text>
+</g>
+<!-- Expression&#45;&gt;VariationDescriptor -->
+<g id="edge25" class="edge">
+<title>Expression-&gt;VariationDescriptor</title>
+<path fill="none" stroke="#444444" d="M418.8331,-46.85C395.0604,-58.1853 357.9805,-75.8658 329.9403,-89.236"/>
+<polygon fill="#444444" stroke="#444444" points="328.3298,-86.1263 320.8099,-93.5896 331.3427,-92.4448 328.3298,-86.1263"/>
+</g>
+<!-- Extension -->
+<g id="node33" class="node">
+<title>Extension</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="118.4268" cy="-35.6" rx="27.5195" ry="18"/>
+<text text-anchor="middle" x="118.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Extension</text>
+</g>
+<!-- Extension&#45;&gt;VariationDescriptor -->
+<g id="edge26" class="edge">
+<title>Extension-&gt;VariationDescriptor</title>
+<path fill="none" stroke="#444444" d="M140.6056,-46.723C145.4581,-49.0629 150.5902,-51.4669 155.4268,-53.6 186.2723,-67.2039 221.6834,-81.2144 248.6383,-91.5544"/>
+<polygon fill="#444444" stroke="#444444" points="247.5716,-94.8935 258.1623,-95.1902 250.0682,-88.3538 247.5716,-94.8935"/>
+</g>
+<!-- MoleculeContext -->
+<g id="node34" class="node">
+<title>MoleculeContext</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="205.4268" cy="-35.6" rx="41.0133" ry="18"/>
+<text text-anchor="middle" x="205.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">MoleculeContext</text>
+</g>
+<!-- MoleculeContext&#45;&gt;VariationDescriptor -->
+<g id="edge27" class="edge">
+<title>MoleculeContext-&gt;VariationDescriptor</title>
+<path fill="none" stroke="#444444" d="M224.513,-51.5791C236.1513,-61.3228 251.2164,-73.9355 264.1045,-84.7255"/>
+<polygon fill="#444444" stroke="#444444" points="261.8834,-87.4306 271.7978,-91.1664 266.3769,-82.0633 261.8834,-87.4306"/>
+</g>
+<!-- Variation -->
+<g id="node35" class="node">
+<title>Variation</title>
+<ellipse fill="#5bc4bf" stroke="#444444" cx="291.4268" cy="-35.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="291.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Variation</text>
+</g>
+<!-- Variation&#45;&gt;VariationDescriptor -->
+<g id="edge29" class="edge">
+<title>Variation-&gt;VariationDescriptor</title>
+<path fill="none" stroke="#444444" d="M291.4268,-53.7686C291.4268,-61.469 291.4268,-70.6257 291.4268,-79.1834"/>
+<polygon fill="#444444" stroke="#444444" points="287.9269,-79.1867 291.4268,-89.1867 294.9269,-79.1868 287.9269,-79.1867"/>
+</g>
+<!-- Value -->
+<g id="node36" class="node">
+<title>Value</title>
+<ellipse fill="#4da8d4" stroke="#444444" cx="725.4268" cy="-251.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="725.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Value</text>
+</g>
+<!-- Value&#45;&gt;Measurement -->
+<g id="edge34" class="edge">
+<title>Value-&gt;Measurement</title>
+<path fill="none" stroke="#444444" d="M728.2026,-269.7686C729.379,-277.469 730.778,-286.6257 732.0854,-295.1834"/>
+<polygon fill="#444444" stroke="#444444" points="728.6435,-295.8301 733.6137,-305.1867 735.5632,-294.7728 728.6435,-295.8301"/>
+</g>
+<!-- Quantity -->
+<g id="node37" class="node">
+<title>Quantity</title>
+<ellipse fill="#4da8d4" stroke="#444444" cx="1083.4268" cy="-107.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="1083.4268" y="-105.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Quantity</text>
+</g>
+<!-- Quantity&#45;&gt;Value -->
+<g id="edge30" class="edge">
+<title>Quantity-&gt;Value</title>
+<path fill="none" stroke="#444444" d="M1056.2938,-109.8962C1010.5033,-114.5872 915.8047,-127.8392 843.4268,-161.6 806.666,-178.7472 770.4911,-208.8428 748.0849,-229.4753"/>
+<polygon fill="#444444" stroke="#444444" points="745.6603,-226.9508 740.7554,-236.3419 750.4461,-232.0592 745.6603,-226.9508"/>
+</g>
+<!-- TypedQuantity -->
+<g id="node39" class="node">
+<title>TypedQuantity</title>
+<ellipse fill="#4da8d4" stroke="#444444" cx="738.4268" cy="-179.6" rx="36.8635" ry="18"/>
+<text text-anchor="middle" x="738.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">TypedQuantity</text>
+</g>
+<!-- Quantity&#45;&gt;TypedQuantity -->
+<g id="edge32" class="edge">
+<title>Quantity-&gt;TypedQuantity</title>
+<path fill="none" stroke="#444444" d="M1057.0286,-111.9686C1007.1982,-120.3745 895.9697,-139.8989 803.4268,-161.6 795.8965,-163.3658 787.9246,-165.4188 780.2405,-167.4932"/>
+<polygon fill="#444444" stroke="#444444" points="779.0792,-164.1826 770.366,-170.2101 780.9362,-170.9318 779.0792,-164.1826"/>
+</g>
+<!-- CumulativeDose -->
+<g id="node48" class="node">
+<title>CumulativeDose</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="1107.4268" cy="-251.6" rx="39.9774" ry="18"/>
+<text text-anchor="middle" x="1107.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">CumulativeDose</text>
+</g>
+<!-- Quantity&#45;&gt;CumulativeDose -->
+<g id="edge47" class="edge">
+<title>Quantity-&gt;CumulativeDose</title>
+<path fill="none" stroke="#444444" d="M1086.4179,-125.5465C1090.5139,-150.1226 1097.91,-194.4992 1102.7439,-223.5026"/>
+<polygon fill="#444444" stroke="#444444" points="1099.3016,-224.1388 1104.398,-233.4273 1106.2063,-222.9879 1099.3016,-224.1388"/>
+</g>
+<!-- Quantity&#45;&gt;DoseInterval -->
+<g id="edge45" class="edge">
+<title>Quantity-&gt;DoseInterval</title>
+<path fill="none" stroke="#444444" d="M1099.616,-122.1703C1110.8076,-132.2427 1125.9092,-145.8341 1138.6116,-157.2663"/>
+<polygon fill="#444444" stroke="#444444" points="1136.3799,-159.9665 1146.1542,-164.0546 1141.0626,-154.7634 1136.3799,-159.9665"/>
+</g>
+<!-- ComplexValue -->
+<g id="node38" class="node">
+<title>ComplexValue</title>
+<ellipse fill="#4da8d4" stroke="#444444" cx="643.4268" cy="-251.6" rx="36.8626" ry="18"/>
+<text text-anchor="middle" x="643.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">ComplexValue</text>
+</g>
+<!-- ComplexValue&#45;&gt;Measurement -->
+<g id="edge35" class="edge">
+<title>ComplexValue-&gt;Measurement</title>
+<path fill="none" stroke="#444444" d="M663.1497,-266.8693C676.432,-277.1524 694.1359,-290.8586 708.8145,-302.2227"/>
+<polygon fill="#444444" stroke="#444444" points="707.0014,-305.2453 717.0513,-308.5996 711.2866,-299.7102 707.0014,-305.2453"/>
+</g>
+<!-- TypedQuantity&#45;&gt;ComplexValue -->
+<g id="edge31" class="edge">
+<title>TypedQuantity-&gt;ComplexValue</title>
+<path fill="none" stroke="#444444" d="M718.2798,-194.8693C704.677,-205.1788 686.5342,-218.9291 671.5173,-230.3104"/>
+<polygon fill="#444444" stroke="#444444" points="669.4005,-227.523 663.5448,-236.3527 673.6286,-233.1018 669.4005,-227.523"/>
+</g>
+<!-- ReferenceRange -->
+<g id="node40" class="node">
+<title>ReferenceRange</title>
+<ellipse fill="#4da8d4" stroke="#444444" cx="1083.4268" cy="-35.6" rx="39.4311" ry="18"/>
+<text text-anchor="middle" x="1083.4268" y="-33.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">ReferenceRange</text>
+</g>
+<!-- ReferenceRange&#45;&gt;Quantity -->
+<g id="edge33" class="edge">
+<title>ReferenceRange-&gt;Quantity</title>
+<path fill="none" stroke="#444444" d="M1083.4268,-53.7686C1083.4268,-61.469 1083.4268,-70.6257 1083.4268,-79.1834"/>
+<polygon fill="#444444" stroke="#444444" points="1079.9269,-79.1867 1083.4268,-89.1867 1086.9269,-79.1868 1079.9269,-79.1867"/>
+</g>
+<!-- MedicalAction&#45;&gt;Phenopacket -->
+<g id="edge69" class="edge">
+<title>MedicalAction-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M947.1014,-403.1692C888.5261,-416.4734 767.3298,-444.0006 703.9892,-458.3871"/>
+<polygon fill="#444444" stroke="#444444" points="702.9458,-455.0349 693.9694,-460.6629 704.4962,-461.861 702.9458,-455.0349"/>
+</g>
+<!-- Treatment -->
+<g id="node42" class="node">
+<title>Treatment</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="1242.4268" cy="-251.6" rx="28.0255" ry="18"/>
+<text text-anchor="middle" x="1242.4268" y="-249.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Treatment</text>
+</g>
+<!-- Treatment&#45;&gt;MedicalAction -->
+<g id="edge38" class="edge">
+<title>Treatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#444444" d="M1270.6373,-253.9243C1338.693,-260.5166 1502.4111,-282.8144 1448.4268,-341.6 1416.5966,-376.2613 1072.257,-366.9153 1026.4268,-377.6 1023.4332,-378.2979 1020.3761,-379.1533 1017.332,-380.1083"/>
+<polygon fill="#444444" stroke="#444444" points="1016.0511,-376.8479 1007.7468,-383.4273 1018.3416,-383.4625 1016.0511,-376.8479"/>
+</g>
+<!-- ChemoTherapyTreatment -->
+<g id="node43" class="node">
+<title>ChemoTherapyTreatment</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="1242.4268" cy="-323.6" rx="56.5698" ry="18"/>
+<text text-anchor="middle" x="1242.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">ChemoTherapyTreatment</text>
+</g>
+<!-- Treatment&#45;&gt;ChemoTherapyTreatment -->
+<g id="edge48" class="edge">
+<title>Treatment-&gt;ChemoTherapyTreatment</title>
+<path fill="none" stroke="#444444" d="M1242.4268,-269.7686C1242.4268,-277.469 1242.4268,-286.6257 1242.4268,-295.1834"/>
+<polygon fill="#444444" stroke="#444444" points="1238.9269,-295.1867 1242.4268,-305.1867 1245.9269,-295.1868 1238.9269,-295.1867"/>
+</g>
+<!-- HormoneTherapyTreatment -->
+<g id="node44" class="node">
+<title>HormoneTherapyTreatment</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="1107.4268" cy="-323.6" rx="60.7126" ry="18"/>
+<text text-anchor="middle" x="1107.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">HormoneTherapyTreatment</text>
+</g>
+<!-- Treatment&#45;&gt;HormoneTherapyTreatment -->
+<g id="edge50" class="edge">
+<title>Treatment-&gt;HormoneTherapyTreatment</title>
+<path fill="none" stroke="#444444" d="M1220.7367,-263.168C1200.6452,-273.8835 1170.3011,-290.067 1146.0694,-302.9906"/>
+<polygon fill="#444444" stroke="#444444" points="1144.2923,-299.9717 1137.1158,-307.7659 1147.5864,-306.1482 1144.2923,-299.9717"/>
+</g>
+<!-- RadiationTherapyTreatment -->
+<g id="node45" class="node">
+<title>RadiationTherapyTreatment</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="1378.4268" cy="-323.6" rx="61.238" ry="18"/>
+<text text-anchor="middle" x="1378.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">RadiationTherapyTreatment</text>
+</g>
+<!-- Treatment&#45;&gt;RadiationTherapyTreatment -->
+<g id="edge52" class="edge">
+<title>Treatment-&gt;RadiationTherapyTreatment</title>
+<path fill="none" stroke="#444444" d="M1264.2776,-263.168C1284.518,-273.8835 1315.0868,-290.067 1339.498,-302.9906"/>
+<polygon fill="#444444" stroke="#444444" points="1338.0424,-306.1802 1348.518,-307.7659 1341.3177,-299.9937 1338.0424,-306.1802"/>
+</g>
+<!-- ChemoTherapyTreatment&#45;&gt;MedicalAction -->
+<g id="edge39" class="edge">
+<title>ChemoTherapyTreatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#444444" d="M1199.8295,-335.6331C1192.3751,-337.6711 1184.684,-339.7307 1177.4268,-341.6 1110.6155,-358.8091 1092.2654,-356.9799 1026.4268,-377.6 1023.6648,-378.465 1020.8315,-379.4149 1017.9938,-380.412"/>
+<polygon fill="#444444" stroke="#444444" points="1016.6031,-377.1942 1008.4256,-383.9306 1019.0192,-383.7641 1016.6031,-377.1942"/>
+</g>
+<!-- HormoneTherapyTreatment&#45;&gt;MedicalAction -->
+<g id="edge40" class="edge">
+<title>HormoneTherapyTreatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#444444" d="M1079.2414,-339.5791C1059.8498,-350.5728 1034.0158,-365.2188 1013.6261,-376.7783"/>
+<polygon fill="#444444" stroke="#444444" points="1011.6568,-373.8714 1004.6837,-381.8481 1015.1092,-379.9609 1011.6568,-373.8714"/>
+</g>
+<!-- RadiationTherapyTreatment&#45;&gt;MedicalAction -->
+<g id="edge41" class="edge">
+<title>RadiationTherapyTreatment-&gt;MedicalAction</title>
+<path fill="none" stroke="#444444" d="M1333.8031,-335.9593C1325.4136,-338.0307 1316.6838,-340.0177 1308.4268,-341.6 1184.3342,-365.3794 1148.85,-346.3428 1026.4268,-377.6 1023.6225,-378.316 1020.758,-379.1561 1017.8981,-380.0751"/>
+<polygon fill="#444444" stroke="#444444" points="1016.5689,-376.832 1008.2857,-383.4379 1018.8805,-383.4393 1016.5689,-376.832"/>
+</g>
+<!-- TherapeuticRegimen&#45;&gt;MedicalAction -->
+<g id="edge42" class="edge">
+<title>TherapeuticRegimen-&gt;MedicalAction</title>
+<path fill="none" stroke="#444444" d="M916.6595,-266.9601C930.3112,-276.492 946.3867,-289.9045 956.4268,-305.6 968.3558,-324.2482 974.3897,-348.688 977.4221,-367.3929"/>
+<polygon fill="#444444" stroke="#444444" points="973.9709,-367.9835 978.8496,-377.3882 980.9006,-366.9938 973.9709,-367.9835"/>
+</g>
+<!-- RegimenStatus -->
+<g id="node47" class="node">
+<title>RegimenStatus</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="889.4268" cy="-179.6" rx="36.8699" ry="18"/>
+<text text-anchor="middle" x="889.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">RegimenStatus</text>
+</g>
+<!-- RegimenStatus&#45;&gt;TherapeuticRegimen -->
+<g id="edge54" class="edge">
+<title>RegimenStatus-&gt;TherapeuticRegimen</title>
+<path fill="none" stroke="#444444" d="M889.9315,-197.7686C890.1454,-205.469 890.3998,-214.6257 890.6375,-223.1834"/>
+<polygon fill="#444444" stroke="#444444" points="887.1389,-223.2878 890.9153,-233.1867 894.1362,-223.0934 887.1389,-223.2878"/>
+</g>
+<!-- CumulativeDose&#45;&gt;ChemoTherapyTreatment -->
+<g id="edge49" class="edge">
+<title>CumulativeDose-&gt;ChemoTherapyTreatment</title>
+<path fill="none" stroke="#444444" d="M1133.4562,-265.4823C1153.524,-276.1852 1181.5763,-291.1464 1204.1928,-303.2085"/>
+<polygon fill="#444444" stroke="#444444" points="1202.7256,-306.3926 1213.1962,-308.0103 1206.0197,-300.2162 1202.7256,-306.3926"/>
+</g>
+<!-- CumulativeDose&#45;&gt;HormoneTherapyTreatment -->
+<g id="edge51" class="edge">
+<title>CumulativeDose-&gt;HormoneTherapyTreatment</title>
+<path fill="none" stroke="#444444" d="M1107.4268,-269.7686C1107.4268,-277.469 1107.4268,-286.6257 1107.4268,-295.1834"/>
+<polygon fill="#444444" stroke="#444444" points="1103.9269,-295.1867 1107.4268,-305.1867 1110.9269,-295.1868 1103.9269,-295.1867"/>
+</g>
+<!-- DoseInterval&#45;&gt;Treatment -->
+<g id="edge43" class="edge">
+<title>DoseInterval-&gt;Treatment</title>
+<path fill="none" stroke="#444444" d="M1180.5687,-195.2229C1191.6619,-205.3333 1206.2632,-218.6408 1218.494,-229.7878"/>
+<polygon fill="#444444" stroke="#444444" points="1216.3798,-232.5964 1226.1283,-236.7457 1221.095,-227.4228 1216.3798,-232.5964"/>
+</g>
+<!-- DrugType -->
+<g id="node50" class="node">
+<title>DrugType</title>
+<ellipse fill="#aaaaaa" stroke="#444444" cx="1242.4268" cy="-179.6" rx="28.0291" ry="18"/>
+<text text-anchor="middle" x="1242.4268" y="-177.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">DrugType</text>
+</g>
+<!-- DrugType&#45;&gt;Treatment -->
+<g id="edge44" class="edge">
+<title>DrugType-&gt;Treatment</title>
+<path fill="none" stroke="#444444" d="M1242.4268,-197.7686C1242.4268,-205.469 1242.4268,-214.6257 1242.4268,-223.1834"/>
+<polygon fill="#444444" stroke="#444444" points="1238.9269,-223.1867 1242.4268,-233.1867 1245.9269,-223.1868 1238.9269,-223.1867"/>
+</g>
+<!-- Pedigree -->
+<g id="node51" class="node">
+<title>Pedigree</title>
+<ellipse fill="#8bc751" stroke="#444444" cx="262.4268" cy="-467.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="262.4268" y="-465.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Pedigree</text>
+</g>
+<!-- Pedigree&#45;&gt;Family -->
+<g id="edge73" class="edge">
+<title>Pedigree-&gt;Family</title>
+<path fill="none" stroke="#444444" d="M286.2768,-476.6027C294.247,-479.5467 303.1955,-482.7823 311.4268,-485.6 358.2254,-501.6195 412.8079,-518.6714 447.2411,-529.2306"/>
+<polygon fill="#444444" stroke="#444444" points="446.2358,-532.5831 456.8222,-532.1606 448.2829,-525.8891 446.2358,-532.5831"/>
+</g>
+<!-- Person&#45;&gt;Pedigree -->
+<g id="edge55" class="edge">
+<title>Person-&gt;Pedigree</title>
+<path fill="none" stroke="#444444" d="M255.6979,-413.7686C256.6605,-421.469 257.805,-430.6257 258.8747,-439.1834"/>
+<polygon fill="#444444" stroke="#444444" points="255.4118,-439.6981 260.1252,-449.1867 262.3577,-438.8298 255.4118,-439.6981"/>
+</g>
+<!-- AffectedStatus -->
+<g id="node53" class="node">
+<title>AffectedStatus</title>
+<ellipse fill="#8bc751" stroke="#444444" cx="172.4268" cy="-323.6" rx="36.3318" ry="18"/>
+<text text-anchor="middle" x="172.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">AffectedStatus</text>
+</g>
+<!-- AffectedStatus&#45;&gt;Person -->
+<g id="edge57" class="edge">
+<title>AffectedStatus-&gt;Person</title>
+<path fill="none" stroke="#444444" d="M190.4034,-339.5791C201.8733,-349.7746 216.8772,-363.1114 229.368,-374.2144"/>
+<polygon fill="#444444" stroke="#444444" points="227.3516,-377.1048 237.151,-381.1326 232.0021,-371.8729 227.3516,-377.1048"/>
+</g>
+<!-- Phenopacket&#45;&gt;Family -->
+<g id="edge72" class="edge">
+<title>Phenopacket-&gt;Family</title>
+<path fill="none" stroke="#444444" d="M636.5721,-478.2238C604.0345,-491.0959 549.2359,-512.7744 514.2307,-526.6226"/>
+<polygon fill="#444444" stroke="#444444" points="512.9285,-523.3738 504.9172,-530.3071 515.5036,-529.883 512.9285,-523.3738"/>
+</g>
+<!-- Phenopacket&#45;&gt;Cohort -->
+<g id="edge76" class="edge">
+<title>Phenopacket-&gt;Cohort</title>
+<path fill="none" stroke="#444444" d="M663.4268,-485.7686C663.4268,-493.469 663.4268,-502.6257 663.4268,-511.1834"/>
+<polygon fill="#444444" stroke="#444444" points="659.9269,-511.1867 663.4268,-521.1867 666.9269,-511.1868 659.9269,-511.1867"/>
+</g>
+<!-- MetaData&#45;&gt;Phenopacket -->
+<g id="edge71" class="edge">
+<title>MetaData-&gt;Phenopacket</title>
+<path fill="none" stroke="#444444" d="M1041.5729,-407.4124C1036.7216,-409.7662 1031.4913,-412.0019 1026.4268,-413.6 914.3061,-448.9799 775.218,-461.412 706.2935,-465.5961"/>
+<polygon fill="#444444" stroke="#444444" points="706.0278,-462.1056 696.2467,-466.1773 706.4321,-469.0939 706.0278,-462.1056"/>
+</g>
+<!-- MetaData&#45;&gt;Family -->
+<g id="edge75" class="edge">
+<title>MetaData-&gt;Family</title>
+<path fill="none" stroke="#444444" d="M1041.4728,-407.1157C1036.6267,-409.4849 1031.4238,-411.8018 1026.4268,-413.6 930.1457,-448.2469 623.0761,-511.2326 517.491,-532.4242"/>
+<polygon fill="#444444" stroke="#444444" points="516.7465,-529.0037 507.6287,-534.3996 518.1213,-535.8674 516.7465,-529.0037"/>
+</g>
+<!-- MetaData&#45;&gt;Cohort -->
+<g id="edge78" class="edge">
+<title>MetaData-&gt;Cohort</title>
+<path fill="none" stroke="#444444" d="M1043.9139,-409.354C1016.4177,-429.1301 962.5237,-465.4312 911.4268,-485.6 839.6387,-513.936 749.9945,-528.7756 700.531,-535.3226"/>
+<polygon fill="#444444" stroke="#444444" points="699.7887,-531.889 690.3148,-536.6319 700.6786,-538.8322 699.7887,-531.889"/>
+</g>
+<!-- Resource -->
+<g id="node58" class="node">
+<title>Resource</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1522.4268" cy="-323.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="1522.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Resource</text>
+</g>
+<!-- Resource&#45;&gt;MetaData -->
+<g id="edge59" class="edge">
+<title>Resource-&gt;MetaData</title>
+<path fill="none" stroke="#444444" d="M1500.7209,-334.5037C1494.6091,-337.1923 1487.8684,-339.8108 1481.4268,-341.6 1344.1877,-379.7196 1174.0476,-391.0797 1099.8988,-394.343"/>
+<polygon fill="#444444" stroke="#444444" points="1099.5167,-390.8557 1089.6707,-394.7679 1099.8074,-397.8497 1099.5167,-390.8557"/>
+</g>
+<!-- Update -->
+<g id="node59" class="node">
+<title>Update</title>
+<ellipse fill="#1b75bc" stroke="#444444" cx="1594.4268" cy="-323.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="1594.4268" y="-321.2" font-family="Bitstream Vera Sans" font-size="8.00" fill="#ffffff">Update</text>
+</g>
+<!-- Update&#45;&gt;MetaData -->
+<g id="edge60" class="edge">
+<title>Update-&gt;MetaData</title>
+<path fill="none" stroke="#444444" d="M1574.0004,-335.3747C1569.0404,-337.7903 1563.6558,-340.0621 1558.4268,-341.6 1472.2346,-366.9501 1200.0474,-386.6741 1099.8906,-393.2447"/>
+<polygon fill="#444444" stroke="#444444" points="1099.3968,-389.7693 1089.6447,-393.9101 1099.8506,-396.7545 1099.3968,-389.7693"/>
+</g>
+</g>
+</svg>

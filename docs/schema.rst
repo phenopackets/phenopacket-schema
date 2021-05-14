@@ -29,6 +29,12 @@ Version 1.0
 
 The diagram below shows an overview of the schema elements.
 
+
+.. figure:: graph/phenopacket-schema-v1-overview.svg
+
+   Version 1.0 overview of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
+   links have been omitted for legibility.
+
 .. figure:: graph/phenopacket-schema-v1.svg
 
    Version 1.0 of the schema. Lines between elements indicate composition. Note that the OntologyClass links have been
@@ -37,6 +43,11 @@ The diagram below shows an overview of the schema elements.
 
 Version 2.0
 ###########
+
+.. figure:: graph/phenopacket-schema-v2-overview.svg
+
+   Version 2.0 overview of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
+   links have been omitted for legibility.
 
 .. figure:: graph/phenopacket-schema-v2.svg
 

@@ -1,0 +1,186 @@
+// Generated using https://edotor.net/
+// See https://graphviz.gitlab.io/
+// Note the OntologyClass, Age and AgeRange edges are commented-out for greater clarity of the output
+digraph phenopacket_schema_v1_overview {
+
+    label = "Phenopacket schema v1.0"
+
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    rankdir = BT
+    splines = "true"
+
+
+    node [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        style = "filled"
+        fontcolor = "white"
+        fillcolor = "#1b75bc"
+        color = "#444444"
+    ]
+
+    edge [
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+        color = "#444444"
+    ]
+
+    // base.proto
+    subgraph base {
+
+        OntologyClass
+        ExternalReference
+        Evidence
+        Sex
+        KaryotypicSex
+        Procedure
+        Age
+        AgeRange
+        PhenotypicFeature
+           // biosample.proto
+        Biosample
+        
+        PhenotypicFeature -> Biosample
+        Procedure -> Biosample
+        // OntologyClass -> Biosample
+        // Age -> Biosample
+        // AgeRange -> Biosample
+
+
+    // individual.proto
+        Individual
+
+        Sex -> Individual
+        KaryotypicSex -> Individual
+        // OntologyClass -> Individual
+        // Age -> Individual
+        // AgeRange -> Individual
+
+        // disease.proto
+        Disease
+        // OntologyClass -> Disease
+        // Age -> Disease
+        // AgeRange -> Disease
+
+        //    OntologyClass -> PhenotypicFeature
+        Evidence -> PhenotypicFeature
+    }
+    
+ 
+
+    // genome.proto
+    subgraph genomeProto {
+        node[fillcolor = "#5BC4BF"]
+        
+        HtsFile
+        HtsFormat
+        Gene
+        Variant
+        HgvsAllele
+        VcfAllele
+        SpdiAllele
+        IscnAllele
+        
+        HtsFile -> Biosample
+        Variant -> Biosample
+
+        HtsFormat -> HtsFile
+
+        //    OntologyClass -> Variant
+        HgvsAllele -> Variant
+        VcfAllele -> Variant
+        SpdiAllele -> Variant
+        IscnAllele -> Variant
+    }
+
+
+    subgraph interpretationProto {
+        label = "interpretation"
+        node[fillcolor = "#63498B"]
+        Interpretation
+
+        ResolutionStatus -> Interpretation
+        Phenopacket -> Interpretation
+        Family -> Interpretation
+        Diagnosis -> Interpretation
+
+        //    OntologyClass -> Diagnosis
+        Disease -> Diagnosis
+        GenomicInterpretation -> Diagnosis
+
+        Status -> GenomicInterpretation
+        Gene -> GenomicInterpretation
+        Variant -> GenomicInterpretation
+    }
+
+
+    // pedigree.proto
+
+    subgraph pedigreeProto {
+        node[fillcolor = "#8BC751"]
+        Pedigree 
+        Person
+        AffectedStatus
+            
+
+        Person -> Pedigree
+        Sex -> Person
+        AffectedStatus -> Person
+    }
+
+
+    // phenopackets.proto
+    Phenopacket [
+    // label = "{Phenopacket| id: String [1..1]\l subject: Individual [1..1]\l phenotypic_features: PhenotypicFeature [0..*]\l biosamples: Biosample [0..*]\l genes: Gene [0..*]\l variants: Variant [0..*]\l diseases: Disease [0..*]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+        fillcolor = "#faa634"
+    ]
+
+    Family [
+    // label = "{Family| id: String [1..1]\l proband: Phenopacket [1..1]\l relatives: Phenopacket [0..*]\l consanguinous_parents: Boolean\l pedigree: Pedigree [1..1]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+        fillcolor = "#faa634"
+    ]
+
+    Cohort [
+    fillcolor = "#faa634"
+    ]
+
+    MetaData [
+    // label = "{MetaData| created: google.protobuf.Timestamp\l created_by: String\l submitted_by: String\l resources: Resource [0..*]\l updates: Update [0..*]\l phenopacket_schema_version: String\l external_references: ExternalReference [0..*]\l}"
+    ]
+
+    Resource [
+    // label = "{Resource| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
+    ]
+
+    Update [
+    // label = "{Update| timestamp: Timestamp\l updated_by: String\l comment: String\l}"
+    ]
+
+    subgraph phenopacketsProto {
+        Resource -> MetaData
+        Update -> MetaData
+        ExternalReference -> MetaData
+        ExternalReference -> Evidence
+        //    OntologyClass -> Evidence
+
+        Individual -> Phenopacket
+        PhenotypicFeature -> Phenopacket
+        Biosample -> Phenopacket
+        Gene -> Phenopacket
+        Variant -> Phenopacket
+        Disease -> Phenopacket
+        HtsFile -> Phenopacket
+        MetaData -> Phenopacket
+
+        Phenopacket -> Family
+        Pedigree -> Family
+        HtsFile -> Family
+        MetaData -> Family
+
+        Phenopacket -> Cohort
+        HtsFile -> Cohort
+        MetaData -> Cohort
+    }
+
+}
