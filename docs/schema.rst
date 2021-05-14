@@ -95,7 +95,7 @@ general where there was an `onset` or `start` time, a `resolution` or `end` :ref
 VRS / VRSATILE
 --------------
 
-The :ref:`rstgene` and :ref:`rstvariant` replace the v1.0 ``Gene`` and ``Variant messages. The new messages are based on
+The :ref:`rstgene` and :ref:`rstvariant` replace the v1.0 ``Gene`` and ``Variant`` messages. The new messages are based on
 the `VRS <https://vrs.ga4gh.org>`_  and `VRSATILE <https://vrsatile.readthedocs.io/en/latest/>`_ schemas defined by the
 `GA4GH GKS group <https://ga4gh-gks.github.io/>`_
 
@@ -133,4 +133,4 @@ Interpretation
 The v2.0 :ref:`rstinterpretation` is now a sub-element of a `phenopacket`, rather than an enclosing element. The change
 allows for better semantics on the ``Gene`` (now replaced by :ref:`rstgene`) and ``Variant`` (now replaced by :ref:`rstvariant`)
 types and their relationship to an :ref:`rstindividual` or :ref:`rstbiosample` in the context of a :ref:`rstdiagnosis`
-based on a :ref:`rstgenomincinterpretation`.
+based on a :ref:`rstgenomicinterpretation`.
