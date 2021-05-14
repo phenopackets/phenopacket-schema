@@ -17,7 +17,7 @@ Data model
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - evidence_code
       - :ref:`rstontologyclass`

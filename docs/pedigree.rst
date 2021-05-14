@@ -48,32 +48,32 @@ Person
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - family_id
      - string
-     - required
-     - application specific identifier
+     - 1..1
+     - application specific identifier. REQUIRED.
    * - individual_id
      - string
-     - required
-     - application specific identifier
+     - 1..1
+     - application specific identifier. REQUIRED.
    * - paternal_id
      - string
-     - required
-     - application specific identifier
+     - 1..1
+     - application specific identifier. REQUIRED.
    * - maternal_id
      - string
-     - required
-     - application specific identifier
+     - 1..1
+     - application specific identifier. REQUIRED.
    * - sex
      - :ref:`rstsex`
-     - required
-     - see text
+     - 1..1
+     - see text. REQUIRED.
    * - affected_status
      - :ref:`rstaffectedstatus`
-     - required
-     - see text
+     - 1..1
+     - see text. REQUIRED.
 
 
 Example

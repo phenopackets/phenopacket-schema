@@ -20,7 +20,7 @@ VariantInterpretation
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - acmg_pathogenicity_classification
      - :ref:`rstacmgPathogenicityClassification`

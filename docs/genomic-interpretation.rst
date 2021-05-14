@@ -21,7 +21,7 @@ GenomicInterpretation
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - subject_or_biosample_id
      - string
