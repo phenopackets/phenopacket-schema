@@ -30,11 +30,18 @@ Version 1.0
 The diagram below shows an overview of the schema elements.
 
 .. role:: color-base
+.. role:: color-interpretation
+.. role:: color-measurement
+.. role:: color-genomic-vrs
+.. role:: color-pedigree
+.. role:: color-top-level
+.. role:: color-medical-action
 
 .. figure:: graph/phenopacket-schema-v1-overview.svg
 
    Version 1.0 overview of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
-   links have been omitted for legibility. Base classes are coloured :color-base:`mid-blue`
+   links have been omitted for legibility. The colour scheme is: :color-base:`base classes`, :color-interpretation:`interpretation classes`,
+   :color-genomic-vrs:`genomic classes`, :color-pedigree:`pedigree classes`, :color-top-level:`top-level classes`
 
 .. figure:: graph/phenopacket-schema-v1.svg
 
@@ -48,7 +55,9 @@ Version 2.0
 .. figure:: graph/phenopacket-schema-v2-overview.svg
 
    Version 2.0 overview of the schema. Lines between elements indicate composition. Note that the OntologyClass and TimeElement
-   links have been omitted for legibility.
+   links have been omitted for legibility. The colour scheme is: :color-base:`base classes`, :color-interpretation:`interpretation classes`,
+   :color-measurement:`measurement classes`, :color-genomic-vrs:`genomic/vrs classes`, :color-pedigree:`pedigree classes`,
+   :color-top-level:`top-level classes`, :color-medical-action:`medical-action classes`
 
 .. figure:: graph/phenopacket-schema-v2.svg
 
