@@ -57,7 +57,7 @@ With this, we present a function that creates a Phenopacket that represents the 
                 .build();
         PhenotypicFeature notHepatomegaly = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002240", "Hepatomegaly"))
-                .setNegated(true)
+                .setExcluded(true)
                 .build();
         PhenotypicFeature reticulocytosis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001923", "Reticulocytosis"))

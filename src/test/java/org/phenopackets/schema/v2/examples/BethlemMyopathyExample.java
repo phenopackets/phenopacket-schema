@@ -7,13 +7,13 @@ import org.ga4gh.vrs.v1.*;
 import org.ga4gh.vrsatile.v1.Expression;
 import org.ga4gh.vrsatile.v1.GeneDescriptor;
 import org.ga4gh.vrsatile.v1.VariationDescriptor;
-import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
-import org.phenopackets.schema.v2.io.FormatMapper;
 
-import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
 
@@ -71,20 +71,20 @@ public class BethlemMyopathyExample {
 
         PhenotypicFeature absentCranialNerveAbnormality = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0031910", "Abnormal cranial nerve physiology"))
-                .setNegated(true)
+                .setExcluded(true)
                 .addEvidence(citation)
                 .build();
 
         PhenotypicFeature motorDelay = PhenotypicFeature.newBuilder()
-                .setType(ontologyClass("HP:0001270","Motor delay"))
-                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463","Childhood onset")))
+                .setType(ontologyClass("HP:0001270", "Motor delay"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463", "Childhood onset")))
                 .setSeverity(mild)
                 .build();
 
         PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011463", "Macroscopic hematuria"))
                 .setOnset(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
-                .addModifiers(ontologyClass("HP:0031796","Recurrent"))
+                .addModifiers(ontologyClass("HP:0031796", "Recurrent"))
                 .addEvidence(citation)
                 .build();
 
@@ -159,9 +159,11 @@ public class BethlemMyopathyExample {
      */
     static Family bethlemMyopathyFamily() {
 
-        long millis  = System.currentTimeMillis();
-        Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
-                .setNanos((int) ((millis % 1000) * 1000000)).build();
+        LocalDateTime timeNow = LocalDate.of(2021, 5, 14).atTime(10, 35);
+
+        Timestamp timestamp = Timestamp.newBuilder()
+                .setSeconds(timeNow.toEpochSecond(ZoneOffset.UTC))
+                .build();
 
         MetaData metaData = MetaData.newBuilder()
                 .addResources(Resource.newBuilder()
@@ -204,9 +206,4 @@ public class BethlemMyopathyExample {
                 .build();
     }
 
-    @Test
-    void testBethlemMyopathyExample() throws IOException {
-        Family example = bethlemMyopathyFamily();
-        System.out.println(FormatMapper.messageToYaml(example));
-    }
 }

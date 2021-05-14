@@ -7,8 +7,12 @@ import org.ga4gh.vrs.v1.Number;
 import org.ga4gh.vrs.v1.*;
 import org.ga4gh.vrsatile.v1.*;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.phenopackets.schema.v2.Family;
+import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.examples.TestExamples;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -775,5 +779,29 @@ public class YamlGenerationTest extends TestBase {
         String hash = printAndGetHash(update, "update");
         assertEquals("1147417812354796ba5dcde1a7a8f23abb9b8c58a0d02c42be85c84028db1ab7", hash);
     }
-    
+
+    @Nested
+    public class ExamplesTests {
+
+        @Test
+        public void rareDiseaseExampleTest() {
+            Family bethlemMyopathyFamily = TestExamples.rareDiseaseBethlemMyopathyFamily();
+            String hash = printAndGetHash(bethlemMyopathyFamily, "family");
+            assertEquals("61a7b4d255687352848acab7c137e4f744838085a24f1d6038ad84629258a1c3", hash);
+        }
+
+        @Test
+        public void cancerExampleTest() {
+            Phenopacket phenopacket = TestExamples.cancerPhenopacket();
+            String hash = printAndGetHash(phenopacket, "phenopacket");
+            assertEquals("c373e99d4f6777457c09be89a0126224d92c407860cebc7c66a98e6cb2224edf", hash);
+        }
+
+        @Test
+        public void covidExampleTest() {
+            Phenopacket phenopacket = TestExamples.severeCovidCaseWithCardiacComplications();
+            String hash = printAndGetHash(phenopacket, "phenopacket");
+            assertEquals("adde5e684043b577cf017b47ed458e8ef88e72465c52a19354b2598d0fe1c76f", hash);
+        }
+    }
 }

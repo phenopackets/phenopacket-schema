@@ -113,12 +113,12 @@ class RareDiseaseFamilyExample {
 
         PhenotypicFeature notPneumonia = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0002090", "Pneumonia"))
-                .setNegated(true)
+                .setExcluded(true)
                 .build();
 
         PhenotypicFeature notChronicSinusitis = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011109", "Chronic sinusitis"))
-                .setNegated(true)
+                .setExcluded(true)
                 .build();
 
         Individual sister = Individual.newBuilder()
@@ -208,7 +208,7 @@ class RareDiseaseFamilyExample {
      * homozygous allele, the other by a compound heterozygous genotype. The proband's sister is affected with a
      * single condition caused by the compound heterozygous genotype. Neither parent exhibits an abnormal phenotype.
      */
-    static Family rareDiseaseFamily() {
+    static Family rareDiseaseKindred1aFamily() {
 
         long millis  = System.currentTimeMillis();
         Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)

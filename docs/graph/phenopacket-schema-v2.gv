@@ -365,7 +365,7 @@ digraph phenopacket_schema_v2 {
 
     // phenotypic_feature.proto
     PhenotypicFeature [
-    label = "{PhenotypicFeature| description: String\l type: OntologyClass\l negated: Boolean\l severity: OntologyClass\l modifiers: OntologyClass [0..*]\l onset: TimeElement\l resolution: TimeElement\l evidence Evidence [0..*]\l}"
+    label = "{PhenotypicFeature| description: String\l type: OntologyClass\l excluded: Boolean\l severity: OntologyClass\l modifiers: OntologyClass [0..*]\l onset: TimeElement\l resolution: TimeElement\l evidence Evidence [0..*]\l}"
     ]
     //    OntologyClass -> PhenotypicFeature
  //    TimeElement -> PhenotypicFeature

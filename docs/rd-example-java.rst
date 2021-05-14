@@ -84,7 +84,7 @@ and create an Evidence object that indicates the provenance of the data.
 
         PhenotypicFeature absentCranialNerveAbnormality = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0031910", "Abnormal cranial nerve physiology"))
-                .setNegated(true)
+                .setExcluded(true)
                 .addEvidence(citation)
                 .build();
 

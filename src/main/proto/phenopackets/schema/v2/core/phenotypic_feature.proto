@@ -25,7 +25,7 @@ message PhenotypicFeature {
   // absent.
   // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'type' field.
   // *CAUTION* It is imperative to check this field for correct interpretation of the phenotype!
-  bool negated = 3;
+  bool excluded = 3;
 
   // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
   // FHIR mapping: Condition.severity

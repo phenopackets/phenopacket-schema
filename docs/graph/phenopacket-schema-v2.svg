@@ -85,7 +85,7 @@
 <polyline fill="none" stroke="#000000" points="1278.2848,-713.3 1398.0464,-713.3 "/>
 <text text-anchor="start" x="1286.2848" y="-702.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">description: String</text>
 <text text-anchor="start" x="1286.2848" y="-692.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> type: OntologyClass</text>
-<text text-anchor="start" x="1286.2848" y="-682.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> negated: Boolean</text>
+<text text-anchor="start" x="1286.2848" y="-682.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> excluded: Boolean</text>
 <text text-anchor="start" x="1286.2848" y="-673.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> severity: OntologyClass</text>
 <text text-anchor="start" x="1286.2848" y="-663.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> modifiers: OntologyClass [0..*]</text>
 <text text-anchor="start" x="1286.2848" y="-654.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> onset: TimeElement</text>

@@ -17,13 +17,13 @@ public class FamilyTest {
 
     @Test
     public void printFamilyAsYaml() throws IOException {
-        Family family = TestExamples.rareDiseaseFamily();
+        Family family = TestExamples.rareDiseaseKindred1aFamily();
         System.out.println(FormatMapper.messageToYaml(family));
     }
 
     @Test
     public void roundTrippingFamily() throws IOException {
-        Family original = TestExamples.rareDiseaseFamily();
+        Family original = TestExamples.rareDiseaseKindred1aFamily();
 
         String json = JsonFormat.printer().print(original);
         String asYaml = FormatMapper.jsonToYaml(json);

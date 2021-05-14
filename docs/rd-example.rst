@@ -83,7 +83,7 @@ This block refers to the fact that the authors reported that "Tests of ... crani
   - type:
       id: "HP:0031910"
       label: "Abnormal cranial nerve physiology"
-    negated: true
+    excluded: true
     evidence:
     - evidenceCode:
         id: "ECO:0000033"

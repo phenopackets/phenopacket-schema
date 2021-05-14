@@ -9,7 +9,7 @@ This element is intended to be used to describe a phenotype that characterizes t
 For medical use cases the subject will generally be a patient or a proband of a study, and the phenotypes will
 be abnormalities described by an ontology such as the `Human Phenotype Ontology <http://www.human-phenotype-ontology.org>`_.
 The word phenotype is used with many different meanings including disease entity, but in this context we mean
-An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
+An individual phenotypic feature, observed as either present or absent (excluded), with possible onset, modifiers and
 frequency.
 
 
@@ -21,7 +21,7 @@ Data model
 
     description, string, optional, human-readable verbiage **NOT** for structured text
     type, :ref:`rstontologyclass`, 1..1, term denoting the phenotypic feature. REQUIRED.
-    negated, boolean, 0..1, defaults to `false`
+    excluded, boolean, 0..1, defaults to `false`
     severity, :ref:`rstontologyclass`, 0..1, description of the severity of the feature described in `type`. For instance terms from `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
     modifiers, list of :ref:`rstontologyclass`, 0..*, For instance one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
     onset, :ref:`rsttimeelement`, 0..1, Age or time at which the feature was first observed.
@@ -69,8 +69,8 @@ type
 The element represents the primary :ref:`ontology class <rstontologyclass>` which describes the phenotype.
 For example `Craniosynostosis (HP:0001363) <https://hpo.jax.org/app/browse/term/HP:0001363>`_.
 
-negated
-~~~~~~~
+excluded
+~~~~~~~~
 This element is a flag to indicate whether the phenotype was observed or not.
 The default is 'false', in other words the phenotype was observed. Therefore it is only
 required in cases to indicate that the phenotype was looked for, but found to be absent.

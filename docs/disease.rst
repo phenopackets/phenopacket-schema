@@ -19,7 +19,7 @@ Data model
    :header: Field, Type, Multiplicity, Description
 
    term, :ref:`rstontologyclass`, 1..1, An ontology class that represents the disease. REQUIRED.
-   excluded, boolean, 1..1, Flag to indicate whether the disease was observed or not. REQUIRED.
+   excluded, boolean, 0..1, Flag to indicate whether the disease was observed or not.
    onset, :ref:`rsttimeelement`, 0..1, an element representing the age of onset of the disease
    resolution, :ref:`rsttimeelement`, 0..1, an element representing the age of resolution (abatement) of the disease
    disease_stage, :ref:`rstontologyclass` (List), 0..*, List of terms representing the disease stage e.g. AJCC stage group.

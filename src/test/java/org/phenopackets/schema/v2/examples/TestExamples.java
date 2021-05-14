@@ -35,8 +35,8 @@ public class TestExamples {
      *
      * @return a {@link Phenopacket} containing a rare disease patient and relations.
      */
-    public static Family rareDiseaseFamily() {
-        return RareDiseaseFamilyExample.rareDiseaseFamily();
+    public static Family rareDiseaseKindred1aFamily() {
+        return RareDiseaseFamilyExample.rareDiseaseKindred1aFamily();
     }
 
     public static Phenopacket rareDiseasePhenopacket() {
@@ -45,6 +45,10 @@ public class TestExamples {
 
     public static Bundle cancerBundle() {
         return CancerFhirExample.cancerBundle();
+    }
+
+    public static Family rareDiseaseBethlemMyopathyFamily() {
+        return BethlemMyopathyExample.bethlemMyopathyFamily();
     }
 
     public static Phenopacket cancerPhenopacket() {
