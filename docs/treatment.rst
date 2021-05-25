@@ -49,25 +49,25 @@ The following example describes twice daily dosing of 30 mg of losartan given or
 .. code-block:: yaml
 
     treatment:
-        agent:
-            id: "DrugCentral:1610"
-            label: "losartan"
-        routeOfAdministration:
-            id: "NCIT:C38288"
-            label: "Oral Route of Administration"
-        doseIntervals:
-            - quantity:
-                unit:
-                    id: "UO:0000022"
-                    label: "milligram"
-                value: 30.0
+      agent:
+        id: "DrugCentral:1610"
+        label: "losartan"
+      routeOfAdministration:
+        id: "NCIT:C38288"
+        label: "Oral Route of Administration"
+      doseIntervals:
+      - quantity:
+          unit:
+            id: "UO:0000022"
+            label: "milligram"
+          value: 30.0
         scheduleFrequency:
-            id: "NCIT:C64496"
-            label: "Twice Daily"
+          id: "NCIT:C64496"
+          label: "Twice Daily"
         interval:
-            start: "2020-03-15T13:00:00Z"
-            end: "2020-03-25T09:00:00Z"
-        drugType: "PRESCRIPTION"
+          start: "2020-03-15T13:00:00Z"
+          end: "2020-03-25T09:00:00Z"
+      drugType: "PRESCRIPTION"
 
 
 Explanations
