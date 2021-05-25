@@ -39,7 +39,7 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
       - 0..*
       - Measurements performed in the proband
     * - biosamples
-      - :ref:`rstbiosample`
+      - List of :ref:`rstbiosample`
       - 0..*
       - samples (e.g., biopsies), if any
     * - interpretations
