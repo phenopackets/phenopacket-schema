@@ -83,14 +83,18 @@ message HormoneTherapyTreatment {
 
 // RadiationTherapy
 message RadiationTherapyTreatment {
+  // The modality of radiation therapy (e.g., electron, photon,…). REQUIRED.
   // ARGO mapping radiation::radiation_therapy_modality
-  // ARGO mapping radiation::radiation_therapy_dosage
-  Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  OntologyClass modality = 1;
+  // The anatomical site where radiation therapy was administered. REQUIRED.
   // ARGO mapping radiation::anatomical_site_irradiated
   OntologyClass body_site = 2;
-  // Indicates the total number of fractions delivered as part of treatment.
+  // The total dose given in units of Gray (Gy). REQUIRED.
+  // ARGO mapping radiation::radiation_therapy_dosage
+  int32 dosage = 3;
+  // The total number of fractions delivered as part of treatment. REQUIRED.
   // ARGO mapping radiation::radiation_therapy_fractions
-  int32 fractions = 3;
+  int32 fractions = 4;
 
   // ARGO mapping radiation::radiation_therapy_type (missing)
 }
