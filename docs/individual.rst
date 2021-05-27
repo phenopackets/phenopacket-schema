@@ -128,10 +128,6 @@ Assuming that this individual was sequenced, we might have the following :ref:`r
 We would also use ``patient23456`` as the ``individualId`` element within a :ref:`rstpedigree` element.
 
 
-
-Explanations
-############
-
 alternate_ids
 ~~~~~~~~~~~~~
 
