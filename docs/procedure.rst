@@ -4,7 +4,8 @@
 Procedure
 #########
 
-The Procedure element represents a clinical procedure performed on a subject in order to extract a biosample.
+The Procedure element represents a clinical procedure performed on a subject. For example a surgical or diagnostic
+procedure such as a biopsy.
 
 If the Procedure element is used, it must contain a ``code`` element, but only need contain the
 body_site element if needed.
