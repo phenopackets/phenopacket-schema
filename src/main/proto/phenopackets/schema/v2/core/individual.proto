@@ -25,12 +25,7 @@ message Individual {
   // e.g. "2018-03-01T00:00:00Z" for someone born on an unknown day in March 2018
   // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
   // or empty if unknown/ not stated.
-  google.protobuf.Timestamp date_of_birth = 3;
-
-  // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
-  // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
-  // See http://build.fhir.org/datatypes
-  TimeElement time_at_encounter = 4;
+  google.protobuf.Timestamp date_of_birth = 3;;
 
   // Vital status of the individual. If not present it is assumed that the individual is alive. If present it will
   // default to 'false' i.e. the individual was alive when the data was collected.

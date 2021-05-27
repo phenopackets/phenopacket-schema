@@ -51,7 +51,7 @@ RegimenStatus
     UNKNOWN_STATUS, 0, The status of the regimen is unknown
     STARTED, 1,  The regimen was started
     COMPLETED, 2, The regimen was completed
-    DISCONTINUED, 3, The regimen was discontinued
+    DISCONTINUED, 3, The regimen was discontinued but not completed
 
 
 Example
