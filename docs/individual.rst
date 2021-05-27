@@ -31,14 +31,10 @@ Data model
       - timestamp
       - 0..1
       - A timestamp either exact or imprecise
-    * - time_at_encounter
-      - :ref:`rsttimeelement`
-      - 0..1
-      - The age or age range of the individual. RECOMMENDED.
     * - vital_status
       - :ref:`rstvitalstatus`
       - 0..1
-      - The age or age range of the individual. RECOMMENDED.
+      - The vital status of the individual e.g. whether they are alive or the time and cause of death. RECOMMENDED.
     * - sex
       - :ref:`rstsex`
       - 0..1
@@ -156,15 +152,6 @@ See :ref:`here<rstjavatimestamp>` for more information about timestamps.
 
 The element is provided for use cases within protected networks, but it many situations the element should not be used
 in order to protect the privacy of the individual. Instead, the ``Age`` element should be preferred.
-
-
-time_at_encounter
-~~~~~~~~~~~~~~~~~
-An object describing when the encounter with the patient happened or the the age of the individual at the time of collection
-of biospecimens or phenotypic observations reported in the current Phenopacket. It is specified using either an :ref:`rsttimeelement`,
-which can represent an time in several different ways, either precisely or within a range. For example an :ref:`rstage`
-or an :ref:`AgeRange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
-was to protect privacy of study participants).
 
 vital_status
 ~~~~~~~~~~~~
