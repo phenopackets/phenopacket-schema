@@ -47,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'phenopacket-schema'
-copyright = u'2021, Julius OB Jacobsen, Peter N Robinson'
-author = u'Julius OB Jacobsen, Peter N Robinson'
+copyright = u'Global Alliance for Genomics and Health'
+author = u'Global Alliance for Genomics and Health'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -144,7 +144,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'phenopacket-schema.tex', u'Phenopacket-schema Documentation',
-     u'Julius OB Jacobsen & Peter N Robinson', 'manual'),
+     u'Global Alliance for Genomics and Health', 'manual'),
 ]
 
 
