@@ -4,8 +4,7 @@
 TimeInterval
 ############
 
-An time interval is meant to denote an interval of time whose begin and end is defined
-by `Timestamps <https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/Timestamp>`_.
+An time interval is meant to denote an interval of time whose begin and end is defined by :ref:`rsttimestamp`.
 
 
 
@@ -23,11 +22,11 @@ Data model
      - Multiplicity
      - Description
    * - start
-     - google.protobuf.Timestamp
+     - :ref:`rsttimestamp`
      - 1..1
      - begin of interval. REQUIRED.
    * - end
-     - google.protobuf.Timestamp
+     - :ref:`rsttimestamp`
      - 1..1
      - end of interval. REQUIRED.
 

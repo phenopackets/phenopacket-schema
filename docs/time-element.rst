@@ -44,7 +44,7 @@ Data model
      - (one of the options)
      - indicates the age of the individual as an ontology class
    * - timestamp
-     - google.protobuf.Timestamp
+     - :ref:`rsttimestamp`
      - (one of the options)
      - indicates a specific time
    * - interval
@@ -84,14 +84,14 @@ desirable to help preserve privacy. See  :ref:`rstagerange`
 ontology_class
 ~~~~~~~~~~~~~~
 
-If an ``OntologyClass`` is used to represent the age of onset of a phenotypic feature,
+If an :ref:`rstontologyclass` is used to represent the age of onset of a phenotypic feature,
 then terms for age of onset can be chosen
 from the `Onset subhierarchy of the HPO <https://hpo.jax.org/app/browse/term/HP:0003674>`_. See :ref:`rstontologyclass`.
 
 
 timestamp
 ~~~~~~~~~
-A google.protobuf.Timestamp can be used to represent a specific time. Note that all timestamps in a phenopacket can be shifted
+A :ref:`rsttimestamp` can be used to represent a specific time. Note that all timestamps in a phenopacket can be shifted
 by the same amount to help preserve privacy if desired.
 
 interval
