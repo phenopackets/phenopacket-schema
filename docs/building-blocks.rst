@@ -49,6 +49,7 @@ building blocks.
    therapeutic-regimen
    time-element
    time-interval
+   timestamp
    treatment
    update
    value
