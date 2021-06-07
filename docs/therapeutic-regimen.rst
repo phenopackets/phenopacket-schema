@@ -1,8 +1,8 @@
 .. _rsttherapeuticregimen:
 
-###########################
-TherapeuticRegimenTreatment
-###########################
+##################
+TherapeuticRegimen
+##################
 
 This element represents a therapeutic regimen which will involve a specified set of treatments for a particular condition.
 It can be thought of as a shorthand for a more specific set of treatments. This element is supposed to reference a more
@@ -12,10 +12,10 @@ detailed regimen specification
 Data model
 ##########
 
-TherapeuticRegimenTreatment
+TherapeuticRegimen
 ~~~~~~~~~~~~~~~~~~
 
-.. list-table:: Definition  of the ``TherapeuticRegimenTreatment`` element
+.. list-table:: Definition  of the ``TherapeuticRegimen`` element
    :widths: 25 25 25 75
    :header-rows: 1
 
@@ -61,7 +61,7 @@ The following example describes twice daily dosing of 30 mg of losartan given or
 
 .. code-block:: yaml
 
-    therapeuticRegimenTreatment:
+    therapeuticRegimen:
       externalReference:
         id: "NCT04576091"
         reference: "https://clinicaltrials.gov/ct2/show/NCT04576091"

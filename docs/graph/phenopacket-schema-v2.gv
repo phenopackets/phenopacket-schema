@@ -271,23 +271,15 @@ digraph phenopacket_schema_v2 {
     // medical_action.proto
     subgraph medicalActionProto {
     MedicalAction [
-    label = "{MedicalAction| action: \{\Procedure \| Treatment \| ChemoTherapyTreatment \| HormoneTherapyTreatment \| RadiationTherapyTreatment \| TherapeuticRegimen\}\l treatment_target: OntologyClass\l treatment_intent: OntologyClass\l response_to_treatment: OntologyClass\l adverse_events: OntologyClass [0..*]\l treatment_termination_reason: OntologyClass\l}"
+    label = "{MedicalAction| action: \{\Procedure \| Treatment \| RadiationTherapy \| TherapeuticRegimen\}\l treatment_target: OntologyClass\l treatment_intent: OntologyClass\l response_to_treatment: OntologyClass\l adverse_events: OntologyClass [0..*]\l treatment_termination_reason: OntologyClass\l}"
     ]
 
     Treatment [
-    label = "{Treatment| agent: OntologyClass\l route_of_administration: OntologyClass\l dose_intervals: DoseInterval [0..*]\l drug_type: DrugType\l }"
+    label = "{Treatment| agent: OntologyClass\l route_of_administration: OntologyClass\l dose_intervals: DoseInterval [0..*]\l drug_type: DrugType\l cumulative_dose: Quantity\l}"
     ]
 
-    ChemoTherapyTreatment [
-    label = "{ChemoTherapyTreatment| treatment: Treatment\l cumulative_dose: CumulativeDose\l}"
-    ]
-
-    HormoneTherapyTreatment [
-    label = "{HormoneTherapyTreatment| treatment: Treatment\l cumulative_dose: CumulativeDose\l}"
-    ]
-
-    RadiationTherapyTreatment [
-    label = "{RadiationTherapyTreatment| treatment: Treatment\l body_site: OntologyClass\l fractions: Integer\l}"
+    RadiationTherapy [
+    label = "{RadiationTherapy| modality: OntologyClass\l body_site: OntologyClass\l dosage: Integer\l fractions: Integer\l}"
     ]
 
     TherapeuticRegimen [
@@ -298,13 +290,10 @@ digraph phenopacket_schema_v2 {
     label = "{RegimenStatus \<enum\>| 0 = UNKNOWN\l 1 = STARTED\l 2 = COMPLETED\l 3 = DISCONTINUED}"
     ]
 
-    CumulativeDose [
-    label = "{CumulativeDose| quantity: Quantity\l}"
-    ]
-
     DoseInterval [
     label = "{DoseInterval| quantity: Quantity\l schedule_frequency: OntologyClass\l interval: TimeInterval\l}"
     ]
+
     DrugType [
     label = "{DrugType \<enum\>| 0 = UNKNOWN_DRUG_TYPE\l 1 = PRESCRIPTION\l 2 = EHR_MEDICATION_LIST\l 3 = ADMINISTRATION_RELATED_TO_PROCEDURE\l}"
     ]
@@ -313,9 +302,7 @@ digraph phenopacket_schema_v2 {
     //    OntologyClass -> MedicalAction
     Procedure -> MedicalAction
     Treatment -> MedicalAction
-    ChemoTherapyTreatment -> MedicalAction
-    HormoneTherapyTreatment -> MedicalAction
-    RadiationTherapyTreatment -> MedicalAction
+    RadiationTherapy -> MedicalAction
     TherapeuticRegimen -> MedicalAction
 
     //    OntologyClass -> Treatment
@@ -326,16 +313,9 @@ digraph phenopacket_schema_v2 {
     //    OntologyClass -> DoseInterval
     TimeInterval -> DoseInterval
 
-    Quantity -> CumulativeDose
+    Quantity -> Treatment
 
-    Treatment -> ChemoTherapyTreatment
-    CumulativeDose -> ChemoTherapyTreatment
-
-    Treatment -> HormoneTherapyTreatment
-    CumulativeDose -> HormoneTherapyTreatment
-
-    Treatment -> RadiationTherapyTreatment
-    //    OntologyClass -> RadiationTherapyTreatment
+    //    OntologyClass -> RadiationTherapy
 
     ExternalReference -> TherapeuticRegimen
     //    OntologyClass -> TherapeuticRegimen

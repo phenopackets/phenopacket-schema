@@ -1,8 +1,8 @@
 .. _rstradiotherapy:
 
-#########################
-RadiationTherapyTreatment
-#########################
+################
+RadiationTherapy
+################
 
 Radiation therapy (or radiotherapy) uses ionizing radiation, generally as part of cancer treatment to control
 or kill malignant cells.

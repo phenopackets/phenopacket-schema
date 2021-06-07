@@ -301,19 +301,19 @@ public class YamlGenerationTest extends TestBase {
     }
 
     @Test
-    public void therapeuticRegimenTreatmentTest() throws ParseException {
+    public void therapeuticRegimenTest() throws ParseException {
         ExternalReference externalReference = ExternalReference.newBuilder()
                 .setId("NCT04576091")
                 .setReference("https://clinicaltrials.gov/ct2/show/NCT04576091")
                 .setDescription("Testing the Addition of an Anti-cancer Drug, BAY1895344, With Radiation Therapy to the Usual Pembrolizumab Treatment for Recurrent Head and Neck Cancer")
                 .build();
 
-        TherapeuticRegimenTreatment therapeuticRegimenTreatment = TherapeuticRegimenTreatment.newBuilder().setExternalReference(externalReference)
+        TherapeuticRegimen therapeuticRegimen = TherapeuticRegimen.newBuilder().setExternalReference(externalReference)
                 .setStartTime(TimeElement.newBuilder().setTimestamp(Timestamps.parse("2020-03-15T13:00:00Z")))
-                .setRegimenStatus(TherapeuticRegimenTreatment.RegimenStatus.STARTED)
+                .setRegimenStatus(TherapeuticRegimen.RegimenStatus.STARTED)
                 .build();
-        String hash = printAndGetHash(therapeuticRegimenTreatment, "therapeuticRegimenTreatment");
-        assertEquals("152bb717e6d8586928f033407b20f113d8715f7cc07704ef42aaf5d2e79f8796", hash);
+        String hash = printAndGetHash(therapeuticRegimen, "therapeuticRegimen");
+        assertEquals("91a2d0520bf63231d9d8fb3efe28f31dff8b73dd76b905489b33e41699abd6c1", hash);
     }
 
     @Test
@@ -518,19 +518,17 @@ public class YamlGenerationTest extends TestBase {
                 .setQuantity(quantity)
                 .setScheduleFrequency(every3weeks)
                 .build();
-        Treatment treatment = Treatment.newBuilder()
+        Quantity cumulativeQuantity = quantity(200, mgPerKg);
+        Treatment chemo = Treatment.newBuilder()
                 .setAgent(aclarubicin)
                 .setDrugType(DrugType.EHR_MEDICATION_LIST)
                 .addDoseIntervals(di)
                 .setRouteOfAdministration(intravenous)
-                .build();
-        Quantity cumulativeQuantity = quantity(200, mgPerKg);
-        ChemoTherapyTreatment chemo = ChemoTherapyTreatment.newBuilder()
-                .setTreatment(treatment)
                 .setCumulativeDose(cumulativeQuantity)
                 .build();
-        String hash = printAndGetHash(chemo, "chemoTherapyTreatment");
-        assertEquals("2e386cea39ba4f50887d255af6cce4fd7369af5ca928b2695220e7fc7f909baf", hash);
+
+        String hash = printAndGetHash(chemo, "treatment");
+        assertEquals("9ec2bdf89056d27dbd0b0ec74d26c5d72d8d472cee0de5810968c7baf7411526", hash);
     }
 
     @Test
@@ -547,19 +545,16 @@ public class YamlGenerationTest extends TestBase {
                 .setQuantity(quantity)
                 .setScheduleFrequency(onceDaily)
                 .build();
-        Treatment treatment = Treatment.newBuilder()
+        Quantity cumulativeQuantity = quantity(36500, milligram);
+        Treatment hormone = Treatment.newBuilder()
                 .setAgent(tamoxifen)
                 .setDrugType(DrugType.PRESCRIPTION)
                 .addDoseIntervals(di)
                 .setRouteOfAdministration(oral)
-                .build();
-        Quantity cumulativeQuantity = quantity(36500, milligram);
-        HormoneTherapyTreatment hormone = HormoneTherapyTreatment.newBuilder()
-                .setTreatment(treatment)
                 .setCumulativeDose(cumulativeQuantity)
                 .build();
-        String hash = printAndGetHash(hormone, "hormoneTherapyTreatment");
-        assertEquals("c03145d8374b8ed147c1d2374f74008c470082929e3028224564be10617f3e17", hash);
+        String hash = printAndGetHash(hormone, "treatment");
+        assertEquals("559c77ef71a616d4f0a5b8b8e8466f6139191a94b98ac04637d88330d5b8fb36", hash);
     }
 
     @Test

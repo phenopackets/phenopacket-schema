@@ -167,24 +167,19 @@ digraph phenopacket_schema_v2_overview {
    // medical_action.proto
    subgraph medicalActionProto {
       node[fillcolor = "#AAAAAA"]
-       
+
       MedicalAction
       Treatment
-      ChemoTherapyTreatment
-      HormoneTherapyTreatment
-      RadiationTherapyTreatment
+      RadiationTherapy
       TherapeuticRegimen
       RegimenStatus
-      CumulativeDose
       DoseInterval
       DrugType
-    
-    //    OntologyClass -> MedicalAction
+
+      //    OntologyClass -> MedicalAction
       Procedure -> MedicalAction
       Treatment -> MedicalAction
-      ChemoTherapyTreatment -> MedicalAction
-      HormoneTherapyTreatment -> MedicalAction
-      RadiationTherapyTreatment -> MedicalAction
+      RadiationTherapy -> MedicalAction
       TherapeuticRegimen -> MedicalAction
 
       //    OntologyClass -> Treatment
@@ -195,16 +190,9 @@ digraph phenopacket_schema_v2_overview {
       //    OntologyClass -> DoseInterval
       TimeInterval -> DoseInterval
 
-      Quantity -> CumulativeDose
+      Quantity -> Treatment
 
-      Treatment -> ChemoTherapyTreatment
-      CumulativeDose -> ChemoTherapyTreatment
-
-      Treatment -> HormoneTherapyTreatment
-      CumulativeDose -> HormoneTherapyTreatment
-
-      Treatment -> RadiationTherapyTreatment
-      //    OntologyClass -> RadiationTherapyTreatment
+      //    OntologyClass -> RadiationTherapy
 
       ExternalReference -> TherapeuticRegimen
       //    OntologyClass -> TherapeuticRegimen

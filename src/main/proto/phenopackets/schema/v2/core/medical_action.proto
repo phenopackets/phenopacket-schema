@@ -14,27 +14,25 @@ message MedicalAction {
   oneof action {
     Procedure procedure = 1;
     Treatment treatment = 2;
-    ChemoTherapyTreatment chemo_therapy = 3;
-    HormoneTherapyTreatment hormone_therapy = 4;
-    RadiationTherapyTreatment radiation_therapy = 5;
-    TherapeuticRegimenTreatment therapeutic_regimen = 6;
+    RadiationTherapy radiation_therapy = 3;
+    TherapeuticRegimen therapeutic_regimen = 4;
   }
   // The condition or disease that this treatment was intended to address.
   // FHIR mapping Procedure::reasonCode
-  OntologyClass treatment_target = 7;
+  OntologyClass treatment_target = 5;
 
   // Whether the intention of the treatment was curative, palliative,
   // ARGO mapping treatment::treatment_intent
-  OntologyClass treatment_intent = 8;
+  OntologyClass treatment_intent = 6;
 
   // ARGO mapping treatment::response_to_treatment
-  OntologyClass response_to_treatment = 9;
+  OntologyClass response_to_treatment = 7;
 
   // ARGO mapping treatment::adverse_events
-  repeated OntologyClass adverse_events = 10;
+  repeated OntologyClass adverse_events = 8;
 
   // ARGO mapping treatment::treatment_outcome
-  OntologyClass treatment_termination_reason = 11;
+  OntologyClass treatment_termination_reason = 9;
 
   // ARGO mapping treatment::is_primary_treatment (missing)
 
@@ -46,6 +44,8 @@ message Treatment {
   OntologyClass route_of_administration = 2; // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
   repeated DoseInterval dose_intervals  = 3;
   DrugType drug_type = 4;
+  // ARGO mapping chemotherapy::cumulative_drug_dosage
+  Quantity cumulative_dose = 5;
 }
 
 // e.g. 50mg/ml 3 times daily for two weeks
@@ -63,26 +63,8 @@ enum DrugType {
   ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
 }
 
-// https://docs.icgc-argo.org/dictionary/
-// Chemotherapy
-message ChemoTherapyTreatment {
-  // ARGO mapping chemotherapy::drug_rxnormcui
-  // ARGO mapping chemotherapy::drug_name
-  Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
-  // ARGO mapping chemotherapy::cumulative_drug_dosage
-  Quantity cumulative_dose = 2;
-}
-// HormoneTherapy
-message HormoneTherapyTreatment {
-  // ARGO mapping hormone_therapy::drug_rxnormcui
-  // ARGO mapping hormone_therapy::drug_name
-  Treatment treatment = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
-  // ARGO mapping hormone_therapy::cumulative_drug_dosage
-  Quantity cumulative_dose = 2;
-}
-
 // RadiationTherapy
-message RadiationTherapyTreatment {
+message RadiationTherapy {
   // The modality of radiation therapy (e.g., electron, photon,…). REQUIRED.
   // ARGO mapping radiation::radiation_therapy_modality
   OntologyClass modality = 1;
@@ -99,7 +81,7 @@ message RadiationTherapyTreatment {
   // ARGO mapping radiation::radiation_therapy_type (missing)
 }
 
-message TherapeuticRegimenTreatment {
+message TherapeuticRegimen {
   // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
   oneof identifier {
     ExternalReference external_reference = 1;

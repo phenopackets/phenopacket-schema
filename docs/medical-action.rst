@@ -20,7 +20,7 @@ Data model
      - Multiplicity
      - Description
    * - action
-     - one of {:ref:`rstprocedure` | :ref:`rsttreatment` | :ref:`rstchemotherapytreatment` | :ref:`rsthormonetherapytreatment` | :ref:`rstradiotherapy` | :ref:`rsttherapeuticregimen`}
+     - one of {:ref:`rstprocedure` | :ref:`rsttreatment` | :ref:`rstradiotherapy` | :ref:`rsttherapeuticregimen`}
      - 1..1
      - One of a list of medical actions. REQUIRED.
    * - treatment_target
@@ -52,8 +52,6 @@ Each MedicalAction element refers to one of the following specific types of medi
 
 * :ref:`rstprocedure`
 * :ref:`rsttreatment`
-* :ref:`rstchemotherapytreatment`
-* :ref:`rsthormonetherapytreatment`
 * :ref:`rstradiotherapy`
 * :ref:`rsttherapeuticregimen`
 
