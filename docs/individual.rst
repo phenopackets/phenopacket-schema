@@ -31,10 +31,10 @@ Data model
       - timestamp
       - 0..1
       - A timestamp either exact or imprecise
-    * - time_at_encounter
+    * - time_at_last_encounter
       - :ref:`rsttimeelement`
       - 0..1
-      - The age or age range of the individual. RECOMMENDED.
+      - The age or age range of the individual when last encountered. RECOMMENDED.
     * - vital_status
       - :ref:`rstvitalstatus`
       - 0..1
@@ -151,15 +151,15 @@ This element represents the date of birth of the individual as an `ISO8601 UTC t
 See :ref:`here<rstjavatimestamp>` for more information about timestamps.
 
 The element is provided for use cases within protected networks, but it many situations the element should not be used
-in order to protect the privacy of the individual. Instead, the ``Age`` element should be preferred.
+in order to protect the privacy of the individual. Instead, the ``time_at_last_encounter`` element should be preferred.
 
 
-time_at_encounter
-~~~~~~~~~~~~~~~~~
+time_at_last_encounter
+~~~~~~~~~~~~~~~~~~~~~~
 An object describing when the encounter with the patient happened or the the age of the individual at the time of collection
 of biospecimens or phenotypic observations reported in the current Phenopacket. It is specified using either an :ref:`rsttimeelement`,
 which can represent an time in several different ways, either precisely or within a range. For example an :ref:`rstage`
-or an :ref:`AgeRange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
+or an :ref:`rstagerange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
 was to protect privacy of study participants).
 
 vital_status

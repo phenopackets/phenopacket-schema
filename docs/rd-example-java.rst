@@ -105,7 +105,7 @@ and create an Evidence object that indicates the provenance of the data.
         Individual proband = Individual.newBuilder()
                 .setSex(Sex.MALE)
                 .setId(PROBAND_ID)
-                .setTimeAtEncounter(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
+                .setTimeAtLastEncounter(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
                 .build();
         return Phenopacket.newBuilder()
                 .setId(PROBAND_ID)

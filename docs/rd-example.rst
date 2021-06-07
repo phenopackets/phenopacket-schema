@@ -40,7 +40,7 @@ This is a :ref:`rstphenopacket` element that describes the proband in this case,
       id: "14 year-old boy"
       subject:
         id: "14 year-old boy"
-        timeAtEncounter:
+        timeAtLastEncounter:
           age:
             iso8601duration: "P14Y"
         sex: "MALE"

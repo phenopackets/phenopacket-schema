@@ -245,7 +245,7 @@
 <text text-anchor="start" x="407.2688" y="-923.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">id: String</text>
 <text text-anchor="start" x="407.2688" y="-913.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> alternate_ids: String [0..*]</text>
 <text text-anchor="start" x="407.2688" y="-903.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> date_of_birth: Timestamp</text>
-<text text-anchor="start" x="407.2688" y="-894.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> time_at_encounter: TimeElement</text>
+<text text-anchor="start" x="407.2688" y="-894.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> time_at_last_encounter: TimeElement</text>
 <text text-anchor="start" x="407.2688" y="-884.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> vital_status: VitalStatus</text>
 <text text-anchor="start" x="407.2688" y="-875.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> sex: Sex</text>
 <text text-anchor="start" x="407.2688" y="-865.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> karyotypic_sex: KaryotypicSex</text>

@@ -24,7 +24,7 @@ to Saturday March 28, 2020 00:00:00 (AM).
    subject:
       id: "P123542"
       sex: "MALE"
-      timeAtEncounter:
+      timeAtLastEncounter:
         age:
           iso8601duration: "P70Y"
       vitalStatus:

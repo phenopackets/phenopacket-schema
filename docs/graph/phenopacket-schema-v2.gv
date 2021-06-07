@@ -152,7 +152,7 @@ digraph phenopacket_schema_v2 {
 
     // individual.proto
     Individual [
-    label = "{Individual| id: String\l alternate_ids: String [0..*]\l date_of_birth: Timestamp\l time_at_encounter: TimeElement\l vital_status: VitalStatus\l sex: Sex\l karyotypic_sex: KaryotypicSex\l gender: OntologyClass\l taxonomy: OntologyClass\l}"
+    label = "{Individual| id: String\l alternate_ids: String [0..*]\l date_of_birth: Timestamp\l time_at_last_encounter: TimeElement\l vital_status: VitalStatus\l sex: Sex\l karyotypic_sex: KaryotypicSex\l gender: OntologyClass\l taxonomy: OntologyClass\l}"
     ]
 
     VitalStatus [

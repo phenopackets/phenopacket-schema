@@ -80,7 +80,7 @@ class RareDiseaseFamilyExample {
                 .setDateOfBirth(Timestamp.newBuilder()
                         .setSeconds(Instant.parse("1998-01-01T00:00:00Z").getEpochSecond())
                         .build())
-                .setTimeAtEncounter(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P3Y").build()))
+                .setTimeAtLastEncounter(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P3Y").build()))
                 .build();
 
 

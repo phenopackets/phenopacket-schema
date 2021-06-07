@@ -782,7 +782,7 @@ public class YamlGenerationTest extends TestBase {
         public void rareDiseaseExampleTest() {
             Family bethlemMyopathyFamily = TestExamples.rareDiseaseBethlemMyopathyFamily();
             String hash = printAndGetHash(bethlemMyopathyFamily, "family");
-            assertEquals("61a7b4d255687352848acab7c137e4f744838085a24f1d6038ad84629258a1c3", hash);
+            assertEquals("36d5fd9256553d93a3961d31b67b82e086c887ffd40bd7824e2e36ddc6d333b6", hash);
         }
 
         @Test
@@ -796,7 +796,7 @@ public class YamlGenerationTest extends TestBase {
         public void covidExampleTest() {
             Phenopacket phenopacket = TestExamples.severeCovidCaseWithCardiacComplications();
             String hash = printAndGetHash(phenopacket, "phenopacket");
-            assertEquals("adde5e684043b577cf017b47ed458e8ef88e72465c52a19354b2598d0fe1c76f", hash);
+            assertEquals("18edb59f07cc13ea1d12b3ee4437107d71447299275e1f2a13d6157823a53e10", hash);
         }
     }
 }
