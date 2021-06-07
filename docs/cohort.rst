@@ -12,6 +12,8 @@ phenotypic feature.
 We recommend using the :ref:`rstfamily` element to describe families being investigated for the presence of a Mendelian
 disease.
 
+The GA4GH is in the process of creating a Computable Cohort Working Group to define how a cohort is generated. It is the
+intention that the results of this definition should be collected into a `Cohort` message.
 
 Data model
 ##########
