@@ -13,7 +13,8 @@ We recommend using the :ref:`rstfamily` element to describe families being inves
 disease.
 
 The GA4GH is in the process of creating a Computable Cohort Working Group to define how a cohort is generated. It is the
-intention that the results of this definition should be collected into a `Cohort` message.
+intention that the results of this definition should be collected into a `Cohort` message. Users are advised that there
+may be changes to this element based on the outcome of the working group.
 
 Data model
 ##########
