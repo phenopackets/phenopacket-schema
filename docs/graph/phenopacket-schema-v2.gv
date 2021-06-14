@@ -87,6 +87,10 @@ digraph phenopacket_schema_v2 {
     label = "{TimeElement| element: \{GestationalAge \| Age \| AgeRange \| Timestamp \| TimeInterval \| OntologyClass \}}"
     ]
 
+    File [
+    label = "{File| uri: String\l individual_to_file_identifiers: Map\<String, String\>\l file_attributes: Map\<String, String\>\l}"
+    ]
+
     // base.proto
     OntologyClass
 
@@ -117,13 +121,13 @@ digraph phenopacket_schema_v2 {
 
     // biosample.proto
     Biosample [
-    label = "{Biosample| id: String\l individual_id: String\l derived_from_id: String\l description: String\l sampled_tissue: OntologyClass\l sample_type: OntologyClass\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l taxonomy: OntologyClass\l time_of_collection: TimeElement\l histological_diagnosis: OntologyClass\l tumor_progression: OntologyClass\l tumor_grade: OntologyClass\l pathological_stage: OntologyClass\l pathological_tnm_finding: OntologyClass [0..*]\l diagnostic_markers: OntologyClass [0..*]\l procedure: Procedure\l hts_files: HtsFile [0..*]\l material_sample: OntologyClass\l sample_processing: OntologyClass\l sample_storage: OntologyClass\l}"
+    label = "{Biosample| id: String\l individual_id: String\l derived_from_id: String\l description: String\l sampled_tissue: OntologyClass\l sample_type: OntologyClass\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l taxonomy: OntologyClass\l time_of_collection: TimeElement\l histological_diagnosis: OntologyClass\l tumor_progression: OntologyClass\l tumor_grade: OntologyClass\l pathological_stage: OntologyClass\l pathological_tnm_finding: OntologyClass [0..*]\l diagnostic_markers: OntologyClass [0..*]\l procedure: Procedure\l files: File [0..*]\l material_sample: OntologyClass\l sample_processing: OntologyClass\l sample_storage: OntologyClass\l}"
     ]
 
     //    OntologyClass -> Biosample
     PhenotypicFeature -> Biosample
     Procedure -> Biosample
-    HtsFile -> Biosample
+    File -> Biosample
     //    TimeElement -> Biosample
     Measurement -> Biosample
 
@@ -135,17 +139,7 @@ digraph phenopacket_schema_v2 {
     //    OntologyClass -> Disease
  //    TimeElement -> Disease
 
-    // genome.proto
-    HtsFile [
-    label = "{HtsFile| uri: String\l description: String\l hts_format: HtsFormat\l genome_assembly: String\l individual_to_sample_identifiers: Map\<String, String\>\l}"
-    ]
-
-    HtsFormat [
-    label = "{HtsFormat \<enum\>| 0 = UNKNOWN\l 1 = SAM\l 2 = BAM\l 3 = CRAM\l 4 = VCF\l 5 = BCF\l 6 = GVCF\l 7 = FASTQ\l }"
-    ]
-
     subgraph genomeProto {
-    HtsFormat -> HtsFile
     GeneDescriptor
     //    OntologyClass -> Variant
     }
@@ -354,15 +348,15 @@ digraph phenopacket_schema_v2 {
     // phenopackets.proto
     subgraph phenopacketsProto {
     Phenopacket [
-    label = "{Phenopacket| id: String [1..1]\l subject: Individual [1..1]\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l biosamples: Biosample [0..*]\l interpretations: interpretation [0..*]\l diseases: Disease [0..*]\l medical_actions: MedicalAction [0..*]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+    label = "{Phenopacket| id: String [1..1]\l subject: Individual [1..1]\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l biosamples: Biosample [0..*]\l interpretations: interpretation [0..*]\l diseases: Disease [0..*]\l medical_actions: MedicalAction [0..*]\l files: File [0..*]\l meta_data: MetaData [1..1]\l}"
     ]
 
     Family [
-    label = "{Family| id: String [1..1]\l proband: Phenopacket [1..1]\l relatives: Phenopacket [0..*]\l consanguinous_parents: Boolean\l pedigree: Pedigree [1..1]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+    label = "{Family| id: String [1..1]\l proband: Phenopacket [1..1]\l relatives: Phenopacket [0..*]\l consanguinous_parents: Boolean\l pedigree: Pedigree [1..1]\l files: File [0..*]\l meta_data: MetaData [1..1]\l}"
     ]
 
     Cohort [
-    label = "{Cohort| id: String [1..1]\l description: String [0..1]\l members: Phenopacket [0..*]\l hts_files: HtsFile [0..*]\l meta_data: MetaData [1..1]\l}"
+    label = "{Cohort| id: String [1..1]\l description: String [0..1]\l members: Phenopacket [0..*]\l files: File [0..*]\l meta_data: MetaData [1..1]\l}"
     ]
 
     MetaData [
@@ -390,16 +384,16 @@ digraph phenopacket_schema_v2 {
     Interpretation -> Phenopacket
     Disease -> Phenopacket
     MedicalAction -> Phenopacket
-    HtsFile -> Phenopacket
+    File -> Phenopacket
     MetaData -> Phenopacket
 
     Phenopacket -> Family
     Pedigree -> Family
-    HtsFile -> Family
+    File -> Family
     MetaData -> Family
 
     Phenopacket -> Cohort
-    HtsFile -> Cohort
+    File -> Cohort
     MetaData -> Cohort
     }
 
