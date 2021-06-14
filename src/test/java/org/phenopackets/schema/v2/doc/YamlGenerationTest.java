@@ -245,12 +245,11 @@ public class YamlGenerationTest extends TestBase {
     public void htsFileTest() {
         String uri = "file://data/genomes/germline_wgs.vcf.gz";
         String description = "Matched normal germline sample";
-                //"htsFormat": "VCF",
         String genomeAssembly = "GRCh38";
         Map<String,String> individualToSampleIdentifiers = Map.of("patient23456", "NA12345");
-        HtsFile vcfFile = vcfFile(uri,description,genomeAssembly,individualToSampleIdentifiers);
-        String hash = printAndGetHash(vcfFile, "htsFile");
-        assertEquals("ec4ab02f2dc2b0fc46ec62ec5b401ebf97d34cf0178e021d70c71e14cd84e2cd", hash);
+        File vcfFile = vcfFile(uri, description, genomeAssembly, individualToSampleIdentifiers);
+        String hash = printAndGetHash(vcfFile, "file");
+        assertEquals("c37c8df6f630c47e2e96f931a8662799dd61c14da975720970810db359593c1e", hash);
     }
 
     @Test
@@ -331,7 +330,7 @@ public class YamlGenerationTest extends TestBase {
         String htsDescription = "Urothelial carcinoma sample";
         String genomeAssembly = "GRCh38";
         Map<String,String> individualToSampleIdentifiers = Map.of("patient1", "NA12345");
-        HtsFile vcfFile = vcfFile(uri,htsDescription,genomeAssembly,individualToSampleIdentifiers);
+        File vcfFile = vcfFile(uri, htsDescription, genomeAssembly, individualToSampleIdentifiers);
         OntologyClass stageII = ontologyClass("NCIT:C28054", "Stage II");
         OntologyClass stageT2b = ontologyClass("NCIT:C48726", "T2b Stage Finding");
         OntologyClass stageN0 = ontologyClass("NCIT:C48705", "N0 Stage Finding");
@@ -352,7 +351,7 @@ public class YamlGenerationTest extends TestBase {
                 procedure,
                 vcfFile);
         String hash = printAndGetHash(biosample, "biosample");
-        assertEquals("012a36657c4b16663f0d6aca2ca80f549cd9f7b836bf826603080b9579d77295", hash);
+        assertEquals("963cd06917f43146cf01455c5a7165dbf9401fb4c52c57456ed86c9fb411dc15", hash);
     }
 
     @Test

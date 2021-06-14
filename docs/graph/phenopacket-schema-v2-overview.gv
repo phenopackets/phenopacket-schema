@@ -45,6 +45,8 @@ digraph phenopacket_schema_v2_overview {
       Timestamp -> TimeInterval
       Timestamp -> TimeElement
       TimeInterval -> TimeElement
+
+      File
     }
 
     // biosample.proto
@@ -53,7 +55,7 @@ digraph phenopacket_schema_v2_overview {
       //    OntologyClass -> Biosample
       PhenotypicFeature -> Biosample
       Procedure -> Biosample
-      HtsFile -> Biosample
+      File -> Biosample
       //    TimeElement -> Biosample
       Measurement [fillcolor="#4DA8D4"]
       Measurement -> Biosample 
@@ -64,14 +66,6 @@ digraph phenopacket_schema_v2_overview {
       Disease
       //    OntologyClass -> Disease
       //    TimeElement -> Disease
-    }
-
-    
-    // genome.proto
-   subgraph genomeProto {
-      node[fillcolor = "#5BC4BF"]
-      HtsFormat -> HtsFile
-      //    OntologyClass -> Variant
     }
 
     // individual.proto
@@ -231,7 +225,7 @@ digraph phenopacket_schema_v2_overview {
       Update 
       
       # override colour for this subgraph
-      HtsFile [fillcolor = "#5BC4BF"]
+      File [fillcolor = "#444444"]
 
       Resource -> MetaData
       Update -> MetaData
@@ -246,16 +240,16 @@ digraph phenopacket_schema_v2_overview {
       Interpretation -> Phenopacket
       Disease -> Phenopacket
       MedicalAction -> Phenopacket
-      HtsFile -> Phenopacket
+      File -> Phenopacket
       MetaData -> Phenopacket
 
       Phenopacket -> Family
       Pedigree -> Family
-      HtsFile -> Family
+      File -> Family
       MetaData -> Family
 
       Phenopacket -> Cohort
-      HtsFile -> Cohort
+      File -> Cohort
       MetaData -> Cohort
     }
 

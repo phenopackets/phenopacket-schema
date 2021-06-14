@@ -74,13 +74,14 @@ This message is used for a file in one of the `HTS formats <https://samtools.git
 
 .. code-block:: yaml
 
-    htsFile:
-        uri: "file://data/genomes/germline_wgs.vcf.gz"
-        description: "Matched normal germline sample"
-        htsFormat: "VCF"
+    file:
+      uri: "file://data/genomes/germline_wgs.vcf.gz"
+      individualToFileIdentifiers:
+        patient23456: "NA12345"
+      fileAttributes:
         genomeAssembly: "GRCh38"
-        individualToSampleIdentifiers:
-            patient23456: "NA12345"
+        fileFormat: "vcf"
+        description: "Matched normal germline sample"
 
 
 uri

@@ -105,13 +105,17 @@ the simultaneous surgical resection of the urinary bladder and prostate gland wi
         code:
           id: "NCIT:C5189"
           label: "Radical Cystoprostatectomy"
-      htsFiles:
-      - uri: "file://data/genomes/urothelial_ca_wgs.vcf.gz"
-        description: "Urothelial carcinoma sample"
-        htsFormat: "VCF"
-        genomeAssembly: "GRCh38"
-        individualToSampleIdentifiers:
-          sample1: "BS342730"
+      files:
+      - uri: "file:///data/genomes/urothelial_ca_wgs.vcf.gz"
+        individualToFileIdentifiers:
+          patient1: "NA12345"
+        fileAttributes:
+          genomeAssembly: "GRCh38"
+          fileFormat: "vcf"
+          description: "Urothelial carcinoma sample"
+      materialSample:
+        id: "EFO:0009655"
+        label: "abnormal sample"
 
 Biosample 2: Prostate Acinar Adenocarcinoma
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,13 +209,14 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
         code:
           id: "NCIT:C15189"
           label: "Biopsy"
-      htsFiles:
+      files:
       - uri: "file://data/genomes/metastasis_wgs.vcf.gz"
-        description: "lymph node metastasis sample"
-        htsFormat: "VCF"
-        genomeAssembly: "GRCh38"
-        individualToSampleIdentifiers:
+        individualToFileIdentifiers:
           sample5: "BS730275"
+        fileAttributes:
+          genomeAssembly: "GRCh38"
+          fileFormat: "vcf"
+          description: "lymph node metastasis sample"
 
 
 genes and variants

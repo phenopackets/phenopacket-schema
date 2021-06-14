@@ -5,7 +5,6 @@ package org.phenopackets.schema.v2;
 import "phenopackets/schema/v2/core/base.proto";
 import "phenopackets/schema/v2/core/biosample.proto";
 import "phenopackets/schema/v2/core/disease.proto";
-import "phenopackets/schema/v2/core/genome.proto";
 import "phenopackets/schema/v2/core/interpretation.proto";
 import "phenopackets/schema/v2/core/individual.proto";
 import "phenopackets/schema/v2/core/measurement.proto";
@@ -46,8 +45,8 @@ message Phenopacket {
 
     repeated core.MedicalAction medical_actions = 9;
 
-    // Pointer to the relevant HTS file(s) for the patient
-    repeated core.HtsFile hts_files = 10;
+    // Pointer to the relevant file(s) for the individual
+    repeated core.File files = 10;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     core.MetaData meta_data = 11;
@@ -77,9 +76,10 @@ message Family {
     // map to the PhenoPacket.Individual.id
     core.Pedigree pedigree = 4;
 
-    // Pointer to the relevant HTS file(s) for the family. These should be files relating to one or more of the family
-    // members e.g a multi-sample VCF
-    repeated core.HtsFile hts_files = 5;
+    // Pointer to the relevant file(s) for the family. These should be files relating to one or more of the family
+    // members e.g a multi-sample VCF. Files relating exclusively to individual phenopackets should be contained in the
+    // Phenopacket.
+    repeated core.File files = 5;
 
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     core.MetaData meta_data = 6;
@@ -90,8 +90,9 @@ message Cohort {
     string id = 1;
     string description = 2;
     repeated Phenopacket members = 3;
-    // Pointer to the relevant HTS file(s) for the cohort
-    repeated core.HtsFile hts_files = 4;
+    // Pointer to relevant file(s) for the cohort. Files relating exclusively to individual phenopackets should be
+    // contained in the Phenopacket.
+    repeated core.File files = 4;
     // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
     core.MetaData meta_data = 5;
 }

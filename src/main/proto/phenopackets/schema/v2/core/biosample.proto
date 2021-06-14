@@ -100,8 +100,9 @@ message Biosample {
   // ARGO mapping specimen::specimen_acquisition_interval - Procedure::time_performed
   Procedure procedure = 17;
 
-  // Pointer to the relevant HTS file(s) for the biosample.
-  repeated HtsFile hts_files = 18;
+  // Pointer to the relevant file(s) for the biosample. Files relating to the entire individual e.g. a germline exome/genome
+  // should be associated with the Phenopacket rather than the Biosample it was derived from.
+  repeated File files = 18;
 
   // This element can be used to specify the status of the sample. For instance, a status may be used as a normal
   // control, often in combination with another sample that is thought to contain a pathological finding.

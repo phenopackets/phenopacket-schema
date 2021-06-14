@@ -187,13 +187,13 @@ public class PhenopacketUtil {
                 .build();
     }
 
-    public static HtsFile vcfFile(String uri, String description,String genomeAssembly,Map<String,String> individualToSampleIdentifiers ) {
-        return HtsFile.newBuilder()
+    public static File vcfFile(String uri, String description,String genomeAssembly, Map<String,String> individualToSampleIdentifiers ) {
+        return File.newBuilder()
                 .setUri(uri)
-                .setDescription(description)
-                .setGenomeAssembly(genomeAssembly)
-                .setHtsFormat(HtsFile.HtsFormat.VCF)
-                .putAllIndividualToSampleIdentifiers(individualToSampleIdentifiers)
+                .putFileAttributes("genomeAssembly", genomeAssembly)
+                .putFileAttributes("fileFormat", "vcf")
+                .putFileAttributes("description", description)
+                .putAllIndividualToFileIdentifiers(individualToSampleIdentifiers)
                 .build();
     }
 
@@ -246,7 +246,7 @@ public class PhenopacketUtil {
                                       List<OntologyClass> tnm,
                                OntologyClass tumorGrade,
                                Procedure procedure,
-                               HtsFile vcfFile) {
+                               File vcfFile) {
     // assume abnormal sample
         OntologyClass abnormalSample = ontologyClass("EFO:0009655", "abnormal sample");
         return Biosample.newBuilder()
@@ -261,7 +261,7 @@ public class PhenopacketUtil {
                 .addAllPathologicalTnmFinding(tnm)
                 .setTumorGrade(tumorGrade)
                 .setProcedure(procedure)
-                .addHtsFiles(vcfFile)
+                .addFiles(vcfFile)
                 .setMaterialSample(abnormalSample)
                 .build() ;
     }

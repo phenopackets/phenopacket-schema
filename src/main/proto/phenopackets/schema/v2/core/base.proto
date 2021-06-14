@@ -97,3 +97,15 @@ message TimeElement {
     }
 }
 
+message File {
+    // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
+    string uri = 1;
+
+    // A map of identifiers mapping an individual to a sample in the file. The key values must correspond to the
+    // Individual::id for the individuals in the message, the values must map to the samples in the file.
+    map<string, string> individual_to_file_identifiers = 2;
+
+    // Map of attributes describing the file. For example the File format or genome assembly would be defied here. For
+    // genomic data files there MUST be a 'genomeAssembly' key.
+    map<string, string> file_attributes = 3;
+}

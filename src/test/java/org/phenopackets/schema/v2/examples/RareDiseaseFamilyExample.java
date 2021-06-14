@@ -84,11 +84,11 @@ class RareDiseaseFamilyExample {
                 .build();
 
 
-        HtsFile patientVcf = HtsFile.newBuilder()
+        File patientVcf = File.newBuilder()
                 .setUri("file://data/file.vcf.gz")
-                .setHtsFormat(HtsFile.HtsFormat.VCF)
-                .setGenomeAssembly("GRCh38")
-                .putIndividualToSampleIdentifiers(PROBAND_ID, "SAME000234")
+                .putIndividualToFileIdentifiers(PROBAND_ID, "SAME000234")
+                .putFileAttributes("genomeAssembly", "GRCh38")
+                .putFileAttributes("fileFormat", "vcf")
                 .build();
 
         return Phenopacket.newBuilder()
@@ -101,7 +101,7 @@ class RareDiseaseFamilyExample {
 //                .addVariants(het(NM_001361_403_C_T))
 //                .addVariants(het(NM_001361_454_G_A))
 //                .addVariants(hom(NM_001369_12599_dupA))
-                .addHtsFiles(patientVcf)
+                .addFiles(patientVcf)
                 .build();
     }
 

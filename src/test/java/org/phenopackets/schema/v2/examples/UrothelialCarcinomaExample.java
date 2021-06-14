@@ -51,51 +51,45 @@ public class UrothelialCarcinomaExample {
                 .addBiosamples(rightUreterBiosample())
                 .addBiosamples(pelvicLymphNodeBiosample())
                 .addDiseases(infiltratingUrothelialCarcinoma())
-                .addHtsFiles(createNormalGermlineHtsFile())
+                .addFiles(createNormalGermlineHtsFile())
                 .setMetaData(metaData)
                 .build();
     }
 
-    public HtsFile createNormalGermlineHtsFile() {
+    public File createNormalGermlineHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
-        String path = "file://data/genomes/germline_wgs.vcf.gz";
-        String description = "Matched normal germline sample";
-        return HtsFile.newBuilder()
-                .setHtsFormat(HtsFile.HtsFormat.VCF)
-                .setGenomeAssembly("GRCh38")
-                .setUri(path)
-                .setDescription(description)
-                .putIndividualToSampleIdentifiers("example case", "NA12345")
+        return File.newBuilder()
+                .setUri("file://data/genomes/germline_wgs.vcf.gz")
+                .putIndividualToFileIdentifiers("example case", "NA12345")
+                .putFileAttributes("genomeAssembly", "GRCh38")
+                .putFileAttributes("fileFormat", "vcf")
+                .putFileAttributes("description", "Matched normal germline sample")
                 .build();
     }
 
-    public HtsFile createSomaticHtsFile() {
+    public File createSomaticHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
-        String path = "file://data/genomes/urothelial_ca_wgs.vcf.gz";
-        String description = "Urothelial carcinoma sample";
-        // Now create an HtsFile object
-        return HtsFile.newBuilder()
-                .setHtsFormat(HtsFile.HtsFormat.VCF)
-                .setGenomeAssembly("GRCh38")
-                .setUri(path)
-                .setDescription(description)
-                .putIndividualToSampleIdentifiers("sample1", "BS342730")
+        // Now create a File object
+        return File.newBuilder()
+                .setUri("file://data/genomes/urothelial_ca_wgs.vcf.gz")
+                .putIndividualToFileIdentifiers("sample1", "BS342730")
+                .putFileAttributes("genomeAssembly", "GRCh38")
+                .putFileAttributes("fileFormat", "vcf")
+                .putFileAttributes("description", "Urothelial carcinoma sample")
                 .build();
     }
 
-    public HtsFile createMetastasisHtsFile() {
+    public File createMetastasisHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
-        String path = "file://data/genomes/metastasis_wgs.vcf.gz";
-        String description = "lymph node metastasis sample";
-        return HtsFile.newBuilder()
-                .setHtsFormat(HtsFile.HtsFormat.VCF)
-                .setGenomeAssembly("GRCh38")
-                .setUri(path)
-                .setDescription(description)
-                .putIndividualToSampleIdentifiers("sample5", "BS730275")
+        return File.newBuilder()
+                .setUri("file://data/genomes/metastasis_wgs.vcf.gz")
+                .putIndividualToFileIdentifiers("sample5", "BS730275")
+                .putFileAttributes("genomeAssembly", "GRCh38")
+                .putFileAttributes("fileFormat", "vcf")
+                .putFileAttributes("description", "lymph node metastasis sample")
                 .build();
     }
 
@@ -183,7 +177,7 @@ public class UrothelialCarcinomaExample {
         biosampleBuilder.setHistologicalDiagnosis(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"));
         // A malignant tumor at the original site of growth
         biosampleBuilder.setTumorProgression(ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm"));
-        biosampleBuilder.addHtsFiles(createSomaticHtsFile());
+        biosampleBuilder.addFiles(createSomaticHtsFile());
         biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C5189", "Radical Cystoprostatectomy")).build());
         return biosampleBuilder.build();
     }
@@ -233,7 +227,7 @@ public class UrothelialCarcinomaExample {
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
         OntologyClass metastasis = ontologyClass("NCIT:C3261", "Metastatic Neoplasm");
         biosampleBuilder.setTumorProgression(metastasis);
-        biosampleBuilder.addHtsFiles(createMetastasisHtsFile());
+        biosampleBuilder.addFiles(createMetastasisHtsFile());
         biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
         return biosampleBuilder.build();
     }

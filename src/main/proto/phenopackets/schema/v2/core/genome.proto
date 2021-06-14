@@ -6,29 +6,3 @@ option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2.core";
 
 // A file in one of the HTS formats (https://samtools.github.io/hts-specs)
-message HtsFile {
-
-  enum HtsFormat {
-    UNKNOWN = 0;
-    SAM = 1;
-    BAM = 2;
-    CRAM = 3;
-    VCF = 4;
-    BCF = 5;
-    GVCF = 6;
-    FASTQ = 7;
-  }
-
-  // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
-  string uri = 1;
-  // description of the file contents
-  string description = 2;
-  // format of the HTS file
-  HtsFormat hts_format = 3;
-  // Genome assembly the contents of this file was called against. We recommend using the Genome Reference Consortium
-  // nomenclature e.g. GRCh37, GRCh38
-  string genome_assembly = 4;
-  // A map of identifiers mapping an individual to a sample in the file. The key values must correspond to the
-  // Individual::id for the individuals in the message, the values must map to the samples in the file.
-  map<string, string> individual_to_sample_identifiers = 5;
-}

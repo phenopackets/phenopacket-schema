@@ -108,8 +108,7 @@ or equivalent hierarchy from another ontology.
 primary_site
 ~~~~~~~~~~~~
 
-The term used to describe the primary site of disease. This can be categorized by the World
-Health Organization's (WHO) International Classification of Diseases for Oncology (ICD-O).
+The term used to describe the primary site of disease. Terms from the NCIT or UBERON.
 
 laterality
 ~~~~~~~~~~
