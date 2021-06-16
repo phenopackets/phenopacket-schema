@@ -38,10 +38,10 @@ Data model
      - :ref:`rstphenopacket`
      - 1..*
      - Phenopackets that represent members of the cohort. REQUIRED
-   * - hts_files
-     - :ref:`rsthtsfile`
+   * - files
+     - :ref:`rstfile`
      - 0..*
-     - High-throughput sequencing files obtained from members of the cohort
+     - list of files related to the whole cohort, e.g. multi-sample high-throughput sequencing files
    * - meta_data
      - :ref:`rstmetadata`
      - 1..1
@@ -62,17 +62,13 @@ members
 ~~~~~~~
 One :ref:`phenopacket` is included for each member of the cohort.
 
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the cohort. The HTS file MUST be a
-multi-sample file referring to the entire cohort, if appropriate. Individual HTS files MUST otherwise be contained
-within their appropriate scope. e.g. within a ``Phenopacket`` for germline samples of an individual or within the scope
-of the ``Phenopacket.Biosample`` in the case of genomic data derived from sequencing that biosample.
-Each element describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-URI element which refers to a file on a given file system or a resource on the web.
+files
+~~~~~
+This element contains a list of pointers to relevant file(s) for the cohort. The file(s) MUST refer to the entire cohort. Otherwise
+individual files MUST be contained within their appropriate scope. e.g. within a ``Phenopacket`` for germline samples of
+an individual or within the scope of the ``Phenopacket.Biosample`` in the case of data derived from that biosample.
 
-See :ref:`rsthtsfile` for further information.
+See :ref:`rstfile` for further information.
 
 meta_data
 ~~~~~~~~

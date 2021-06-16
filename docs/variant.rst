@@ -123,7 +123,7 @@ In the Phenopacket format, it is expected that one ``VcfRecord`` message describ
 the actual VCF format that allows multiple alleles at the same position to be reported on the same line; to report
 these in Phenopacket format, two ``VariantDescriptor`` messages would be required). In general the ``VcfRecord`` should
 be used only for the purposes of reporting variants of specific interest, such as in the :ref:`rstvariantinterpretation`,
-for cases requiring larger numbers of variants in VCF format, the :ref:`rsthtsfile` should be used.
+for cases requiring larger numbers of variants in VCF format, the :ref:`rstfile` should be used.
 
 For structural variation the INFO field should contain the relevant information .
 In general, the ``info`` field should only be used to report structural variants and it is not expected that the

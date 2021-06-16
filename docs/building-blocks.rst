@@ -25,11 +25,11 @@ building blocks.
    drug-type
    evidence
    externalreference
+   file
    gene
    genomic-interpretation
    gestational-age
    hormonetherapy
-   htsfile
    individual
    interpretation
    karyotypicsex

@@ -89,13 +89,13 @@ dynamically be the sender using identifiers appropriate for the receiving system
 
 For example, a hospital may want to send a :ref:`rstfamily` to an external lab for analysis. Here the hospital is providing
 an obfuscated identifier which is used to identify the individual in the :ref:`rstphenopacket`, the :ref:`rstpedigree` and
-mappings to the sample id in the :ref:`rsthtsfile`.
+mappings to the sample id in the :ref:`rstfile`.
 
 In this case the :ref:`rstpedigree` is created by the sending system from whatever source they use and the identifiers
 should be mapped to those `Individual.id` contained in the `Family.proband` and `Family.relatives` phenopackets.
 
 In the case of the VCF file, the sending system likely has no control or ability to change the identifiers used for the
-sample id and it is likely they use different identifiers. It is for this reason the :ref:`rsthtsfile` has a *local*
+sample id and it is likely they use different identifiers. It is for this reason the :ref:`rstfile` has a *local*
 mapping field `HtsFile.individual_to_sample_identifiers` where the `Individual.id` can be mapped to the sample id in that
 file.
 
@@ -115,7 +115,7 @@ Thus, we would use the same id various elements.
     dateOfBirth: "1998-01-01T00:00:00Z"
     sex: "MALE"
 
-Assuming that this individual was sequenced, we might have the following :ref:`rsthtsfile` element.
+Assuming that this individual was sequenced, we might have the following :ref:`rstfile` element.
 
 .. code-block:: yaml
 

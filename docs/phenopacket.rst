@@ -54,8 +54,8 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
       - List of :ref:`rstmedicalaction`
       - 0..*
       - Medical actions performed
-    * - hts_files
-      - List of :ref:`rsthtsfile`
+    * - files
+      - List of :ref:`rstfile`
       - 0..*
       - VCF or other high-throughput sequencing files
     * - meta_data
@@ -127,14 +127,9 @@ A list of treatments or other medical actions performed for the person represent
 phenopacket. See :ref:`rstmedicalaction` for details.
 
 
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the patient. Each element
-describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-URI element which refers to a file on a given file system or a resource on the web.
-
-See :ref:`rsthtsfile` for further information.
+files
+~~~~~
+This element contains a list of pointers to relevant file(s) for the `subject`. See :ref:`rstfile` for further information.
 
 
 meta_data

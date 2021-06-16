@@ -91,8 +91,8 @@ Data model
      - :ref:`rstprocedure`
      - 0..1
      - The procedure used to extract the biosample. RECOMMENDED.
-   * - hts_files
-     - :ref:`rsthtsfile` (List)
+   * - files
+     - :ref:`rstfile` (List)
      - 0..*
      - list of high-throughput sequencing files derived from the biosample
    * - material_sample
@@ -268,7 +268,7 @@ describes what type of file is meant (e.g., BAM file), which genome assembly was
 as well as a map of samples and individuals represented in that file. It also contains a
 URI element which refers to a file on a given file system or a resource on the web.
 
-See :ref:`rsthtsfile` for further information.
+See :ref:`rstfile` for further information.
 
 material_sample
 ~~~~~~~~~~~~~~~

@@ -47,16 +47,16 @@ In the present case, the patient was found to have hematuria and severe dysuria,
                 .build();
 
 
-HtsFile
+File
 ~~~~~~~
-We use three :ref:`HtsFile <rsthtsfile>` objects in this Phenopacket. One represents the pair normal germline
+We use three :ref:`File <rstfile>` objects in this Phenopacket. One represents the pair normal germline
 whole-genome sequence (WGS) VCF file, one one each represents somatic WGS data from the bladder carcinoma
 specimen and from the metastasis specimen. All three packets are created analogously. Here is the
 code for the bladder carcinoma WGS file.
 
 .. code-block:: java
 
-    public HtsFile createSomaticHtsFile() {
+    public File createSomaticHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
         String path = "file://data/genomes/urothelial_ca_wgs.vcf.gz";
