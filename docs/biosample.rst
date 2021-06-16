@@ -94,7 +94,7 @@ Data model
    * - files
      - :ref:`rstfile` (List)
      - 0..*
-     - list of high-throughput sequencing files derived from the biosample
+      - list of files related to the biosample, e.g. VCF or other high-throughput sequencing files
    * - material_sample
      - :ref:`rstontologyclass`
      - 0..1
@@ -139,13 +139,14 @@ into the  wall of the bladder.
         code:
             id: "NCIT:C5189"
             label: "Radical Cystoprostatectomy"
-    htsFiles:
+    files:
         - uri: "file:///data/genomes/urothelial_ca_wgs.vcf.gz"
-        description: "Urothelial carcinoma sample"
-        htsFormat: "VCF"
-        genomeAssembly: "GRCh38"
-        individualToSampleIdentifiers:
+        individualToFileIdentifiers:
             patient1: "NA12345"
+        fileAttributes:
+            description: "Urothelial carcinoma sample"
+            htsFormat: "VCF"
+            genomeAssembly: "GRCh38"
     materialSample:
         id: "EFO:0009655"
         label: "abnormal sample"
@@ -261,13 +262,10 @@ The clinical procedure performed on the subject in order to extract the biosampl
 See :ref:`rstprocedure` for further information.
 
 
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the biosample. Each element
-describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-URI element which refers to a file on a given file system or a resource on the web.
-
+files
+~~~~~
+This element contains a list of pointers to relevant file(s) for the biosample. For example, the results of a high-throughput
+sequencing experiment.
 See :ref:`rstfile` for further information.
 
 material_sample

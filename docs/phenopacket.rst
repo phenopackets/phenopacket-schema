@@ -57,7 +57,7 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
     * - files
       - List of :ref:`rstfile`
       - 0..*
-      - VCF or other high-throughput sequencing files
+      - list of files related to the subject, e.g. VCF or other high-throughput sequencing files
     * - meta_data
       - :ref:`rstmetadata`
       - 1..1
@@ -129,7 +129,8 @@ phenopacket. See :ref:`rstmedicalaction` for details.
 
 files
 ~~~~~
-This element contains a list of pointers to relevant file(s) for the `subject`. See :ref:`rstfile` for further information.
+This element contains a list of pointers to relevant file(s) for the `subject`. For example, the results of a high-throughput
+sequencing experiment. See :ref:`rstfile` for further information.
 
 
 meta_data
