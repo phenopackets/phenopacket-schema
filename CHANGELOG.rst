@@ -2,7 +2,7 @@
 Changelog
 =========
 
-v1.0.0 to v2.0
+1.0.0 to 2.0
 --------------
 
 This is no an exhaustive list of changes, but highlights the most important additions and breaking changes.

@@ -2,6 +2,7 @@ package org.phenopackets.schema.v2.examples;
 
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.doc.PhenopacketUtil;
 
 import static org.phenopackets.schema.v2.PhenoPacketTestUtil.ontologyClass;
 import static org.phenopackets.schema.v2.PhenoPacketTestUtil.parseTimestamp;
@@ -23,6 +24,7 @@ class BiosamplesPhenopacketExample {
     static Phenopacket biosamplePhenopacket() {
 
         MetaData metaData = MetaData.newBuilder()
+                .setPhenopacketSchemaVersion(PhenopacketUtil.SCHEMA_VERSION)
                 .setCreated(parseTimestamp("2016-06-29T12:03:03.240Z"))
                 .addUpdates(Update.newBuilder().setTimestamp(parseTimestamp("2018-06-10T10:59:06.784Z")))
                 .addResources(Resource.newBuilder()

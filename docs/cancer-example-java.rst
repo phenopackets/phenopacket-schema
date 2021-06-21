@@ -187,6 +187,7 @@ indicate the current time (at which we are creating this Phenopacket).
                 .setCreatedBy("Peter R")
                 .setCreated(timestamp)
                 .setSubmittedBy("Peter R")
+                .setPhenopacketSchemaVersion("2.0")
                 .addExternalReferences(ExternalReference.newBuilder()
                         .setId("PMID:29221636")
                         .setDescription("Urothelial neoplasms in pediatric and young adult patients: A large single-center series")

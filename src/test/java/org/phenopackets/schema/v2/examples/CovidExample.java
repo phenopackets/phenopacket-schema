@@ -3,6 +3,7 @@ package org.phenopackets.schema.v2.examples;
 import com.google.protobuf.Timestamp;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.doc.PhenopacketUtil;
 
 import java.time.LocalDate;
 import java.time.ZoneOffset;
@@ -231,7 +232,7 @@ class CovidExample {
                 .build();
 
         MetaData metaData = MetaData.newBuilder()
-                .setPhenopacketSchemaVersion("v2.0")
+                .setPhenopacketSchemaVersion(PhenopacketUtil.SCHEMA_VERSION)
                 .addResources(ncit)
                 .addResources(mondo)
                 .addResources(doi)

@@ -202,6 +202,7 @@ in the Phenopacket.
         name: "PubMed"
         namespacePrefix: "PMID"
         iriPrefix: "https://www.ncbi.nlm.nih.gov/pubmed/"
+      phenopacketSchemaVersion: "2.0"
       externalReferences:
       - id: "PMID:30808312"
         description: "Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent\

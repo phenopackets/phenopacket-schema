@@ -305,7 +305,7 @@ in the Phenopacket.
         name: "PubMed"
         url: "https://pubmed.ncbi.nlm.nih.gov/"
         namespacePrefix: "PUBMED"
-      phenopacketSchemaVersion: "v2.0"
+      phenopacketSchemaVersion: "2.0"
       externalReferences:
       - id: "DOI:10.1016/j.jaccas.2020.04.001"
         reference: "PMID:32292915"

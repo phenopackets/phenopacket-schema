@@ -3,6 +3,7 @@ package org.phenopackets.schema.v2.examples;
 import com.google.protobuf.Timestamp;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.doc.PhenopacketUtil;
 
 import java.time.Instant;
 
@@ -18,6 +19,7 @@ class CancerPhenopacketExample {
 
     static Phenopacket cancerPhenopacket() {
         MetaData metaData = MetaData.newBuilder()
+                .setPhenopacketSchemaVersion(PhenopacketUtil.SCHEMA_VERSION)
                 .addResources(Resource.newBuilder()
                         .setId("ncit")
                         .setName("NCI Thesaurus OBO Edition")

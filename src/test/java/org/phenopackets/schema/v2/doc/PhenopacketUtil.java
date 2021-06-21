@@ -5,6 +5,7 @@ import com.google.protobuf.util.Timestamps;
 import org.ga4gh.vrsatile.v1.Expression;
 import org.ga4gh.vrsatile.v1.GeneDescriptor;
 import org.ga4gh.vrsatile.v1.VariationDescriptor;
+import org.phenopackets.schema.v2.SchemaVersion;
 import org.phenopackets.schema.v2.core.*;
 
 import java.text.ParseException;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 public class PhenopacketUtil {
 
+    public static final String SCHEMA_VERSION = SchemaVersion.v2_0.toString();
 
     public static OntologyClass ontologyClass(String id, String label) {
         return OntologyClass.newBuilder().setId(id).setLabel(label).build();
@@ -302,6 +304,7 @@ public class PhenopacketUtil {
     public static MetaData metadata(String created, String createdBy,List<Resource> resourceList,ExternalReference ref ) throws ParseException {
         Timestamp t = Timestamps.parse(created);
         return MetaData.newBuilder()
+                .setPhenopacketSchemaVersion(SCHEMA_VERSION)
                 .setCreated(t)
                 .setCreatedBy(createdBy)
                 .addAllResources(resourceList)

@@ -4,6 +4,7 @@ import com.google.protobuf.Timestamp;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.doc.PhenopacketUtil;
 import org.phenopackets.schema.v2.io.FormatMapper;
 
 import java.io.IOException;
@@ -98,6 +99,7 @@ public class UrothelialCarcinomaExample {
         Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
                 .setNanos((int) ((millis % 1000) * 1000000)).build();
         return MetaData.newBuilder()
+                .setPhenopacketSchemaVersion(PhenopacketUtil.SCHEMA_VERSION)
                 .addResources(Resource.newBuilder()
                         .setId("hp")
                         .setName("human phenotype ontology")

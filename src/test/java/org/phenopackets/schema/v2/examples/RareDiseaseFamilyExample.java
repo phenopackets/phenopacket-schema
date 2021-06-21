@@ -7,6 +7,7 @@ import org.ga4gh.vrsatile.v1.VariationDescriptor;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.doc.PhenopacketUtil;
 
 import java.time.Instant;
 
@@ -215,6 +216,7 @@ class RareDiseaseFamilyExample {
                 .setNanos((int) ((millis % 1000) * 1000000)).build();
 
         MetaData metaData = MetaData.newBuilder()
+                .setPhenopacketSchemaVersion(PhenopacketUtil.SCHEMA_VERSION)
                 .addResources(Resource.newBuilder()
                         .setId("hp")
                         .setName("human phenotype ontology")

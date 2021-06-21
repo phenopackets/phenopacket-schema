@@ -77,6 +77,7 @@ Example
         name: "PubMed"
         url: "https://www.ncbi.nlm.nih.gov/pubmed/"
         namespacePrefix: "PMID"
+    phenopacketSchemaVersion: "2.0"
     externalReferences:
         - id: "PMID:30808312"
         description: "Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report. BMC Neurol. 2019;19(1):32."
@@ -116,7 +117,9 @@ updated. Resources should provide information about how this is being used.
 
 phenopacket_schema_version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-A string representing the version of the phenopacket-schema according to which a phenopacket was made.
+A string representing the version of the phenopacket-schema according to which a phenopacket was made. Permitted values
+MUST be one of `1.0.0`, `1.0` or `2.0`. Versions `1.0.0` and `1.0` are equivalent and the `1.0` string should be
+preferred. This version of the schema is `2.0`.
 
 external_references
 ~~~~~~~~~~~~~~~~~~~

@@ -415,7 +415,7 @@ public class YamlGenerationTest extends TestBase {
 
         MetaData metadata = metadata(created, createdBy, resourceList, ref);
         String hash = printAndGetHash(metadata, "metadata");
-        assertEquals("2d1fb82798db9b0e418573b2150f3adb942eae51e1fb4de55b3945c66d74c4bb", hash);
+        assertEquals("444dce76db441182e065a4e2c09ab59bdaf7421ca56b16ca3021d637098c0b67", hash);
     }
 
     @Test
@@ -781,21 +781,21 @@ public class YamlGenerationTest extends TestBase {
         public void rareDiseaseExampleTest() {
             Family bethlemMyopathyFamily = TestExamples.rareDiseaseBethlemMyopathyFamily();
             String hash = printAndGetHash(bethlemMyopathyFamily, "family");
-            assertEquals("36d5fd9256553d93a3961d31b67b82e086c887ffd40bd7824e2e36ddc6d333b6", hash);
+            assertEquals("6371d98b47969ef8026da0e6d17251f8eec036ad95a73f621a02e7555f497644", hash);
         }
 
         @Test
         public void cancerExampleTest() {
             Phenopacket phenopacket = TestExamples.cancerPhenopacket();
             String hash = printAndGetHash(phenopacket, "phenopacket");
-            assertEquals("c373e99d4f6777457c09be89a0126224d92c407860cebc7c66a98e6cb2224edf", hash);
+            assertEquals("1fa300fe573c37069344e6089d7e097980da0629837b197e927f7492151df07e", hash);
         }
 
         @Test
         public void covidExampleTest() {
             Phenopacket phenopacket = TestExamples.severeCovidCaseWithCardiacComplications();
             String hash = printAndGetHash(phenopacket, "phenopacket");
-            assertEquals("18edb59f07cc13ea1d12b3ee4437107d71447299275e1f2a13d6157823a53e10", hash);
+            assertEquals("7a1308bb2e17a9a405f5e6582303385e88ec4ead897f400574cc6ee6a795902e", hash);
         }
     }
 }

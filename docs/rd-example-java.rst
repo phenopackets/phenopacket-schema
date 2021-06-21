@@ -214,6 +214,7 @@ Finally, the following code pulls everything together to build the Family object
                         .build())
                 .setCreatedBy("Peter R.")
                 .setCreated(timestamp)
+                .setPhenopacketSchemaVersion("2.0")
                 .addExternalReferences(ExternalReference.newBuilder()
                         .setId("PMID:30808312")
                         .setDescription("Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: " +

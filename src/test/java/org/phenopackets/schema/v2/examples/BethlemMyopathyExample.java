@@ -10,6 +10,7 @@ import org.ga4gh.vrsatile.v1.VariationDescriptor;
 import org.phenopackets.schema.v2.Family;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.doc.PhenopacketUtil;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -190,6 +191,7 @@ public class BethlemMyopathyExample {
                         .build())
                 .setCreatedBy("Peter R.")
                 .setCreated(timestamp)
+                .setPhenopacketSchemaVersion(PhenopacketUtil.SCHEMA_VERSION)
                 .addExternalReferences(ExternalReference.newBuilder()
                         .setId("PMID:30808312")
                         .setDescription("Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: " +

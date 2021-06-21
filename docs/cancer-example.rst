@@ -292,6 +292,7 @@ in the Phenopacket.
         url: "http://purl.obolibrary.org/obo/ncit.owl"
         version: "18.05d"
         namespacePrefix: "NCIT"
+      phenopacketSchemaVersion: "2.0"
       externalReferences:
       - id: "PMID:29221636"
         description: "Urothelial neoplasms in pediatric and young adult patients: A large\
