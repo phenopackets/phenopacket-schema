@@ -94,7 +94,7 @@ Data model
    * - files
      - :ref:`rstfile` (List)
      - 0..*
-      - list of files related to the biosample, e.g. VCF or other high-throughput sequencing files
+     - list of files related to the biosample, e.g. VCF or other high-throughput sequencing files
    * - material_sample
      - :ref:`rstontologyclass`
      - 0..1
