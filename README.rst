@@ -120,6 +120,20 @@ There is an example of how to do this included in the `mme.proto`_ file. Here th
 
 .. _mme.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/test/proto/org/matchmakerexchange/api/v1/mme.proto
 .. _base.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/main/proto/org/phenopackets/schema/v1/core/base.proto
+
+Git Submodules
+==============
+This repo uses `git submodules`_ to import the `VRS protobuf` implementation. You may need to use the following command after cloning/update
+for things to build correctly:
+
+.. code:: bash
+
+  $ git submodule update --init --recursive
+
+
+.. _git submodules: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+.. _VRS protobuf: https://github.com/ga4gh/vrs-protobuf
+
 Building
 ========
 The project can be built using the awesome `Takari maven wrapper`_ which requires no local maven installation. The only requirement for the build is to have a working java installation and network access.
