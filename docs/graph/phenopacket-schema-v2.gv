@@ -190,7 +190,7 @@ digraph phenopacket_schema_v2 {
     ]
 
     AcmgPathogenicityClassification [
-    label = "{AcmgPathogenicityClassification \<enum\>|  0 = UNCERTAIN_SIGNIFICANCE\l 1 = PATHOGENIC\l 2 = LIKELY_PATHOGENIC\l 3 = BENIGN\l 4 = LIKELY_BENIGN\l}"
+    label = "{AcmgPathogenicityClassification \<enum\>|  0 = NOT_PROVIDED\l 1 = BENIGN\l 2 = LIKELY_BENIGN\l 3 = UNCERTAIN_SIGNIFICANCE\l 4 = LIKELY_PATHOGENIC\l 5 = PATHOGENIC\l }"
     ]
 
     TherapeuticActionability [

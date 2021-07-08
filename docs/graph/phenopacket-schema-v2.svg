@@ -740,20 +740,21 @@
 <!-- AcmgPathogenicityClassification -->
 <g id="node32" class="node">
 <title>AcmgPathogenicityClassification</title>
-<polygon fill="none" stroke="#000000" points="423.7548,-205.5 423.7548,-279.1 576.0852,-279.1 576.0852,-205.5 423.7548,-205.5"/>
-<text text-anchor="middle" x="499.92" y="-267.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">AcmgPathogenicityClassification &lt;enum&gt;</text>
-<polyline fill="none" stroke="#000000" points="423.7548,-261.5 576.0852,-261.5 "/>
-<text text-anchor="start" x="431.7548" y="-250.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = UNCERTAIN_SIGNIFICANCE</text>
-<text text-anchor="start" x="431.7548" y="-240.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = PATHOGENIC</text>
-<text text-anchor="start" x="431.7548" y="-231.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = LIKELY_PATHOGENIC</text>
-<text text-anchor="start" x="431.7548" y="-221.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = BENIGN</text>
-<text text-anchor="start" x="431.7548" y="-211.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = LIKELY_BENIGN</text>
+<polygon fill="none" stroke="#000000" points="423.7548,-200.7 423.7548,-283.9 576.0852,-283.9 576.0852,-200.7 423.7548,-200.7"/>
+<text text-anchor="middle" x="499.92" y="-272.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">AcmgPathogenicityClassification &lt;enum&gt;</text>
+<polyline fill="none" stroke="#000000" points="423.7548,-266.3 576.0852,-266.3 "/>
+<text text-anchor="start" x="431.7548" y="-255.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">0 = NOT_PROVIDED</text>
+<text text-anchor="start" x="431.7548" y="-245.5" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 1 = BENIGN</text>
+<text text-anchor="start" x="431.7548" y="-235.9" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 2 = LIKELY_BENIGN</text>
+<text text-anchor="start" x="431.7548" y="-226.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 3 = UNCERTAIN_SIGNIFICANCE</text>
+<text text-anchor="start" x="431.7548" y="-216.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 4 = LIKELY_PATHOGENIC</text>
+<text text-anchor="start" x="431.7548" y="-207.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> 5 = PATHOGENIC</text>
 </g>
 <!-- AcmgPathogenicityClassification&#45;&gt;VariantInterpretation -->
 <g id="edge25" class="edge">
 <title>AcmgPathogenicityClassification-&gt;VariantInterpretation</title>
-<path fill="none" stroke="#000000" d="M499.92,-279.1389C499.92,-303.1367 499.92,-334.356 499.92,-358.5037"/>
-<polygon fill="#000000" stroke="#000000" points="496.4201,-358.713 499.92,-368.7131 503.4201,-358.7131 496.4201,-358.713"/>
+<path fill="none" stroke="#000000" d="M499.92,-283.9205C499.92,-307.1139 499.92,-335.7736 499.92,-358.319"/>
+<polygon fill="#000000" stroke="#000000" points="496.4201,-358.5246 499.92,-368.5246 503.4201,-358.5246 496.4201,-358.5246"/>
 </g>
 <!-- TherapeuticActionability -->
 <g id="node33" class="node">

@@ -63,11 +63,12 @@ message GenomicInterpretation {
 }
 
 enum AcmgPathogenicityClassification {
-    UNCERTAIN_SIGNIFICANCE = 0;
-    PATHOGENIC = 1;
-    LIKELY_PATHOGENIC = 2;
-    LIKELY_BENIGN = 3;
-    BENIGN = 4;
+    NOT_PROVIDED = 0;
+    BENIGN = 1;
+    LIKELY_BENIGN = 2;
+    UNCERTAIN_SIGNIFICANCE = 3;
+    LIKELY_PATHOGENIC = 4;
+    PATHOGENIC = 5;
 }
 
 enum TherapeuticActionability {

@@ -25,7 +25,7 @@ VariantInterpretation
    * - acmg_pathogenicity_classification
      - :ref:`rstacmgPathogenicityClassification`
      - 1..1
-     - one of the five ACMG pathogenicity categories, default is UNCERTAIN_SIGNIFICANCE
+     - one of the five ACMG pathogenicity categories, or NOT_PROVIDED. The default is NOT_PROVIDED
    * - therapeutic_actionability
      - :ref:`rsttherapeuticactionability`
      - 1..1
@@ -43,11 +43,12 @@ AcmgPathogenicityClassification
 .. csv-table:: Definition  of the ``AcmgPathogenicityClassification`` enumeration
    :header: Name, Ordinal, Description
 
-    UNCERTAIN_SIGNIFICANCE, 0, There is not enough information at this time to support a more definitive classification of this variant
-    PATHOGENIC, 1,  This variant directly contributes to the development of disease
-    LIKELY_PATHOGENIC, 2, There is a high likelihood (greater than 90% certainty) that this variant is disease-causing
-    LIKELY_BENIGN, 3, This variant is not expected to have a major effect on disease. However, the scientific evidence is currently insufficient to prove this conclusively
-    BENIGN, 4, This variant does not cause disease
+    NOT_PROVIDED, 0, The variant has not been subject to classification
+    BENIGN, 1, This variant does not cause disease
+    LIKELY_BENIGN, 2, This variant is not expected to have a major effect on disease. However, the scientific evidence is currently insufficient to prove this conclusively
+    UNCERTAIN_SIGNIFICANCE, 3, There is not enough information at this time to support a more definitive classification of this variant
+    LIKELY_PATHOGENIC, 4, There is a high likelihood (greater than 90% certainty) that this variant is disease-causing
+    PATHOGENIC, 5,  This variant directly contributes to the development of disease
 
 
 .. _rsttherapeuticactionability:
@@ -86,12 +87,13 @@ acmg_pathogenicity_classification
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The ACMG has recommended a five-tier classification system (`Richards et al., 2015 <https://pubmed.ncbi.nlm.nih.gov/25741868/>`_).
 
-
-- Pathogenic (PATHOGENIC): This variant directly contributes to the development of disease.
-- Likely pathogenic (LIKELY_PATHOGENIC): There is a high likelihood (greater than 90% certainty) that this variant is disease-causing.
-- Uncertain significance (UNCERTAIN_SIGNIFICANCE): There is not enough information at this time to support a more definitive classification of this variant.
-- Likely benign (LIKELY_BENIGN): This variant is not expected to have a major effect on disease; however, the scientific evidence is currently insufficient to prove this conclusively.
 - Benign (BENIGN): This variant does not cause disease.
+- Likely benign (LIKELY_BENIGN): This variant is not expected to have a major effect on disease; however, the scientific evidence is currently insufficient to prove this conclusively.
+- Uncertain significance (UNCERTAIN_SIGNIFICANCE): There is not enough information at this time to support a more definitive classification of this variant.
+- Likely pathogenic (LIKELY_PATHOGENIC): There is a high likelihood (greater than 90% certainty) that this variant is disease-causing.
+- Pathogenic (PATHOGENIC): This variant directly contributes to the development of disease.
+
+In the case that the variant has not been subject to classification, the value 'NOT_PROVIDED' MUST be used.
 
 therapeutic_actionability
 ~~~~~~~~~~~~~~~~~~~~~~~~~
