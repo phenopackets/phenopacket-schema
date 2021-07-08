@@ -3,7 +3,6 @@ syntax = "proto3";
 package org.phenopackets.schema.v2.core;
 
 import "phenopackets/schema/v2/core/base.proto";
-import "phenopackets/schema/v2/core/genome.proto";
 import "phenopackets/schema/v2/core/measurement.proto";
 import "phenopackets/schema/v2/core/phenotypic_feature.proto";
 
