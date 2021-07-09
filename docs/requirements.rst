@@ -72,8 +72,8 @@ Optional
 ========
 
 A field is truly optional. This category can be applied to fields that are only useful for a certain type of data. For
-instance, the ``background`` field of the ``variant`` message is only used for Phenopackets that describe animal
-models of disease.
+instance, the :ref:`rstbiosample` field of the :ref:`rstphenopacket` message is only used for Phenopackets that have an
+associated biosample(s).
 
 The general-purpose validator must not emit a warning about these fields whether or not they are present. It may be
 appropriate for application-specific validators to emit a warning or even an error if a certain optional field is not
