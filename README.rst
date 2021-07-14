@@ -29,7 +29,7 @@ The core documentation can be found at `Documentation`_
 
 The documentation in this README is primarily for the users of the phenopackets-schema java library.
 
-.. _Documentation: https://phenopackets-schema.readthedocs.io/en/latest
+.. _Documentation: https://phenopacket-schema.readthedocs.io/en/latest/index.html
 
 Scope and Purpose
 =================
