@@ -55,7 +55,7 @@ Data model
      - 0..1
      - A primary label for the variation
    * - description
-     - Variation
+     - string
      - 0..1
      - A free-text description of the variation
    * - gene_context
