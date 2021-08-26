@@ -17,7 +17,6 @@ We create an object to represent the proband as an :ref:`rstindividual`.
   private Individual subject() {
         return Individual.newBuilder()
                 .setId(this.patientId)
-                .setDatasetId("urology cohort")
                 .setSex(Sex.MALE)
                 .setDateOfBirth(Timestamp.newBuilder()
                         .setSeconds(Instant.parse("1964-03-15T00:00:00Z").getEpochSecond()))
@@ -39,36 +38,37 @@ In the present case, the patient was found to have hematuria and severe dysuria,
 .. code-block:: java
 
 
-        PhenotypicFeature hematuria = PhenotypicFeature.newBuilder().
-                setType(ontologyClass("HP:0000790","Hematuria")).
-                build();
-        PhenotypicFeature dsyuria = PhenotypicFeature.newBuilder().
-            setType(ontologyClass("HP:0100518","Dysuria")).
-            setSeverity(ontologyClass("HP:0012828","Severe")).
-            build();
+        PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
+                .setType(ontologyClass("HP:0000790","Hematuria"))
+                .build();
+        PhenotypicFeature dsyuria = PhenotypicFeature.newBuilder()
+                .setType(ontologyClass("HP:0100518","Dysuria"))
+                .setSeverity(ontologyClass("HP:0012828","Severe"))
+                .build();
 
 
-HtsFile
+File
 ~~~~~~~
-We use three :ref:`HtsFile <rstfile>` objects in this Phenopacket. One represents the pair normal germline
+We use three :ref:`File <rstfile>` objects in this Phenopacket. One represents the pair normal germline
 whole-genome sequence (WGS) VCF file, one one each represents somatic WGS data from the bladder carcinoma
 specimen and from the metastasis specimen. All three packets are created analogously. Here is the
 code for the bladder carcinoma WGS file.
 
 .. code-block:: java
 
-    public HtsFile createSomaticHtsFile() {
+    public File createSomaticHtsFile() {
         // first create a File
         // We are imagining there is a reference to a VCF file for a normal germline genome seqeunce
-        String path = "/data/genomes/urothelial_ca_wgs.vcf.gz";
+        String path = "file://data/genomes/urothelial_ca_wgs.vcf.gz";
         String description = "Urothelial carcinoma sample";
-        File file = File.newBuilder().setPath(path).setDescription(description).build();
         // Now create an HtsFile object
-        return HtsFile.newBuilder().
-                setHtsFormat(HtsFile.HtsFormat.VCF).
-                setGenomeAssembly("GRCh38").
-                setFile(file).
-                build();
+        return HtsFile.newBuilder()
+                .setHtsFormat(HtsFile.HtsFormat.VCF)
+                .setGenomeAssembly("GRCh38")
+                .setUri(path)
+                .setDescription(description)
+                .putIndividualToSampleIdentifiers("sample1", "BS342730")
+                .build();
     }
 
 
@@ -87,13 +87,11 @@ using a function similar to the following code, which represents the bladder car
         Biosample.Builder biosampleBuilder = biosampleBuilder(patientId, sampleId, this.ageAtBiopsy, sampleType);
         // also want to mention the procedure, Prostatocystectomy (NCIT:C94464)
         //Infiltrating Urothelial Carcinoma (Code C39853)
-        OntologyClass infiltratingUrothelialCarcinoma = ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma");
-        biosampleBuilder.setHistologicalDiagnosis(infiltratingUrothelialCarcinoma);
+        biosampleBuilder.setHistologicalDiagnosis(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"));
         // A malignant tumor at the original site of growth
-        OntologyClass primary = ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm");
-        biosampleBuilder.setTumorProgression(primary);
-        biosampleBuilder.addHtsFiles(HtsFileTest.createSomaticHtsFile());
-        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C15189", "Biopsy")).build());
+        biosampleBuilder.setTumorProgression(ontologyClass("NCIT:C84509", "Primary Malignant Neoplasm"));
+        biosampleBuilder.addHtsFiles(createSomaticHtsFile());
+        biosampleBuilder.setProcedure(Procedure.newBuilder().setCode(ontologyClass("NCIT:C5189", "Radical Cystoprostatectomy")).build());
         return biosampleBuilder.build();
     }
 
@@ -132,20 +130,20 @@ relevant ontology term can be used. The following Java code creates a  :ref:`rst
 .. code-block:: java
 
      private Disease infiltratingUrothelialCarcinoma() {
-         return Disease.newBuilder()
-             .setTerm(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"))
-             // Disease stage here is calculated based on the TMN findings
-             .addDiseaseStage(ontologyClass("NCIT:C27971", "Stage IV"))
-             // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
-             // pT2b Stage Finding (Code C48766)
-             .addTnmFinding(ontologyClass("NCIT:C48766", "pT2b Stage Finding"))
-             // pN2 Stage Finding (Code C48750)
-             // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
-             .addTnmFinding(ontologyClass("NCIT:C48750", "pN2 Stage Finding"))
-             // M1 Stage Finding
-             // the tumour has spread from the original site (Metastatic Neoplasm in lymph node - sample5)
-             .addTnmFinding(ontologyClass("NCIT:C48700", "M1 Stage Finding"))
-             .build();
+        return Disease.newBuilder()
+                .setTerm(ontologyClass("NCIT:C39853", "Infiltrating Urothelial Carcinoma"))
+                // Disease stage here is calculated based on the TMN findings
+                .addDiseaseStage(ontologyClass("NCIT:C27971", "Stage IV"))
+                // The tumor was staged as pT2b, meaning infiltration into the outer muscle layer of the bladder wall
+                // pT2b Stage Finding (Code C48766)
+                .addClinicalTnmFinding(ontologyClass("NCIT:C48766", "pT2b Stage Finding"))
+                //pN2 Stage Finding (Code C48750)
+                // cancer has spread to 2 or more lymph nodes in the true pelvis (N2)
+                .addClinicalTnmFinding(ontologyClass("NCIT:C48750", "pN2 Stage Finding"))
+                // M1 Stage Finding
+                // the tumour has spread from the original site (Metastatic Neoplasm in lymph node - sample5)
+                .addClinicalTnmFinding(ontologyClass("NCIT:C48700", "M1 Stage Finding"))
+                .build();
     }
 
 
@@ -189,6 +187,7 @@ indicate the current time (at which we are creating this Phenopacket).
                 .setCreatedBy("Peter R")
                 .setCreated(timestamp)
                 .setSubmittedBy("Peter R")
+                .setPhenopacketSchemaVersion("2.0")
                 .addExternalReferences(ExternalReference.newBuilder()
                         .setId("PMID:29221636")
                         .setDescription("Urothelial neoplasms in pediatric and young adult patients: A large single-center series")
@@ -205,26 +204,29 @@ Finally, we utilize a Phenopacket builder to generate the complete Phenopacket o
 .. code-block:: java
 
     Phenopacket phenopacket = Phenopacket.newBuilder()
-        .setId("example case")
-        .setSubject(subject())
-        .addPhenotypes(hematuria)
-        .addPhenotypes(dsyuria)
-        .addBiosamples(bladderBiosample())
-        .addBiosamples(prostateBiosample())
-        .addBiosamples(leftUreterBiosample())
-        .addBiosamples(rightUreterBiosample())
-        .addBiosamples(pelvicLymphNodeBiosample())
-        .addDiseases(infiltratingUrothelialCarcinoma())
-        .addHtsFiles(createNormalGermlineHtsFile())
-        .setMetaData(metaData)
-        .build();
+                .setId("example case")
+                .setSubject(subject())
+                .addPhenotypicFeatures(hematuria)
+                .addPhenotypicFeatures(dsyuria)
+                .addBiosamples(bladderBiosample())
+                .addBiosamples(prostateBiosample())
+                .addBiosamples(leftUreterBiosample())
+                .addBiosamples(rightUreterBiosample())
+                .addBiosamples(pelvicLymphNodeBiosample())
+                .addDiseases(infiltratingUrothelialCarcinoma())
+                .addHtsFiles(createNormalGermlineHtsFile())
+                .setMetaData(metaData)
+                .build();
 
 
 Output of data
 ~~~~~~~~~~~~~~
 There are many ways of outputting the Phenopacket in JSON format. See :ref:`rstjavaexport` for details.
-The following line will output the entire Phenopacket to STDOUT including empty fields.
+The following line will output the entire Phenopacket to STDOUT as YAML, using the Jackson library.
 
 .. code-block:: java
 
-    System.out.println(JsonFormat.printer().includingDefaultValueFields().print(phenopacket));
+    String json = JsonFormat.printer().print(phenopacket);
+    JsonNode jsonNodeTree = new ObjectMapper().readTree(json);
+    String yaml = new YAMLMapper().writeValueAsString(jsonNodeTree);
+    System.out.println(yaml);

@@ -1,7 +1,6 @@
 package org.phenopackets.schema.v1.examples;
 
 import com.google.protobuf.Timestamp;
-import com.google.protobuf.util.JsonFormat;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v1.Phenopacket;
 import org.phenopackets.schema.v1.core.*;
@@ -162,13 +161,13 @@ public class UrothelialCarcinomaExample {
     }
 
     private Biosample.Builder biosampleBuilder(String patientId, String sampleId, String age, OntologyClass sampleType) {
-        return Biosample.newBuilder().
-                setIndividualId(patientId).
-                setId(sampleId).
-                setAgeOfIndividualAtCollection(Age.newBuilder().
-                        setAge(age).
-                        build()).
-                setSampledTissue(sampleType);
+        return Biosample.newBuilder()
+                .setIndividualId(patientId)
+                .setId(sampleId)
+                .setAgeOfIndividualAtCollection(Age.newBuilder()
+                        .setAge(age)
+                        .build())
+                .setSampledTissue(sampleType);
     }
 
     private Biosample bladderBiosample() {
@@ -242,9 +241,4 @@ public class UrothelialCarcinomaExample {
         assertEquals(this.patientId, this.phenopacket.getSubject().getId());
     }
 
-    @Test
-    void printAsJson() throws Exception{
-        System.out.println(JsonFormat.printer()
-                .print(phenopacket));
-    }
 }

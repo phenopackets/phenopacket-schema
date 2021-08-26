@@ -1,8 +1,8 @@
 .. _rstrequirements:
 
-==================
+##################
 Requirement Levels
-==================
+##################
 
 
 The schema is formally defined using `protobuf3 <rstprotobuf>`_. In protobuf3, all elements are optional, and so there is no mechanism
@@ -13,6 +13,33 @@ implementation called `Phenopacket Validator <https://github.com/phenopackets/ph
 Phenopackets (and related messages including Family, Cohort, and Biosample messages) for validity. Application code may
 additionally check for application-specific criteria.
 
+
+
+Hierarchical requirements
+#########################
+
+The requirement levels that are shown for the various elements of the Phenopacket only apply if the element is used. For instance,
+the :ref:`rstquantity` shows that the ``unit`` and ``value`` fields are required (the multiplicity is exactly 1 and the word REQUIRED is shown in the description).
+In contrast the field ``reference_range`` is optional (the multiplicity may be 0 or 1 and neither REQUIRED nor RECOMMENDED is used
+in the description). The requirements only apply if a :ref:`rstquantity` is used in a Phenopacket. For instance, Phenopackets that do
+not contain :ref:`rstmeasurement` or :ref:`rsttreatment` elements do not contain :ref:`rstquantity` elements, and so the requirements for
+the fields of :ref:`rstquantity` do not apply.
+
+
+Multiplicity
+############
+
+The explanations for the various elements of the Phenopacket show the required multiplcities.
+
+* ``0..1``: The element may be absent (0) or present (1), i.e., the element is optional. Elements with multiplicity ``0..1`` may be marked RECOMMENDED, otherwise they are OPTIONAL.
+* ``1..1``: The element must be present (1), i.e., the element is REQUIRED
+* ``0..*``: There may be from zero to an arbitrary number of elements, i.e., a potentially empty list
+* ``1..*``: There may be from one to an arbitrary number of elements, i.e., a list that must not be empty
+
+
+
+Levels
+######
 
 The Phenopacket schema uses three requirement levels. The required/recommended/optional designations are
 phenopacket-specific extensions used in the schema only (not code) and are not supported by protobuf.
@@ -45,8 +72,8 @@ Optional
 ========
 
 A field is truly optional. This category can be applied to fields that are only useful for a certain type of data. For
-instance, the ``background`` field of the ``variant`` message is only used for Phenopackets that describe animal
-models of disease.
+instance, the :ref:`rstbiosample` field of the :ref:`rstphenopacket` message is only used for Phenopackets that have an
+associated biosample(s).
 
 The general-purpose validator must not emit a warning about these fields whether or not they are present. It may be
 appropriate for application-specific validators to emit a warning or even an error if a certain optional field is not

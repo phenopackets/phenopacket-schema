@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// A file in one of the HTS formats (https://samtools.github.io/hts-specs)

@@ -1,0 +1,256 @@
+// Generated using https://edotor.net/
+ // See https://graphviz.gitlab.io/
+ // Note the OntologyClass and TimeElement edges are commented-out for greater clarity of the output
+digraph phenopacket_schema_v2_overview {
+
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    rankdir = BT
+    splines = "true"
+
+    label = "Phenopacket schema v2.0"
+
+    node [
+      fontname = "Bitstream Vera Sans"
+      fontsize = 8
+      style="filled"
+      fontcolor = "white"
+      fillcolor = "#1b75bc"
+      color = "#444444"
+   ]
+
+    edge [
+      fontname = "Bitstream Vera Sans"
+      fontsize = 8
+      color = "#444444"
+    ]
+
+    // base.proto
+    subgraph base {
+
+      OntologyClass
+      ExternalReference
+      Evidence
+      Procedure
+      Sex
+      KaryotypicSex
+
+      // OntologyClass -> Procedure
+      // TimeElement -> Procedure
+
+      GestationalAge -> TimeElement
+      Age -> TimeElement
+      Age -> AgeRange
+      AgeRange -> TimeElement
+      Timestamp -> TimeInterval
+      Timestamp -> TimeElement
+      TimeInterval -> TimeElement
+
+      File
+    }
+
+    // biosample.proto
+    subgraph biosample { 
+      Biosample
+      //    OntologyClass -> Biosample
+      PhenotypicFeature -> Biosample
+      Procedure -> Biosample
+      File -> Biosample
+      //    TimeElement -> Biosample
+      Measurement [fillcolor="#4DA8D4"]
+      Measurement -> Biosample 
+    }
+    
+   // disease.proto
+   subgraph disease {
+      Disease
+      //    OntologyClass -> Disease
+      //    TimeElement -> Disease
+    }
+
+    // individual.proto
+    subgraph individual {
+      Individual
+      VitalStatus
+      //    TimeElement -> Individual
+      VitalStatus -> Individual
+      Sex -> Individual
+      KaryotypicSex -> Individual
+      //    OntologyClass -> Individual
+
+      //    TimeElement -> VitalStatus
+      //    OntologyClass -> VitalStatus
+    }
+    
+    // interpretation.proto
+    subgraph interpretationProto {
+      label = "interpretation"
+      node[fillcolor = "#63498B"]
+
+      Interpretation 
+      ProgressStatus
+      Diagnosis
+      GenomicInterpretation
+      InterpretationStatus
+      VariantInterpretation
+      AcmgPathogenicityClassification
+      TherapeuticActionability
+
+      ProgressStatus -> Interpretation
+      Diagnosis -> Interpretation
+
+      //    OntologyClass -> Diagnosis
+      GenomicInterpretation -> Diagnosis
+
+      InterpretationStatus -> GenomicInterpretation
+      GeneDescriptor[fillcolor = "#5BC4BF"]
+      GeneDescriptor -> GenomicInterpretation
+      VariantInterpretation -> GenomicInterpretation
+
+      AcmgPathogenicityClassification -> VariantInterpretation
+      TherapeuticActionability -> VariantInterpretation
+      VariationDescriptor[fillcolor = "#5BC4BF"]
+      VariationDescriptor -> VariantInterpretation
+    }
+
+    // org.ga4gh.vrsatile.proto
+   subgraph vrsatileProto {
+      node[fillcolor = "#5BC4BF"]
+      GeneDescriptor
+      VariationDescriptor
+      VcfRecord 
+      Expression
+      Extension
+      MoleculeContext
+      Variation
+      
+
+      Expression -> VariationDescriptor
+      Extension -> VariationDescriptor
+      MoleculeContext -> VariationDescriptor
+      VcfRecord -> VariationDescriptor
+      Variation -> VariationDescriptor
+   }
+
+
+    // measurement.proto
+    subgraph measurementProto {
+      node[fillcolor= "#4DA8D4"]
+      Measurement 
+      Value
+      Quantity
+      ComplexValue
+      TypedQuantity
+      ReferenceRange
+      
+      //    OntologyClass -> Value
+      Quantity -> Value
+      TypedQuantity -> ComplexValue
+      //    OntologyClass -> TypedQuantity
+      Quantity -> TypedQuantity
+      //    OntologyClass -> Quantity
+      ReferenceRange -> Quantity
+      //    OntologyClass -> ReferenceRange
+      //    OntologyClass -> Measurement
+      Value -> Measurement
+      ComplexValue -> Measurement
+      //    TimeElement -> Measurement
+      Procedure -> Measurement
+    }
+
+   // medical_action.proto
+   subgraph medicalActionProto {
+      node[fillcolor = "#AAAAAA"]
+
+      MedicalAction
+      Treatment
+      RadiationTherapy
+      TherapeuticRegimen
+      RegimenStatus
+      DoseInterval
+      DrugType
+
+      //    OntologyClass -> MedicalAction
+      Procedure -> MedicalAction
+      Treatment -> MedicalAction
+      RadiationTherapy -> MedicalAction
+      TherapeuticRegimen -> MedicalAction
+
+      //    OntologyClass -> Treatment
+      DoseInterval -> Treatment
+      DrugType -> Treatment
+
+      Quantity -> DoseInterval
+      //    OntologyClass -> DoseInterval
+      TimeInterval -> DoseInterval
+
+      Quantity -> Treatment
+
+      //    OntologyClass -> RadiationTherapy
+
+      ExternalReference -> TherapeuticRegimen
+      //    OntologyClass -> TherapeuticRegimen
+      //    TimeElement -> TherapeuticRegimen
+      RegimenStatus -> TherapeuticRegimen
+   }
+
+   // pedigree.proto
+   subgraph pedigreeProto {
+      node [fillcolor = "#8BC751"]
+      Pedigree
+      Person
+      AffectedStatus
+      
+      Person -> Pedigree
+      Sex -> Person
+      AffectedStatus -> Person
+   }
+
+   // phenotypic_feature.proto
+   subgraph phenotypicFeature {
+      PhenotypicFeature
+      //    OntologyClass -> PhenotypicFeature
+      //    TimeElement -> PhenotypicFeature
+      Evidence -> PhenotypicFeature
+   }
+   
+   // phenopackets.proto
+   subgraph phenopacketsProto {
+      // node
+      Phenopacket [fillcolor = "#faa634"]
+      Family [fillcolor = "#faa634"]
+      Cohort [fillcolor = "#faa634"]
+      MetaData 
+      Resource 
+      Update 
+      
+      # override colour for this subgraph
+      File [fillcolor = "#444444"]
+
+      Resource -> MetaData
+      Update -> MetaData
+      ExternalReference -> MetaData
+      ExternalReference -> Evidence
+      //    OntologyClass -> Evidence
+
+      Individual -> Phenopacket
+      PhenotypicFeature -> Phenopacket
+      Measurement -> Phenopacket
+      Biosample -> Phenopacket
+      Interpretation -> Phenopacket
+      Disease -> Phenopacket
+      MedicalAction -> Phenopacket
+      File -> Phenopacket
+      MetaData -> Phenopacket
+
+      Phenopacket -> Family
+      Pedigree -> Family
+      File -> Family
+      MetaData -> Family
+
+      Phenopacket -> Cohort
+      File -> Cohort
+      MetaData -> Cohort
+    }
+
+}

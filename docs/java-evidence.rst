@@ -1,8 +1,8 @@
 .. _rstjavaevidence:
 
-===============
+###############
 Evidence (Java)
-===============
+###############
 
 The evidence code is used to document the support for an assertion. Here, we will show an example
 for the assertion that flexion contractures are found in `stiff skin syndrome <https://omim.org/entry/184900>`_.
@@ -33,7 +33,7 @@ for the assertion that flexion contractures are found in `stiff skin syndrome <h
 This code produces the following Evidence element.
 
 
-.. code-block:: proto
+.. code-block:: json
 
     {
         evidence_code {

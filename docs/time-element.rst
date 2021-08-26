@@ -1,8 +1,8 @@
 .. _rsttimeelement:
 
-============
-Time Element
-============
+############
+TimeElement
+############
 
 This element intends to bundle all of the various ways of denoting time or age in
 phenopackets schema. Starting with version 2, other elements will be required to
@@ -15,17 +15,22 @@ phenotypic abnormality such as an episode of fever occurring one day before admi
 to the hospital.
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``TimeElement`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
+   * - gestational_age
+     - :ref:`rstgestationalage`
+     - (one of the options)
+     - measure of the age of a pregnancy
    * - age
      - :ref:`rstage`
      - (one of the options)
@@ -39,14 +44,33 @@ to the hospital.
      - (one of the options)
      - indicates the age of the individual as an ontology class
    * - timestamp
-     - google.protobuf.Timestamp
+     - :ref:`rsttimestamp`
      - (one of the options)
      - indicates a specific time
    * - interval
-     - :ref:`rstinterval`
+     - :ref:`rsttimeinterval`
      - (one of the options)
      - indicates an interval of time
 
+Example
+#######
+
+The following shows a TimeElement with the :ref:`rstage` option.
+
+.. code-block:: yaml
+
+    timeElement:
+        age:
+            iso8601duration: "P25Y"
+
+Explanations
+############
+
+gestational_age
+~~~~~~~~~~~~~~~
+
+A measure of the age of a pregnancy. Gestation, defined as the time between conception and birth,
+is measured in weeks and days from the first day of the last menstrual period. See :ref:`rstgestationalage`.
 
 age
 ~~~
@@ -60,19 +84,19 @@ desirable to help preserve privacy. See  :ref:`rstagerange`
 ontology_class
 ~~~~~~~~~~~~~~
 
-If an ``OntologyClass`` is used to represent the age of onset of a phenotypic feature,
+If an :ref:`rstontologyclass` is used to represent the age of onset of a phenotypic feature,
 then terms for age of onset can be chosen
-from the `Onset subhierarchy of the HPO <https://hpo.jax.org/app/browse/term/HP:0003674>`_.
+from the `Onset subhierarchy of the HPO <https://hpo.jax.org/app/browse/term/HP:0003674>`_. See :ref:`rstontologyclass`.
 
 
 timestamp
 ~~~~~~~~~
-A google.protobuf.Timestamp can be used to represent a specific time. Note that all timestamps in a phenopacket can be shifted
+A :ref:`rsttimestamp` can be used to represent a specific time. Note that all timestamps in a phenopacket can be shifted
 by the same amount to help preserve privacy if desired.
 
 interval
 ~~~~~~~~
-This element can be used to represent a specific interval of time. See :ref:`rstinterval`.
+This element can be used to represent a specific interval of time. See :ref:`rsttimeinterval`.
 
 
 

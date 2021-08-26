@@ -1,0 +1,3 @@
+[submodule "src/vrs-protobuf"]
+	path = src/vrs-protobuf
+	url = https://github.com/ga4gh/vrs-protobuf.git

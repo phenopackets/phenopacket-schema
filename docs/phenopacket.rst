@@ -1,8 +1,8 @@
 .. _rstphenopacket:
 
-===========
+###########
 Phenopacket
-===========
+###########
 
 A Phenopacket is an anonymous phenotypic description of an individual or biosample with potential genes of interest
 and/or diagnoses. It can be used for multiple use cases. For instance, it can be used to describe the
@@ -20,49 +20,57 @@ describe the phenotypic abnormalities directly associated with an extirpated or 
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Definition
     * - id
       - string
-      - required
-      - arbitrary identifier
+      - 1..1
+      - arbitrary identifier. REQUIRED.
     * - subject
       - :ref:`rstindividual`
-      - recommended
-      - The proband
+      - 0..1
+      - The proband. RECOMMENDED.
     * - phenotypic_features
       - List of :ref:`phenotypicfeature`
-      - recommended
-      - Phenotypic features observed in the proband
+      - 0..*
+      - Phenotypic features observed in the proband. RECOMMENDED.
+    * - measurements
+      - List of :ref:`rstmeasurement`
+      - 0..*
+      - Measurements performed in the proband
     * - biosamples
-      - :ref:`rstbiosample`
-      - optional
+      - List of :ref:`rstbiosample`
+      - 0..*
       - samples (e.g., biopsies), if any
-    * - genes
-      - :ref:`rstgene`
-      - optional
-      - Gene deemed to be relevant to the case (application specific)
-    * - variants
-      - List of :ref:`rstvariant`
-      - optional
-      - Variants identified in the proband
+    * - interpretations
+      - List of :ref:`rstinterpretation`
+      - 0..*
+      - Interpretations related to this phenopacket
     * - diseases
       - List of :ref:`rstdisease`
-      - optional
+      - 0..*
       - Disease(s) diagnosed in the proband
-    * - hts_files
+    * - medical_actions
+      - List of :ref:`rstmedicalaction`
+      - 0..*
+      - Medical actions performed
+    * - files
       - List of :ref:`rstfile`
-      - optional
-      - VCF or other high-throughput sequencing files
+      - 0..*
+      - list of files related to the subject, e.g. VCF or other high-throughput sequencing files
     * - meta_data
       - :ref:`rstmetadata`
-      - required
-      - Information about ontologies and references used in the phenopacket
+      - 1..1
+      - Information about ontologies and references used in the phenopacket. REQUIRED.
+
+Examples
+########
+
+TODO link to several longer examples.
 
 
-
-
-
+Explanations
+############
 
 id
 ~~
@@ -82,23 +90,29 @@ phenotypic_features
 This is a list of phenotypic findings observed in the subject. See :ref:`phenotypicfeature` for further information.
 
 
+measurements
+~~~~~~~~~~~~
+
+A list of measurements performed in the patient. In contrast to :ref:`phenotypicfeature`, which
+relies on an :ref:`rstontologyclass` to specify the observation, the :ref:`rstmeasurement` can
+be used to report quanititative as well as ordinal or categorical measurements.
+
+
+
 biosamples
 ~~~~~~~~~~
 
 This field describes samples that have been derived from the patient who is the object of the Phenopacket.
 or a collection of biosamples in isolation. See :ref:`rstbiosample` for further information.
 
-genes
-~~~~~
-This is a field for gene identifiers and can be used for listing either candidate genes or causative genes. The
-resources using these fields should define what this represents in their context. This could be used in order to
-obfuscate the specific causative/candidate variant to maintain patient privacy. See :ref:`rstgene` for further information.
+interpretations
+~~~~~~~~~~~~~~~
 
-variants
-~~~~~~~~
-This is a field for genetic variants and can be used for listing either candidate variants or diagnosed causative
-variants. The resources using these fields should define what this represents in their context.
-See :ref:`rstvariant` for further information.
+An optional list of :ref:`rstinterpretation` related to the phenopacket. These elements
+are intended to represent interpretations of disease or phenotypic findings based on
+genomic findings and must relate either to a genetic or genomic investigation of organismal
+origin (e.g., germline DNA derived from a blood sample) or from a :ref:`rstbiosample`.
+
 
 diseases
 ~~~~~~~~
@@ -106,15 +120,17 @@ This is a field for disease identifiers and can be used for listing either diagn
 resources using these fields should define what this represents in their context.
 See :ref:`rstdisease` for further information.
 
+medical_actions
+~~~~~~~~~~~~~~~
 
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the patient. Each element
-describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-URI element which refers to a file on a given file system or a resource on the web.
+A list of treatments or other medical actions performed for the person represented by this
+phenopacket. See :ref:`rstmedicalaction` for details.
 
-See :ref:`rstfile` for further information.
+
+files
+~~~~~
+This element contains a list of pointers to relevant file(s) for the `subject`. For example, the results of a high-throughput
+sequencing experiment. See :ref:`rstfile` for further information.
 
 
 meta_data

@@ -10,4 +10,32 @@
   .wy-table-responsive {
     overflow: visible !important;
   }
+
+  .color-interpretation {
+    color: #63498B;
+  }
+
+  .color-base {
+    color: #1b75bc;
+  }
+
+  .color-measurement {
+    color: #4DA8D4;
+  }
+
+  .color-genomic-vrs {
+    color: #5BC4BF;
+  }
+
+  .color-pedigree {
+    color: #8BC751;
+  }
+
+  .color-top-level {
+    color: #faa634;
+  }
+
+  .color-medical-action {
+    color: #AAAAAA;
+  }
 }

@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+import "ga4gh/vrsatile/v1/vrsatile.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+message Interpretation {
+
+    enum ProgressStatus {
+        UNKNOWN_PROGRESS = 0;
+        IN_PROGRESS = 1;
+        COMPLETED = 2;
+        SOLVED = 3;
+        UNSOLVED = 4;
+    }
+
+    // id of the interpretation
+    string id = 1;
+
+    ProgressStatus progress_status = 2;
+
+    // The diagnosis made in this interpretation
+    Diagnosis diagnosis = 3;
+
+    string summary = 4;
+}
+
+message Diagnosis {
+    // The disease/condition assigned to the diagnosis.Details about this disease may be contained in the `diseases`
+    // field in the Phenopacket.
+    OntologyClass disease = 1;
+    // genomic features containing the status of their contribution towards the diagnosis
+    repeated GenomicInterpretation genomic_interpretations = 2;
+}
+
+// A statement about the contribution of a genomic element towards the observed phenotype. Note that this does not intend
+// to encode any knowledge or results of specific computations.
+message GenomicInterpretation {
+
+    // identifier for the subject of the interpretation. This MUST be the individual id or a biosample id of the
+    // enclosing phenopacket.
+    string subject_or_biosample_id = 1;
+
+    enum InterpretationStatus {
+        UNKNOWN_STATUS = 0;
+        REJECTED = 1;
+        CANDIDATE = 2;
+        CONTRIBUTORY = 3;
+        CAUSATIVE = 4;
+    }
+    InterpretationStatus interpretation_status = 2;
+
+    // Gene or variant identified in subject or biosample and interpreted in relation to the disease diagnosis. In this
+    // context athe 'gene' is a proxy for an unspecified alteration in the indicated gene.
+    oneof call {
+        org.ga4gh.vrsatile.v1.GeneDescriptor gene = 3;
+        VariantInterpretation variant_interpretation = 4;
+    }
+}
+
+enum AcmgPathogenicityClassification {
+    NOT_PROVIDED = 0;
+    BENIGN = 1;
+    LIKELY_BENIGN = 2;
+    UNCERTAIN_SIGNIFICANCE = 3;
+    LIKELY_PATHOGENIC = 4;
+    PATHOGENIC = 5;
+}
+
+enum TherapeuticActionability {
+    UNKNOWN_ACTIONABILITY = 0;
+    NOT_ACTIONABLE = 1;
+    ACTIONABLE = 2;
+}
+
+message VariantInterpretation {
+    AcmgPathogenicityClassification acmg_pathogenicity_classification = 1;
+    TherapeuticActionability therapeutic_actionability = 2;
+    org.ga4gh.vrsatile.v1.VariationDescriptor variation_descriptor = 3;
+}

@@ -1,0 +1,493 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v1.core;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v1.core";
+
+message MetaData {
+    // ISO8601 UTC timestamp for when this phenopacket was created in ISO "2018-03-01T00:00:00Z"
+    google.protobuf.Timestamp created = 1;
+    // some kind of identifier for the contributor/ program
+    string created_by = 2;
+    // information about the person/organisation/network that has submitted this phenopacket
+    string submitted_by = 3;
+    // a listing of the ontologies and resources referenced in the phenopacket
+    repeated Resource resources = 4;
+    // An OPTIONAL list of Updates to the phenopacket.
+    repeated Update updates = 5;
+    // phenopacket-schema-version used to create this phenopacket
+    string phenopacket_schema_version = 6;
+    // External identifiers for this message. These are considered different representation of the same record, not
+    // records which are in some other relation with the record at hand. For example this might be a PubMed reference
+    // to a study in which the individuals are reported.
+    repeated ExternalReference external_references = 7;
+}
+
+// Information about when an update to a record occurred, who or what made the update and any pertinent information
+// regarding the content and/or reason for the update
+message Update {
+    // ISO8601 UTC timestamps at which this record was updated, in
+    // the format YYYY-MM-DDTHH:MM:SS.SSSZ e.g. 2007-12-03T10:15:30.00Z
+    // REQUIRED
+    google.protobuf.Timestamp timestamp = 1;
+    // Information about the person/organisation/network that has updated the phenopacket.
+    // OPTIONAL
+    string updated_by = 2;
+    // Textual comment about the changes made to the content and/or reason for the update.
+    // OPTIONAL
+    string comment = 3;
+}
+
+// Description of an external resource used for referencing an object. For example the resource may be an ontology such
+// as the HPO or SNOMED.
+// FHIR mapping: CodeSystem (http://www.hl7.org/fhir/codesystem.html)
+message Resource {
+    // for OBO Ontologies, the value of this string MUST always be the official
+    // OBO ID, which is always equivalent to the ID prefix in lower case.
+    // Examples: hp, go, mp, mondo
+    // Consult http://obofoundry.org for a complete list
+    // For other ontologies (e.g. SNOMED), use the prefix in identifiers.org
+    string id = 1;
+
+    // e.g. The Human Phenotype Ontology
+    // for OBO Ontologies, the value of this string SHOULD be the same as the title
+    // field on http://obofoundry.org
+    // however, this field is purely for information purposes and software
+    // should not encode any assumptions
+    string name = 2;
+
+    // For OBO ontologies, this should always be the PURL, e.g.
+    // http://purl.obolibrary.org/obo/hp.owl, http://purl.obolibrary.org/obo/hp.obo
+    string url = 3;
+
+    // for OBO ontologies, this should be the versionIRI
+    string version = 4;
+
+    // The prefix used in the CURIE of an OntologyClass e.g. HP, MP, ECO
+    // For example an HPO term will have a CURIE like this - HP:0012828 which should be used in combination with
+    // the iri_prefix to form a fully-resolvable IRI
+    string namespace_prefix = 5;
+
+    // Full IRI prefix which can be used with the namespace_prefix and the OntologyClass::id to resolve to an IRI for a
+    // term. Tools such as the curie-util (https://github.com/prefixcommons/curie-util) can utilise this to produce
+    // fully-resolvable IRIs for an OntologyClass.
+    // e.g. Using the HPO term encoding the concept of 'Severe'
+    //    OntologyClass:
+    //        id: 'HP:0012828'
+    //        label: 'Severe'
+    //    Resource:
+    //        namespace_prefix: 'HP'
+    //        iri_prefix: 'http://purl.obolibrary.org/obo/HP_'
+    // the term can be resolved to http://purl.obolibrary.org/obo/HP_0012828
+    string iri_prefix = 6;
+}
+
+// A class (aka term, concept) in an ontology.
+// FHIR mapping: CodeableConcept (http://www.hl7.org/fhir/datatypes.html#CodeableConcept)
+//   see also Coding (http://www.hl7.org/fhir/datatypes.html#Coding)
+message OntologyClass {
+    // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
+    // This is the primary key for the ontology class
+    // REQUIRED!
+    string id = 1;
+
+    // class label, aka name. E.g. "Abnormality of cardiovascular system"
+    string label = 2;
+}
+
+// An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
+// frequency
+// FHIR mapping: Condition (https://www.hl7.org/fhir/condition.html) or Observation (https://www.hl7.org/fhir/observation.html)
+message PhenotypicFeature {
+    // Free-text description of the phenotype. Note this is not a acceptable place to document/describe the phenotype -
+    // the type and onset etc... fields should be used for this purpose.
+    string description = 1;
+
+    // The primary ontology class which describes the phenotype. For example "HP:0001363"  "Craniosynostosis"
+    // FHIR mapping: Condition.identifier
+    OntologyClass type = 2;
+
+    // Flag to indicate whether the phenotype was observed or not. Default is 'false', in other words the phenotype was
+    // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but found to be
+    // absent.
+    // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'type' field.
+    // *CAUTION* It is imperative to check this field for correct interpretation of the phenotype!
+    bool negated = 3;
+
+    // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
+    // FHIR mapping: Condition.severity
+    OntologyClass severity = 4;
+
+    // subclasses of HP:0012823 ! Clinical modifier apart from Severity HP:0012824 - Severity
+    repeated OntologyClass modifiers = 5;
+
+    // the values of this will come from the HPO onset hierarchy
+    // i.e. subclasses of HP:0003674
+    // FHIR mapping: Condition.onset
+    oneof onset {
+        Age age_of_onset = 6;
+        AgeRange age_range_of_onset = 7;
+        OntologyClass class_of_onset = 9;
+    }
+
+    // Evidences for how the phenotype was determined.
+    repeated Evidence evidence = 10;
+}
+
+// FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
+message Evidence {
+    // The encoded evidence type using, for example the Evidence & Conclusion Ontology (ECO - http://purl.obolibrary.org/obo/eco.owl)
+    // FHIR mapping: Condition.evidence.code
+    OntologyClass evidence_code = 1;
+    // FHIR mapping: Condition.evidence.detail
+    ExternalReference reference = 2;
+}
+
+// FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
+message ExternalReference {
+    // e.g. ISBN, PMID:123456, DOI:...,
+    // FHIR mapping: Reference.identifier
+    string id = 1;
+    // FHIR mapping: Reference.display
+    string description = 2;
+}
+
+// An individual (or subject) typically corresponds to an individual human or another organism.
+// FHIR mapping: Patient (https://www.hl7.org/fhir/patient.html).
+message Individual {
+    // An identifier for the individual. This must be unique within the record.
+    string id = 1;
+
+    // An optional list of alternative identifiers for this individual. This field is provided
+    //for the convenience of users who may have multiple mappings to an individual which they need to track.
+    repeated string alternate_ids = 2;
+
+    // The date of birth of the individual as an ISO8601 UTC timestamp - rounded down to the closest known
+    // year/month/day/hour/minute
+    // e.g. "2018-03-01T00:00:00Z" for someone born on an unknown day in March 2018
+    // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
+    // or empty if unknown/ not stated.
+    google.protobuf.Timestamp date_of_birth = 3;
+
+    // An age object describing the age of the individual at the time of collection. The Age object allows the encoding
+    // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
+    // See http://build.fhir.org/datatypes
+    oneof age {
+        Age age_at_collection = 4;
+        AgeRange age_range_at_collection = 5;
+    }
+
+    // The phenotypic sex of the individual
+    Sex sex = 6;
+
+    // The karyotypic sex of the individual
+    KaryotypicSex karyotypic_sex = 7;
+
+    // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
+    // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
+    // identifier of that organism, to its most specific level
+    OntologyClass taxonomy = 8;
+}
+
+// Sex of an individual
+// FHIR mapping: AdministrativeGender (https://www.hl7.org/fhir/codesystem-administrative-gender.html)
+enum Sex {
+    // Not assessed / available.
+    UNKNOWN_SEX = 0;
+    // Female
+    FEMALE = 1;
+    // Male
+    MALE = 2;
+    // It is not possible, to accurately assess the applicability of MALE/FEMALE.
+    OTHER_SEX = 3;
+}
+
+// Karyotypic sex of the individual
+enum KaryotypicSex {
+    UNKNOWN_KARYOTYPE = 0;
+    XX = 1;
+    XY = 2;
+    XO = 3;
+    XXY = 4;
+    XXX = 5;
+    XXYY = 6;
+    XXXY = 7;
+    XXXX = 8;
+    XYY = 9;
+    OTHER_KARYOTYPE = 10;
+}
+
+// https://www.ncbi.nlm.nih.gov/pubmed/29092942/
+// PDX-MI: Minimal Information for Patient-Derived Tumor Xenograft Models.
+// https://pdxintegrator.readthedocs.io/en/latest/tumor.html
+
+// A Biosample refers to a unit of biological material from which the substrate
+// molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
+// sequencing, array hybridisation, mass-spectrometry) are extracted. Examples
+// would be a tissue biopsy, a single cell from a culture for single cell genome
+// sequencing or a protein fraction from a gradient centrifugation.
+// Several instances (e.g. technical replicates) or types of experiments (e.g.
+// genomic array as well as RNA-seq experiments) may refer to the same Biosample.
+// FHIR mapping: Specimen (http://www.hl7.org/fhir/specimen.html).
+message Biosample {
+
+    // The Biosample id This is unique in the
+    // context of the server instance.
+    string id = 1;
+
+    // The id of the individual this biosample was derived from.
+    string individual_id = 2;
+
+    // The biosample's description. This attribute contains human readable text.
+    // The "description" attributes should not contain any structured data.
+    string description = 3;
+
+    // UBERON class describing the tissue from which the specimen was collected.
+    // PDX-MI mapping: 'Specimen tumor tissue'
+    // FHIR mapping: Specimen.type
+    OntologyClass sampled_tissue = 4;
+
+    // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
+    repeated PhenotypicFeature phenotypic_features = 5;
+
+    // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
+    OntologyClass taxonomy = 6;
+
+    // An age object describing the age of the individual this biosample was
+    // derived from at the time of collection. The Age object allows the encoding
+    // of the age either as ISO8601 duration or time interval (preferred), or
+    // as ontology term object.
+    //See http://build.fhir.org/datatypes
+    oneof individual_age_at_collection {
+        Age age_of_individual_at_collection = 7;
+        AgeRange age_range_of_individual_at_collection = 8;
+    }
+
+    // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
+    // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
+    // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
+    OntologyClass histological_diagnosis = 9;
+
+    // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
+    // Most likely a child term of NCIT:C7062 (Neoplasm by Special Category)
+    // NCIT:C3677 (Benign Neoplasm)
+    // NCIT:C84509 (Primary Malignant Neoplasm)
+    // NCIT:C95606 (Second Primary Malignant Neoplasm)
+    // NCIT:C3261 (Metastatic Neoplasm)
+    // NCIT:C4813 (Recurrent Malignant Neoplasm)
+    OntologyClass tumor_progression = 10;
+
+    // Potentially a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent
+    // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
+    OntologyClass tumor_grade = 11;
+
+    // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
+    // NCIT:C25294 (Laboratory Procedure).
+    // e.g. NCIT:C68748 (HER2/Neu Positive), NCIT:C131711 (Human Papillomavirus-18 Positive)
+    repeated OntologyClass diagnostic_markers = 12;
+
+    // Clinical procedure performed on the subject in order to extract the biosample.
+    Procedure procedure = 13;
+
+    // Pointer to the relevant HTS file(s) for the biosample.
+    repeated HtsFile hts_files = 14;
+
+    // Field for variants relevant to this biosample.
+    repeated Variant variants = 15;
+
+    // if true, this sample is being use as a normal control, often in combination with
+    // another sample that is thought to contain a pathological finding
+    // the default value is false
+    bool is_control_sample = 16;
+}
+
+// A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the
+// body site should be used. In cases where this is not possible, the body site should be indicated using a separate
+// ontology class.
+// e.g.
+// {"code":{"NCIT:C51585": "Biopsy of Soft Palate"}}
+// {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"UBERON:0003403": "skin of forearm"}} - a punch biopsy of the skin from the forearm
+// FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
+message Procedure {
+
+    //
+    // FHIR mapping: Procedure.code
+    OntologyClass code = 1;
+
+    // FHIR mapping: Procedure.bodySite
+    OntologyClass body_site = 2;
+}
+
+// See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
+// In FHIR this is represented as a UCUM measurement - http://unitsofmeasure.org/trac/
+message Age {
+
+    // The :ref:`ISO 8601<metadata_date_time>` age of this object as ISO8601
+    // duration or time intervals. The use of time intervals makes an additional
+    // anchor unnecessary (i.e. DOB and age can be represented as start-anchored
+    // time interval, e.g. 1967-11-21/P40Y10M05D)
+    string age = 1;
+}
+
+message AgeRange {
+    Age start = 1;
+    Age end = 2;
+}
+
+// Message to indicate a disease (diagnosis) and its recorded onset.
+message Disease {
+    // The identifier of this disease e.g. MONDO:0007043, OMIM:101600, Orphanet:710, DOID:14705 (note these are all equivalent)
+    OntologyClass term = 1;
+
+    // The onset of the disease. The values of this will come from the HPO onset hierarchy
+    // i.e. subclasses of HP:0003674
+    // FHIR mapping: Condition.onset
+    oneof onset {
+        Age age_of_onset = 2;
+        AgeRange age_range_of_onset = 3;
+        OntologyClass class_of_onset = 4;
+    }
+
+    // Disease staging, the extent to which a disease has developed.
+    // For cancers, see https://www.cancer.gov/about-cancer/diagnosis-staging/staging
+    // Valid values include child terms of NCIT:C28108 (Disease Stage Qualifier)
+    repeated OntologyClass disease_stage = 5;
+
+    // Cancer findings in the TNM system that is relevant to the diagnosis of cancer.
+    // See https://www.cancer.gov/about-cancer/diagnosis-staging/staging
+    // Valid values include child terms of NCIT:C48232 (Cancer TNM Finding)
+    repeated OntologyClass tnm_finding = 6;
+
+}
+
+// https://software.broadinstitute.org/gatk/documentation/article?id=11016
+message Pedigree {
+    repeated Person persons = 1;
+
+    message Person {
+        enum AffectedStatus {
+            MISSING = 0;
+            UNAFFECTED = 1;
+            AFFECTED = 2;
+        }
+        string family_id = 1;
+        string individual_id = 2;
+        string paternal_id = 3;
+        string maternal_id = 4;
+        Sex sex = 5;
+        AffectedStatus affected_status = 6;
+    }
+}
+
+// A file in one of the HTS formats (https://samtools.github.io/hts-specs)
+message HtsFile {
+
+    enum HtsFormat {
+        UNKNOWN = 0;
+        SAM = 1;
+        BAM = 2;
+        CRAM = 3;
+        VCF = 4;
+        BCF = 5;
+        GVCF = 6;
+        FASTQ = 7;
+    }
+
+    // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
+    string uri = 1;
+    // description of the file contents
+    string description = 2;
+    // format of the HTS file
+    HtsFormat hts_format = 3;
+    // Genome assembly the contents of this file was called against. We recommend using the Genome Reference Consortium
+    // nomenclature e.g. GRCh37, GRCh38
+    string genome_assembly = 4;
+    // A map of identifiers mapping an individual to a sample in the file. The key values must correspond to the
+    // Individual::id for the individuals in the message, the values must map to the samples in the file.
+    map<string, string> individual_to_sample_identifiers = 5;
+}
+
+// Gene identifier
+message Gene {
+    // The official gene identifier as designated by the organism gene nomenclature committee e.g. HGNC:3477 or MGI:2385071
+    // Preferentially this should be a CURIE, however it is acceptable to use another equivalent resource identifier
+    // such as ENSG00000120705, uc003ldc.6
+    // https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477
+    string id = 1;
+
+    repeated string alternate_ids = 2;
+    // The official gene symbol as designated by the organism gene nomenclature committee e.g. ETF1 or Etf1
+    string symbol = 3;
+}
+
+// A variant allele. Alleles can be listed using HGVS, VCF, SPDI or ISCN notation.
+// SPDI format is the exchange standard used for ClinVar, dbSNP and soon the EVA
+// Tools for interconversion between SPDI, HGVS and VCF exist at https://api.ncbi.nlm.nih.gov/variation/v0/
+message Variant {
+    oneof allele {
+        HgvsAllele hgvs_allele = 2;
+        VcfAllele vcf_allele = 3;
+        SpdiAllele spdi_allele = 4;
+        IscnAllele iscn_allele = 5;
+    }
+    // Zygosity of the allele using GENO ontology
+    OntologyClass zygosity = 6;
+}
+
+// A single HGVS allele.
+// It is recommended that the string is validated using the VariantValidator - https://variantvalidator.org/
+// See http://varnomen.hgvs.org/recommendations/DNA/variant/alleles/
+message HgvsAllele {
+    string id = 1;
+    // e.g., NM_000226.3:c.470T>G
+    string hgvs = 2;
+}
+
+// A single VCF allele.
+// For structural variation the INFO field should contain the relevant information e.g.
+// END=43500;SVTYPE=DUP;CHR2=1;SVLEN=29000;
+// See https://samtools.github.io/hts-specs/VCFv4.3.pdf
+message VcfAllele {
+    // The value of the VCF spec fileformat field: e.g VCFv4.1, VCFv4.2, VCFv4.3
+    string vcf_version = 1;
+    // Genome assembly the allele was called against. We recommend using the Genome Reference Consortium
+    // nomenclature e.g. GRCh37, GRCh38
+    string genome_assembly = 2;
+    string id = 3;
+    string chr = 4;
+    int32 pos = 5;
+    string ref = 6;
+    string alt = 7;
+    string info = 8;
+}
+
+// A single SPDI allele.
+// The SPDI notation uses four fields and is written out as four elements delimited by colons S:P:D:I, where
+// S = SequenceId
+// P = Position , a 0-based coordinate for where the Deleted Sequence starts
+// D = DeletedSequence , sequence for the deletion, can be empty
+// I = InsertedSequence , sequence for the insertion, can be empty
+// The SPDI notation represents variation as deletion of a sequence (D) at a given position (P) in reference sequence (S)
+// followed by insertion of a replacement sequence (I) at that same position. Position 0 indicates a deletion that
+// starts immediately before the first nucleotide, and position 1 represents a deletion interval that starts between the
+// first and second residues, and so on. Either the deleted or the inserted interval can be empty, resulting a pure
+// insertion or deletion.
+// The deleted and inserted sequences in SPDI are all written on the positive strand for two-stranded molecules.
+// See https://www.ncbi.nlm.nih.gov/variation/notation/
+message SpdiAllele {
+    string id = 1;
+    string seq_id = 2;
+    int32 position = 3;
+    string deleted_sequence = 4;
+    string inserted_sequence = 5;
+}
+
+// See https://www.humpath.com/spip.php?article13862
+message IscnAllele {
+    string id = 1;
+    // an ICSN code such as del(6)(q23q24) , t(8;9;11)(q12;p24;p12), +15
+    string iscn = 2;
+}

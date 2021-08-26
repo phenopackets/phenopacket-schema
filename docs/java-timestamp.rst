@@ -1,8 +1,8 @@
 .. _rstjavatimestamp:
 
-================
+################
 Timestamp (Java)
-================
+################
 
 A Timestamp represents a point in time independent of any time zone or local
 calendar, encoded as a count of seconds and fractions of seconds at
@@ -34,18 +34,16 @@ code creates a timepoint for an important date in English history.
 .. code-block:: java
 
     import com.google.protobuf.Timestamp;
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
+    import java.time.Instant;
+    import java.time.format.DateTimeFormatter;
+    import java.time.temporal.TemporalAccessor;
 
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    String hastings = "1066-10-14";
-    Date date = formatter.parse(hastings);
-    long millis = date.getTime();
-    Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
-              .setNanos((int) ((millis % 1000) * 1000000)).build();
-
-If more precision is desired, use the following format
-
-.. code-block:: java
-
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String hastings = "1066-10-14T00:00:00.001Z";
+    TemporalAccessor date = DateTimeFormatter.ISO_DATE_TIME.parse(hastings);
+    System.out.println(DateTimeFormatter.ISO_DATE_TIME.format(date));
+    Instant instant = Instant.from(date);
+    Timestamp timestamp = Timestamp.newBuilder()
+            .setSeconds(instant.getEpochSecond())
+            .setNanos(instant.getNano())
+            .build();
+    System.out.println(JsonFormat.printer().print(timestamp));

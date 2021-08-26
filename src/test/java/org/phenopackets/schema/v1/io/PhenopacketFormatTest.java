@@ -19,10 +19,8 @@ class PhenopacketFormatTest {
         Phenopacket original = TestExamples.rareDiseasePhenopacket();
 
         String asYaml = PhenopacketFormat.toYaml(original);
-        System.out.println(asYaml);
 
         String asJson = FormatMapper.yamlToJson(asYaml);
-        System.out.println(asJson);
 
         Phenopacket fromJson = PhenopacketFormat.fromJson(asJson);
 
@@ -35,7 +33,6 @@ class PhenopacketFormatTest {
         Phenopacket original = TestExamples.cancerPhenopacket();
 
         String asJson = PhenopacketFormat.toJson(original);
-        System.out.println(asJson);
 
         Phenopacket transformed = PhenopacketFormat.fromJson(asJson);
         assertThat(transformed, equalTo(original));
@@ -46,7 +43,6 @@ class PhenopacketFormatTest {
         Phenopacket original = TestExamples.biosamplesPhenopacket();
 
         String asYaml = PhenopacketFormat.toYaml(original);
-        System.out.println(asYaml);
 
         Phenopacket transformed = PhenopacketFormat.fromYaml(asYaml);
         assertThat(transformed, equalTo(original));

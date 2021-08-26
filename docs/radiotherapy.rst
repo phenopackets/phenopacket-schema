@@ -1,43 +1,46 @@
 .. _rstradiotherapy:
 
-============
-Radiotherapy
-============
+################
+RadiationTherapy
+################
 
 Radiation therapy (or radiotherapy) uses ionizing radiation, generally as part of cancer treatment to control
 or kill malignant cells.
 
 
 
-**Data model**
+Data model
+##########
 
 
 .. list-table:: Definition  of the ``Radiotherapy`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - modality
-     - OntologyClass
-     - required
-     - The modality of radiation therapy (e.g., electron, photon,...)
+     - :ref:`rstontologyclass`
+     - 1..1
+     - The modality of radiation therapy (e.g., electron, photon,...). REQUIRED.
    * - body_site
-     - OntologyClass
-     - required
-     - The anatomical site where radiation therapy was administered.
+     - :ref:`rstontologyclass`
+     - 1..1
+     - The anatomical site where radiation therapy was administered. REQUIRED.
    * - dosage
      - int32
-     - required
-     - the total dose given in units of Gray (Gy).
+     - 1..1
+     - the total dose given in units of Gray (Gy). REQUIRED.
    * - fractions
      - int32
-     - required
-     - The total number of fractions delivered as part of treatment.
+     - 1..1
+     - The total number of fractions delivered as part of treatment. REQUIRED.
 
 
+Explanations
+############
 
 modality
 ~~~~~~~~

@@ -1,65 +1,72 @@
 .. _rstindividual:
 
-==========
+##########
 Individual
-==========
+##########
 
 The subject of the Phenopacket is represented by an *Individual* element.
 This element intends to represent an individual human or other organism. In this documentation,
 we explain the element using the example of a human proband in a clinical investigation.
 
-**Data model**
+Data model
+##########
 
  .. list-table::
-    :widths: 25 50 50 50
+    :widths: 25 25 25 75
     :header-rows: 1
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - id
       - string
-      - required
-      - An arbitrary identifier
+      - 1..1
+      - An arbitrary identifier. REQUIRED.
     * - alternate_ids
       - a list of :ref:`rstcurie`
-      - optional
+      - 0..*
       - A list of alternative identifiers for the individual
     * - date_of_birth
       - timestamp
-      - optional
+      - 0..1
       - A timestamp either exact or imprecise
-    * - age
-      - :ref:`rstage` or :ref:`rstagerange`
-      - recommended
-      - The age or age range of the individual
+    * - time_at_last_encounter
+      - :ref:`rsttimeelement`
+      - 0..1
+      - The age or age range of the individual when last encountered. RECOMMENDED.
+    * - vital_status
+      - :ref:`rstvitalstatus`
+      - 0..1
+      - The vital status of the individual e.g. whether they are alive or the time and cause of death. RECOMMENDED.
     * - sex
       - :ref:`rstsex`
-      - recommended
+      - 0..1
       - Observed apparent sex of the individual
     * - karyotypic_sex
       - :ref:`rstkaryotypicsex`
-      - optional
+      - 0..1
       - The karyotypic sex of the individual
     * - taxonomy
       - :ref:`rstontologyclass`
-      - optional
+      - 0..1
       - an :ref:`rstontologyclass` representing the species (e.g., NCBITaxon:9615)
 
 
-**Example**
+Example
+#######
 
 The following example is typical but does not make use of all of the optional fields of this element.
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-      "id": "patient:0",
-      "dateOfBirth": "1998-01-01T00:00:00Z",
-      "sex": "MALE"
-  }
+  individual:
+    id: "patient:0"
+    dateOfBirth: "1998-01-01T00:00:00Z"
+    sex: "MALE"
 
+Explanations
+############
 
 id
 ~~
@@ -82,13 +89,13 @@ dynamically be the sender using identifiers appropriate for the receiving system
 
 For example, a hospital may want to send a :ref:`rstfamily` to an external lab for analysis. Here the hospital is providing
 an obfuscated identifier which is used to identify the individual in the :ref:`rstphenopacket`, the :ref:`rstpedigree` and
-mappings to the sample id in the :ref:`rsthtsfile`.
+mappings to the sample id in the :ref:`rstfile`.
 
 In this case the :ref:`rstpedigree` is created by the sending system from whatever source they use and the identifiers
 should be mapped to those `Individual.id` contained in the `Family.proband` and `Family.relatives` phenopackets.
 
 In the case of the VCF file, the sending system likely has no control or ability to change the identifiers used for the
-sample id and it is likely they use different identifiers. It is for this reason the :ref:`rsthtsfile` has a *local*
+sample id and it is likely they use different identifiers. It is for this reason the :ref:`rstfile` has a *local*
 mapping field `HtsFile.individual_to_sample_identifiers` where the `Individual.id` can be mapped to the sample id in that
 file.
 
@@ -99,34 +106,30 @@ the internally consistent `Individual.id`. As noted above, the data may have bee
 sources but given they know these relationships, they should provide the receiver with a consistent view of the data both
 for ease of use and to limit incorrect mapping.
 
-.. code-block:: json
+Thus, we would use the same id various elements.
 
-    "individual": {
-      "id": "patient23456",
-      "dateOfBirth": "1998-01-01T00:00:00Z",
-      "sex": "MALE"
-    }
+.. code-block:: yaml
 
-    "htsFile": {
-        "uri": "file://data/genomes/germline_wgs.vcf.gz",
-        "description": "Germline sample",
-        "htsFormat": "VCF",
-        "genomeAssembly": "GRCh38",
-        "individualToSampleIdentifiers": {
-          "patient23456": "NA12345"
-        }
-    }
+  individual:
+    id: "patient23456"
+    dateOfBirth: "1998-01-01T00:00:00Z"
+    sex: "MALE"
 
-    "pedigree": {
-        "persons": [
-            {
-                "familyId": "family 1",
-                "individualId": "patient23456",
-                "sex": "MALE",
-                "affectedStatus": "AFFECTED"
-            }
-        ]
-    }
+Assuming that this individual was sequenced, we might have the following :ref:`rstfile` element.
+
+.. code-block:: yaml
+
+    htsFile:
+        uri: "file://data/genomes/germline_wgs.vcf.gz"
+        description: "Matched normal germline sample"
+        htsFormat: "VCF"
+        genomeAssembly: "GRCh38"
+        individualToSampleIdentifiers:
+            patient23456: "NA12345"
+
+
+
+We would also use ``patient23456`` as the ``individualId`` element within a :ref:`rstpedigree` element.
 
 
 alternate_ids
@@ -148,16 +151,21 @@ This element represents the date of birth of the individual as an `ISO8601 UTC t
 See :ref:`here<rstjavatimestamp>` for more information about timestamps.
 
 The element is provided for use cases within protected networks, but it many situations the element should not be used
-in order to protect the privacy of the individual. Instead, the ``Age`` element should be preferred.
+in order to protect the privacy of the individual. Instead, the ``time_at_last_encounter`` element should be preferred.
 
 
-age
-~~~
-An age object describing the age of the individual at the time of collection of biospecimens or phenotypic observations
-reported in the current Phenopacket. It is specified using either an :ref:`Age element<rstage>`, which can represent an Age in several different ways,
-or an :ref:`AgeRange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
+time_at_last_encounter
+~~~~~~~~~~~~~~~~~~~~~~
+An object describing when the encounter with the patient happened or the the age of the individual at the time of collection
+of biospecimens or phenotypic observations reported in the current Phenopacket. It is specified using either an :ref:`rsttimeelement`,
+which can represent an time in several different ways, either precisely or within a range. For example an :ref:`rstage`
+or an :ref:`rstagerange` element, which can represent a range of ages such as 10-14 years (age can be represented in this
 was to protect privacy of study participants).
 
+vital_status
+~~~~~~~~~~~~
+The :ref:`rstvitalstatus` can be used to report whether the individual is living or dead at the timepoint when the phenopacket
+was created (or if the status is unknown).
 
 sex
 ~~~

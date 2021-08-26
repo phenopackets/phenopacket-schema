@@ -1,8 +1,8 @@
 .. _rstontologyclass:
 
-=============
+#############
 OntologyClass
-=============
+#############
 
 This element is used to represent classes (terms) from ontologies, and is used in many places throughout the
 Phenopacket standard. It is a simple, two element message that represents the identifier and the label of
@@ -14,23 +14,28 @@ label match in the original ontology. We note that occasionally, ontology mainta
 term.
 
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    id, string, required, a CURIE-style identifier e.g. HP:0001875
-    label, string, required, human-readable class name e.g. Neutropenia
+    id, string, 1..1, a CURIE-style identifier e.g. HP:0001875. REQUIRED.
+    label, string, 1..1, human-readable class name e.g. Neutropenia. REQUIRED.
 
 
-**Example**
+Example
+#######
 
-.. code-block:: json
+.. code-block:: yaml
 
-    {
-      "id": "HP:0001875",
-      "label": "Neutropenia"
-    }
+    ontologyClass:
+        id: "HP:0001875"
+        label: "Neutropenia"
+
+Explanations
+############
+
 
 id
 ~~

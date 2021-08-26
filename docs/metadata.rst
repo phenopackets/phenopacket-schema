@@ -1,49 +1,50 @@
 .. _rstmetadata:
 
-========
+########
 MetaData
-========
+########
 
 
 This element contains structured definitions of the resources and ontologies used within the phenopacket. It is considered to be a required element of a valid Phenopacket and application Q/C software should check this.
 
-**Data model**
+Data model
+##########
 
   .. list-table:: Definition of the ``MetaData`` element
-    :widths: 25 25 50 50
+    :widths: 25 25 25 75
     :header-rows: 1
 
     * - Field
       - Type
-      - Status
+      - Multiplicity
       - Description
     * - created
       - A Timestamp
-      - required
+      - 1..1
       - Representation of the time when this object was created, e.g., 2019-04-01T15:10:17.808Z
     * - created_by
       - string
-      - required
+      - 1..1
       - Name of person who created the phenopacket
     * - submitted_by
       - string
-      - optional
+      - 0..1
       - Name of person who submitted the phenopacket
     * - resources
       - list of :ref:`rstresource`
-      - required
+      - 1..*
       - Ontologies used to create the phenopacket
     * - updates
       - list of :ref:`rstupdate`
-      - optional
+      - 0..*
       - List of updates to the phenopacket
     * - phenopacket_schema_version
       - string
-      - optional
+      - 1..1
       - schema version of the current phenopacket
     * - external_references
       - List of :ref:`rstexternalreference`
-      - optional
+      - 0..*
       - (See text)
 
 The `MetaData` element MUST have one :ref:`rstresource` element for each ontology or terminology whose
@@ -51,39 +52,40 @@ terms are used in the Phenopacket. For instance, if a MONDO term is used to spec
 HPO terms are used to specify the phenotypes of a patient, then the `MetaData` element MUST have
 one `Resource` element each for MONDO and HPO.
 
-**Example**
+Example
+#######
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-    "created": "2019-07-21T00:25:54.662Z",
-    "createdBy": "Peter R.",
-    "resources": [{
-      "id": "hp",
-      "name": "human phenotype ontology",
-      "url": "http://purl.obolibrary.org/obo/hp.owl",
-      "version": "2018-03-08",
-      "namespacePrefix": "HP",
-      "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
-    }, {
-      "id": "geno",
-      "name": "Genotype Ontology",
-      "url": "http://purl.obolibrary.org/obo/geno.owl",
-      "version": "19-03-2018",
-      "namespacePrefix": "GENO",
-      "iriPrefix": "http://purl.obolibrary.org/obo/GENO_"
-    }, {
-      "id": "pubmed",
-      "name": "PubMed",
-      "namespacePrefix": "PMID",
-      "iriPrefix": "https://www.ncbi.nlm.nih.gov/pubmed/"
-    }],
-    "externalReferences": [{
-      "id": "PMID:30808312",
-      "description": "Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report. BMC Neurol. 2019;19(1):32."
-    }]
-  }
+  metadata:
+    created: "2019-07-21T00:25:54.662Z"
+    createdBy: "Peter R."
+    resources:
+        - id: "hp"
+        name: "human phenotype ontology"
+        url: "http://purl.obolibrary.org/obo/hp.owl"
+        version: "2018-03-08"
+        namespacePrefix: "HP"
+        iriPrefix: "hp"
+        - id: "geno"
+        name: "Genotype Ontology"
+        url: "http://purl.obolibrary.org/obo/geno.owl"
+        version: "19-03-2018"
+        namespacePrefix: "GENO"
+        iriPrefix: "geno"
+        - id: "pubmed"
+        name: "PubMed"
+        url: "https://www.ncbi.nlm.nih.gov/pubmed/"
+        namespacePrefix: "PMID"
+    phenopacketSchemaVersion: "2.0"
+    externalReferences:
+        - id: "PMID:30808312"
+        description: "Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report. BMC Neurol. 2019;19(1):32."
 
+
+
+Explanations
+############
 
 created
 ~~~~~~~
@@ -115,7 +117,9 @@ updated. Resources should provide information about how this is being used.
 
 phenopacket_schema_version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-A string representing the version of the phenopacket-schema according to which a phenopacket was made.
+A string representing the version of the phenopacket-schema according to which a phenopacket was made. Permitted values
+MUST be one of `1.0.0`, `1.0` or `2.0`. Versions `1.0.0` and `1.0` are equivalent and the `1.0` string should be
+preferred. This version of the schema is `2.0`.
 
 external_references
 ~~~~~~~~~~~~~~~~~~~

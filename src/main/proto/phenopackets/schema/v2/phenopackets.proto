@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2;
+
+import "phenopackets/schema/v2/core/base.proto";
+import "phenopackets/schema/v2/core/biosample.proto";
+import "phenopackets/schema/v2/core/disease.proto";
+import "phenopackets/schema/v2/core/interpretation.proto";
+import "phenopackets/schema/v2/core/individual.proto";
+import "phenopackets/schema/v2/core/measurement.proto";
+import "phenopackets/schema/v2/core/medical_action.proto";
+import "phenopackets/schema/v2/core/meta_data.proto";
+import "phenopackets/schema/v2/core/pedigree.proto";
+import "phenopackets/schema/v2/core/phenotypic_feature.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2";
+
+// An anonymous phenotypic description of an individual or biosample with potential genes of interest and/or diagnoses.
+//
+// This is a bundle of high-level concepts with no specifically defined relational concepts. It is expected that the
+// resources sharing the phenopackets will define and enforce their own semantics and level of requirements for included
+// fields.
+message Phenopacket {
+    // An identifier specific for this phenopacket.
+    string id = 1;
+
+    // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
+    core.Individual subject = 2;
+
+    // Phenotypic features relating to the subject of the phenopacket
+    repeated core.PhenotypicFeature phenotypic_features = 3;
+
+    // Quantifiable measurements related to the individual
+    repeated core.Measurement measurements = 4;
+
+    // Biosample(s) derived from the patient or a collection of biosamples in isolation
+    repeated core.Biosample biosamples = 5;
+
+    repeated core.Interpretation interpretations = 6;
+
+    // Field for disease identifiers - could be used for listing either diagnosed or suspected conditions. The
+    // resources using these fields should define what this represents in their context.
+    repeated core.Disease diseases = 7;
+
+    repeated core.MedicalAction medical_actions = 9;
+
+    // Pointer to the relevant file(s) for the individual
+    repeated core.File files = 10;
+
+    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
+    core.MetaData meta_data = 11;
+}
+
+// Phenotype, sample and pedigree data required for a genomic diagnosis.
+// Equivalent to the Genomics England InterpretationRequestRD
+// https://github.com/genomicsengland/GelReportModels/blob/master/schemas/IDLs/org.gel.models.report.avro/5.0.0/InterpretationRequestRD.avdl
+message Family {
+    // An identifier specific for this family.
+    string id = 1;
+
+    // The individual representing the focus of this packet - e.g. the proband in rare disease cases or cancer patient
+    Phenopacket proband = 2;
+
+    // Individuals related in some way to the patient. For instance, the individuals may be genetically related or may
+    // be members of a cohort. If this field is used, then  it is expected that a pedigree will be included for
+    // genetically related individuals for use cases such as genomic diagnostics. If a phenopacket is being used to
+    // describe one member of a cohort, then in general one phenopacket will be created for each of the individuals in
+    // the cohort.
+    repeated Phenopacket relatives = 3;
+
+    // flag to indicate that the parents of the proband are consanguinous
+    bool consanguinous_parents = 7;
+
+    // The pedigree defining the relations between the proband and their relatives. Pedigree.individual_id should
+    // map to the PhenoPacket.Individual.id
+    core.Pedigree pedigree = 4;
+
+    // Pointer to the relevant file(s) for the family. These should be files relating to one or more of the family
+    // members e.g a multi-sample VCF. Files relating exclusively to individual phenopackets should be contained in the
+    // Phenopacket.
+    repeated core.File files = 5;
+
+    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
+    core.MetaData meta_data = 6;
+}
+
+// A group of individuals related in some phenotypic or genotypic aspect.
+message Cohort {
+    string id = 1;
+    string description = 2;
+    repeated Phenopacket members = 3;
+    // Pointer to relevant file(s) for the cohort. Files relating exclusively to individual phenopackets should be
+    // contained in the Phenopacket.
+    repeated core.File files = 4;
+    // Structured definitions of the resources and ontologies used within the phenopacket. REQUIRED
+    core.MetaData meta_data = 5;
+}

@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "google/protobuf/timestamp.proto";
+import "phenopackets/schema/v2/core/base.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// An individual (or subject) typically corresponds to an individual human or another organism.
+// FHIR mapping: Patient (https://www.hl7.org/fhir/patient.html).
+message Individual {
+
+  // An identifier for the individual. This must be unique within the record.
+  // ARGO mapping donor::submitter_donor_id
+  string id = 1;
+
+  // An optional list of alternative identifiers for this individual. This field is provided
+  //for the convenience of users who may have multiple mappings to an individual which they need to track.
+  repeated string alternate_ids = 2;
+
+  // The date of birth of the individual as an ISO8601 UTC timestamp - rounded down to the closest known
+  // year/month/day/hour/minute
+  // e.g. "2018-03-01T00:00:00Z" for someone born on an unknown day in March 2018
+  // or "2018-01-01T00:00:00Z" for someone born on an unknown day in 2018
+  // or empty if unknown/ not stated.
+  google.protobuf.Timestamp date_of_birth = 3;
+
+  // An TimeElement object describing the age of the individual at the last time of collection. The Age object allows the encoding
+  // of the age either as ISO8601 duration or time interval (preferred), or as ontology term object.
+  // See http://build.fhir.org/datatypes
+  TimeElement time_at_last_encounter = 4;
+
+  // Vital status of the individual. If not present it is assumed that the individual is alive. If present it will
+  // default to 'false' i.e. the individual was alive when the data was collected.
+  // ARGO mapping donor::vital_status
+  VitalStatus vital_status = 5;
+
+  // The phenotypic sex of the individual
+  // ARGO mapping sample_registration::gender (this is complicated as ARGO only have male/female/other which maps to the phenopacket Sex field)
+  Sex sex = 6;
+
+  // The karyotypic sex of the individual
+  KaryotypicSex karyotypic_sex = 7;
+
+  // Self-identified gender
+  OntologyClass gender = 8;
+
+  // NCBI taxonomic identifier NCBITaxon e.g. NCBITaxon:9606 or NCBITaxon:1337
+  // For resources where there may be more than one organism being studied it is advisable to indicate the taxonomic
+  // identifier of that organism, to its most specific level
+  OntologyClass taxonomy = 9;
+}
+
+message VitalStatus {
+  // Default = false i.e. the individual is alive. MUST be true if
+  enum Status {
+    UNKNOWN_STATUS = 0;
+    ALIVE = 1;
+    DECEASED = 2;
+  }
+  Status status = 1;
+
+  TimeElement time_of_death = 2;
+
+  // ARGO mapping donor::cause_of_death
+  OntologyClass cause_of_death = 3;
+
+  // ARGO mapping donor::survival_time
+  uint32 survival_time_in_days = 4;
+}
+
+// Sex of an individual
+// FHIR mapping: AdministrativeGender (https://www.hl7.org/fhir/codesystem-administrative-gender.html)
+enum Sex {
+  // Not assessed / available.
+  UNKNOWN_SEX = 0;
+  // Female
+  FEMALE = 1;
+  // Male
+  MALE = 2;
+  // It is not possible, to accurately assess the applicability of MALE/FEMALE.
+  OTHER_SEX = 3;
+}
+
+// Karyotypic sex of the individual
+enum KaryotypicSex {
+  UNKNOWN_KARYOTYPE = 0;
+  XX = 1;
+  XY = 2;
+  XO = 3;
+  XXY = 4;
+  XXX = 5;
+  XXYY = 6;
+  XXXY = 7;
+  XXXX = 8;
+  XYY = 9;
+  OTHER_KARYOTYPE = 10;
+}

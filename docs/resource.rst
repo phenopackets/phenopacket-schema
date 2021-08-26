@@ -1,8 +1,8 @@
 .. _rstresource:
 
-========
+########
 Resource
-========
+########
 
 
 The ``Resource`` element is a description of an external resource used for referencing an object. For example the resource
@@ -13,66 +13,69 @@ known as :ref:`rstidentifierresolution`.
 
 The :ref:`rstmetadata` element uses one resource element to describe each resource that is referenced in the Phenopacket.
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-   id, string, required, hp
-   name, string, required, human phenotype ontology
-   namespace_prefix, string, required, HP
-   url, string, required, Uniform Resource Locator of the resource
-   version, string, required, 2018-03-08
-   iri_prefix, string, required, Internationalized Resource Identifier (e.g., http://purl.obolibrary.org/obo/HP_)
+   id, string, 1..1, Resource identifier. e.g. `hp`. REQUIRED.
+   name, string, 1..1, Formal name of the resource or ontology e.g. human phenotype ontology. REQUIRED.
+   namespace_prefix, 1..1, required, Namespace prefix of the resource e.g `HP`. REQUIRED.
+   url, string, 1..1, Uniform Resource Locator of the resource. REQUIRED.
+   version, string, 1..1, The version string for the ontology or resource 2018-03-08. REQUIRED.
+   iri_prefix, string, 1..1, Internationalized Resource Identifier such as ``http://purl.obolibrary.org/obo/HP_``. REQUIRED.
 
-**Example**
+Example
+#######
 
 For an ontology, the url SHALL point to the obo or owl file, e.g. This information can also be found at the EBI
 `Ontology Lookup Service <https://www.ebi.ac.uk/ols/ontologies>`_
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-      "id": "so",
-      "name": "Sequence types and features",
-      "url": "http://purl.obolibrary.org/obo/so.owl",
-      "version": "2015-11-24",
-      "namespacePrefix": "SO",
-      "iriPrefix": "http://purl.obolibrary.org/obo/SO_"
-  }
+  resource:
+    id: "hp"
+    name: "Human Phenotype Ontology"
+    url: "http://www.human-phenotype-ontology.org"
+    version: "2018-03-08"
+    namespacePrefix: "HP"
+    iriPrefix: "http://purl.obolibrary.org/obo/HP_"
 
-Non-ontology resources which DO use CURIEs as their native identifiers should be treated in a similarly resolvable manner.
+Non-ontology resources which use CURIEs as their native identifiers should be treated in a similarly resolvable manner.
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-    "id": "hgnc",
-    "name": "HUGO Gene Nomenclature Committee",
-    "url": "https://www.genenames.org",
-    "version": "2019-08-08",
-    "namespacePrefix": "HGNC",
-    "iriPrefix": "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/"
-  }
+  resource:
+    id: "hgnc"
+    name: "HUGO Gene Nomenclature Committee"
+    url: "https://www.genenames.org"
+    version: "2019-08-08"
+    namespacePrefix: "HGNC"
+    iriPrefix: "https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/"
 
 Using this :ref:`rstresource` definition it is possible for software to resolve the identifier `HGNC:12805` to
 https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/12805
 
-Non-ontology resources which DO NOT use CURIEs as their native identifiers MUST use the namespace from identifiers.org,
+Non-ontology resources which do *not* use CURIEs as their native identifiers MUST use the namespace from identifiers.org,
 when present. For example the UniProt Knowledgebase (https://registry.identifiers.org/registry/uniprot)
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-    "id": "uniprot",
-    "name": "UniProt Knowledgebase",
-    "url": "https://www.uniprot.org",
-    "version": "2019_07",
-    "namespacePrefix": "uniprot",
-    "iriPrefix": "https://purl.uniprot.org/uniprot/"
-  }
+  resource:
+    id: "uniprot"
+    name: "UniProt Knowledgebase"
+    url: "https://www.uniprot.org"
+    version: "2019_07"
+    namespacePrefix: "uniprot"
+    iriPrefix: "https://purl.uniprot.org/uniprot/"
+
 
 Using this :ref:`rstresource` definition it is possible for software to resolve the identifier `uniprot:Q8H0D3` to
 https://purl.uniprot.org/uniprot/Q8H0D3
+
+Explanations
+############
 
 id
 ~~
@@ -145,27 +148,16 @@ Identifier resolution
 A CURIE identifier can be resolved to an external resource using the :ref:`rstresource` element by looking-up the CURIE
 `prefix` against the Resource::namespacePrefix and then appending the CURIE `reference` to the Resource::iriPrefix.
 
-For example, using the HPO term encoding the concept of 'Severe', using this instance of an OntologyClass:
+For example, software can use the HPO Resource shown above to resolve the following HPO term encoding the concept of
+``Severe``:
 
-.. code-block:: json
+.. code-block:: yaml
 
-  {
-    "id": "HP:0012828",
-    "label": "Severe",
-  }
+  ontologyClass:
+    id: "HP:0012828"
+    label: "Severe"
 
-and this instance of a Resource:
 
-.. code-block:: json
-
-    {
-        "id": "hp",
-        "name": "Human Phenotype Ontology",
-        "url": "http://purl.obolibrary.org/obo/hp.owl",
-        "version": "17-06-2019",
-        "namespacePrefix": "HP",
-        "iriPrefix": "http://purl.obolibrary.org/obo/HP_"
-    }
 
 The id HP:0012828 can be split into the `prefix` - 'HP' and `reference` - '0012828'. The 'HP' prefix matches the
 Resource::namespacePrefix so we can append the reference '0012828' to the Resource::iriPrefix: which produces the URI

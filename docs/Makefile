@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = phenopackets-schema
+SPHINXPROJ    = phenopacket-schema
 SOURCEDIR     = .
 BUILDDIR      = _build
 html_static_path = ['..']

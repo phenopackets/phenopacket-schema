@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<svg width="1211pt" height="493pt" viewBox="0.00 0.00 1210.89 493.27" xmlns="http://www.w3.org/2000/svg">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 489.2663)">
+<title>phenopacket_schema_v1</title>
+<polygon fill="transparent" stroke="transparent" points="-4,4 -4,-489.2663 1206.8908,-489.2663 1206.8908,4 -4,4"/>
+<!-- Age -->
+<g id="node1" class="node">
+<title>Age</title>
+<ellipse fill="#458b74" stroke="#000000" cx="458.3533" cy="-93.6999" rx="30.321" ry="19.4695"/>
+<text text-anchor="middle" x="458.3533" y="-88.8999" font-family="Calibri" font-size="16.00" fill="#ffffff">Age</text>
+</g>
+<!-- Biosample -->
+<g id="node2" class="node">
+<title>Biosample</title>
+<ellipse fill="#458b74" stroke="#000000" cx="376.3533" cy="-242.6331" rx="59.9124" ry="19.4695"/>
+<text text-anchor="middle" x="376.3533" y="-237.8331" font-family="Calibri" font-size="16.00" fill="#ffffff">Biosample</text>
+</g>
+<!-- Biosample&#45;&#45;Age -->
+<g id="edge13" class="edge">
+<title>Biosample--Age</title>
+<path fill="none" stroke="#000000" d="M403.3885,-225.2153C416.2066,-215.5793 430.5967,-202.4994 439.3533,-187.3998 452.7597,-164.2825 456.8183,-133.1819 457.9843,-113.283"/>
+</g>
+<!-- HtsFile -->
+<g id="node7" class="node">
+<title>HtsFile</title>
+<ellipse fill="#458b74" stroke="#000000" cx="531.3533" cy="-168.1665" rx="44.7497" ry="19.4695"/>
+<text text-anchor="middle" x="531.3533" y="-163.3665" font-family="Calibri" font-size="16.00" fill="#ffffff">HtsFile</text>
+</g>
+<!-- Biosample&#45;&#45;HtsFile -->
+<g id="edge15" class="edge">
+<title>Biosample--HtsFile</title>
+<path fill="none" stroke="#000000" d="M409.6047,-226.6582C436.8244,-213.581 474.9958,-195.2423 501.3055,-182.6024"/>
+</g>
+<!-- OntologyClass -->
+<g id="node11" class="node">
+<title>OntologyClass</title>
+<ellipse fill="#458b74" stroke="#000000" cx="211.3533" cy="-19.2333" rx="78.6294" ry="19.4695"/>
+<text text-anchor="middle" x="211.3533" y="-14.4333" font-family="Calibri" font-size="16.00" fill="#ffffff">OntologyClass</text>
+</g>
+<!-- Biosample&#45;&#45;OntologyClass -->
+<g id="edge11" class="edge">
+<title>Biosample--OntologyClass</title>
+<path fill="none" stroke="#000000" d="M329.1885,-230.6982C291.1601,-220.0735 241.9989,-203.727 229.3533,-187.3998 195.2822,-143.4094 201.7893,-72.3991 207.4689,-38.4754"/>
+</g>
+<!-- PhenotypicFeature -->
+<g id="node13" class="node">
+<title>PhenotypicFeature</title>
+<ellipse fill="#458b74" stroke="#000000" cx="334.3533" cy="-168.1665" rx="96.2857" ry="19.4695"/>
+<text text-anchor="middle" x="334.3533" y="-163.3665" font-family="Calibri" font-size="16.00" fill="#ffffff">PhenotypicFeature</text>
+</g>
+<!-- Biosample&#45;&#45;PhenotypicFeature -->
+<g id="edge12" class="edge">
+<title>Biosample--PhenotypicFeature</title>
+<path fill="none" stroke="#000000" d="M365.5373,-223.4561C359.3151,-212.4242 351.5191,-198.6018 345.2787,-187.5374"/>
+</g>
+<!-- Procedure -->
+<g id="node14" class="node">
+<title>Procedure</title>
+<ellipse fill="#458b74" stroke="#000000" cx="126.3533" cy="-93.6999" rx="57.3459" ry="19.4695"/>
+<text text-anchor="middle" x="126.3533" y="-88.8999" font-family="Calibri" font-size="16.00" fill="#ffffff">Procedure</text>
+</g>
+<!-- Biosample&#45;&#45;Procedure -->
+<g id="edge14" class="edge">
+<title>Biosample--Procedure</title>
+<path fill="none" stroke="#000000" d="M330.7038,-230.2195C281.1505,-216.4939 207.5456,-195.28 196.3533,-187.3998 168.626,-167.8778 147.2855,-133.9517 135.7985,-112.722"/>
+</g>
+<!-- Variant -->
+<g id="node17" class="node">
+<title>Variant</title>
+<ellipse fill="#458b74" stroke="#000000" cx="61.3533" cy="-168.1665" rx="45.4747" ry="19.4695"/>
+<text text-anchor="middle" x="61.3533" y="-163.3665" font-family="Calibri" font-size="16.00" fill="#ffffff">Variant</text>
+</g>
+<!-- Biosample&#45;&#45;Variant -->
+<g id="edge16" class="edge">
+<title>Biosample--Variant</title>
+<path fill="none" stroke="#000000" d="M330.2341,-230.3657C321.0146,-227.9926 311.388,-225.5708 302.3533,-223.3998 230.2165,-206.0655 211.5973,-204.282 139.3533,-187.3998 126.7226,-184.4482 112.975,-181.1029 100.5889,-178.0394"/>
+</g>
+<!-- Disease -->
+<g id="node3" class="node">
+<title>Disease</title>
+<ellipse fill="#458b74" stroke="#000000" cx="214.3533" cy="-242.6331" rx="46.4828" ry="19.4695"/>
+<text text-anchor="middle" x="214.3533" y="-237.8331" font-family="Calibri" font-size="16.00" fill="#ffffff">Disease</text>
+</g>
+<!-- Evidence -->
+<g id="node4" class="node">
+<title>Evidence</title>
+<ellipse fill="#458b74" stroke="#000000" cx="334.3533" cy="-93.6999" rx="53.3129" ry="19.4695"/>
+<text text-anchor="middle" x="334.3533" y="-88.8999" font-family="Calibri" font-size="16.00" fill="#ffffff">Evidence</text>
+</g>
+<!-- ExternalReference -->
+<g id="node5" class="node">
+<title>ExternalReference</title>
+<ellipse fill="#458b74" stroke="#000000" cx="403.3533" cy="-19.2333" rx="95.4664" ry="19.4695"/>
+<text text-anchor="middle" x="403.3533" y="-14.4333" font-family="Calibri" font-size="16.00" fill="#ffffff">ExternalReference</text>
+</g>
+<!-- Evidence&#45;&#45;ExternalReference -->
+<g id="edge2" class="edge">
+<title>Evidence--ExternalReference</title>
+<path fill="none" stroke="#000000" d="M351.4095,-75.2924C361.8654,-64.0082 375.2221,-49.5932 385.7729,-38.2065"/>
+</g>
+<!-- Evidence&#45;&#45;OntologyClass -->
+<g id="edge3" class="edge">
+<title>Evidence--OntologyClass</title>
+<path fill="none" stroke="#000000" d="M306.7497,-76.9882C287.2009,-65.1529 261.007,-49.2947 241.013,-37.1899"/>
+</g>
+<!-- Gene -->
+<g id="node6" class="node">
+<title>Gene</title>
+<ellipse fill="#458b74" stroke="#000000" cx="114.3533" cy="-242.6331" rx="35.3654" ry="19.4695"/>
+<text text-anchor="middle" x="114.3533" y="-237.8331" font-family="Calibri" font-size="16.00" fill="#ffffff">Gene</text>
+</g>
+<!-- Individual -->
+<g id="node8" class="node">
+<title>Individual</title>
+<ellipse fill="#458b74" stroke="#000000" cx="702.3533" cy="-242.6331" rx="57.638" ry="19.4695"/>
+<text text-anchor="middle" x="702.3533" y="-237.8331" font-family="Calibri" font-size="16.00" fill="#ffffff">Individual</text>
+</g>
+<!-- Individual&#45;&#45;Age -->
+<g id="edge6" class="edge">
+<title>Individual--Age</title>
+<path fill="none" stroke="#000000" d="M745.2473,-229.5595C765.438,-221.0085 787.6171,-207.588 799.3533,-187.3998 807.9456,-172.6196 810.4337,-161.9527 799.3533,-148.9332 779.1898,-125.2409 567.6809,-103.6685 488.2626,-96.345"/>
+</g>
+<!-- KaryotypicSex -->
+<g id="node9" class="node">
+<title>KaryotypicSex</title>
+<ellipse fill="#458b74" stroke="#000000" cx="711.3533" cy="-168.1665" rx="79.3516" ry="19.4695"/>
+<text text-anchor="middle" x="711.3533" y="-163.3665" font-family="Calibri" font-size="16.00" fill="#ffffff">KaryotypicSex</text>
+</g>
+<!-- Individual&#45;&#45;KaryotypicSex -->
+<g id="edge5" class="edge">
+<title>Individual--KaryotypicSex</title>
+<path fill="none" stroke="#000000" d="M704.718,-223.0679C706.0408,-212.1225 707.6842,-198.5253 709.0045,-187.6011"/>
+</g>
+<!-- Individual&#45;&#45;OntologyClass -->
+<g id="edge7" class="edge">
+<title>Individual--OntologyClass</title>
+<path fill="none" stroke="#000000" d="M675.1324,-225.3764C659.4754,-215.0214 639.7254,-201.2131 623.3533,-187.3998 604.9858,-171.903 602.9877,-165.2594 585.3533,-148.9332 547.7569,-114.1259 543.685,-96.3394 497.3533,-74.4666 416.4707,-36.2827 387.057,-56.0183 299.3533,-38.4666 289.6927,-36.5333 279.4574,-34.3867 269.5154,-32.2489"/>
+</g>
+<!-- Sex -->
+<g id="node16" class="node">
+<title>Sex</title>
+<ellipse fill="#458b74" stroke="#000000" cx="999.3533" cy="-168.1665" rx="28.0657" ry="19.4695"/>
+<text text-anchor="middle" x="999.3533" y="-163.3665" font-family="Calibri" font-size="16.00" fill="#ffffff">Sex</text>
+</g>
+<!-- Individual&#45;&#45;Sex -->
+<g id="edge4" class="edge">
+<title>Individual--Sex</title>
+<path fill="none" stroke="#000000" d="M745.4456,-229.6163C753.3629,-227.4093 761.581,-225.2397 769.3533,-223.3998 853.8387,-203.3999 879.1321,-215.2825 961.3533,-187.3998 966.6752,-185.5951 972.1863,-183.1668 977.3053,-180.6442"/>
+</g>
+<!-- MetaData -->
+<g id="node10" class="node">
+<title>MetaData</title>
+<ellipse fill="#458b74" stroke="#000000" cx="834.3533" cy="-242.6331" rx="55.8294" ry="19.4695"/>
+<text text-anchor="middle" x="834.3533" y="-237.8331" font-family="Calibri" font-size="16.00" fill="#ffffff">MetaData</text>
+</g>
+<!-- Resource -->
+<g id="node15" class="node">
+<title>Resource</title>
+<ellipse fill="#458b74" stroke="#000000" cx="899.3533" cy="-168.1665" rx="53.3106" ry="19.4695"/>
+<text text-anchor="middle" x="899.3533" y="-163.3665" font-family="Calibri" font-size="16.00" fill="#ffffff">Resource</text>
+</g>
+<!-- MetaData&#45;&#45;Resource -->
+<g id="edge1" class="edge">
+<title>MetaData--Resource</title>
+<path fill="none" stroke="#000000" d="M850.7556,-223.8421C860.6843,-212.4673 873.2947,-198.0204 883.1815,-186.6936"/>
+</g>
+<!-- Pedigree -->
+<g id="node12" class="node">
+<title>Pedigree</title>
+<ellipse fill="#458b74" stroke="#000000" cx="749.3533" cy="-317.0997" rx="50.7874" ry="19.4695"/>
+<text text-anchor="middle" x="749.3533" y="-312.2997" font-family="Calibri" font-size="16.00" fill="#ffffff">Pedigree</text>
+</g>
+<!-- Person -->
+<g id="node18" class="node">
+<title>Person</title>
+<ellipse fill="#458b74" stroke="#000000" cx="999.3533" cy="-242.6331" rx="42.2105" ry="19.4695"/>
+<text text-anchor="middle" x="999.3533" y="-237.8331" font-family="Calibri" font-size="16.00" fill="#ffffff">Person</text>
+</g>
+<!-- Pedigree&#45;&#45;Person -->
+<g id="edge17" class="edge">
+<title>Pedigree--Person</title>
+<path fill="none" stroke="#000000" d="M789.5201,-305.1354C837.6911,-290.7869 917.6871,-266.9587 963.7398,-253.2412"/>
+</g>
+<!-- PhenotypicFeature&#45;&#45;Age -->
+<g id="edge9" class="edge">
+<title>PhenotypicFeature--Age</title>
+<path fill="none" stroke="#000000" d="M365.005,-149.759C387.0943,-136.4936 416.3881,-118.9016 436.2248,-106.9889"/>
+</g>
+<!-- PhenotypicFeature&#45;&#45;Evidence -->
+<g id="edge10" class="edge">
+<title>PhenotypicFeature--Evidence</title>
+<path fill="none" stroke="#000000" d="M334.3533,-148.6013C334.3533,-137.6559 334.3533,-124.0587 334.3533,-113.1345"/>
+</g>
+<!-- PhenotypicFeature&#45;&#45;OntologyClass -->
+<g id="edge8" class="edge">
+<title>PhenotypicFeature--OntologyClass</title>
+<path fill="none" stroke="#000000" d="M310.2993,-149.3219C298.1971,-139.2232 283.7242,-126.1605 272.3533,-112.9332 251.9809,-89.2348 233.1062,-58.284 221.9032,-38.5763"/>
+</g>
+<!-- Procedure&#45;&#45;OntologyClass -->
+<g id="edge20" class="edge">
+<title>Procedure--OntologyClass</title>
+<path fill="none" stroke="#000000" d="M146.9294,-75.6736C159.9988,-64.2239 176.8771,-49.4372 190.079,-37.8713"/>
+</g>
+<!-- Variant&#45;&#45;OntologyClass -->
+<g id="edge21" class="edge">
+<title>Variant--OntologyClass</title>
+<path fill="none" stroke="#000000" d="M55.1363,-149.0327C49.7772,-128.6381 45.0678,-96.3338 60.3533,-74.4666 71.708,-58.2228 116.9255,-43.0054 154.9456,-32.6736"/>
+</g>
+<!-- Person&#45;&#45;Sex -->
+<g id="edge18" class="edge">
+<title>Person--Sex</title>
+<path fill="none" stroke="#000000" d="M999.3533,-223.0679C999.3533,-212.1225 999.3533,-198.5253 999.3533,-187.6011"/>
+</g>
+<!-- AffectedStatus -->
+<g id="node19" class="node">
+<title>AffectedStatus</title>
+<ellipse fill="#458b74" stroke="#000000" cx="1124.3533" cy="-168.1665" rx="78.575" ry="19.4695"/>
+<text text-anchor="middle" x="1124.3533" y="-163.3665" font-family="Calibri" font-size="16.00" fill="#ffffff">AffectedStatus</text>
+</g>
+<!-- Person&#45;&#45;AffectedStatus -->
+<g id="edge19" class="edge">
+<title>Person--AffectedStatus</title>
+<path fill="none" stroke="#000000" d="M1025.2534,-227.2036C1045.2763,-215.2753 1073.0372,-198.7372 1094.0843,-186.1987"/>
+</g>
+<!-- Phenopacket -->
+<g id="node20" class="node">
+<title>Phenopacket</title>
+<ellipse fill="#00688b" stroke="#000000" cx="443.3533" cy="-317.0997" rx="69.2402" ry="19.4695"/>
+<text text-anchor="middle" x="443.3533" y="-312.2997" font-family="Calibri" font-size="16.00" fill="#ffffff">Phenopacket</text>
+</g>
+<!-- Phenopacket&#45;&#45;Biosample -->
+<g id="edge24" class="edge">
+<title>Phenopacket--Biosample</title>
+<path fill="none" stroke="#000000" d="M426.4464,-298.3087C416.2122,-286.9339 403.2138,-272.487 393.0227,-261.1602"/>
+</g>
+<!-- Phenopacket&#45;&#45;Disease -->
+<g id="edge26" class="edge">
+<title>Phenopacket--Disease</title>
+<path fill="none" stroke="#000000" d="M398.3835,-302.4764C355.2689,-288.4563 290.9862,-267.5527 250.9244,-254.5254"/>
+</g>
+<!-- Phenopacket&#45;&#45;Gene -->
+<g id="edge25" class="edge">
+<title>Phenopacket--Gene</title>
+<path fill="none" stroke="#000000" d="M380.6514,-308.8075C322.4761,-300.2013 233.8975,-284.7621 159.3533,-261.8664 153.3432,-260.0205 147.0477,-257.6347 141.1338,-255.1753"/>
+</g>
+<!-- Phenopacket&#45;&#45;HtsFile -->
+<g id="edge28" class="edge">
+<title>Phenopacket--HtsFile</title>
+<path fill="none" stroke="#000000" d="M455.7391,-298.0748C462.5445,-287.4931 471.0601,-274.0391 478.3533,-261.8664 493.7221,-236.2152 510.5831,-206.0265 521.0675,-186.9921"/>
+</g>
+<!-- Phenopacket&#45;&#45;Individual -->
+<g id="edge22" class="edge">
+<title>Phenopacket--Individual</title>
+<path fill="none" stroke="#000000" d="M491.4622,-303.2677C539.2993,-289.5137 612.0548,-268.5954 658.3866,-255.2743"/>
+</g>
+<!-- Phenopacket&#45;&#45;MetaData -->
+<g id="edge29" class="edge">
+<title>Phenopacket--MetaData</title>
+<path fill="none" stroke="#000000" d="M503.3047,-307.3422C590.2954,-293.1228 743.9441,-267.7559 769.3533,-261.8664 777.0345,-260.0861 785.1473,-257.9202 792.9398,-255.6926"/>
+</g>
+<!-- Phenopacket&#45;&#45;PhenotypicFeature -->
+<g id="edge23" class="edge">
+<title>Phenopacket--PhenotypicFeature</title>
+<path fill="none" stroke="#000000" d="M449.4824,-297.9136C454.689,-277.7689 459.3183,-245.9472 445.3533,-223.3998 433.6228,-204.4602 413.2339,-191.8068 393.1051,-183.4524"/>
+</g>
+<!-- Phenopacket&#45;&#45;Variant -->
+<g id="edge27" class="edge">
+<title>Phenopacket--Variant</title>
+<path fill="none" stroke="#000000" d="M395.7005,-303.0666C368.4829,-293.7861 334.4829,-279.9778 307.3533,-261.8664 287.3663,-248.5234 290.1421,-235.4557 269.3533,-223.3998 241.1534,-207.046 154.754,-187.3238 102.6001,-176.4238"/>
+</g>
+<!-- Cohort -->
+<g id="node21" class="node">
+<title>Cohort</title>
+<ellipse fill="#00688b" stroke="#000000" cx="527.3533" cy="-391.5663" rx="42.9809" ry="19.4695"/>
+<text text-anchor="middle" x="527.3533" y="-386.7663" font-family="Calibri" font-size="16.00" fill="#ffffff">Cohort</text>
+</g>
+<!-- Cohort&#45;&#45;HtsFile -->
+<g id="edge31" class="edge">
+<title>Cohort--HtsFile</title>
+<path fill="none" stroke="#000000" d="M527.7013,-372.1319C528.4578,-329.8819 530.2449,-230.0686 531.0033,-187.7151"/>
+</g>
+<!-- Cohort&#45;&#45;MetaData -->
+<g id="edge32" class="edge">
+<title>Cohort--MetaData</title>
+<path fill="none" stroke="#000000" d="M546.6372,-374.0433C570.3996,-353.2672 612.7542,-318.8243 654.3533,-297.8664 660.6662,-294.686 740.6493,-270.5801 791.8497,-255.2833"/>
+</g>
+<!-- Cohort&#45;&#45;Phenopacket -->
+<g id="edge30" class="edge">
+<title>Cohort--Phenopacket</title>
+<path fill="none" stroke="#000000" d="M507.8709,-374.295C494.7851,-362.6944 477.559,-347.4233 464.1983,-335.579"/>
+</g>
+<!-- Family -->
+<g id="node22" class="node">
+<title>Family</title>
+<ellipse fill="#00688b" stroke="#000000" cx="631.3533" cy="-391.5663" rx="43.2426" ry="19.4695"/>
+<text text-anchor="middle" x="631.3533" y="-386.7663" font-family="Calibri" font-size="16.00" fill="#ffffff">Family</text>
+</g>
+<!-- Family&#45;&#45;HtsFile -->
+<g id="edge35" class="edge">
+<title>Family--HtsFile</title>
+<path fill="none" stroke="#000000" d="M622.8274,-372.5194C603.9346,-330.3129 558.7304,-229.327 539.8577,-187.1653"/>
+</g>
+<!-- Family&#45;&#45;MetaData -->
+<g id="edge36" class="edge">
+<title>Family--MetaData</title>
+<path fill="none" stroke="#000000" d="M638.7385,-372.4642C647.7473,-351.4827 664.8645,-318.0878 689.3533,-297.8664 705.5034,-284.5307 755.5331,-267.0169 792.3251,-255.321"/>
+</g>
+<!-- Family&#45;&#45;Pedigree -->
+<g id="edge34" class="edge">
+<title>Family--Pedigree</title>
+<path fill="none" stroke="#000000" d="M656.3781,-375.7739C675.9972,-363.3928 703.2194,-346.2136 723.1378,-333.6436"/>
+</g>
+<!-- Family&#45;&#45;Phenopacket -->
+<g id="edge33" class="edge">
+<title>Family--Phenopacket</title>
+<path fill="none" stroke="#000000" d="M598.6062,-378.5953C566.5197,-365.8858 517.5679,-346.4961 483.2305,-332.895"/>
+</g>
+<!-- Interpretation -->
+<g id="node23" class="node">
+<title>Interpretation</title>
+<ellipse fill="#ff8c00" stroke="#000000" cx="443.3533" cy="-466.033" rx="72.766" ry="19.4695"/>
+<text text-anchor="middle" x="443.3533" y="-461.233" font-family="Calibri" font-size="16.00" fill="#ffffff">Interpretation</text>
+</g>
+<!-- Interpretation&#45;&#45;MetaData -->
+<g id="edge39" class="edge">
+<title>Interpretation--MetaData</title>
+<path fill="none" stroke="#000000" d="M507.3707,-456.8116C556.6694,-448.4097 625.8789,-433.755 683.3533,-410.7997 743.7622,-386.6723 770.0448,-388.1616 809.3533,-336.333 825.9371,-314.4672 831.5377,-282.4592 833.4183,-262.0891"/>
+</g>
+<!-- Interpretation&#45;&#45;Phenopacket -->
+<g id="edge37" class="edge">
+<title>Interpretation--Phenopacket</title>
+<path fill="none" stroke="#000000" d="M443.3533,-446.5625C443.3533,-418.0196 443.3533,-365.1206 443.3533,-336.5749"/>
+</g>
+<!-- Interpretation&#45;&#45;Family -->
+<g id="edge38" class="edge">
+<title>Interpretation--Family</title>
+<path fill="none" stroke="#000000" d="M484.1465,-449.8748C518.4882,-436.2721 566.9572,-417.0736 598.7572,-404.4776"/>
+</g>
+<!-- ResolutionStatus -->
+<g id="node24" class="node">
+<title>ResolutionStatus</title>
+<ellipse fill="#ff8c00" stroke="#000000" cx="167.3533" cy="-391.5663" rx="87.9938" ry="19.4695"/>
+<text text-anchor="middle" x="167.3533" y="-386.7663" font-family="Calibri" font-size="16.00" fill="#ffffff">ResolutionStatus</text>
+</g>
+<!-- Interpretation&#45;&#45;ResolutionStatus -->
+<g id="edge41" class="edge">
+<title>Interpretation--ResolutionStatus</title>
+<path fill="none" stroke="#000000" d="M392.0867,-452.2009C344.0717,-439.2461 272.4988,-419.9353 223.0866,-406.6036"/>
+</g>
+<!-- Diagnosis -->
+<g id="node26" class="node">
+<title>Diagnosis</title>
+<ellipse fill="#ff8c00" stroke="#000000" cx="330.3533" cy="-391.5663" rx="56.6236" ry="19.4695"/>
+<text text-anchor="middle" x="330.3533" y="-386.7663" font-family="Calibri" font-size="16.00" fill="#ffffff">Diagnosis</text>
+</g>
+<!-- Interpretation&#45;&#45;Diagnosis -->
+<g id="edge40" class="edge">
+<title>Interpretation--Diagnosis</title>
+<path fill="none" stroke="#000000" d="M415.9992,-448.0067C397.8408,-436.0404 374.1516,-420.4293 356.2911,-408.6593"/>
+</g>
+<!-- GenomicInterpretation -->
+<g id="node25" class="node">
+<title>GenomicInterpretation</title>
+<ellipse fill="#ff8c00" stroke="#000000" cx="114.3533" cy="-317.0997" rx="114.2068" ry="19.4695"/>
+<text text-anchor="middle" x="114.3533" y="-312.2997" font-family="Calibri" font-size="16.00" fill="#ffffff">GenomicInterpretation</text>
+</g>
+<!-- GenomicInterpretation&#45;&#45;Gene -->
+<g id="edge45" class="edge">
+<title>GenomicInterpretation--Gene</title>
+<path fill="none" stroke="#000000" d="M114.3533,-297.5345C114.3533,-286.5891 114.3533,-272.9919 114.3533,-262.0677"/>
+</g>
+<!-- GenomicInterpretation&#45;&#45;Variant -->
+<g id="edge44" class="edge">
+<title>GenomicInterpretation--Variant</title>
+<path fill="none" stroke="#000000" d="M94.5076,-297.9454C85.5479,-288.0612 75.7759,-275.2783 70.3533,-261.8664 60.5523,-237.6253 59.487,-207.084 60.0662,-187.587"/>
+</g>
+<!-- Diagnosis&#45;&#45;Disease -->
+<g id="edge42" class="edge">
+<title>Diagnosis--Disease</title>
+<path fill="none" stroke="#000000" d="M315.6618,-372.7039C293.3487,-344.0559 251.1676,-289.8992 228.9255,-261.3425"/>
+</g>
+<!-- Diagnosis&#45;&#45;GenomicInterpretation -->
+<g id="edge43" class="edge">
+<title>Diagnosis--GenomicInterpretation</title>
+<path fill="none" stroke="#000000" d="M290.4839,-377.8212C255.0114,-365.592 202.9653,-347.649 164.6439,-334.4376"/>
+</g>
+</g>
+</svg>

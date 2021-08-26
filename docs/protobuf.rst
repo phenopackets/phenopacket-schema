@@ -10,7 +10,7 @@ to `Google's documentation <https://developers.google.com/protocol-buffers/>`_ f
 intends to get curious readers who are unfamiliar with protobuf up to speed with the main aspects of this
 technology, but it is not necessary to understand protobuf to use the phenopacket schema.
 
-Google initially developed Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopackets-schema with Java, but all of the features are available in any of the languages that protobuf works with including C++ and Python.
+Google initially developed Protocol Buffers (protobuf) for internal use, but now has provided a code generator for multiple languages under an open source license. In this documentation, we will demonstrate use of phenopacket-schema with Java, but all of the features are available in any of the languages that protobuf works with including C++ and Python.
 
 
 The major advantages of protobuf are that it is language-neutral, faster than many other schema languages such as XML and JSON, and can be simpler to use because of features such as automatic validation of data objects.
@@ -23,7 +23,7 @@ Protobuf forsees that data structures (so-called **messages**) are defined in a 
 Installing protobuf
 ~~~~~~~~~~~~~~~~~~~
 
-The following exercise is not necessary to use phenopackets-schema,
+The following exercise is not necessary to use phenopacket-schema,
 but is intended to build intuition for how protobuf works.
 We first need to install protobuf (Note that these instructions are for this tutorial only. The maven system will automatically
 pull in protobuf for phenopackets schema). We show one simple way of installing protobuf on a linux system in the following.

@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+
+// A class (aka term, concept) in an ontology.
+// FHIR mapping: CodeableConcept (http://www.hl7.org/fhir/datatypes.html#CodeableConcept)
+//   see also Coding (http://www.hl7.org/fhir/datatypes.html#Coding)
+message OntologyClass {
+    // a CURIE-style identifier e.g. HP:0100024, MP:0001284, UBERON:0001690.
+    // This is the primary key for the ontology class
+    // REQUIRED!
+    string id = 1;
+
+    // class label, aka name. E.g. "Abnormality of cardiovascular system"
+    string label = 2;
+}
+
+// FHIR mapping: Reference (https://www.hl7.org/fhir/references.html)
+message ExternalReference {
+    // e.g. ISBN, PMID:123456, DOI:...,
+    // FHIR mapping: Reference.identifier
+    string id = 1;
+    // A full or partial URL pointing to the external reference if no commonly resolvable identifier can be used in the
+    // `id` field
+    // FHIR mapping Reference.reference
+    string reference = 2;
+    // Human readable title or display string for the reference
+    // FHIR mapping: Reference.display
+    string description = 3;
+}
+
+// FHIR mapping: Condition.evidence (https://www.hl7.org/fhir/condition-definitions.html#Condition.evidence)
+message Evidence {
+    // The encoded evidence type using, for example the Evidence & Conclusion Ontology (ECO - http://purl.obolibrary.org/obo/eco.owl)
+    // FHIR mapping: Condition.evidence.code
+    OntologyClass evidence_code = 1;
+    // FHIR mapping: Condition.evidence.detail
+    ExternalReference reference = 2;
+}
+
+
+// A clinical procedure performed on a subject. By preference a single concept to indicate both the procedure and the
+// body site should be used. In cases where this is not possible, the body site should be indicated using a separate
+// ontology class.
+// e.g.
+// {"code":{"NCIT:C51585": "Biopsy of Soft Palate"}}
+// {"code":{"NCIT:C28743": "Punch Biopsy"}, "body_site":{"UBERON:0003403": "skin of forearm"}} - a punch biopsy of the skin from the forearm
+// FHIR mapping: Procedure (https://www.hl7.org/fhir/procedure.html)
+message Procedure {
+    // FHIR mapping: Procedure.code
+    OntologyClass code = 1;
+
+    // FHIR mapping: Procedure.bodySite
+    OntologyClass body_site = 2;
+
+    // When the procedure was performed.
+    TimeElement performed = 3;
+}
+
+message GestationalAge {
+    int32 weeks = 1;
+    int32 days = 2;
+}
+
+// See http://build.fhir.org/datatypes and http://build.fhir.org/condition-definitions.html#Condition.onset_x_
+// In FHIR this is represented as a UCUM measurement - http://unitsofmeasure.org/trac/
+message Age {
+    // The :ref:`ISO 8601<metadata_date_time>` age of this object as ISO8601
+    // duration or time intervals. e.g. P40Y10M05D)
+    string iso8601duration = 1;
+}
+
+message AgeRange {
+    Age start = 1;
+    Age end = 2;
+}
+
+message TimeInterval {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Timestamp end = 2;
+}
+
+message TimeElement {
+    oneof element {
+        GestationalAge gestational_age = 6;
+        Age age = 1;
+        AgeRange age_range = 2;
+        OntologyClass ontology_class = 3;
+        google.protobuf.Timestamp timestamp = 4;
+        TimeInterval interval = 5;
+    }
+}
+
+message File {
+    // URI for the file e.g. file://data/genomes/file1.vcf.gz or https://opensnp.org/data/60.23andme-exome-vcf.231?1341012444
+    string uri = 1;
+
+    // A map of identifiers mapping an individual to a sample in the file. The key values must correspond to the
+    // Individual::id for the individuals in the message, the values must map to the samples in the file.
+    map<string, string> individual_to_file_identifiers = 2;
+
+    // Map of attributes describing the file. For example the File format or genome assembly would be defied here. For
+    // genomic data files there MUST be a 'genomeAssembly' key.
+    map<string, string> file_attributes = 3;
+}

@@ -1,8 +1,8 @@
 .. _rstjavaexport:
 
-====================================
+####################################
 Exporting and Importing Phenopackets
-====================================
+####################################
 
 It is easy to export Phenopackets in JSON, YAML, or protobuf format. Bear in mind that protobuf was designed as a
 wire-format allowing for 'schema evolution' so this is safest to use in this environment. It would be advisable to store

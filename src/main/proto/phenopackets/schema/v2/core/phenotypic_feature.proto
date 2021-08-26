@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
+// frequency
+// FHIR mapping: Condition (https://www.hl7.org/fhir/condition.html) or Observation (https://www.hl7.org/fhir/observation.html)
+message PhenotypicFeature {
+
+  // Free-text description of the phenotype. Note this is not a acceptable place to document/describe the phenotype -
+  // the type and onset etc... fields should be used for this purpose.
+  string description = 1;
+
+  // The primary ontology class which describes the phenotype. For example "HP:0001363"  "Craniosynostosis"
+  // FHIR mapping: Condition.identifier
+  OntologyClass type = 2;
+
+  // Flag to indicate whether the phenotype was observed or not. Default is 'false', in other words the phenotype was
+  // observed. Therefore it is only required in cases to indicate that the phenotype was looked for, but found to be
+  // absent.
+  // More formally, this modifier indicates the logical negation of the OntologyClass used in the 'type' field.
+  // *CAUTION* It is imperative to check this field for correct interpretation of the phenotype!
+  bool excluded = 3;
+
+  // Severity of the condition e.g. subclasses of HP:0012824-Severity or SNOMED:272141005-Severities
+  // FHIR mapping: Condition.severity
+  OntologyClass severity = 4;
+
+  // subclasses of HP:0012823 ! Clinical modifier apart from Severity HP:0012824 - Severity
+  repeated OntologyClass modifiers = 5;
+
+  // the values of this will come from the HPO onset hierarchy
+  // i.e. subclasses of HP:0003674
+  // FHIR mapping: Condition.onset
+  TimeElement onset = 6;
+
+  TimeElement resolution = 7;
+
+  // Evidences for how the phenotype was determined.
+  repeated Evidence evidence = 8;
+}
