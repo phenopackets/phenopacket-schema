@@ -173,7 +173,7 @@ To do this ``cd`` to the project root and run the wrapper scripts:
 
 or
 
-.. code:: cmd
+.. code:: batch
 
     $ ./mvnw.cmd clean install
 

@@ -54,5 +54,13 @@ python3 setup.py test || { echo "Deployment FAILED. Unittest Failure" ; exit 1; 
 python3 setup.py sdist bdist_wheel || { echo "Deployment FAILED. Building python package" ; exit 1; }
 
 # Deploy - Remove --repository testpypi flag for production.
-# python3 -m twine upload --repository testpypi dist/*
+if [ $1 = "release-prod" ]; then
+  python3 -m twine upload dist/*
+elif [ $1 = "release-test"]; then
+  python3 -m twine upload --repository testpypi dist/*
+else
+  echo "Python Release Prepare Succesful. No release argument provided. [release-prod, release-test]"
+fi
+
+
 

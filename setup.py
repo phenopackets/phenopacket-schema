@@ -6,13 +6,13 @@ from setuptools import setup, find_packages
 path = os.path.dirname(os.path.abspath(__file__))
 
 with open(os.path.join(path, 'LICENSE')) as f:
-    license = f.read()
+    LICENSE = f.read()
 
 with open(os.path.join(path, 'README.rst')) as f:
-    readme = f.read()
+    READ_ME = f.read()
 
 with open(os.path.join(path, 'requirements.txt')) as f:
-    requirements = f.read().splitlines()
+    REQUIREMENTS = f.read().splitlines()
 
 
 def version():
@@ -23,18 +23,18 @@ def version():
 
 setup(
       name='phenopackets',
-      version='0.0.0.dev',  # replace with version method
+      version=version(),  # replace with version method
       packages=find_packages(),
-      install_requires=requirements,
+      install_requires=REQUIREMENTS,
       package_data={'':  ['tests/*']},
       data_files=[('', ['requirements.txt', 'LICENSE'])],
       test_suite="tests",
-      long_description=readme,
+      long_description=READ_ME,
       long_description_content_type='text/x-rst',
-      author='Michael Gargano', # replace Jules Jacobsen
-      author_email='michael.gargano@jax.com', # replace j.jacobsen at qmul.ac.uk
+      author='Michael Gargano',
+      author_email='michael.gargano@jax.com',
       url='https://github.com/phenopackets/phenopacket-schema',
-      description='A python implementation of phenopackets',
-      license=license,
+      description='A python implementation of phenopackets protobuf',
+      license=LICENSE,
       keywords='phenopackets, clinical'
       )
