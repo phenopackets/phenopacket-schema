@@ -28,7 +28,7 @@ Data model
       - The current resolution status. REQUIRED.
     * - diagnosis
       - :ref:`rstdiagnosis`
-      - 0..*
+      - 0..1
       - One or more diagnoses, if made
     * - summary
       - string
