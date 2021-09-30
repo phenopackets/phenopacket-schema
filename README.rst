@@ -188,6 +188,18 @@ There is a ``release-sign-artifacts`` profile which can be triggered with the co
 
     $ ./mvnw clean install -DperformRelease=true
 
+Releasing Python 
+
+Test
+
+.. code::bash
+    $ sh deploy-python.sh release-prod
+
+Production
+
+.. code::bash
+    $ sh deploy-python.sh release-test
+
 Java, Python and C++ artefacts
 ==============================
 Building the project will automatically compile Java, Python and C++ artefacts. The Java jar file can be directly used in any Java project. For Python or C++ the build artefacts can be found at
