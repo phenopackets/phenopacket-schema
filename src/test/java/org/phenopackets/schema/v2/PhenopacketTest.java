@@ -18,7 +18,7 @@ public class PhenopacketTest {
 
     @Test
     public void printRareDisease() throws IOException {
-        System.out.println(PhenopacketFormat.toYaml(TestExamples.rareDiseasePhenopacket()));
+        System.out.println(PhenopacketFormat.toJson(TestExamples.rareDiseasePhenopacket()));
     }
 
     @Test
