@@ -54,10 +54,14 @@ about this list is available at https://groups.io/g/phenopackets.
 Usage
 =====
 The Phenopacket schema is defined using `Protobuf`_ which is `"a language-neutral, platform-neutral extensible mechanism for serializing structured data"`.  There are two ways to use this library, firstly using the ``Phenopacket`` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
+The following sections describe how to achieve these two things.
 
 .. _Protobuf: https://developers.google.com/protocol-buffers/
 
-Java people can incorporate phenopackets-api into their code by importing the jar using maven:
+Include phenopackets into your project
+--------------------------------------
+
+**Java** people can incorporate phenopackets into their code by importing the jar using maven:
 
 .. code:: xml
 
@@ -67,11 +71,12 @@ Java people can incorporate phenopackets-api into their code by importing the ja
         <version>${phenopacket-schema.version}</version>
     </dependency>
 
+Using phenopackets in **Python** is also straightforward::
+
 .. code:: python
 
     pip install phenopackets
 
-The following sections describe how to achieve these two things.
 
 Exchanging Phenopackets directly
 --------------------------------
@@ -123,8 +128,9 @@ A Phenopacket can be transformed between the native binary format and JSON using
 
 .. code-block:: python
 
-    from google.protobuf.json_format import Parse
-    from phenopackets import Phenopacket
+    from google.protobuf.json_format import Parse, MessageToJson
+    from google.protobuf.timestamp_pb2 import Timestamp
+    from phenopackets import Phenopacket, Individual, PhenotypicFeature, OntologyClass
 
     # Parsing phenopackets from json
     with open('file.json', 'r') as jsfile:
@@ -138,7 +144,7 @@ A Phenopacket can be transformed between the native binary format and JSON using
 
         phenopacket = Phenopacket(id="PPKT:1", subject=subject, phenotypic_features=phenotypic_features)
 
-        json = MessageToJson(self.phenopacket)
+        json = MessageToJson(phenopacket)
         jsfile.write(json)
 
 Building new messages from the schema
@@ -182,23 +188,23 @@ or
 
 Sign artefacts for release
 ==========================
-There is a ``release-sign-artifacts`` profile which can be triggered with the command
+There is a ``release-sign-artifacts`` profile for **Java** which can be triggered with the command
 
 .. code:: bash
 
     $ ./mvnw clean install -DperformRelease=true
 
-Releasing Python 
+The **Python** artefacts are released by running::
 
 Test
 
 .. code::bash
-    $ sh deploy-python.sh release-prod
+    $ bash deploy-python.sh release-test
 
 Production
 
 .. code::bash
-    $ sh deploy-python.sh release-test
+    $ bash deploy-python.sh release-prod
 
 Java, Python and C++ artefacts
 ==============================
