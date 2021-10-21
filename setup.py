@@ -1,28 +1,18 @@
 import os
-
 import xmltodict
+
 from setuptools import setup, find_packages
-
-
-def clean():
-    """Cleans the source directory of all non-source files.
-    """
-    os.system('rm -rf .coverage')
-    os.system('find . -name "__pycache__" -print0|xargs -0 rm -rf')
-    os.system('find . -name "*.egg-info" -print0|xargs -0 rm -rf')
-    os.system('rm -rf dist')
-
 
 path = os.path.dirname(os.path.abspath(__file__))
 
 with open(os.path.join(path, 'LICENSE')) as f:
-    license = f.read()
+    LICENSE = f.read()
 
 with open(os.path.join(path, 'README.rst')) as f:
-    readme = f.read()
+    READ_ME = f.read()
 
 with open(os.path.join(path, 'requirements.txt')) as f:
-    requirements = f.read().splitlines()
+    REQUIREMENTS = f.read().splitlines()
 
 
 def version():
@@ -31,18 +21,20 @@ def version():
         return pom['project']['version']
 
 
-setup(name='phenopacket-schema',
-      version=version(),
-      description='Phenopacket schema',
-      long_description=readme,
-      url='https://github.com/phenopackets/phenopacket-schema',
-      author='Jules Jacobsen',
-      author_email='j.jacobsen at qmul.ac.uk',
-      license=license,
-      # n.b this doesn't work correctly at the moment -
-      # if a knowledgeable Pythonista would like to help this would be great
-      package_dir={'': 'target/generated-sources/protobuf/python'},
+setup(
+      name='phenopackets',
+      version=version(),  # replace with version method
       packages=find_packages(),
-      zip_safe=False,
-      install_requires=requirements
+      install_requires=REQUIREMENTS,
+      package_data={'':  ['tests/*']},
+      data_files=[('', ['requirements.txt', 'LICENSE'])],
+      test_suite="tests",
+      long_description=READ_ME,
+      long_description_content_type='text/x-rst',
+      author='Michael Gargano',
+      author_email='michael.gargano@jax.com',
+      url='https://github.com/phenopackets/phenopacket-schema',
+      description='A python implementation of phenopackets protobuf',
+      license=LICENSE,
+      keywords='phenopackets, clinical'
       )

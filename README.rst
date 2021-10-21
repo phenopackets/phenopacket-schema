@@ -54,10 +54,14 @@ about this list is available at https://groups.io/g/phenopackets.
 Usage
 =====
 The Phenopacket schema is defined using `Protobuf`_ which is `"a language-neutral, platform-neutral extensible mechanism for serializing structured data"`.  There are two ways to use this library, firstly using the ``Phenopacket`` as an exchange mechanism, secondly as a schema of basic types on which to build more specialist messages, yet allow for easy interoperability with other resources using the phenopackets schema.
+The following sections describe how to achieve these two things.
 
 .. _Protobuf: https://developers.google.com/protocol-buffers/
 
-Java people can incorporate phenopackets-api into their code by importing the jar using maven:
+Include phenopackets into your project
+--------------------------------------
+
+**Java** people can incorporate phenopackets into their code by importing the jar using maven:
 
 .. code:: xml
 
@@ -67,7 +71,12 @@ Java people can incorporate phenopackets-api into their code by importing the ja
         <version>${phenopacket-schema.version}</version>
     </dependency>
 
-The following sections describe how to achieve these two things.
+Using phenopackets in **Python** is also straightforward::
+
+.. code:: python
+
+    pip install phenopackets
+
 
 Exchanging Phenopackets directly
 --------------------------------
@@ -85,8 +94,11 @@ A Phenopacket can be transformed between the native binary format and JSON using
         <version>${protobuf.version}</version>
     </dependency>
 
+.. code:: python
 
-``protobuf-java-util`` contains simple utility methods to perform these transformations. Usage is shown here:
+    pip install protobuf
+
+``protobuf-java-util`` for java and ``protobuf`` for python contain simple utility methods to perform these transformations. Usage is shown here:
 
 .. code-block:: java
 
@@ -113,6 +125,27 @@ A Phenopacket can be transformed between the native binary format and JSON using
     Phenopacket.Builder phenoPacketBuilder2 = Phenopacket.newBuilder();
     JsonFormat.parser().merge(jsonPhenopacket, phenoPacketBuilder2);
     Phenopacket fromJson2 = phenoPacketBuilder2.build();
+
+.. code-block:: python
+
+    from google.protobuf.json_format import Parse, MessageToJson
+    from google.protobuf.timestamp_pb2 import Timestamp
+    from phenopackets import Phenopacket, Individual, PhenotypicFeature, OntologyClass
+
+    # Parsing phenopackets from json
+    with open('file.json', 'r') as jsfile:
+        phenopacket = Parse(Phenopacket(), text=jsfile.read())
+
+    # Writing phenopackets to json
+    with open('file.json', 'w') as jsfile:
+        subject = Individual(id="Zaphod", sex="MALE", date_of_birth=Timestamp(seconds=-123456798))
+        phenotypic_features = [PhenotypicFeature(type=OntologyClass(id="HG2G:00001", label="Hoopy")),
+                               PhenotypicFeature(type=OntologyClass(id="HG2G:00002", label="Frood"))]
+
+        phenopacket = Phenopacket(id="PPKT:1", subject=subject, phenotypic_features=phenotypic_features)
+
+        json = MessageToJson(phenopacket)
+        jsfile.write(json)
 
 Building new messages from the schema
 -------------------------------------
@@ -146,7 +179,7 @@ To do this ``cd`` to the project root and run the wrapper scripts:
 
 or
 
-.. code:: cmd
+.. code:: batch
 
     $ ./mvnw.cmd clean install
 
@@ -155,11 +188,23 @@ or
 
 Sign artefacts for release
 ==========================
-There is a ``release-sign-artifacts`` profile which can be triggered with the command
+There is a ``release-sign-artifacts`` profile for **Java** which can be triggered with the command
 
 .. code:: bash
 
     $ ./mvnw clean install -DperformRelease=true
+
+The **Python** artefacts are released by running::
+
+Test
+
+.. code::bash
+    $ bash deploy-python.sh release-test
+
+Production
+
+.. code::bash
+    $ bash deploy-python.sh release-prod
 
 Java, Python and C++ artefacts
 ==============================
