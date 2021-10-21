@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+import "phenopackets/schema/v2/core/measurement.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// medication, procedure, other actions taken for clinical management
+message MedicalAction {
+  // ARGO mapping treatment::treatment_type
+  oneof action {
+    Procedure procedure = 1;
+    Treatment treatment = 2;
+    RadiationTherapy radiation_therapy = 3;
+    TherapeuticRegimen therapeutic_regimen = 4;
+  }
+  // The condition or disease that this treatment was intended to address.
+  // FHIR mapping Procedure::reasonCode
+  OntologyClass treatment_target = 5;
+
+  // Whether the intention of the treatment was curative, palliative,
+  // ARGO mapping treatment::treatment_intent
+  OntologyClass treatment_intent = 6;
+
+  // ARGO mapping treatment::response_to_treatment
+  OntologyClass response_to_treatment = 7;
+
+  // ARGO mapping treatment::adverse_events
+  repeated OntologyClass adverse_events = 8;
+
+  // ARGO mapping treatment::treatment_outcome
+  OntologyClass treatment_termination_reason = 9;
+
+  // ARGO mapping treatment::is_primary_treatment (missing)
+
+}
+
+// treatment with an agent, such as a drug
+message Treatment {
+  OntologyClass agent = 1;  // for instance, DrugCentral, RxNorm Drugbank concept
+  OntologyClass route_of_administration = 2; // For instance, NCIT subhierarchy: Route of Administration (Code C38114)
+  repeated DoseInterval dose_intervals  = 3;
+  DrugType drug_type = 4;
+  // ARGO mapping chemotherapy::cumulative_drug_dosage
+  Quantity cumulative_dose = 5;
+}
+
+// e.g. 50mg/ml 3 times daily for two weeks
+message DoseInterval {
+  Quantity quantity = 1;
+  OntologyClass schedule_frequency = 2;
+  TimeInterval interval = 3;
+}
+
+// A simplified version of ODHSI-DRUG_EXPOSURE
+enum DrugType {
+  UNKNOWN_DRUG_TYPE = 0;
+  PRESCRIPTION = 1;
+  EHR_MEDICATION_LIST = 2;
+  ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
+}
+
+// RadiationTherapy
+message RadiationTherapy {
+  // The modality of radiation therapy (e.g., electron, photon,…). REQUIRED.
+  // ARGO mapping radiation::radiation_therapy_modality
+  OntologyClass modality = 1;
+  // The anatomical site where radiation therapy was administered. REQUIRED.
+  // ARGO mapping radiation::anatomical_site_irradiated
+  OntologyClass body_site = 2;
+  // The total dose given in units of Gray (Gy). REQUIRED.
+  // ARGO mapping radiation::radiation_therapy_dosage
+  int32 dosage = 3;
+  // The total number of fractions delivered as part of treatment. REQUIRED.
+  // ARGO mapping radiation::radiation_therapy_fractions
+  int32 fractions = 4;
+
+  // ARGO mapping radiation::radiation_therapy_type (missing)
+}
+
+message TherapeuticRegimen {
+  // https://ctep.cancer.gov/protocolDevelopment/policies_nomenclature.htm
+  oneof identifier {
+    ExternalReference external_reference = 1;
+    OntologyClass ontology_class = 2;
+  }
+  // possibly undefined;
+  TimeElement start_time = 3;
+  // end time can be empty which would indicate ongoing
+  TimeElement end_time = 4;
+
+  RegimenStatus regimen_status = 5;
+
+  enum RegimenStatus {
+    UNKNOWN_STATUS = 0;
+    STARTED = 1;
+    COMPLETED = 2;
+    DISCONTINUED = 3;
+  }
+}
+
+
+

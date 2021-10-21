@@ -1,36 +1,49 @@
 .. _rstprocedure:
 
-=========
+#########
 Procedure
-=========
+#########
 
-The Procedure element represents a clinical procedure performed on a subject in order to extract a biosample.
+The Procedure element represents a clinical procedure performed on a subject. For example a surgical or diagnostic
+procedure such as a biopsy.
 
 If the Procedure element is used, it must contain a ``code`` element, but only need contain the
 body_site element if needed.
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    code, :ref:`rstontologyclass`, required, Clinical procedure performed on a subject
-    body_site, :ref:`rstontologyclass`, optional, Specific body site if unable to represent this is the :ref:`procedurecode`
+    code, :ref:`rstontologyclass`, 1..1, clinical procedure performed. REQUIRED.
+    body_site, :ref:`rstontologyclass`, 0..*, specific body site where the procedure was performed
+    performed, :ref:`rsttimeelement`, 0..*, age/time when the procedure was performed
 
-**Example**
+Example
+#######
 
-.. code-block:: json
+In this example, a skin biopsy from the skin of the forearm is perfomed on an individual who is
+25 years old.
 
-    {
-        "code" {
-            "id": "NCIT:C28743",
-            "label": "Punch Biopsy"
-        },
-        "bodySite" {
-            "id": "UBERON:0003403",
-            "label": "skin of forearm"
-        }
-    }
+.. code-block:: yaml
+
+    procedure:
+        code:
+            id: "NCIT:C28743"
+            label: "Punch Biopsy"
+        bodySite:
+            id: "UBERON:0003403"
+            label: "skin of forearm"
+        performed:
+            age:
+                iso8601duration: "P25Y"
+
+
+
+
+Explanations
+############
 
 .. _procedurecode:
 

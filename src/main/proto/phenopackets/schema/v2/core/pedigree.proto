@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/individual.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// https://software.broadinstitute.org/gatk/documentation/article?id=11016
+message Pedigree {
+  repeated Person persons = 1;
+
+  message Person {
+    enum AffectedStatus {
+      MISSING = 0;
+      UNAFFECTED = 1;
+      AFFECTED = 2;
+    }
+    string family_id = 1;
+    string individual_id = 2;
+    string paternal_id = 3;
+    string maternal_id = 4;
+    Sex sex = 5;
+    AffectedStatus affected_status = 6;
+  }
+}

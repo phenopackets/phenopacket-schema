@@ -1,49 +1,60 @@
 .. _rstphenotypicfeature:
 
-=================
+#################
 PhenotypicFeature
-=================
+#################
 
 
 This element is intended to be used to describe a phenotype that characterizes the subject of the Phenopacket.
 For medical use cases the subject will generally be a patient or a proband of a study, and the phenotypes will
 be abnormalities described by an ontology such as the `Human Phenotype Ontology <http://www.human-phenotype-ontology.org>`_.
 The word phenotype is used with many different meanings including disease entity, but in this context we mean
-An individual phenotypic feature, observed as either present or absent (negated), with possible onset, modifiers and
+An individual phenotypic feature, observed as either present or absent (excluded), with possible onset, modifiers and
 frequency.
 
 
-**Data model**
+Data model
+##########
 
 .. csv-table::
-   :header: Field, Type, Status, Description
+   :header: Field, Type, Multiplicity, Description
 
-    description, string, optional, Human-readable verbiage **NOT** for structured text
-    type, :ref:`rstontologyclass`, required, Term denoting the phenotypic feature
-    negated, boolean, optional, Defaults to `false`
-    severity, :ref:`rstontologyclass`, optional, Description of the severity of the feature described in `type` representing `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
-    modifier, :ref:`rstontologyclass` (list), optional, Representing one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
-    onset, :ref:`rstontologyclass`, optional, Age at which the features was first observed, e.g., `HP:0011462  <https://hpo.jax.org/app/browse/term/HP:0011462>`_
-    evidence, :ref:`Evidence <rstevidence>`, recommended, The evidence for an assertion of the observation of a `type`
+    description, string, optional, human-readable verbiage **NOT** for structured text
+    type, :ref:`rstontologyclass`, 1..1, term denoting the phenotypic feature. REQUIRED.
+    excluded, boolean, 0..1, defaults to `false`
+    severity, :ref:`rstontologyclass`, 0..1, description of the severity of the feature described in `type`. For instance terms from `HP:0012824  <https://hpo.jax.org/app/browse/term/HP:0012824>`_
+    modifiers, list of :ref:`rstontologyclass`, 0..*, For instance one or more terms from `HP:0012823 <https://hpo.jax.org/app/browse/term/HP:0012823>`_
+    onset, :ref:`rsttimeelement`, 0..1, Age or time at which the feature was first observed.
+    resolution, :ref:`rsttimeelement`, 0..1, Age or time at which the feature resolved or abated.
+    evidence, :ref:`Evidence <rstevidence>`, 0..*, the evidence for an assertion of the observation of a `type`. RECOMMENDED.
 
-**Example**
+Example
+#######
 
-.. code-block:: json
+The following example specifies recurrent
+`Infantile spasms <https://hpo.jax.org/app/browse/term/HP:0012469>`_, which had onset
+at age 6 months and resolved at age 4 years and 2 months.
 
-    {
-        "type": {
-          "id": "HP:0000520",
-          "label": "Proptosis"
-        },
-        "severity": {
-            id": "HP:0012825",
-            "label": "Mild"
-        }
-        "classOfOnset": {
-          "id": "HP:0003577",
-          "label": "Congenital onset"
-        }
-    }
+.. code-block:: yaml
+
+    phenotypicFeature:
+        type:
+            id: "HP:0012469"
+            label: "Infantile spasms"
+        modifiers:
+            - id: "HP:0031796"
+            label: "Recurrent"
+        onset:
+            age:
+                iso8601duration: "P6M"
+        resolution:
+            age:
+                iso8601duration: "P4Y2M"
+
+
+Explanations
+############
+
 
 description
 ~~~~~~~~~~~
@@ -58,8 +69,8 @@ type
 The element represents the primary :ref:`ontology class <rstontologyclass>` which describes the phenotype.
 For example `Craniosynostosis (HP:0001363) <https://hpo.jax.org/app/browse/term/HP:0001363>`_.
 
-negated
-~~~~~~~
+excluded
+~~~~~~~~
 This element is a flag to indicate whether the phenotype was observed or not.
 The default is 'false', in other words the phenotype was observed. Therefore it is only
 required in cases to indicate that the phenotype was looked for, but found to be absent.
@@ -70,8 +81,8 @@ This  element is an :ref:`ontology class <rstontologyclass>` that describes the 
 `Severity (HP:0012824) <https://hpo.jax.org/app/browse/term/HP:0012824>`_ or
 `SNOMED:272141005-Severities <https://phinvads.cdc.gov/vads/ViewCodeSystemConcept.action?oid=2.16.840.1.113883.6.96&code=272141005>`_
    
-modifier
-~~~~~~~~
+modifiers
+~~~~~~~~~
 This element is a list of :ref:`ontology class <rstontologyclass>` elements that can be empty or contain one or more
 ontology terms that are intended
 to provide  more expressive or precise descriptions of a phenotypic feature, including attributes such as
@@ -83,6 +94,13 @@ onset
 ~~~~~
 This element can be used to describe the age at which a phenotypic feature was first noticed or diagnosed.
 For many medical use cases, either the Age sub-element or an :ref:`ontology class <rstontologyclass>` (e.g., from the HPO `Onset (HP:0003674) <https://hpo.jax.org/app/browse/term/HP:0003674>`_ terms) will be used.
+
+
+resolution
+~~~~~~~~~~
+This element can be used to describe the age or time when a phenotypic feature resolved (disappeared, got better).
+In the example shown above, infantile spasms no longer occured after the age of 4 years and 2 months.
+
 
 evidence
 ~~~~~~~~

@@ -13,26 +13,46 @@ building blocks.
 
 
 
-
-
-
 .. toctree::
    :maxdepth: 1
 
    age
    biosample
+   chemotherapytreatment
+   complex-value
    disease
+   dose-interval
+   drug-type
    evidence
    externalreference
-   gene
    file
+   gene
+   genomic-interpretation
+   gestational-age
+   hormonetherapy
    individual
+   interpretation
    karyotypicsex
+   measurement
+   medical-action
    metadata
    ontologyclass
    pedigree
    phenotype
    procedure
+   quantity
+   radiotherapy
+   reference-range
    resource
    sex
+   stop-reason
+   therapeutic-regimen
+   time-element
+   time-interval
+   timestamp
+   treatment
+   update
+   value
    variant
+   variant-interpretation
+   vital-status

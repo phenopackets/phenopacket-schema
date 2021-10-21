@@ -1,0 +1,400 @@
+// Generated using https://edotor.net/
+ // See https://graphviz.gitlab.io/
+ // Note the OntologyClass and TimeElement edges are commented-out for greater clarity of the output
+digraph phenopacket_schema_v2 {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    rankdir = BT
+    splines = "true"
+
+    label = "Phenopacket schema v2.0"
+
+    node [
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    shape = "record"
+    ]
+
+    edge [
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    ]
+
+    // base.proto
+    subgraph base {
+
+    OntologyClass [
+    label = "{OntologyClass | + id: String\l + label: String\l}"
+    ]
+
+    ExternalReference [
+    label = "{ExternalReference| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
+    ]
+
+    Evidence [
+    label = "{Evidence| evidence_code: OntologyClass\l reference: ExternalReference\l}"
+    ]
+
+    Value [
+    label = "{Value| value: \{Quantity \| OntologyClass\} }"
+    ]
+
+    ComplexValue [
+    label = "{ComplexValue| typed_quantity: TypedQuantity\l}"
+    ]
+
+    TypedQuantity [
+    label = "{TypedQuantity| type: OntologyClass\l quantity: Quantity\l}"
+    ]
+
+    Quantity [
+    label = "{Quantity| unit_class: OntologyClass\l value: double\l reference_range: ReferenceRange\l}"
+    ]
+
+    ReferenceRange [
+    label = "{ReferenceRange| unit: OntologyClass\l low: double\l high: double\l}"
+    ]
+
+    Sex [
+    label = "{Sex \<enum\>| 0 = UNKNOWN_SEX\l 1 = FEMALE\l 2 = MALE\l 3 = OTHER_SEX\l}"
+    ]
+
+    KaryotypicSex [
+    label = "{KaryotypicSex \<enum\>| 0 = UNKNOWN_KARYOTYPE\l 1 = XX\l 2 = XY\l 3 = XO\l 4 = XXY\l 5 = XXX\l 6 = XXYY\l 7 = XXXY\l 8 = XXXX\l 9 = XYY\l 10 = OTHER_KARYOTYPE\l}"
+    ]
+
+    Procedure [
+    label = "{Procedure| code: OntologyClass\l body_site: OntologyClass\l performed: TimeElement\l}"
+    ]
+
+    GestationalAge [
+    label = "{GestationalAge| days: Integer\l weeks: Integer\l}"
+    ]
+
+    Age [
+    label = "{Age| iso8601Duration: String\l}"
+    ]
+
+    AgeRange [
+    label = "{AgeRange| start: Age\l end: Age\l}"
+    ]
+
+    TimeInterval [
+    label = "{TimeInterval| start: Timestamp\l end: Timestamp\l}"
+    ]
+
+    TimeElement [
+    label = "{TimeElement| element: \{GestationalAge \| Age \| AgeRange \| Timestamp \| TimeInterval \| OntologyClass \}}"
+    ]
+
+    File [
+    label = "{File| uri: String\l individual_to_file_identifiers: Map\<String, String\>\l file_attributes: Map\<String, String\>\l}"
+    ]
+
+    // base.proto
+    OntologyClass
+
+    //    OntologyClass -> Value
+    Quantity -> Value
+
+    TypedQuantity -> ComplexValue
+    //    OntologyClass -> TypedQuantity
+    Quantity -> TypedQuantity
+    //    OntologyClass -> Quantity
+    ReferenceRange -> Quantity
+    //    OntologyClass -> ReferenceRange
+
+    Sex
+    KaryotypicSex
+
+    //    OntologyClass -> Procedure
+ //    TimeElement -> Procedure
+
+    GestationalAge -> TimeElement
+    Age -> TimeElement
+    Age -> AgeRange
+    AgeRange -> TimeElement
+    Timestamp -> TimeInterval
+    Timestamp -> TimeElement
+    TimeInterval -> TimeElement
+    }
+
+    // biosample.proto
+    Biosample [
+    label = "{Biosample| id: String\l individual_id: String\l derived_from_id: String\l description: String\l sampled_tissue: OntologyClass\l sample_type: OntologyClass\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l taxonomy: OntologyClass\l time_of_collection: TimeElement\l histological_diagnosis: OntologyClass\l tumor_progression: OntologyClass\l tumor_grade: OntologyClass\l pathological_stage: OntologyClass\l pathological_tnm_finding: OntologyClass [0..*]\l diagnostic_markers: OntologyClass [0..*]\l procedure: Procedure\l files: File [0..*]\l material_sample: OntologyClass\l sample_processing: OntologyClass\l sample_storage: OntologyClass\l}"
+    ]
+
+    //    OntologyClass -> Biosample
+    PhenotypicFeature -> Biosample
+    Procedure -> Biosample
+    File -> Biosample
+    //    TimeElement -> Biosample
+    Measurement -> Biosample
+
+
+    // disease.proto
+    Disease [
+    label = "{Disease| term: OntologyClass\l excluded: Boolean\l onset: TimeElement\l resolution: TimeElement\l disease_stage: OntologyClass [0..*]\l clinical_tnm_finding: OntologyClass [0..*]\l primary_site: OntologyClass\l laterality:OntologyClass\l}"
+    ]
+    //    OntologyClass -> Disease
+ //    TimeElement -> Disease
+
+    subgraph genomeProto {
+    GeneDescriptor
+    //    OntologyClass -> Variant
+    }
+
+    // individual.proto
+    Individual [
+    label = "{Individual| id: String\l alternate_ids: String [0..*]\l date_of_birth: Timestamp\l time_at_last_encounter: TimeElement\l vital_status: VitalStatus\l sex: Sex\l karyotypic_sex: KaryotypicSex\l gender: OntologyClass\l taxonomy: OntologyClass\l}"
+    ]
+
+    VitalStatus [
+    label = "{VitalStatus| status: Status\l time_of_death: TimeElement\l cause_of_death: OntologyClass\l survival_time_in_days: Integer\l}"
+    ]
+    //    TimeElement -> Individual
+    VitalStatus -> Individual
+    Sex -> Individual
+    KaryotypicSex -> Individual
+    //    OntologyClass -> Individual
+
+    //    TimeElement -> VitalStatus
+ //    OntologyClass -> VitalStatus
+
+    // interpretation.proto
+    subgraph interpretationProto {
+    label = "interpretation"
+
+    Interpretation [
+    label = "{Interpretation| id: String\l progress_status: ProgressStatus\l  diagnosis: Diagnosis\l summary: String\l}"
+    ]
+
+    ProgressStatus [
+    label = "{ProgressStatus \<enum\>| 0 = UNKNOWN_PROGRESS\l 1 = IN_PROGRESS\l  2 = COMPLETED\l 3 = SOLVED\l 4 = UNSOLVED\l}"
+    ]
+
+    Diagnosis [
+    label = "{Diagnosis| disease: OntologyClass\l genomic_interpretations: GenomicInterpretation [0..n]\l}"
+    ]
+
+    GenomicInterpretation [
+    label = "{GenomicInterpretation| subject_or_biosample_id: String\l interpretation_status: InterpretationStatus\l call: \{GeneDescriptor \| VariantInterpretation\}}"
+    ]
+
+    InterpretationStatus [
+    label = "{InterpretationStatus \<enum\>| 0 = UNKNOWN_STATUS\l 1 = REJECTED\l 2 = CANDIDATE\l 3 = CONTRIBUTORY\l 4 = ACTIONABLE\l}"
+    ]
+
+    VariantInterpretation [
+    label = "{VariantInterpretation| acmg_pathogenicity_classification: AcmgPathogenicityClassification\l therapeutic_actionability: TherapeuticActionability\l variation_descriptor: VariationDescriptor\l}"
+    ]
+
+    AcmgPathogenicityClassification [
+    label = "{AcmgPathogenicityClassification \<enum\>|  0 = NOT_PROVIDED\l 1 = BENIGN\l 2 = LIKELY_BENIGN\l 3 = UNCERTAIN_SIGNIFICANCE\l 4 = LIKELY_PATHOGENIC\l 5 = PATHOGENIC\l }"
+    ]
+
+    TherapeuticActionability [
+    label = "{TherapeuticActionability \<enum\>|  0 = UNKNOWN_ACTIONABILITY\l 1 = NOT_ACTIONABLE\l 2 = ACTIONABLE\l}"
+    ]
+
+    ProgressStatus -> Interpretation
+    Diagnosis -> Interpretation
+
+    //    OntologyClass -> Diagnosis
+    GenomicInterpretation -> Diagnosis
+
+    InterpretationStatus -> GenomicInterpretation
+    GeneDescriptor -> GenomicInterpretation
+    VariantInterpretation -> GenomicInterpretation
+
+    AcmgPathogenicityClassification -> VariantInterpretation
+    TherapeuticActionability -> VariantInterpretation
+    VariationDescriptor -> VariantInterpretation
+    }
+
+    // org.ga4gh.vrsatile.proto
+   subgraph vrsatileProto {
+    GeneDescriptor [
+    label = "{GeneDescriptor| value_id: String\l symbol: String\l description: String\l alternate_ids: String [0..*]\l xrefs: String [0..*]\l alternate_symbols: String [0..*]\l}"
+    ]
+
+    VariationDescriptor [
+    label = "{VariationDescriptor| id: String\l variation: Variation\l description: String\l gene_context: GeneDescriptor\l expressions: Expression [0..*]\l vcf_record: VcfRecord\l xrefs: String [0..*]\l alternate_labels: String [0..*]\l extensions: Extension [0..*]\l molecule_context: MoleculeContext\l structural_type: OntologyClass\l vrs_ref_allele_seq: String\l zygosity: OntologyClass\l}"
+    ]
+
+    VcfRecord [
+    label = "{VcfRecord| id: String\l genome_assembly: String\l chrom: String\l pos: Integer\l ref: String\l alt: String\l qual: String\l filter: String\l info: String\l}"
+    ]
+
+    Expression [
+    label = "{Expression| syntax: String\l value: String\l version: String\l}"
+    ]
+
+    Extension [
+    label = "{Extension| name: String\l value: Any\l}"
+    ]
+
+    MoleculeContext [
+    label = "{MoleculeContext \<enum\>| 0 = unspecified_molecule_context\l 1 = genomic\l 2 = transcript\l 3 = protein\l}"
+    ]
+
+    Variation [
+    label = "{Variation| See GA4GH VRS \l}"
+    ]
+
+    Expression -> VariationDescriptor
+    Extension -> VariationDescriptor
+    MoleculeContext -> VariationDescriptor
+    VcfRecord -> VariationDescriptor
+    Variation -> VariationDescriptor
+    }
+
+
+    // measurement.proto
+    subgraph measurementProto {
+    Measurement [
+    label = "{Measurement|  description: String\l assay: OntologyClass\l measurement_value: \{ Value \| ComplexValue\}\l time_observed: TimeElement\l procedure: Procedure\l }"
+    ]
+    //    OntologyClass -> Measurement
+        Value -> Measurement
+    ComplexValue -> Measurement
+    //    TimeElement -> Measurement
+        Procedure -> Measurement
+    }
+
+    // medical_action.proto
+    subgraph medicalActionProto {
+    MedicalAction [
+    label = "{MedicalAction| action: \{\Procedure \| Treatment \| RadiationTherapy \| TherapeuticRegimen\}\l treatment_target: OntologyClass\l treatment_intent: OntologyClass\l response_to_treatment: OntologyClass\l adverse_events: OntologyClass [0..*]\l treatment_termination_reason: OntologyClass\l}"
+    ]
+
+    Treatment [
+    label = "{Treatment| agent: OntologyClass\l route_of_administration: OntologyClass\l dose_intervals: DoseInterval [0..*]\l drug_type: DrugType\l cumulative_dose: Quantity\l}"
+    ]
+
+    RadiationTherapy [
+    label = "{RadiationTherapy| modality: OntologyClass\l body_site: OntologyClass\l dosage: Integer\l fractions: Integer\l}"
+    ]
+
+    TherapeuticRegimen [
+    label = "{TherapeuticRegimen| identifier: \{ExternalReference \| OntologyClass\} start_time: TimeElement\l end_time: TimeElement\l status: RegimenStatus\l}"
+    ]
+
+    RegimenStatus [
+    label = "{RegimenStatus \<enum\>| 0 = UNKNOWN\l 1 = STARTED\l 2 = COMPLETED\l 3 = DISCONTINUED}"
+    ]
+
+    DoseInterval [
+    label = "{DoseInterval| quantity: Quantity\l schedule_frequency: OntologyClass\l interval: TimeInterval\l}"
+    ]
+
+    DrugType [
+    label = "{DrugType \<enum\>| 0 = UNKNOWN_DRUG_TYPE\l 1 = PRESCRIPTION\l 2 = EHR_MEDICATION_LIST\l 3 = ADMINISTRATION_RELATED_TO_PROCEDURE\l}"
+    ]
+
+
+    //    OntologyClass -> MedicalAction
+    Procedure -> MedicalAction
+    Treatment -> MedicalAction
+    RadiationTherapy -> MedicalAction
+    TherapeuticRegimen -> MedicalAction
+
+    //    OntologyClass -> Treatment
+    DoseInterval -> Treatment
+    DrugType -> Treatment
+
+    Quantity -> DoseInterval
+    //    OntologyClass -> DoseInterval
+    TimeInterval -> DoseInterval
+
+    Quantity -> Treatment
+
+    //    OntologyClass -> RadiationTherapy
+
+    ExternalReference -> TherapeuticRegimen
+    //    OntologyClass -> TherapeuticRegimen
+ //    TimeElement -> TherapeuticRegimen
+    RegimenStatus -> TherapeuticRegimen
+    }
+
+    // pedigree.proto
+    subgraph pedigreeProto {
+    Pedigree [
+    label = "{Pedigree| persons: Person [0..*]\l}"
+    ]
+
+    Person [
+    label = "{Person| family_id: String\l individual_id: String\l paternal_id: String\l maternal_id: String\l sex: Sex\l affected_status: AffectedStatus\l}"
+    ]
+
+    AffectedStatus [
+    label = "{AffectedStatus \<enum\>| 0 = MISSING\l 1 = UNAFFECTED\l 2 = AFFECTED\l}"
+    ]
+
+    Person -> Pedigree
+
+    Sex -> Person
+    AffectedStatus -> Person
+    }
+
+    // phenotypic_feature.proto
+    PhenotypicFeature [
+    label = "{PhenotypicFeature| description: String\l type: OntologyClass\l excluded: Boolean\l severity: OntologyClass\l modifiers: OntologyClass [0..*]\l onset: TimeElement\l resolution: TimeElement\l evidence Evidence [0..*]\l}"
+    ]
+    //    OntologyClass -> PhenotypicFeature
+ //    TimeElement -> PhenotypicFeature
+    Evidence -> PhenotypicFeature
+
+    // phenopackets.proto
+    subgraph phenopacketsProto {
+    Phenopacket [
+    label = "{Phenopacket| id: String [1..1]\l subject: Individual [1..1]\l phenotypic_features: PhenotypicFeature [0..*]\l measurements: Measurement [0..*]\l biosamples: Biosample [0..*]\l interpretations: interpretation [0..*]\l diseases: Disease [0..*]\l medical_actions: MedicalAction [0..*]\l files: File [0..*]\l meta_data: MetaData [1..1]\l}"
+    ]
+
+    Family [
+    label = "{Family| id: String [1..1]\l proband: Phenopacket [1..1]\l relatives: Phenopacket [0..*]\l consanguinous_parents: Boolean\l pedigree: Pedigree [1..1]\l files: File [0..*]\l meta_data: MetaData [1..1]\l}"
+    ]
+
+    Cohort [
+    label = "{Cohort| id: String [1..1]\l description: String [0..1]\l members: Phenopacket [0..*]\l files: File [0..*]\l meta_data: MetaData [1..1]\l}"
+    ]
+
+    MetaData [
+    label = "{MetaData| created: google.protobuf.Timestamp\l created_by: String\l submitted_by: String\l resources: Resource [0..*]\l updates: Update [0..*]\l phenopacket_schema_version: String\l external_references: ExternalReference [0..*]\l}"
+    ]
+
+    Resource [
+    label = "{Resource| id: String\l name: String\l url: String\l version: String\l namespace_prefix: String\l iri_prefix: string\l}"
+    ]
+
+    Update [
+    label = "{Update| timestamp: Timestamp\l updated_by: String\l comment: String\l}"
+    ]
+
+    Resource -> MetaData
+    Update -> MetaData
+    ExternalReference -> MetaData
+    ExternalReference -> Evidence
+    //    OntologyClass -> Evidence
+
+    Individual -> Phenopacket
+    PhenotypicFeature -> Phenopacket
+    Measurement -> Phenopacket
+    Biosample -> Phenopacket
+    Interpretation -> Phenopacket
+    Disease -> Phenopacket
+    MedicalAction -> Phenopacket
+    File -> Phenopacket
+    MetaData -> Phenopacket
+
+    Phenopacket -> Family
+    Pedigree -> Family
+    File -> Family
+    MetaData -> Family
+
+    Phenopacket -> Cohort
+    File -> Cohort
+    MetaData -> Cohort
+    }
+
+}

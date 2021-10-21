@@ -1,8 +1,8 @@
 .. _rstcohort:
 
-======
+######
 Cohort
-======
+######
 
 
 This element describes a group of individuals related in some phenotypic or genotypic aspect. For instance, a cohort
@@ -12,8 +12,11 @@ phenotypic feature.
 We recommend using the :ref:`rstfamily` element to describe families being investigated for the presence of a Mendelian
 disease.
 
+The GA4GH is in the process of creating a Computable Cohort Working Group to define how a cohort is generated. It is the
+intention that the results of this definition should be collected into a `Cohort` message.
 
-**Data model**
+Data model
+##########
 
 .. list-table:: Definition of the ``Cohort`` element
    :widths: 25 25 50 50
@@ -21,29 +24,31 @@ disease.
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - id
      - string
-     - required
-     - Arbitrary identifier
+     - 1..1
+     - An arbitrary identifier for the cohort. REQUIRED
    * - description
      - string
-     - optional
-     - Arbitrary text
+     - 0..1
+     - text description of the cohort
    * - members
-     - :ref:`rstphenopacket` (list)
-     - required
-     - Phenopackets that represent members of the cohort
-   * - hts_files
-     - :ref:`rstfile` (list)
-     - optional
-     - High-throughput sequencing files obtained from members of the cohort
+     - :ref:`rstphenopacket`
+     - 1..*
+     - Phenopackets that represent members of the cohort. REQUIRED
+   * - files
+     - :ref:`rstfile`
+     - 0..*
+     - list of files related to the whole cohort, e.g. multi-sample high-throughput sequencing files
    * - meta_data
      - :ref:`rstmetadata`
-     - required
-     - Metadata related to the ontologies and references used in this message
+     - 1..1
+     - Metadata related to the ontologies and references used in this message. REQUIRED
 
+Explanations
+############
 
 id
 ~~
@@ -57,15 +62,11 @@ members
 ~~~~~~~
 One :ref:`phenopacket` is included for each member of the cohort.
 
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the cohort. The HTS file MUST be a
-multi-sample file referring to the entire cohort, if appropriate. Individual HTS files MUST otherwise be contained
-within their appropriate scope. e.g. within a ``Phenopacket`` for germline samples of an individual or within the scope
-of the ``Phenopacket.Biosample`` in the case of genomic data derived from sequencing that biosample.
-Each element describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-URI element which refers to a file on a given file system or a resource on the web.
+files
+~~~~~
+This element contains a list of pointers to relevant file(s) for the cohort. The file(s) MUST refer to the entire cohort. Otherwise
+individual files MUST be contained within their appropriate scope. e.g. within a ``Phenopacket`` for germline samples of
+an individual or within the scope of the ``Phenopacket.Biosample`` in the case of data derived from that biosample.
 
 See :ref:`rstfile` for further information.
 

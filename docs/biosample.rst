@@ -1,8 +1,8 @@
 .. _rstbiosample:
 
-=========
+#########
 Biosample
-=========
+#########
 
 A Biosample refers to a unit of biological material from which the substrate
 molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
@@ -12,121 +12,161 @@ sequencing or a protein fraction from a gradient centrifugation.
 Several instances (e.g. technical replicates) or types of experiments (e.g.
 genomic array as well as RNA-seq experiments) may refer to the same Biosample.
 
-**Data model**
+Data model
+##########
 
  .. list-table::
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - id
      - string
-     - required
-     - Arbitrary identifier
+     - 1..1
+     - Arbitrary identifier. REQUIRED.
    * - individual_id
      - string
-     - recommended
-     - Arbitrary identifier
+     - 0..1
+     - Arbitrary identifier. RECOMMENDED.
+   * - derived_from_id
+     - string
+     - 0..1
+     - id of the biosample from which the current biosample was derived (if applicable)
    * - description
      - string
-     - optional
-     - Arbitrary text
+     - 0..1
+     - arbitrary text
    * - sampled_tissue
      - :ref:`rstontologyclass`
-     - required
+     - 0..1
      - Tissue from which the sample was taken
+   * - sample_type
+     - :ref:`rstontologyclass`
+     - 0..1
+     - type of material, e.g., RNA, DNA, Cultured cells
    * - phenotypic_features
-     - :ref:`rstphenotypicfeature` (list)
-     - recommended
-     - List of phenotypic abnormalities of the sample
+     - :ref:`rstphenotypicfeature` (List)
+     - 0..*
+     - List of phenotypic abnormalities of the sample. RECOMMENDED.
+   * - measurements
+     - :ref:`rstmeasurement` (List)
+     - 0..*
+     - List of measurements of the sample
    * - taxonomy
      - :ref:`rstontologyclass`
-     - optional
+     - 0..1
      - Species of the sampled individual
-   * - individual_age_at_collection
-     - :ref:`rstage` OR :ref:`rstagerange`
-     - recommended
-     - Age of the proband at the time the sample was taken
+   * - time_of_collection
+     - :ref:`rsttimeelement`
+     - 0..1
+     - Age of the proband at the time the sample was taken. RECOMMENDED.
    * - histological_diagnosis
      - :ref:`rstontologyclass`
-     - recommended
-     - Disease diagnosis that was inferred from the histological examination
+     - 0..1
+     - Disease diagnosis that was inferred from the histological examination. RECOMMENDED.
    * - tumor_progression
      - :ref:`rstontologyclass`
-     - recommended
-     - Indicates primary, metastatic, recurrent
+     - 0..1
+     - Indicates primary, metastatic, recurrent. RECOMMENDED.
    * - tumor_grade
-     - :ref:`rstontologyclass` (list)
-     - recommended
-     - List of terms to indicate the grade of the tumor
-   * - diagnostic_markers
      - :ref:`rstontologyclass`
-     - recommended
-     - Clinically relevant biomarkers
+     - 0..1
+     - Term representing the tumor grade
+   * - pathological_stage
+     - :ref:`rstontologyclass`
+     - 0..1
+     - Pathological stage, if applicable. RECOMMENDED.
+   * - pathological_tnm_finding
+     - :ref:`rstontologyclass` (List)
+     - 0..*
+     - Pathological TNM findings, if applicable. RECOMMENDED.
+   * - diagnostic_markers
+     - :ref:`rstontologyclass` (List)
+     - 0..*
+     - Clinically relevant biomarkers. RECOMMENDED.
    * - procedure
      - :ref:`rstprocedure`
-     - required
-     - The procedure used to extract the biosample
-   * - hts_files
-     - :ref:`rstfile` (list)
-     - optional
-     - List of high-throughput sequencing files derived from the biosample
-   * - variants
-     - :ref:`rstvariant` (list)
-     - optional
-     - List of variants determined to be present in the biosample
-   * - is_control_sample
-     - boolean
-     - optional (default: false)
-     - Whether the sample is being used as a normal control
+     - 0..1
+     - The procedure used to extract the biosample. RECOMMENDED.
+   * - files
+     - :ref:`rstfile` (List)
+     - 0..*
+     - list of files related to the biosample, e.g. VCF or other high-throughput sequencing files
+   * - material_sample
+     - :ref:`rstontologyclass`
+     - 0..1
+     - Status of specimen (tumor tissue, normal control, etc.). RECOMMENDED.
+   * - sample_processing
+     - :ref:`rstontologyclass`
+     - 0..1
+     - how the specimen was processed
+   * - sample_storage
+     - :ref:`rstontologyclass`
+     - 0..1
+     - how the specimen was stored
+
+Example
+#######
+
+The staging system most often used for
+bladder cancer is the American Joint Committee on Cancer (AJCC) TNM system. The overall
+stage is assigned based on the T, N, and M categories (Cancer stage grouping). For instance, stage II (pathological staging)
+is defined as T2a or T2b, N0, and M0, meaning the cancer has spread
+into the  wall of the bladder.
+
+.. code-block:: yaml
+
+  biosample:
+    id: "sample1"
+    individualId: "patient1"
+    description: "Additional information can go here"
+    sampledTissue:
+        id: "UBERON_0001256"
+        label: "wall of urinary bladder"
+    histologicalDiagnosis:
+        id: "NCIT:C39853"
+        label: "Infiltrating Urothelial Carcinoma"
+    tumorProgression:
+        id: "NCIT:C84509"
+        label: "Primary Malignant Neoplasm"
+    tumorGrade:
+        id: "NCIT:C36136"
+        label: "Grade 2 Lesion"
+    procedure:
+        code:
+            id: "NCIT:C5189"
+            label: "Radical Cystoprostatectomy"
+    files:
+        - uri: "file:///data/genomes/urothelial_ca_wgs.vcf.gz"
+        individualToFileIdentifiers:
+            patient1: "NA12345"
+        fileAttributes:
+            description: "Urothelial carcinoma sample"
+            htsFormat: "VCF"
+            genomeAssembly: "GRCh38"
+    materialSample:
+        id: "EFO:0009655"
+        label: "abnormal sample"
+    timeOfCollection:
+        age:
+            iso8601duration: "P52Y2M"
+    pathologicalStage:
+        id: "NCIT:C28054"
+        label: "Stage II"
+    pathologicalTnmFinding:
+    - id: "NCIT:C48726"
+        label: "T2b Stage Finding"
+    - id: "NCIT:C48705"
+        label: "N0 Stage Finding"
+    - id: "NCIT:C48699"
+        label: "M0 Stage Finding"
 
 
-
-**Example**
-
-.. code-block:: json
-
-  {
-    "id": "sample1",
-    "individualId": "patient1",
-    "description": "",
-    "sampledTissue": {
-      "id": "UBERON_0001256",
-      "label": "wall of urinary bladder"
-    },
-    "ageOfIndividualAtCollection": {
-      "age": "P52Y2M"
-    },
-    "histologicalDiagnosis": {
-      "id": "NCIT:C39853",
-      "label": "Infiltrating Urothelial Carcinoma"
-    },
-    "tumorProgression": {
-      "id": "NCIT:C84509",
-      "label": "Primary Malignant Neoplasm"
-    },
-    "procedure": {
-      "code": {
-        "id": "NCIT:C5189",
-        "label": "Radical Cystoprostatectomy"
-      }
-    },
-    "htsFiles": [{
-      "uri": "file://data/genomes/urothelial_ca_wgs.vcf.gz",
-      "description": "Urothelial carcinoma sample"
-      "htsFormat": "VCF",
-      "genomeAssembly": "GRCh38",
-      "individualToSampleIdentifiers": {
-        "patient1": "NA12345"
-      }
-    }],
-    "variants": [],
-    "isControlSample": false
-  }
-
+Explanations
+############
 
 id
 ~~
@@ -137,6 +177,10 @@ individual_id
 The id of the :ref:`rstindividual` this biosample was derived from. It is recommended, but not necessary to
 provide this information here if the Biosample is being transmitted as a part of
 a :ref:`rstphenopacket`.
+
+derived_from_id
+~~~~~~~~~~~~~~~
+The id of the parent biosample this biosample was derived from.
 
 description
 ~~~~~~~~~~~
@@ -149,11 +193,21 @@ On :ref:`rstontologyclass` describing the tissue from which the specimen was col
 We recommend the use of `UBERON <https://www.ebi.ac.uk/ols/ontologies/uberon>`_. The
 PDX MI mapping is ``Specimen tumor tissue``.
 
+sample_type
+~~~~~~~~~~~
+
+RNA, DNA, Cultured cells. We recommend use of EFO term to describe the sample,
+for instance, `genomic DNA (EFO:0008479) <https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0008479>`_.
+
 phenotypic_features
-~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 The phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
 See :ref:`rstphenotypicfeature` for further information.
 
+measurements
+~~~~~~~~~~~~
+Measurements (usually quantitative) performed on the sample.
+See :ref:`rstmeasurement` for further information.
 
 taxonomy
 ~~~~~~~~
@@ -164,8 +218,11 @@ NCBITaxon:9606 is human (homo sapiens sapiens) and  or NCBITaxon:9615 is dog.
 
 individual_age_at_collection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-An :ref:`rstage` or :ref:`rstagerange` describing the age or age range of the individual this biosample was
-derived from at the time of collection. See :ref:`rstage` for further information.
+An age object describing the age of the individual this biosample was
+derived from at the time of collection. The Age object allows the encoding
+of the age either as ISO8601 duration or time interval (preferred), or
+as ontology term object.
+See :ref:`rsttimeelement` for further information.
 
 histological_diagnosis
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -205,24 +262,29 @@ The clinical procedure performed on the subject in order to extract the biosampl
 See :ref:`rstprocedure` for further information.
 
 
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the biosample. Each element
-describes what type of file is meant (e.g., BAM file), which genome assembly was used for mapping,
-as well as a map of samples and individuals represented in that file. It also contains a
-URI element which refers to a file on a given file system or a resource on the web.
-
+files
+~~~~~
+This element contains a list of pointers to relevant file(s) for the biosample. For example, the results of a high-throughput
+sequencing experiment.
 See :ref:`rstfile` for further information.
 
-variants
-~~~~~~~~
-This is a field for genetic variants and can be used for listing either candidate variants or diagnosed causative
-variants. If this biosample represents a cancer specimen, the variants might refer to somatic variants identified
-in the biosample. The resources using these fields should define what this represents in their context.
-See :ref:`rstvariant` for further information.
+material_sample
+~~~~~~~~~~~~~~~
 
-is_control_sample
+This element can be used to specify the status of the sample. For instance,
+a status may be used as a normal control, often in combination with
+another sample that is thought to contain a pathological finding.
+We recommend use of ontology terms such as
+
+- `reference sample (EFO:0009654) <https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009654>`_.
+- `abnormal sample (EFO:0009655) <https://www.ebi.ac.uk/ols/ontologies/efo/terms?iri=http%3A%2F%2Fwww.ebi.ac.uk%2Fefo%2FEFO_0009655>`_.
+
+sample_processing
 ~~~~~~~~~~~~~~~~~
-A boolean (true/false) value.
-If true, this sample is being use as a normal control, often in combination with another sample that is thought to contain a pathological finding
-the default value is false.
+
+The technique used to process the sample.
+
+sample_storage
+~~~~~~~~~~~~~~
+
+How the sample was stored.

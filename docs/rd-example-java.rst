@@ -42,25 +42,13 @@ We will use the ``ontologyClass`` function in our examples, but otherwise show a
 Family members and variants
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We define the names of the family members and also an object to represent the variant that was found to occur
-in a de novo fashion in the son.
+We define the names of the family members.
 
 .. code-block:: java
 
     private static final String PROBAND_ID = "14 year-old boy";
     private static final String MOTHER_ID = "MOTHER";
     private static final String FATHER_ID = "FATHER";
-
-    // Allele
-    private static final HgvsAllele c_877G_to_A = HgvsAllele.
-            newBuilder().
-            setHgvs("NM_001848.2:c.877G>A").
-            build();
-    // Corresponding variant
-    private static final Variant heterozygousCOL6A1Variant = Variant.newBuilder()
-            .setHgvsAllele(c_877G_to_A)
-            .setZygosity(ontologyClass("GENO:0000135", "heterozygous"))
-            .build();
 
 
 Proband
@@ -73,15 +61,13 @@ and create an Evidence object that indicates the provenance of the data.
 
  static Phenopacket proband() {
 
-        OntologyClass mild = OntologyClass.
-                newBuilder().
-                setId("HP:0012825").
-                setLabel("Mild").
-                build();
+        OntologyClass mild = OntologyClass.newBuilder().setId("HP:0012825").setLabel("Mild").build();
+
         OntologyClass evidenceCode = OntologyClass.newBuilder().
                 setId("ECO:0000033").
                 setLabel("author statement supported by traceable reference").
                 build();
+
         Evidence citation = Evidence.newBuilder().
                 setReference(ExternalReference.newBuilder().
                         setId("PMID:30808312").
@@ -92,30 +78,34 @@ and create an Evidence object that indicates the provenance of the data.
 
         PhenotypicFeature decreasedFetalMovement = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001558", "Decreased fetal movement"))
-                .setClassOfOnset(ontologyClass("HP:0011461", "Fetal onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011461", "Fetal onset")).build())
                 .addEvidence(citation)
                 .build();
+
         PhenotypicFeature absentCranialNerveAbnormality = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0031910", "Abnormal cranial nerve physiology"))
-                .setAbsent(true)
+                .setExcluded(true)
                 .addEvidence(citation)
                 .build();
+
         PhenotypicFeature motorDelay = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0001270","Motor delay"))
-                .setClassOfOnset(ontologyClass("HP:0011463","Childhood onset"))
+                .setOnset(TimeElement.newBuilder().setOntologyClass(ontologyClass("HP:0011463","Childhood onset")))
                 .setSeverity(mild)
                 .build();
+
         PhenotypicFeature hematuria = PhenotypicFeature.newBuilder()
                 .setType(ontologyClass("HP:0011463", "Macroscopic hematuria"))
-                .setAgeOfOnset(Age.newBuilder().setAge("P14Y").build())
+                .setOnset(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
                 .addModifiers(ontologyClass("HP:0031796","Recurrent"))
                 .addEvidence(citation)
                 .build();
 
+
         Individual proband = Individual.newBuilder()
                 .setSex(Sex.MALE)
                 .setId(PROBAND_ID)
-                .setAgeAtCollection(Age.newBuilder().setAge("P14Y").build())
+                .setTimeAtLastEncounter(TimeElement.newBuilder().setAge(Age.newBuilder().setIso8601Duration("P14Y")))
                 .build();
         return Phenopacket.newBuilder()
                 .setId(PROBAND_ID)
@@ -124,7 +114,6 @@ and create an Evidence object that indicates the provenance of the data.
                 .addPhenotypicFeatures(absentCranialNerveAbnormality)
                 .addPhenotypicFeatures(hematuria)
                 .addPhenotypicFeatures(motorDelay)
-                .addVariants(heterozygousCOL6A1Variant)
                 .build();
     }
 
@@ -143,6 +132,8 @@ The unaffected father is coded as follows:
                 .build();
         return Phenopacket.newBuilder()
                 .setSubject(father)
+                .build();
+    }
 
 The mother is coded analogously. Note that in both cases, on two of the elements of the :ref:`rstphenopacket`
 are actually used.
@@ -153,7 +144,7 @@ The following code builds the :ref:`rstpedigree` object.
 
 .. code-block:: java
 
- private static Pedigree pedigree() {
+    private static Pedigree pedigree() {
         Pedigree.Person pedProband = Pedigree.Person.newBuilder()
                 .setIndividualId(PROBAND_ID)
                 .setSex(Sex.MALE)
@@ -188,7 +179,11 @@ Family
 Finally, the following code pulls everything together to build the Family object.
 
 .. code-block:: java
- static Family rareDiseaseFamily() {
+
+    /**
+     * Example taken from PMID:30808312
+     */
+    static Family bethlemMyopathyFamily() {
 
         long millis  = System.currentTimeMillis();
         Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
@@ -219,6 +214,7 @@ Finally, the following code pulls everything together to build the Family object
                         .build())
                 .setCreatedBy("Peter R.")
                 .setCreated(timestamp)
+                .setPhenopacketSchemaVersion("2.0")
                 .addExternalReferences(ExternalReference.newBuilder()
                         .setId("PMID:30808312")
                         .setDescription("Bao M, et al. COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: " +

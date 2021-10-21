@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package org.phenopackets.schema.v2.core;
+
+import "phenopackets/schema/v2/core/base.proto";
+import "phenopackets/schema/v2/core/measurement.proto";
+import "phenopackets/schema/v2/core/phenotypic_feature.proto";
+
+option java_multiple_files = true;
+option java_package = "org.phenopackets.schema.v2.core";
+
+// A Biosample refers to a unit of biological material from which the substrate
+// molecules (e.g. genomic DNA, RNA, proteins) for molecular analyses (e.g.
+// sequencing, array hybridisation, mass-spectrometry) are extracted. Examples
+// would be a tissue biopsy, a single cell from a culture for single cell genome
+// sequencing or a protein fraction from a gradient centrifugation.
+// Several instances (e.g. technical replicates) or types of experiments (e.g.
+// genomic array as well as RNA-seq experiments) may refer to the same Biosample.
+// FHIR mapping: Specimen (http://www.hl7.org/fhir/specimen.html).
+message Biosample {
+  // biosamples SAMN08666232
+  // Human Cell Atlas
+
+  // The Biosample id This is unique in the
+  // context of the server instance.
+  // ARGO mapping specimen::submitter_specimen_id
+  string id = 1;
+
+  // The id of the individual this biosample was derived from.
+  // ARGO mapping specimen::submitter_donor_id
+  string individual_id = 2;
+
+  // The id of the parent biosample this biosample was derived from.
+  string derived_from_id = 3;
+
+  // The biosample's description. This attribute contains human readable text.
+  // The "description" attributes should not contain any structured data.
+  string description = 4;
+
+  // UBERON class describing the tissue from which the specimen was collected.
+  // PDX-MI mapping: 'Specimen tumor tissue'
+  // FHIR mapping: Specimen.type
+  // ARGO mapping sample_registration::specimen_tissue_source
+  OntologyClass sampled_tissue = 5;
+
+  // Recommended use of EFO term to describe the sample.
+  // e.g. Amplified DNA, ctDNA, Total RNA, Lung tissue, Cultured cells...
+  // ARGO mapping sample_registration::sample_type
+  OntologyClass sample_type = 6;
+
+  // Phenotypic characteristics of the BioSample, for example histological findings of a biopsy.
+  repeated PhenotypicFeature phenotypic_features = 7;
+
+  repeated Measurement measurements = 8;
+
+  // NCBI taxonomic identifier (NCBITaxon) of the sample e.g. NCBITaxon:9606
+  OntologyClass taxonomy = 9;
+
+  // An TimeElement describing either the age of the individual this biosample was
+  // derived from at the time of collection, or the time itself.
+  //See http://build.fhir.org/datatypes
+  TimeElement time_of_collection = 10;
+
+  // This is the pathologist’s diagnosis and may often represent a refinement of the clinical diagnosis given in the
+  // Patient/Clinical module. Should use the same terminology as diagnosis, but represent the pathologist’s findings.
+  // Normal samples would be tagged with the term "NCIT:C38757", "Negative Finding"
+  // ARGO mapping specimen::tumour_histological_type
+  OntologyClass histological_diagnosis = 11;
+
+  // Is the specimen tissue from the primary tumor, a metastasis or a recurrence?
+  // Most likely a child term of NCIT:C7062 (Neoplasm by Special Category)
+  // NCIT:C3677 (Benign Neoplasm)
+  // NCIT:C84509 (Primary Malignant Neoplasm)
+  // NCIT:C95606 (Second Primary Malignant Neoplasm)
+  // NCIT:C3261 (Metastatic Neoplasm)
+  // NCIT:C4813 (Recurrent Malignant Neoplasm)
+  OntologyClass tumor_progression = 12;
+
+  // Potentially a child term of NCIT:C28076 (Disease Grade Qualifier) or equivalent
+  // See https://www.cancer.gov/about-cancer/diagnosis-staging/prognosis/tumor-grade-fact-sheet
+  OntologyClass tumor_grade = 13;
+
+  // ARGO mapping specimen::pathological_tumour_staging_system
+  // ARGO mapping specimen::pathological_stage_group
+  OntologyClass pathological_stage = 14;
+
+  // ARGO mapping specimen::pathological_t_category
+  // ARGO mapping specimen::pathological_n_category
+  // ARGO mapping specimen::pathological_m_category
+  repeated OntologyClass pathological_tnm_finding = 15;
+
+  // Clinically relevant bio markers. Most of the assays such as IHC are covered by the NCIT under the sub-hierarchy
+  // NCIT:C25294 (Laboratory Procedure).
+  // e.g. NCIT:C68748 (HER2/Neu Positive), NCIT:C131711 (Human Papillomavirus-18 Positive)
+  repeated OntologyClass diagnostic_markers = 16;
+
+  // Clinical procedure performed on the subject in order to extract the biosample.
+  // ARGO mapping specimen::specimen_anatomic_location - Procedure::body_site
+  // ARGO mapping specimen::specimen_acquisition_interval - Procedure::time_performed
+  Procedure procedure = 17;
+
+  // Pointer to the relevant file(s) for the biosample. Files relating to the entire individual e.g. a germline exome/genome
+  // should be associated with the Phenopacket rather than the Biosample it was derived from.
+  repeated File files = 18;
+
+  // This element can be used to specify the status of the sample. For instance, a status may be used as a normal
+  // control, often in combination with another sample that is thought to contain a pathological finding.
+  // We recommend use of ontology terms such as:
+  // EFO:0009654 (reference sample) or EFO:0009655 (abnormal sample)
+  // ARGO mapping sample_registration::tumour_normal_designation
+  OntologyClass material_sample = 19;
+
+  // Field to represent how the sample was processed.
+  // ARGO mapping specimen::specimen_processing
+  OntologyClass sample_processing = 20;
+
+  // Field to represent how the sample was stored
+  // ARGO mapping specimen::specimen_storage
+  OntologyClass sample_storage = 21;
+
+}

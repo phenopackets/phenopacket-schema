@@ -1,8 +1,8 @@
 .. _rstfamily:
 
-======
+######
 Family
-======
+######
 
 Phenotype, sample and pedigree data required for a genomic diagnosis.
 This element is equivalent to the Genomics England
@@ -20,43 +20,46 @@ necessary to include Phenopacket elements for them. Instead, their status as una
 with the :ref:`rstpedigree` element.
 
 
-**Data model**
+Data model
+##########
 
 
  .. list-table:: Definition of the ``Family`` element
-   :widths: 25 25 50 50
+   :widths: 25 25 25 75
    :header-rows: 1
 
    * - Field
      - Type
-     - Status
+     - Multiplicity
      - Description
    * - id
      - string
-     - required
-     - Application-specific identifier
+     - 1..1
+     - application-specific identifier. REQUIRED.
    * - proband
      - :ref:`rstphenopacket`
-     - required
-     - The proband (index patient) in the family
+     - 1..1
+     - The proband (index patient) in the family. REQUIRED.
    * - relatives
      - :ref:`rstphenopacket` (list)
-     - optional
-     - List of Phenopackets for family members other than the proband
+     - 0..*
+     - list of Phenopackets for family members other than the proband
    * - pedigree
      - :ref:`rstpedigree`
-     - required
-     - Representation of the pedigree
-   * - hts_files
+     - 1..1
+     - representation of the pedigree. REQUIRED.
+   * - files
      - :ref:`rstfile` (list)
-     - optional
-     - High-throughput sequencing files obtained from members of the family 
+     - 0..*
+     - list of files related to the whole family, e.g. multi-sample high-throughput sequencing files
    * - meta_data
      - :ref:`rstmetadata`
-     - required
-     - Metadata about ontologies and references used in this message
+     - 1..1
+     - Metadata about ontologies and references used in this message. REQUIRED.
 
 
+Explanations
+############
 
 id
 ~~
@@ -85,15 +88,17 @@ The pedigree defining the relations between the proband and their relatives. Thi
 contains information compatible with the information in a PED file. Pedigree.individual_id MUST
 map to the PhenoPacket.Individual.id. See :ref:`rstpedigree` for further information.
 
-hts_files
-~~~~~~~~~
-This element contains a list of pointers to the relevant HTS file(s) for the family as a whole. For a ``Family`` these
-files MUST be merged/multi-sample files with appropriate genotype information. For a multi-sample file, the sample
-identifiers MUST each map to a ``Pedigree.individual_id`` referenced in the ``pedigree`` field, in order that linkage
-analysis can be performed on the sample.
+files
+~~~~~
+This element contains a list of pointers to relevant file(s) for the family as a whole. The file(s) MUST refer to the entire family. Otherwise
+individual files MUST be contained within their appropriate scope. e.g. within a ``Phenopacket`` for germline samples of
+an individual or within the scope of the ``Phenopacket.Biosample`` in the case of data derived from that biosample.
+
+In the case of multi-sample high-throughput sequencing files the sample identifiers in the hight-throughput sequencing file
+MUST each map to a ``Pedigree.individual_id`` referenced in the ``pedigree`` field, in order that linkage analysis can be
+performed on the sample.
 
 See :ref:`rstfile` for further information.
-
 
 meta_data
 ~~~~~~~~

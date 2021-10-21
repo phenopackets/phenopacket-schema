@@ -1,25 +1,35 @@
 .. _rstdrugtype:
 
-=========
-Drug Type
-=========
+#########
+DrugType
+#########
+
+
+Drugs can be administered in different contexts. This element does not intend to capture information about
+the administration route (e.g., by mouth or intravenous), but rather about the setting - inpatient, outpatient,
+or related to a (generally one-time) procedure.
+
+
+DrugType is an enumeration.
 
 
 
-Drugs can be administered in different contexts, and this element
-captures information about this.
+.. list-table:: Values  of the ``DrugType`` element
+   :widths: 50 50
+   :header-rows: 1
+
+   * - Item
+     - Value
+   * - UNKNOWN_DRUG_TYPE
+     - 0
+   * - PRESCRIPTION
+     - 1
+   * - EHR_MEDICATION_LIST
+     - 2
+   * - ADMINISTRATION_RELATED_TO_PROCEDURE
+     - 3
 
 
-
-
-.. code-block:: json
-
-    enum DrugType {
-        UNKNOWN_DRUG_TYPE = 0;
-        PRESCRIPTION = 1;
-        EHR_MEDICATION_LIST = 2;
-        ADMINISTRATION_RELATED_TO_PROCEDURE = 3;
-    }
 
 
 This element does not intend to capture the medical reason for administering
@@ -35,4 +45,3 @@ a local anesthetic given before a skin biopsy or a sedative given to perform
 a bronchoscopy.
 
 
-These categories were adapted from the `OMOP CDM <https://github.com/OHDSI/CommonDataModel/wiki/DRUG_EXPOSURE>`_,

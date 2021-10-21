@@ -21,7 +21,6 @@ produced as part of the build (:ref:`rstjavabuild`).
 
    Working with Phenopackets in Java <java>
    Working with Phenopackets in C++ <cpp>
-   examples
 
 Security disclaimer
 ~~~~~~~~~~~~~~~~~~~
