@@ -29,7 +29,7 @@ Data model
     * - diagnosis
       - :ref:`rstdiagnosis`
       - 0..1
-      - One or more diagnoses, if made
+      - The diagnosis, if made.
     * - summary
       - string
       - 0..1
