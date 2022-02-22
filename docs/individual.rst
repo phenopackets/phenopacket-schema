@@ -48,7 +48,7 @@ Data model
       - 0..1
       - The karyotypic sex of the individual
     * - gender
-      - :ref:`rstkaryotypicsex`
+      - :ref:`rstontologyclass`
       - 0..1
       -  Self-identified gender
     * - taxonomy
