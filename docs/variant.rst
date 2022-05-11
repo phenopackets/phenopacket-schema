@@ -196,9 +196,9 @@ These extensions are not expected to be natively understood by all users, but ma
      - 1..1
      - A name for the Extension. REQUIRED.
    * - value
-     - google.protobuf.Any
-     - 1..*
-     - Any primitive or structured object. REQUIRED.
+     - string
+     - 1..1
+     - A string representation of the user-defined object. REQUIRED.
 
 
 .. _rstexpression:

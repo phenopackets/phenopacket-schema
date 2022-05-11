@@ -231,7 +231,7 @@ digraph phenopacket_schema_v2 {
     ]
 
     Extension [
-    label = "{Extension| name: String\l value: Any\l}"
+    label = "{Extension| name: String\l value: String\l}"
     ]
 
     MoleculeContext [

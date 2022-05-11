@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package org.ga4gh.vrsatile.v1;
 
-import "google/protobuf/any.proto";
 import "ga4gh/vrs/v1/vrs.proto";
 import "phenopackets/schema/v2/core/base.proto";
 
@@ -12,7 +11,7 @@ option java_package = "org.ga4gh.vrsatile.v1";
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#extension
 message Extension {
   string name = 1;
-  repeated google.protobuf.Any value = 2;
+  string value = 2;
 }
 
 // https://vrsatile.readthedocs.io/en/latest/value_object_descriptor/vod_index.html#expression

@@ -843,7 +843,7 @@
 <text text-anchor="middle" x="109.92" y="-85.3" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">Extension</text>
 <polyline fill="none" stroke="#000000" points="81.3672,-78.9 138.4728,-78.9 "/>
 <text text-anchor="start" x="89.3672" y="-67.7" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000">name: String</text>
-<text text-anchor="start" x="89.3672" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> value: Any</text>
+<text text-anchor="start" x="89.3672" y="-58.1" font-family="Bitstream Vera Sans" font-size="8.00" fill="#000000"> value: String</text>
 </g>
 <!-- Extension&#45;&gt;VariationDescriptor -->
 <g id="edge29" class="edge">
