@@ -237,7 +237,7 @@ public class UrothelialCarcinomaExample {
 
 
     @Test
-    void testPatientName() {
+    public void testPatientName() {
         assertEquals(this.patientId, this.phenopacket.getSubject().getId());
     }
 

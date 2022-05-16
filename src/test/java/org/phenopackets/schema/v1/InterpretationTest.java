@@ -9,10 +9,10 @@ import org.phenopackets.schema.v1.examples.TestExamples;
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-class InterpretationTest {
+public class InterpretationTest {
 
     @Test
-    void interpretation() throws Exception {
+    public void interpretation() throws Exception {
         Diagnosis diagnosis = Diagnosis.newBuilder()
                 .setDisease(Disease.newBuilder()
                         .setTerm(
