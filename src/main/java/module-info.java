@@ -1,4 +1,4 @@
-module phenopacket.schema {
+module org.phenopackets.schema {
     requires com.google.protobuf;
 
     exports org.phenopackets.schema.v1;
