@@ -1,5 +1,5 @@
 module org.phenopackets.schema {
-    requires com.google.protobuf;
+    requires transitive com.google.protobuf;
 
     exports org.phenopackets.schema.v1;
     exports org.phenopackets.schema.v1.core;
