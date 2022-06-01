@@ -12,10 +12,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author Jules Jacobsen <j.jacobsen@qmul.ac.uk>
  */
-class PhenopacketFormatTest {
+public class PhenopacketFormatTest {
 
     @Test
-    void roundTripping() throws IOException {
+    public void roundTripping() throws IOException {
         Phenopacket original = TestExamples.rareDiseasePhenopacket();
 
         String asYaml = PhenopacketFormat.toYaml(original);
@@ -29,7 +29,7 @@ class PhenopacketFormatTest {
     }
 
     @Test
-    void toFromJson() throws Exception {
+    public void toFromJson() throws Exception {
         Phenopacket original = TestExamples.cancerPhenopacket();
 
         String asJson = PhenopacketFormat.toJson(original);
@@ -39,7 +39,7 @@ class PhenopacketFormatTest {
     }
 
     @Test
-    void toFromYaml() throws Exception {
+    public void toFromYaml() throws Exception {
         Phenopacket original = TestExamples.biosamplesPhenopacket();
 
         String asYaml = PhenopacketFormat.toYaml(original);

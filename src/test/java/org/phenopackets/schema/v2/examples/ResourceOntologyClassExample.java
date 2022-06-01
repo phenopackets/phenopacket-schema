@@ -18,7 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ResourceOntologyClassExample {
 
     @Test
-    void resolveUriForHpoClass() {
+    public void resolveUriForHpoClass() {
 
         Resource hpoResource = Resource.newBuilder()
                 // for OBO Ontologies, the value of this string MUST always be the official

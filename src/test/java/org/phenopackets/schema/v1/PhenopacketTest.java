@@ -12,17 +12,17 @@ import java.io.IOException;
 public class PhenopacketTest {
 
     @Test
-    void printCancer() throws IOException {
+    public void printCancer() throws IOException {
         System.out.println(PhenopacketFormat.toYaml(TestExamples.cancerPhenopacket()));
     }
 
     @Test
-    void printRareDisease() throws IOException {
+    public void printRareDisease() throws IOException {
         System.out.println(PhenopacketFormat.toJson(TestExamples.rareDiseasePhenopacket()));
     }
 
     @Test
-    void printBiosamples() throws IOException {
+    public void printBiosamples() throws IOException {
         System.out.println(PhenopacketFormat.toYaml(TestExamples.biosamplesPhenopacket()));
     }
 }
