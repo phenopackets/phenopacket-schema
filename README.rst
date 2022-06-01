@@ -71,9 +71,10 @@ Include phenopackets into your project
         <version>${phenopacket-schema.version}</version>
     </dependency>
 
-Using phenopackets in **Python** is also straightforward::
 
-.. code:: python
+Using phenopackets in **Python** is also straightforward:
+
+.. code:: bash
 
     pip install phenopackets
 
@@ -94,9 +95,11 @@ A Phenopacket can be transformed between the native binary format and JSON using
         <version>${protobuf.version}</version>
     </dependency>
 
-.. code:: python
+
+.. code:: bash
 
     pip install protobuf
+
 
 ``protobuf-java-util`` for java and ``protobuf`` for python contain simple utility methods to perform these transformations. Usage is shown here:
 
@@ -126,6 +129,7 @@ A Phenopacket can be transformed between the native binary format and JSON using
     JsonFormat.parser().merge(jsonPhenopacket, phenoPacketBuilder2);
     Phenopacket fromJson2 = phenoPacketBuilder2.build();
 
+
 .. code-block:: python
 
     from google.protobuf.json_format import Parse, MessageToJson
@@ -146,6 +150,7 @@ A Phenopacket can be transformed between the native binary format and JSON using
 
         json = MessageToJson(phenopacket)
         jsfile.write(json)
+
 
 Building new messages from the schema
 -------------------------------------
@@ -177,9 +182,10 @@ To do this ``cd`` to the project root and run the wrapper scripts:
 
     $ ./mvnw clean install
 
+
 or
 
-.. code:: batch
+.. code:: bash
 
     $ ./mvnw.cmd clean install
 
@@ -194,17 +200,22 @@ There is a ``release-sign-artifacts`` profile for **Java** which can be triggere
 
     $ ./mvnw clean install -DperformRelease=true
 
+
 The **Python** artefacts are released by running::
 
 Test
 
 .. code::bash
+
     $ bash deploy-python.sh release-test
+
 
 Production
 
 .. code::bash
+
     $ bash deploy-python.sh release-prod
+
 
 Java, Python and C++ artefacts
 ==============================
