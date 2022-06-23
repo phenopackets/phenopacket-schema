@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package org.ga4gh.pedigree.v1;
+
+import "phenopackets/schema/v2/phenopackets.proto";
+import "phenopackets/schema/v2/core/base.proto";
+
+option java_multiple_files = true;
+option java_package = "org.ga4gh.pedigree.v1";
+
+// A GA4GH Pedigree - equivalent to the Phenopacket::Family message
+message Pedigree {
+
+  // External identifier for the family being investigated
+  string id = 1;
+
+  // Identified Individual in the family of a health condition of focus being investigated: Proband, Consultand,
+  // First Person Tested Positive
+  repeated string index_patients = 2;
+
+  // Collection of Individual who are the members of this pedigree
+  repeated org.phenopackets.schema.v2.Phenopacket individuals = 3;
+
+  // Collection of Relationship between the individuals who are the members of this pedigree
+  repeated Relationship relationships = 4;
+
+  // The reason for pedigree collection, a health condition of focus being investigated in the family; if any Individual
+  // has the affected property defined, it refers to this condition.
+  string reason = 5;
+
+  // Status of the pedigree resource collection
+  string status = 6;
+
+  // Summary of the pedigree resource for human interpretation
+  string narrative = 7;
+
+  // The date the pedigree was collected or last updated, as ISO full or partial date, i.e. YYYY, YYYY-MM, or YYYY-MM-DD
+  string date = 8;
+
+}
+
+message Relationship {
+  // Identifier of the subject Individual; equivalent to the Biolink "subject"
+  string individual_id = 1;
+
+  // The relationship the individual has to the relative (e.g., if the individual is the relative's biological mother,
+  // then relation could be isBiologicalMotherOf [KIN:027]).
+  // Terms should come from the KIN Ontology (http://purl.org/ga4gh/kin.owl).
+  org.phenopackets.schema.v2.core.OntologyClass relation = 2;
+
+  // Identifier of the relative Individual; equivalent to the Biolink "object"
+  string relative_id = 3;
+}
