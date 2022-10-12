@@ -5,9 +5,6 @@ from setuptools import setup, find_packages
 
 path = os.path.dirname(os.path.abspath(__file__))
 
-with open(os.path.join(path, 'LICENSE')) as f:
-    LICENSE = f.read()
-
 with open(os.path.join(path, 'README.rst')) as f:
     READ_ME = f.read()
 
@@ -19,7 +16,6 @@ def version():
     with open(os.path.join(path, 'pom.xml')) as f:
         pom = xmltodict.parse(f.read())
         return pom['project']['version']
-
 
 setup(
       name='phenopackets',
@@ -35,6 +31,6 @@ setup(
       author_email='michael.gargano@jax.com',
       url='https://github.com/phenopackets/phenopacket-schema',
       description='A python implementation of phenopackets protobuf',
-      license=LICENSE,
+      license='BSD',
       keywords='phenopackets, clinical'
       )
