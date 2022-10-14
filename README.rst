@@ -201,18 +201,18 @@ There is a ``release-sign-artifacts`` profile for **Java** which can be triggere
     $ ./mvnw clean install -DperformRelease=true
 
 
-The **Python** artefacts are released by running::
+The **Python** artefacts are released by running
 
 Test
 
-.. code::bash
+.. code:: bash
 
     $ bash deploy-python.sh release-test
 
 
 Production
 
-.. code::bash
+.. code:: bash
 
     $ bash deploy-python.sh release-prod
 
