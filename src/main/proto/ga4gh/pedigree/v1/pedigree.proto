@@ -20,10 +20,6 @@ message Pedigree {
   // The date the pedigree was collected or last updated, as ISO full or partial date, i.e. YYYY, YYYY-MM, or YYYY-MM-DD
   string date = 3;
 
-  // The reason for pedigree collection, a health condition of focus being investigated in the family; if any Individual
-  // has the affected property defined, it refers to this condition.
-  string reason = 4;
-
   // Status of the pedigree resource collection
   string status = 5;
 

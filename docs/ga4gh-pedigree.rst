@@ -63,17 +63,20 @@ Ordinarily there should be more fields (e.g. the metadata) within the Phenopacke
     ---
     id: "FAM1"
     narrative: "A Phenopacket GA4GHPedigree of a trio with an affected child"
-    date: "2022-11-22"
+    date: "2022-06-23"
     indexPatients:
     - "CHILD"
     individuals:
-    - subject:
+    - id: "1"
+      subject:
         id: "MOTHER"
         sex: "FEMALE"
-    - subject:
+    - id: "2"
+      subject:
         id: "FATHER"
         sex: "MALE"
-    - subject:
+    - id: "3"
+      subject:
         id: "CHILD"
     relationships:
     - individualId: "MOTHER"

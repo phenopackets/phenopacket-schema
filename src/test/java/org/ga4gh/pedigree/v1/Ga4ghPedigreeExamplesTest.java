@@ -3,6 +3,7 @@ package org.ga4gh.pedigree.v1;
 import org.junit.jupiter.api.Test;
 import org.phenopackets.schema.v2.Phenopacket;
 import org.phenopackets.schema.v2.core.*;
+import org.phenopackets.schema.v2.io.FormatMapper;
 
 import java.io.IOException;
 
@@ -45,7 +46,7 @@ class Ga4ghPedigreeExamplesTest {
                 .addRelationships(relationship(father, BIOLOGICAL_FATHER_OF, proband))
                 .build();
 
-//        System.out.println(FormatMapper.messageToYaml(pedigree));
+        System.out.println(FormatMapper.messageToYaml(pedigree));
     }
 
     @Test
