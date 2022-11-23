@@ -14,28 +14,28 @@ message Pedigree {
   // External identifier for the family being investigated
   string id = 1;
 
-  // Identified Individual in the family of a health condition of focus being investigated: Proband, Consultand,
-  // First Person Tested Positive
-  repeated string index_patients = 2;
+  // Summary of the pedigree resource for human interpretation
+  string narrative = 2;
 
-  // Collection of Individual who are the members of this pedigree
-  repeated org.phenopackets.schema.v2.Phenopacket individuals = 3;
-
-  // Collection of Relationship between the individuals who are the members of this pedigree
-  repeated Relationship relationships = 4;
+  // The date the pedigree was collected or last updated, as ISO full or partial date, i.e. YYYY, YYYY-MM, or YYYY-MM-DD
+  string date = 3;
 
   // The reason for pedigree collection, a health condition of focus being investigated in the family; if any Individual
   // has the affected property defined, it refers to this condition.
-  string reason = 5;
+  string reason = 4;
 
   // Status of the pedigree resource collection
-  string status = 6;
+  string status = 5;
 
-  // Summary of the pedigree resource for human interpretation
-  string narrative = 7;
+  // Identified Individual in the family of a health condition of focus being investigated: Proband, Consultand,
+  // First Person Tested Positive
+  repeated string index_patients = 6;
 
-  // The date the pedigree was collected or last updated, as ISO full or partial date, i.e. YYYY, YYYY-MM, or YYYY-MM-DD
-  string date = 8;
+  // Collection of Individual who are the members of this pedigree
+  repeated org.phenopackets.schema.v2.Phenopacket individuals = 7;
+
+  // Collection of Relationship between the individuals who are the members of this pedigree
+  repeated Relationship relationships = 8;
 
 }
 

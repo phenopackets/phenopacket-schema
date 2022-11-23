@@ -9,4 +9,6 @@ module org.phenopackets.schema {
 
     exports org.ga4gh.vrs.v1;
     exports org.ga4gh.vrsatile.v1;
+
+    exports org.ga4gh.pedigree.v1;
 }
