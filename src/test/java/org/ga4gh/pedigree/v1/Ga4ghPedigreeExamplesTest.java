@@ -36,7 +36,7 @@ class Ga4ghPedigreeExamplesTest {
 
         Pedigree pedigree = Pedigree.newBuilder()
                 .setId("FAM1")
-                .setNarrative("A Phenopacket GA4GHPedigree of a trio with an affected child")
+                .setNarrative("A Phenopacket Schema GA4GH Pedigree of a trio with an affected child")
                 .setDate("2022-06-23")
                 .addIndexPatients(proband.getSubject().getId())
                 .addIndividuals(mother)
@@ -58,7 +58,7 @@ class Ga4ghPedigreeExamplesTest {
 
         Pedigree pedigree = Pedigree.newBuilder()
                 .setId("FAM2")
-                .setNarrative("A Phenopacket GA4GHPedigree of a couple with identical twins")
+                .setNarrative("A Phenopacket Schema GA4GH Pedigree of a couple with identical twins")
                 .setDate("2022-06-23")
                 .addIndividuals(mother)
                 .addIndividuals(father)
@@ -84,7 +84,7 @@ class Ga4ghPedigreeExamplesTest {
 
         Pedigree pedigree = Pedigree.newBuilder()
                 .setId("FAM3")
-                .setNarrative("A Phenopacket GA4GHPedigree of a child with an adoptive mother")
+                .setNarrative("A Phenopacket Schema GA4GH Pedigree of a child with an adoptive mother")
                 .setDate("2022-06-23")
                 .addIndividuals(mother)
                 .addIndividuals(biologicalMother)
@@ -107,7 +107,7 @@ class Ga4ghPedigreeExamplesTest {
 
         Pedigree pedigree = Pedigree.newBuilder()
                 .setId("FAM4")
-                .setNarrative("A Phenopacket GA4GHPedigree of a child with an egg donor, gestational carrier, and biological father")
+                .setNarrative("A Phenopacket Schema GA4GH Pedigree of a child with an egg donor, gestational carrier, and biological father")
                 .setDate("2022-06-23")
                 .addIndividuals(mother)
                 .addIndividuals(surrogate)
