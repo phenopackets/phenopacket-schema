@@ -1,0 +1,28 @@
+[package]
+name = "phenopacket-schema"
+version = "2.0.2"
+license = "https://opensource.org/licenses/BSD-3-Clause"
+homepage = "https://github.com/phenopackets/phenopacket-schema"
+authors = ["Chris Mungall <cjmungall@lbl.gov>", "Jules Jacobsen <j.jacobsen@qmul.ac.uk>", "Peter Robinson <peter.robinson@jax.org>"]
+description = "A Protobuf schema for capturing clinical phenotypes"
+edition = "2021"
+
+[lib]
+path = "src/main/rust/lib.rs"
+
+[dependencies]
+bytes = "1.4.0"
+prost = { version = "0.11.9", features = ["prost-derive"] }
+prost-types = { version = "0.11.9", features = ["std"]}
+pbjson = "0.5.1"
+pbjson-types = "0.5.1"
+#prost-wkt = "0.4.1"
+serde = { version = "1.0.137", features = ["derive"] }
+serde_json = "1.0.81"
+serde_yaml = "0.9.21"
+
+[build-dependencies]
+protobuf-src = "1.1.0"
+prost-build = "0.11.9"
+pbjson-build = "0.5.1"
+#prost-wkt-build = "0.4.1"
