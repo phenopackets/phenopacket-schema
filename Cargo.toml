@@ -1,11 +1,12 @@
 [package]
 name = "phenopacket-schema"
 version = "2.0.2"
-license = "https://opensource.org/licenses/BSD-3-Clause"
-homepage = "https://github.com/phenopackets/phenopacket-schema"
 authors = ["Chris Mungall <cjmungall@lbl.gov>", "Jules Jacobsen <j.jacobsen@qmul.ac.uk>", "Peter Robinson <peter.robinson@jax.org>"]
-description = "A Protobuf schema for capturing clinical phenotypes"
 edition = "2021"
+description = "A Protobuf schema for capturing clinical phenotypes"
+repository = "https://github.com/phenopackets/phenopacket-schema"
+license = "BSD-3-Clause"
+keywords = ["phenopackets", "ga4gh", "serialization"]
 
 [lib]
 path = "src/main/rust/lib.rs"
