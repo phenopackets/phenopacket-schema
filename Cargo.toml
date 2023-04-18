@@ -8,7 +8,7 @@ documentation = "https://phenopacket-schema.readthedocs.io/"
 repository = "https://github.com/phenopackets/phenopacket-schema"
 license = "BSD-3-Clause"
 keywords = ["phenopackets", "ga4gh", "serialization", "protobuf"]
-readme = "README.rst"
+readme = "README.md"
 include = ["src/main/proto", "src/main/rust", "build.rs", "Cargo.toml", "/LICENSE", "/*.rst"]
 
 [lib]
