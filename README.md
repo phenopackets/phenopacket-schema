@@ -2,11 +2,8 @@ Phenopacket schema
 ==================
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.phenopackets/phenopacket-schema)
-
 [![PyPI version](https://badge.fury.io/py/phenopackets.svg)](https://badge.fury.io/py/phenopackets)
-
 [![Crate](https://img.shields.io/crates/v/phenopacket-schema.svg)](https://crates.io/crates/phenopacket-schema)
-
 [![Documentation](https://readthedocs.org/projects/phenopacket-schema/badge/?version=v2)](https://phenopacket-schema.readthedocs.io/en/v2/?badge=v2)
 
 
