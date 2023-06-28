@@ -156,8 +156,8 @@ Building new messages from the schema
 -------------------------------------
 There is an example of how to do this included in the `mme.proto`_ file. Here the Matchmaker Exchange (MME) API has been implemented using the phenopackets schema, defining custom messages as required, but re-using messages from `base.proto`_ where applicable. Using the above example, perhaps the ``Phenopacket.genes`` is a problem as you wish to record not only the gene panels ordered, but also the candidate genes discovered in two separate fields. In this case, a new bespoke message could be created, using the ``Gene`` as a building block.
 
-.. _mme.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/test/proto/org/matchmakerexchange/api/v1/mme.proto
-.. _base.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/main/proto/org/phenopackets/schema/v1/core/base.proto
+.. _mme.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/test/proto/mme.proto
+.. _base.proto: https://github.com/phenopackets/phenopacket-schema/blob/master/src/main/proto/phenopackets/schema/v1/base.proto
 
 Git Submodules
 ==============
@@ -201,18 +201,18 @@ There is a ``release-sign-artifacts`` profile for **Java** which can be triggere
     $ ./mvnw clean install -DperformRelease=true
 
 
-The **Python** artefacts are released by running::
+The **Python** artefacts are released by running
 
 Test
 
-.. code::bash
+.. code:: bash
 
     $ bash deploy-python.sh release-test
 
 
 Production
 
-.. code::bash
+.. code:: bash
 
     $ bash deploy-python.sh release-prod
 

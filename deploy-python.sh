@@ -19,9 +19,9 @@ createInitFile(){
 replaceImports(){
     for i in "${pyfiles[@]}"
   do
-      sed -i 's/from phenopackets.schema.v2.core/from . /g' "$TEMP_DIRECTORY_PYTHON_MODULE/${i}_pb2.py"
-      sed -i 's/from ga4gh.vrsatile.v1/from . /g' "$TEMP_DIRECTORY_PYTHON_MODULE/${i}_pb2.py"
-      sed -i 's/from ga4gh.vrs.v1/from . /g' "$TEMP_DIRECTORY_PYTHON_MODULE/${i}_pb2.py"
+      sed -i '' 's/from phenopackets.schema.v2.core/from . /g' "$TEMP_DIRECTORY_PYTHON_MODULE/${i}_pb2.py"
+      sed -i '' 's/from ga4gh.vrsatile.v1/from . /g' "$TEMP_DIRECTORY_PYTHON_MODULE/${i}_pb2.py"
+      sed -i '' 's/from ga4gh.vrs.v1/from . /g' "$TEMP_DIRECTORY_PYTHON_MODULE/${i}_pb2.py"
   done
 }
 
@@ -60,7 +60,7 @@ cd $TEMP_DIRECTORY || { echo "Deployment FAILED. Couldn't cd to temp directory" 
 source "$TEMP_DIRECTORY_VIRTUAL_ENV/bin/activate"
 pip install -r "$TEMP_DIRECTORY/requirements.txt"
 # Dependencies for building/deploying
-python3 -m pip install setuptools wheel twine || { echo "Deployment FAILED. Failed to install python dependencies" ; exit 1; }
+python3 -m pip install setuptools wheel twine xmltodict || { echo "Deployment FAILED. Failed to install python dependencies" ; exit 1; }
 # Test
 pip install -e .
 python3 setup.py test || { echo "Deployment FAILED. Unittest Failure" ; exit 1; }
