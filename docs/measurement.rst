@@ -59,12 +59,12 @@ general this element can be used to represent normal or abnormal measurements.
                     id: "UO:0000316"
                     label: "cells per microliter"
                 value: 24000.0
-        referenceRange:
-            unit:
-                id: "UO:0000316"
-                label: "cells per microliter"
-            low: 150000.0
-            high: 450000.0
+                referenceRange:
+                    unit:
+                        id: "UO:0000316"
+                        label: "cells per microliter"
+                    low: 150000.0
+                    high: 450000.0
         timeObserved:
             timestamp: "2020-10-01T10:54:20.021Z"
 
