@@ -6,9 +6,9 @@ FHIR Implementation Guide
 
 Phenopacket on FHIR is a Fast Healthcare Interoperability Resources (FHIR) Implementation Guide (IG) based on the Phenopacket standard. It is meant to be conceptually equivalent but not directly interoperable. The guide is hosted at:
 
-http://phenopackets.org/core-ig/master/
+http://phenopackets.org/core-ig/ig/branch/master/index.html
 
-A list of the FHIR artifacts defined as part of this implementation guide can be found at http://phenopackets.org/core-ig/master/artifacts.html
+A list of the FHIR artifacts defined as part of this implementation guide can be found at http://phenopackets.org/core-ig/ig/branch/master/artifacts.html
 
 Briefly, the implementation guide includes definitions for the properties by which a RESTFUL server can be queried (Search Parameters), the constraints on FHIR resources for systems (Resource Profiles) and on FHIR data types (Extension Definitions) conforming to this implementation guide, and the existent sets of codes (Value Sets) and new Code Systems used by systems that conform to the Phenopacket FHIR IG.
 
