@@ -9,8 +9,7 @@ This element is intended to be used to describe a phenotype that characterizes t
 For medical use cases the subject will generally be a patient or a proband of a study, and the phenotypes will
 be abnormalities described by an ontology such as the `Human Phenotype Ontology <http://www.human-phenotype-ontology.org>`_.
 The word phenotype is used with many different meanings including disease entity, but in this context we mean
-An individual phenotypic feature, observed as either present or absent (excluded), with possible onset, modifiers and
-frequency.
+An individual phenotypic feature, observed as either present or absent (excluded), with possible onset, and modifiers.
 
 
 Data model
