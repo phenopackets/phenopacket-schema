@@ -138,7 +138,7 @@ A Phenopacket can be transformed between the native binary format and JSON using
 
     # Parsing phenopackets from json
     with open('file.json', 'r') as jsfile:
-        phenopacket = Parse(Phenopacket(), text=jsfile.read())
+        phenopacket = Parse(message=Phenopacket(), text=jsfile.read())
 
     # Writing phenopackets to json
     with open('file.json', 'w') as jsfile:
