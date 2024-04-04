@@ -7,8 +7,9 @@ Procedure
 The Procedure element represents a clinical procedure performed on a subject. For example a surgical or diagnostic
 procedure such as a biopsy.
 
-If the Procedure element is used, it must contain a ``code`` element, but only need contain the
-body_site element if needed.
+By preference a single ``code`` to indicate both the procedure and the
+body site should be used. In cases where this is not possible, the body site should be indicated using a separate
+ontology class.
 
 Data model
 ##########
@@ -40,6 +41,8 @@ In this example, a skin biopsy from the skin of the forearm is perfomed on an in
                 iso8601duration: "P25Y"
 
 
+In this case, the ``code`` for "Punch biopsy" is not specific to a location, so providing ``bodySite`` gives
+additional useful information.
 
 
 Explanations
