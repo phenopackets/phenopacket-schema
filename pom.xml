@@ -187,15 +187,32 @@
                 </configuration>
                 <executions>
                     <execution>
+                        <id>java-cpp-js</id>
                         <goals>
                             <goal>compile</goal>
                             <goal>test-compile</goal>
-                            <goal>compile-python</goal>
-                            <goal>test-compile-python</goal>
                             <goal>compile-cpp</goal>
                             <goal>test-compile-cpp</goal>
                             <goal>compile-js</goal>
                         </goals>
+                    </execution>
+                    <execution>
+                        <id>compile-python</id>
+                        <goals>
+                            <goal>compile-python</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>python/src</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-python-test</id>
+                        <goals>
+                            <goal>test-compile-python</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>python/tests</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

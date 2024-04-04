@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=65.6.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phenopackets"
+version = "2.0.2.post2"  # IMPORTANT: This must be kept in sync with `project.version` in the top-level `pom.xml`
+requires-python = ">=3.8"
+description = "Phenopacket Schema"
+readme = "README.rst"
+authors = [
+    { name = "Michael Gargano", email = "michael.gargano@jax.org" },
+    { name = "Daniel Danis", email = "daniel.gordon.danis@protonmail.com" },
+    { name = "Jules Jacobsen", email = "j.jacobsen@qmul.ac.uk" },
+    { name = "Chris Mungall", email = "cjmungall@lbl.gov" },
+    { name = "Peter Robinson", email = "peter.robinson@bih-charite.de" },
+]
+license = { file = "LICENSE" }
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = [
+    "Global Alliance for Genomics and Health",
+    "GA4GH Phenopacket Schema",
+    "GA4GH",
+]
+
+dependencies = [
+    # TODO: `protobuf>=3.21.7`?
+    #  Maven Central points out presence a security vulnerability in the older versions.
+    "protobuf>=3.15.0,<4.0.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0, <8.0.0",
+]
+
+[project.urls]
+homepage = "https://github.com/phenopackets/phenopacket-schema"
+repository = "https://github.com/phenopackets/phenopacket-schema.git"
+documentation = "https://github.com/phenopackets/phenopacket-schema"
+bugtracker = "https://github.com/phenopackets/phenopacket-schema/issues"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]

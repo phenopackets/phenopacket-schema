@@ -127,6 +127,9 @@ nb-configuration.xml
 ### Python template
 !requirements.txt
 
+# We do not track the generated Protobuf files for now.
+python/**/*_pb2.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
