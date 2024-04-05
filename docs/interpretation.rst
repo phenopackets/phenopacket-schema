@@ -150,10 +150,10 @@ with the hypothetical gene YFG42.
         id: "OMIM:263750"
         label: "Miller syndrome"
       genomicInterpretations:
-      - interpretationStatus: "CONTRIBUTORY"
+      - interpretationStatus: "CANDIDATE"
         gene:
-          valueId: "HGNC:2867"
-          symbol: "DHODH"
+          valueId: "HGNC:11234"
+          symbol: "YFG42"
 
 
 Diagnostic finding in an autosomal dominant disease
