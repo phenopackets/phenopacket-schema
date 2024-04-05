@@ -159,7 +159,7 @@ laboratory observations. It can be used to denote clinical assays in the :ref:`r
    * - Platelets [#/volume] in Blood
      - `LOINC:26515-7 <https://loinc.org/26515-7/>`_
    * - Calcium [Mass/volume] in Serum or Plasma
-     - `LOINC:17861-6 <https://www <https://loinc.org/17861-6/>`_
+     - `LOINC:17861-6 <https://loinc.org/17861-6/>`_
 
 
 Medications

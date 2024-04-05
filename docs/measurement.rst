@@ -12,7 +12,7 @@ Data model
 ##########
 
 
-.. list-table:: Definition  of the ``Quantity`` element
+.. list-table:: Definition  of the ``Measurement`` element
    :widths: 25 25 25 75
    :header-rows: 1
 
