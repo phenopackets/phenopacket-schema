@@ -190,10 +190,10 @@
                         <goals>
                             <goal>compile</goal>
                             <goal>test-compile</goal>
-                            <goal>compile-cpp</goal>
-                            <goal>test-compile-cpp</goal>
                             <goal>compile-python</goal>
                             <goal>test-compile-python</goal>
+                            <goal>compile-cpp</goal>
+                            <goal>test-compile-cpp</goal>
                             <goal>compile-js</goal>
                         </goals>
                     </execution>
