@@ -30,7 +30,7 @@ VariantInterpretation
      - :ref:`rsttherapeuticactionability`
      - 1..1
      - The therapeutic actionability of the variant, default is UNKNOWN_ACTIONABILITY
-   * - variant
+   * - variation_descriptor
      - :ref:`rstvariant`
      - 1..1
      - a genetic/genomic variant
