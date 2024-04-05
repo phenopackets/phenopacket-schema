@@ -54,4 +54,5 @@ else
 fi
 
 # Clean up
-rm -rf build dist src/*
+deactivate
+rm -rf build dist src/* ${TEMP_DIRECTORY_VIRTUAL_ENV}
