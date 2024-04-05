@@ -1,13 +1,11 @@
 import os
-import unittest
 
 from google.protobuf.json_format import Parse, MessageToJson
 from google.protobuf.timestamp_pb2 import Timestamp
-
 from phenopackets import Individual, Sex, PhenotypicFeature, OntologyClass, Phenopacket
 
-
-class PhenopacketsTest(unittest.TestCase):
+# This will break when we deprecate the new stuff.
+class PhenopacketsTest:
     path = os.path.dirname(os.path.abspath(__file__))
     subject = Individual(id="Zaphod", sex="MALE", date_of_birth=Timestamp(seconds=-123456798))
     phenotypic_features = [PhenotypicFeature(type=OntologyClass(id="HG2G:00001", label="Hoopy")),

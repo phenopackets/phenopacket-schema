@@ -210,9 +210,6 @@
                         <goals>
                             <goal>test-compile-python</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>python/tests</outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
