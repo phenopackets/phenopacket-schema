@@ -35,7 +35,7 @@ TherapeuticRegimen
      - :ref:`rsttimeelement`
      - 0..1
      - When the regimen ended. An empty `end_time` with a populated `start_time` would indicate the regimen was ongoing. RECOMMENDED.
-   * - status
+   * - regimen_status
      - :ref:`rstregimenstatus`
      - 1..1
      - Current status of the regimen for the enclosing :ref:`rstmedicalaction` on the :ref:`rstindividual`. REQUIRED.
