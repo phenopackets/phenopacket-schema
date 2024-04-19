@@ -73,14 +73,14 @@ class TestImportsPostV202:
 class TestImportVrsatile:
 
     def test_singular_import(self):
-        from ga4gh.vrsatile.v1.vrsatile_pb2 import Extension
+        from phenopackets.vrsatile.v1.vrsatile_pb2 import Extension
 
         e = Extension()
 
         assert isinstance(e, Extension)
 
     def test_import_vrs(self):
-        import ga4gh.vrsatile.v1.vrsatile_pb2 as vrsatile
+        import phenopackets.vrsatile.v1.vrsatile_pb2 as vrsatile
 
         e = vrsatile.Extension()
 
@@ -90,14 +90,14 @@ class TestImportVrsatile:
 class TestImportVrs:
 
     def test_singular_import(self):
-        from ga4gh.vrs.v1.vrs_pb2 import Number
+        from phenopackets.vrs.v1.vrs_pb2 import Number
 
         number = Number()
 
         assert isinstance(number, Number)
 
     def test_import_vrs(self):
-        import ga4gh.vrs.v1.vrs_pb2 as vrs
+        import phenopackets.vrs.v1.vrs_pb2 as vrs
 
         n = vrs.Number()
 

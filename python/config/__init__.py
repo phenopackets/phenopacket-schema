@@ -18,5 +18,5 @@ from .schema.v2.core.meta_data_pb2 import *
 from .schema.v2.core.pedigree_pb2 import *
 from .schema.v2.core.phenotypic_feature_pb2 import *
 from .schema.v2.phenopackets_pb2 import *
-from ga4gh.vrs.v1.vrs_pb2 import *
-from ga4gh.vrsatile.v1.vrsatile_pb2 import *
+from .vrs.v1.vrs_pb2 import *
+from .vrsatile.v1.vrsatile_pb2 import *
