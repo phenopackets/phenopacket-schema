@@ -11,9 +11,9 @@ echo "Building phenopacket distribution files in directory at $DIRECTORY"
 
 # Copy the generated files into the target folder
 cp -r target/generated-sources/protobuf/python/* ${DIRECTORY}/src/
-# Add module file to re-export the v2.0.2 classes to maintain backwards compatibility
-# until we remove the classes.
-cp ${DIRECTORY}/config/__init__.py ${DIRECTORY}/src/phenopackets/
+# Add module files to re-export the v2.0.2 classes to maintain backwards compatibility,
+# and `__init__.py` to allow importing all v2 building blocks at once.
+cp -r ${DIRECTORY}/config/* ${DIRECTORY}/src/phenopackets
 
 cd $DIRECTORY || { echo "Deployment FAILED. Couldn't find directory" ; exit 1; }
 createVirtualEnvironment(){
@@ -54,5 +54,6 @@ else
 fi
 
 # Clean up
+echo "Cleaning up the build environment and the build files"
 deactivate
 rm -rf build dist src/* ${TEMP_DIRECTORY_VIRTUAL_ENV}
