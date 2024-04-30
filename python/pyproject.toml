@@ -53,4 +53,6 @@ package-dir = { "" = "src" }
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
+    "../docs",
 ]
+addopts = "--doctest-modules --doctest-glob=\"*.rst\""
