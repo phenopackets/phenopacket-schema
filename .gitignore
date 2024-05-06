@@ -129,6 +129,7 @@ nb-configuration.xml
 
 # We do not track the generated Protobuf files for now.
 python/**/*_pb2.py
+python/**/*_pb2.pyi
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
