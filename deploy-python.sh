@@ -7,13 +7,7 @@ DIRECTORY=./python
 echo "Building phenopacket distribution files in directory at $DIRECTORY"
 
 # Ensure we generated the protobuf Python files.
-./mvnw clean package
-
-# Copy the generated files into the target folder
-cp -r target/generated-sources/protobuf/python/* ${DIRECTORY}/src/
-# Add module files to re-export the v2.0.2 classes to maintain backwards compatibility,
-# and `__init__.py` to allow importing all v2 building blocks at once.
-cp -r ${DIRECTORY}/config/* ${DIRECTORY}/src/phenopackets
+./mvnw clean compile
 
 cd $DIRECTORY || { echo "Deployment FAILED. Couldn't find directory" ; exit 1; }
 createVirtualEnvironment(){
@@ -56,4 +50,6 @@ fi
 # Clean up
 echo "Cleaning up the build environment and the build files"
 deactivate
-rm -rf build dist src/* ${TEMP_DIRECTORY_VIRTUAL_ENV}
+rm -rf build dist ${TEMP_DIRECTORY_VIRTUAL_ENV}
+cd ..
+./mvnw clean
