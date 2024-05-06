@@ -169,33 +169,55 @@
     </dependencies>
 
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>1.6.0</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
-                <groupId>org.xolstice.maven.plugins</groupId>
+                <groupId>io.github.ascopes</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.6.1</version>
-                <extensions>true</extensions>
+                <version>1.2.1</version>
+
                 <configuration>
-                    <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
+                    <protocVersion>${protobuf.version}</protocVersion>
+                    <sourceDirectories>
+                        <sourceDirectory>src/main/proto</sourceDirectory>
+                    </sourceDirectories>
+                    <!-- We partition the generated sources by language, a folder per language.
+                    Each language is generated in a dedicated execution.
+                    Since Java is enabled by default, we disable Java here
+                    to prevent generating Java classes into the other language's folder.
+                    -->
+                    <javaEnabled>false</javaEnabled>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>generate-java</id>
                         <goals>
-                            <goal>compile</goal>
-                            <goal>test-compile</goal>
-                            <goal>compile-python</goal>
-                            <goal>test-compile-python</goal>
-                            <goal>compile-cpp</goal>
-                            <goal>test-compile-cpp</goal>
-                            <goal>compile-js</goal>
+                            <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <javaEnabled>true</javaEnabled>
+                            <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-python</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <pythonEnabled>true</pythonEnabled>
+                            <pythonStubsEnabled>true</pythonStubsEnabled>
+                            <outputDirectory>${project.build.directory}/generated-sources/python</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-cpp</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <cppEnabled>true</cppEnabled>
+                            <outputDirectory>${project.build.directory}/generated-sources/cpp</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
