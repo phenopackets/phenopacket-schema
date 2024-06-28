@@ -5,7 +5,7 @@ Requirement Levels
 ##################
 
 
-The schema is formally defined using `protobuf3 <rstprotobuf>`_. In protobuf3, all elements are optional, and so there is no mechanism
+The schema is formally defined using :ref:`protobuf3 <rstprotobuf>`. In protobuf3, all elements are optional, and so there is no mechanism
 within protobuf to declare that a certain field is required. The Phenopacket schema does require some fields to be
 present and in some cases additionally requires that these fields have a certain format (syntax) or intended meaning
 (semantics). Software that uses Phenopackets should check the validity of the data with other means. We provide a Java
