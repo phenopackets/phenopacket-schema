@@ -53,6 +53,7 @@
         <protobuf.version>3.20.3</protobuf.version>
         <jackson.version>2.15.2</jackson.version>
         <hapi-fhir.version>5.7.2</hapi-fhir.version>
+        <python.src>${project.basedir}/python/src</python.src>
     </properties>
 
     <distributionManagement>
@@ -169,33 +170,45 @@
     </dependencies>
 
     <build>
-        <extensions>
-            <extension>
-                <groupId>kr.motd.maven</groupId>
-                <artifactId>os-maven-plugin</artifactId>
-                <version>1.6.0</version>
-            </extension>
-        </extensions>
         <plugins>
             <plugin>
-                <groupId>org.xolstice.maven.plugins</groupId>
+                <groupId>io.github.ascopes</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
-                <version>0.6.1</version>
-                <extensions>true</extensions>
+                <version>2.2.3</version>
+
                 <configuration>
-                    <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
+                    <protocVersion>${protobuf.version}</protocVersion>
+                    <sourceDirectories>
+                        <sourceDirectory>src/main/proto</sourceDirectory>
+                    </sourceDirectories>
+                    <!-- We partition the generated sources by language, a folder per language.
+                    Each language is generated in a dedicated execution.
+                    Since Java is enabled by default, we disable Java here
+                    to prevent generating Java classes into the other language's folder.
+                    -->
+                    <javaEnabled>false</javaEnabled>
+                    <embedSourcesInClassOutputs>true</embedSourcesInClassOutputs>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>generate-java</id>
                         <goals>
-                            <goal>compile</goal>
-                            <goal>test-compile</goal>
-                            <goal>compile-python</goal>
-                            <goal>test-compile-python</goal>
-                            <goal>compile-cpp</goal>
-                            <goal>test-compile-cpp</goal>
-                            <goal>compile-js</goal>
+                            <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <javaEnabled>true</javaEnabled>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-python</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <pythonEnabled>true</pythonEnabled>
+                            <pythonStubsEnabled>true</pythonStubsEnabled>
+                            <outputDirectory>${python.src}</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -251,6 +264,22 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <!-- Delete the generated *.py and *.pyi files except of the manually added re-exports. -->
+                            <directory>${python.src}</directory>
+                            <excludes>
+                                <exclude>**/__init__.py</exclude>
+                            </excludes>
+                        </fileset>
+                    </filesets>
+                </configuration>
             </plugin>
         </plugins>
     </build>
