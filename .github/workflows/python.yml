@@ -41,6 +41,5 @@ jobs:
       
       - name: Run Python tests
         run: |
-          pwd
-          cd python && pytest --collect-only
+          cd python && pytest
   
