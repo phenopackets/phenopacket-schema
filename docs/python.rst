@@ -66,7 +66,7 @@ such as `bool`, `int`, `str`, or `float`, and the assignment will *NOT* work for
 >>> pf.type = spherocytosis
 Traceback (most recent call last):
   ...
-AttributeError: Assignment not allowed to field "type" in protocol message object.
+AttributeError: Assignment not allowed to composite field "type" in protocol message object.
 
 To set a message field, we must use the `CopyFrom` function:
 
