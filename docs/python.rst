@@ -63,7 +63,7 @@ However, setting the field values with property syntax only works for
 such as `bool`, `int`, `str`, or `float`, and the assignment will *NOT* work for message fields:
 
 >>> pf = pps2.PhenotypicFeature()
->>> pf.type = spherocytosis
+>>> pf.type = spherocytosis # doctest: +IGNORE_EXCEPTION_DETAIL
 Traceback (most recent call last):
   ...
 AttributeError: Assignment not allowed to composite field "type" in protocol message object.
