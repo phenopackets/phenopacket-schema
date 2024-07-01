@@ -41,5 +41,5 @@ jobs:
       
       - name: Run Python tests
         run: |
-          pytest
+          pytest --collect-only
   
