@@ -32,7 +32,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       
-      - name: Build with Maven
+      - name: Generate Python bindings with Maven
         run: ./mvnw -B package -DskipTests # we run tests elsewhere
       
       - name: Install Python bindings
@@ -41,5 +41,6 @@ jobs:
       
       - name: Run Python tests
         run: |
-          pytest --collect-only
+          pwd
+          cd python && pytest --collect-only
   
