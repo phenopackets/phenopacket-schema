@@ -17,8 +17,8 @@ Data model
    :header: Field, Type, Multiplicity, Description
 
     code, :ref:`rstontologyclass`, 1..1, clinical procedure performed. REQUIRED.
-    body_site, :ref:`rstontologyclass`, 0..*, specific body site where the procedure was performed
-    performed, :ref:`rsttimeelement`, 0..*, age/time when the procedure was performed
+    body_site, :ref:`rstontologyclass`, 0..1, specific body site where the procedure was performed
+    performed, :ref:`rsttimeelement`, 0..1, age/time when the procedure was performed
 
 Example
 #######

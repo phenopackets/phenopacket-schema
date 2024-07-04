@@ -20,6 +20,7 @@ produced as part of the build (:ref:`rstjavabuild`).
    :maxdepth: 1
 
    Working with Phenopackets in Java <java>
+   Working with Phenopackets in Python <python>
    Working with Phenopackets in C++ <cpp>
 
 Security disclaimer
