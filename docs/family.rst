@@ -44,6 +44,10 @@ Data model
      - :ref:`rstphenopacket` (list)
      - 0..*
      - list of Phenopackets for family members other than the proband
+   * - consanguinous_parents
+     - bool
+     - 0..1
+     - flag to indicate that the parents of the proband are consanguinous
    * - pedigree
      - :ref:`rstpedigree`
      - 1..1

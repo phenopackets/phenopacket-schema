@@ -5,7 +5,7 @@ Value
 #####
 
 The value element is meant to be used as part of the :ref:`rstmeasurement` element, and it
-represents the outcome of a measurment.
+represents the outcome of a measurement.
 
 
 Data model
@@ -60,7 +60,7 @@ The following example shows a Value used for an ordinal measurement.
 Explanations
 ############
 
-See :ref:`rstquantity` for explanations of how to contruct that element. For ordinal measurements,
+See :ref:`rstquantity` for explanations of how to construct that element. For ordinal measurements,
 the following terms may be useful.
 
 

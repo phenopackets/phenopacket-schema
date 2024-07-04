@@ -6,7 +6,7 @@ VariationDescriptor
 
 Variation Descriptors are part of the `VRSATILE framework <https://vrsatile.readthedocs.io>`_, a set of
 conventions extending the GA4GH `Variation Representation Specification (VRS) <https://vrs.ga4gh.org>`_.
-Descriptors allow for the complemetary use of human-readable labels, descriptions, alternate contexts,
+Descriptors allow for the complementary use of human-readable labels, descriptions, alternate contexts,
 and identifier cross-references alongside the precise computable representation of variation concepts
 provided by VRS.
 
