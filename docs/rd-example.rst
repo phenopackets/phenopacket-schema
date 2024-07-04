@@ -14,7 +14,7 @@ Phenopacket).
 We show how to create this phenopacket in Java :ref:`here<rstrarediseaseexamplejava>`.
 
 
-*COL6A1* mutation leading to Bethlem myopathy with recurrent hematuria: a case report
+COL6A1 mutation leading to Bethlem myopathy with recurrent hematuria: a case report
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 We present an example that summarizes the data presented in a
 `case report <https://www.ncbi.nlm.nih.gov/pubmed/30808312>`_ about a boy with Bethlem myopathy. For simplicity's sake,
