@@ -12,7 +12,7 @@ language implementations.
 Example code
 ~~~~~~~~~~~~
 We provide several examples that demonstrate how to work with Phenopackets in Java and C++.
-There are also Python examples in the source code test directory. All three langauge implementations are automatically
+There are also Python examples in the source code test directory. All three language implementations are automatically
 produced as part of the build (:ref:`rstjavabuild`).
 
 

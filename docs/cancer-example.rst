@@ -78,7 +78,7 @@ each :ref:`rstbiosample` in turn. The entire collection of biosamples is represe
 
 biosample 1: Infiltrating Urothelial Carcinoma
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The first biosample is a biopsy taken from the wall of the urinary bladder. The histologuical diagnosis is represented
+The first biosample is a biopsy taken from the wall of the urinary bladder. The histological diagnosis is represented
 by a National Cancer Institute's Thesaurus code. This is a primary malignant neoplasm with stage T2bN2. A VCF file
 representing a paired normal germline sample is located at ``/data/genomes/urothelial_ca_wgs.vcf.gz`` on the file system.
 In order to specify the procedure used to remove the bladder and prostate gland,
