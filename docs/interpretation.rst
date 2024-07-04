@@ -136,7 +136,7 @@ other researchers with similar cases in order to subsequently share detailed inf
 a collaborative project.
 
 In this case, the gene should be marked as ``CANDIDATE``. Here is an example of an interpretation
-with the gene DHODH.
+with the gene *DHODH*.
 
 
 
@@ -237,7 +237,7 @@ Diagnostic finding in a cancer
 
 Cancer cases are not generally solved by genomic analysis. Instead, the intention is often to
 identify actionable variants that represent potential indications for targeted therapy. In
-this example, a BRAF variant is interpreted as being actionable in this sense.
+this example, a *BRAF* variant is interpreted as being actionable in this sense.
 
 .. code-block:: yaml
 

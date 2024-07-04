@@ -110,7 +110,7 @@ the case of Humans, this is the `HGNC <https://www.genenames.org/>`_, e.g. `HGNC
 symbol
 ~~~~~~
 This SHOULD use official gene symbol as designated by the organism gene nomenclature committee. In the case of human
-this is the `HUGO Gene Nomenclature Committee <https://www.genenames.org>`_ e.g. `ETF1 <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477>`_.
+this is the `HUGO Gene Nomenclature Committee <https://www.genenames.org>`_ e.g. `*ETF1* <https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/HGNC:3477>`_.
 
 description
 ~~~~~~~~~~~
