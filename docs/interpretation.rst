@@ -136,7 +136,7 @@ other researchers with similar cases in order to subsequently share detailed inf
 a collaborative project.
 
 In this case, the gene should be marked as ``CANDIDATE``. Here is an example of an interpretation
-with the hypothetical gene YFG42.
+with the gene DHODH.
 
 
 
@@ -152,8 +152,8 @@ with the hypothetical gene YFG42.
       genomicInterpretations:
       - interpretationStatus: "CANDIDATE"
         gene:
-          valueId: "HGNC:11234"
-          symbol: "YFG42"
+          valueId: "HGNC:2867"
+          symbol: "DHODH"
 
 
 Diagnostic finding in an autosomal dominant disease
