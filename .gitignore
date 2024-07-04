@@ -25,6 +25,9 @@ buildNumber.properties
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !maven-wrapper.jar
 
+# VS Code files
+.vscode/
+
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio
 
@@ -126,6 +129,10 @@ nb-configuration.xml
 
 ### Python template
 !requirements.txt
+
+# We do not track the generated Protobuf files for now.
+python/**/*_pb2.py
+python/**/*_pb2.pyi
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

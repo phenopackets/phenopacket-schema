@@ -3,7 +3,7 @@ syntax = "proto3";
 package org.phenopackets.schema.v2.core;
 
 import "phenopackets/schema/v2/core/base.proto";
-import "ga4gh/vrsatile/v1/vrsatile.proto";
+import "phenopackets/vrsatile/v1/vrsatile.proto";
 
 option java_multiple_files = true;
 option java_package = "org.phenopackets.schema.v2.core";

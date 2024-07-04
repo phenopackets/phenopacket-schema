@@ -109,6 +109,13 @@ Variation
 be it a genomic, transcript or protein variation. VRS also provides mechanisms for representing haplotypes and systemic
 variation such as Copy Number Variants (CNVs).
 
+.. note::
+
+  When introduced in Phenopacket Schema v2, a protobuf version of VRS (github.com/ga4gh/vrs-protobuf) 
+  was derived from the source VRS representation in JSON schema and used for phenopackets.
+  The `vrs-protobuf` message structure is losslessly transformable but syntactically distinct 
+  from the native VRS JSON schema.
+
 .. _rstvcfrecord:
 
 VcfRecord
