@@ -45,7 +45,6 @@ building blocks.
    reference-range
    resource
    sex
-   stop-reason
    therapeutic-regimen
    time-element
    time-interval
