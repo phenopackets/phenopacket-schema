@@ -98,8 +98,9 @@ Last, a repeated field can be set using list-like semantics:
     label: "Chronic"
   }
 
-See `Protobuf documentation <https://protobuf.dev/reference/python/python-generated/#repeated-fields>`_
-for more info.
+`Python: Rare Disease Phenopacket <rd-example-python>`_ shows
+how to build a rare phenopacket and `Protobuf documentation <https://protobuf.dev/reference/python/python-generated/#repeated-fields>`_
+explains the use of the Python Protobuf bindings.
 
 
 Building blocks I/O

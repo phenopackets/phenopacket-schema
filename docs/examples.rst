@@ -21,3 +21,8 @@ Each example has a corresponding explanation of how to create the Phenopacket us
 
    Java: Rare Disease Phenopacket <rd-example-java>
    Java: Cancer Phenopacket <cancer-example-java>
+
+.. toctree::
+   :maxdepth: 1
+
+   Python: Rare Disease Phenopacket <rd-example-python>
