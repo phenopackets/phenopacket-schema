@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "phenopackets"
-version = "2.0.2.post2"  # IMPORTANT: This must be kept in sync with `project.version` in the top-level `pom.xml`
+version = "2.0.2.post5"  # IMPORTANT: This must be kept in sync with `project.version` in the top-level `pom.xml`
 requires-python = ">=3.8"
 description = "Phenopacket Schema"
 readme = "README.rst"

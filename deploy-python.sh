@@ -13,13 +13,13 @@ cd $DIRECTORY || { echo "Deployment FAILED. Couldn't find directory" ; exit 1; }
 createVirtualEnvironment(){
   echo "Creating Python virtual environment at ${1}"
   python3 -m venv "${1}" &> /dev/null
-  if [ ${?} = 1 ]; then
+  if [ $? -ne 0 ]; then
     echo "Setup of Python virtual environment using 'python3 -m venv' failed. Trying 'virtualenv'"
     virtualenv "${1}" &> /dev/null
-  fi
-  if [ ${?} = 1 ]; then
-    echo "Deployment FAILED. Could not create Python virtual environment"
-    exit 1;
+    if [ $? -ne 0 ]; then
+      echo "Deployment FAILED. Could not create Python virtual environment"
+      exit 1;
+    fi
   fi
   echo "Virtual environment created successfully";
 }
@@ -40,9 +40,9 @@ python3 -m pip install build twine || { echo "Deployment FAILED. Failed to insta
 python3 -m build || { echo "Deployment FAILED. Building python package" ; exit 1; }
 # Deploy - Remove --repository testpypi flag for production.
 if [ "$1" = "release-prod" ]; then
-  python3 -m twine upload dist/*
+  python3 -m twine upload dist/* || { echo "Deployment FAILED. Could not upload."; exit 1; }
 elif [ "$1" = "release-test" ]; then
-  python3 -m twine upload --repository testpypi dist/*
+  python3 -m twine upload --repository testpypi dist/* || { echo "Deployment FAILED. Could not upload."; exit 1; }
 else
   echo "Python Release was prepared successfully. No release argument provided, use one of [release-prod, release-test] to make the production/test release."
 fi
