@@ -73,6 +73,10 @@ message VitalStatus {
 
 // Sex of an individual
 // FHIR mapping: AdministrativeGender (https://www.hl7.org/fhir/codesystem-administrative-gender.html)
+// Note: The integer values used in this enum are internal Protocol Buffer indices.
+// They DO NOT correspond to standard PED/PLINK file integer encodings (where Male=1, Female=2).
+// When generating JSON/YAML Phenopackets, always use the string representation
+// (e.g., "MALE", "FEMALE") rather than these integer values.
 enum Sex {
   // Not assessed / available.
   UNKNOWN_SEX = 0;
