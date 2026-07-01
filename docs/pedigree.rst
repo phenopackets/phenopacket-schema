@@ -15,6 +15,15 @@ and PED software, but does not actually store a PED file.
 See the detailed description at the `PLINK <http://zzz.bwh.harvard.edu/plink/data.shtml>`_ website for more information
 about PED files.
 
+.. warning::
+   In standard genetic pedigree files (like PLINK), sex is typically encoded as
+   ``1`` for Male and ``2`` for Female. The Phenopackets internal schema assigns
+   the integer ``1`` to ``FEMALE`` and ``2`` to ``MALE``. **Do not use integers to
+   encode sex in Phenopackets.** This discrepancy will not affect your data because
+   the Phenopackets JSON and YAML implementations require you to use the explicit
+   string values (``"MALE"``, ``"FEMALE"``, ``"UNKNOWN_SEX"``). The underlying
+   software will automatically handle the correct data serialization.
+
 
 Data model
 ##########
@@ -81,7 +90,11 @@ Example
 #######
 
 Here we show a pedigree in PED format, this contains two male siblings which share an abnormal (affected) phenotype and
-their two normal (unaffected) parents.
+their two normal (unaffected) parents. In a typical PED file, the sex of individuals is encoded as a "2" for females,
+"1" for males, and "0" for unknown. We use here the Phenopacket encoding for :ref:`rstsex` instead (note that the
+enumeration used for Sex by the Phenopacket Schema has 1 for FEMALE and 2 for MALE, but this is internal and is not
+visible in the JSON-serialized Phenopacket). As noted in the warning above, always encode sex using the string values
+(e.g. ``"MALE"``, ``"FEMALE"``) rather than integers when writing a Phenopacket.
 
 .. code-block::
 
@@ -138,9 +151,6 @@ This element is an enumeration to
 
 In a PED file, affected persons are encoded with "2", and unaffecteds by "1"
 (a "0" is used if no information is available). Instead, Phenopackets uses an enumeration as shown in the table.
-
-In a PED file, the sex of individuals is encoded as a "2" for females, "1" for males, and "0" for unknown. Phenopackets
-uses :ref:`rstsex` instead (Note that the enumeration used for Sex by the Phenopacket Schema has 1 for FEMALE and 2 for MALE, but this is internal and is not visible in the JSON-serialized Phenopacket).
 
 The message is made up of a list of ``Person`` elements (the Person element is defined within the Pedigree element).
 Each Person element is equivalent to one row of a PED file.
