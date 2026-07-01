@@ -8,6 +8,15 @@ An enumeration used to represent the sex of an individual.
 This element does not represent gender identity or :ref:`rstkaryotypicsex`, but instead represents typical
 "phenotypic sex", as would be determined by a midwife or physician at birth.
 
+.. warning::
+   In standard genetic pedigree files (like PLINK), sex is typically encoded as
+   ``1`` for Male and ``2`` for Female. The Phenopackets internal schema assigns
+   the integer ``1`` to ``FEMALE`` and ``2`` to ``MALE``. **Do not use integers to
+   encode sex in Phenopackets.** This discrepancy will not affect your data because
+   the Phenopackets JSON and YAML implementations require you to use the explicit
+   string values (``"MALE"``, ``"FEMALE"``, ``"UNKNOWN_SEX"``). The underlying
+   software will automatically handle the correct data serialization.
+
 Data model
 ##########
 
