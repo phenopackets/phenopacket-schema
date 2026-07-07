@@ -194,7 +194,7 @@ A biopsy of a pelvic lymph node revealed a metastasis. A reference to a somatic 
 
 .. code-block:: yaml
 
-     - id: "sample5"
+    - id: "sample5"
       individualId: "patient1"
       sampledTissue:
         id: "UBERON:0015876"
@@ -249,19 +249,20 @@ details.
       - id: "NCIT:C48700"
         label: "M1 Stage Finding"
 
-htsFiles
-~~~~~~~~
+files
+~~~~~
 This is a reference to the paired normal germline sample.
 
 .. code-block:: yaml
 
-    htsFiles:
+    files:
     - uri: "file://data/genomes/germline_wgs.vcf.gz"
-      description: "Matched normal germline sample"
-      htsFormat: "VCF"
-      genomeAssembly: "GRCh38"
-      individualToSampleIdentifiers:
+      individualToFileIdentifiers:
         example case: "NA12345"
+      fileAttributes:
+        genomeAssembly: "GRCh38"
+        fileFormat: "vcf"
+        description: "Matched normal germline sample"
 
 metaData
 ~~~~~~~~
@@ -292,6 +293,13 @@ in the Phenopacket.
         url: "http://purl.obolibrary.org/obo/ncit.owl"
         version: "18.05d"
         namespacePrefix: "NCIT"
+        iriPrefix: "http://purl.obolibrary.org/obo/NCIT_"
+      - id: "efo"
+        name: "Experimental Factor Ontology"
+        url: "http://www.ebi.ac.uk/efo/efo.owl"
+        version: "2021-05-11"
+        namespacePrefix: "EFO"
+        iriPrefix: "http://www.ebi.ac.uk/efo/EFO_"
       phenopacketSchemaVersion: "2.0"
       externalReferences:
       - id: "PMID:29221636"

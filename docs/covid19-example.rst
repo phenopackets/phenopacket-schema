@@ -21,6 +21,7 @@ to Saturday March 28, 2020 00:00:00 (AM).
 
 .. code-block:: yaml
 
+   id: "covid-example"
    subject:
       id: "P123542"
       sex: "MALE"
@@ -287,24 +288,33 @@ in the Phenopacket.
 .. code-block:: yaml
 
     metaData:
+      created: "2021-05-11T15:07:16.662Z"
+      createdBy: "Peter R."
       resources:
       - id: "ncit"
         name: "NCI Thesaurus OBO Edition"
         url: "http://purl.obolibrary.org/obo/ncit.owl"
         version: "http://purl.obolibrary.org/obo/ncit/releases/2019-11-26/ncit.owl"
         namespacePrefix: "NCIT"
+        iriPrefix: "http://purl.obolibrary.org/obo/NCIT_"
       - id: "mondo"
         name: "Mondo Disease Ontology"
         url: "http://purl.obolibrary.org/obo/mondo.obo"
+        version: "2019-11-26"
         namespacePrefix: "MONDO"
+        iriPrefix: "http://purl.obolibrary.org/obo/MONDO_"
       - id: "doi"
         name: "Digital Object Identifier"
         url: "http://dx.doi.org"
+        version: "2021-05-11"
         namespacePrefix: "DOI"
+        iriPrefix: "https://doi.org/"
       - id: "pubmed"
         name: "PubMed"
         url: "https://pubmed.ncbi.nlm.nih.gov/"
+        version: "2021-05-11"
         namespacePrefix: "PUBMED"
+        iriPrefix: "https://www.ncbi.nlm.nih.gov/pubmed/"
       phenopacketSchemaVersion: "2.0"
       externalReferences:
       - id: "DOI:10.1016/j.jaccas.2020.04.001"

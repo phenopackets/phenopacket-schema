@@ -200,6 +200,8 @@ in the Phenopacket.
         iriPrefix: "http://purl.obolibrary.org/obo/GENO_"
       - id: "pubmed"
         name: "PubMed"
+        url: "https://www.ncbi.nlm.nih.gov/pubmed/"
+        version: "2021-05-11"
         namespacePrefix: "PMID"
         iriPrefix: "https://www.ncbi.nlm.nih.gov/pubmed/"
       phenopacketSchemaVersion: "2.0"
