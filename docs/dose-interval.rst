@@ -7,7 +7,7 @@ DoseInterval
 This element represents a block of time in which the dosage of a medication was
 constant. For example, to represent a period of  30 mg twice a day for an interval of 10 days, we would
 use a :ref:`rstquantity` element to represent the individual `30 mg` dose, and :ref:`rstontologyclass`
-element to represent `twice a day`, and an :ref:`rstinterval` element to represent the 10-day interval.
+element to represent `twice a day`, and an :ref:`rsttimeinterval` element to represent the 10-day interval.
 
 
 

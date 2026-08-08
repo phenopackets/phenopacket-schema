@@ -134,7 +134,7 @@ sequencing experiment. See :ref:`rstfile` for further information.
 
 
 meta_data
-~~~~~~~~
+~~~~~~~~~
 This element contains structured definitions of the resources and ontologies used within the phenopacket.
 It is expected that every valid Phenopacket contains a metaData element.
 See :ref:`rstmetadata` for further information.
