@@ -18,7 +18,6 @@ building blocks.
 
    age
    biosample
-   chemotherapytreatment
    complex-value
    disease
    dose-interval
@@ -29,7 +28,6 @@ building blocks.
    gene
    genomic-interpretation
    gestational-age
-   hormonetherapy
    individual
    interpretation
    karyotypicsex

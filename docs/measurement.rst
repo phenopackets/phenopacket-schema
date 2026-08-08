@@ -95,7 +95,7 @@ Categorical measurements, in which the outcome of the measurement is represented
 options that are not ordered, are represented in an analogous fashion.
 
 The following example presents a blood pressure measurement. The measurement of blood pressure
-consists of two measurements (systolic and diastolic), that are represented as a :ref:`rstcomplexquantity`.
+consists of two measurements (systolic and diastolic), that are represented as a :ref:`rstcomplexvalue`.
 
 
 .. code-block:: yaml

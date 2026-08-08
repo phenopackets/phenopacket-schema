@@ -139,7 +139,7 @@ We would also use ``patient23456`` as the ``individualId`` element within a :ref
 alternate_ids
 ~~~~~~~~~~~~~
 
-An optional list of alternative identifiers for this individual. These should be in the form of :ref:`rstcurie`s and hence have a
+An optional list of alternative identifiers for this individual. These should be in the form of :ref:`rstcurie`\ s and hence have a
 corresponding :ref:`rstresource` listed in the :ref:`rstmetadata`. These should **not** be used elsewhere in the phenopacket
 as this will break the assumptions required for using the ``id`` field as the primary identifier. This field is provided
 for the convenience of users who may have multiple mappings to an individual which they need to track.
